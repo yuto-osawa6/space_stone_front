@@ -29,6 +29,7 @@ export const ShareMain:React.FC<Props> = (Props) =>{
           <div className = "insert_box">
             {/* <Outlet/> */}
             {Props.children}
+            {/* a */}
           </div>
           {/* <MessageContainer/> */}
         </div>

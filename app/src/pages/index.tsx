@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { ShareMain } from 'src/components/share/main/ShareMain'
+import { ShareMain } from 'components/share/main/ShareMain'
 // import { ShareMain } from 'src/components/share/main/ShareMain'
 // import { ShareMain } from '../src/components/share/main/ShareMain'
-import styles from '../styles/Home.module.scss'
+import styles from 'styles/Home.module.scss'
+import {BiTestTube} from 'react-icons/bi'
+
 
 const Home: NextPage = () => {
   return (
@@ -20,7 +22,12 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
           aahhjgh
         </h1>
+        <p className='aiu'>あいうえお</p>
+        <p className='aiu'>あいうえお</p>
 
+        {/* <p className={styles.aiu}>あいうえお</p> */}
+
+        <BiTestTube></BiTestTube>
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
@@ -84,7 +91,6 @@ export default Home
 //       <ShareMain>
 //         aaaaaaaaajk
 //       </ShareMain>
-//       a
 //     </>
 //   )
 // }

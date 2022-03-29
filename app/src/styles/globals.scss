@@ -1,5 +1,6 @@
 html,
 body {
+  background-color: aqua;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -7,14 +8,21 @@ body {
 }
 
 a {
-  color: inherit;
+  // color: inherit;
   text-decoration: none;
+  color: red;
 }
 
 * {
   box-sizing: border-box;
 }
+.super{
+  background-color: black
+}
 
+.aiu{
+  background-color: aqua;
+}
 // @import "./modules/reset";
 // @import "./modules/font-color";
 // @import "./modules//share_container";
