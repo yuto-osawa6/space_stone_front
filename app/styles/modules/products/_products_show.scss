@@ -188,7 +188,7 @@
   list-style: none;
   // display: grid;
   flex-flow: wrap;
-  align-items: start;
+  align-items: flex-start;
 
   margin-top: 20px
   ;
@@ -227,7 +227,7 @@ px
 
 .show_contents01_header_bottom_rightbox03{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   a{
     color: red;
     /* background-color: black; */

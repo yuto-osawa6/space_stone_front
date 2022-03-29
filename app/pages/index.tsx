@@ -80,8 +80,9 @@ const Home: NextPage = () => {
   return(
     <>
       <ShareMain>
-        aa
+        aaaaaaaaajk
       </ShareMain>
+      a
     </>
   )
 }
