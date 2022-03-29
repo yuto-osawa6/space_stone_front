@@ -1,7 +1,8 @@
-// import type { NextPage } from 'next'
-// import Head from 'next/head'
-// import Image from 'next/image'
-// import styles from '../styles/Home.module.scss'
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+import { ShareMain } from '../src/components/share/main/ShareMain'
+import styles from '../styles/Home.module.scss'
 
 // const Home: NextPage = () => {
 //   return (
@@ -15,15 +16,13 @@
 //       <main className={styles.main}>
 //         <h1 className={styles.title}>
 //           Welcome to <a href="https://nextjs.org">Next.js!</a>
+//           aahhjgh
 //         </h1>
-//         <p className = 'raion'>
-//           aaaaaaaaaaaaaaaaaaaa
-//           <span className='lions'>aaaaaaa</span>
-//           aaaaaaaaaa
-//         </p>
+
 //         <p className={styles.description}>
 //           Get started by editing{' '}
 //           <code className={styles.code}>pages/index.tsx</code>
+//           aaaaaa
 //         </p>
 
 //         <div className={styles.grid}>
@@ -65,7 +64,7 @@
 //         >
 //           Powered by{' '}
 //           <span className={styles.logo}>
-//             <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+//             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
 //           </span>
 //         </a>
 //       </footer>
@@ -75,18 +74,16 @@
 
 // export default Home
 
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
 
-const Homea: NextPage = () => {
-  return (
+const Home: NextPage = () => {
+
+  return(
     <>
-      aaaa
-
+      <ShareMain>
+        aa
+      </ShareMain>
     </>
   )
 }
 
-export default Homea
+export default Home

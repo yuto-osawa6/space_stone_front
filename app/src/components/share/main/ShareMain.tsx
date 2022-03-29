@@ -1,10 +1,11 @@
-import { Home12 } from "../src/components/Home1"
-import { HeaderDivComponent } from "../src/components/share/HeaderDiv"
-// import Home from "./indexa"
+import { ReactNode } from "react"
+import { HeaderDivComponent } from "../../applications/header/Header"
 
-const Home:React.FC = () => {
-
-
+type Props = {
+  children:ReactNode
+}
+export const ShareMain:React.FC<Props> = (Props) =>{
+  
   return(
     <>
       {/* <div className = "header">
@@ -13,20 +14,21 @@ const Home:React.FC = () => {
         </div>
       </div> */}
       <HeaderDivComponent>
-        ccc
+        a
       </HeaderDivComponent>
-      <div className = "super ToptensContainerGridListRankTranpSpade">
-        aaa
+      <div className = "super">
         {/* <Lefts/> */}
         {/* <div className = {`super-sheet`} style={handleStyle()}> */}
-        <div className = {`super-sheet`} >
+        <div className = {`super-sheet`}>
           <div className = "header__message__box">
-            {/* <div className = "header__search" style={handleStyle2()}>
-              <Search/>
-            </div> */}
+            {/* <div className = "header__search" style={handleStyle2()}> */}
+            <div className = "header__search">
+              {/* <Search/> */}
+            </div>
           </div>
           <div className = "insert_box">
             {/* <Outlet/> */}
+            {Props.children}
           </div>
           {/* <MessageContainer/> */}
         </div>
@@ -35,5 +37,3 @@ const Home:React.FC = () => {
     </>
   )
 }
-
-export default Home
