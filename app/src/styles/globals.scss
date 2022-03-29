@@ -1,89 +1,89 @@
-html,
-body {
-  background-color: aqua;
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+// html,
+// body {
+//   background-color: aqua;
+//   padding: 0;
+//   margin: 0;
+//   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+//     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+// }
 
-a {
-  // color: inherit;
-  text-decoration: none;
-  color: red;
-}
+// a {
+//   // color: inherit;
+//   text-decoration: none;
+//   color: red;
+// }
 
-* {
-  box-sizing: border-box;
-}
-.super{
-  background-color: black
-}
+// * {
+//   box-sizing: border-box;
+// }
+// .super{
+//   background-color: black
+// }
 
-.aiu{
-  background-color: aqua;
-}
-// @import "./modules/reset";
-// @import "./modules/font-color";
-// @import "./modules//share_container";
-// @import "./modules/modal";
-// @import "./modules/products.scss";
-// // lefts
-// @import "./modules/application/lefs/left_layout";
-// @import "./modules/application/lefs/ren";
-//   // user
-//   @import "./modules/application/lefs/user/user";
+// .aiu{
+//   background-color: red;
+// }
+@import "./modules/reset";
+@import "./modules/font-color";
+@import "./modules//share_container";
+@import "./modules/modal";
+@import "./modules/products.scss";
+// lefts
+@import "./modules/application/lefs/left_layout";
+@import "./modules/application/lefs/ren";
+  // user
+  @import "./modules/application/lefs/user/user";
 
-// // search
-// @import "./modules/application/search/search";
+// search
+@import "./modules/application/search/search";
 
-// // footer
-// @import "./modules/fotter";
+// footer
+@import "./modules/fotter";
 
-// //main
-// @import "./modules/main/main_grids";
-//   @import "./modules/main/main";
-//   @import "./modules/main/calendar";
+//main
+@import "./modules/main/main_grids";
+  @import "./modules/main/main";
+  @import "./modules/main/calendar";
 
-// // transition
-// @import "./modules/transition";
+// transition
+@import "./modules/transition";
 
-// // products
-//   // show
-//     @import "./modules/products/products_show";
-//     // top
-//       @import "./modules/products/show/top";
-//     // chat
-//       @import "./modules/products/show/chat";
+// products
+  // show
+    @import "./modules/products/products_show";
+    // top
+      @import "./modules/products/show/top";
+    // chat
+      @import "./modules/products/show/chat";
 
-// // reviews
-//   // show
-//     @import "./modules/reviews/reviews_show";
-//   // index
-//     @import "./modules/reviews/reviews_index";
+// reviews
+  // show
+    @import "./modules/reviews/reviews_show";
+  // index
+    @import "./modules/reviews/reviews_index";
 
-// // article
-//   @import "./modules//articles/article.scss";
-//   @import "./modules/articles/index.scss";
+// article
+  @import "./modules//articles/article.scss";
+  @import "./modules/articles/index.scss";
 
-// // header
-//   @import "./modules/application/header/headerV1";
+// header
+  @import "./modules/application/header/headerV1";
 
-// // share component
-//   @import "./modules/share_component";
+// share component
+  @import "./modules/share_component";
 
 
-// // users
-//   @import "./modules/users/users";
-//   // show
-//   @import "./modules/users/show/users.show";
-//   // setup
-//     // background
-//     @import "./modules/users/setup/background/background";
+// users
+  @import "./modules/users/users";
+  // show
+  @import "./modules/users/show/users.show";
+  // setup
+    // background
+    @import "./modules/users/setup/background/background";
 
-// // admins
-//   // product
-//     @import "./modules/admins/admins_product";
+// admins
+  // product
+    @import "./modules/admins/admins_product";
 
 
 

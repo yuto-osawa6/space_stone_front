@@ -11,13 +11,12 @@ import 'styles/globals.scss'
 // import store from "store/"
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-  // (
-    // <Provider store={store}>  
-    //   <Component {...pageProps} />
-    // </Provider>
-    // <Component {...pageProps} />
-  // )
+  // return <Component {...pageProps} />
+  return(
+    <Provider store={store}>  
+      <Component {...pageProps} />
+    </Provider>
+  )
 }
 
 export default MyApp
