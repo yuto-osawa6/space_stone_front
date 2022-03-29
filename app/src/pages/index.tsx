@@ -20,7 +20,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-          aahhjgh
+          aahhjghlkl
         </h1>
         <p className='aiu'>あいうえお</p>
         <p className='aiu'>あいうえお</p>
