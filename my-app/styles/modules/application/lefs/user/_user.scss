@@ -1,0 +1,45 @@
+.category_sinup{
+  .user_box_true{
+    .user_sign_in{
+      .model_btn{
+        margin: 20px 10px 15px 10px;
+        padding: 10px;
+        // background-color: #ffffff;
+        background-color: $color-v1-d;
+        color: #ffffff;
+        box-shadow: $color-v1-shadow-a;
+        // border:solid 1px $color-v1-a;
+        width: fit-content;
+        border-radius: 10px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+.social_login_all{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+
+  width: 400px;
+  height: 400px;
+  background-color: cadetblue;
+  .social_login_title{
+    color: #ffff;
+    padding: 10px;
+    font-size: 1.2rem;
+  }
+
+.user_social_login{
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform:translate(-50%, -50%);
+  // width: 400,
+  // bgcolor: 'background.paper',
+  // border: '2px solid #000',
+  // boxShadow: 24,
+  // p: 4,
+}
+}

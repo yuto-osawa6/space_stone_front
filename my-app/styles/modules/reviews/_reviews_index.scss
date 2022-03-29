@@ -1,0 +1,119 @@
+.ReviewIndexList{
+  position: relative;
+  padding-top: 100%;
+  cursor: pointer;
+
+.ReviewListItem{
+  // max-width: 100%;
+  // min-width: 100%;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  background-color: aliceblue;
+  .ReviewListItemTop{
+    position: relative;
+    padding-top: 200px;
+    .ReviewListItemTopImage{
+      top: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .ReviewListItemTopShadow{
+      position: absolute;
+      background-color: black;
+      z-index: 100;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      opacity: 0.5;
+    }
+    .ReviewListItemTopCenter{
+      left: 50%;
+      position: absolute;
+      color: #ffffff;
+      top: 50%;
+      z-index: 101;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      flex-flow: column;
+      align-items: center;
+      grid-gap: 10px;
+      gap: 10px;
+      .ReviewListItemTopCenterTitle{
+        font-size: 1.1rem;
+      }
+      .ReviewListItemTopCenterUser{
+
+      }
+    }
+  }
+
+  .ReviewListItemMain{
+    margin: 0px 20px;
+    .RevieweListItemMainTop{
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffff;
+      position: relative;
+      top: -50px;
+      z-index: 100;
+      padding: 20px;
+      margin-bottom: -100px;
+    }
+  }
+    
+}
+}
+
+
+// dummy
+
+.ArticlesContainerNavigateUlterms{
+  position: relative;
+  margin-left: 20px;
+  &::before{
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 60%;
+    background-color: #132f4c;
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translate(-1px,-50%);
+  }
+}
+
+.ArticlesContainerNavigateUltermsRangeDummy{
+  position: relative;
+  .ArticlesContainerNavigateUltermsRangeDummyAbsolute{
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    white-space: nowrap;
+    top: 10px;
+    left: -10px;
+  }
+  .activeArticlesUlterms{
+    display: block;
+    ul{
+      li{
+
+      }
+    }
+  }
+
+  .activeRange{
+    background-color: #ff3073 !important;
+    color: white!important;
+  }
+}

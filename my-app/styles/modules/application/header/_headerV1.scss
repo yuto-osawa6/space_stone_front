@@ -1,0 +1,321 @@
+.HeaderV1{
+  display: grid;
+  // grid-template-columns: 20px 20px 20px auto 1fr 20px 20px 20px;
+  // grid-template-columns: 20px auto 1fr 20px;
+  // grid-template-columns:auto 1fr;
+
+  // box-shadow: $color-v1-shadow-a;
+  // background-color: #132f4c;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+.header{
+  // top: 0;
+  // position: sticky;
+  // z-index: 200;
+  // top: 0;
+  // position: sticky;
+  // z-index: 200;
+  
+
+}
+.activeScroll{
+  transform: translateY(-100px);
+}
+
+.HeaderGrid0{
+  // background-color:$color-v1-g0;
+  background-color:$color-v1-h0;
+}
+.HeaderGrid1{
+  // background-color:$color-v1-g1;
+  background-color:$color-v1-h1;
+}
+.HeaderGrid2{
+  // background-color:$color-v1-g2;
+  background-color:$color-v1-h2;
+}
+.HeaderGrid3{
+  // background-color:$color-v1-g3;
+  background-color:$color-v1-h3;
+}
+.HeaderGrid4{
+  // background-color:$color-v1-g4;
+  background-color:$color-v1-h4;
+}
+.HeaderGrid5{
+  // background-color:$color-v1-g5;
+  background-color:$color-v1-h5;
+}
+.HeaderGrid6{
+  // background-color:$color-v1-g10;
+  background-color:$color-v1-h10;
+}
+.HeaderGrid7{
+  // background-color:$color-v1-g7;
+  background-color:$color-v1-h7;
+}
+.HeaderGrid8{
+  // background-color:$color-v1-g8;
+  background-color:$color-v1-h8;
+}
+.HeaderGrid9{
+  // background-color:$color-v1-g9;
+  background-color:$color-v1-h9;
+}
+
+.HeaderGrid12{
+  // background-color: white;
+  background-color: #1a252f;
+}
+
+.HeaderGrid11{
+  // background-color: $color-v1-d;
+  background-color: #1a252f;
+}
+
+// $color-v1-g0:#f7f48a;
+// $color-v1-g1:#99f9c8;
+// $color-v1-g2:#f7c280;
+// $color-v1-g3:#ff9292;
+// $color-v1-g4:#f5b7ed;
+// $color-v1-g5:#f0aaf9;
+// $color-v1-g6:#9bc0f7;
+// $color-v1-g7:#ccf9b0;
+// $color-v1-g8:#b5b8ff;
+// $color-v1-g9:#bdffb5;
+// $color-v1-g10:#ff9eb9;
+
+.LOGO{
+  display: flex;
+  width: fit-content;
+  position: relative;
+  .LogoG{
+    font-size: 2.0rem;
+    color: #ff3073;
+    z-index: 100;
+  }
+  .LogoF{
+    font-size: 2.0rem;
+    color: white;
+    /* position: absolute; */
+    top: 0;
+    right: px;
+    z-index: 10;
+    position: relative;
+  }
+  .LogoHeart{
+    position: relative;
+    right: 20px;
+    /* background-color: aqua; */
+    z-index: 9;
+    color: aqua;
+    svg{
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      color: #ff3073;
+      /* position: absolute; */
+      top: 0;
+      color: white;
+      color: #ff3073;
+    }
+  }
+}
+.HeaderMain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a252f;
+}
+.HeaderMainLeft{
+  padding: 10px;
+  .HeaderMainLeftTitle{
+    margin-right: -20px;
+  }
+  // background-color: #1b548f;
+}
+.HeaderNavi{
+  position: relative;
+  background-color: #edf1f5;
+  // font-size: 0.9rem;
+  ul{
+    background-color: #edf1f5;
+    transition: 1s;
+    position: fixed;
+    height: 56.8px;
+    width: calc(100% - 200px);
+    z-index: 300;
+
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    // height: 100%;
+    font-size: 1.2rem;
+    li{
+      color: white;
+      // background-color: #167eff;
+      background-color: #283d52;
+      // padding: 5px 15px 5px 15px;
+      // border: 1px solid grey;
+      border-radius: 30px;
+      box-shadow: $color-v1-shadow-a;
+      a{
+      padding: 5px 15px 5px 15px;
+      cursor: pointer;
+      display: block;
+      }
+    }
+    .headerUserSighIn{
+      background-color: $color-v1-d;
+      padding: 0px;
+      .user_box_false{
+        .user_mypage{
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        padding: 5px 10px 5px 10px;
+        cursor: pointer;
+        }
+        .userNavigationDummy{
+          position: relative;
+          .userNavigationDummyAbusolute{
+            font-size: 0.8rem;
+            // doneyet 確認 文字の長さではみ出る問題
+            overflow-x: hidden;
+            max-width: 200%;
+            position: absolute;
+            min-width: 100%;
+            background-color: #283d52;;
+            top: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            display: flex;
+            gap: 5px;
+            flex-flow: column;
+            .UserNavigateDummyAbusoluteTop{
+              border-bottom: 1px solid;
+              display: flex;
+              gap: 10px;
+              align-items: center;
+              padding: 5px;
+     
+              .UserNavigateDummyAbusoluteTopImg{
+                display: flex;
+                justify-content: center;
+                img{
+                  // display: flex;
+                  // justify-content: center;
+                  width: 30px;
+                  border-radius: 30px;
+                  height: 30px;
+                }
+              }
+              .UserNavigateDummyAbusoluteTopName{
+                font-size: 0.9rem;
+                text-align: center;
+                margin-top: 10px;
+                padding-bottom: 5px;
+                // border-bottom: 1px solid;
+              }
+            }
+            
+            .user_logout{
+              padding: 5px 15px 5px 15px;
+              box-shadow: $color-v1-shadow-a;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              padding: 5px;
+              &:hover{
+                cursor: pointer;
+                color: #ff3073;
+              }
+            }
+          }
+        }
+      }
+      .user_box_true{
+        padding: 5px 10px 5px 10px;
+        .user_sign_in{
+          .model_btn{
+          display: flex;
+          gap: 5px;
+          align-items: center;
+          }
+          // padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+// userSettingModal
+
+.settingModalOpenClass{
+  max-width: 700px;
+  background-color: white;
+  border-radius: 5px;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  min-width: 500px;
+  .settingModalOpenClassTitle{
+    font-size: 1.5rem;
+  }
+  .settingModalOpenClassMain{
+    .settingModalOpenClassNickname{
+      margin-top: 10px;
+      width: 100%;
+    }
+    .settingModalOpenClassImage{
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    .settingModalOpenClassImageExplain{
+      color: #4c5966;
+      margin: 10px 10px;
+      font-size: 0.9rem;
+      a{
+        color: #1a76d2;
+      }
+    }
+  }
+}
+
+// sub
+.subMenu{
+  padding: 16px;
+  position: relative;
+  svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .subMenuList{
+    position: absolute;
+    right: 0px;
+    top: 32px;
+    background-color: #283d52;
+    width: fit-content;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+    font-size: 0.8rem;
+    flex-flow: column;
+    li{
+      cursor: pointer;
+      padding: 3px;
+      white-space: nowrap;
+      &:hover{
+        color: #1a76d2;;
+      }
+    }
+  }
+}

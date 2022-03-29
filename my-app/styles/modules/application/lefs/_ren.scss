@@ -1,0 +1,40 @@
+.header__message__box__top{
+  margin: 20px;
+  ul{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap:10px;
+    width: fit-content;
+    li{
+      box-shadow: $color-v1-shadow-a;
+      background-color: $color-v1-a;
+      color: #ffffff;
+      // width: fit-content;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      border: solid 1px $color-v1-a;
+      // border: solid 1px #EAEEF3;
+      // box-shadow: 0px 1px 1px rgba(92, 114, 13,0.15)
+
+    }
+  }
+}
+
+.header{
+  .header__box{
+
+    .header__box__left{
+      background-color: $color-v1-a;
+      box-shadow: $color-v1-shadow-a;
+      display: flex;
+      color: #fff;
+      padding: 10px;
+      // justify-content: ;
+      .header_title{
+
+      }
+    }
+  }
+}

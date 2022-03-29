@@ -1,0 +1,47 @@
+
+.UserBackgroupdModal{
+  width: 500px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  border-radius: 5px;
+
+  .UserBackgroupdModalTitle{
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+
+  .inputFile{
+    margin-bottom: 10px;
+    label{
+      cursor: pointer;
+      display: block;
+      padding: 5px;
+      border: 1px solid #1a76d2;
+      color: #1a76d2;
+      width: fit-content;
+      border-radius: 5px;
+      &:hover{
+        background-color: #1a76d2;
+        color: white;
+      }
+    }
+    input[type="file"] {
+      display: none;
+    }
+  }
+
+  // .UserBackgroupdModalPaddingBox{
+  //   position: relative;
+  //   padding-top:100%;
+  // }
+
+  .ReactCrop{
+    max-height: 50vh;
+    overflow: scroll;
+  }
+
+}

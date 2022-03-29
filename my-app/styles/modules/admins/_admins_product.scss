@@ -1,0 +1,74 @@
+.AdminsProduct{
+  background-color: aliceblue;
+  position: absolute;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 90%;
+  border-radius: 5px;
+  padding: 20px;
+  overflow: scroll;
+  height: 90%;
+  .FormProduct{
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    .FormProductLabel {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+
+}
+
+// admin genre
+
+.FormProductList2Message{
+  opacity: 0;
+  height: 0;
+}
+.activeFormProductList2Message{
+  opacity: 1;
+  transition: 1s;
+  height: auto;
+}
+// #react_select7_listbox{
+//   z-index: 10!important;
+// }
+// .css_2613
+
+.FormProductList2Genres {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.FormProductSetTitle {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+.Stepper2 {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+.Stepper3 {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+.Stepper4 {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+.Stepper5 {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+.FormProductList2AddGenreFlexBox{
+  display: flex;
+  gap: 10px;
+}

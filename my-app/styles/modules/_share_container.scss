@@ -1,0 +1,220 @@
+.share_container01 {
+  margin: 0px 20px 20px 20px;
+}
+.share_title01{
+  font-weight: bold;   
+  margin-bottom: 10px;
+  z-index: 1;
+}
+
+.share_container02 {
+  // padding: 20px;
+  position: relative;
+  padding-top: 63%;
+  background-color: #fff;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.share_middle_container01{
+  margin: 0px 20px 20px 20px;
+}
+
+.share_middle_container_title{
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  display: block;
+  font-weight: bold;
+  
+}
+
+.share_middle_container_right_text{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: #1a252f;;
+  cursor: pointer;
+  width: fit-content;
+  margin: 10px 0 0 auto;
+}
+.ShareMiddleContainerTitleRow{
+  display: flex;
+  justify-content: space-between;
+}
+
+.ToptensContainerGridListRankTranpSpade{
+  color: #005aff!important;
+}
+.ToptensContainerGridListRankTranpHeart{
+  color: #ff3073 !important;
+}
+.ToptensContainerGridListRankTranpDiamond{
+  color: #ffc800 !important;
+}
+.ToptensContainerGridListRankTranpClub{
+  color: #00bb2f !important;
+}
+
+.margin_bottom_list{
+  margin-bottom: 10px;
+}
+.margin_bottom_20{
+  margin-bottom: 20px;
+}
+
+// quill
+
+.ql-syntax{
+  margin: 0px !important;
+}
+.ql-editor{
+  font-size: 1.0rem !important;
+  padding: 0px !important;
+}
+.ql-container{
+  
+}
+
+.share_product_show_absolute{
+  // position: absolute;
+  position: absolute;
+    top: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+}
+
+// ..css-2m9kme-MuiFormControl-root{
+  //   margin: 0px 0px 20px 0px !important;
+  // }
+  // .ql-syntax{
+  //   background-color: #ffffff !important;
+  //   color: $color-v1-a !important;
+  // }
+  // .ql-editor{
+  //   padding: 10px 10px 10px 10px !important;
+  //   font-size: 1.0rem!important;
+  //   line-height: 1.42 ;
+  //   p{
+  //     a{
+  //     color:$color-v1-2!important ;
+  //   }
+  // }
+  // }
+  .UserAdminEdit{
+    width: fit-content;
+    position: absolute;
+    /* top: 0; */
+    bottom: 10px;
+    right: 20px;
+    background-color: white;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    box-shadow: $color-v1-shadow-a;
+    cursor: pointer;
+    &:hover{
+      background-color: darkblue;
+      color: khaki;
+    }
+  }
+
+  .UnderlineWavy{
+    // color:green;
+    text-decoration: wavy;
+    text-decoration-line:underline;
+    text-decoration-color: #005aff;
+  }
+  .UnderlineWavy2{
+    // color:green;
+    text-decoration: wavy;
+    text-decoration-line:underline;
+    text-decoration-color: #ff0080;
+  }
+  .UnderlineWavy3{
+    // color:green;
+    text-decoration: wavy;
+    text-decoration-line:underline;
+    text-decoration-color: #00e08a;
+  }
+
+  .InvoteButtonWeekly{
+    // cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: $color-v1-shadow-a;
+    &:hover{
+      color: white;
+      background-color: #ff3073!important;
+    }
+  }
+
+  // 後で消す
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  .column {
+    height: 400px;
+    width: 200px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .first-column {
+    background-color: #f5ffea;
+  }
+  
+  .second-column {
+    background-color: #fffbf5;
+  }
+  
+  .movable-item {
+    border-radius: 10px;
+    background-color: #fff3f3;
+    height: 100px;
+    width: 170px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+  }
+
+  // Tier
+  .TierSubmitButton{
+    height: 100%;
+    background-color: aliceblue;
+  }
+
+  // user
+  .UserSearchBotton{
+    &:hover{
+      color:aliceblue!important;
+      background-color: #3788d8;
+    }
+  }
+  .UserSearchItem{
+    &:hover{
+      background-color: #536577;
+    }
+
+  }
+  // quill
+  .ql-editor{
+    outline: none!important;
+    padding: 10px!important;
+  }
+  .preview_quill{
+    // padding: 0px!important;
+    .ql-editor{
+      // outline: none!important;
+      padding: 0px!important;
+    }
+  }

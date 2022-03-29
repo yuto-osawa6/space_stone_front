@@ -1,0 +1,101 @@
+.CalendarEventsModal{
+  z-index: 999;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  transform: translateY(-50%);
+  top: 50%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: $color-v1-shadow-a;
+  .CalendarEventsModalTop{
+    position: relative;
+    padding-top: 56.25%;
+    .CalendarEventsModalTopImg{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px 5px 0px 0px;
+      }
+    }
+    .CalendarEventsModalTopBottom{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      gap: 10px;
+      margin-right: 20px;
+      p{
+        // padding: 10px;
+        // background-color: #20c791;
+        margin: 10px 0px 10px 10px;
+        color: white;
+        border-radius: 5px;
+      }
+      .CalendarEventsModalTopBottomScore{
+        padding: 10px;
+      }
+      .CalendarEventsModalTopBottomShow{
+        padding: 10px;
+        background-color: #20c791;
+        cursor: pointer;
+      }
+      .CalendarEventsModalTopBottomNetFlix{
+        background-color: #ff0047;
+        cursor: pointer;
+        a{
+          padding: 10px;
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+      }
+    }
+  }
+  .CalendarEventsModalMain{
+    padding: 20px;
+    .CalendarEventsModalMainTitle{
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .CalendarEventsModalMainYear {
+      display: flex;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .CalendarEventsModalMainOverView{
+      line-height: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .CalendarEventsModalMainGenres {
+      padding-top: 10px;
+      border-top: 1px solid;
+      ul{
+      display: flex;
+      font-size: 0.9rem;
+      // margin-bottom: 10px;
+      gap: 10px;
+      flex-flow:wrap;
+        li{
+          padding: 3px 9px 3px 9px;
+          border: 1px solid;
+          border-radius: 30px;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+.fc-popover{
+  z-index: 100 !important;
+}
+.fc-view-harness{
+  background-color: white;
+}

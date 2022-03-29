@@ -1,0 +1,159 @@
+.ChatLists{
+  position: relative;
+  /* margin: 20px; */
+  padding: 20px 0px;
+  .ChatListsBox{
+    margin: 0px 20px;
+    // padding: 10px;
+    // background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+    word-break: break-all;
+
+    p{
+      // cursor: pointer;
+      position: relative;
+      padding: 10px;
+      background-color: white;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      transition: 1s;
+      // transition: 1s;
+      transform: translateY(0px);
+
+      &::before{
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: -10px;
+      margin-top: 5px;
+      border: 5px solid transparent;
+      border-right: 5px solid #ffffff;
+
+     
+      }
+      &:hover{
+        transition: 1s;
+        transform: translateY(-5px);
+      }
+    }
+  }
+}
+
+// modal
+
+.ChatListsModal{
+  outline: none;
+  // margin: 0 auto;
+  // margin:20px;
+  max-width: 1080px;
+  display: grid;
+  height: calc(100vh - 40px);
+  grid-template-rows: 1fr auto;
+  width: calc(100% - 40px);
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .ChatListsModalList{
+    width: calc(100vw - 40px);
+    // margin: 20px 20px 0px 20px;
+    height: 100%;
+    background-color: #2c3e50;;
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+    border-radius: 10px 10px 0px 0px;
+    overflow: scroll;
+    .CurrentUserMessagge {
+      color: #0ad692;
+    }
+    p{
+      word-break: break-all;
+      padding: 10px;
+      // background-color: white;
+      color:white;
+      border-radius: 5px;
+    }
+  }
+  .ChatListsModalForms {
+    // position: relative;
+    // padding: 5px;
+    background-color: #2c3e50;;
+    height: 100%;
+    padding: 10px;
+    position: relative;
+    border-radius: 0px 0px 10px 10px;
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 10px;
+
+
+    .ChatListsModalFormsInputTag{
+      outline: none;
+      height: 100%;
+      width: 100%;
+      margin-left: 5px;
+    }
+    .ChatListsModalFormsButton {
+      cursor: pointer;
+      background-color: #2c3e50;
+      color: white;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding:0px 10px;
+      padding: 5px;
+      margin-right:5px;
+    }
+  }
+}
+.ChatListsModalFormsBox {
+  padding:5px;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: $color-v1-shadow-d;
+  // padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+
+.CloseButtonInChat {
+  position: absolute;
+  top: 50%;
+  height: 30px;
+  left: 50%;
+  /* height: 100%; */
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  color: white;
+  background-color: #ff3073;
+  width: 30px;
+  z-index: 101;
+  box-shadow: $color-v1-shadow-d;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
+  // transform: rotateZ(0deg);
+  &:hover{
+    transition: 1s;
+    // transform: rotateZ(180deg);
+  }
+}
+.CloseButtoDummy{
+  position: relative;
+  height: 100%;
+}

@@ -1,0 +1,18 @@
+.article{
+
+  .articleQuill{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    // grid-gap: 10px;
+  }
+}
+
+// quill custom blot
+
+.NetflixBlot {
+  background-color: red;
+  width: fit-content;
+  padding: 10px;
+  color: #ffff;
+  border-radius: 5px;
+}
