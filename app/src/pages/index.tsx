@@ -10,24 +10,53 @@ import { ThisSeasonAnimeInfomation } from 'components/mains/main_block/ThisSeaso
 import { product } from 'interfaces/product'
 import handler from './api/hello'
 import Link from 'next/link'
+import { NextSeasonAnimeInfomation } from 'components/mains/main_block/NextSeasonAnimeInfomation'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
-  const res = await fetch(`${process.env.ApiPathV1}/mainblocks/mains/new_netflix`, {method: "GET"});
-  const json = await res.json();
-  return {
-    props: {
-      data: json
-    },
-  };
+  // const res = await fetch(`${process.env.ApiPathV1}/mainblocks/mains/new_netflix`, {method: "GET"});
+  // const json = await res.json();
+  // return {
+  //   props: {
+  //     data: json
+  //   },
+  // };
+  // console.log(context)
+  const params = {
+    active:"1",
+    last:"2"
+  }
+  // const tierParams = {
+
+  // }
+  const query_params = new URLSearchParams(params); 
+  const [thisSeasonRes, nextSeasonRes] = await Promise.all([
+    fetch(`${process.env.ApiPathV1}/mainblocks/mains/new_netflix`), 
+    fetch(`${process.env.ApiPathV1}/mainblocks/mains/pickup?`+ query_params)
+    // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
+  ]);
+  const [data, data2] = await Promise.all([
+    thisSeasonRes.json(), 
+    nextSeasonRes.json()
+  ]);
+  return { props: { data, data2 } };
 }
 
 type Props = {
   data:{
     products: product[],
-    current_season:string,
+    currentSeason:string,
     scores:avgScore
 
+  },
+  data2:{
+    currentSeason: string
+    currentSeason2: string
+    products: product[],
+    products2: product[],
+    scores: {avgScore:avgScore, avgScore2: avgScore}
+    // tier: []
+    // tier_average: 
   }
 }
 type avgScore = {
@@ -53,7 +82,12 @@ type UserTier = {
     <>
       <ThisSeasonAnimeInfomation
         products = {Props.data.products}
-        currentSeason = {Props.data.current_season}
+        currentSeason = {Props.data.currentSeason}
+      />
+      <NextSeasonAnimeInfomation
+        // products = {Props.data.products}
+        // currentSeason = {Props.data.currentSeason}
+        data = {Props.data2}
       />
       <Link href="/ota">
           <a>Home</a>
