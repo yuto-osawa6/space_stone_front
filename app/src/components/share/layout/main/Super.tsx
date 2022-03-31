@@ -1,4 +1,4 @@
-import Lefts from "./Lefts"
+import Lefts from "../../../applications/left/Lefts"
 
 type Props = {
   children:React.ReactNode

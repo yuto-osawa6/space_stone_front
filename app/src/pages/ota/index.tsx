@@ -1,6 +1,11 @@
+import { ShareMain } from "components/share/main/ShareMain"
 import Link from "next/link"
 
-const Ota: React.FC = () => {
+type Props = {
+  // getLayout: (page: any) => JSX.Element
+}
+
+const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) => {
 
   return(
     <>
@@ -15,3 +20,12 @@ const Ota: React.FC = () => {
 }
 
 export default Ota
+
+
+Ota.getLayout = function getLayout(page) {
+  return (
+    <ShareMain>
+      {page}
+    </ShareMain>
+  )
+}

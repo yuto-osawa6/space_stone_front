@@ -17,36 +17,19 @@ import { BiChevronDown } from "react-icons/bi"
 import { FaChevronDown } from "react-icons/fa"
 import { MdKeyboardArrowDown } from "react-icons/md"
 import { IoChevronDownOutline } from "react-icons/io5";
+import { execLeft } from "lib/api/left";
+import LeftStyle from "./leftMenus/LeftStyles";
+import LeftGenre from "./leftMenus/LeftGenres";
+import { LeftsArticles } from "./leftMenus/LeftArticles";
+import { LeftsThreads } from "./leftMenus/LeftsThreads";
+import { LeftsReviews } from "./leftMenus/LeftReviews";
 // import { LeftsArticles } from "./articles/LeftArticles"
 // import { LeftsReviews } from "./Reviews/LeftReviews"
 // import { LeftsThreads } from "./Threads/LeftsThreads"
 
 const Lefts:React.FC = () =>{
-
-  const [styles, setStyles] = useState<style[]>([]);
-  const [genres,setGenres] = useState<genre[]>([]);
-  const [articles,SetArticles]  =useState<any[]>([]);
-  const genreListsStore = useSelector((state: RootState) => state.styles);
-  const genreListsStore2 = useSelector((state: RootState) => state.genres);
-
-
-  const dispatch = useDispatch();
-
-//   const handleExecTest = async () => {
-//   const res = await execLeft()
-//   if (res.status === 200) {
-//     setStyles(res.data.styles)
-//     setGenres(res.data.genres)
-//     dispatch(actionSettingGenresData(res.data.genres));
-//     dispatch(actionSettingStylesData(res.data.styles));
-//     console.log(res.data)
-//   }
-// }
-// useEffect(() => {
-//   handleExecTest()
-// }, [])
-
-// const location = useLocation();
+const dispatch = useDispatch();
+const {data,error} = execLeft()
 
 // chage
 const [openFormats,SetOpenFormats] = useState<boolean>(true)
@@ -55,16 +38,12 @@ const [openArticles,SetOpenArticles] = useState<boolean>(true)
 const [openReviews,SetOpenReviews] = useState<boolean>(true)
 const [openThreads,SetOpenThreads] = useState<boolean>(true)
 
-
-
-
 const changeOpenFormats = () => {
   if (openFormats == false){
     SetOpenFormats(true)
   }else{
     SetOpenFormats(false)
   }
-
 }
 
 const changeOpenFormats2 = () => {
@@ -73,7 +52,6 @@ const changeOpenFormats2 = () => {
   }else{
     SetOpenGenres(false)
   }
-
 }
 
 const changeOpenFormats3 = () => {
@@ -82,7 +60,6 @@ const changeOpenFormats3 = () => {
   }else{
     SetOpenArticles(false)
   }
-
 }
 const changeOpenFormats4 = () => {
   if (openReviews == false){
@@ -90,7 +67,6 @@ const changeOpenFormats4 = () => {
   }else{
     SetOpenReviews(false)
   }
-
 }
 
 const changeOpenFormats5 = () => {
@@ -99,7 +75,6 @@ const changeOpenFormats5 = () => {
   }else{
     SetOpenThreads(false)
   }
-
 }
 
 // const handleStyle = () => {
@@ -128,6 +103,7 @@ const changeOpenFormats5 = () => {
 
 // }
 
+// console.log(data)
 
   return(
     <>
@@ -139,17 +115,18 @@ const changeOpenFormats5 = () => {
             <h3
             onClick={changeOpenFormats}
             ><BsFillSuitClubFill
-              // className={openFormats == true?"addTitleOnTime":""}
             />Formats <IoChevronDownOutline
             className={`leftDownArrow ${openFormats == true?"addTitleOnTime":""}`}
             /></h3>
-
-
           </div>
           <div className = {`category__lists01 category__lists ${openFormats == true?"addFormatsList":"removeFormatsList"}`}>
-          {/* {styles.map((item: style) => (
+          {data&&data.styles?
+            <>
+              {data.styles.map((item: style) => (
                 <LeftStyle name={item.name} id={item.id} count={item.count} key={item.id}/>
-            )) } */}
+              )) }
+            </>
+          :"Loding"}
           </div>
           <div className = "main-contents__box__left">
             <div className = "category__title">
@@ -162,13 +139,13 @@ const changeOpenFormats5 = () => {
             </h3>
             </div>
             <div className = {`category__lists02 category__lists ${openGenres == true?"addGenresList":"removeGenresList"}`} id ="category_lists02">
-            {/* {genres.map((item: genre) => (
-        
-       
-                <LeftGenre name={item.name} id={item.id} count={item.count} key={item.id}/>
-
-
-            )) } */}
+            {data&&data.genres?
+              <>
+                {data.genres.map((item: genre) => (
+                  <LeftGenre name={item.name} id={item.id} count={item.count} key={item.id}/>
+                ))} 
+              </>
+            :"Loding"}
             </div>
           </div>
 
@@ -183,7 +160,7 @@ const changeOpenFormats5 = () => {
             </h3>
             </div>
             <div className = {`category__lists02 category__lists ${openArticles == true?"addArticlesList":"removeArticlesList"}`} id ="category_lists02">
-              {/* <LeftsArticles/> */}
+              <LeftsArticles/>
             </div>
           </div>
 
@@ -198,7 +175,7 @@ const changeOpenFormats5 = () => {
             </h3>
             </div>
             <div className = {`category__lists02 category__lists ${openReviews == true?"addArticlesList":"removeArticlesList"}`} id ="category_lists02">
-              {/* <LeftsReviews/> */}
+              <LeftsReviews/>
             </div>
           </div>
 
@@ -214,7 +191,7 @@ const changeOpenFormats5 = () => {
             </h3>
             </div>
             <div className = {`category__lists02 category__lists ${openThreads == true?"addArticlesList":"removeArticlesList"}`} id ="category_lists02">
-              {/* <LeftsThreads/> */}
+              <LeftsThreads/>
             </div>
           </div>
 
