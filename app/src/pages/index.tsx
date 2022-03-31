@@ -9,6 +9,7 @@ import {BiTestTube} from 'react-icons/bi'
 import { ThisSeasonAnimeInfomation } from 'components/mains/main_block/ThisSeasonAnimeInfomation'
 import { product } from 'interfaces/product'
 import handler from './api/hello'
+import Link from 'next/link'
 // import { getData } from './api/hello'
 
 
@@ -139,9 +140,9 @@ const Home: React.FC<Props> = (Props) => {
           currentSeason = {Props.data.current_season}
         />
       </ShareMain>
-      {/* <Link href="/">
+      <Link href="/ota">
           <a>Home</a>
-      </Link> */}
+      </Link>
     </>
   )
 }

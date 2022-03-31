@@ -1,11 +1,13 @@
 import { product } from "interfaces/product"
 import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react"
-import { MdOutlineStarRate } from "react-icons/md"
+import { MdOutlineKeyboardArrowDown, MdOutlineStarRate } from "react-icons/md"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import { actionSettingProductData2 } from "store/product/actions";
+import { FaAccessibleIcon } from "react-icons/fa"
+
 
 type Props = {
   product : product
@@ -77,7 +79,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
     setRights(right)
     Props.push(left)
     // const img = new Image()
-    console.log(Props.product.imageUrl)
+    // console.log(Props.product.imageUrl)
     // img.src = Props.product.imageUrl
     // img.onload = () => {
     //   setImageLoding(true)
@@ -132,7 +134,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
           {Props.product.title}
         </div>
         <>
-          {/* <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit> */}
+          <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
           {
           <div className = "p_contents_grid_hover_contents" ref={nodeRef}
           >
@@ -172,21 +174,20 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
             </div>
           </div>
           }
-          {/* </CSSTransition> */}
+          </CSSTransition>
         </>
-
         <>
-          {/* <CSSTransition in={ishover2}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit> */}
+          <CSSTransition in={ishover2}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
             <div className = "p_contents_grid_hover_contents2" ref={nodeRef}>
               <div className = "p_contents_grid_hover_contents__before2">
                 <div className = "p_contents_grid_hover_contents_title">
-                  {/* {Props.product.productStyles.length>0?
+                  {Props.product.productStyles.length>0?
                   <>
                     {Props.product.productStyles[0].name}
                   </>
                   :
                     ""
-                  } */}
+                  }
                   {Props.avgScore!=undefined&&(
                   <div className = "p_contents_grid_hover_contents_score " style={scoreColor}>
                     <MdOutlineStarRate/>{Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):""}%
@@ -213,7 +214,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
                 </div>
               </div>
             </div>
-          {/* </CSSTransition> */}
+          </CSSTransition>
         </>
       </div>
     </>

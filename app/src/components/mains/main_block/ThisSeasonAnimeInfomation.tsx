@@ -1,78 +1,14 @@
 import { ThisSeasonProduct } from "api/Main/ThisSeasonSSR"
 import { GridProductItem1 } from "components/share/component/GridProductItem1"
 import { product } from "interfaces/product"
-
-
-// type Props = {
-//   products:product[]
-//   currentSeason: string
-// }
-// export const ThisSeasonAnimeInfomation:React.FC<Props> = (Props) => {
-
-//   console.log(Props)
-//   return(
-//     <>
-//       {Props.products.map((item)=>{
-//        return(
-//          <>
-//           <div className="">{item.title}</div>
-//          </>
-//        ) 
-//       })}
-//     </>
-//   )
-// }
-
-
-
-// export const ThisSeasonAnimeInfomation:React.FC<Props> = (Props) => {
-
-//   console.log(Props)
-//   return(
-//     <>
-//       <div className = "NewNetflixContainer">
-//         <div className = "NewNetflixContainerRow">
-//           <div className = "NewNetflixContainerTitle share_middle_container_title concept">
-//             今シーズン人気作品({Props.currentSeason})
-//           </div>
-//         </div>
-//         <div className = {`NewNetflixContainerGrid `}
-//         // ref={ref}
-//         >
-//           {Props.products.map((item)=>{
-//             return(
-//               <GridProductItem1
-//               key={item.id}
-//               product={item}
-//               // push ={ pushgridleft }
-//               // left_grid = { maxleft}
-//               // right = {right}
-//               // avgScore = {avgScore!=undefined?avgScore[item.id]!=undefined?avgScore[item.id]:undefined:undefined}
-//               />
-//             )
-//           })}
-//         </div>
-//         <div className = "NewNetflixContainerRowAction share_middle_container_right_text"
-//         // onClick={moreActionHandler}
-//         >
-//           もっと見る
-//           {/* <MdKeyboardArrowDown
-//           className = {onMoreState?"addTitleOnTime":""}
-//           /> */}
-//         </div>
-//       </div> 
-//     </>
-//   )
-// }
-
-
-
-// import { product } from "interfaces/product"
 // import { execGetUserTier, execNewNetflixMainHandler, execUpdateTierList } from "lib/api/mains/main_blocks"
 import { memo, useCallback, useEffect, useRef, useState } from "react"
-import { MdKeyboardArrowDown } from "react-icons/md"
+// import { MdArrowDropDownCircle, MdOutlineKeyboardArrowDown } from "react-icons/md"
+// import { MdKeyboardArrowDown } from "react-icons/md"
 import { useSelector } from "react-redux"
 import { RootState } from "store"
+// import { BsArrowDownShort } from "react-icons/bs"
+import { IoChevronDownOutline } from "react-icons/io5"
 // import { MdKeyboardArrowDown } from "react-icons/md"
 // import { GridProducts2 } from "./GridProducts2"
 // import { CreateTier } from "./tier/CreateTier"
@@ -113,7 +49,7 @@ type Props = {
   currentSeason: string
 }
 
-export const ThisSeasonAnimeInfomation:React.FC<Props> = memo((props) => {
+export const ThisSeasonAnimeInfomation:React.FC<Props> = memo((Props) => {
   const ref = useRef<HTMLDivElement>(null!)
   const [products, setProducts] = useState<product[]>()
   const [currentSeason,setCurrentSeason] = useState<string>("")
@@ -190,16 +126,17 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo((props) => {
   const [left_grid,setLeft_grid] = useState<number[]>([])
   const [maxleft,setMaxLeft] = useState<number>(0)
   const [right,setRight] = useState<number>(0)
-  // useEffect(()=>{
-  //   const timer = setTimeout(() => {
-  //     setupHandler()
-  // 
-  //   }, 300)
-  //   return () => {
-  //     clearTimeout(timer)
-  //     isMounted = false;
-  //   };
-  // },[])
+  useEffect(()=>{
+    setRight(ref.current.getBoundingClientRect().right)
+    // const timer = setTimeout(() => {
+    //   setupHandler()
+  
+    // }, 300)
+    // return () => {
+    //   clearTimeout(timer)
+    //   isMounted = false;
+    // };
+  },[])
   const pushgridleft = useCallback(( flg:number )=> {
     setLeft_grid([...left_grid, left_grid.push(flg)]) ;
     setMaxLeft(Math.max(...left_grid))
@@ -285,13 +222,13 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo((props) => {
       <div className = "NewNetflixContainer">
         <div className = "NewNetflixContainerRow">
           <div className = "NewNetflixContainerTitle share_middle_container_title concept">
-            今シーズン人気作品({props.currentSeason})
+            今シーズン人気作品({Props.currentSeason})
           </div>
         </div>
         <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
         ref={ref}
         >
-          {props.products.map((item)=>{
+          {Props.products.map((item)=>{
             return(
             <GridProductItem1
             key={item.id}
@@ -308,8 +245,11 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo((props) => {
         onClick={moreActionHandler}
         >
           もっと見る
-          <MdKeyboardArrowDown
+          {/* <MdArrowDropDownCircle
           className = {onMoreState?"addTitleOnTime":""}
+          /> */}
+          <IoChevronDownOutline
+            className = {onMoreState?"addTitleOnTime":""}
           />
         </div>
       </div>
