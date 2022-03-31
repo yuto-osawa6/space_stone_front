@@ -1,5 +1,5 @@
+import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { DeletingCastsDataAllAction } from "store/casts/actions"
 import { DestroyTimeSearchAction } from "store/during/actions"
 import { deletingtodoKisetsuDataAllAction } from "store/kisetsu/actions"
@@ -8,7 +8,7 @@ import { DestroySeasonSearchAction } from "store/season/actions"
 import { deletingtodoStudiosDataALLAction } from "store/studios/actions"
 import { AllDeleteSubClassAction } from "store/subsearches/actions"
 import { deletingtodoGenresDataALLAction } from "store/todogenres/actions"
-import { deletingtodoStylesDataAllAction, pussingtodoStylesDataAction } from "store/todostyles/actions"
+import { pussingtodoStylesDataAction } from "store/todostyles/actions"
 import { DestroyYearSearchAction } from "store/year/actions"
 
 type Props =  {
@@ -17,10 +17,9 @@ type Props =  {
   count:number
 }
 
-
 const LeftStyle: React.FC<Props> = ({name,count,id}) =>{
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
+  const router = useRouter()
   const clickHandler = (e:React.MouseEvent<HTMLLIElement>) => {
     dispatch(pussingtodoStylesDataAction(String(id)));
     dispatch(deletingtodoGenresDataALLAction())
@@ -30,10 +29,9 @@ const LeftStyle: React.FC<Props> = ({name,count,id}) =>{
     dispatch(DestroyTimeSearchAction())
     dispatch(DestroyYearSearchAction())
     dispatch(DestroySeasonSearchAction())
-    // 2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
-    // navigate("/search")
+    router.push("/search")
   }
 
   return(

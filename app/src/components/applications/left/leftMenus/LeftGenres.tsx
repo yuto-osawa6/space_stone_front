@@ -11,6 +11,7 @@ import { AllDeleteSubClassAction } from "store/subsearches/actions"
 import { deletingtodoGenresDataALLAction } from "store/todogenres/actions"
 import { deletingtodoStylesDataAllAction, pussingtodoStylesDataAction } from "store/todostyles/actions"
 import { DestroyYearSearchAction } from "store/year/actions"
+import { useRouter } from "next/router"
 type Props =  {
   id:number
   name:string
@@ -19,7 +20,8 @@ type Props =  {
 
 const LeftGenre: React.FC<Props> = ({name,count,id}) =>{
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
+  const router = useRouter()
+
   const clickHandler = (e:React.MouseEvent<HTMLLIElement>) => {
     dispatch(deletingtodoGenresDataExceptOneAction(String(id)));
     dispatch(deletingtodoStylesDataAllAction())
@@ -32,7 +34,7 @@ const LeftGenre: React.FC<Props> = ({name,count,id}) =>{
     // 2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
-    // navigate("/search")
+    router.push("/search")
   }
 
   return(

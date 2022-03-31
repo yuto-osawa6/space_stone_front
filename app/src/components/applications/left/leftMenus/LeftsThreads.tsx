@@ -1,27 +1,24 @@
-// import { OpenContext } from "contexttype/contexttype"
-import { useState } from "react"
+import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
-// import { useLocation, useNavigate } from "react-router-dom"
-import { NavigatingLeftReviewDataAction } from "store/lefts/review/actions"
 import { NavigatingLeftThreadDataAction } from "store/lefts/thread/actions"
-// import { ArticlesModal } from "./ArticlesModal"
 
 export const LeftsThreads:React.FC = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const handleOpen = () => {
-    if (location.pathname==="/threads"){
+    if (router.pathname==="/threads"){
       dispatch(NavigatingLeftThreadDataAction(0))
     }else{
       dispatch(NavigatingLeftThreadDataAction(0))
-      // navigate("/threads")
+      router.push("/threads")
     }
   }
   const handleOpen2 = () => {
-    if (location.pathname==="/threads"){
+    if (router.pathname==="/threads"){
       dispatch(NavigatingLeftThreadDataAction(1))
     }else{
       dispatch(NavigatingLeftThreadDataAction(1))
-      // navigate("/threads")
+      router.push("/threads")
     }
   }
   return(
@@ -31,8 +28,7 @@ export const LeftsThreads:React.FC = () => {
         handleOpen
         }
       >
-        <a>好評価率の高い</a>
-        
+        <a>好評価率の高い</a>    
       </li>
       <li
         onClick={

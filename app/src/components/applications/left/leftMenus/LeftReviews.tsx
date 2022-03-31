@@ -1,33 +1,30 @@
-// import { OpenContext } from "contexttype/contexttype"
-import { useState } from "react"
+import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
-// import { useLocation, useNavigate } from "react-router-dom"
 import { NavigatingLeftReviewDataAction } from "store/lefts/review/actions"
-// import { ArticlesModal } from "./ArticlesModal"
 
 export const LeftsReviews:React.FC = () => {
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
-  // const location = useLocation()
+  const router = useRouter()
 
   const handleOpen = () => {
 
-    if (location.pathname==="/reviews"){
+    if (router.pathname==="/reviews"){
       dispatch(NavigatingLeftReviewDataAction(0))
     }else{
       dispatch(NavigatingLeftReviewDataAction(0))
-      // navigate("/reviews")
+      router.push("/reviews")
     }
+    // router.push("/ota")
   }
   const handleOpen2 = () => {
-    if (location.pathname==="/reviews"){
+    if (router.pathname==="/reviews"){
       dispatch(NavigatingLeftReviewDataAction(1))
     }else{
       dispatch(NavigatingLeftReviewDataAction(1))
-      // navigate("/reviews")
+      router.push("/reviews")
     }
+    // router.push("/")
   }
-  // const handleClose = () => setOpen(false);
   return(
     <>
       <li

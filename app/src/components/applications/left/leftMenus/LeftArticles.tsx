@@ -1,22 +1,17 @@
-// import { OpenContext } from "contexttype/contexttype"
-import { useState } from "react"
+import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
-// import { useLocation, useNavigate } from "react-router-dom"
 import { NavigatingLeftArticleDataAction } from "store/lefts/article/actions"
-// import { ArticlesModal } from "./ArticlesModal"
 
 export const LeftsArticles:React.FC = () => {
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
-  // const location = useLocation()
+  const router = useRouter()
 
   const handleOpen = () => {
-
     if (location.pathname==="/articles"){
     dispatch(NavigatingLeftArticleDataAction(0))
     }else{
       dispatch(NavigatingLeftArticleDataAction(0))
-      // navigate("/articles")
+      router.push("/articles")
     }
   }
   const handleOpen2 = () => {
@@ -24,7 +19,7 @@ export const LeftsArticles:React.FC = () => {
       dispatch(NavigatingLeftArticleDataAction(1))
     }else{
       dispatch(NavigatingLeftArticleDataAction(1))
-      // navigate("/articles")
+      router.push("/articles")
     }
   }
   return(

@@ -76,6 +76,8 @@ const changeOpenFormats5 = () => {
     SetOpenThreads(false)
   }
 }
+// console.log(data)
+// console.log(error)
 
 // const handleStyle = () => {
 //   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)==null){
