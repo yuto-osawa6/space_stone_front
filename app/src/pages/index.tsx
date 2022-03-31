@@ -51,12 +51,10 @@ type UserTier = {
   console.log(Props)
   return(
     <>
-      {/* <ShareMain> */}
-        <ThisSeasonAnimeInfomation
-          products = {Props.data.products}
-          currentSeason = {Props.data.current_season}
-        />
-      {/* </ShareMain> */}
+      <ThisSeasonAnimeInfomation
+        products = {Props.data.products}
+        currentSeason = {Props.data.current_season}
+      />
       <Link href="/ota">
           <a>Home</a>
       </Link>
@@ -77,7 +75,9 @@ export default Home
 
 Home.getLayout = (page) => {
   return (
-    <ShareMain>
+    <ShareMain
+      locationNumber={0}
+    >
       {page}
     </ShareMain>
   )

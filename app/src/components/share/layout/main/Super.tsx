@@ -2,6 +2,7 @@ import Lefts from "../../../applications/left/Lefts"
 
 type Props = {
   children:React.ReactNode
+  locationNumber?: number | undefined
 }
 
 export const Super:React.FC<Props> = (Props) => {
@@ -9,7 +10,9 @@ export const Super:React.FC<Props> = (Props) => {
 
   return(
       <SuperDiv>
-        <Lefts/>
+        <Lefts
+        locationNumber={Props.locationNumber}
+        />
         <SuperSheet>
           <SearchDiv>
             {/* {Search} */}

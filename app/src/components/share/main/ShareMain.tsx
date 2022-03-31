@@ -4,6 +4,7 @@ import { Super } from "../layout/main/Super"
 
 type Props = {
   children:ReactNode
+  locationNumber?: number
 }
 export const ShareMain:React.FC<Props> = (Props) =>{
   
@@ -17,7 +18,9 @@ export const ShareMain:React.FC<Props> = (Props) =>{
       <HeaderDivComponent>
         a
       </HeaderDivComponent>
-      <Super>
+      <Super
+        locationNumber={Props.locationNumber}
+      >
         {Props.children}
       </Super>
       {/* <Footter/> */}
