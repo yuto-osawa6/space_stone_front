@@ -112,7 +112,9 @@ Home.getLayout = (page) => {
     <ShareMain
       locationNumber={0}
     >
-      {page}
+      <div className = "mainContents share_middle_container01">
+        {page}
+      </div>
     </ShareMain>
   )
 }

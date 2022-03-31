@@ -13,9 +13,9 @@
     "@emotion/styled": "^11.8.1",
     "@mui/lab": "^5.0.0-alpha.75",
     "@mui/material": "^5.5.3",
+    "@n8tb1t/use-scroll-position": "^2.0.3",
     "@types/js-cookie": "^3.0.1",
     "@types/qs": "^6.9.7",
-    "@types/react-icons": "^3.0.0",
     "@types/react-redux": "^7.1.23",
     "@types/react-transition-group": "^4.4.4",
     "axios": "^0.26.1",
@@ -25,6 +25,7 @@
     "qs": "^6.10.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
     "react-redux": "^7.2.6",
     "react-transition-group": "^4.4.2",
     "swr": "^1.2.2"

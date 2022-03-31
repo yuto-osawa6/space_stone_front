@@ -144,6 +144,10 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = (Props) => {
    const moreActionHandler = () => {
      onMoreState?setOnMoreState(false):setOnMoreState(true)
    }
+   const [onMoreState2,setOnMoreState2] = useState<boolean>(false)
+   const moreActionHandler2 = () => {
+     onMoreState2?setOnMoreState2(false):setOnMoreState2(true)
+   }
    // tier
   const [openTier,setOpenTier] = useState<boolean>(false)
   const [open,setOpen] = useState<boolean>(false)
@@ -246,10 +250,10 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = (Props) => {
           })}
         </div>
         <div className = "NewNetflixContainerRowAction share_middle_container_right_text"
-        onClick={moreActionHandler}
+        onClick={moreActionHandler2}
         >
           もっと見る<IoChevronDownOutline
-          className = {onMoreState?"addTitleOnTime":""}
+          className = {onMoreState2?"addTitleOnTime":""}
           />
         </div>
 

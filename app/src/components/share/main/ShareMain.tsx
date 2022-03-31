@@ -1,5 +1,6 @@
+import { Header } from "components/applications/header/Header"
 import { ReactNode } from "react"
-import { HeaderDivComponent } from "../../applications/header/Header"
+import { HeaderDivComponent } from "../../applications/header/HeaderDivComponent"
 import { Super } from "../layout/main/Super"
 
 type Props = {
@@ -10,13 +11,8 @@ export const ShareMain:React.FC<Props> = (Props) =>{
   
   return(
     <>
-      {/* <div className = "header">
-        <div className = "header__box">
-          <Header/>
-        </div>
-      </div> */}
       <HeaderDivComponent>
-        a
+        <Header/>
       </HeaderDivComponent>
       <Super
         locationNumber={Props.locationNumber}
