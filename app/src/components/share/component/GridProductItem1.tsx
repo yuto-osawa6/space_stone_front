@@ -3,8 +3,7 @@ import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { CSSTransition } from "react-transition-group";
-// import { useNavigate } from "react-router-dom"
-// import { CSSTransition } from "react-transition-group"
+
 
 
 type Props = {
@@ -132,8 +131,8 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
           {Props.product.title}
         </div>
         <>
-          <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-nodeklkl"  unmountOnExit>
-          {
+          <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
+          
           <div className = "p_contents_grid_hover_contents" ref={nodeRef}
           >
             <div className = "p_contents_grid_hover_contents__before">
@@ -171,11 +170,10 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
               </div>
             </div>
           </div>
-          }
           </CSSTransition>
         </>
         <>
-          {/* <CSSTransition in={ishover2}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit> */}
+          <CSSTransition in={ishover2}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
             <div className = "p_contents_grid_hover_contents2" ref={nodeRef}>
               <div className = "p_contents_grid_hover_contents__before2">
                 <div className = "p_contents_grid_hover_contents_title">
@@ -212,7 +210,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
                 </div>
               </div>
             </div>
-          {/* </CSSTransition> */}
+          </CSSTransition>
         </>
       </div>
     </>
