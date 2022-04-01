@@ -9,6 +9,7 @@ import { IoMdMenu } from "react-icons/io";
 import Link from 'next/link'
 import { AiOutlineComment, AiOutlineHome } from "react-icons/ai"
 import { RiArticleLine } from "react-icons/ri"
+// import { UserCertification } from "../user/UserCertification";
 
 export const Header:React.FC = () => {
   // const navigate = useNavigate()

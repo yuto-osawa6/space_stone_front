@@ -1,12 +1,10 @@
 import { product } from "interfaces/product"
 import Image from "next/image";
 import { memo, useEffect, useRef, useState } from "react"
-import { MdOutlineKeyboardArrowDown, MdOutlineStarRate } from "react-icons/md"
 import { useDispatch } from "react-redux"
+import { CSSTransition } from "react-transition-group";
 // import { useNavigate } from "react-router-dom"
-import { CSSTransition } from "react-transition-group"
-import { actionSettingProductData2 } from "store/product/actions";
-import { FaAccessibleIcon } from "react-icons/fa"
+// import { CSSTransition } from "react-transition-group"
 
 
 type Props = {
@@ -134,7 +132,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
           {Props.product.title}
         </div>
         <>
-          <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
+          <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-nodeklkl"  unmountOnExit>
           {
           <div className = "p_contents_grid_hover_contents" ref={nodeRef}
           >
@@ -149,7 +147,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
                 }
                 {Props.avgScore!=undefined&&(
                   <div className = "p_contents_grid_hover_contents_score " style={scoreColor}>
-                    <MdOutlineStarRate/>{Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):""}%
+                    {Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):""}%
                   </div>
                 )}
               </div>
@@ -177,7 +175,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
           </CSSTransition>
         </>
         <>
-          <CSSTransition in={ishover2}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
+          {/* <CSSTransition in={ishover2}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit> */}
             <div className = "p_contents_grid_hover_contents2" ref={nodeRef}>
               <div className = "p_contents_grid_hover_contents__before2">
                 <div className = "p_contents_grid_hover_contents_title">
@@ -190,7 +188,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
                   }
                   {Props.avgScore!=undefined&&(
                   <div className = "p_contents_grid_hover_contents_score " style={scoreColor}>
-                    <MdOutlineStarRate/>{Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):""}%
+                    {Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):""}%
                   </div>
                   )}
                 </div>
@@ -214,7 +212,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
                 </div>
               </div>
             </div>
-          </CSSTransition>
+          {/* </CSSTransition> */}
         </>
       </div>
     </>

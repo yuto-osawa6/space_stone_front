@@ -2,7 +2,7 @@
 import Cookies from "js-cookie"
 import qs from "qs"
 import client from "../client/client"
-import { clientSocial } from "./clientSocial"
+import { clientSocial } from "../client/clientSocial"
 
 
 export const google_oauth = () => {
@@ -84,34 +84,6 @@ export const execUsersShowHandler = (user_id:string) => {
   })
 }
 
-// user background
-
-
-
-// export const execUserBackgroundImageHandler = (user_id:number,image:Blob) => {
-//   return client.patch(`/users/background`,{
-//     user_id:user_id,
-//     user:{
-//     // backgroundImage:image
-//     bgImg:image
-//     }
-//   })
-// }
-
-// console.log(data)
-// const kazuki = {name:"kazuki",year:"2020"}
-// const a:string = `name:kazuki,year:2020`
-// // b = {name:amber,size:""}
-
-// return client.post(`/admin/articles/uploadfile`,data,{
-
-//   headers:{
-//     "content-type": "multipart/form-data"
-//   },
-  
-//   // kazuki
-// })
-
 export const execUserBackgroundImageHandler = (user_id:number,data:FormData) => {
   return client.patch(`/users/background`,data,{
     headers:{
@@ -160,8 +132,6 @@ export const execUserShowScoresProductsHandler = (user_id:number,page:number,sco
 }
 
 // show reviews threads
-
-// execUserShowReviewsHandler
 
 export const execUserShowReviewsHandler = (user_id:number,page:number,product: number| undefined,selectSort: number | null,emotion: number | undefined) => {
   return client.get(`/users/reviews`,{  

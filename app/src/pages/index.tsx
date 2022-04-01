@@ -31,8 +31,8 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   // }
   const query_params = new URLSearchParams(params); 
   const [thisSeasonRes, nextSeasonRes] = await Promise.all([
-    fetch(`${process.env.ApiPathV1}/mainblocks/mains/new_netflix`), 
-    fetch(`${process.env.ApiPathV1}/mainblocks/mains/pickup?`+ query_params)
+    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/new_netflix`), 
+    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params)
     // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
   ]);
   const [data, data2] = await Promise.all([
