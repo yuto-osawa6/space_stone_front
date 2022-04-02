@@ -8,7 +8,7 @@ import { userLoginAction } from "store/user/actions";
 import Cookies from "js-cookie";
 import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
 import { AiOutlineUser } from "react-icons/ai";
-import { IoSettingsOutline } from "react-icons/io5";
+import { IoChevronDownOutline, IoSettingsOutline } from "react-icons/io5";
 import { userInitialState } from "store/user/reducer";
 import { useRouter } from "next/router";
 import { OpenContext } from "contexttype/contexttype";
@@ -124,7 +124,7 @@ export const UserCertification:React.FC = () => {
           <div className = "user_mypage"
           onClick={clickOpenMenuHandler}
           >
-            <BiUserCircle/>UserMenu<BiUserCircle
+            <BiUserCircle/>UserMenu<IoChevronDownOutline
             className={`leftDownArrow ${openMenu == true?"addTitleOnTime":""}`}
             />
           </div>
