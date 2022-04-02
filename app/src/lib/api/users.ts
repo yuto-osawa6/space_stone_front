@@ -9,62 +9,62 @@ export const google_oauth = () => {
   return client.get("/auth/google_oauth2")
 }
 
-export const execGoogle = (response:any) => {
-  console.log(response, "I AM RESPONSE FROM GOOGLE")
-  // var token = response;
-  console.log(response)
-  const data = {
-    provider: "google_oauth2",
-    // uid: response.xu.BW,
-    uid:response.googleId,
-    // id_token: response.vc.id_token,
-    id_token: response.tokenId,
-    info: {
-      // email: token.nt.Wt
-      // email: response.xu.lv
-      email: response.profileObj.email,
-      name:response.profileObj.name,
-      image:response.profileObj.imageUrl
-    }
+// export const execGoogle = (response:any) => {
+//   console.log(response, "I AM RESPONSE FROM GOOGLE")
+//   // var token = response;
+//   console.log(response)
+//   const data = {
+//     provider: "google_oauth2",
+//     // uid: response.xu.BW,
+//     uid:response.googleId,
+//     // id_token: response.vc.id_token,
+//     id_token: response.tokenId,
+//     info: {
+//       // email: token.nt.Wt
+//       // email: response.xu.lv
+//       email: response.profileObj.email,
+//       name:response.profileObj.name,
+//       image:response.profileObj.imageUrl
+//     }
    
-  }
+//   }
  
 
-  return  clientSocial.post("/social_auth/callback",{
-    // params:{
-    headers: {
-      'Authorization': `Bearer ${response.accessToken}`,
-      'Content-Type': 'application/json',
-      'access_token': `${response.accessToken}`
-    },
-    resource_class:"User",
-    // body: JSON.stringify(data)
-    body:data
-  // }
-    ,paramsSerializer: function(data:any) {
-      return qs.stringify(data, {arrayFormat: 'brackets'})
-    }
-  })
-}
+//   return  clientSocial.post("/social_auth/callback",{
+//     // params:{
+//     headers: {
+//       'Authorization': `Bearer ${response.accessToken}`,
+//       'Content-Type': 'application/json',
+//       'access_token': `${response.accessToken}`
+//     },
+//     resource_class:"User",
+//     // body: JSON.stringify(data)
+//     body:data
+//   // }
+//     ,paramsSerializer: function(data:any) {
+//       return qs.stringify(data, {arrayFormat: 'brackets'})
+//     }
+//   })
+// }
 
 
 
-export const getCurrentUser = () => {
-  if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")) return
-  return client.get("/session_user", { headers: {
-    "access-token": `${Cookies.get("_access_token")}`,
-    "client": `${Cookies.get("_client")}`,
-    "uid": `${Cookies.get("_uid")}`
-  }})
-}
+// export const getCurrentUser = () => {
+//   if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")) return
+//   return client.get("/session_user", { headers: {
+//     "access-token": `${Cookies.get("_access_token")}`,
+//     "client": `${Cookies.get("_client")}`,
+//     "uid": `${Cookies.get("_uid")}`
+//   }})
+// }
 
-export const signOut = () => {
-  return  clientSocial.delete("/auth/sign_out", { headers: {
-    "access-token": `${Cookies.get("_access_token")}`,
-    "client": `${Cookies.get("_client")}`,
-    "uid": `${Cookies.get("_uid")}`
-  }})  
-}
+// export const signOut = () => {
+//   return  clientSocial.delete("/auth/sign_out", { headers: {
+//     "access-token": `${Cookies.get("_access_token")}`,
+//     "client": `${Cookies.get("_client")}`,
+//     "uid": `${Cookies.get("_uid")}`
+//   }})  
+// }
 
 // show setting
 

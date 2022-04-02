@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { BsFillSuitHeartFill } from "react-icons/bs"
-import { MdHome, MdOutlineArticle, MdRateReview, MdSearch } from "react-icons/md";
+import { BsFillSuitHeartFill, BsListUl } from "react-icons/bs"
+import { MdDriveFileMoveOutline, MdHome, MdOutlineArticle, MdRateReview, MdSearch } from "react-icons/md";
 import { useDispatch } from "react-redux";
 // import { UserCertification } from "../lefts/UserCertification";
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
@@ -9,6 +9,7 @@ import { IoMdMenu } from "react-icons/io";
 import Link from 'next/link'
 import { AiOutlineComment, AiOutlineHome } from "react-icons/ai"
 import { RiArticleLine } from "react-icons/ri"
+import { UserCertification } from "../user/UserCertification";
 // import { UserCertification } from "../user/UserCertification";
 
 export const Header:React.FC = () => {
@@ -147,7 +148,7 @@ export const Header:React.FC = () => {
             ><Link href="/articles"><a><RiArticleLine/> Articles</a></Link></li>
             <li><Link href="/reviews"><a><AiOutlineComment/> Reviews</a></Link></li>
             <li><Link href="/threads"><a><AiOutlineComment/> Threads</a></Link></li>
-            {/* <li className="headerUserSighIn"><UserCertification/></li> */}
+            <li className="headerUserSighIn"><UserCertification/></li>
             <li 
               className = "subMenu"
               ref={submenuref}
@@ -158,16 +159,16 @@ export const Header:React.FC = () => {
               {openMenu==true&&(
               <div className = "subMenuList"
               >
-                <li><Link href ="/#a"><a>今シーズンの作品</a></Link></li>
-                <li><Link href ="/#b"><a>昨シーズンの作品</a></Link></li>
-                <li><Link href ="/#c"><a>来シーズンの作品</a></Link></li>
-                <li><Link href ="/#d"><a>映画情報</a></Link></li>
-                <li><Link href ="/#e"><a>おしらせ</a></Link></li>
-                <li><Link href ="/#f"><a>放送情報カレンダー</a></Link></li>
-                <li><Link href ="/#g"><a>Top10</a></Link></li>
-                <li className = "Top100SubMenu"><Link href ="top100"><a>Top100</a></Link></li>
-                <li className = "Top100SubMenu"><Link href ="tier"><a>tier</a></Link></li>
-                <li className = "Top100SubMenu"><Link href ="weekly"><a>weekly</a></Link></li>
+                <div><Link href ="/#a"><a>今シーズンの作品</a></Link></div>
+                <div><Link href ="/#b"><a>昨シーズンの作品</a></Link></div>
+                <div><Link href ="/#c"><a>来シーズンの作品</a></Link></div>
+                <div><Link href ="/#d"><a>映画情報</a></Link></div>
+                <div><Link href ="/#e"><a>おしらせ</a></Link></div>
+                <div><Link href ="/#f"><a>放送情報カレンダー</a></Link></div>
+                <div><Link href ="/#g"><a>Top10</a></Link></div>
+                <div className = "Top100SubMenu"><Link href ="top100"><a>Top100</a></Link></div>
+                <div className = "Top100SubMenu"><Link href ="tier"><a>tier</a></Link></div>
+                <div className = "Top100SubMenu"><Link href ="weekly"><a>weekly</a></Link></div>
               </div>
               )}
             </li>
