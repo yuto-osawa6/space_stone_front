@@ -11,13 +11,13 @@ type Props = {
 const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) => {
   // const {data,error} = getCurrentUser()
   // const { data, error } = useSWR('/session_user')
-  const { user, error } = useUser()
+  const { userSwr, error } = useUser()
   // console.log(data)
   return(
     <>
       {/* <ShareMain> */}
         aaaaaaaaajklkaaaaafl
-        {user.user?.nickname}
+        {userSwr.user?.nickname}
       {/* </ShareMain> */}
       <Link href="/">
           <a>Home</a>

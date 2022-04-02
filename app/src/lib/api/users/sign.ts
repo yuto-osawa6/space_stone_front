@@ -45,7 +45,7 @@ type Data2 = {
 }
 
 // doneyet-1-next userにundefinedを入れるかどうか。(reduxで管理していたため、そのままの状態)
-export const getCurrentUser = (): { user: Data2, error: any } => {
+export const getCurrentUser = (): { userSwr: Data2, error: any } => {
   // const dispatch = useDispatch()
   const fetcher = async() => {
     if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")){
@@ -66,9 +66,9 @@ export const getCurrentUser = (): { user: Data2, error: any } => {
   }
   const { data, error } = useSWR('/session_user', fetcher)
   if(data){
-  return { user: {user:data.data,login:data.isLogin}, error }
+  return { userSwr: {user:data.data,login:data.isLogin}, error }
   }else{
-  return { user: {user:userInitialState.user,login:false}, error }
+  return { userSwr: {user:userInitialState.user,login:false}, error }
   }
 }
 

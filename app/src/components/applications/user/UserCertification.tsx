@@ -15,6 +15,7 @@ import { OpenContext } from "contexttype/contexttype";
 import { UserModalSign } from "./UserModalSign";
 import { BiUserCircle } from "react-icons/bi"
 import { mutate } from "swr";
+import { SettingUserModal } from "./setting/SettingUserModal";
 
 
 export const UserCertification:React.FC = () => {
@@ -28,7 +29,7 @@ export const UserCertification:React.FC = () => {
   // if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")){
   //   //   return { data:undefined,error:undefined}
   //   }
-  const {user,error} = getCurrentUser()
+  const {userSwr,error} = getCurrentUser()
   
   const handleSignOut = async (e: React.MouseEvent<HTMLDivElement>) => {
     try {
@@ -52,7 +53,7 @@ export const UserCertification:React.FC = () => {
   const [openMenu,setOpenMenu] = useState<boolean>(false)
   const clickOpenMenuHandler = () => {
     if (openMenu==false){
-      console.log(user.user)
+      // console.log(user.user)
       setOpenMenu(true)
     }else{
       setOpenMenu(false)
@@ -86,8 +87,8 @@ export const UserCertification:React.FC = () => {
 
     // navigate
     const MovetoMypageHandler = () =>{
-      if(user.user==undefined)return
-      router.push(`/users/${user.user.id}`)
+      if(userSwr.user==undefined)return
+      router.push(`/users/${userSwr.user.id}`)
     }
     const adminHandler = () => {
       router.push(`/admins`)
@@ -96,7 +97,7 @@ export const UserCertification:React.FC = () => {
     // console.log(data)
   return(
     <>
-      {!user.login||!user.user?
+      {!userSwr.login||!userSwr.user?
        <>
         <div className = "user_box_true">
           <div className = "user_sign_in">
@@ -135,10 +136,10 @@ export const UserCertification:React.FC = () => {
                 <div className = "userNavigationDummyAbusolute">
                   <div className="UserNavigateDummyAbusoluteTop">
                     <div className="UserNavigateDummyAbusoluteTopImg">
-                      <img src = {user.user.image}></img>                   
+                      <img src = {userSwr.user.image}></img>                   
                     </div>
                     <div className="UserNavigateDummyAbusoluteTopName">
-                      {user.user.nickname}                   
+                      {userSwr.user.nickname}                   
                     </div>
                   </div>
                   <div className = "user_logout"
@@ -156,7 +157,7 @@ export const UserCertification:React.FC = () => {
                   >
                     <IoMdLogOut/>ログアウト
                   </div>
-                  {user.user.administratorGold == true &&(
+                  {userSwr.user.administratorGold == true &&(
                     <>
                       <div className = "user_logout"
                         onClick={adminHandler}
@@ -172,10 +173,10 @@ export const UserCertification:React.FC = () => {
           </div>
             {settngModalOpen==true&&(
               <>
-                {/* <SettingUserModal
+                <SettingUserModal
                 settngModalOpen = {settngModalOpen}
                 setSettingModalOpen = {setSettingModalOpen}
-                /> */}
+                />
               </>
             )}
         </>
