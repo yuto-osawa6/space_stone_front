@@ -46,11 +46,8 @@ type tierData = {
 export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
   // const {data} = useThisSeasonTier()
   const {data} = execGetThisSeasonTier()
+  // console.log(data)
 
-  // const { data } = useSWR<>('/mainblocks/mains/update_tier_list/1')
-  console.log(data)
-  // const { data } = useSWR('/mainblocks/mains/new_netflix')
-  // const {tierData,error} = execGetThisSeasonTier()
   const [avgScore,setAvgScore] = useState<avgScore>()
   const [tierProductGroup,setTierProductGroup] = useState<TierProductGroup[]>([
   {
@@ -116,77 +113,12 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
   const handleOpenSign = () => setOpen(true)
   const [updateTier,setUpdateTier] = useState<boolean>(false)
   // loginによる切り替え-------------------------------------
-  // const [userTier,setUserTier] = useState<UserTier[]>([])
   const { userSwr } = useUser()
   const {userTier,error} = execGetUserTier(userSwr.user.id,1)
-  // console.log(userTier)
   useEffect(()=>{
     if(userSwr.login==false) return
     mutate('/mainblocks/mains/user_this_season_tier/1')
   },[userSwr.login])
-  // const handleGetUserTier = async()=>{
-  // const res = await execGetUserTier(user.user.id,1)
-  //   if(res.status == 200){
-  //     if(isMounted2==true){
-  //       console.log(res)
-  //       res.data.userTier.forEach((i:any)=>{
-  //         const tier = i.tier
-  //         if(0<=tier&&tier<=10){
-  //         Object.assign(i,{group:5})
-  //         }else if(10<tier&&tier<=30) {
-  //         Object.assign(i,{group:4})
-  //         }else if(30<tier&&tier<=50){
-  //         Object.assign(i,{group:3})
-  //         }else if(50<tier&&tier<=70){
-  //         Object.assign(i,{group:2})
-  //         }else if(70<tier&&tier<=90){
-  //         Object.assign(i,{group:1})
-  //         }else if(90<tier&&tier<=100){
-  //         Object.assign(i,{group:0})
-  //         }else{
-  //         }
-  //       })
-  //       setUserTier(res.data.userTier)
-  //     }else{}
-  //   }else{
-  //   }
-  // }
-  // useEffect(()=>{
-  //   if(user.login!=true)return
-  //   const timer = setTimeout(() => {
-  //     handleGetUserTier()
-  //   }, 250)
-  //   return () => {
-  //     clearTimeout(timer)
-  //     isMounted2 = false;
-  //   };
-  // },[user.login])
-
-
-
-
-  // --------------------------------------------------------------
-  // let isMounted3 = true
-  // const handleUpdateTierList = async() => {
-  //   const res = await execUpdateTierList(user.user.id,1)
-  //   if (res.status === 200){
-  //     console.log(res)
-  //     if(isMounted3){
-  //       setUpSecond(res.data.tier,res.data.tierAverage)
-  //       setUpdateTier(false)
-  //     }
-  //   }else{
-
-  //   }
-  // }
-  // useEffect(()=>{
-  //   if(updateTier===false)return
-  //   handleGetUserTier()
-  //   handleUpdateTierList()
-  //   return () => {
-  //     isMounted3 = false
-  //   };
-  // },[updateTier])
   // // --------------------------------------------------------------
   const [openTierUpdate,setOpenTierUpdate] = useState<boolean>(false)
   const handleOpenTierUpdateModal = () => {setOpenTierUpdate(true)

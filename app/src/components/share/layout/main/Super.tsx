@@ -1,3 +1,4 @@
+import Search from "components/search/searchform/search"
 import Lefts from "../../../applications/left/Lefts"
 
 type Props = {
@@ -15,8 +16,7 @@ export const Super:React.FC<Props> = (Props) => {
         />
         <SuperSheet>
           <SearchDiv>
-            {/* {Search} */}
-            a
+            <Search/>
           </SearchDiv>
           <InsertBox>
             {Props.children}

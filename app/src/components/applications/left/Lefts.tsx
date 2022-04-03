@@ -93,7 +93,7 @@ const changeOpenFormats5 = () => {
 
 // }
 
-// console.log(data)
+console.log(data,error)
   return(
     <>
       <div className = "main-left" 

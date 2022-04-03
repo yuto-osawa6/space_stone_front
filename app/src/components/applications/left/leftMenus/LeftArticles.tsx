@@ -7,7 +7,7 @@ export const LeftsArticles:React.FC = () => {
   const router = useRouter()
 
   const handleOpen = () => {
-    if (location.pathname==="/articles"){
+    if (router.pathname==="/articles"){
     dispatch(NavigatingLeftArticleDataAction(0))
     }else{
       dispatch(NavigatingLeftArticleDataAction(0))
@@ -15,7 +15,7 @@ export const LeftsArticles:React.FC = () => {
     }
   }
   const handleOpen2 = () => {
-    if (location.pathname==="/articles"){
+    if (router.pathname==="/articles"){
       dispatch(NavigatingLeftArticleDataAction(1))
     }else{
       dispatch(NavigatingLeftArticleDataAction(1))
