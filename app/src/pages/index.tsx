@@ -11,6 +11,8 @@ import { product } from 'interfaces/product'
 import handler from './api/hello'
 import Link from 'next/link'
 import { NextSeasonAnimeInfomation } from 'components/mains/main_block/NextSeasonAnimeInfomation'
+import { SWRConfig } from 'swr'
+import { ThisSeasonAnimeTier } from 'components/mains/main_block/ThisSeasonAnimeTier'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
@@ -26,20 +28,37 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
     active:"1",
     last:"2"
   }
+
+  const tierParams = {
+    current_number:"1"
+  }
+  const tierParams2 = {
+    current_number:"2"
+  }
   // const tierParams = {
 
   // }
   const query_params = new URLSearchParams(params); 
-  const [thisSeasonRes, nextSeasonRes] = await Promise.all([
+  const [thisSeasonRes, nextSeasonRes,tierRes] = await Promise.all([
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/new_netflix`), 
-    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params)
+    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
+    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
     // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
   ]);
-  const [data, data2] = await Promise.all([
+  const [data, data2,tierData] = await Promise.all([
     thisSeasonRes.json(), 
-    nextSeasonRes.json()
+    nextSeasonRes.json(),
+    tierRes.json()
   ]);
-  return { props: { data, data2 } };
+  return { 
+    props: { 
+      data, data2,
+      fallback: {
+        '/mainblocks/mains/update_tier_list/1': tierData
+        // '/mainblocks/mains/new_netflix' : data
+      }
+    } 
+  };
 }
 
 type Props = {
@@ -57,7 +76,10 @@ type Props = {
     scores: {avgScore:avgScore, avgScore2: avgScore}
     // tier: []
     // tier_average: 
-  }
+  },
+  fallback: {
+    [key: string]: any;
+  }  
 }
 type avgScore = {
   [k:number]:string
@@ -78,12 +100,19 @@ type UserTier = {
 
  const Home: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   console.log(Props)
+  const fallback= Props.fallback
   return(
     <>
       <ThisSeasonAnimeInfomation
         products = {Props.data.products}
         currentSeason = {Props.data.currentSeason}
       />
+      <SWRConfig value={{ fallback }}>
+       <ThisSeasonAnimeTier 
+        products = {Props.data.products}
+        currentSeason = {Props.data.currentSeason}
+       />
+      </SWRConfig>
       <NextSeasonAnimeInfomation
         // products = {Props.data.products}
         // currentSeason = {Props.data.currentSeason}
