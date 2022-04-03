@@ -9,10 +9,10 @@ type Data = {
   tier:product[] 
   tierAverage:any
 }
-export const execGetThisSeasonTier = (): { tierData: Data; error: any } => {
+export const execGetThisSeasonTier = (): { data: Data } => {
   const fetcher = () => client.get('/mainblocks/mains/update_tier_list',{params:{current_number:1}}).then((res) => res.data)
   const { data, error } = useSWRImmutable('/mainblocks/mains/update_tier_list/1', fetcher)
-  return { tierData: data, error }
+  return { data: data}
 }
 
 type UserTier = {
@@ -35,6 +35,7 @@ export const execGetUserTier = (user_id:number,current_number:number) => {
     })
     console.log(res)
     if (res.data.status == 200) {
+      console.log("a")
       res.data.userTier.forEach((i:any)=>{
         const tier = i.tier
         if(0<=tier&&tier<=10){
@@ -53,6 +54,7 @@ export const execGetUserTier = (user_id:number,current_number:number) => {
         }
      })
     }
+    console.log(res.data.userTier)
     return res.data.userTier
   }
   const { data, error } = useSWRImmutable<UserTier[]>('/mainblocks/mains/user_this_season_tier/1', fetcher)

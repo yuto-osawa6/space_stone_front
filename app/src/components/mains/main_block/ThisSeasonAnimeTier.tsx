@@ -10,6 +10,7 @@ import { ThisMonthTierList } from "../tier/ThisMonthTierList"
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import { CreateTier } from "../tier/setup/CreateTier"
+import { UpdateTier } from "../tier/setup/UpdateTier"
 
 type Props = {
   products: product[]
@@ -43,7 +44,9 @@ type tierData = {
 
 }
 export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
-  const {data} = useThisSeasonTier()
+  // const {data} = useThisSeasonTier()
+  const {data} = execGetThisSeasonTier()
+
   // const { data } = useSWR<>('/mainblocks/mains/update_tier_list/1')
   console.log(data)
   // const { data } = useSWR('/mainblocks/mains/new_netflix')
@@ -116,7 +119,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
   // const [userTier,setUserTier] = useState<UserTier[]>([])
   const { userSwr } = useUser()
   const {userTier,error} = execGetUserTier(userSwr.user.id,1)
-  console.log(userTier)
+  // console.log(userTier)
   useEffect(()=>{
     if(userSwr.login==false) return
     mutate('/mainblocks/mains/user_this_season_tier/1')
@@ -249,18 +252,18 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
         />
       </DndProvider>
       )}
-      {/* {openTierUpdate&&(
+      {openTierUpdate&&(
       <DndProvider backend={HTML5Backend}>
         <UpdateTier
-        products = {products}
-        season = {currentSeason}
+        products = {Props.products}
+        season = {Props.currentSeason}
         open = {openTierUpdate}
         setOpen = {setOpenTierUpdate}
         userTier = {userTier}
         setUpdateTier={setUpdateTier}
         />
       </DndProvider>
-      )} */}
+      )}
       </>
       )}   
       {open&&(
