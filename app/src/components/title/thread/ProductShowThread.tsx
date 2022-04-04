@@ -1,8 +1,9 @@
-import { ProductReviews } from "component/products/reviews/ProductReviews";
+// import { ProductReviews } from "component/products/reviews/ProductReviews";
 import { Productshowcontext } from "contexttype/contexttype";
 import { execProductShowReview, execProductShowThread } from "lib/api/products";
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+// import { Outlet, useParams } from "react-router-dom";
 import { ShowCloudsItems } from "../top/ShowCloudsItems";
 import { ShowCloudsItems2 } from "../top/ShowCloudsItems2";
 // import { ProductReviewsItems } from "./ProductReviewsItems";
@@ -15,15 +16,17 @@ type Review = {
 }
 
 export const ProductShowThreads:React.FC = () => {
-  const params = useParams();
-  const params_id = params.productId
+  const [episords,setEpisords] = useState<string[]>([])
+  const router = useRouter()
+  const {pid} = router.query
+  const params_id = pid
   const [items,setItems] = useState<Review[]>([])
 
   let isMounted = true;
   const handleFirst = async() => {
     // check-3
     if (params_id==undefined) return
-    const res = await  execProductShowThread(params_id,current)
+    const res = await  execProductShowThread(params_id as string,current)
     if(res.status == 200){
       console.log(res)
       if(isMounted){
@@ -183,7 +186,7 @@ export const ProductShowThreads:React.FC = () => {
             </ul>
           </div>
       
-          <Outlet/>
+          {/* <Outlet/> */}
       </div>
     </>
   )

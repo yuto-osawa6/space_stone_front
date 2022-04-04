@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "store";
 import { ChatListItem } from "./ChatListItem";
 import { OpenContext } from "contexttype/contexttype";
-import { UserModalSign } from "component/aplication/lefts/UserModalSign";
+// import { UserModalSign } from "component/aplication/lefts/UserModalSign";
 import { ChatModal } from "./ChatModal";
+import { UserModalSign } from "components/applications/user/UserModalSign";
+import { useUser } from "lib/data/user/useUser";
 
 type Props = {
   product : product
@@ -30,9 +32,9 @@ export const ChatRoomInProductShow:React.FC<Props> = (Props) => {
   // const [Channel,setChannel] = useState<any>(null)
   const [Message,setMessage] = useState<string>("")
   // const [chatList,setChatList] = useState<chatList[]>([])
-  const userStore = useSelector((state:RootState)=>state.user)
-
-  // useEffect(() => {
+  // const userStore = useSelector((state:RootState)=>state.user)
+  const { userSwr } = useUser()
+    // useEffect(() => {
   //   const channel = cable.subscriptions.create(
   //     {
   //       channel: 'ProductsChannel',
@@ -57,7 +59,7 @@ export const ChatRoomInProductShow:React.FC<Props> = (Props) => {
   const handleSendMessage = () => {
     const data = {
       product_id : Props.product.id,
-      user_id : userStore.user.id,
+      user_id : userSwr.user.id,
       message : Message
     }
     // Channel.send(data)
@@ -85,7 +87,7 @@ export const ChatRoomInProductShow:React.FC<Props> = (Props) => {
         Chat
       </div>
       <div>
-        {userStore.login==true?
+        {userSwr.login==true?
         <>
           <div style={{
             width:"fit-content",

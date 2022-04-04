@@ -1,6 +1,7 @@
 import MainSearch from "components/search/MainSearch"
 import { ShareMain } from "components/share/main/ShareMain"
 import { ProductShow } from "components/title/productShow"
+import { Top } from "components/title/top/Top"
 import { productShow } from "interfaces/product"
 import { GetServerSideProps } from "next"
 
@@ -28,19 +29,16 @@ import { GetServerSideProps } from "next"
 //   };
 // }
 
-// type Props = {
-//   data:productShow
-// }
+type Props = {
+  // data:productShow
+}
 
 const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   console.log(Props)
   // const fallback= Props.fallback
   return(
     <>
-      <ProductShow
-      data = {Props.data}
-      >
-      </ProductShow>
+      <Top/>
     </>
   )
 }
@@ -52,9 +50,11 @@ TitleIndex.getLayout = (page) => {
     <ShareMain
       locationNumber={1}
     >
-      {/* <div className = "mainContents share_middle_container01"> */}
+      <ProductShow
+      // data = {Props.data}
+      >
         {page}
-      {/* </div> */}
+      </ProductShow>   
     </ShareMain>
   )
 }

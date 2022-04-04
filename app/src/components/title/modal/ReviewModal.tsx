@@ -3,57 +3,72 @@ import { styled } from '@mui/material/styles';
 import { OpenReviewContext, OpenScoreContext } from "contexttype/contexttype";
 import { execCreateReview, execScoreCreate, execScoreUpdate } from "lib/api/products";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import ReactQuill,{ Quill } from "react-quill";
+// import { Quill } from "react-quill";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store";
 import { IoMdClose } from "react-icons/io"
 import { emotionList, product, productReviews, userReview } from "interfaces/product";
 import { review } from "interfaces/review";
-import { ngword } from "hook/NgWord";
+// import { ngword } from "hook/NgWord";
 import { pussingMessageDataAction } from "store/message/actions";
-import { ErrorMessage } from "share/message";
+// import { ErrorMessage } from "share/message";
 import { TailSpin } from "react-loader-spinner";
-import { submitSpin } from "color/submit-spin";
-// import  (Select as Reeee from 'react-select'
-// import Select, { InputActionMeta } from 'react-select'
+import { ngword } from "lib/ini/ngWord";
+import { ErrorMessage } from "lib/ini/message";
+import { submitSpin } from "lib/color/submit-spin";
+import dynamic from "next/dynamic";
+// const ReactQuill = dynamic(() => from("react-quill"), { ssr: false });
+// const Quill = dynamic(() => import("react-quill"), { ssr: false });
 
-const icons = Quill.import('ui/icons');
-icons.tag = "#";
-icons.hash = "#"
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
-let Block = Quill.import('blots/block');
-let TextBlot = Quill.import('blots/text');
-let Inline = Quill.import('blots/inline');
-let Embed = Quill.import('blots/embed');
+// const ReactQuill = dynamic(import('react-quill'), { 
+//   ssr: false,
+//   })
+// let ReactQuill:any;
+// if(window != undefined){
+//   ReactQuill = require("react-quill")
+// }
 
-// doneyet (tag機能)
 
-class QuillHashtag extends Embed {
-  static create(value:any) {
-    console.log(value)
-    let node = super.create(value);
-    node.innerHTML = `<span>#${value}</span>`;
-    return node;
-  }
-}
+// const icons = Quill.import('ui/icons');
+// icons.tag = "#";
+// icons.hash = "#"
 
-QuillHashtag.blotName = 'hashtag'; 
-QuillHashtag.className = 'quill-hashtag';
-QuillHashtag.tagName = 'span';
+// let Block = Quill.import('blots/block');
+// let TextBlot = Quill.import('blots/text');
+// let Inline = Quill.import('blots/inline');
+// let Embed = Quill.import('blots/embed');
 
-export class TagBlot extends Inline {
-  static blotName = 'tag';
-  static className = 'aur-tag';
-  static tagName = 'span';
-  static contentEditable = 'false';
+// // doneyet (tag機能)
 
-  static formats(): boolean {
-    return true;
-  }
-}
+// class QuillHashtag extends Embed {
+//   static create(value:any) {
+//     console.log(value)
+//     let node = super.create(value);
+//     node.innerHTML = `<span>#${value}</span>`;
+//     return node;
+//   }
+// }
 
-Quill.register(TagBlot);
-Quill.register(QuillHashtag);
+// QuillHashtag.blotName = 'hashtag'; 
+// QuillHashtag.className = 'quill-hashtag';
+// QuillHashtag.tagName = 'span';
+
+// export class TagBlot extends Inline {
+//   static blotName = 'tag';
+//   static className = 'aur-tag';
+//   static tagName = 'span';
+//   static contentEditable = 'false';
+
+//   static formats(): boolean {
+//     return true;
+//   }
+// }
+
+// Quill.register(TagBlot);
+// Quill.register(QuillHashtag);
 
 
 type Props = {
@@ -91,6 +106,7 @@ export const ReviewModal:React.FC<Props> = (Props) => {
     var value = prompt('画像URLを入力してください');
     if(value){
       quillref.current.getEditor().insertEmbed(range.index, 'image', value);
+      // quillref.current.g
     }
   }
   const  videoHandlerLink = () => {
@@ -168,19 +184,20 @@ export const ReviewModal:React.FC<Props> = (Props) => {
   const [value2,setText2] = useState<string>("")
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   const [discribe,setDiscribe] = useState<string>("")
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
 
 
   const handleChange = (content: string):void | undefined => {
     const ss = quillref.current.getEditor().getText(0,20)
     const ss2 = quillref.current.getEditor().getLength()
+    
     setValue(content)
     // if (quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length<10){
-    //   // setHelpertextradio(`10文字以上で入力してください 文字数${quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length}`)
-    //   dispatch(pussingMessageDataAction({title:ErrorMessage.tenover,select:0}))
+    //   setHelpertextradio(`10文字以上で入力してください 文字数${quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length}`)
+    //   // dispatch(pussingMessageDataAction({title:ErrorMessage.tenover,select:0}))
     // }else if(quillref.current.getEditor().getLength()>=20000){
-    //   // setHelpertextradio(`20,000文字以内で入力してください 文字数${quillref.current.getEditor().getText().length}`)
-    //   dispatch(pussingMessageDataAction({title:ErrorMessage.twodown,select:0}))
+    //   setHelpertextradio(`20,000文字以内で入力してください 文字数${quillref.current.getEditor().getText().length}`)
+    //   // dispatch(pussingMessageDataAction({title:ErrorMessage.twodown,select:0}))
     // } 
     // else{
     // setHelpertextradio("")

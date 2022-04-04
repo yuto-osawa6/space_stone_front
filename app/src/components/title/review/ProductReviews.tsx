@@ -1,10 +1,11 @@
 import { FormControl, FormControlLabel, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { ProductReviews } from "component/products/reviews/ProductReviews";
+// import { ProductReviews } from "component/products/reviews/ProductReviews";
 import { Productshowcontext } from "contexttype/contexttype";
 import { execProductShowReview, execSecondUpdateReview } from "lib/api/products";
-import React, { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useParams } from "react-router-dom";
+// import { Outlet, useParams } from "react-router-dom";
 import { RootState } from "store";
 import { updateReviewAction } from "store/reviewUpdate/actions";
 import { ShowCloudsItems } from "../top/ShowCloudsItems";
@@ -21,15 +22,17 @@ type Review = {
 
 export const ProductShowReviews:React.FC = () => {
   const [episords,setEpisords] = useState<string[]>([])
-  const params = useParams();
-  const params_id = params.productId
+  const router = useRouter()
+  const {pid} = router.query
+  // const params = useParams();
+  const params_id = pid
   const [items,setItems] = useState<Review[]>([])
 
   let  isMounted = true;
   const handleFirst = async() => {
     // check-3
     if (params_id==undefined) return
-    const res = await  execProductShowReview(params_id,current,episords)
+    const res = await  execProductShowReview(params_id as string,current,episords)
     if(res.status == 200){
       console.log(res)
       if( isMounted){
@@ -253,7 +256,7 @@ export const ProductShowReviews:React.FC = () => {
             </ul>
           </div>
       
-          <Outlet/>
+          {/* <Outlet/> */}
       </div>
     </>
   )

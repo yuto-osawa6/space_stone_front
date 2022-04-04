@@ -6,12 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store";
 import { ChatListItem } from "./ChatListItem";
 import { OpenContext } from "contexttype/contexttype";
-import { UserModalSign } from "component/aplication/lefts/UserModalSign";
+// import { UserModalSign } from "component/aplication/lefts/UserModalSign";
 import { ChatModalListItems } from "./ChatModalListItems";
 import { IoMdClose } from "react-icons/io";
-import { ngword } from "hook/NgWord";
+// import { ngword } from "hook/NgWord";
 import { pussingMessageDataAction } from "store/message/actions";
-import { ErrorMessage } from "share/message";
+import { ngword } from "lib/ini/ngWord";
+import { ErrorMessage } from "lib/ini/message";
+import { useUser } from "lib/data/user/useUser";
+// import { ErrorMessage } from "share/message";
 
 type Props = {
   product : product
@@ -33,7 +36,8 @@ type chatList = {
 
 export const ChatModal:React.FC<Props> = (Props) => {
   const [message,setMessage] = useState<string>("")
-  const userStore = useSelector((state:RootState)=>state.user)
+  // const userStore = useSelector((state:RootState)=>state.user)
+  const {userSwr} = useUser()
   const [helperText,setHelperText] = useState<string>("")
   const dispatch = useDispatch()
 
@@ -44,7 +48,7 @@ export const ChatModal:React.FC<Props> = (Props) => {
     }
     const data = {
       product_id : Props.product.id,
-      user_id : userStore.user.id,
+      user_id : userSwr.user.id,
       message : message
     }
     Props.Channel.send(data)

@@ -45,6 +45,7 @@ import { EmotionUserList } from "../user/EmotionUserList";
 import { ScoresListInProductShow } from "./ScoresListInProductShow";
 import { ScoreUserList } from "../user/ScoreUserList";
 import { ChatRoomInProductShow } from "../chat/ChatRoomInProductShow";
+import { useUser } from "lib/data/user/useUser";
 
 
 ChartJS.register(
@@ -116,7 +117,8 @@ var array:number[] = new Array()
 
 export const Top:React.FC = memo(() => {
   const props = useContext(Productshowcontext)
-  const user = useSelector((state: RootState) => state.user);
+  // const user = useSelector((state: RootState) => state.user);
+  const { userSwr,error } = useUser()
   const [open,setOpen] = useState<boolean>(false)
   // review
   const [openreview,setOpenreview] = useState<boolean>(false)
@@ -204,7 +206,7 @@ export const Top:React.FC = memo(() => {
   },[updateReviewState])
   const handleSecondUpdateReview = async() => {
     if(props.product==undefined)return
-    const res = await execSecondUpdateReview(props.product?.id,user.user.id)
+    const res = await execSecondUpdateReview(props.product?.id,userSwr.user.id)
     console.log(res)
     if(res.status==200){
       props.setUserReviews(res.data.userReview)
@@ -367,7 +369,7 @@ export const Top:React.FC = memo(() => {
             <div className = "show_09_review share_title01"> 
               レビュー
             </div>
-            {user.login?
+            {userSwr.login?
              <>
              
              {/* doneyet-1下(undefinedの管理方法) */}
@@ -389,7 +391,7 @@ export const Top:React.FC = memo(() => {
                   
                   <ReviewModal
                   product_id={props.product?.id}
-                  user_id={user.user.id}
+                  user_id={userSwr.user.id}
                   product = {props.product}
                   userReview = {props.userReviews}
                   setUserReview = {props.setUserReviews}
@@ -415,7 +417,7 @@ export const Top:React.FC = memo(() => {
                   editOpenModal={editOpenModal}
                   setEditOpenModal={setEditOpenModal}
                   product_id={props.product?.id}
-                  user_id={user.user.id}
+                  user_id={userSwr.user.id}
                   product = {props.product}
                   userReview = {props.userReviews}
                   setUserReview = {props.setUserReviews}
@@ -470,7 +472,7 @@ export const Top:React.FC = memo(() => {
             <div className = "show_10_thred share_title01 show_09_review"> 
               スレッド
             </div>
-            {user.login?
+            {userSwr.login?
             <>
               <div className = "show_10_thred_write show_09_review_write"
               onClick={modalopenJugdethered}
@@ -484,7 +486,7 @@ export const Top:React.FC = memo(() => {
                   <TheredModal
                   product_id={props.product?.id}
                   question={props.product?.questions}
-                  user_id={user.user.id}
+                  user_id={userSwr.user.id}
                   setProductThreads = {props.setProductThreads}
                   />
                 </OpenTheredContext.Provider>
@@ -546,11 +548,11 @@ export const Top:React.FC = memo(() => {
         </ul>
       </div>
 
-      {user.login==true&&props.userReviews.length>0&&(
+      {userSwr.login==true&&props.userReviews.length>0&&(
         <div className = "ProductShowTopbottom">
           <div className = "ProductShowTopbottomTitle"
             > 
-            {user.user.nickname}さんが抱いた感情
+            {userSwr.user.nickname}さんが抱いた感情
           </div>
           <EmotionUserList
           />
@@ -580,7 +582,7 @@ export const Top:React.FC = memo(() => {
       {props.product!=undefined&&props.userScore!=undefined&&(
       <ScoreUserList
         userScore = {props.userScore}
-        nickname = {user.user.nickname}
+        nickname = {userSwr.user.nickname}
       />
       )}
       {props.product!=undefined&&(

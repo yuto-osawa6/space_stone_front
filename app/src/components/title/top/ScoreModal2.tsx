@@ -1,9 +1,10 @@
 import { Button,  Modal, Slider, Tooltip } from "@mui/material";
 import { styled } from '@mui/material/styles';
-import { submitSpin } from "color/submit-spin";
+// import { submitSpin } from "color/submit-spin";
 import { OpenScoreContext } from "contexttype/contexttype";
 import { product, productScores } from "interfaces/product";
 import { execScoreCreate, execScoreUpdate } from "lib/api/products";
+import { submitSpin } from "lib/color/submit-spin";
 import { useContext, useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import { useDispatch } from "react-redux";

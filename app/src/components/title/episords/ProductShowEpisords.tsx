@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { execProductShowEpisord } from "lib/api/products"
 import { Productshowcontext } from "contexttype/contexttype";
 import { EpisordsItem } from "./EpisordsItem";
+import { useRouter } from "next/router";
+
 type emotions = {
   id:number
   emotion: string
@@ -35,15 +37,19 @@ type Episords = {
 
 export const ProductShowEpisords:React.FC = () => {
   const [episords,setEpisords] = useState<Episords[]>([])
-  const params = useParams();
-  const params_id = params.productId
+  // const params = useParams();
+  // const params_id = params.productId
+  const router = useRouter()
+  const {pid} = router.query
+  const params_id = pid
 
   // ----------------------------------------
   let  isMounted = true;
   const handleFirst = async() => {
     // check-3
+    // check-1-next
     if (params_id==undefined) return
-    const res = await execProductShowEpisord(params_id)
+    const res = await execProductShowEpisord(params_id as string)
     if(res.status == 200){
       if(isMounted==true){
       console.log(res)
@@ -86,7 +92,7 @@ export const ProductShowEpisords:React.FC = () => {
             return(
               <EpisordsItem
                 episord = {item}
-                params_id = { params_id }
+                params_id = { params_id as string }
                 userEmotion = {props.userReviews.filter(i=>i.episordId==item.id)[0]}
               />
             )

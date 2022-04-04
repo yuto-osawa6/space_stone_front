@@ -1,11 +1,13 @@
-import { isPropsValid } from "@fullcalendar/react"
-import { UserModalSign } from "component/aplication/lefts/UserModalSign"
+// import { isPropsValid } from "@fullcalendar/react"
+// import { UserModalSign } from "component/aplication/lefts/UserModalSign"
+import { UserModalSign } from "components/applications/user/UserModalSign"
 import { OpenContext, OpenScoreContext } from "contexttype/contexttype"
 import { product, productScores } from "interfaces/product"
+import { useUser } from "lib/data/user/useUser"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "store"
-import { ScoreModal } from "../ScoreModal"
+// import { ScoreModal } from "../ScoreModal"
 import { ScoreModal2 } from "./ScoreModal2"
 
 type Props = {
@@ -70,7 +72,8 @@ export const ScoresListInProductShow:React.FC<Props> = (Props) => {
   const [open,setOpen] = useState<boolean>(false)
   const handleOpenUser = () => setOpen(true)
   // store
-  const user = useSelector((state:RootState)=>state.user)
+  // const user = useSelector((state:RootState)=>state.user)
+  const {userSwr,error} = useUser()
 
   const handleColer= (averageScore:number) => {
     var color = {backgroundColor:""}
@@ -107,7 +110,7 @@ export const ScoresListInProductShow:React.FC<Props> = (Props) => {
           評価
         </div>
         
-          {user.login?
+          {userSwr.login?
           <>
             <div className="ScoresListInProductShowLink"
               onClick={handleOpen}
@@ -158,7 +161,7 @@ export const ScoresListInProductShow:React.FC<Props> = (Props) => {
                 openscore={openscore}
                 setOpenscore={setOpenscore}
                 product = {Props.product}
-                user_id={user.user.id}
+                user_id={userSwr.user.id}
 
                 score = {Props.score}
                 setScore = {Props.setScore}

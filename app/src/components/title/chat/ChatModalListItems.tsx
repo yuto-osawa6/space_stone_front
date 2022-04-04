@@ -1,3 +1,4 @@
+import { useUser } from "lib/data/user/useUser"
 import { useSelector } from "react-redux"
 import { RootState } from "store"
 
@@ -13,10 +14,11 @@ type chatList = {
 }
 
 export const ChatModalListItems:React.FC<Props> = (Props) => {
-  const user = useSelector((state:RootState)=>state.user)
+  // const user = useSelector((state:RootState)=>state.user)
+  const {userSwr} = useUser() 
   return(
     <>
-      {Props.item.user_id==user.user.id?
+      {Props.item.user_id==userSwr.user.id?
       <>
         <p className = "CurrentUserMessagge">{Props.item.message}</p>
       </>

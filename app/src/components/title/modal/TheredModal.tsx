@@ -4,7 +4,7 @@ import { OpenScoreContext, OpenTheredContext } from "contexttype/contexttype";
 import { execCreateThered, execScoreCreate, execScoreUpdate } from "lib/api/products";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 
 // mui
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -15,12 +15,17 @@ import ListItemText from '@mui/material/ListItemText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import { productThreads } from "interfaces/product";
-import { ngword } from "hook/NgWord";
 import { useDispatch } from "react-redux";
 import { pussingMessageDataAction } from "store/message/actions";
-import { ErrorMessage } from "share/message";
 import { TailSpin } from "react-loader-spinner";
-import { submitSpin } from "color/submit-spin";
+
+import { ngword } from "lib/ini/ngWord";
+import { ErrorMessage } from "lib/ini/message";
+import { submitSpin } from "lib/color/submit-spin";
+import dynamic from "next/dynamic";
+// const ReactQuill:any = dynamic(() => import("react-quill"), { ssr: false });
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 
 const ITEM_HEIGHT = 48;
@@ -56,7 +61,7 @@ export const TheredModal:React.FC<Props> = (Props) => {
   const [value2,setText2] = useState<string>("")
 
   const [discribe,setDiscribe] = useState<string>("")
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
 
   const [helpertextradio,setHelpertextradio] = useState<string>("")
 

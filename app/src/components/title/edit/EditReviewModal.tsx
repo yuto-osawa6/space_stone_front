@@ -3,20 +3,35 @@ import { styled } from '@mui/material/styles';
 import { OpenReviewContext, OpenScoreContext } from "contexttype/contexttype";
 import { execCreateReview, execScoreCreate, execScoreUpdate, execUpdateReview } from "lib/api/products";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import ReactQuill,{ Quill } from "react-quill";
+// import { Quill } from "react-quill";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store";
 import { IoMdClose } from "react-icons/io"
 import { emotionList, product, productReviews, userReview } from "interfaces/product";
 import { review } from "interfaces/review";
-import { ngword } from "hook/NgWord";
+// import { ngword } from "hook/NgWord";
 import { TailSpin } from "react-loader-spinner";
-import { submitSpin } from "color/submit-spin";
-import { ErrorMessage } from "share/message";
+// import { submitSpin } from "color/submit-spin";
+// import { ErrorMessage } from "share/message";
 import { pussingMessageDataAction } from "store/message/actions";
+// import { ngword } from "lib/ini/NgWord";
+import { ErrorMessage } from "lib/ini/message";
+import { submitSpin } from "lib/color/submit-spin";
+import { ngword } from "lib/ini/ngWord";
+import dynamic from "next/dynamic";
+// import Quill from "quill";
+// const ReactQuill:any = dynamic(() => import("react-quill"), { ssr: false });
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
+const Quill =
+  typeof window === "object" ? require("react-quill").Quill : () => false;
+// const Quill:any = dynamic(() => import("react-quill"), { ssr: false });
+// const Quill =
+//   typeof window === "object" ? require("react-quill") : () => false;
 // import  (Select as Reeee from 'react-select'
 // import Select, { InputActionMeta } from 'react-select'
 
+if(typeof window === "object"){
 const icons = Quill.import('ui/icons');
 icons.tag = "#";
 icons.hash = "#"
@@ -41,7 +56,7 @@ QuillHashtag.blotName = 'hashtag';
 QuillHashtag.className = 'quill-hashtag';
 QuillHashtag.tagName = 'span';
 
-export class TagBlot extends Inline {
+  class TagBlot extends Inline {
   static blotName = 'tag';
   static className = 'aur-tag';
   static tagName = 'span';
@@ -54,6 +69,7 @@ export class TagBlot extends Inline {
 
 Quill.register(TagBlot);
 Quill.register(QuillHashtag);
+}
 
 type Props = {
   product_id:number | undefined
@@ -184,7 +200,7 @@ export const EditReviewModal:React.FC<Props> = (Props) => {
   const [helpertextradio,setHelpertextradio] = useState<string>("")
 
   const [discribe,setDiscribe] = useState<string>("")
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
 
 
   const handleChange = (content: string):void | undefined => {

@@ -1,5 +1,6 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
  type item = {
   id: number;
@@ -15,6 +16,7 @@ type Props = {
 }
 
 export const ShowCloudsItems:React.FC<Props> = (Props) => {
+  const router = useRouter()
 
   const [content,setContent] = useState<string>("")
   const firstReadMoreHandler = () => {
@@ -29,12 +31,12 @@ export const ShowCloudsItems:React.FC<Props> = (Props) => {
     firstReadMoreHandler()
   },[Props.item])
   // -------------------------------------------------------------------------
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const ReviewClickNavigate = () =>{
     if(Props.alice!=undefined&&Props.alice==true){
-    navigate(`/products/${Props.productId}/review/${Props.item.id}`)
+    router.push(`/products/${Props.productId}/review/${Props.item.id}`)
     }else{
-    navigate(`/products/${Props.productId}/top/review/${Props.item.id}`)
+    router.push(`/products/${Props.productId}/top/review/${Props.item.id}`)
     }
   }
 
