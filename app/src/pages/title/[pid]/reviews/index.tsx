@@ -1,3 +1,4 @@
+import { Reviews } from "components/reviews/Reviews"
 import { ShareMain } from "components/share/main/ShareMain"
 import { ProductShowEpisords } from "components/title/episords/ProductShowEpisords"
 import { ProductShow } from "components/title/productShow"
@@ -15,7 +16,7 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   // const fallback= Props.fallback
   return(
     <>
-      <ProductShowReviews/>
+      <Reviews />
     </>
   )
 }
@@ -27,11 +28,11 @@ TitleIndex.getLayout = (page) => {
     <ShareMain
       locationNumber={1}
     >
-      <ProductShow
+      {/* <ProductShow
       // data = {Props.data}
-      >
+      > */}
         {page}
-      </ProductShow>   
+      {/* </ProductShow>    */}
     </ShareMain>
   )
 }
