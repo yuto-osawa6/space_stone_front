@@ -479,3 +479,36 @@ export interface productForm {
   shoboiTid:number | undefined
   wikiEn:string | undefined
 }
+
+// product show
+
+export interface productShow {
+  EmotionLists:emotionList[]
+  acsesses:acsesses
+  products:product
+  status:number
+  scored: {scored: boolean,score:{id:number,value:number}|null}
+  liked: {liked: false, like:{id:number}|null }
+  productReviews: productReviews[]
+  productThreads: productThreads[]
+  emotionList: emotionList[]
+  stats: {stats: number[]}
+  productScores: productScores[]
+}
+
+
+// productScores: []
+// stats: {stats: Array(10)}
+
+
+// EmotionLists: []
+// acsesses: {acsess_array: Array(12), month_array: Array(12)}
+// liked: {liked: false, like: null}
+// message: "Hello world!v2"
+// productReviews: []
+// productScores: []
+// productThreads: []
+// products: {id: 3, title: '進撃の巨人 The Final Season Part.2', image_url: null, arasuzi: null, list: 'https://shingeki.tv/', …}
+// scored: {scored: false, score: null}
+// stats: {stats: Array(10)}
+// status: 200

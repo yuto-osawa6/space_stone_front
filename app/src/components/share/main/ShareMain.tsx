@@ -12,7 +12,9 @@ export const ShareMain:React.FC<Props> = (Props) =>{
   return(
     <>
       <HeaderDivComponent>
-        <Header/>
+        <Header
+        locationNumber={Props.locationNumber}
+        />
       </HeaderDivComponent>
       <Super
         locationNumber={Props.locationNumber}

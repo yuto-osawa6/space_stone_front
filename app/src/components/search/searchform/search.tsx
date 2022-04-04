@@ -700,6 +700,7 @@ const Search:React.FC = ()=> {
               return(
                 <>
                   <div className="header-search-contents__boxes__List"
+                  key={item}
                   onClick={()=>deletingtag2(item)}
                   >
                   { todoList5.genres[item-1].name}
@@ -712,6 +713,7 @@ const Search:React.FC = ()=> {
                return(
                  <>
                     <div className="header-search-contents__boxes__List"
+                    key={item.id}
                     onClick={()=>deletingtagcast(item.id,item)}
                     >
                       {item.name}
@@ -753,6 +755,7 @@ const Search:React.FC = ()=> {
                return(
                  <>
                     <div className="header-search-contents__boxes__List"
+                    key={item.id}
                     onClick={()=>deletingtagstudio(String(item.id),item)}
                     >
                       {item.company}

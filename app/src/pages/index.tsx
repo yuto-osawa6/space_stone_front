@@ -103,6 +103,7 @@ type UserTier = {
   const fallback= Props.fallback
   return(
     <>
+    {/* <div className = "mainContents share_middle_container01"> */}
       <ThisSeasonAnimeInfomation
         products = {Props.data.products}
         currentSeason = {Props.data.currentSeason}
@@ -121,6 +122,7 @@ type UserTier = {
       <Link href="/ota">
           <a>Home</a>
       </Link>
+      {/* </div> */}
     </>
   )
 }

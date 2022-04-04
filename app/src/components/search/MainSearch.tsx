@@ -148,7 +148,7 @@ const loader =<div className="loader" key={0}>Loading ...</div>;
           <div className = "products_contents_list"
           ref={ref}
           >
-            {/* {firstloding&&grid.grid === "01"&&(
+            {firstloding&&grid.grid === "01"&&(
               <InfiniteScroll
               className = "products_infinitescroll"
               loadMore={handleScrollingExec}    //項目を読み込む際に処理するコールバック関数
@@ -168,7 +168,7 @@ const loader =<div className="loader" key={0}>Loading ...</div>;
                 )
               })}
               </InfiniteScroll>
-            )} */}
+            )}
             {firstloding&&grid.grid === "02"&&(
               <InfiniteScroll
               className = "products_infinitescroll02"
@@ -190,7 +190,7 @@ const loader =<div className="loader" key={0}>Loading ...</div>;
               </InfiniteScroll>
             )}
 
-            {/* {firstloding&&grid.grid === "03"&&(
+            {firstloding&&grid.grid === "03"&&(
               <InfiniteScroll
               className = "products_infinitescroll03  ToptensContainerGrid"
               loadMore={handleScrollingExec}    //項目を読み込む際に処理するコールバック関数
@@ -206,7 +206,7 @@ const loader =<div className="loader" key={0}>Loading ...</div>;
                 )
               })}
               </InfiniteScroll>
-            )} */}
+            )}
             {/* {firstloding&&grid.grid === "04"&&(
               <InfiniteScroll
               className = "products_infinitescroll04 ArticlesAssociateProductsBox"

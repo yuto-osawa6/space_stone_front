@@ -8,14 +8,17 @@ type Props = {
 
 export const Super:React.FC<Props> = (Props) => {
 
-
   return(
       <SuperDiv>
         <Lefts
         locationNumber={Props.locationNumber}
         />
-        <SuperSheet>
-          <SearchDiv>
+        <SuperSheet
+        locationNumber={Props.locationNumber}
+        >
+          <SearchDiv
+          locationNumber={Props.locationNumber}
+          >
             <Search/>
           </SearchDiv>
           <InsertBox>
@@ -37,18 +40,33 @@ const SuperDiv:React.FC<Props> = (Props) => {
 }
 
 const SuperSheet:React.FC<Props> = (Props) => {
+  const handleStyle = () => {
+    if(Props.locationNumber===undefined){
+      return {}
+    }else if(Props.locationNumber===1){
+      return {gridColumn:"1/3"}
+    }
+  }
   return(
-    <div className = {`super-sheet`}>
-    {/* <div className = {`super-sheet`} style={handleStyle()}> */}
+    // <div className = {`super-sheet`}>
+    <div className = {`super-sheet`} style={handleStyle()}>
       {Props.children}
     </div>
   )
 }
 
 const SearchDiv:React.FC<Props> = (Props) => {
+  const handleStyle2 = () => {
+    if(Props.locationNumber===undefined){
+      return {}
+    }else if(Props.locationNumber===1){
+      return {display:"none"}
+    }
+  }
+
   return(
-    <div className = "header__message__box">
-      {/* <div className = "header__search" style={handleStyle2()}> */}
+    // <div className = "header__message__box">
+      <div className = "header__search" style={handleStyle2()}>
       <div className = "header__search">
         {Props.children}
       </div>

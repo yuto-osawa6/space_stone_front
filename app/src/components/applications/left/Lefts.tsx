@@ -92,12 +92,20 @@ const changeOpenFormats5 = () => {
 //   return {}
 
 // }
+const handleStyle = () => {
+  if(Props.locationNumber===undefined){
+    return {}
+  }else if(Props.locationNumber===1){
+    return {display:"none"}
+  }
+}
+
 
 console.log(data,error)
   return(
     <>
       <div className = "main-left" 
-      style={Props.locationNumber==1?{}:{}}
+      style={handleStyle()}
       >
         <div className = "main-contents__box">
           <div className = "category__title">

@@ -96,7 +96,7 @@ export const GridProducts:React.FC<Props> = (Props)=>{
 
   const navigateProductShow =() =>{
     dispatch(actionSettingProductData2(Props.product));
-    router.push(`/products/${Props.product.id}`)
+    router.push(`/title/${Props.product.id}`)
   }
   const nodeRef = React.useRef(null)
 

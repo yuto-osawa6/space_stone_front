@@ -20,7 +20,6 @@ export const StylesLists:React.FC = () =>{
   const stylesselected = useSelector((state: RootState) => state.todostyles);
 
   const dispatch = useDispatch();
-  console.log(stylesselected)
 
   const selected = (id:number):boolean => {
     const select = stylesselected.styles_id_eq===String(id)?true:false
@@ -29,7 +28,6 @@ export const StylesLists:React.FC = () =>{
 
   const handleClick = () => {
     dispatch(pussingtodoStylesDataAction(String("")));
-    console.log(stylesselected)
   }
 
   const changeingcontens = () => {
@@ -61,14 +59,12 @@ export const StylesLists:React.FC = () =>{
         {stylesListsStore.styles.map((item:styleslists)=>{
         {console.log(item)}
           return(
-          <>
             <StylesList
             key = {item.id}
             id  = {item.id}
             name = {item.name}
             select = {selected(item.id)}
             />
-          </>
           )
         })}
       </div>

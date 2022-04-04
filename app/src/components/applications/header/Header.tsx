@@ -12,7 +12,10 @@ import { RiArticleLine } from "react-icons/ri"
 import { UserCertification } from "../user/UserCertification";
 // import { UserCertification } from "../user/UserCertification";
 
-export const Header:React.FC = () => {
+type Props = {
+  locationNumber: number | undefined
+}
+export const Header:React.FC<Props> = (Props) => {
   // const navigate = useNavigate()
   // const location = useLocation()
   // useScrollPosition
@@ -112,12 +115,30 @@ export const Header:React.FC = () => {
   //   }
   //   return {}
   // }
+  const handleStyle = () => {
+     if(Props.locationNumber===undefined){
+      return {}
+     }else if(Props.locationNumber===1){
+      return {display:"none"}
+     }
+  }
+  const handleStyle2 = () => {
+    if(Props.locationNumber===undefined){
+     return {}
+    }else if(Props.locationNumber===1){
+      if(currentPostion>-1){
+        return {width:"100%",backgroundColor: "transparent"}
+      }else{
+        return {width:"100%",backgroundColor:"#1a252f"}
+      }
+    }
+ }
 
   return(
     <>
       <div className = "HeaderV1">
         <div className = "HeaderMain"
-        // style={handleStyle()}
+          style={handleStyle()}
         >
           <div className = "HeaderMainLeft">
             <div className = "HeaderMainLeftTitle">
@@ -138,9 +159,9 @@ export const Header:React.FC = () => {
         <div className = {`HeaderNavi`}  
         >
           <ul className={showMenu?"":"activeScroll"} 
-          // style={
-          //   handleStyle2()
-          // }
+          style={
+            handleStyle2()
+          }
           >
             <li><Link href="/"><a><AiOutlineHome/> Top</a></Link></li>
             <li><Link href="/search"><a><HiOutlineSearchCircle/> Search</a></Link></li>

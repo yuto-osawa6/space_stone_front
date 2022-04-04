@@ -1,5 +1,6 @@
 import { product } from "interfaces/product"
 import Image from "next/image";
+import Router from "next/router";
 import { memo, useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { CSSTransition } from "react-transition-group";
@@ -85,10 +86,10 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
     handleSetupYearSeason()
   },[])
   const dispatch = useDispatch()
-  // const navigateProductShow =() =>{
-  //   dispatch(actionSettingProductData2(Props.product));
-  //   navigate(`/products/${Props.product.id}`)
-  // }
+  const navigateProductShow =() =>{
+    // dispatch(actionSettingProductData2(Props.product));
+    Router.push(`/title/${Props.product.id}`)
+  }
   const handlehoverLeave = () => {
     lefts === Props.left_grid&&rights===Props.right?setIshover2(false):setIshover(false)
   }
@@ -117,7 +118,7 @@ export const GridProductItem1:React.FC<Props> = memo((Props) => {
       ref={elm}
       onMouseEnter={handlehoverEnter}
       onMouseLeave={handlehoverLeave}
-      // onClick = {navigateProductShow}
+      onClick = {navigateProductShow}
       >
         <div className = "NewNetflixContainerGridListImage">
           {/* <CSSTransition in={imageloding}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit> */}
