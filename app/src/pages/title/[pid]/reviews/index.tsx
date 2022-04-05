@@ -16,7 +16,7 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   // const fallback= Props.fallback
   return(
     <>
-      <Reviews />
+      <ProductShowReviews />
     </>
   )
 }
@@ -28,11 +28,11 @@ TitleIndex.getLayout = (page) => {
     <ShareMain
       locationNumber={1}
     >
-      {/* <ProductShow
+      <ProductShow
       // data = {Props.data}
-      > */}
+      >
         {page}
-      {/* </ProductShow>    */}
+      </ProductShow>   
     </ShareMain>
   )
 }
