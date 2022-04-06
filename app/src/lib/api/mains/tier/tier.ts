@@ -23,13 +23,14 @@ type UserTier = {
   userId: number
 }
 
-export const execGetUserTier = (user_id:number,current_number:number) => {
+export const execGetUserTier = (current_number:number) => {
     const { userSwr } = useUser()
+    console.log("aaaaaaaaaa",userSwr)
     const fetcher = async() => {
     if (userSwr.login==false)return
     const res =  await client.get('/mainblocks/mains/user_this_season_tier',{
       params:{
-        user_id:user_id,
+        user_id:userSwr.user.id,
         current_number:current_number
       }
     })

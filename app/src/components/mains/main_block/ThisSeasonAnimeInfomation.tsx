@@ -228,18 +228,22 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo((Props) => {
         <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
         ref={ref}
         >
-          {Props.products.map((item)=>{
-            return(
-            <GridProductItem1
-            key={item.id}
-            product={item}
-            push ={ pushgridleft }
-            left_grid = { maxleft}
-            right = {right}
-            avgScore = {avgScore!=undefined?avgScore[item.id]!=undefined?avgScore[item.id]:undefined:undefined}
-            />
-            )
-          })}
+          {Props.products!=undefined&&(
+            <>
+              {Props.products.map((item)=>{
+                return(
+                <GridProductItem1
+                key={item.id}
+                product={item}
+                push ={ pushgridleft }
+                left_grid = { maxleft}
+                right = {right}
+                avgScore = {avgScore!=undefined?avgScore[item.id]!=undefined?avgScore[item.id]:undefined:undefined}
+                />
+                )
+              })}
+            </>
+          )}
         </div>
         <div className = "NewNetflixContainerRowAction share_middle_container_right_text"
         onClick={moreActionHandler}

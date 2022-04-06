@@ -114,7 +114,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
   const [updateTier,setUpdateTier] = useState<boolean>(false)
   // loginによる切り替え-------------------------------------
   const { userSwr } = useUser()
-  const {userTier,error} = execGetUserTier(userSwr.user.id,1)
+  const {userTier,error} = execGetUserTier(1)
   useEffect(()=>{
     if(userSwr.login==false) return
     mutate('/mainblocks/mains/user_this_season_tier/1')
