@@ -69,7 +69,7 @@ const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) 
       <div className="">
         {/* {Props.data?.products.imageUrl} */}
       </div>
-      aaaaaaallllllllllllllaaaちょっぱーlおここここlおぽれka
+      aaaaaaallllllllllllllaaa
       <div className="">
         {Props.children}
       </div>
