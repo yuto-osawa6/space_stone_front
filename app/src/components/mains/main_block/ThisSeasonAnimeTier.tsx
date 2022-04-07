@@ -132,7 +132,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
       fontSize: "1.5rem"
       }}
       >
-       今シーズンのTier
+       今シーズンのTierっっke
       </div>
       <div className=""
       style={{
