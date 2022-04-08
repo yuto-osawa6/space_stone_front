@@ -190,8 +190,8 @@ useEffect(()=>{
       Props.setUpdateTier(true)
     }
       console.log("aa")
-      mutate('/mainblocks/mains/update_tier_list/1')
-      mutate('/mainblocks/mains/user_this_season_tier/1')
+      // mutate('/mainblocks/mains/update_tier_list/1')
+      // mutate('/mainblocks/mains/user_this_season_tier/1')
       dispatch(pussingMessageDataAction(res.data.message))
       Props.setOpen(false)
    }else{

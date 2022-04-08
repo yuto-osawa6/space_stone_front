@@ -1,8 +1,8 @@
 import { UserModalSign } from "components/applications/user/UserModalSign"
 import { OpenContext } from "contexttype/contexttype"
 import { product } from "interfaces/product"
-import { execGetThisSeasonTier, execGetUserTier } from "lib/api/mains/tier/tier"
-import { useThisSeasonTier } from "lib/data/tier/thisSeasonTier"
+import { execGetNextSeasonTier, execGetThisSeasonTier, execGetUserTier, execGetUserTier2 } from "lib/api/mains/tier/tier"
+import { useNextSeasonTier, useThisSeasonTier } from "lib/data/tier/thisSeasonTier"
 import { useUser } from "lib/data/user/useUser"
 import { useEffect, useState } from "react"
 import useSWR, { mutate } from "swr"
@@ -43,10 +43,11 @@ type avgScore = {
 type tierData = {
 
 }
-export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
+export const NextSeasonAnimeTier:React.FC<Props> = (Props) => {
   // const {data} = useThisSeasonTier()
-  const {data} = execGetThisSeasonTier()
-  // console.log(data)
+  const {data} = execGetNextSeasonTier()
+  // const {data} = useNextSeasonTier()
+  console.log(data)
 
   const [avgScore,setAvgScore] = useState<avgScore>()
   const [tierProductGroup,setTierProductGroup] = useState<TierProductGroup[]>([
@@ -115,10 +116,10 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
   const [updateTier,setUpdateTier] = useState<boolean>(false)
   // loginによる切り替え-------------------------------------
   const { userSwr } = useUser()
-  const {userTier,error} = execGetUserTier(1)
+  const {userTier,error} = execGetUserTier2(2)
   useEffect(()=>{
     if(userSwr.login==false) return
-    mutate('/mainblocks/mains/user_this_season_tier/1')
+    mutate('/mainblocks/mains/user_this_season_tier/2')
   },[userSwr.login])
   // // --------------------------------------------------------------
   const [openTierUpdate,setOpenTierUpdate] = useState<boolean>(false)
@@ -129,8 +130,8 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
     if(updateTier===false)return
     // handleGetUserTier()
     // handleUpdateTierList()
-    mutate('/mainblocks/mains/update_tier_list/1')
-    mutate('/mainblocks/mains/user_this_season_tier/1')
+    mutate('/mainblocks/mains/update_tier_list/2')
+    mutate('/mainblocks/mains/user_this_season_tier/2')
     setUpdateTier(false)
     // return () => {
     //   isMounted3 = false

@@ -18,3 +18,10 @@ export const useThisSeasonTier = ():{data:tierRes | undefined} => {
   const { data } = useSWRImmutable<tierRes>('/mainblocks/mains/update_tier_list/1')
   return { data }
 }
+
+export const useNextSeasonTier = ():{data:tierRes | undefined} => {
+  // const fetcher = () => client.get('/mainblocks/mains/update_tier_list',{params:{current_number:1}}).then((res) => res.data)
+  // const { data } = useSWRImmutable<tierRes>('/mainblocks/mains/update_tier_list/1',fetcher)
+  const { data } = useSWRImmutable<tierRes>('/mainblocks/mains/update_tier_list/2')
+  return { data }
+}

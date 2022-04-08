@@ -11,6 +11,7 @@ import { IoChevronDownOutline } from "react-icons/io5"
 import { MdKeyboardArrowDown } from "react-icons/md"
 import { useSelector } from "react-redux"
 import { RootState } from "store"
+import { NextSeasonAnimeTier } from "./NextSeasonAnimeTier"
 // import { GridProducts2 } from "./GridProducts2"
 // import { CreateTier } from "./tier/CreateTier"
 // import { ThisMonthTierList } from "./tier/thismonth/ThisMonthTierList"
@@ -263,6 +264,10 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = (Props) => {
 
       </div>
       </div>
+      <NextSeasonAnimeTier
+        products = {Props.data.products}
+        currentSeason = {Props.data.currentSeason}
+       />
 
       {/* <div className=""
       style={{

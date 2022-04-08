@@ -9,6 +9,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "store"
 // import { BsArrowDownShort } from "react-icons/bs"
 import { IoChevronDownOutline } from "react-icons/io5"
+import { mutate } from "swr"
 // import { MdKeyboardArrowDown } from "react-icons/md"
 // import { GridProducts2 } from "./GridProducts2"
 // import { CreateTier } from "./tier/CreateTier"
@@ -207,11 +208,13 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo((Props) => {
   // }
   // useEffect(()=>{
   //   if(updateTier===false)return
-  //   handleGetUserTier()
-  //   handleUpdateTierList()
-  //   return () => {
-  //     isMounted3 = false
-  //   };
+  //   // handleGetUserTier()
+  //   // handleUpdateTierList()
+  //   mutate('/mainblocks/mains/update_tier_list/1')
+  //   mutate('/mainblocks/mains/user_this_season_tier/1')
+  //   // return () => {
+  //   //   isMounted3 = false
+  //   // };
   // },[updateTier])
   // --------------------------------------------------------------
   const [openTierUpdate,setOpenTierUpdate] = useState<boolean>(false)

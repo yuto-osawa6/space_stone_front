@@ -39,23 +39,25 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
 
   // }
   const query_params = new URLSearchParams(params); 
-  const [thisSeasonRes, nextSeasonRes,tierRes] = await Promise.all([
+  const [thisSeasonRes, nextSeasonRes,tierRes,tierRes2] = await Promise.all([
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/new_netflix`), 
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
-    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
+    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams)),
+    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams2))
     // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
   ]);
-  const [data, data2,tierData] = await Promise.all([
+  const [data, data2,tierData,tierData2] = await Promise.all([
     thisSeasonRes.json(), 
     nextSeasonRes.json(),
-    tierRes.json()
+    tierRes.json(),
+    tierRes2.json(),
   ]);
   return { 
     props: { 
       data, data2,
       fallback: {
-        '/mainblocks/mains/update_tier_list/1': tierData
-        // '/mainblocks/mains/new_netflix' : data
+        '/mainblocks/mains/update_tier_list/1': tierData,
+        '/mainblocks/mains/update_tier_list/2' : tierData2
       }
     } 
   };
@@ -113,12 +115,22 @@ type UserTier = {
         products = {Props.data.products}
         currentSeason = {Props.data.currentSeason}
        />
-      </SWRConfig>
+
+
       <NextSeasonAnimeInfomation
         // products = {Props.data.products}
         // currentSeason = {Props.data.currentSeason}
         data = {Props.data2}
       />
+      </SWRConfig>
+       
+
+      {/* <SWRConfig value={{ fallback }}>
+       <ThisSeasonAnimeTier 
+        products = {Props.data.products}
+        currentSeason = {Props.data.currentSeason}
+       />
+      </SWRConfig> */}
       <Link href="/ota">
           <a>Home</a>
       </Link>
