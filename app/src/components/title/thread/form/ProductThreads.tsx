@@ -2,15 +2,15 @@ import { product } from "interfaces/product";
 import { like_review, review, review_comments } from "interfaces/review";
 // import { execProductReviewShow } from "lib/api/products";
 import { useEffect, useRef, useState } from "react";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+// import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { RootState } from "store";
 
 // icon
 import { FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown } from "react-icons/fa"
 import { OpenContext, OpenReviewCommentContext } from "contexttype/contexttype";
-import { UserModalSign } from "component/aplication/lefts/UserModalSign";
+import { UserModalSign } from "components/applications/user/UserModalSign";
 import { execCheckLikeReview, execCreateLikeReview, execDeleteLikeReview } from "lib/api/reviews";
 import { execAcsessThreadCountHandler, execCheckLikeThread, execCreateLikeThread, execDeleteLikeThread, execProductThreadShow, execProductThreadShowSort } from "lib/api/threads";
 import { ThreadComment } from "./modal/ThreadComment";
@@ -27,11 +27,13 @@ import { IoMdClose } from "react-icons/io";
 import InfiniteScroll from "react-infinite-scroller";
 import { ThreadEditList } from "./ThreadEditList";
 import { pussingMessageDataAction } from "store/message/actions";
-import { ErrorMessage } from "share/message";
+import { useRouter } from "next/router";
+import { useUser } from "lib/data/user/useUser";
+import { ErrorMessage } from "lib/ini/message";
 
-// type  = {
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
-// }
 const ini:like_review = {
   id:0,
   goodbad:0,
@@ -57,9 +59,11 @@ export const ProductThreads:React.FC = () => {
     ], 
   }
   // params
-  const params = useParams();
-  const params_product_id = params.productId
-  const params_review_id = params.threadId
+  // const params = useParams();
+  const router = useRouter()
+  const {pid,tid} = router.query
+  const params_product_id = pid as string
+  const params_review_id = tid as string
 
   // usestate
   const [review,setReview] = useState<review>()
@@ -85,7 +89,9 @@ export const ProductThreads:React.FC = () => {
   const [productStore,setProductStore] = useState<product>()
   const [navigateJudge,setNavigateJudge] = useState<boolean>(false)
   const ProductStore = useSelector((state: RootState) => state.product);
-  const user = useSelector((state:RootState) => state.user)
+  // const user = useSelector((state:RootState) => state.user)
+  const {userSwr} = useUser()
+  const user = userSwr
 
   // useropenmodal
   const [open,setOpen] = useState<boolean>(false)
@@ -142,8 +148,9 @@ const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
   }
 
   useEffect(()=>{
+    if(pid==undefined || tid == undefined)return
     setdata()
-  },[])
+  },[pid,tid])
 
   useEffect(()=>{
     setData2()
@@ -167,7 +174,7 @@ const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
 
   useEffect(()=>{
     UserChangeHandler()
-  },[user])
+  },[user.login])
 
   // acsess count
 
@@ -271,24 +278,25 @@ const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
   }
 
   // modal
-  const navigate = useNavigate()
-  const location = useLocation()
+  // const navigate = useNavigate()
+  // const location = useLocation()
   const [openModal,setOpenModal] = useState<boolean>(true)
   // const params_product_title = params.title
-  const params_user_id = params.userId
+  // const params_user_id = params.userId
 
   const handleClose = () => {
     setOpenModal(false)
     console.log(location.pathname)
-    if(location.pathname===`/products/${params_product_id}/top/thread/${params_review_id}`){
-      navigate(`/products/${params_product_id}`)
-    }else if(location.pathname===`/threads/${params_review_id}/products/${params_product_id}`){
-      navigate(`/threads`)
-    }else if(location.pathname=== `/users/${params_user_id}/threads/${params_review_id}/products/${params_product_id}`){
-      navigate(`/users/${params_user_id}/threads`)
-    }else{
-      navigate(`/products/${params_product_id}/thread`)
-    }
+    // koko
+    // if(location.pathname===`/products/${params_product_id}/top/thread/${params_review_id}`){
+    //   navigate(`/products/${params_product_id}`)
+    // }else if(location.pathname===`/threads/${params_review_id}/products/${params_product_id}`){
+    //   navigate(`/threads`)
+    // }else if(location.pathname=== `/users/${params_user_id}/threads/${params_review_id}/products/${params_product_id}`){
+    //   navigate(`/users/${params_user_id}/threads`)
+    // }else{
+    //   navigate(`/products/${params_product_id}/thread`)
+    // }
   }
 
   // infinite scroll
@@ -358,13 +366,13 @@ const handleUpdateContents  = async() => {
 
   return(
     <>
-    <Modal
+    {/* <Modal
       open={openModal}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       >
-        <>
+        <> */}
       {navigateJudge?
       <>
 
@@ -401,12 +409,11 @@ const handleUpdateContents  = async() => {
               <MdAccessTime/>{review?.updatedAt}  
             </div>
           </div>
-          {/* doneyet-1 した,なにもの */}
-          <div className="CloseButton"
+          {/* <div className="CloseButton"
             onClick={handleClose}
             >
             <IoMdClose/>
-          </div>
+          </div> */}
         </div>  
         <div className = "ProductReviewShowMain"
         style={{
@@ -630,11 +637,11 @@ const handleUpdateContents  = async() => {
               >
                 コメントする
               </div>
-                {open&&(
+                {/* {open&&(
                   <OpenContext.Provider value={{ open, setOpen }}>
                     <UserModalSign/>
                   </OpenContext.Provider>
-                )}
+                )} */}
               </>
               }
             </div>
@@ -680,8 +687,8 @@ const handleUpdateContents  = async() => {
       {review?.id} */}
 
       </>}
-      </>
-      </Modal>
+      {/* </>
+      </Modal> */}
     </>
   )
 }

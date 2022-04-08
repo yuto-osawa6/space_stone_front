@@ -1,21 +1,27 @@
-import { UserModalSign } from "component/aplication/lefts/UserModalSign"
+import { UserModalSign } from "components/applications/user/UserModalSign"
 import { OpenContext, OpenReturnReviewCommentContext, OpenReviewCommentContext } from "contexttype/contexttype"
 import { like_review, return_review_comments, review_comments } from "interfaces/review"
 import { execCheckLikeCommentReview, execCheckReturnCommentReview, execCreateLikeCommentReview, execDeleteLikeCommentReview } from "lib/api/reviews"
 import { execCheckLikeCommentThread, execCheckReturnCommentThread, execCreateLikeCommentThread, execDeleteLikeCommentThread, execDeleteThreadComment } from "lib/api/threads"
 import { useEffect, useRef, useState } from "react"
 import { FaRegThumbsDown, FaRegThumbsUp, FaThumbsDown, FaThumbsUp } from "react-icons/fa"
-import ReactQuill from "react-quill"
+// import ReactQuill from "react-quill"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "store"
 import { ReturnThreadCommentAll } from "../modal/ReturnThreadCommentAll"
 import { ReturnThreadComment } from "./ReturnThreadComment"
 // import { ReturnReviewCommentAll } from "../modal/ReturnReviewCommentAll"
 // import { ReturnReviewComment } from "./ReturnReviewComment"
-import { DeltaStatic } from "quill"
-import { useParams } from "react-router-dom"
+// import { DeltaStatic } from "quill"
+// import { useParams } from "react-router-dom"
 import { pussingMessageDataAction } from "store/message/actions"
-import { ErrorMessage } from "share/message"
+import { useUser } from "lib/data/user/useUser"
+import { useRouter } from "next/router"
+import { ErrorMessage } from "lib/ini/message"
+// import { ErrorMessage } from "share/message"
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   reviewcomment : review_comments
@@ -49,7 +55,9 @@ const modules = {
 }
 export const ThreadCommentList:React.FC<Props> = (Props) => {
   // store
-  const user = useSelector((state:RootState) => state.user)
+  // const user = useSelector((state:RootState) => state.user)
+  const {userSwr} = useUser()
+  const user = userSwr
   // usestate
   const [open, setOpen] = useState<boolean>(false)
   const [likeCommentReview, setLikeCommentReview] = useState<like_review>(ini)
@@ -79,8 +87,10 @@ export const ThreadCommentList:React.FC<Props> = (Props) => {
   }
   
   const dispatch = useDispatch()
-  const params = useParams()
-  const params_thread_id = params.threadId
+  // const params = useParams()
+  const router = useRouter()
+  const {pid,tid} = router. query
+  const params_thread_id = tid as string
 
   // goodbad create
   const reviewValuationGood = async(e:React.MouseEvent<HTMLDivElement> | undefined) => {
@@ -237,13 +247,12 @@ export const ThreadCommentList:React.FC<Props> = (Props) => {
   //   const quillref  = useRef<ReactQuill>(null!)
   const [readMore,setReadMore] = useState<boolean>(false) 
   const [readMoreLength,setReadMoreLength] = useState<number>(0)
-  const [content,setContent] = useState<string|DeltaStatic>("")
+  const [content,setContent] = useState<any>("")
   const readMoreHandler = () => {
     readMore==true?setReadMore(false):setReadMore(true)
   }
   const firstReadMoreHandler = () => {
     console.log(readMore)
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 
     setReadMore(false)
     var doc = new DOMParser().parseFromString(Props.reviewcomment.comment, "text/html")
@@ -251,12 +260,6 @@ export const ThreadCommentList:React.FC<Props> = (Props) => {
     const doc200 = doc.getElementsByTagName('body')[0].innerText.slice(0,200)
     setContent(doc200.length!=200?doc200:doc200+"...")
     setReadMoreLength(doc200.length)
-    // const editor = quillref.current.getEditor()
-    // const delta = quillref.clipboard.convert(value333)
-    // console.log(editor.clipboard.convert(Props.reviewcomment.comment.replaceAll("<img>", "")))
-    // setContent(editor.clipboard.convert(Props.reviewcomment.comment.replaceAll("<img/>", "")).slice(0,200))
-
-
   }
 
   useEffect(()=>{

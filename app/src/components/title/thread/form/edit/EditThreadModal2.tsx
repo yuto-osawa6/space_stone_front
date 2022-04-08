@@ -4,7 +4,6 @@ import { OpenScoreContext, OpenTheredContext } from "contexttype/contexttype";
 import { execCreateThered, execScoreCreate, execScoreUpdate } from "lib/api/products";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import ReactQuill from "react-quill";
 
 // mui
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -15,7 +14,12 @@ import ListItemText from '@mui/material/ListItemText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import { productThreads } from "interfaces/product";
-import { ngword } from "hook/NgWord";
+import { ngword } from "lib/ini/ngWord";
+
+// no use component
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 
 const ITEM_HEIGHT = 48;
@@ -29,32 +33,11 @@ const MenuProps = {
   },
 };
 
-// const modules = {
-//   toolbar: [
-//     // [{ font: [] }],
-//     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-//     ["bold", "italic", "underline", "strike"],
-//     [{ color: [] }, { background: [] }],
-//     [{ script:  "sub" }, { script:  "super" }],
-//     ["blockquote"
-//     ,
-//   // ],
-//     "code-block"],
-//     [{ list:  "ordered" }, { list:  "bullet" }],
-//     [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
-//     ["link", "image", "video"],
-//     // ['link'],   
-//     // ["clean"],
-//   ],
-// }
+
 
 type Props = {
   product_id:number | undefined
   user_id:number
-  // question:[{
-  //   id:number
-  //   question:string
-  // }]| undefined
   setProductThreads: React.Dispatch<React.SetStateAction<productThreads[]>>
 }
 
@@ -68,7 +51,7 @@ export const EditTheredModal2:React.FC<Props> = (Props) => {
   const [value2,setText2] = useState<string>("")
 
   const [discribe,setDiscribe] = useState<string>("")
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
 
   const [helpertextradio,setHelpertextradio] = useState<string>("")
 

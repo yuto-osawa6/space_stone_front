@@ -1,17 +1,24 @@
 import { Button, FormHelperText, Modal } from "@mui/material"
-import { submitSpin } from "color/submit-spin"
+// import { submitSpin } from "color/submit-spin"
 import { OpenReviewCommentContext } from "contexttype/contexttype"
-import { ngword } from "hook/NgWord"
+// import { ngword } from "hook/NgWord"
 import { return_review_comments } from "interfaces/review"
 import { execCreateReturnReturnCommentThread } from "lib/api/threads"
+import { submitSpin } from "lib/color/submit-spin"
+import { ErrorMessage } from "lib/ini/message"
+import { ngword } from "lib/ini/ngWord"
+import { useRouter } from "next/router"
 import { useContext, useMemo, useRef, useState } from "react"
 import { IoMdClose } from "react-icons/io"
 import { TailSpin } from "react-loader-spinner"
-import ReactQuill from "react-quill"
+// import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
-import { useParams } from "react-router-dom"
-import { ErrorMessage } from "share/message"
+// import { useParams } from "react-router-dom"
+// import { ErrorMessage } from "share/message"
 import { pussingMessageDataAction } from "store/message/actions"
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   user_id:number
@@ -30,7 +37,7 @@ export const ReturnReturn:React.FC<Props> = (Props) => {
   const closehandle = () =>{setOpenReviewComment(false)}
 
   // ref
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
   // state
   const [value,setValue] = useState<string>("")
 
@@ -44,8 +51,10 @@ export const ReturnReturn:React.FC<Props> = (Props) => {
 
   const [loading,setLoding] = useState<boolean>(false)
   const dispatch = useDispatch()
-  const params = useParams()
-  const params_thread_id = params.threadId
+  // const params = useParams()
+  const router = useRouter()
+  const {pid,tid} = router.query
+  const params_thread_id = tid as string
 
   const handlesubmit = async() => {
     const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length

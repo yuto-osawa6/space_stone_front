@@ -1,13 +1,15 @@
 
 import { Button, FormHelperText, Modal } from "@mui/material"
-import { submitSpin } from "color/submit-spin"
+// import { submitSpin } from "color/submit-spin"
 import { product } from "interfaces/product"
 import { review } from "interfaces/review"
 import { execDeleteReview, execDeleteThread } from "lib/api/products"
+import { submitSpin } from "lib/color/submit-spin"
+import { ErrorMessage } from "lib/ini/message"
 import React, { useState } from "react"
 import { TailSpin } from "react-loader-spinner"
 import { useDispatch } from "react-redux"
-import { ErrorMessage } from "share/message"
+// import { ErrorMessage } from "share/message"
 import { pussingMessageDataAction } from "store/message/actions"
 import { updateReviewAction } from "store/reviewUpdate/actions";
 import { updateThreadAction } from "store/updateThread/actions"

@@ -1,4 +1,4 @@
-import { UserModalSign } from "component/aplication/lefts/UserModalSign"
+import { UserModalSign } from "components/applications/user/UserModalSign"
 import { OpenContext, OpenReviewCommentContext } from "contexttype/contexttype"
 import { like_return_comment, return_review_comments } from "interfaces/review"
 import { execCheckLikeReturnCommentReview, execCreateLikeReturnCommentReview, execDeleteLikeReturnCommentReview } from "lib/api/reviews"
@@ -6,15 +6,21 @@ import { execCheckLikeReturnCommentThread, execCreateLikeReturnCommentThread, ex
 import { useEffect, useRef, useState } from "react"
 import { BsReply } from "react-icons/bs"
 import { FaRegThumbsDown, FaRegThumbsUp, FaThumbsDown, FaThumbsUp } from "react-icons/fa"
-import ReactQuill from "react-quill"
+// import ReactQuill from "react-quill"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "store"
 import { ReturnReturn } from "./ReturnReturn"
 // import { ReturnReturn } from "./ReturnReturn"
 import { DeltaStatic } from "quill"
-import { useParams } from "react-router-dom"
+// import { useParams } from "react-router-dom"
 import { pussingMessageDataAction } from "store/message/actions"
-import { ErrorMessage } from "share/message"
+import { useUser } from "lib/data/user/useUser"
+import { useRouter } from "next/router"
+import { ErrorMessage } from "lib/ini/message"
+// import { ErrorMessage } from "share/message"
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   reviewcomment : return_review_comments
@@ -52,7 +58,9 @@ const ini:like_return_comment = {
 
 export const ReturnThreadCommentList:React.FC<Props> = (Props) => {
   // console.log(Props)
-  const user = useSelector((state:RootState) => state.user)
+  // const user = useSelector((state:RootState) => state.user)
+  const {userSwr} = useUser()
+  const user = userSwr
   // usestate
   const [open, setOpen] = useState<boolean>(false)
   const [likeCommentReview, setLikeCommentReview] = useState<like_return_comment>(ini)
@@ -82,15 +90,17 @@ export const ReturnThreadCommentList:React.FC<Props> = (Props) => {
 
 
   const dispatch = useDispatch()
-  const params = useParams()
-  const params_thread_id = params.threadId
+  // const params = useParams()
+  const router = useRouter()
+  const {pid,tid} = router.query
+  const params_thread_id = tid as string
   // v1.01---------------------
   const [goodLength,setGoodlength] = useState<number>()
   const [likeCommentScore,setLikeCommentScore] = useState<string>()
   const [userLikesJugde,setUserLikesJudge] = useState<number>(0)
   const [totalLength,setTotalLength] = useState<number>(0)
   const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
 // goodbad create
   const reviewValuationGood = async(e:React.MouseEvent<HTMLDivElement> | undefined) => {
     e?.stopPropagation()
@@ -231,11 +241,6 @@ export const ReturnThreadCommentList:React.FC<Props> = (Props) => {
     const doc200 = doc.getElementsByTagName('body')[0].innerText.slice(0,200)
     setContent(doc200.length!=200?doc200:doc200+"...")
     setReadMoreLength(doc200.length)
-    // const editor = quillref.current.getEditor()
-    // const delta = quillref.clipboard.convert(value333)
-    // console.log(editor.clipboard.convert(Props.reviewcomment.comment.replaceAll("<img>", "")))
-    // setContent(editor.clipboard.convert(Props.reviewcomment.comment.replaceAll("<img/>", "")).slice(0,200))
-
 
   }
 
@@ -245,15 +250,10 @@ export const ReturnThreadCommentList:React.FC<Props> = (Props) => {
 // ----------------------------------------------------------
 const ReviewCommentListRef = useRef<HTMLDivElement>(null)
   const clickHandler = () => {
-    console.log("aaaaaaaaaaaaa")
-    // readMore==true?setReadMore(false):setReadMore(true)
     setReadMore(true)
   }
   const clickHandler2 = (e:React.MouseEvent<HTMLDivElement> | undefined) => {
-    // console.log("aaaaaaaaaaaaa")
-    // e?.stopPropagation()
     e?.stopPropagation()
-    // readMore==true?setReadMore(false):setReadMore(true)
     setReadMore(false)
     ReviewCommentListRef.current?.scrollIntoView()
   }
@@ -295,14 +295,6 @@ const ReviewCommentListRef = useRef<HTMLDivElement>(null)
             {Props.reviewcomment.updatedAt}
           </div>
         </div>
-        {/* {typeof Props.reviewcomment.returnReturn!= "undefined"&&(
-          <>
-            <div className = "ReturnUser">
-              <p><BsReply/></p>
-              <p>{Props.reviewcomment.returnReturn.nickname}</p>
-            </div>
-          </>
-          )} */}
           {Props.reviewcomment.reply&&(
           <>
             {typeof Props.reviewcomment.returnReturn!= "undefined"?

@@ -1,8 +1,8 @@
 import { product } from "interfaces/product"
 import { review } from "interfaces/review"
 import { useState } from "react"
-import { DeleteReviewModal2 } from "../show/edit/DeleteReviewModal2"
-import { EditReviewModal2 } from "../show/edit/EditReviewModal2"
+// import { DeleteReviewModal2 } from "../show/edit/DeleteReviewModal2"
+// import { EditReviewModal2 } from "../show/edit/EditReviewModal2"
 import { DeleteThreadModal2 } from "./edit/DeleteThreadModal2"
 // import { EditThreadModal2 } from "./edit/EditThreadModal2"
 
