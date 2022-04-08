@@ -2,14 +2,18 @@ import { Modal } from "@mui/material"
 import { Article } from "interfaces/article"
 import { execAcsessArticleCountHandler, execArticleArticleAssosiationsHandler, execArticleShowHandler } from "lib/api/article"
 import { useEffect, useMemo, useState } from "react"
-import ReactQuill from "react-quill"
+// import ReactQuill from "react-quill"
 import { useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+// import { useNavigate, useParams } from "react-router-dom"
 import { RootState } from "store"
 import { ArticleProductList } from "./products/ArticleProductList"
 import { IoMdClose } from "react-icons/io"
 import { ArticlesLists2 } from "./ArticleLists2"
 import { EditArticleLists } from "./edit/EditArticleLists"
+import { useRouter } from "next/router"
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 
 export const ArticlesItem:React.FC = () => {
@@ -35,12 +39,14 @@ export const ArticlesItem:React.FC = () => {
   }
   ),[]);
   // use
-  const navigate = useNavigate()
-  const params = useParams();
+  // const navigate = useNavigate()
+  // const params = useParams();
+  const router = useRouter()
   // store
   const articleStore = useSelector((state: RootState) => state.article)
   // params
-  const params_id = params.articleId
+  const {aid} = router.query
+  const params_id = aid as string
   // state
   const [on,Seton] = useState<boolean>(false)
   const [article,setArtlce] = useState<Article[]>([])
@@ -80,7 +86,7 @@ export const ArticlesItem:React.FC = () => {
   const [open,setOpen] = useState<boolean>(true)
   const handleClose = () => {
     setOpen(false)
-    navigate("/articles")
+    // navigate("/articles")
   }
 
   // acsess countーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
@@ -110,13 +116,13 @@ export const ArticlesItem:React.FC = () => {
   const userStore = useSelector((state:RootState)=>state.user)
   return(
     <>
-      <Modal
+      {/* <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-      <>     
+      <>      */}
       <div className = "ProductReviewShow ArticleModal">
         <div className = "ProductReviewShowTop">
           <div className = "ProductReviewShowTopImg">
@@ -145,11 +151,11 @@ export const ArticlesItem:React.FC = () => {
             <div className = "ProductReviewShowTopCenterUser">
             </div>
           </div>
-          <div className="CloseButton"
+          {/* <div className="CloseButton"
           onClick={handleClose}
           >
             <IoMdClose/>
-          </div>
+          </div> */}
         </div>  
         <div className = "ProductReviewShowMain">
           <div className = "ProductReviewShowMainQuill">
@@ -230,7 +236,7 @@ export const ArticlesItem:React.FC = () => {
         </div>
         </div>
       </>
-    </Modal>
-    </>
+    // </Modal>
+    // </>
   )
 }

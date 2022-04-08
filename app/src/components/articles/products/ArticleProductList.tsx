@@ -3,7 +3,7 @@ import { memo, useEffect, useState } from "react"
 import { IoTimer } from "react-icons/io5"
 import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import { actionSettingProductData2 } from "store/product/actions"
 
 type Props = {
@@ -11,12 +11,12 @@ type Props = {
 }
 export const ArticleProductList:React.FC<Props> = memo((Props) => {
   const [colornumber,setColornumber ]= useState<number>(0)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const dispatch = useDispatch()
   const Movementhandler = () => {
     if(Props.product==undefined)return
     dispatch(actionSettingProductData2(Props.product))
-    navigate(`/products/${Props.product?.id}`)
+    // navigate(`/products/${Props.product?.id}`)
   }
 
   useEffect(()=>{
