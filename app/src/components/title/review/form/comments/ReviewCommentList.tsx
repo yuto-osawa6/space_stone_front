@@ -1,19 +1,25 @@
-import { UserModalSign } from "component/aplication/lefts/UserModalSign"
+import { UserModalSign } from "components/applications/user/UserModalSign"
 import { OpenContext, OpenReturnReviewCommentContext, OpenReviewCommentContext } from "contexttype/contexttype"
 import { like_review, return_review_comments, review_comments } from "interfaces/review"
 import { execCheckLikeCommentReview, execCheckReturnCommentReview, execCreateLikeCommentReview, execDeleteLikeCommentReview } from "lib/api/reviews"
 import { useEffect, useRef, useState } from "react"
 import { FaRegThumbsDown, FaRegThumbsUp, FaThumbsDown, FaThumbsUp } from "react-icons/fa"
-import ReactQuill from "react-quill"
+// import ReactQuill from "react-quill"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "store"
 import { ReturnReviewCommentAll } from "../modal/ReturnReviewCommentAll"
 import { ReturnReviewComment } from "./ReturnReviewComment"
-import { DeltaStatic } from "quill"
+// import { DeltaStatic } from "quill"
 import { execDeleteComment } from "lib/api/reviews"
 import { pussingMessageDataAction } from "store/message/actions"
-import { ErrorMessage } from "share/message"
-import { useParams } from "react-router-dom"
+import { useRouter } from "next/router"
+import { ErrorMessage } from "lib/ini/message"
+import { useUser } from "lib/data/user/useUser"
+// import { ErrorMessage } from "share/message"
+// import { useParams } from "react-router-dom"
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   reviewcomment : review_comments
@@ -49,7 +55,9 @@ const modules = {
 }
 export const ReviewCommentList:React.FC<Props> = (Props) => {
   // store
-  const user = useSelector((state:RootState) => state.user)
+  // const user = useSelector((state:RootState) => state.user)
+  const {userSwr} = useUser()
+  const user = userSwr
   // usestate
   const [open, setOpen] = useState<boolean>(false)
   const [likeCommentReview, setLikeCommentReview] = useState<like_review>(ini)
@@ -58,8 +66,10 @@ export const ReviewCommentList:React.FC<Props> = (Props) => {
     const [likeReviewLength,setLikeReviewLength] = useState<number>(0)
     const [likeReviewGood,setLikeReviewGood] = useState<number>(0)
     const dispatch = useDispatch()
-    const params = useParams()
-    const params_review_id = params.reviewId
+    // const params = useParams()
+    const router = useRouter()
+    const {pid,rid} = router.query
+    const params_review_id = rid as string
     // return
     const [returnReviewList,setReturnReviewList] = useState<return_review_comments[]>([])
     
@@ -173,8 +183,9 @@ export const ReviewCommentList:React.FC<Props> = (Props) => {
 
 
   useEffect(()=>{
+    if(rid == undefined)return
     firstHandler()
-  },[Props.reviewcomment])
+  },[Props.reviewcomment,rid])
 
   // useEffect(()=>{
 
@@ -213,7 +224,7 @@ export const ReviewCommentList:React.FC<Props> = (Props) => {
   //   const quillref  = useRef<ReactQuill>(null!)
     const [readMore,setReadMore] = useState<boolean>(false) 
     const [readMoreLength,setReadMoreLength] = useState<number>(0)
-    const [content,setContent] = useState<string|DeltaStatic>("")
+    const [content,setContent] = useState<any>("")
     const readMoreHandler = () => {
       readMore==true?setReadMore(false):setReadMore(true)
     }

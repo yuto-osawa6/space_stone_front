@@ -234,6 +234,8 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = (Props) => {
         <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
          ref={ref}
         >
+           {Props.data.products!=undefined&&(
+            <>
           {Props.data.products.map((item)=>{
 
             return(
@@ -248,6 +250,8 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = (Props) => {
               />
             )
           })}
+          
+          </>)}
         </div>
         <div className = "NewNetflixContainerRowAction share_middle_container_right_text"
         onClick={moreActionHandler2}
@@ -364,19 +368,23 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = (Props) => {
         <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
          ref={ref}
         >
-          {Props.data.products2.map((item)=>{
+          {Props.data.products2!=undefined&&(
+            <>
+              {Props.data.products2.map((item)=>{
 
-            return(
-              <GridProductItem1
-                key={item.id}
-                product={item}
-                push ={ pushgridleft }
-                left_grid = { maxleft}
-                right = {right}
-                avgScore = {avgScore2!=undefined?avgScore2[item.id]!=undefined?avgScore2[item.id]:undefined:undefined}
-              />
-            )
-          })}
+                return(
+                  <GridProductItem1
+                    key={item.id}
+                    product={item}
+                    push ={ pushgridleft }
+                    left_grid = { maxleft}
+                    right = {right}
+                    avgScore = {avgScore2!=undefined?avgScore2[item.id]!=undefined?avgScore2[item.id]:undefined:undefined}
+                  />
+                )
+              })}
+            </>
+          )}
         </div>
         <div className = "NewNetflixContainerRowAction share_middle_container_right_text"
         onClick={moreActionHandler}

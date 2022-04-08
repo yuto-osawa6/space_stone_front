@@ -6,6 +6,7 @@ import store from 'store'
 import 'styles/globals.scss'
 import 'react-quill/dist/quill.snow.css'; 
 import 'react-quill/dist/quill.bubble.css'; 
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 
 type NextPageWithLayout = NextPage & {

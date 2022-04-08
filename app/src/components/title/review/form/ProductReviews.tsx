@@ -2,15 +2,15 @@ import { product } from "interfaces/product";
 import { like_review, review, review_comments } from "interfaces/review";
 import { execProductReviewShow } from "lib/api/products";
 import { useEffect, useRef, useState } from "react";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+// import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { RootState } from "store";
 
 // icon
 import { FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown } from "react-icons/fa"
 import { OpenContext, OpenReviewCommentContext } from "contexttype/contexttype";
-import { UserModalSign } from "component/aplication/lefts/UserModalSign";
+import { UserModalSign } from "components/applications/user/UserModalSign";
 import { execAcsessReviewCountHandler, execCheckLikeReview, execCreateLikeReview, execDeleteLikeReview, execProductReviewShowSort } from "lib/api/reviews";
 import { ReviewComment } from "./modal/ReviewComment";
 import {ReviewCommentList} from "./comments/ReviewCommentList"
@@ -25,7 +25,12 @@ import { MdAccessTime } from "react-icons/md"
 import InfiniteScroll from "react-infinite-scroller";
 import { ReviewEditList } from "./ReviewEditList";
 import { pussingMessageDataAction } from "store/message/actions";
-import { ErrorMessage } from "share/message";
+import { useRouter } from "next/router";
+import { ErrorMessage } from "lib/ini/message";
+import { useUser } from "lib/data/user/useUser";
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 const ini:like_review = {
   id:0,
@@ -48,10 +53,12 @@ export const ProductReviews:React.FC = () => {
     ], 
   }
   // params
-  const params = useParams();
-  const params_product_id = params.productId
-  const params_review_id = params.reviewId
-  const params_user_id = params.userId
+  // const params = useParams();
+  const router = useRouter()
+  const {pid,rid} = router.query
+  const params_product_id = pid
+  const params_review_id = rid
+  // const params_user_id = params.userId
 
 
   // usestate
@@ -74,7 +81,9 @@ export const ProductReviews:React.FC = () => {
   const [productStore,setProductStore] = useState<product>()
   const [navigateJudge,setNavigateJudge] = useState<boolean>(false)
   const ProductStore = useSelector((state: RootState) => state.product);
-  const user = useSelector((state:RootState) => state.user)
+  // const user = useSelector((state:RootState) => state.user)
+  const {userSwr} = useUser()
+  const user = userSwr
 
   // useropenmodal
   const [open,setOpen] = useState<boolean>(false)
@@ -132,8 +141,9 @@ export const ProductReviews:React.FC = () => {
 
 
   useEffect(()=>{
+    if(pid==undefined||rid==undefined)return
     setdata()
-  },[])
+  },[pid,rid])
 
 
   // userChange effect
@@ -153,8 +163,10 @@ export const ProductReviews:React.FC = () => {
     }
   }
   useEffect(()=>{
+    console.log(user,pid,rid)
+    if(pid===undefined || rid===undefined)return
     UserChangeHandler()
-  },[user])
+  },[user.login,pid,rid])
 
   // acsess count
 
@@ -254,23 +266,24 @@ export const ProductReviews:React.FC = () => {
     }
   }
   // modal----------------------------------------------------------------------
-  const navigate = useNavigate()
-  const location = useLocation()
+  // const navigate = useNavigate()
+  // const location = useLocation()
   const [openModal,setOpenModal] = useState<boolean>(true)
   const handleClose = () => {
     setOpenModal(false)
     console.log(location.pathname)
-    if(location.pathname===`/products/${params_product_id}/top/review/${params_review_id}`){
-      navigate(`/products/${params_product_id}`)
-      // navigate(-1)
-    }else if(location.pathname===`/reviews/${params_review_id}/products/${params_product_id}`){
-      navigate(`/reviews`)
-      // navigate(-1)
-    }else if(location.pathname=== `/users/${params_user_id}/reviews/${params_review_id}/products/${params_product_id}`){
-      navigate(`/users/${params_user_id}/reviews`)
-    }else{
-      navigate(`/products/${params_product_id}/review`)
-    }
+    // koko-1
+    // if(location.pathname===`/products/${params_product_id}/top/review/${params_review_id}`){
+    //   navigate(`/products/${params_product_id}`)
+    //   // navigate(-1)
+    // }else if(location.pathname===`/reviews/${params_review_id}/products/${params_product_id}`){
+    //   navigate(`/reviews`)
+    //   // navigate(-1)
+    // }else if(location.pathname=== `/users/${params_user_id}/reviews/${params_review_id}/products/${params_product_id}`){
+    //   navigate(`/users/${params_user_id}/reviews`)
+    // }else{
+    //   navigate(`/products/${params_product_id}/review`)
+    // }
   }
 
   // infinite scroll---------------------------------------------------
@@ -287,15 +300,18 @@ const handleScrollingExec = async () => {
   setLoaded(true)
   if(loaded==true)return
   const res = await execProductReviewShowSort(params_product_id as string,params_review_id as string,selectSort,page2)
+  console.log(res)
   if (res.status === 200) {
     setPage2(page2+1)
     if(res.data.reviewComments==undefined){
+      console.log("aaaaaaaaa")
       setHasMore(false);
       setLoaded(false)
       return
     }
     if (res.data.reviewComments.length < 1) {
       setHasMore(false);
+      console.log("aaaaaaaaa")
       setLoaded(false)
       return;
     }
@@ -305,20 +321,21 @@ const handleScrollingExec = async () => {
     
   }
 }
-
+console.log(loaded)
 const loader =<div className="loader" key={0}>Loading ...</div>;
+
 const scrollRef = useRef<HTMLDivElement>(null);
 const scrollRef2 = useRef<HTMLDivElement>(null)
 let reff:HTMLDivElement | null = null
 const scrollParentRef = scrollRef.current 
-console.log(scrollRef.current?.scrollTop)
-console.log(page2)
-console.log(reviewComments)
+// console.log(scrollRef.current?.scrollTop)
+// console.log(page2)
+// console.log(reviewComments)
 
 // navigate user
 const handleNavigateUser = () => {
   // if(rev)
-  navigate(`/users/${review?.user.id}`)
+  router.push(`/users/${review?.user.id}`)
 }
 
 // delete update contents---------------------------
@@ -330,7 +347,7 @@ const handleUpdateContents  = async() => {
     scrollRef.current?.scrollTo({
       top: 0,
     })
-    console.log(res)
+    // console.log(res)
     setPage2(2)
     setReviewComments(res.data.reviewComments)
     setHasMore(true)
@@ -340,13 +357,13 @@ const handleUpdateContents  = async() => {
 }
   
   return(
-    <>
-      <Modal
-      open={openModal}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-      >
+    // <>
+    //   <Modal
+    //   open={openModal}
+    //   onClose={handleClose}
+    //   aria-labelledby="modal-modal-title"
+    //   aria-describedby="modal-modal-description"
+    //   >
         <>
       {navigateJudge?
       <>
@@ -375,7 +392,6 @@ const handleUpdateContents  = async() => {
               {product?.title}
             </div>
             <div className = "ProductReviewShowTopCenterUser">
-              {/* {review?.userId}による投稿 */}
               <img src={review?.user.image}></img>
               <div className = "ProductReviewShowTopCenterUserName"
               onClick={handleNavigateUser}
@@ -388,11 +404,11 @@ const handleUpdateContents  = async() => {
               <MdAccessTime/>{review?.updatedAt}  
             </div>
           </div>
-          <div className="CloseButton"
+          {/* <div className="CloseButton"
             onClick={handleClose}
             >
             <IoMdClose/>
-          </div>
+          </div> */}
         </div>  
         <div className = "ProductReviewShowMain">
           <div className = "ProductReviewShowMainQuill">
@@ -418,18 +434,12 @@ const handleUpdateContents  = async() => {
             })}
           </div>
             <ReactQuill
-              // className="quill_reviews"
-              // ref={quillref}
               modules={modules} 
               value={typeof review != "undefined"?review.content:""} 
-              // value={"<p>aaaaaaaaaaaaaa<p>"} 
-
-              // onChange={handleChange}
               className = "reviews_modal_quill  preview_quill"  
               theme="bubble" 
               readOnly={true}
               style={{marginBottom:"0px"}}
-              // onClick={ReviewClickNavigate}
             />     
           
 
@@ -446,7 +456,6 @@ const handleUpdateContents  = async() => {
                 </>
                 }
                 
-                {/* console.log(goodLength,likeCommentScore,userLikesJugde) */}
               </div>
               <div className = "ProductReviewShowMainValuationPeacentageSub">
                 /100
@@ -474,7 +483,6 @@ const handleUpdateContents  = async() => {
               <div className = "ProductReviewShowMainValuationGood"
               onClick={reviewValuationGooddelete}
               >
-                {/* <FaRegThumbsUp/>1 */}
                 <FaThumbsUp/>
               </div>
               <div className = "ProductReviewShowMainValuationBad"
@@ -508,23 +516,12 @@ const handleUpdateContents  = async() => {
                 <FaRegThumbsUp/>3
               </div>
               
-                {/* {open&&(
-                  <OpenContext.Provider value={{ open, setOpen }}>
-                    <UserModalSign/>
-                  </OpenContext.Provider>
-                )} */}
 
               <div className = "ProductReviewShowMainValuationBad"
                 onClick={UserModalOpen}
               >
                 <FaRegThumbsDown/>3
               </div>
-
-                {open&&(
-                  <OpenContext.Provider value={{ open, setOpen }}>
-                    <UserModalSign/>
-                  </OpenContext.Provider>
-                )}
 
               </>
               }
@@ -553,9 +550,7 @@ const handleUpdateContents  = async() => {
                 Comments
                 <div className = "ProductReviewShowMainCommentsTopTitleSort">
                 
-                  {/* <div className = "sortCommentsTitle">
-                    sort
-                  </div> */}
+          
                   <div className = "sortCommentsLists">
                   <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                   <InputLabel id="demo-simple-select-standard-label">Sort</InputLabel>
@@ -567,9 +562,7 @@ const handleUpdateContents  = async() => {
                     onChange={handleChangeSelectSort}
                     label="Age"
                   >
-                    {/* <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem> */}
+       
                     <MenuItem value={0}>評価数順</MenuItem>
                     <MenuItem value={1}>新着順</MenuItem>
                     <MenuItem value={2}>投稿順</MenuItem>
@@ -589,14 +582,11 @@ const handleUpdateContents  = async() => {
                 <OpenReviewCommentContext.Provider value={{openReviewComment, setOpenReviewComment}}>
                   
                   <ReviewComment
-                  // product_id={props.product?.id}
-                  // question={props.product?.questions}
                   user_id={user.user.id}
                   product_id={params_product_id as string}
                   review_id = {review?.id as number}
                   setReviewComments = {setReviewComments}
                   reviewComments = {reviewComments}
-                  // setdata={setdata}
                   selectSort={selectSort}
                   scrollRef={scrollRef}
                   setHasMore={setHasMore}
@@ -620,28 +610,18 @@ const handleUpdateContents  = async() => {
               </>
               }
             </div>
-            {/* <p
-            onClick={ota1handler}
-            >
-              click
-            </p> */}
 
 
-            {/* <div className = "ProductReviewShowMainCommentsMain" ref={(ref) => reff = ref} style={{height:"700p",overflow:"auto"}}> */}
+
+           
             <div className = "ProductReviewShowMainCommentsMain" ref={scrollRef} style={{overflow:"auto"}}>
-            {/* <div className = "ProductReviewShowMainCommentsMain" > */}
 
             {firstloding&&reviewComments!=undefined&&(
             <InfiniteScroll
-              // scrollableTarget={"ProductReviewShowMainComments"}
-              //  className = "products_infinitescroll03  ToptensContainerGrid"
-              
               loadMore={handleScrollingExec}    
               hasMore={hasMore}  
-              // scrollableTarget={""}> 
               loader={loader}
               useWindow={false}
-              // getScrollParent={() => scrollref}
               getScrollParent={() => scrollParentRef}
               >
               
@@ -650,16 +630,14 @@ const handleUpdateContents  = async() => {
               
                   {reviewComments.map((item) => {
                     return(
-                      // <>
                         <ReviewCommentList
                         reviewcomment = {item}
                         key={item.id}
                         selectSort={selectSort}
-                        product_id={params_product_id}
-                        review_id={params_review_id}
+                        product_id={params_product_id as string}
+                        review_id={params_review_id as string}
                         handleUpdateContents={handleUpdateContents}
                         />
-                      // </>
                     )
                   })}
               </InfiniteScroll>
@@ -669,12 +647,10 @@ const handleUpdateContents  = async() => {
 
         </div>  
       </div>
-      {/* {product?.id}
-      {review?.id} */}
 
       </>}
-        </>
-      </Modal>
+        {/* </>
+      </Modal> */}
     </>
   )
 }

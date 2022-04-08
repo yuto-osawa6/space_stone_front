@@ -1,16 +1,21 @@
 import { Modal } from "@mui/material"
-import { UserModalSign } from "component/aplication/lefts/UserModalSign"
+import { UserModalSign } from "components/applications/user/UserModalSign"
+// import { UserModalSign } from "component/aplication/lefts/UserModalSign"
 import { OpenContext, OpenReturnReviewCommentContext, OpenReviewCommentContext } from "contexttype/contexttype"
 import { return_review_comments, review_comments } from "interfaces/review"
 import { execCreateLikeCommentReview, execDeleteLikeCommentReview, execReturenReviewIndexHandler } from "lib/api/reviews"
+import { useUser } from "lib/data/user/useUser"
 import { useContext, useEffect, useRef, useState } from "react"
 import { FaRegThumbsDown, FaRegThumbsUp, FaThumbsDown, FaThumbsUp } from "react-icons/fa"
 import InfiniteScroll from "react-infinite-scroller"
-import ReactQuill from "react-quill"
+// import ReactQuill from "react-quill"
 import { useSelector } from "react-redux"
 import { RootState } from "store"
 import { ReturnReviewComment } from "../comments/ReturnReviewComment"
 import { ReturnReviewCommentList } from "../comments/ReturnReviewCommentList"
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 
 const modules = {
@@ -80,7 +85,9 @@ export const ReturnReviewCommentAll:React.FC<Props> = (Props) =>{
     }
 
   }
-  const user = useSelector((state:RootState) => state.user)
+  // const user = useSelector((state:RootState) => state.user)
+  const {userSwr} = useUser()
+  const user = userSwr
 
   useEffect(()=>{
     firstHandler()

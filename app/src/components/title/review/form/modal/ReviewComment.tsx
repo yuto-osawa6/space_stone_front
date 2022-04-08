@@ -4,14 +4,18 @@ import { review_comments } from "interfaces/review"
 import { execCreateCommentReview } from "lib/api/reviews"
 import { useContext, useMemo, useRef, useState } from "react"
 import { IoMdClose } from "react-icons/io"
-import ReactQuill from "react-quill"
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+// import ReactQuill from "react-quill"
 import { Audio, TailSpin } from  'react-loader-spinner'
-import { ngword } from "hook/NgWord"
+// import { ngword } from "hook/NgWord"
 import { useDispatch } from "react-redux"
 import { pussingMessageDataAction } from "store/message/actions"
-import { ErrorMessage } from "share/message"
-import { submitSpin } from "color/submit-spin"
+import { ngword } from "lib/ini/ngWord"
+import { ErrorMessage } from "lib/ini/message"
+import { submitSpin } from "lib/color/submit-spin"
+// import { ErrorMessage } from "share/message"
+// import { submitSpin } from "color/submit-spin"
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   user_id:number
@@ -27,23 +31,6 @@ type Props = {
   setPage2: React.Dispatch<React.SetStateAction<number>>
 }
 
-// const modules = {
-//   toolbar: [
-//     // [{ font: [] }],
-//     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-//     ["bold", "italic", "underline", "strike"],
-//     [{ color: [] }, { background: [] }],
-//     // [{ script:  "sub" }, { script:  "super" }],
-//     ["blockquote"
-//   ],
-//     // "code-block"],
-//     [{ list:  "ordered" }, { list:  "bullet" }],
-//     [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
-//     // ["link", "image", "video"],
-//     ['link'],   
-//     // ["clean"],
-//   ],
-// }
 
 export const ReviewComment:React.FC<Props> = (Props) => {
   const imageHandlerLink = () => {
@@ -97,7 +84,7 @@ export const ReviewComment:React.FC<Props> = (Props) => {
   // quill
   const [value,setValue] = useState<string>("")
 
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
   // loading
   const [loading,setLoding] = useState<boolean>(false)
 

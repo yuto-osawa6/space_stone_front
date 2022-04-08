@@ -73,6 +73,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
 
   useEffect(()=>{
     if(data==undefined)return
+    if(data.tier==undefined)return
     setUpSecond(data.tier,data.tierAverage)
   },[data])
 
@@ -132,7 +133,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
       fontSize: "1.5rem"
       }}
       >
-       今シーズンのTierっっke
+       今シーズンのTier
       </div>
       <div className=""
       style={{

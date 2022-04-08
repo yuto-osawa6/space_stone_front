@@ -1,6 +1,6 @@
 import { review } from "interfaces/review"
 import { Button,  FormControl,  FormHelperText,  InputLabel,  MenuItem,  Modal, Select, SelectChangeEvent, Slider, TextField, Tooltip } from "@mui/material";
-import ReactQuill,{ Quill } from "react-quill";
+// import ReactQuill,{ Quill } from "react-quill";
 import { useEffect, useMemo, useRef, useState } from "react";
 // import { ngword } from "hook/NgWord";
 import { IoMdClose } from "react-icons/io";
@@ -16,6 +16,9 @@ import { TailSpin } from "react-loader-spinner";
 import { ngword } from "lib/ini/ngWord";
 import { ErrorMessage } from "lib/ini/message";
 import { submitSpin } from "lib/color/submit-spin";
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   review:review
@@ -72,7 +75,7 @@ export const EditReviewModal2:React.FC<Props> = (Props) => {
   const [helpertextradio,setHelpertextradio] = useState<string>("")
 
   const [discribe,setDiscribe] = useState<string>("")
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
 
   const handleChange = (content: string):void | undefined => {
     const ss = quillref.current.getEditor().getText(0,20)
