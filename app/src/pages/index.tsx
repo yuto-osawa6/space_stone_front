@@ -14,6 +14,11 @@ import { NextSeasonAnimeInfomation } from 'components/mains/main_block/NextSeaso
 import { SWRConfig } from 'swr'
 import { ThisSeasonAnimeTier } from 'components/mains/main_block/ThisSeasonAnimeTier'
 import { WorldClass } from 'components/mains/main_block/WordClass'
+import { NewMessage } from 'components/mains/main_block/NewMessage'
+import { CalendarProduct } from 'components/mains/main_block/Calendar'
+import { Toptens2 } from 'components/mains/main_block/Toptens2'
+import { Tags } from 'components/mains/main_block/Tags'
+import { tags } from 'interfaces/main'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
@@ -40,23 +45,29 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
 
   // }
   const query_params = new URLSearchParams(params); 
-  const [thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes] = await Promise.all([
+  const [thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,calendarRes,tagsRes] = await Promise.all([
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/new_netflix`), 
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams)),
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams2)),
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/worldclass`),
+    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/calendar`),
+    fetch(`${process.env.API_PATH_V1}/mains`),
+
+
   ]);
-  const [data, data2,tierData,tierData2,worldData] = await Promise.all([
+  const [data, data2,tierData,tierData2,worldData,calendarData,tagsData] = await Promise.all([
     thisSeasonRes.json(), 
     nextSeasonRes.json(),
     tierRes.json(),
     tierRes2.json(),
     worldRes.json(),
+    calendarRes.json(),
+    tagsRes.json()
   ]);
   return { 
     props: { 
-      data, data2,worldData,
+      data, data2,worldData,calendarData,tagsData,
       fallback: {
         '/mainblocks/mains/update_tier_list/1': tierData,
         '/mainblocks/mains/update_tier_list/2' : tierData2
@@ -85,6 +96,18 @@ type Props = {
     scores:avgScore
     worldRanking: product[]
   },
+  calendarData:{
+    deliveryStart: product[]
+    episordStart: product[]
+    scores:{
+      avgScore:avgScore
+    }
+  },
+  tagsData:{
+    tags:tags[]
+    top100:tags[]
+  }
+  ,
   fallback: {
     [key: string]: any;
   }
@@ -113,23 +136,40 @@ type UserTier = {
     <>
     {/* <div className = "mainContents share_middle_container01"> */}
       <ThisSeasonAnimeInfomation
-        products = {Props.data.products}
-        currentSeason = {Props.data.currentSeason}
+      products = {Props.data.products}
+      currentSeason = {Props.data.currentSeason}
       />
       <SWRConfig value={{ fallback }}>
-       <ThisSeasonAnimeTier 
+        <ThisSeasonAnimeTier 
         products = {Props.data.products}
         currentSeason = {Props.data.currentSeason}
-       />
+        />
 
 
       <NextSeasonAnimeInfomation
-        data = {Props.data2}
+      data = {Props.data2}
       />
       </SWRConfig>
 
       <WorldClass
-        data = {Props.worldData}
+      data = {Props.worldData}
+      />
+
+      <NewMessage
+        // news = { decisionnews }
+      />
+
+      <CalendarProduct
+       calendarData={Props.calendarData}
+      />
+
+      <Toptens2
+
+      />
+
+      <Tags
+      tags = {Props.tagsData.tags}
+      tagsTop100 = {Props.tagsData.top100}
       />
        
 

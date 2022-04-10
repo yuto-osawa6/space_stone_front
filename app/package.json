@@ -11,6 +11,9 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@fullcalendar/daygrid": "^5.11.0",
+    "@fullcalendar/list": "^5.11.0",
+    "@fullcalendar/react": "^5.11.0",
     "@mui/lab": "^5.0.0-alpha.75",
     "@mui/material": "^5.5.3",
     "@n8tb1t/use-scroll-position": "^2.0.3",
@@ -27,6 +30,7 @@
     "chart.js": "^3.7.1",
     "js-cookie": "^3.0.1",
     "next": "12.1.2",
+    "next-transpile-modules": "^9.0.0",
     "qs": "^6.10.3",
     "react": "17.0.2",
     "react-chartjs-2": "^4.0.1",
