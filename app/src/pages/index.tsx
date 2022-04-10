@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { NextSeasonAnimeInfomation } from 'components/mains/main_block/NextSeasonAnimeInfomation'
 import { SWRConfig } from 'swr'
 import { ThisSeasonAnimeTier } from 'components/mains/main_block/ThisSeasonAnimeTier'
+import { WorldClass } from 'components/mains/main_block/WordClass'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
@@ -39,22 +40,23 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
 
   // }
   const query_params = new URLSearchParams(params); 
-  const [thisSeasonRes, nextSeasonRes,tierRes,tierRes2] = await Promise.all([
+  const [thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes] = await Promise.all([
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/new_netflix`), 
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
     fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams)),
-    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams2))
-    // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
+    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams2)),
+    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/worldclass`),
   ]);
-  const [data, data2,tierData,tierData2] = await Promise.all([
+  const [data, data2,tierData,tierData2,worldData] = await Promise.all([
     thisSeasonRes.json(), 
     nextSeasonRes.json(),
     tierRes.json(),
     tierRes2.json(),
+    worldRes.json(),
   ]);
   return { 
     props: { 
-      data, data2,
+      data, data2,worldData,
       fallback: {
         '/mainblocks/mains/update_tier_list/1': tierData,
         '/mainblocks/mains/update_tier_list/2' : tierData2
@@ -79,9 +81,13 @@ type Props = {
     // tier: []
     // tier_average: 
   },
+  worldData:{
+    scores:avgScore
+    worldRanking: product[]
+  },
   fallback: {
     [key: string]: any;
-  }  
+  }
 }
 type avgScore = {
   [k:number]:string
@@ -118,11 +124,13 @@ type UserTier = {
 
 
       <NextSeasonAnimeInfomation
-        // products = {Props.data.products}
-        // currentSeason = {Props.data.currentSeason}
         data = {Props.data2}
       />
       </SWRConfig>
+
+      <WorldClass
+        data = {Props.worldData}
+      />
        
 
       {/* <SWRConfig value={{ fallback }}>
