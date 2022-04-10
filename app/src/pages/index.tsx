@@ -19,6 +19,7 @@ import { CalendarProduct } from 'components/mains/main_block/Calendar'
 import { Toptens2 } from 'components/mains/main_block/Toptens2'
 import { Tags } from 'components/mains/main_block/Tags'
 import { tags } from 'interfaces/main'
+import { WeeklyRanking } from 'components/mains/main_block/WeeklyRanking'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
@@ -135,6 +136,8 @@ type UserTier = {
   return(
     <>
     {/* <div className = "mainContents share_middle_container01"> */}
+      <WeeklyRanking
+      />
       <ThisSeasonAnimeInfomation
       products = {Props.data.products}
       currentSeason = {Props.data.currentSeason}
