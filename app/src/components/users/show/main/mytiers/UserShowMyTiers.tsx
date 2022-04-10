@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react"
 
 import { product } from "interfaces/product"
 import { execTierSeasonMain } from "lib/api/main"
+import { TierSeasonMainList } from "components/mains/sub/tiers/TierSeasonMainList"
 // import { TierSeasonMainList } from "component/main/tiers/TierSeasonMainList"
 // import React, { useEffect, useState } from "react"
 // import { TierSeasonMainList } from "c/tiers/TierSeasonMainList"
@@ -137,12 +138,11 @@ const currentMaxHandler = () => SetCurrent(page)
           </div>
           {yearTiers.map((item)=>{
           return(
-            // <TierSeasonMainList
-            //   tiers = {item}
-            //   setUpdateTier = {setUpdateTier}
-            //   updateTier = {updateTier}
-            // />
-            <></>
+            <TierSeasonMainList
+              tiers = {item}
+              setUpdateTier = {setUpdateTier}
+              updateTier = {updateTier}
+            />
           ) 
           })}
 

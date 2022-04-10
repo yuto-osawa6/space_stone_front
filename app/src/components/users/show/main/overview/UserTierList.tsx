@@ -1,3 +1,4 @@
+import { ThisMonthTierList } from "components/mains/tier/ThisMonthTierList"
 import { product } from "interfaces/product"
 import { UserShow } from "interfaces/user"
 import { useEffect, useState } from "react"
@@ -90,14 +91,14 @@ export const UserTierList:React.FC<Props> = (Props) => {
       // marginBottom: "30px"
     }}
     >
-      {/* {tierProductGroup.map((item)=>{
+      {tierProductGroup.map((item)=>{
         return(
           <ThisMonthTierList
             group={item.group}
             products={item.products}
           />
         )
-      })} */}
+      })}
       </div>
     </>
   )
