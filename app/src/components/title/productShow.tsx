@@ -48,10 +48,11 @@ type chatList = {
 
 type Props = {
   children:ReactNode
-  data: productShow
+  // data: productShow
 }
 
 export const ProductShow:React.FC<Props> = (Props) => {
+  // console.log(Props.data)
   const router = useRouter()
   const {pid} = router.query
   const params_id = pid

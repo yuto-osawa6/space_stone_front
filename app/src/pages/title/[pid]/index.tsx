@@ -14,10 +14,7 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   }
   const query_params = new URLSearchParams(params); 
   const [productShowRes] = await Promise.all([
-    fetch(`${process.env.API_PATH_V1}/products/${pid}`), 
-    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
-    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
-    // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
+    fetch(`${process.env.API_PATH_V1}/products/${pid}/seo`), 
   ]);
   const [data] = await Promise.all([
     productShowRes.json()
@@ -43,11 +40,11 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
       //  description={Props.data.products.}
       >
       </NextSeo>
-      <ProductShow
-        data={Props.data}
-      >
+      {/* <ProductShow
+        // data={Props.data}
+      > */}
         <Top/>
-      </ProductShow>   
+      {/* </ProductShow>    */}
     </>
   )
 }
@@ -59,10 +56,10 @@ TitleIndex.getLayout = (page) => {
     <ShareMain
       locationNumber={1}
     >
-      {/* <ProductShow
-      > */}
+      <ProductShow
+      >
         {page}
-      {/* </ProductShow>    */}
+      </ProductShow>   
     </ShareMain>
   )
 }
