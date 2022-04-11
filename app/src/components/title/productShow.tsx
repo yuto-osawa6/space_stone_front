@@ -1,4 +1,4 @@
-import { acsesses, emotionList, product, productReviews, productScores, productThreads, product_genres, userReview } from 'interfaces/product';
+import { acsesses, emotionList, product, productReviews, productScores, productShow, productThreads, product_genres, userReview } from 'interfaces/product';
 import { execAcsesscount, execCheckingHeart, execProductCreateHeart, execProductDeleteHeart, execProductShow } from 'lib/api/products';
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 // import { useParams,useNavigate } from 'react-router-dom'
@@ -23,6 +23,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useUser } from 'lib/data/user/useUser';
 import { ChatModal } from './chat/ChatModal';
+import { AdminsEditProduct } from 'components/admins/product/edit/AdminEditProduct';
 let ActionCable:any;
 if (typeof window !== 'undefined') {
   ActionCable = require('actioncable');
@@ -47,6 +48,7 @@ type chatList = {
 
 type Props = {
   children:ReactNode
+  data: productShow
 }
 
 export const ProductShow:React.FC<Props> = (Props) => {
@@ -630,13 +632,13 @@ export const ProductShow:React.FC<Props> = (Props) => {
           </div>
         </div>        
       </div>
-      {/* {openEdit==true&&product!=undefined&&(
-          <AdminsEditProduct
-          product={product}
-          openEdit = {openEdit}
-          setOpenEdit = {setOpenEdit}
-          />
-      )} */}
+      {openEdit==true&&product!=undefined&&(
+        <AdminsEditProduct
+        product={product}
+        openEdit = {openEdit}
+        setOpenEdit = {setOpenEdit}
+        />
+      )}
        {openChatRoom&&product!=undefined&&(
           <ChatModal
             product = {product}

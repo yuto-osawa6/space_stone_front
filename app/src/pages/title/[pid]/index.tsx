@@ -4,33 +4,33 @@ import { ProductShow } from "components/title/productShow"
 import { Top } from "components/title/top/Top"
 import { productShow } from "interfaces/product"
 import { GetServerSideProps } from "next"
+import { NextSeo } from 'next-seo';
 
-
-// export const getServerSideProps: GetServerSideProps = async(context) => {
-//   const { pid } = context.query
-//   const params = {
-//     active:"1",
-//     last:"2"
-//   }
-//   const query_params = new URLSearchParams(params); 
-//   const [productShowRes] = await Promise.all([
-//     fetch(`${process.env.API_PATH_V1}/products/${pid}`), 
-//     // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
-//     // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
-//     // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
-//   ]);
-//   const [data] = await Promise.all([
-//     productShowRes.json()
-//   ]);
-//   return { 
-//     props: { 
-//       data
-//     } 
-//   };
-// }
+export const getServerSideProps: GetServerSideProps = async(context) => {
+  const { pid } = context.query
+  const params = {
+    active:"1",
+    last:"2"
+  }
+  const query_params = new URLSearchParams(params); 
+  const [productShowRes] = await Promise.all([
+    fetch(`${process.env.API_PATH_V1}/products/${pid}`), 
+    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
+    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
+    // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
+  ]);
+  const [data] = await Promise.all([
+    productShowRes.json()
+  ]);
+  return { 
+    props: { 
+      data
+    } 
+  };
+}
 
 type Props = {
-  // data:productShow
+  data:productShow
 }
 
 const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
@@ -38,7 +38,16 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   // const fallback= Props.fallback
   return(
     <>
-      <Top/>
+      <NextSeo
+       title={`${Props.data.products.title} - SpaceTone`}
+      //  description={Props.data.products.}
+      >
+      </NextSeo>
+      <ProductShow
+        data={Props.data}
+      >
+        <Top/>
+      </ProductShow>   
     </>
   )
 }
@@ -50,11 +59,10 @@ TitleIndex.getLayout = (page) => {
     <ShareMain
       locationNumber={1}
     >
-      <ProductShow
-      // data = {Props.data}
-      >
+      {/* <ProductShow
+      > */}
         {page}
-      </ProductShow>   
+      {/* </ProductShow>    */}
     </ShareMain>
   )
 }
