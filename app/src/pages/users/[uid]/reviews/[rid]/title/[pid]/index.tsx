@@ -2,6 +2,8 @@ import { ShareMain } from "components/share/main/ShareMain"
 import { ProductShow } from "components/title/productShow"
 import { ProductReviews } from "components/title/review/form/ProductReviews"
 import { ProductShowReviews } from "components/title/review/ProductReviews"
+import { UserShowReviews } from "components/users/show/main/reviews/UserShowReviews"
+import { UsersShow } from "components/users/show/UsersShow"
 
 
 
@@ -27,13 +29,11 @@ ReviewShow.getLayout = (page) => {
     <ShareMain
       locationNumber={1}
     >
-      <ProductShow
-      // data = {Props.data}
-      >
-        <ProductShowReviews>
+      <UsersShow>
+        <UserShowReviews>
           {page}
-        </ProductShowReviews>
-      </ProductShow>   
+        </UserShowReviews>
+       </UsersShow>
     </ShareMain>
   )
 }

@@ -1,7 +1,7 @@
 import { ShareMain } from "components/share/main/ShareMain"
 import { ProductShow } from "components/title/productShow"
 import { ProductReviews } from "components/title/review/form/ProductReviews"
-import { ProductThreads } from "components/title/thread/form/ProductThreads"
+import { Top } from "components/title/top/Top"
 
 
 
@@ -10,29 +10,28 @@ type Props = {
   // data:productShow
 }
 
-const ThreadShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
+const ReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   console.log(Props)
   // const fallback= Props.fallback
   return(
     <>
-      <ProductThreads/>
+      <ProductReviews/>
     </>
   )
 }
 
-export default ThreadShow
+export default ReviewShow
 
-ThreadShow.getLayout = (page) => {
+ReviewShow.getLayout = (page) => {
   return (
     <ShareMain
       locationNumber={1}
     >
       <ProductShow
-      // data = {Props.data}
       >
-        <ProductThreads>
+        <Top>
           {page}
-        </ProductThreads>
+        </Top>
       </ProductShow>   
     </ShareMain>
   )

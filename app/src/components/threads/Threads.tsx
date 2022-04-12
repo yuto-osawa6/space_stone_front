@@ -14,7 +14,11 @@ import { RootState } from "store"
 import { NavigatingLeftThreadDataAction } from "store/lefts/thread/actions"
 import { ThreadsLists } from "./ThreadsLists"
 
-export const Threads:React.FC = () => {
+
+type Props = {
+  children:React.ReactNode
+}
+export const Threads:React.FC<Props> = (Props) => {
   const LeftThreadStore = useSelector((state:RootState)=>state.leftThread)
   const array:number[] = [1,2,3,4,5,6,7,8,9,0]
   const [page,SetPage] = useState<number>(1)
@@ -431,6 +435,7 @@ export const Threads:React.FC = () => {
         </div>
         <div className="ModalArticle">
           {/* <Outlet/> */}
+          {Props.children}
         </div>
       </div>
     </React.Fragment>

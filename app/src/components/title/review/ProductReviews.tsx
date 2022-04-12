@@ -19,8 +19,11 @@ type Review = {
   // productId: number
   // user
 }
+type Props = {
+  children:React.ReactNode
+}
 
-export const ProductShowReviews:React.FC = () => {
+export const ProductShowReviews:React.FC<Props> = (Props) => {
   const [episords,setEpisords] = useState<string[]>([])
   const router = useRouter()
   const {pid} = router.query
@@ -257,6 +260,7 @@ export const ProductShowReviews:React.FC = () => {
           </div>
       
           {/* <Outlet/> */}
+          {Props.children}
       </div>
     </>
   )

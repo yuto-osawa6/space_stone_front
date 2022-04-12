@@ -46,6 +46,7 @@ import { ScoresListInProductShow } from "./ScoresListInProductShow";
 import { ScoreUserList } from "../user/ScoreUserList";
 import { ChatRoomInProductShow } from "../chat/ChatRoomInProductShow";
 import { useUser } from "lib/data/user/useUser";
+import { NextSeo } from "next-seo";
 
 
 ChartJS.register(
@@ -114,8 +115,11 @@ export const options2 = {
 };
 var array:number[] = new Array()
 
+type Props = {
+  children?:React.ReactNode
+}
 
-export const Top:React.FC = memo(() => {
+export const Top:React.FC<Props> = memo((Props) => {
   const props = useContext(Productshowcontext)
   // const user = useSelector((state: RootState) => state.user);
   const { userSwr,error } = useUser()
@@ -236,7 +240,11 @@ export const Top:React.FC = memo(() => {
 //  console.log("a")
   return(
     <>
-      {console.log(array)}
+      {/* <NextSeo
+      title={`${props.product?.title} - SpaceTone`}
+      //  description={Props.data.products.}
+      >
+      </NextSeo> */}
       <div className = {`show_top_contens`}> 
       <div className = {`show_top_dummy p_contens_grid_color${props.switchnumber}`}>
       </div>
@@ -595,7 +603,9 @@ export const Top:React.FC = memo(() => {
       )}  
       </div>
       {/* <Outlet/> */}
-     
+      <div className="">
+        {Props.children}
+      </div>
     </>
   )
 })

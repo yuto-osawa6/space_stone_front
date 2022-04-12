@@ -41,7 +41,7 @@ const ReviesIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
   // const fallback= Props.fallback
   return(
     <>
-      <Reviews />
+      {/* <Reviews /> */}
     </>
   )
 }
@@ -53,11 +53,8 @@ ReviesIndex.getLayout = (page) => {
     <ShareMain
       // locationNumber={1}
     >
-      {/* <ProductShow
-      // data = {Props.data}
-      > */}
+       <Reviews />
         {page}
-      {/* </ProductShow>    */}
     </ShareMain>
   )
 }

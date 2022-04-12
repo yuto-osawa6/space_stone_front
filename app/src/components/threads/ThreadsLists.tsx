@@ -42,7 +42,7 @@ export const ThreadsLists:React.FC<Props> = memo((Props) => {
   
 
   const movementHandler = () => {
-    router.push(`/threads/${Props.review.id}/products/${Props.review.reviewProduct.id}`)
+    router.push(`/threads/${Props.review.id}/title/${Props.review.reviewProduct.id}`)
   }
 
   return(

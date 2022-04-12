@@ -39,9 +39,11 @@ export const ReviewsLists:React.FC<Props> = memo((Props) => {
   const dispatch = useDispatch()
   // const navigate = useNavigate()
   const router = useRouter()
-
+  const options = {
+    scroll:false
+  }
   const movementHandler = () => {
-    router.push(`/reviews/${Props.review.id}/products/${Props.review.reviewProduct.id}`)
+    router.push(`/reviews/${Props.review.id}/title/${Props.review.reviewProduct.id}`,undefined,options)
   }
 
 

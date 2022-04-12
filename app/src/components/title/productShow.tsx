@@ -209,11 +209,11 @@ export const ProductShow:React.FC<Props> = (Props) => {
     }
 
   }
-  useEffect(()=>{
-    // if(typeof window !== "undefined"){
-      window.scrollTo({top:0,left:0})
-    // }
-  },[])
+  // useEffect(()=>{
+  //   // if(typeof window !== "undefined"){
+  //     window.scrollTo({top:0,left:0})
+  //   // }
+  // },[])
 
   useEffect(()=>{
     if(params_id===undefined)return

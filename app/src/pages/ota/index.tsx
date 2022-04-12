@@ -5,6 +5,7 @@ import { getCurrentUser } from "lib/api/users/sign"
 import { useUser } from "lib/data/user/useUser"
 import { GetServerSideProps, GetStaticProps } from "next"
 import Link from "next/link"
+import TitleIndex from "pages/title/[pid]"
 import { ReactNode, useEffect } from "react"
 import useSWR from "swr"
 
@@ -16,7 +17,7 @@ export const getStaticProps: GetStaticProps = async(context) => {
   }
   const query_params = new URLSearchParams(params); 
   const [productShowRes] = await Promise.all([
-    fetch(`${process.env.API_PATH_V1}/products/${1}`), 
+    fetch(`${process.env.API_PATH_V1}/products/${18}/seo`), 
     // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
     // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
     // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
@@ -62,7 +63,13 @@ const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) 
         {/* aaaaaaaaajklkaaaaafl */}
         {/* {userSwr.user?.nickname} */}
       {/* </ShareMain> */}
+      {/* {Props.data!=undefined&&(
+      <TitleIndex
+      data={Props.data}
+      >
 
+      </TitleIndex>
+      )} */}
       <Link href="/ota/po">
           <a>Home</a>
       </Link>
@@ -74,6 +81,11 @@ const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) 
         {Props.children}
       </div>
       bbbbbbb
+
+      <Link href={`/title/${Props.data?.products.id}`}>
+          <a>Home</a>
+      </Link>
+
     </>
   )
 }

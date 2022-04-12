@@ -55,10 +55,10 @@ export const ProductReviews:React.FC = () => {
   // params
   // const params = useParams();
   const router = useRouter()
-  const {pid,rid} = router.query
+  const {pid,rid,uid} = router.query
   const params_product_id = pid
   const params_review_id = rid
-  // const params_user_id = params.userId
+  const params_user_id = uid
 
 
   // usestate
@@ -273,17 +273,17 @@ export const ProductReviews:React.FC = () => {
     setOpenModal(false)
     console.log(location.pathname)
     // koko-1
-    // if(location.pathname===`/products/${params_product_id}/top/review/${params_review_id}`){
-    //   navigate(`/products/${params_product_id}`)
-    //   // navigate(-1)
-    // }else if(location.pathname===`/reviews/${params_review_id}/products/${params_product_id}`){
-    //   navigate(`/reviews`)
-    //   // navigate(-1)
-    // }else if(location.pathname=== `/users/${params_user_id}/reviews/${params_review_id}/products/${params_product_id}`){
-    //   navigate(`/users/${params_user_id}/reviews`)
-    // }else{
-    //   navigate(`/products/${params_product_id}/review`)
-    // }
+    if(location.pathname===`/title/${params_product_id}/top/reviews/${params_review_id}`){
+      router.push(`/title/${params_product_id}`)
+      // navigate(-1)
+    }else if(location.pathname===`/reviews/${params_review_id}/title/${params_product_id}`){
+      router.push(`/reviews`)
+      // navigate(-1)
+    }else if(location.pathname=== `/users/${params_user_id}/reviews/${params_review_id}/title/${params_product_id}`){
+      router.push(`/users/${params_user_id}/reviews`)
+    }else{
+      router.push(`/title/${params_product_id}/reviews`)
+    }
   }
 
   // infinite scroll---------------------------------------------------
@@ -357,13 +357,13 @@ const handleUpdateContents  = async() => {
 }
   
   return(
-    // <>
-    //   <Modal
-    //   open={openModal}
-    //   onClose={handleClose}
-    //   aria-labelledby="modal-modal-title"
-    //   aria-describedby="modal-modal-description"
-    //   >
+    <>
+      <Modal
+      open={openModal}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      >
         <>
       {navigateJudge?
       <>
@@ -404,11 +404,11 @@ const handleUpdateContents  = async() => {
               <MdAccessTime/>{review?.updatedAt}  
             </div>
           </div>
-          {/* <div className="CloseButton"
+          <div className="CloseButton"
             onClick={handleClose}
             >
             <IoMdClose/>
-          </div> */}
+          </div>
         </div>  
         <div className = "ProductReviewShowMain">
           <div className = "ProductReviewShowMainQuill">
@@ -649,8 +649,8 @@ const handleUpdateContents  = async() => {
       </div>
 
       </>}
-        {/* </>
-      </Modal> */}
+        </>
+      </Modal>
     </>
   )
 }

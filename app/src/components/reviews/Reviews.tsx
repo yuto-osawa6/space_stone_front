@@ -24,7 +24,11 @@ type emotion = {
   emotion:string
 }
 
-export const Reviews:React.FC = () => {
+type Props = {
+  children?:React.ReactNode
+}
+
+export const Reviews:React.FC<Props> = (Props) => {
   const [emotions,setEmotions] = useState<emotion[]>([])
   const [emotion,setEmotion] = useState<emotion>()
   const handlerOne = async() => {
@@ -515,6 +519,7 @@ useEffect(()=>{
           </div>
           <div className="ModalArticle">
             {/* <Outlet/> */}
+            {Props.children}
           </div>
         </div>
         {isMenuOpen2 && (

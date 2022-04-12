@@ -2,6 +2,7 @@ import { ShareMain } from "components/share/main/ShareMain"
 import { ProductShow } from "components/title/productShow"
 import { ProductReviews } from "components/title/review/form/ProductReviews"
 import { ProductThreads } from "components/title/thread/form/ProductThreads"
+import { Top } from "components/title/top/Top"
 
 
 
@@ -28,11 +29,10 @@ ThreadShow.getLayout = (page) => {
       locationNumber={1}
     >
       <ProductShow
-      // data = {Props.data}
       >
-        <ProductThreads>
+        <Top>
           {page}
-        </ProductThreads>
+        </Top>
       </ProductShow>   
     </ShareMain>
   )

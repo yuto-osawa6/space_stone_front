@@ -34,9 +34,9 @@ export const ShowCloudsItems:React.FC<Props> = (Props) => {
   // const navigate = useNavigate();
   const ReviewClickNavigate = () =>{
     if(Props.alice!=undefined&&Props.alice==true){
-    router.push(`/products/${Props.productId}/review/${Props.item.id}`)
+    router.push(`/title/${Props.productId}/reviews/${Props.item.id}`)
     }else{
-    router.push(`/products/${Props.productId}/top/review/${Props.item.id}`)
+    router.push(`/title/${Props.productId}/top/reviews/${Props.item.id}`)
     }
   }
 

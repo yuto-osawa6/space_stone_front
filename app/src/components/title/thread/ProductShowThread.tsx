@@ -2,7 +2,7 @@
 import { Productshowcontext } from "contexttype/contexttype";
 import { execProductShowReview, execProductShowThread } from "lib/api/products";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 // import { Outlet, useParams } from "react-router-dom";
 import { ShowCloudsItems } from "../top/ShowCloudsItems";
 import { ShowCloudsItems2 } from "../top/ShowCloudsItems2";
@@ -15,7 +15,11 @@ type Review = {
   discribe:string
 }
 
-export const ProductShowThreads:React.FC = () => {
+type Props = {
+  children:ReactNode
+}
+
+export const ProductShowThreads:React.FC<Props> = (Props) => {
   const [episords,setEpisords] = useState<string[]>([])
   const router = useRouter()
   const {pid} = router.query
@@ -187,6 +191,7 @@ export const ProductShowThreads:React.FC = () => {
           </div>
       
           {/* <Outlet/> */}
+          {Props.children}
       </div>
     </>
   )
