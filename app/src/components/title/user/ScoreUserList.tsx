@@ -1,4 +1,4 @@
-import { productScores } from "interfaces/product"
+import { productScores } from "@/interfaces/product"
 
 type Props = {
   userScore: productScores

@@ -1,4 +1,4 @@
-import { UserShow } from "interfaces/user"
+import { UserShow } from "@/interfaces/user"
 import { useEffect, useState } from "react"
 
 type Props = {

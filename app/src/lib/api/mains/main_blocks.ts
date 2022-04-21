@@ -1,4 +1,4 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import client from "../../client/client"
 
 export const execNewNetflixMainHandler = () => {

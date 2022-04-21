@@ -1,4 +1,4 @@
-import { User } from 'interfaces/user';
+import { User } from '@/interfaces/user';
 import { ActionTypes } from '../actionTypes';
 import { userDataTypes} from './types';
 

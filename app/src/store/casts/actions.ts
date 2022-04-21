@@ -1,4 +1,4 @@
-import { Cast } from 'interfaces/search';
+import { Cast } from '@/interfaces/search';
 import { ActionTypes } from '../actionTypes';
 import { CastsDataTypes } from './types';
 

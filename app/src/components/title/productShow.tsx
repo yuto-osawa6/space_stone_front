@@ -1,29 +1,29 @@
-import { acsesses, emotionList, product, productReviews, productScores, productShow, productThreads, product_genres, userReview } from 'interfaces/product';
-import { execAcsesscount, execCheckingHeart, execProductCreateHeart, execProductDeleteHeart, execProductShow } from 'lib/api/products';
+import { acsesses, emotionList, product, productReviews, productScores, productShow, productThreads, product_genres, userReview } from '@/interfaces/product';
+import { execAcsesscount, execCheckingHeart, execProductCreateHeart, execProductDeleteHeart, execProductShow } from '@/lib/api/products';
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 // import { useParams,useNavigate } from 'react-router-dom'
 // import { useOutlet } from "react-router"
 // import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionSettingProductData2 } from 'store/product/actions';
-import { RootState } from 'store';
+import { actionSettingProductData2 } from '@/store/product/actions';
+import { RootState } from '@/store';
 import { BsFillHeartFill, BsHeart } from 'react-icons/bs'
-import { OpenContext, OpenScoreContext, Productshowcontext } from 'contexttype/contexttype';
+import { OpenContext, OpenScoreContext, Productshowcontext } from '@/contexttype/contexttype';
 // import { UserModalSign } from 'component/aplication/lefts/UserModalSign';
 // import { ScoreModal } from './show/ScoreModal';
 // import { AdminsEditProduct } from 'component/admins/product/edit/AdminEditProduct';
 // import ActionCable from 'actioncable'
 // import { ChatModal } from "./show/chat/ChatModal"
-import { pussingMessageDataAction } from 'store/message/actions';
+import { pussingMessageDataAction } from '@/store/message/actions';
 import { useRouter } from 'next/router';
-import { ErrorMessage } from 'lib/ini/message';
+import { ErrorMessage } from '@/lib/ini/message';
 import { ScoreModal } from './modal/ScoreModal';
-import { UserModalSign } from 'components/applications/user/UserModalSign';
+import { UserModalSign } from '@/components/applications/user/UserModalSign';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { useUser } from 'lib/data/user/useUser';
+import { useUser } from '@/lib/data/user/useUser';
 import { ChatModal } from './chat/ChatModal';
-import { AdminsEditProduct } from 'components/admins/product/edit/AdminEditProduct';
+import { AdminsEditProduct } from '@/components/admins/product/edit/AdminEditProduct';
 let ActionCable:any;
 if (typeof window !== 'undefined') {
   ActionCable = require('actioncable');

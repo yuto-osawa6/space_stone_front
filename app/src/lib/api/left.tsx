@@ -1,8 +1,8 @@
-import { genre, style } from "interfaces/product"
-import client from "lib/client/client"
+import { genre, style } from "@/interfaces/product"
+import client from "@/lib/client/client"
 import { useDispatch } from "react-redux"
-import { actionSettingGenresData } from "store/genres/action"
-import { actionSettingStylesData } from "store/styles/actions"
+import { actionSettingGenresData } from "@/store/genres/action"
+import { actionSettingStylesData } from "@/store/styles/actions"
 import useSWR, { mutate } from 'swr'
 import useSWRImmutable from 'swr/immutable'
 

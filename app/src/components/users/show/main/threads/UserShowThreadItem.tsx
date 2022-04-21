@@ -1,4 +1,4 @@
-import { review } from "interfaces/review"
+import { review } from "@/interfaces/review"
 import { useRouter } from "next/router"
 import { useEffect, useMemo, useState } from "react"
 // import ReactQuill from "react-quill"

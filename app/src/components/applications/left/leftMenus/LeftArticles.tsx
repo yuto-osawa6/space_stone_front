@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
-import { NavigatingLeftArticleDataAction } from "store/lefts/article/actions"
+import { NavigatingLeftArticleDataAction } from "@/store/lefts/article/actions"
 
 export const LeftsArticles:React.FC = () => {
   const dispatch = useDispatch()

@@ -1,5 +1,5 @@
-import MainSearch from "components/search/MainSearch"
-import { ShareMain } from "components/share/main/ShareMain"
+import MainSearch from "@/components/search/MainSearch"
+import { ShareMain } from "@/components/share/main/ShareMain"
 
  const SearchIndex: React.FC& { getLayout: (page: any) => JSX.Element }  = () => {
   // const fallback= Props.fallback

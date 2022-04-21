@@ -1,5 +1,5 @@
-import { product } from "interfaces/product"
-import { execWeekliyRankingsMain } from "lib/api/main"
+import { product } from "@/interfaces/product"
+import { execWeekliyRankingsMain } from "@/lib/api/main"
 import { useEffect, useState } from "react"
 import { WeekliyRankingsMainList } from "./weekly/weeklyRankingMainList"
 // import { WeekliyRankingsMainList } from "./weeklyRankingMainList"

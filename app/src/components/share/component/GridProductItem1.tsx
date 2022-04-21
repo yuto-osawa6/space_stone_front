@@ -1,4 +1,4 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import Image from "next/image";
 import Router from "next/router";
 import { memo, useEffect, useRef, useState } from "react"

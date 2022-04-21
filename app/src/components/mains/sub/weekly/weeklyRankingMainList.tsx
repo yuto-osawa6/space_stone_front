@@ -1,4 +1,4 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import { useEffect, useState } from "react"
 import { WeeklyRankingMainItems } from "./WeeklyRankingMainItems"
 // import { WeeklyRankingMainItems } from "./WeeklyRankingMainItems"

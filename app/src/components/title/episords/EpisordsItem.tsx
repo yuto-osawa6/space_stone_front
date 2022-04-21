@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { EmotionList } from "./EmotionList";
-import { userReview } from "interfaces/product";
+import { userReview } from "@/interfaces/product";
 import { UserEpisordEmotionList } from "./UserEpisordEmotionList";
 import { useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 type emotions = {
   id:number
   emotion: string

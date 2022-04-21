@@ -1,4 +1,4 @@
-import { UserShowContext } from "contexttype/contexttype"
+import { UserShowContext } from "@/contexttype/contexttype"
 import { useContext } from "react"
 import { GrOverview, GrFavorite, GrScorecard } from "react-icons/gr"
 import { ImStatsBars } from "react-icons/im"

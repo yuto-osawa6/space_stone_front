@@ -1,7 +1,7 @@
-import { DeleteReviewModal2 } from "components/title/edit/DeleteReviewModal2"
-import { EditReviewModal2 } from "components/title/edit/EditReviewModal2"
-import { product } from "interfaces/product"
-import { review } from "interfaces/review"
+import { DeleteReviewModal2 } from "@/components/title/edit/DeleteReviewModal2"
+import { EditReviewModal2 } from "@/components/title/edit/EditReviewModal2"
+import { product } from "@/interfaces/product"
+import { review } from "@/interfaces/review"
 import { useState } from "react"
 
 type Props = {

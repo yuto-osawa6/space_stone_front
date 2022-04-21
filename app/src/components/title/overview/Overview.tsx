@@ -1,6 +1,8 @@
-import { Productshowcontext } from "contexttype/contexttype"
+import { Productshowcontext } from "@/contexttype/contexttype"
 import { useContext, useEffect,useMemo } from "react"
-import ReactQuill, { Quill } from "react-quill"
+// import ReactQuill, { Quill } from "react-quill"
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 export const Overview:React.FC = () => {
   const props = useContext(Productshowcontext)

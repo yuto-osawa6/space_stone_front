@@ -1,4 +1,4 @@
-import { product } from 'interfaces/product';
+import { product } from '@/interfaces/product';
 import { ActionTypes } from '../actionTypes';
 // import { SearchProductsActionTypes, SPD } from './types';
 import {IniProductData, SetProductData ,SettiongGenresData, SettiongProductDataTypes} from './types';

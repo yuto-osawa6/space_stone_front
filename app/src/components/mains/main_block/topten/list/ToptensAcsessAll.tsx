@@ -1,5 +1,5 @@
-import { product } from "interfaces/product";
-import { execToptenAcsessAll, execToptenLikeAll } from "lib/api/mains/toptens";
+import { product } from "vinterfaces/product";
+import { execToptenAcsessAll, execToptenLikeAll } from "@/lib/api/mains/toptens";
 import { useEffect, useState } from "react";
 import { ToptensList2 } from "../item/ToptensList2";
 import { ToptensParent1 } from "../parent/ToptensParent1";

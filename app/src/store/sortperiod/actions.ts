@@ -1,4 +1,4 @@
-import { ActionTypes } from "store/actionTypes";
+import { ActionTypes } from "@/store/actionTypes";
 import { SortPeriodData, SortPeriodDataTypes } from "./types";
 
 export const SettingSortPeriodAction = (number:number,month:Date|undefined,selectnumber:number):SortPeriodDataTypes=> {

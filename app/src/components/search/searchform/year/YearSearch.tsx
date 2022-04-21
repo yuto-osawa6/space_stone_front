@@ -3,11 +3,11 @@ import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 // import { useLocation, useNavigate } from "react-router-dom"
-import { RootState } from "store"
-import { SettingTimeSearchAction } from "store/during/actions"
-import { DestroySeasonSearchAction, SettingSeasonSearchAction } from "store/season/actions"
+import { RootState } from "@/store"
+import { SettingTimeSearchAction } from "@/store/during/actions"
+import { DestroySeasonSearchAction, SettingSeasonSearchAction } from "@/store/season/actions"
 // import { AllDeleteSubClassAction, DeilyEndQteQAction, DeilyStartQteQAction, SubNewSearchAction, SubPickupSearchAction, SubPrivateSearchAction } from "store/subsearches/actions"
-import { DestroyYearSearchAction, SettingYearSearchAction } from "store/year/actions"
+import { DestroyYearSearchAction, SettingYearSearchAction } from "@/store/year/actions"
 
 type Props = {
  

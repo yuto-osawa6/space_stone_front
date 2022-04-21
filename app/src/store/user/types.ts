@@ -1,4 +1,4 @@
-import { User } from 'interfaces/user';
+import { User } from '@/interfaces/user';
 import { Action } from 'redux';
 import { ActionTypes } from '../actionTypes';
 

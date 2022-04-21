@@ -1,10 +1,10 @@
 import React, { useState,useEffect, useRef } from "react"
 import { GenresLists } from "./GenresLists";
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import { execGenreSearch } from "lib/api/main";
+import { RootState } from '@/store';
+import { execGenreSearch } from "@/lib/api/main";
 import { HiChevronDoubleDown } from "react-icons/hi"
-import { deletingtodoGenresDataOneAction } from "store/todogenres/actions";
+import { deletingtodoGenresDataOneAction } from "@/store/todogenres/actions";
 import { watchFile } from "fs";
 import { HoverClose } from "./HoverClose";
 import { GenresTag } from "./GenresTag";

@@ -1,5 +1,5 @@
-import { product } from "interfaces/product"
-import client from "lib/client/client"
+import { product } from "@/interfaces/product"
+import client from "@/lib/client/client"
 import useSWR from "swr"
 import useSWRImmutable from 'swr/immutable'
 

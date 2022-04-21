@@ -1,11 +1,11 @@
-import { UserShowContext } from "contexttype/contexttype"
-import { genre } from "interfaces/product"
-import { execUserShowLikeGenresHandler } from "lib/api/users"
+import { UserShowContext } from "@/contexttype/contexttype"
+import { genre } from "@/interfaces/product"
+import { execUserShowLikeGenresHandler } from "@/lib/api/users"
 import { useRouter } from "next/router"
 import { useContext, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
-import { deletingtodoGenresDataExceptOneAction } from "store/todogenres/actions"
+import { deletingtodoGenresDataExceptOneAction } from "@/store/todogenres/actions"
 
 
 type Props ={

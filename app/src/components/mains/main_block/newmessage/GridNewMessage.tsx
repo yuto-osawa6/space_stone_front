@@ -1,4 +1,4 @@
-import { news } from "interfaces/main"
+import { news } from "@/interfaces/main"
 import { memo } from "react"
 
 type Props = {

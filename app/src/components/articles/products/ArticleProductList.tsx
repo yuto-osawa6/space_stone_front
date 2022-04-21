@@ -1,10 +1,10 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import { memo, useEffect, useState } from "react"
 import { IoTimer } from "react-icons/io5"
 import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
-import { actionSettingProductData2 } from "store/product/actions"
+import { actionSettingProductData2 } from "@/store/product/actions"
 
 type Props = {
   product:product

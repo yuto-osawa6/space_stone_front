@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { ActionTypes } from "store/actionTypes";
+import { ActionTypes } from "@/store/actionTypes";
 
 export interface NavigateLeftReviewData extends Action {
   type: typeof ActionTypes.NavigateLeftReviewData;

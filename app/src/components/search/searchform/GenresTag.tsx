@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { RootState } from "store";
+import { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
-import { deletingtodoGenresDataOneAction } from "store/todogenres/actions";
+import { deletingtodoGenresDataOneAction } from "@/store/todogenres/actions";
 import { HoverClose } from "./HoverClose";
 import { useRouter } from "next/router";
 // import { useLocation, useNavigate } from "react-router";

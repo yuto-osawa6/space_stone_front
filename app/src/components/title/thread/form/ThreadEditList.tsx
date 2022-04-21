@@ -1,5 +1,5 @@
-import { product } from "interfaces/product"
-import { review } from "interfaces/review"
+import { product } from "@/interfaces/product"
+import { review } from "@/interfaces/review"
 import { useState } from "react"
 // import { DeleteReviewModal2 } from "../show/edit/DeleteReviewModal2"
 // import { EditReviewModal2 } from "../show/edit/EditReviewModal2"

@@ -1,7 +1,7 @@
-import { ShareMain } from "components/share/main/ShareMain"
-import { ProductShow } from "components/title/productShow"
-import { ProductReviews } from "components/title/review/form/ProductReviews"
-import { ProductShowReviews } from "components/title/review/ProductReviews"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { ProductShow } from "@/components/title/productShow"
+import { ProductReviews } from "@/components/title/review/form/ProductReviews"
+import { ProductShowReviews } from "@/components/title/review/ProductReviews"
 
 
 

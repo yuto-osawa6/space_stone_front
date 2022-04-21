@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 
 // material-ui
 import React, { useEffect, useRef, useState } from "react";
-import { getCurrentUser, signOut } from "lib/api/users/sign";
-import { userLoginAction } from "store/user/actions";
+import { getCurrentUser, signOut } from "@/lib/api/users/sign";
+import { userLoginAction } from "@/store/user/actions";
 import Cookies from "js-cookie";
 import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
 import { AiOutlineUser } from "react-icons/ai";
 import { IoChevronDownOutline, IoSettingsOutline } from "react-icons/io5";
-import { userInitialState } from "store/user/reducer";
+import { userInitialState } from "@/store/user/reducer";
 import { useRouter } from "next/router";
-import { OpenContext } from "contexttype/contexttype";
+import { OpenContext } from "@/contexttype/contexttype";
 import { UserModalSign } from "./UserModalSign";
 import { BiUserCircle } from "react-icons/bi"
 import { mutate } from "swr";

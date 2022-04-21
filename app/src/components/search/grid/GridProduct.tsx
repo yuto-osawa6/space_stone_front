@@ -1,5 +1,5 @@
 import { fontWeight } from "@mui/system";
-import { product } from "interfaces/product";
+import { product } from "@/interfaces/product";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState ,forwardRef } from "react"
 // import { findDOMNode } from "react-dom";
@@ -8,7 +8,7 @@ import { MdOutlineStarRate } from "react-icons/md";
 import { useDispatch } from "react-redux";
 // import { Navigate, useNavigate } from "react-router";
 import { CSSTransition } from 'react-transition-group';
-import { actionSettingProductData2 } from "store/product/actions";
+import { actionSettingProductData2 } from "@/store/product/actions";
 
 type ProductGenres = {
   id:number

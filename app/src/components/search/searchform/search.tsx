@@ -1,7 +1,7 @@
 import React, {useEffect,useRef,useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import { addTodoAction, clearTitleAction } from 'store/search/actions';
+import { RootState } from '@/store';
+import { addTodoAction, clearTitleAction } from '@/store/search/actions';
 // import { useNavigate } from "react-router-dom";
 import { GenresSearch } from "./GenresSearch";
 import { IoSearchCircle } from 'react-icons/io5'
@@ -10,25 +10,25 @@ import { FaTags,FaSort } from 'react-icons/fa'
 //   useLocation
 // } from "react-router-dom";
 import { Styles } from "./Styles";
-import { deletingtodoGenresDataALLAction, deletingtodoGenresDataExceptOneAction} from "store/todogenres/actions";
-import { deletingtodoStylesDataAllAction } from "store/todostyles/actions";
+import { deletingtodoGenresDataALLAction, deletingtodoGenresDataExceptOneAction} from "@/store/todogenres/actions";
+import { deletingtodoStylesDataAllAction } from "@/store/todostyles/actions";
 import {SortLists} from "./SortLists"
 import { GridStyles } from "./GridStyles";
 import { CastsSearch } from "./add/cast/CastsSearch";
-import { DeletingCastsDataAllAction, DeletingCastsDataExceptOneAction } from "store/casts/actions";
-import { Cast } from "interfaces/search";
+import { DeletingCastsDataAllAction, DeletingCastsDataExceptOneAction } from "@/store/casts/actions";
+import { Cast } from "@/interfaces/search";
 import { MdMenuOpen } from "react-icons/md"
 import { SubSearches } from "./SubSearches";
-import { AllDeleteSubClassAction, DeilyEndQteQAction, DeilyStartQteQAction, SubPickupSearchAction } from "store/subsearches/actions";
-import { DestroyTimeSearchAction } from "store/during/actions";
-import { DestroySeasonSearchAction } from "store/season/actions";
-import { DestroyYearSearchAction } from "store/year/actions";
-import { OpenCloseManagementSubSearchAction } from "store/subsearchopenmanagement/actions";
+import { AllDeleteSubClassAction, DeilyEndQteQAction, DeilyStartQteQAction, SubPickupSearchAction } from "@/store/subsearches/actions";
+import { DestroyTimeSearchAction } from "@/store/during/actions";
+import { DestroySeasonSearchAction } from "@/store/season/actions";
+import { DestroyYearSearchAction } from "@/store/year/actions";
+import { OpenCloseManagementSubSearchAction } from "@/store/subsearchopenmanagement/actions";
 import { StudioSearch} from "./studio/StudioSearch" 
 import { SeasonSearch } from "./season/SeasonSearch";
 import { YearSearch } from "./year/YearSearch";
-import { deletingtodoStudiosDataALLAction, deletingtodoStudiosDataExceptOneAction } from "store/studios/actions";
-import { deletingtodoKisetsuDataAllAction } from "store/kisetsu/actions";
+import { deletingtodoStudiosDataALLAction, deletingtodoStudiosDataExceptOneAction } from "@/store/studios/actions";
+import { deletingtodoKisetsuDataAllAction } from "@/store/kisetsu/actions";
 import { UserSearchModal } from "./user_search/UserSearchModal";
 import { useRouter } from "next/router";
 

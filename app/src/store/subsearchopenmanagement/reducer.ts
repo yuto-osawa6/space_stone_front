@@ -1,4 +1,4 @@
-import { ActionTypes } from "store/actionTypes";
+import { ActionTypes } from "@/store/actionTypes";
 import { OpenCloseManegementSubSearchData, OpenCloseManegementSubSearchType } from "./types";
 
 const initialState:OpenCloseManegementSubSearchData = {

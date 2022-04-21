@@ -1,11 +1,11 @@
 import FullCalendar, { EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; // pluginは、あとから
-import { product } from "interfaces/product";
-import { OpenContext } from "contexttype/contexttype";
+import { product } from "@/interfaces/product";
+import { OpenContext } from "@/contexttype/contexttype";
 import { useEffect, useState } from "react";
 // import { CalendarEventsModal } from "./CalenderEventsModal";
 import listPlugin from '@fullcalendar/list';
-import { execCalendarHandler } from "lib/api/mains/main_blocks";
+import { execCalendarHandler } from "@/lib/api/mains/main_blocks";
 import { CalendarEventsModal } from "./calender/CalenderEventsModal";
 
 type Props = {

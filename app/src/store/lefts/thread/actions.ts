@@ -1,4 +1,4 @@
-import { ActionTypes } from "store/actionTypes";
+import { ActionTypes } from "@/store/actionTypes";
 import { LeftThreadDataTypes } from "./types";
 
 export const NavigatingLeftThreadDataAction = (item:number | null):LeftThreadDataTypes => {

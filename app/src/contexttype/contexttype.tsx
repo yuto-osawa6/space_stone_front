@@ -1,6 +1,6 @@
-import { acsesses, emotionList, product, productReviews, productScores, productThreads, stats, userReview } from "interfaces/product";
-import { review } from "interfaces/review";
-import { User, UserShow } from "interfaces/user";
+import { acsesses, emotionList, product, productReviews, productScores, productThreads, stats, userReview } from "@/interfaces/product";
+import { review } from "@/interfaces/review";
+import { User, UserShow } from "@/interfaces/user";
 import React from "react";
 
 type chatList = {

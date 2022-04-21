@@ -1,18 +1,18 @@
-import { UserShowContext } from "contexttype/contexttype"
-import { User, UserShow } from "interfaces/user"
-import { execUsersShowHandler } from "lib/api/users"
+import { UserShowContext } from "@/contexttype/contexttype"
+import { User, UserShow } from "@/interfaces/user"
+import { execUsersShowHandler } from "@/lib/api/users"
 import { useRouter } from "next/router"
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 // import { Outlet, useOutlet, useParams } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
-import { RootState } from "store"
+import { RootState } from "@/store"
 import { UserBackgroupdSetUp } from "../setup/background/UserBackgroundSetUp"
 import { UserOverviewSetUp } from "../setup/overview/UserOverviewSetUp"
 import { UserTierList } from "./main/overview/UserTierList"
 import { UserOverviewTop } from "./main/UserOverviewTop"
 import { UserRight } from "./right/UserRight"
-import { useUser } from "lib/data/user/useUser"
+import { useUser } from "@/lib/data/user/useUser"
 
 type Props = {
   children : ReactNode

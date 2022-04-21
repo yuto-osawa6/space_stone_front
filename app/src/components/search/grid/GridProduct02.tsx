@@ -1,4 +1,4 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import { useRouter } from "next/router"
 import { memo, useEffect, useRef, useState } from "react"
 // import { useNavigate } from "react-router-dom"

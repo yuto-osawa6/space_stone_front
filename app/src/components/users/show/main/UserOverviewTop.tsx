@@ -1,8 +1,8 @@
-import { UserShow } from "interfaces/user"
+import { UserShow } from "@/interfaces/user"
 import { useMemo } from "react"
 // import ReactQuill from "react-quill"
 import { useSelector } from "react-redux"
-import { RootState } from "store"
+import { RootState } from "@/store"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;

@@ -1,4 +1,4 @@
-import { ActionTypes } from "store/actionTypes";
+import { ActionTypes } from "@/store/actionTypes";
 import { LeftReviewDataTypes } from "./types";
 
 export const NavigatingLeftReviewDataAction = (item:number | null):LeftReviewDataTypes => {

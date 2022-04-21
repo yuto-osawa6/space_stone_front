@@ -1,10 +1,10 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import { useEffect, useMemo, useRef, useState } from "react"
 // import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
-import { actionSettingProductData2 } from "store/product/actions"
+import { actionSettingProductData2 } from "@/store/product/actions"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;

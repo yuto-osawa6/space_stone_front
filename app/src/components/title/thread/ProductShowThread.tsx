@@ -1,6 +1,6 @@
-// import { ProductReviews } from "component/products/reviews/ProductReviews";
-import { Productshowcontext } from "contexttype/contexttype";
-import { execProductShowReview, execProductShowThread } from "lib/api/products";
+// import { ProductReviews } from "@/component/products/reviews/ProductReviews";
+import { Productshowcontext } from "@/contexttype/contexttype";
+import { execProductShowReview, execProductShowThread } from "@/lib/api/products";
 import { useRouter } from "next/router";
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 // import { Outlet, useParams } from "react-router-dom";

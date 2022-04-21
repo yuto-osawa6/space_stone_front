@@ -1,21 +1,21 @@
-import { review } from "interfaces/review"
+import { review } from "@/interfaces/review"
 import { Button,  FormControl,  FormHelperText,  InputLabel,  MenuItem,  Modal, Select, SelectChangeEvent, Slider, TextField, Tooltip } from "@mui/material";
 // import ReactQuill,{ Quill } from "react-quill";
 import { useEffect, useMemo, useRef, useState } from "react";
 // import { ngword } from "hook/NgWord";
 import { IoMdClose } from "react-icons/io";
-import { execGetEmotionList } from "lib/api/main";
-import { product } from "interfaces/product";
-import { execUpdate2Review, execUpdateReview } from "lib/api/products";
+import { execGetEmotionList } from "@/lib/api/main";
+import { product } from "@/interfaces/product";
+import { execUpdate2Review, execUpdateReview } from "@/lib/api/products";
 import { useDispatch } from "react-redux";
-import { updateReviewAction } from "store/reviewUpdate/actions";
-import { pussingMessageDataAction } from "store/message/actions";
+import { updateReviewAction } from "@/store/reviewUpdate/actions";
+import { pussingMessageDataAction } from "@/store/message/actions";
 // import { ErrorMessage } from "share/message";
 // import { submitSpin } from "color/submit-spin";
 import { TailSpin } from "react-loader-spinner";
-import { ngword } from "lib/ini/ngWord";
-import { ErrorMessage } from "lib/ini/message";
-import { submitSpin } from "lib/color/submit-spin";
+import { ngword } from "@/lib/ini/ngWord";
+import { ErrorMessage } from "@/lib/ini/message";
+import { submitSpin } from "@/lib/color/submit-spin";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;

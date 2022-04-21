@@ -1,4 +1,4 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import { useCallback, useRef,useEffect,useState, memo } from "react"
 import { useDrop } from "react-dnd"
 import { Draggable } from "../draggle/Draggable"

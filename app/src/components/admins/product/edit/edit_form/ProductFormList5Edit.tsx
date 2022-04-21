@@ -1,11 +1,11 @@
 import { Button, MenuItem, SelectChangeEvent, TextField,Select as SelectMaterial } from "@mui/material";
 // import { Select as SelectMaterial} fo
-import { genre, productForm } from "interfaces/product";
-import { execCreateCharacter, execGetCharacterList } from "lib/api/admin/character";
-import { execCreateFormat, execGetFormatsList } from "lib/api/admin/formats";
-import { execCreateGenreLib, execGetGenresList } from "lib/api/admin/janls";
-import { execCreateStaffLib, execGetStaffList } from "lib/api/admin/staff";
-import { execCreateStudiosLib, execGetStudiosList } from "lib/api/admin/studios";
+import { genre, productForm } from "@/interfaces/product";
+import { execCreateCharacter, execGetCharacterList } from "@/lib/api/admin/character";
+import { execCreateFormat, execGetFormatsList } from "@/lib/api/admin/formats";
+import { execCreateGenreLib, execGetGenresList } from "@/lib/api/admin/janls";
+import { execCreateStaffLib, execGetStaffList } from "@/lib/api/admin/staff";
+import { execCreateStudiosLib, execGetStudiosList } from "@/lib/api/admin/studios";
 import { useEffect, useRef, useState } from "react";
 // import Select from "react-select/dist/declarations/src/Select";
 import Select, { InputActionMeta } from 'react-select'

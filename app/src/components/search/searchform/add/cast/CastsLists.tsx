@@ -1,9 +1,9 @@
 import { useState,useEffect } from "react"
 import { useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 // import { GenresList } from "./GenresList";
 import Loader from "react-loader-spinner";
-import { Cast } from "interfaces/search";
+import { Cast } from "@/interfaces/search";
 import { CastList } from "./CastList";
 
 interface genresdata{

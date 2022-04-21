@@ -1,5 +1,5 @@
-import { ShareMain } from "components/share/main/ShareMain"
-import { Top100 } from "components/mains/sub/Top100"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { Top100 } from "@/components/mains/sub/Top100"
 
 type Props = {
   // data:productShow

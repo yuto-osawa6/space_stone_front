@@ -1,7 +1,7 @@
-import { tags } from "interfaces/main"
+import { tags } from "@/interfaces/main"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
-import { SettingSortPeriodAction } from "store/sortperiod/actions"
+import { SettingSortPeriodAction } from "@/store/sortperiod/actions"
 
 type Props = {
   tag : tags

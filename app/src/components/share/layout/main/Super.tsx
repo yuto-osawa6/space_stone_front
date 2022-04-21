@@ -1,5 +1,5 @@
-import { MessageContainer } from "components/applications/message/MessageContainer"
-import Search from "components/search/searchform/search"
+import { MessageContainer } from "@/components/applications/message/MessageContainer"
+import Search from "@/components/search/searchform/search"
 import Lefts from "../../../applications/left/Lefts"
 
 type Props = {

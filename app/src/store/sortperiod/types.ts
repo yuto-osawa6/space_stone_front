@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { ActionTypes } from "store/actionTypes"
+import { ActionTypes } from "@/store/actionTypes"
 
 export type SortPeriodData = {
   periodnumber:number

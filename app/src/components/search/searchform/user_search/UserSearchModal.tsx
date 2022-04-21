@@ -1,6 +1,6 @@
 import { Modal } from "@mui/material"
 import { display } from "@mui/system"
-import { execUserSearch } from "lib/api/main"
+import { execUserSearch } from "@/lib/api/main"
 import { useEffect, useRef, useState } from "react"
 import { IoMdClose } from "react-icons/io"
 import InfiniteScroll from "react-infinite-scroller"

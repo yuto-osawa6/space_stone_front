@@ -1,9 +1,9 @@
 import { useState,useEffect, ReactChild } from "react"
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "store";
-import { pussingtodoStylesDataAction } from "store/todostyles/actions";
-import { deletingtodoKisetsuDataAllAction } from "store/kisetsu/actions";
+import { RootState } from "@/store";
+import { pussingtodoStylesDataAction } from "@/store/todostyles/actions";
+import { deletingtodoKisetsuDataAllAction } from "@/store/kisetsu/actions";
 import { SeasonItem } from "./SeasonItem";
 
 

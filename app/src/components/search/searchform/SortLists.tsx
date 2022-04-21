@@ -1,11 +1,11 @@
 import { Modal } from "@mui/material";
-import { execGetEmotionList, execMonthDuringHandler } from "lib/api/main";
+import { execGetEmotionList, execMonthDuringHandler } from "@/lib/api/main";
 import { useEffect, useRef, useState } from "react"
 import { FaSort } from "react-icons/fa"
 import { MdInsertEmoticon } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
-import { ResetSortPeriodAction, SettingSortPeriodAction } from "store/sortperiod/actions";
+import { RootState } from "@/store";
+import { ResetSortPeriodAction, SettingSortPeriodAction } from "@/store/sortperiod/actions";
 import { EmotionSortItem } from "./EmotionSortItem";
 import { SortList } from "./SortList";
 

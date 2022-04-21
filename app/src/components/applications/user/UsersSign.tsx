@@ -5,11 +5,11 @@ import GoogleLogin from 'react-google-login';
 
 import Cookies from "js-cookie"
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import { userLoginAction } from 'store/user/actions';
-import { execGoogle } from 'lib/api/users/sign';
-import { pussingMessageDataAction } from 'store/message/actions';
-import { ErrorMessage } from 'lib/ini/message';
+import { RootState } from '@/store';
+import { userLoginAction } from '@/store/user/actions';
+import { execGoogle } from '@/lib/api/users/sign';
+import { pussingMessageDataAction } from '@/store/message/actions';
+import { ErrorMessage } from '@/lib/ini/message';
 import { mutate } from 'swr';
 
 

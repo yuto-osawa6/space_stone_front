@@ -1,5 +1,5 @@
 import Cookies from "js-cookie"
-import client from "lib/client/client"
+import client from "@/lib/client/client"
 
 // 動作確認用
 // export const execTest = () => {

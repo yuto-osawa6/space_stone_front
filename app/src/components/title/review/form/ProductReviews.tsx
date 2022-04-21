@@ -1,6 +1,6 @@
-import { product } from "interfaces/product";
-import { like_review, review, review_comments } from "interfaces/review";
-import { execProductReviewShow } from "lib/api/products";
+import { product } from "@/interfaces/product";
+import { like_review, review, review_comments } from "i@/nterfaces/review";
+import { execProductReviewShow } from "@/lib/api/products";
 import { useEffect, useRef, useState } from "react";
 // import ReactQuill from "react-quill";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,9 +9,9 @@ import { RootState } from "store";
 
 // icon
 import { FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown } from "react-icons/fa"
-import { OpenContext, OpenReviewCommentContext } from "contexttype/contexttype";
-import { UserModalSign } from "components/applications/user/UserModalSign";
-import { execAcsessReviewCountHandler, execCheckLikeReview, execCreateLikeReview, execDeleteLikeReview, execProductReviewShowSort } from "lib/api/reviews";
+import { OpenContext, OpenReviewCommentContext } from "@/contexttype/contexttype";
+import { UserModalSign } from "@/components/applications/user/UserModalSign";
+import { execAcsessReviewCountHandler, execCheckLikeReview, execCreateLikeReview, execDeleteLikeReview, execProductReviewShowSort } from "@/lib/api/reviews";
 import { ReviewComment } from "./modal/ReviewComment";
 import {ReviewCommentList} from "./comments/ReviewCommentList"
 
@@ -24,10 +24,10 @@ import { IoMdClose } from "react-icons/io";
 import { MdAccessTime } from "react-icons/md"
 import InfiniteScroll from "react-infinite-scroller";
 import { ReviewEditList } from "./ReviewEditList";
-import { pussingMessageDataAction } from "store/message/actions";
+import { pussingMessageDataAction } from "@/store/message/actions";
 import { useRouter } from "next/router";
-import { ErrorMessage } from "lib/ini/message";
-import { useUser } from "lib/data/user/useUser";
+import { ErrorMessage } from "@/lib/ini/message";
+import { useUser } from "@/lib/data/user/useUser";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;

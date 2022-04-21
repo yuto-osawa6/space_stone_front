@@ -1,4 +1,4 @@
-import { Header } from "components/applications/header/Header"
+import { Header } from "@/components/applications/header/Header"
 import { ReactNode } from "react"
 import { HeaderDivComponent } from "../../applications/header/HeaderDivComponent"
 import { Super } from "../layout/main/Super"

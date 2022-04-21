@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { Modal } from '@mui/material';
 import { useContext, useEffect, useMemo, useState } from 'react';
-import { OpenContext } from 'contexttype/contexttype';
-import { product } from 'interfaces/product';
+import { OpenContext } from '@/contexttype/contexttype';
+import { product } from '@/interfaces/product';
 // import { useNavigate } from 'react-router-dom';
 // import ReactQuill from "react-quill"
-import { actionSettingProductData2 } from 'store/product/actions';
+import { actionSettingProductData2 } from '@/store/product/actions';
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;

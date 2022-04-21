@@ -7,7 +7,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-import { product, productForm } from "interfaces/product";
+import { product, productForm } from "@/interfaces/product";
 import { YearSeasonsEdit } from "./YearSeasonsEdit";
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;

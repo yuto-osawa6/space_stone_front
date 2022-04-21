@@ -1,9 +1,9 @@
-import { Reviews } from "components/reviews/Reviews"
-import { ShareMain } from "components/share/main/ShareMain"
-import { ProductShowEpisords } from "components/title/episords/ProductShowEpisords"
-import { ProductShow } from "components/title/productShow"
-import { ProductShowReviews } from "components/title/review/ProductReviews"
-import { productShow } from "interfaces/product"
+import { Reviews } from "@/components/reviews/Reviews"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { ProductShowEpisords } from "@/components/title/episords/ProductShowEpisords"
+import { ProductShow } from "@/components/title/productShow"
+import { ProductShowReviews } from "@/components/title/review/ProductReviews"
+import { productShow } from "@/interfaces/product"
 import { GetServerSideProps } from "next"
 import { NextSeo } from "next-seo"
 
@@ -42,7 +42,7 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
       //  description={Props.data.products.}
       >
       </NextSeo>
-      <ProductShowReviews />
+      <ProductShowReviews><></></ProductShowReviews>
     </>
   )
 }

@@ -1,5 +1,5 @@
-import { product } from "interfaces/product"
-import { execWeeklyRanking } from "lib/api/mains/main_blocks"
+import { product } from "@/interfaces/product"
+import { execWeeklyRanking } from "@/lib/api/mains/main_blocks"
 import { memo, useEffect, useMemo, useRef, useState } from "react"
 import { WeeklyRankingItems } from "./weekly/WeeklyRankingItems"
 // import { WeeklyRankingItems } from "./WeeklyRankingItems"

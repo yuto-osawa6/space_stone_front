@@ -1,13 +1,13 @@
-import { GridProducts } from "components/search/grid/GridProduct"
-import { GridProduct02 } from "components/search/grid/GridProduct02"
-import { GridProduct03 } from "components/search/grid/GridProduct03"
-import { GridProduct04 } from "components/search/grid/GridProduct04"
-import { product } from "interfaces/product"
-import { execMonthDuringHandler, execTop100Handler } from "lib/api/main"
+import { GridProducts } from "@/components/search/grid/GridProduct"
+import { GridProduct02 } from "@/components/search/grid/GridProduct02"
+import { GridProduct03 } from "@/components/search/grid/GridProduct03"
+import { GridProduct04 } from "@/components/search/grid/GridProduct04"
+import { product } from "@/interfaces/product"
+import { execMonthDuringHandler, execTop100Handler } from "@/lib/api/main"
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "store"
-import { SettingSortPeriodAction } from "store/sortperiod/actions"
+import { RootState } from "@/store"
+import { SettingSortPeriodAction } from "@/store/sortperiod/actions"
 
 type month = {
   id:number

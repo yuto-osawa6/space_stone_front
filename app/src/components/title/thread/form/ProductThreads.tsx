@@ -1,18 +1,18 @@
-import { product } from "interfaces/product";
-import { like_review, review, review_comments } from "interfaces/review";
+import { product } from "@/interfaces/product";
+import { like_review, review, review_comments } from "@/interfaces/review";
 // import { execProductReviewShow } from "lib/api/products";
 import { useEffect, useRef, useState } from "react";
 // import ReactQuill from "react-quill";
 import { useDispatch, useSelector } from "react-redux";
 // import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { RootState } from "store";
+import { RootState } from "@/store";
 
 // icon
 import { FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown } from "react-icons/fa"
-import { OpenContext, OpenReviewCommentContext } from "contexttype/contexttype";
-import { UserModalSign } from "components/applications/user/UserModalSign";
-import { execCheckLikeReview, execCreateLikeReview, execDeleteLikeReview } from "lib/api/reviews";
-import { execAcsessThreadCountHandler, execCheckLikeThread, execCreateLikeThread, execDeleteLikeThread, execProductThreadShow, execProductThreadShowSort } from "lib/api/threads";
+import { OpenContext, OpenReviewCommentContext } from "@/contexttype/contexttype";
+import { UserModalSign } from "@/components/applications/user/UserModalSign";
+import { execCheckLikeReview, execCreateLikeReview, execDeleteLikeReview } from "@/lib/api/reviews";
+import { execAcsessThreadCountHandler, execCheckLikeThread, execCreateLikeThread, execDeleteLikeThread, execProductThreadShow, execProductThreadShowSort } from "@/lib/api/threads";
 import { ThreadComment } from "./modal/ThreadComment";
 import { ThreadCommentList } from "./comments/ThreadCommentList";
 // import { ReviewComment } from "./modal/ReviewComment";
@@ -26,10 +26,10 @@ import { MdAccessTime } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import InfiniteScroll from "react-infinite-scroller";
 import { ThreadEditList } from "./ThreadEditList";
-import { pussingMessageDataAction } from "store/message/actions";
+import { pussingMessageDataAction } from "@/store/message/actions";
 import { useRouter } from "next/router";
-import { useUser } from "lib/data/user/useUser";
-import { ErrorMessage } from "lib/ini/message";
+import { useUser } from "@/lib/data/user/useUser";
+import { ErrorMessage } from "@/lib/ini/message";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;

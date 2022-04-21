@@ -2,14 +2,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import ReactQuill,{Quill} from "react-quill"
 
 import { Button,  FormControl,  FormControlLabel,  FormHelperText,  FormLabel,  Modal, Radio, RadioGroup, Slider, TextField, Tooltip } from "@mui/material";
-import { execArticleProductList, execCreateArticle, uploadArticleFile } from "lib/api/article";
+import { execArticleProductList, execCreateArticle, uploadArticleFile } from "@/lib/api/article";
 
 import { useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
-import { product } from "interfaces/product";
+import { product } from "@/interfaces/product";
 
 // import { Delta } from 'quill-delta';
 import Parchment from 'parchment';

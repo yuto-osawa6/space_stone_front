@@ -1,11 +1,11 @@
-import { User } from "interfaces/user"
+import { User } from "@/interfaces/user"
 import Cookies from "js-cookie"
-import client from "lib/client/client"
-import { clientSocial } from "lib/client/clientSocial"
+import client from "@/lib/client/client"
+import { clientSocial } from "@/lib/client/clientSocial"
 import qs from "qs"
 import { useDispatch } from "react-redux"
-import { userLoginAction } from "store/user/actions"
-import { userInitialState } from "store/user/reducer"
+import { userLoginAction } from "@/store/user/actions"
+import { userInitialState } from "@/store/user/reducer"
 import useSWR, { mutate } from 'swr'
 
 // export const getCurrentUser = () => {

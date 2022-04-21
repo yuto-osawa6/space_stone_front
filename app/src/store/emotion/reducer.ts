@@ -1,5 +1,5 @@
-import { EmotionItem } from 'component/products/show/top/EmotionItem';
-import { SearchProductsData } from 'store/search/types';
+// import { EmotionItem } from '@/component/products/show/top/EmotionItem';
+import { SearchProductsData } from '@/store/search/types';
 import { ActionTypes } from '../actionTypes';
 import { emotionData, emotionsDataTypes } from './types';
 // import { SearchProductsActionTypes, SPD } from './types';

@@ -13,14 +13,14 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 // import { ProductFormList3 } from "./products_formlist/ProductFormList3";
 // import {ProductFormList4 } from "./products_formlist/ProductFormList4";
 // import { ProductFormList5 } from "./products_formlist/ProductFormList5";
-import { execProductCreate, execProductEditSetup, execProductUpdate } from "lib/api/admin/product";
+import { execProductCreate, execProductEditSetup, execProductUpdate } from "@/lib/api/admin/product";
 import { ProductFormList1Edit } from "./edit_form/ProductFormList1Edit";
 import { ProductFormList2Edit } from "./edit_form/ProductFormList2Edit";
 import { ProductFormList3Edit } from "./edit_form/ProductFormList3Edit";
 import { ProductFormList4Edit } from "./edit_form/ProductFormList4Edit";
 import { ProductFormList5Edit } from "./edit_form/ProductFormList5Edit";
 import { StepperEdit } from "./StepperEdit";
-import { product, productForm } from "interfaces/product";
+import { product, productForm } from "@/interfaces/product";
 
 
 type product_form = {

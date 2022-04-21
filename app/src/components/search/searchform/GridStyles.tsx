@@ -1,11 +1,11 @@
-import { execChangeGrid, execsetGrid } from "lib/api/main";
+import { execChangeGrid, execsetGrid } from "@/lib/api/main";
 import { MouseEventHandler, useEffect, useRef, useState } from "react"
 import { BsGrid1X2Fill } from "react-icons/bs";
 import { FaSort, FaTh, FaThLarge, FaThList } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
-import { GridAction } from "store/grid/actions";
-import { sortAction } from "store/sort/actions";
+import { RootState } from "@/store";
+import { GridAction } from "@/store/grid/actions";
+import { sortAction } from "@/store/sort/actions";
 
 
 export const GridStyles:React.FC = () => {

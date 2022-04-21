@@ -1,20 +1,20 @@
 import { Button, Modal, TextField } from "@mui/material"
-import { execSettingUserHandler } from "lib/api/users"
+import { execSettingUserHandler } from "@/lib/api/users"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "store"
-import { updateNicknameAction } from "store/user/actions"
-import { execDeleteUser } from "lib/api/users"
+import { RootState } from "@/store"
+import { updateNicknameAction } from "@/store/user/actions"
+import { execDeleteUser } from "@/lib/api/users"
 // import { Navigate, useNavigate, useParams } from "react-router-dom"
 // import { signOut } from "lib/api/users";
 import Cookies from "js-cookie";
-import { userInitialState } from "store/user/reducer";
-import { userLoginAction } from "store/user/actions";
+import { userInitialState } from "@/store/user/reducer";
+import { userLoginAction } from "@/store/user/actions";
 // import { ErrorMessage } from "share/message"
-import { pussingMessageDataAction } from "store/message/actions"
-import { signOut } from "lib/api/users/sign"
-import { useUser } from "lib/data/user/useUser"
-import { ErrorMessage } from "lib/ini/message"
+import { pussingMessageDataAction } from "@/store/message/actions"
+import { signOut } from "@/lib/api/users/sign"
+import { useUser } from "@/lib/data/user/useUser"
+import { ErrorMessage } from "@/lib/ini/message"
 import { useRouter } from "next/router"
 import { mutate } from "swr"
 

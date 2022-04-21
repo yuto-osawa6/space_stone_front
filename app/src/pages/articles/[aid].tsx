@@ -1,8 +1,8 @@
-import { ArticlesItem } from "components/articles/ArticlesItem"
-import { ShareMain } from "components/share/main/ShareMain"
-import { ProductShow } from "components/title/productShow"
-import { ProductReviews } from "components/title/review/form/ProductReviews"
-import { ProductThreads } from "components/title/thread/form/ProductThreads"
+import { ArticlesItem } from "@/components/articles/ArticlesItem"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { ProductShow } from "@/components/title/productShow"
+import { ProductReviews } from "@/components/title/review/form/ProductReviews"
+import { ProductThreads } from "@/components/title/thread/form/ProductThreads"
 
 
 

@@ -1,12 +1,12 @@
 import { Button, FormHelperText, Modal } from "@mui/material"
-import { execUserBackgroundImageHandler } from "lib/api/users";
+import { execUserBackgroundImageHandler } from "@/lib/api/users";
 import { useCallback, useEffect, useRef, useState } from "react"
 import ReactCrop, { Crop } from 'react-image-crop';
 // import ReactCrop from "react-image-crop/dist/ReactCrop";
 import 'react-image-crop/dist/ReactCrop.css';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "store";
-import { updateBacgroundImageAction } from "store/user/actions";
+import { updateBacgroundImageAction } from "@/store/user/actions";
 
 type Props = {
   on:boolean
