@@ -1506,6 +1506,15 @@ axios-case-converter@^0.9.0:
     snake-case "^3.0.3"
     tslib "^2.3.0"
 
+axios-mock-server@^0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/axios-mock-server/-/axios-mock-server-0.19.1.tgz#5d7a3bbf78bbe07155e5d345f3f1cab76ebb0aa3"
+  integrity sha512-4Rh7eetDYq1KRqisvkflk+7LZ95zykIfBliV95da0rhtqjhq+yj661aOZIXIGyyWOwy3PtgHQ+vRtWWO5p4Osw==
+  dependencies:
+    chokidar "^3.5.1"
+    minimist "^1.2.5"
+    url-search-params-polyfill "^8.1.0"
+
 axios@^0.26.1:
   version "0.26.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
@@ -1747,7 +1756,7 @@ chart.js@^3.7.1:
   resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.7.1.tgz#0516f690c6a8680c6c707e31a4c1807a6f400ada"
   integrity sha512-8knRegQLFnPQAheZV8MjxIXc5gQEfDFD897BJgv/klO/vtIyFFmgMXrNfgrXpbTr/XbTturxRgxIXx/Y+ASJBA==
 
-"chokidar@>=3.0.0 <4.0.0":
+"chokidar@>=3.0.0 <4.0.0", chokidar@^3.5.1:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
   integrity sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==
@@ -3674,7 +3683,7 @@ minimatch@^3.0.4, minimatch@^3.1.2:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist@^1.2.0, minimist@^1.2.6:
+minimist@^1.2.0, minimist@^1.2.5, minimist@^1.2.6:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
@@ -4815,6 +4824,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+url-search-params-polyfill@^8.1.0:
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/url-search-params-polyfill/-/url-search-params-polyfill-8.1.1.tgz#9e69e4dba300a71ae7ad3cead62c7717fd99329f"
+  integrity sha512-KmkCs6SjE6t4ihrfW9JelAPQIIIFbJweaaSLTh/4AO+c58JlDcb+GbdPt8yr5lRcFg4rPswRFRRhBGpWwh0K/Q==
 
 use-subscription@1.5.1:
   version "1.5.1"
