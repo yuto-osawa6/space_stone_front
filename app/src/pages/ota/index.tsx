@@ -8,6 +8,8 @@ import Link from "next/link"
 import TitleIndex from "@/pages/title/[pid]"
 import { ReactNode, useEffect } from "react"
 import useSWR from "swr"
+import { NextSeo } from 'next-seo';
+
 
 export const getStaticProps: GetStaticProps = async(context) => {
   // const { pid } = context.query
@@ -59,6 +61,11 @@ const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) 
   console.log(Props)
   return(
     <>
+      <NextSeo
+       title={`${Props.data?.products.title} - SpaceTone`}
+      //  description={Props.data.products.}
+      >
+      </NextSeo>
       {/* <ShareMain> */}
         {/* aaaaaaaaajklkaaaaafl */}
         {/* {userSwr.user?.nickname} */}

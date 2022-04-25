@@ -1,3 +1,4 @@
+import axios from "axios"
 import Cookies from "js-cookie"
 import client from "../client/client"
 // import {client} from "lib/api/client"
@@ -5,6 +6,16 @@ import client from "../client/client"
 // 動作確認用
 export const products_reds = () => {
   return client.get("/products/red", { 
+    // params:{
+      // text:text,
+      // content:value,
+      // discribe:discribe
+  // }
+})
+}
+
+export const products_reds2 = () => {
+  return axios.get("/products/red", { 
     // params:{
       // text:text,
       // content:value,

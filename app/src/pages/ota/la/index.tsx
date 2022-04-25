@@ -12,26 +12,26 @@ import { Ota2 } from "@/components/ota/Ota"
 import Ota from ".."
 
 
-// type Props = {
-//   // getLayout: (page: any) => JSX.Element
-// }
 
 export const  getStaticProps: GetStaticProps = async(context) => {
   // const { pid } = context.query
-  const params = {
-    active:"1",
-    last:"2"
-  }
-  const query_params = new URLSearchParams(params); 
+  // const params = {
+  //   active:"1",
+  //   last:"2"
+  // }
+  // const query_params = new URLSearchParams(params); 
   const [productShowRes] = await Promise.all([
-    fetch(`${process.env.API_PATH_V1}/products/${1}`), 
-    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
-    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
-    // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
+    fetch(`${process.env.API_PATH_V1}/products/red`), 
   ]);
   const [data] = await Promise.all([
     productShowRes.json()
   ]);
+  if (data.status !== 200) {
+  // if (!data.status !== 200) {
+    return {
+      notFound: true
+    };
+  }
   return { 
     props: { 
       data
@@ -42,14 +42,18 @@ export const  getStaticProps: GetStaticProps = async(context) => {
 type Props = {
   // getLayout: (page: any) => JSX.Element
   // children:ReactNode
-  data?:productShow
+  // data?:productShow
+  data:{
+    message:string
+  }
 }
 
 
-const Otare: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) => {
+const Home2: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) => {
+  // console.log(Props.data)
   // const {data,error} = getCurrentUser()
   // const { data, error } = useSWR('/session_user')
-  const { userSwr, error } = useUser()
+  // const { userSwr, error } = useUser()
   // console.log(data)
   // const changeGridexec = async() => {
   //   // console.log(grid)
@@ -69,40 +73,27 @@ const Otare: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props
   return(
     <>
       aaa
-      {/* <Ota
-      data={Props.data}
-      >
-      </Ota> */}
       <Ota2></Ota2>
       aaa
-      {/* <Link href="/ota">
-          <a>pome</a>
-      </Link>
-      <Ota
-        data={Props.data}
-      >
-        kkkkkkkkkkkkkkkkkkkkkkkkkkk
-      </Ota>
-      <Link href="/ota/po/1">
-          <a>pome</a>
-      </Link> */}
+      {Props.data.message.length>0?
+      <div className="">
+        tests
+      </div>
+      :
+        <div className="">nocontent</div>
+      }
     </>
   )
 }
 
-export default Otare
+export default Home2
 
 
-Otare.getLayout = function getLayout(page) {
+Home2.getLayout = function getLayout(page) {
   return (
-    <ShareMain>
+    // <ShareMain>
+    <div className="">
       {page}
-    </ShareMain>
+    </div>
   )
 }
-
-// const Otare: React.FC<Props> = () => {
-//   return(
-//     <><>
-//   )
-// }

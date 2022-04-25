@@ -12,23 +12,14 @@ const options = {
 
  const client = applyCaseMiddleware(axios.create({
   baseURL: "http://localhost:3001/api/v1",
-  // baseURL:"http://192.168.3.5:3001/api/v1",
   withCredentials: true,
   // headers: { 'X-Requested-With': 'XMLHttpRequest' }
   // ,"Content-Type": "multipart/form-data" 
   // headers: {
   //   "Content-Type": "multipart/form-data" // 画像ファイルを取り扱うのでform-dataで送信
   // }
-
 }), 
 options
 )
 
 export default client
-
-// export const clientSocial = applyCaseMiddleware(axios.create({
-//   baseURL: "http://localhost:3001/",
-//   // baseURL:"http://192.168.3.5:3001/api/v1",
-//   withCredentials: true,
-//   headers: { 'X-Requested-With': 'XMLHttpRequest' },
-// }), options)
