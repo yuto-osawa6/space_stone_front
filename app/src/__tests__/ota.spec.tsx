@@ -19,6 +19,8 @@ import { mockProductReds } from '@/mocks/api/product_red';
 import { getPage } from 'next-page-tester';
 import { initTestHelpers } from 'next-page-tester'; 
 import renderer from 'react-test-renderer';
+import "whatwg-fetch"
+
 
 // import { Otare2 } from "@/pages/ota/la/index"
 // import MockAdapter from 'axios-mock-adapter';
@@ -99,33 +101,13 @@ describe("Sampleコンポーネント", () => {
 //   afterAll(() => server.close())
 
 //   test('false is falsy', async() => {
-//     // const message = {message:"aaaaaaa"}
-//       // render(
-//       //   <Provider store={store}>
-//       //     <Header
-//       //     locationNumber={1}
-//       //     />
-//       //   </Provider>
-//       // );
-//     const { page } = await getPage({
+//     const { render } = await getPage({
 //       route: "/ota/la",
 //     });
 //     screen.debug();
-//     // await waitFor(() => screen.findByText(/Signed in as/))
-
-//     // const tree = renderer.create(
-//     // // <Provider store={store}>
-//     //   // <Header
-//     //   // locationNumber={1}
-//     //   // />
-//     //   page
-//     // // {/* </Provider> */}
-//     // ).toJSON();
-//     render(page);
+//     render();
 //     await waitFor(() => screen.findByText(/Signed in as/))
-//     // expect(tree).toMatchSnapshot();
-
-//     // screen.debug()
+//     screen.debug()
 //   });
 // });
 
@@ -140,8 +122,28 @@ describe('App', () => {
   test('false is falsy', async() => {
     const message = {message:"aaaaaaa"}
     const { container } = render(<Ota2 />)
+    screen.debug();
     await waitFor(() => screen.findByText(/Signed in as/))
     expect(container).toMatchSnapshot()
+    screen.debug();
+  });
+});
+
+describe('App', () => {
+  beforeAll(() => server.listen())
+  afterEach(() => {
+    server.resetHandlers()
+    cleanup()
+  })
+  afterAll(() => server.close())
+
+  test('false is falsy', async() => {
+    const message = {message:"aaaaaaa"}
+    const { container } = render(<Ota2 />)
+    fireEvent.click(screen.getByRole(/button/))
+    screen.debug();
+    await waitFor(() => screen.findByText(/aaaaaaaaaaaiu/))
+    // expect(container).toMatchSnapshot()
     screen.debug();
   });
 });

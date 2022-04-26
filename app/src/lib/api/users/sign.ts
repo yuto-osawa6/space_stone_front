@@ -46,9 +46,13 @@ type Data2 = {
 
 // doneyet-1-next userにundefinedを入れるかどうか。(reduxで管理していたため、そのままの状態)
 export const getCurrentUser = (): { userSwr: Data2, error: any } => {
+  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaasgg")
   // const dispatch = useDispatch()
   const fetcher = async() => {
+    const cookie = document.cookie;
+    console.log(cookie);
     if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")){
+      console.log("aaaaaaaaaaagggeeg")
     return
     }
     const res =  await client.get('/session_user',{ headers: {

@@ -5,11 +5,15 @@ import {render, fireEvent, waitFor, screen, cleanup} from '@testing-library/reac
 import { Provider } from "react-redux";
 import renderer from 'react-test-renderer';
 import { getPage } from "next-page-tester";
+import { Ota2 } from '@/components/ota/Ota';
 import "whatwg-fetch"
+
+
+// import "whatwg-fetch"
 // import { getPage } from 'next-page-tester';
 // import { initTestHelpers } from 'next-page-tester'; 
 // initTestHelpers();
-describe('App', () => {
+describe('Header', () => {
   beforeAll(() => server.listen())
   afterEach(() => {
     server.resetHandlers()
@@ -17,19 +21,21 @@ describe('App', () => {
   })
   afterAll(() => server.close())
 
-  test('false is falsy', async() => {
-    const message = {message:"aaaaaaa"}
-      render(
-        <Provider store={store}>
-          <Header
-          locationNumber={1}
-          />
-        </Provider>
-      );
-    // screen.debug();
+  test('snapshot', async() => {
+    const { container } = render(<Provider store={store}>
+      <Header
+      locationNumber={1}
+      />
+    </Provider>)
+    screen.debug();
+    // await waitFor(() => screen.findByText(/Signed in as/))
+    expect(container).toMatchSnapshot()
 
-    // expect(tree).toMatchSnapshot();
-
-    // screen.debug()
+   
   });
+  // test('snapshot', async() => {
+  //   const { container } = render(<Ota2/>)
+  //   // await waitFor(() => screen.findByText(/Signed in as/))
+  //   expect(container).toMatchSnapshot()
+  // });
 });

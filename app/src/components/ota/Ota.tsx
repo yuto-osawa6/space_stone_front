@@ -6,23 +6,36 @@ import { useEffect, useState } from "react"
 export const Ota2:React.FC = () => {
   const [products,setProducts] = useState<product[]>()
   const [message,setMessage] = useState<string>("")
+  const [count,setCount] = useState<number>(0)
 
   useEffect(()=>{
     const handleOta = async()=>{
-      const res = await products_reds()
-      if(res.status==200){
-        console.log(res.data)
-        // console.log("aaaaaaaa")
-        setMessage(res.data.message)
-      }else{
+      // axios
+      // const res = await products_reds()
+      // if(res.status==200){
+      //   console.log(res.data)
+      //   // console.log("aaaaaaaa")
+      //   setMessage(res.data.message)
+      // }else{
 
-      }
-     
+      // }
+      // fetch
+      const res = await fetch('http://localhost:3001/api/v1/products/red')
+      const data = await res.json()
+      console.log(data.message)
+      setMessage(data.message)
       // setProducts(res.data.products)
     }
     handleOta()
   },[])
   
+  const handleClick = async() => {
+    const res = await fetch('http://localhost:3001/api/v1/products/red')
+    const data = await res.json()
+    console.log(data)
+    setMessage(data)
+    setCount(1)
+  }
 
   return(
     <>
@@ -33,6 +46,14 @@ export const Ota2:React.FC = () => {
         // value={value}
         // onChange={onChange}
       />
+      <button
+      onClick={handleClick}
+      >
+      {count==1&&(
+        <div className="">aaaaaaaaaaaiu</div>
+      )}
+
+      </button>
       {message.length>0?
       <div className="">
         Signed in as

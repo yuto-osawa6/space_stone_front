@@ -23,15 +23,18 @@ export const  getStaticProps: GetStaticProps = async(context) => {
   const [productShowRes] = await Promise.all([
     fetch(`${process.env.API_PATH_V1}/products/red`), 
   ]);
+
+  if (productShowRes.status !== 200) {
+    // if (!data.status !== 200) {
+      return {
+        notFound: true
+      };
+    }
+    
   const [data] = await Promise.all([
     productShowRes.json()
   ]);
-  if (data.status !== 200) {
-  // if (!data.status !== 200) {
-    return {
-      notFound: true
-    };
-  }
+  
   return { 
     props: { 
       data

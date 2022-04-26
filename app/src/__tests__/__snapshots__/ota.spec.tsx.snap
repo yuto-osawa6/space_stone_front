@@ -6,6 +6,7 @@ exports[`App false is falsy 1`] = `
     id="search"
     type="text"
   />
+  <button />
   <div
     class=""
   >
