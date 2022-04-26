@@ -34,17 +34,14 @@ export const UserCertification:React.FC = () => {
   
   const handleSignOut = async (e: React.MouseEvent<HTMLDivElement>) => {
     try {
-      console.log("singgggggggeggiengo")
       const res = await signOut()
       console.log(res)
-      console.log(res.data.success)
       if (res.data.success === true) {
         console.log("singgggggggeggiengo22232")
         // サインアウト時には各Cookieを削除
         Cookies.remove("_access_token")
         Cookies.remove("_client")
         Cookies.remove("_uid")
-        console.log("singgggggggeggiengo222")
         // dispatch(userLoginAction(userInitialState.login,userInitialState.user))
         mutate('/session_user')
       } else {

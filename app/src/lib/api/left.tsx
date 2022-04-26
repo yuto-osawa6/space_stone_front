@@ -5,6 +5,7 @@ import { actionSettingGenresData } from "@/store/genres/action"
 import { actionSettingStylesData } from "@/store/styles/actions"
 import useSWR, { mutate } from 'swr'
 import useSWRImmutable from 'swr/immutable'
+import { GetError } from "../error/error"
 
 // 動作確認用
 // export const execLeft = () => {
@@ -16,20 +17,29 @@ type Data = {
   genres:genre[]
   status:number
 }
+// const dispatch = useDispatch()
+
+export const execLeftfetcher = async() => {
+  console.log("glakog")
+  const res =  await client.get('/products/left')
+  console.log("aaomueeeeeeeeer")
+  if (res.status===200) {
+    // doneyet-1-next 後々変更 (redux使う必要がない。)
+    // dispatch(actionSettingGenresData(res.data.genres));
+    // dispatch(actionSettingStylesData(res.data.styles));
+  }else{
+    // console.log("aaomueeeeeeeeer")
+    // throw new GetError('Received get examples error');
+  }
+  console.log(res)
+  return res.data
+}
 
 
 export const execLeft = (): { data: Data; error: any } => {
-  const dispatch = useDispatch()
-  const fetcher = async() => {
-    const res =  await client.get('/products/left')
-    if (res.status===200) {
-      // doneyet-1-next 後々変更 (redux使う必要がない。)
-      dispatch(actionSettingGenresData(res.data.genres));
-      dispatch(actionSettingStylesData(res.data.styles));
-    }
-    return res.data
-  }
+  
+  
   // const { data, error } = useSWR('/products/left', fetcher)
-  const { data, error } = useSWRImmutable('/products/left', fetcher)
+  const { data, error } = useSWRImmutable('/products/left', execLeftfetcher)
   return { data: data, error }
 }

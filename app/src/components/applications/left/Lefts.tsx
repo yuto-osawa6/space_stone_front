@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { style,genre } from "@/interfaces/product"
 import { useDispatch } from 'react-redux';
 import { BsFillSuitClubFill, BsFillSuitDiamondFill, BsFillSuitHeartFill, BsFillSuitSpadeFill } from "react-icons/bs"
@@ -9,6 +9,8 @@ import LeftGenre from "./leftMenus/LeftGenres";
 import { LeftsArticles } from "./leftMenus/LeftArticles";
 import { LeftsThreads } from "./leftMenus/LeftsThreads";
 import { LeftsReviews } from "./leftMenus/LeftReviews";
+import { actionSettingGenresData } from "@/store/genres/action";
+import { actionSettingStylesData } from "@/store/styles/actions";
 
 type Props = {
   locationNumber: number | undefined
@@ -100,10 +102,26 @@ const handleStyle = () => {
   }
 }
 
+// doneyet-1 必要ない下
+useEffect(()=>{
+  if(!data)return
+  dispatch(actionSettingGenresData(data.genres));
+  dispatch(actionSettingStylesData(data.styles));
+},[data])
+
 
 console.log(data,error)
+console.log(!error)
+// console.log(data?data.genres[0].name:"")
+// console.log()
   return(
     <>
+    {/* {error&&(
+      <div className="">
+        error
+      </div>
+    )} */}
+    {/* {data.genres[0].id} */}
       <div className = "main-left" 
       style={handleStyle()}
       >

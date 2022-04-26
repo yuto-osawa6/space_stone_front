@@ -1,0 +1,1 @@
+export class GetError extends Error {}
