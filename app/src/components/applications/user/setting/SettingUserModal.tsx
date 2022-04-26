@@ -78,6 +78,7 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
 
   // sighout
   const handleSignOut = async () => {
+    // console.log("aaaaaaghh")
     try {
       const res = await signOut()
       if (res.data.success === true) {
@@ -99,7 +100,8 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
         console.log("Failed in sign out")
       }
     } catch (err) {
-      console.log(err)
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      // console.log(err)
     }
   }
 
@@ -121,6 +123,7 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
               <div className = "settingModalOpenClassNickname">
                 {/* Nickname */}
                 <TextField 
+                  role="input"
                   id="standard-basic" 
                   label="NickName" 
                   variant="standard" 
@@ -129,6 +132,7 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
                   onChange={changeTextHandler}
                   helperText={validateText}
                   defaultValue={userSwr.user.nickname}
+                  // value={"title"}
                 />
               </div>
               <div className = "settingModalOpenClassImage">
@@ -149,7 +153,7 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
                 justifyContent: "space-between",
               }}
             >
-              <Button variant="contained"
+              <Button variant="contained" role="setting-button"
                 // className = "TheredModalButton"
                 onClick = { handleSubmit }
               >

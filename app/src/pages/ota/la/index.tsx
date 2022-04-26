@@ -20,20 +20,22 @@ export const  getStaticProps: GetStaticProps = async(context) => {
   //   last:"2"
   // }
   // const query_params = new URLSearchParams(params); 
-  const [productShowRes] = await Promise.all([
-    fetch(`${process.env.API_PATH_V1}/products/red`), 
-  ]);
+  // const [productShowRes] = await Promise.all([
+  //   fetch(`${process.env.API_PATH_V1}/products/red`), 
+  // ]);
+  const res = await fetch(`${process.env.API_PATH_V1}/products/red`)
+  const data = await res.json()
 
-  if (productShowRes.status !== 200) {
-    // if (!data.status !== 200) {
+  // if (productShowRes.status !== 200) {
+    if (res.status !== 200) {
       return {
         notFound: true
       };
     }
     
-  const [data] = await Promise.all([
-    productShowRes.json()
-  ]);
+  // const [data] = await Promise.all([
+  //   productShowRes.json()
+  // ]);
   
   return { 
     props: { 
