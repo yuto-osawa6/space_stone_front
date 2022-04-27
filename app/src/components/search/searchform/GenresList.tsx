@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
-import { deletingtodoGenresDataAction, pussingtodoGenresDataAction } from "store/todogenres/actions";
+import { RootState } from "@/store";
+import { deletingtodoGenresDataAction, pussingtodoGenresDataAction } from "@/store/todogenres/actions";
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { useRouter } from "next/router";
 // import { useLocation, useNavigate } from "react-router";

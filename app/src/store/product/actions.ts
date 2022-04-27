@@ -1,4 +1,4 @@
-import { product } from 'interfaces/product';
+import { product } from '@/interfaces/product';
 import { ActionTypes } from '../actionTypes';
 import { SetProductData,SettiongGenresData, SettiongProductDataTypes  } from './types';
 export interface set  {

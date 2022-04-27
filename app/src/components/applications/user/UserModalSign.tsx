@@ -2,12 +2,12 @@
 // import GoogleLogin from 'react-google-login';
 import Cookies from "js-cookie"
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import { userLoginAction } from 'store/user/actions';
+import { RootState } from '@/store';
+import { userLoginAction } from '@/store/user/actions';
 import { Modal } from '@mui/material';
 import { UsersSign } from './UsersSign';
 import { useContext, useState } from 'react';
-import { OpenContext } from 'contexttype/contexttype';
+import { OpenContext } from '@/contexttype/contexttype';
 // import { OpenContext } from './UserCertification';
 
 // type Props = {

@@ -1,8 +1,8 @@
 import { Button, MenuItem, SelectChangeEvent,FormHelperText, TextField,Select as SelectMaterial } from "@mui/material";
 // import { Select as SelectMaterial} fo
-import { genre } from "interfaces/product";
-import { execCreateFormat, execGetFormatsList } from "lib/api/admin/formats";
-import { execCreateGenreLib, execGetGenresList } from "lib/api/admin/janls";
+import { genre } from "@/interfaces/product";
+import { execCreateFormat, execGetFormatsList } from "@/lib/api/admin/formats";
+import { execCreateGenreLib, execGetGenresList } from "@/lib/api/admin/janls";
 import { useEffect, useState } from "react";
 // import Select from "react-select/dist/declarations/src/Select";
 import Select from 'react-select'

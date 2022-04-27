@@ -1,20 +1,20 @@
 import { Button, Modal, TextField } from "@mui/material"
-import { execSettingUserHandler } from "lib/api/users"
+import { execSettingUserHandler } from "@/lib/api/users"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "store"
-import { updateNicknameAction } from "store/user/actions"
-import { execDeleteUser } from "lib/api/users"
+import { RootState } from "@/store"
+import { updateNicknameAction } from "@/store/user/actions"
+import { execDeleteUser } from "@/lib/api/users"
 // import { Navigate, useNavigate, useParams } from "react-router-dom"
 // import { signOut } from "lib/api/users";
 import Cookies from "js-cookie";
-import { userInitialState } from "store/user/reducer";
-import { userLoginAction } from "store/user/actions";
+import { userInitialState } from "@/store/user/reducer";
+import { userLoginAction } from "@/store/user/actions";
 // import { ErrorMessage } from "share/message"
-import { pussingMessageDataAction } from "store/message/actions"
-import { signOut } from "lib/api/users/sign"
-import { useUser } from "lib/data/user/useUser"
-import { ErrorMessage } from "lib/ini/message"
+import { pussingMessageDataAction } from "@/store/message/actions"
+import { signOut } from "@/lib/api/users/sign"
+import { useUser } from "@/lib/data/user/useUser"
+import { ErrorMessage } from "@/lib/ini/message"
 import { useRouter } from "next/router"
 import { mutate } from "swr"
 
@@ -78,6 +78,7 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
 
   // sighout
   const handleSignOut = async () => {
+    // console.log("aaaaaaghh")
     try {
       const res = await signOut()
       if (res.data.success === true) {
@@ -99,7 +100,8 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
         console.log("Failed in sign out")
       }
     } catch (err) {
-      console.log(err)
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      // console.log(err)
     }
   }
 
@@ -121,6 +123,7 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
               <div className = "settingModalOpenClassNickname">
                 {/* Nickname */}
                 <TextField 
+                  role="input"
                   id="standard-basic" 
                   label="NickName" 
                   variant="standard" 
@@ -129,6 +132,7 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
                   onChange={changeTextHandler}
                   helperText={validateText}
                   defaultValue={userSwr.user.nickname}
+                  // value={"title"}
                 />
               </div>
               <div className = "settingModalOpenClassImage">
@@ -149,7 +153,7 @@ export const SettingUserModal:React.FC<Props> = (Props) => {
                 justifyContent: "space-between",
               }}
             >
-              <Button variant="contained"
+              <Button variant="contained" role="setting-button"
                 // className = "TheredModalButton"
                 onClick = { handleSubmit }
               >

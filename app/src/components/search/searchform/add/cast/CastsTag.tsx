@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import { RootState } from "store";
+import { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
-import { deletingtodoGenresDataOneAction } from "store/todogenres/actions";
+import { deletingtodoGenresDataOneAction } from "@/store/todogenres/actions";
 // import { useLocation, useNavigate } from "react-router";
 import { HoverClose } from "../../HoverClose";
-import { DeletingCastsDataOneAction } from "store/casts/actions";
-import { Cast } from "interfaces/search";
-import { execFindCast } from "lib/api/main";
+import { DeletingCastsDataOneAction } from "@/store/casts/actions";
+import { Cast } from "@/interfaces/search";
+import { execFindCast } from "@/lib/api/main";
 import { useRouter } from "next/router";
 
 interface Props {

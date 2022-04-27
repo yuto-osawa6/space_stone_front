@@ -2,14 +2,14 @@
 
 
 
-import { Reviews } from "components/reviews/Reviews"
-import MainSearch from "components/search/MainSearch"
-import { ShareMain } from "components/share/main/ShareMain"
-import { ProductShow } from "components/title/productShow"
-import { Top } from "components/title/top/Top"
-import { productShow } from "interfaces/product"
+import { Reviews } from "@/components/reviews/Reviews"
+import MainSearch from "@/components/search/MainSearch"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { ProductShow } from "@/components/title/productShow"
+import { Top } from "@/components/title/top/Top"
+import { productShow } from "@/interfaces/product"
 import { GetServerSideProps } from "next"
-import { Articles }  from 'components/articles/Articles';
+import { Articles }  from '@/components/articles/Articles';
 
 
 

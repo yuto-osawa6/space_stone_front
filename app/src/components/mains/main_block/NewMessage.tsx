@@ -1,5 +1,5 @@
-import { news } from "interfaces/main"
-import { execNewMessageHandler } from "lib/api/mains/main_blocks";
+import { news } from "@/interfaces/main"
+import { execNewMessageHandler } from "@/lib/api/mains/main_blocks";
 import React, { memo, useEffect, useState } from "react";
 import { GridNewMessage } from "./newmessage/GridNewMessage";
 // import { GridNewMessage } from "./GridNewMessage"

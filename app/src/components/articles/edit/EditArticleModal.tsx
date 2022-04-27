@@ -1,10 +1,10 @@
-import { Article } from "interfaces/article"
+import { Article } from "@/interfaces/article"
 import { Button,  FormControl,  FormControlLabel,  FormHelperText,  FormLabel,  Modal, Radio, RadioGroup, Slider, TextField, Tooltip } from "@mui/material";
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
-import { RootState } from "store";
+import { RootState } from "@/store";
 import { useSelector } from "react-redux";
-import { execArticleProductList, execUpdateArticle } from "lib/api/article";
+import { execArticleProductList, execUpdateArticle } from "@/lib/api/article";
 import Select, { InputActionMeta } from 'react-select'
 
 type articleoption = {

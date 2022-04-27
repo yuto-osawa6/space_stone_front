@@ -1,12 +1,12 @@
 import { Button, FormHelperText, Modal } from "@mui/material"
-import { Article } from "interfaces/article"
-import { product } from "interfaces/product"
-import { review } from "interfaces/review"
-import { execDeleteArticle } from "lib/api/article"
-import { execDeleteReview } from "lib/api/products"
+import { Article } from "@/interfaces/article"
+import { product } from "@/interfaces/product"
+import { review } from "@/interfaces/review"
+import { execDeleteArticle } from "@/lib/api/article"
+import { execDeleteReview } from "@/lib/api/products"
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
-import { updateReviewAction } from "store/reviewUpdate/actions";
+import { updateReviewAction } from "@/store/reviewUpdate/actions";
 
 
 type Props = {

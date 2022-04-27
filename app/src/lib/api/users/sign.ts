@@ -1,11 +1,11 @@
-import { User } from "interfaces/user"
+import { User } from "@/interfaces/user"
 import Cookies from "js-cookie"
-import client from "lib/client/client"
-import { clientSocial } from "lib/client/clientSocial"
+import client from "@/lib/client/client"
+import { clientSocial } from "@/lib/client/clientSocial"
 import qs from "qs"
 import { useDispatch } from "react-redux"
-import { userLoginAction } from "store/user/actions"
-import { userInitialState } from "store/user/reducer"
+import { userLoginAction } from "@/store/user/actions"
+import { userInitialState } from "@/store/user/reducer"
 import useSWR, { mutate } from 'swr'
 
 // export const getCurrentUser = () => {
@@ -46,9 +46,13 @@ type Data2 = {
 
 // doneyet-1-next userにundefinedを入れるかどうか。(reduxで管理していたため、そのままの状態)
 export const getCurrentUser = (): { userSwr: Data2, error: any } => {
+  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaasgg")
   // const dispatch = useDispatch()
   const fetcher = async() => {
+    const cookie = document.cookie;
+    console.log(cookie);
     if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")){
+      console.log("aaaaaaaaaaagggeeg")
     return
     }
     const res =  await client.get('/session_user',{ headers: {

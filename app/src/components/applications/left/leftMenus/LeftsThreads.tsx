@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
-import { NavigatingLeftThreadDataAction } from "store/lefts/thread/actions"
+import { NavigatingLeftThreadDataAction } from "@/store/lefts/thread/actions"
 
 export const LeftsThreads:React.FC = () => {
   const dispatch = useDispatch()

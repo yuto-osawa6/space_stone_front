@@ -1,4 +1,4 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import { memo } from "react"
 import { useDrag } from "react-dnd"
 import { ItemType } from "../CreateTier"

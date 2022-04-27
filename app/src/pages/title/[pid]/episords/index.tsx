@@ -1,7 +1,7 @@
-import { ShareMain } from "components/share/main/ShareMain"
-import { ProductShowEpisords } from "components/title/episords/ProductShowEpisords"
-import { ProductShow } from "components/title/productShow"
-import { productShow } from "interfaces/product"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { ProductShowEpisords } from "@/components/title/episords/ProductShowEpisords"
+import { ProductShow } from "@/components/title/productShow"
+import { productShow } from "@/interfaces/product"
 import { GetServerSideProps } from "next"
 import { NextSeo } from "next-seo"
 

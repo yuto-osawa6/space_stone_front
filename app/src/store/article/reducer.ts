@@ -1,6 +1,6 @@
-import { Article } from 'interfaces/article';
-import { IniProductData } from 'store/product/types';
-import { SearchProductsData } from 'store/search/types';
+import { Article } from '@/interfaces/article';
+import { IniProductData } from '@/store/product/types';
+import { SearchProductsData } from '@/store/search/types';
 import { ActionTypes } from '../actionTypes';
 import {ArticleDataTypes} from './types';
 

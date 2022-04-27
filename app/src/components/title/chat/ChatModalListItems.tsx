@@ -1,6 +1,6 @@
-import { useUser } from "lib/data/user/useUser"
+import { useUser } from "@/lib/data/user/useUser"
 import { useSelector } from "react-redux"
-import { RootState } from "store"
+import { RootState } from "@/store"
 
 type Props = {
   item : chatList

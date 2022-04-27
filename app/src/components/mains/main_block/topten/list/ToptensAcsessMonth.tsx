@@ -1,5 +1,5 @@
-import { product } from "interfaces/product";
-import { execToptenAcsessMonth, execToptenLikeAll } from "lib/api/mains/toptens";
+import { product } from "@/interfaces/product";
+import { execToptenAcsessMonth, execToptenLikeAll } from "@/lib/api/mains/toptens";
 import { useEffect, useState } from "react";
 import { ToptensList2 } from "../item/ToptensList2";
 import { ToptensParent1 } from "../parent/ToptensParent1";

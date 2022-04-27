@@ -1,5 +1,5 @@
-import { Article } from "interfaces/article";
-import { ActionTypes } from "store/actionTypes";
+import { Article } from "@/interfaces/article";
+import { ActionTypes } from "@/store/actionTypes";
 import { ArticleDataTypes } from "./types";
 
 export const SelectiongArticleDataAction = (article:Article):ArticleDataTypes => {

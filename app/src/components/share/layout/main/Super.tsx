@@ -1,4 +1,5 @@
-import Search from "components/search/searchform/search"
+import { MessageContainer } from "@/components/applications/message/MessageContainer"
+import Search from "@/components/search/searchform/search"
 import Lefts from "../../../applications/left/Lefts"
 
 type Props = {
@@ -24,7 +25,7 @@ export const Super:React.FC<Props> = (Props) => {
           <InsertBox>
             {Props.children}
           </InsertBox>
-          {/* <MessageContainer/> */}
+          <MessageContainer/>
         </SuperSheet>
     </SuperDiv>
   )

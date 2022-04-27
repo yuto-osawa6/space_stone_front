@@ -1,4 +1,4 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import { AiOutlineCheckCircle } from "react-icons/ai"
 
 type Props = {

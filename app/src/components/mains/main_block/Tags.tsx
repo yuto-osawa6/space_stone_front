@@ -1,4 +1,4 @@
-import { tags } from "interfaces/main"
+import { tags } from "@/interfaces/main"
 import { TagsGrid } from "./tags/TagsGrid"
 import { TagsTop100 } from "./tags/TagsTop100"
 // import { TagsGrid } from "./TagsGrid"

@@ -1,8 +1,8 @@
-import { product } from "interfaces/product"
-import { execVoteWeeklyRanking } from "lib/api/mains/main_blocks"
+import { product } from "@/interfaces/product"
+import { execVoteWeeklyRanking } from "@/lib/api/mains/main_blocks"
 import { memo, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { pussingMessageDataAction } from "store/message/actions"
+import { pussingMessageDataAction } from "@/store/message/actions"
 
 type Props = {
   product: product

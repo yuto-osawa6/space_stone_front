@@ -1,4 +1,4 @@
-import { Productshowcontext } from "contexttype/contexttype"
+import { Productshowcontext } from "@/contexttype/contexttype"
 import { useContext, useEffect, useState } from "react"
 import { EmotionUserItem } from "./EmotionUserItem"
 

@@ -1,4 +1,4 @@
-import client from "lib/client/client"
+import client from "@/lib/client/client"
 import useSWRImmutable from 'swr/immutable'
 
 type gridData = {

@@ -1,4 +1,4 @@
-import { userInitialState } from "store/user/reducer"
+import { userInitialState } from "@/store/user/reducer"
 import useSWR from "swr"
 
 // type Data = {

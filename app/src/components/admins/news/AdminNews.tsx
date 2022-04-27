@@ -1,16 +1,16 @@
 import { Button, FormControl, FormHelperText, InputLabel, MenuItem, Modal, Select, SelectChangeEvent, TextField } from "@mui/material"
-import { execNewsCreate } from "lib/api/admin/news"
+import { execNewsCreate } from "@/lib/api/admin/news"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
 
 
 export const AdminNews:React.FC = () => {
   const [open,setOpen] = useState<boolean>(true)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const handleClose = () => {
     setOpen(false)
-    navigate("/admins")
+    // navigate("/admins")
   }
   // juge------------
   const [value,setValue] = useState<string>("")

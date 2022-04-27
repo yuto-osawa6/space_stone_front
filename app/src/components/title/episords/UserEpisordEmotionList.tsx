@@ -1,4 +1,4 @@
-import { userReview } from "interfaces/product"
+import { userReview } from "@/interfaces/product"
 
 type Props = {
   item: {

@@ -1,7 +1,7 @@
 import { Button,  Modal, Slider, Tooltip } from "@mui/material";
 import { styled } from '@mui/material/styles';
-import { OpenScoreContext } from "contexttype/contexttype";
-import { execScoreCreate, execScoreUpdate } from "lib/api/products";
+import { OpenScoreContext } from "@/contexttype/contexttype";
+import { execScoreCreate, execScoreUpdate } from "@/lib/api/products";
 import { useContext, useEffect, useState } from "react";
 
 type Props = {

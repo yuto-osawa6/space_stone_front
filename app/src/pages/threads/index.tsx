@@ -1,12 +1,12 @@
 
 
-import { Reviews } from "components/reviews/Reviews"
-import MainSearch from "components/search/MainSearch"
-import { ShareMain } from "components/share/main/ShareMain"
-import { Threads } from "components/threads/Threads"
-import { ProductShow } from "components/title/productShow"
-import { Top } from "components/title/top/Top"
-import { productShow } from "interfaces/product"
+import { Reviews } from "@/components/reviews/Reviews"
+import MainSearch from "@/components/search/MainSearch"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { Threads } from "@/components/threads/Threads"
+import { ProductShow } from "@/components/title/productShow"
+import { Top } from "@/components/title/top/Top"
+import { productShow } from "@/interfaces/product"
 import { GetServerSideProps } from "next"
 
 
@@ -42,7 +42,9 @@ const ThreadsIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
   // const fallback= Props.fallback
   return(
     <>
-      <Threads />
+      <Threads>
+        <></>
+      </Threads>
     </>
   )
 }

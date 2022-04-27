@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 // import { useParams } from "react-router-dom";
-import { execProductShowEpisord } from "lib/api/products"
-import { Productshowcontext } from "contexttype/contexttype";
+import { execProductShowEpisord } from "@/lib/api/products"
+import { Productshowcontext } from "@/contexttype/contexttype";
 import { EpisordsItem } from "./EpisordsItem";
 import { useRouter } from "next/router";
 

@@ -1,6 +1,6 @@
 import qs from "qs"
 // import { client } from "./client"
-import { genres, search, styles} from "interfaces/main"
+import { genres, search, styles} from "@/interfaces/main"
 import client from "../client/client"
 
 

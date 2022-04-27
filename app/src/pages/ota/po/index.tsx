@@ -1,14 +1,16 @@
-import { ShareMain } from "components/share/main/ShareMain"
-import { productShow } from "interfaces/product"
-import { execChangeGrid } from "lib/api/main"
-import { getCurrentUser } from "lib/api/users/sign"
-import { useUser } from "lib/data/user/useUser"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { productShow } from "@/interfaces/product"
+import { execChangeGrid } from "@/lib/api/main"
+import { getCurrentUser } from "@/lib/api/users/sign"
+import { useUser } from "@/lib/data/user/useUser"
 import { GetServerSideProps, GetStaticProps } from "next"
 import Link from "next/link"
-import TitleIndex from "pages/title/[pid]"
+import TitleIndex from "@/pages/title/[pid]"
 import { useEffect } from "react"
 import useSWR from "swr"
-import Ota from "../../ota/index"
+import { Ota2 } from "@/components/ota/Ota"
+import Ota from ".."
+
 
 // type Props = {
 //   // getLayout: (page: any) => JSX.Element
@@ -63,9 +65,17 @@ const Otare: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props
   //   changeGridexec()
   // },[])
 
+
   return(
     <>
-      <Link href="/ota">
+      aaa
+      {/* <Ota
+      data={Props.data}
+      >
+      </Ota> */}
+      <Ota2></Ota2>
+      aaa
+      {/* <Link href="/ota">
           <a>pome</a>
       </Link>
       <Ota
@@ -75,7 +85,7 @@ const Otare: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props
       </Ota>
       <Link href="/ota/po/1">
           <a>pome</a>
-      </Link>
+      </Link> */}
     </>
   )
 }

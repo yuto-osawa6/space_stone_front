@@ -1,10 +1,10 @@
-import { Cast } from "interfaces/search"
+import { Cast } from "@/interfaces/search"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { AiOutlineCheckCircle } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 // import { useLocation, useNavigate } from "react-router-dom"
-import { DeletingCastsDataAction, PussingCastsDataAction } from "store/casts/actions"
+import { DeletingCastsDataAction, PussingCastsDataAction } from "@/store/casts/actions"
 
 type Props = {
   Cast:Cast

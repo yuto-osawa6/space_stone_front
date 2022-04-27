@@ -4,7 +4,7 @@ import React, {useEffect,useRef,useState } from "react"
 import { Button,  FormControl,  FormControlLabel,  FormHelperText,  FormLabel,  InputLabel,  MenuItem,  Modal, Radio, RadioGroup,Select, SelectChangeEvent } from "@mui/material";
 import { execAdminSearchProduct, execAdminSetYears } from "lib/api/admin/product";
 import InfiniteScroll from "react-infinite-scroller";
-import { product } from "interfaces/product";
+import { product } from "@/interfaces/product";
 import { useSelector } from "react-redux";
 import { RootState } from "store";
 // import { GridProduct04 } from "component/main/grid/GridProduct04";

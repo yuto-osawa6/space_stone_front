@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react"
 import ActionCable from 'actioncable'
-import { product } from "interfaces/product";
+import { product } from "@/interfaces/product";
 import { Button, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 import { ChatListItem } from "./ChatListItem";
-import { OpenContext } from "contexttype/contexttype";
+import { OpenContext } from "@/contexttype/contexttype";
 // import { UserModalSign } from "component/aplication/lefts/UserModalSign";
 import { ChatModal } from "./ChatModal";
-import { UserModalSign } from "components/applications/user/UserModalSign";
-import { useUser } from "lib/data/user/useUser";
+import { UserModalSign } from "@/components/applications/user/UserModalSign";
+import { useUser } from "@/lib/data/user/useUser";
 
 type Props = {
   product : product

@@ -1,4 +1,4 @@
-import { ActionTypes } from "store/actionTypes";
+import { ActionTypes } from "@/store/actionTypes";
 import { SortPeriodData, SortPeriodDataTypes } from "./types";
 
 const initialState:SortPeriodData = {

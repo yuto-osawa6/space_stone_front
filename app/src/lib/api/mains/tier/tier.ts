@@ -1,6 +1,6 @@
-import { product } from "interfaces/product";
-import client from "lib/client/client";
-import { useUser } from "lib/data/user/useUser";
+import { product } from "@/interfaces/product";
+import client from "@/lib/client/client";
+import { useUser } from "@/lib/data/user/useUser";
 import useSWR from "swr";
 import useSWRImmutable from 'swr/immutable'
 

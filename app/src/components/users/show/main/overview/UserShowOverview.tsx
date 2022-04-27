@@ -1,19 +1,19 @@
-// import { UserBackgroupdSetUp } from "component/users/setup/background/UserBackgroundSetUp"
-// import { UserOverviewSetUp } from "component/users/setup/overview/UserOverviewSetUp"
-import { UserShowContext } from "contexttype/contexttype"
+// import { UserBackgroupdSetUp } from "@/component/users/setup/background/UserBackgroundSetUp"
+// import { UserOverviewSetUp } from "@/component/users/setup/overview/UserOverviewSetUp"
+import { UserShowContext } from "@/contexttype/contexttype"
 import { useContext, useMemo,useState,useEffect } from "react"
 // import ReactQuill from "react-quill"
 import { useSelector } from "react-redux"
 // import { useParams } from "react-router-dom"
-import { RootState } from "store"
+import { RootState } from "@/store"
 import { UserShowLikeGenres } from "./UserShowLikeGenres"
 import { UserShowLikeProducts } from "./UserShowLikeProducts"
 import { UserShowOverviewEmotion } from "./UserShowOverviewEmotion"
 import { UserShowOverviewScore } from "./UserShowOverviewScore"
 import { UserShowOverviewScoreEmotion } from "./UserShowOverviewScoreEmotion"
 import { UserTierList } from "./UserTierList"
-import { product } from "interfaces/product"
-import { execGetUserTier, execGetUserTierUserPage } from "lib/api/mains/main_blocks"
+import { product } from "@/interfaces/product"
+import { execGetUserTier, execGetUserTierUserPage } from "@/lib/api/mains/main_blocks"
 // import { CreateTier } from "component/main/main_block/tier/CreateTier"
 // import { UpdateTier } from "component/main/main_block/tier/UpdateTier"
 
@@ -22,14 +22,14 @@ import { execGetUserTier, execGetUserTierUserPage } from "lib/api/mains/main_blo
 
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
-import { execChangeScoreArrayies } from "lib/api/users"
+import { execChangeScoreArrayies } from "@/lib/api/users"
 import { UserTierList2 } from "./UsetTierList2"
 import { useRouter } from "next/router"
-import { UserBackgroupdSetUp } from "components/users/setup/background/UserBackgroundSetUp"
-import { UserOverviewSetUp } from "components/users/setup/overview/UserOverviewSetUp"
-import { CreateTier } from "components/mains/tier/setup/CreateTier"
-import { UpdateTier } from "components/mains/tier/setup/UpdateTier"
-import { useUser } from "lib/data/user/useUser"
+import { UserBackgroupdSetUp } from "@/components/users/setup/background/UserBackgroundSetUp"
+import { UserOverviewSetUp } from "@/components/users/setup/overview/UserOverviewSetUp"
+import { CreateTier } from "@/components/mains/tier/setup/CreateTier"
+import { UpdateTier } from "@/components/mains/tier/setup/UpdateTier"
+import { useUser } from "@/lib/data/user/useUser"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;

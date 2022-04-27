@@ -1,7 +1,7 @@
-import { OpenContext, OpenReviewContext, OpenTheredContext, Productshowcontext } from "contexttype/contexttype"
+import { OpenContext, OpenReviewContext, OpenTheredContext, Productshowcontext } from "@/contexttype/contexttype"
 import React, { memo, useContext, useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux";
-import { updateReviewAction } from "store/reviewUpdate/actions";
+import { updateReviewAction } from "@/store/reviewUpdate/actions";
 
 import {
   Chart as ChartJS,
@@ -19,7 +19,7 @@ import {
 import { Bar ,Line} from 'react-chartjs-2';
 // import { ReviewModal } from "./ReviewModal";
 import { useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 // import { UserModalSign } from "component/aplication/lefts/UserModalSign";
 // import { TheredModal } from "./TheredModal";
 // import { Outlet, useNavigate } from "react-router-dom";
@@ -31,12 +31,12 @@ import { RootState } from "store";
 // import { ScoresListInProductShow } from "./top/ScoresListInProductShow";
 // import { EmotionUserList } from "./user/EmotionUserList";
 // import { ScoreUserList } from "./user/ScoreUserList";
-import { execSecondUpdateReview, execSecondUpdateThread } from "lib/api/products";
-import { updateThreadAction } from "store/updateThread/actions";
+import { execSecondUpdateReview, execSecondUpdateThread } from "@/lib/api/products";
+import { updateThreadAction } from "@/store/updateThread/actions";
 import { useRouter } from "next/router";
 import { ReviewModal } from "../modal/ReviewModal";
 import { EditReviewModal } from "../edit/EditReviewModal";
-import { UserModalSign } from "components/applications/user/UserModalSign";
+import { UserModalSign } from "@/components/applications/user/UserModalSign";
 import { ShowCloudsItems } from "./ShowCloudsItems";
 import { TheredModal } from "../modal/TheredModal";
 import { ShowCloudsItems2 } from "./ShowCloudsItems2";
@@ -45,7 +45,7 @@ import { EmotionUserList } from "../user/EmotionUserList";
 import { ScoresListInProductShow } from "./ScoresListInProductShow";
 import { ScoreUserList } from "../user/ScoreUserList";
 import { ChatRoomInProductShow } from "../chat/ChatRoomInProductShow";
-import { useUser } from "lib/data/user/useUser";
+import { useUser } from "@/lib/data/user/useUser";
 import { NextSeo } from "next-seo";
 
 

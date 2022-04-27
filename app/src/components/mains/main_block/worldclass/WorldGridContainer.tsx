@@ -1,5 +1,5 @@
-import { ViewProductContext } from "contexttype/contexttype"
-import { product } from "interfaces/product"
+import { ViewProductContext } from "@/contexttype/contexttype"
+import { product } from "@/interfaces/product"
 import { memo, useContext, useEffect, useRef, useState } from "react"
 import { CSSTransition } from "react-transition-group"
 

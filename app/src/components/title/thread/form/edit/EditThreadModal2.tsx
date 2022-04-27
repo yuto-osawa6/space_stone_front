@@ -1,7 +1,7 @@
 import { Button,  FormHelperText,  Modal, Slider, TextField, Tooltip } from "@mui/material";
 import { styled } from '@mui/material/styles';
-import { OpenScoreContext, OpenTheredContext } from "contexttype/contexttype";
-import { execCreateThered, execScoreCreate, execScoreUpdate } from "lib/api/products";
+import { OpenScoreContext, OpenTheredContext } from "@/contexttype/contexttype";
+import { execCreateThered, execScoreCreate, execScoreUpdate } from "@/lib/api/products";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
@@ -13,8 +13,8 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
-import { productThreads } from "interfaces/product";
-import { ngword } from "lib/ini/ngWord";
+import { productThreads } from "@/interfaces/product";
+import { ngword } from "@/lib/ini/ngWord";
 
 // no use component
 

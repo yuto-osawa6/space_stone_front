@@ -1,17 +1,17 @@
 import { Button, FormHelperText, Modal } from "@mui/material"
-import { product } from "interfaces/product"
-import { execCreateTierHandler } from "lib/api/mains/main_blocks"
+import { product } from "@/interfaces/product"
+import { execCreateTierHandler } from "@/lib/api/mains/main_blocks"
 import { useCallback, useEffect, useState } from "react"
 import { useDrop } from "react-dnd"
 import { IoMdClose } from "react-icons/io"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "store"
-import { pussingMessageDataAction } from "store/message/actions"
+import { RootState } from "@/store"
+import { pussingMessageDataAction } from "@/store/message/actions"
 import { DraggableFistContainer } from "./draggle/DraggableFistContainer"
 import { TierGroupList } from "./list/TierGroupList"
 // import { TierGroupList } from "./TierGroupList"
 // import { DraggableFistContainer } from "./tier_group/DraggableFistContainer"
-import { useUser } from "lib/data/user/useUser"
+import { useUser } from "@/lib/data/user/useUser"
 
 
 export const ItemType = {

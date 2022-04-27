@@ -1,9 +1,9 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import { memo, useEffect, useState } from "react"
 import { BsFillSuitHeartFill ,BsFillSuitClubFill,BsFillSuitSpadeFill, BsFillSuitDiamondFill} from "react-icons/bs"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
-import { actionSettingProductData2 } from "store/product/actions"
+import { actionSettingProductData2 } from "@/store/product/actions"
 
 type Props = {
   product:product

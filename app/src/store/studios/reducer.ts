@@ -1,4 +1,4 @@
-import { SearchProductsData } from 'store/search/types';
+import { SearchProductsData } from '@/store/search/types';
 import { ActionTypes } from '../actionTypes';
 import { StudiosData, StudiosDataTypes } from './types';
 // import {CastsData, CastsDataTypes} from './types';

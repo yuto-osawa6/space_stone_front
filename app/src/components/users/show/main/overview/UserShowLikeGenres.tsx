@@ -1,4 +1,4 @@
-import { genre } from "interfaces/product";
+import { genre } from "@/interfaces/product";
 
 type Props = {
   genre : genre

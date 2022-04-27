@@ -1,9 +1,9 @@
-import { Article } from "interfaces/article"
+import { Article } from "@/interfaces/article"
 import React, { memo, useEffect, useMemo, useRef, useState } from "react"
 import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
-import { SelectiongArticleDataAction } from "store/article/actions"
+import { SelectiongArticleDataAction } from "@/store/article/actions"
 
 type Props = {
   id :number

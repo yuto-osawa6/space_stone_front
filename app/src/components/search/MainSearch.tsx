@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { execSearch, execSearchScroll } from "lib/api/main";
+import { execSearch, execSearchScroll } from "@/lib/api/main";
 import { product } from "../../interfaces/product";
 // import {GridProducts} from "./GridProduct";
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { RootState } from '@/store';
 import InfiniteScroll from 'react-infinite-scroller';
 import { GridProduct02 } from "./grid/GridProduct02";
 import { GridProduct03 } from "./grid/GridProduct03";

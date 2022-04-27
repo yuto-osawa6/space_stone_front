@@ -1,12 +1,12 @@
-import { product } from "interfaces/product"
-import { execArticleProductAssosiationsHandler } from "lib/api/article"
+import { product } from "@/interfaces/product"
+import { execArticleProductAssosiationsHandler } from "@/lib/api/article"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import { memo, useEffect, useState } from "react"
 // import { setDatasets } from "react-chartjs-2/dist/utils"
 import { IoTimeOutline, IoTimer } from "react-icons/io5"
 import { useDispatch } from "react-redux"
-import { actionSettingProductData, actionSettingProductData2 } from "store/product/actions"
+import { actionSettingProductData, actionSettingProductData2 } from "@/store/product/actions"
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 type Props = {
   product:product

@@ -1,13 +1,13 @@
 import { FormControl, FormControlLabel, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 // import { ProductReviews } from "component/products/reviews/ProductReviews";
-import { Productshowcontext } from "contexttype/contexttype";
-import { execProductShowReview, execSecondUpdateReview } from "lib/api/products";
+import { Productshowcontext } from "@/contexttype/contexttype";
+import { execProductShowReview, execSecondUpdateReview } from "@/lib/api/products";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { Outlet, useParams } from "react-router-dom";
-import { RootState } from "store";
-import { updateReviewAction } from "store/reviewUpdate/actions";
+import { RootState } from "@/store";
+import { updateReviewAction } from "@/store/reviewUpdate/actions";
 import { ShowCloudsItems } from "../top/ShowCloudsItems";
 import { ProductReviewsItems } from "./ProductReviewsItems";
 

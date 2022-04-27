@@ -1,6 +1,6 @@
-import { ThisMonthTierList } from "components/mains/tier/ThisMonthTierList"
-import { product } from "interfaces/product"
-import { UserShow } from "interfaces/user"
+import { ThisMonthTierList } from "@/components/mains/tier/ThisMonthTierList"
+import { product } from "@/interfaces/product"
+import { UserShow } from "@/interfaces/user"
 import { useEffect, useState } from "react"
 // import { ThisMonthTierList } from "component/main/main_block/tier/thismonth/ThisMonthTierList"
 

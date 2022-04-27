@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react"
 import { FaSort } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux";
 // import { useLocation, useNavigate } from "react-router-dom";
-import { RootState } from "store";
-import { actionDeleteEmotionData } from "store/emotion/actions";
-import { sortAction } from "store/sort/actions";
+import { RootState } from "@/store";
+import { actionDeleteEmotionData } from "@/store/emotion/actions";
+import { sortAction } from "@/store/sort/actions";
 
 interface sort {
   s:{

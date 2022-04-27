@@ -1,5 +1,5 @@
-import { Article } from "interfaces/article";
-import { ActionTypes } from "store/actionTypes";
+import { Article } from "@/interfaces/article";
+import { ActionTypes } from "@/store/actionTypes";
 import { LeftArticleDataTypes } from "./types";
 
 export const NavigatingLeftArticleDataAction = (item:number | null):LeftArticleDataTypes => {

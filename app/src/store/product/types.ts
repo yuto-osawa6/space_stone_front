@@ -1,4 +1,4 @@
-import { product } from 'interfaces/product';
+import { product } from '@/interfaces/product';
 import { Action } from 'redux';
 
 import { ActionTypes } from '../actionTypes';

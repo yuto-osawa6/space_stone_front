@@ -1,6 +1,6 @@
-import { Cast } from "interfaces/search";
+import { Cast } from "@/interfaces/search";
 import { Action } from "redux";
-import { ActionTypes } from "store/actionTypes";
+import { ActionTypes } from "@/store/actionTypes";
 
 export type CastsData = {
   castids:{

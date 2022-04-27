@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Modal, Select, SelectChangeEvent, TextField } from "@mui/material"
 import { useEffect, useMemo, useRef, useState } from "react"
 import ReactQuill from "react-quill"
-import { Navigate, useNavigate } from "react-router-dom"
+// import { Navigate, useNavigate } from "react-router-dom"
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -13,7 +13,7 @@ import { ProductFormList2 } from "./products_formlist/ProductFormList2";
 import { ProductFormList3 } from "./products_formlist/ProductFormList3";
 import {ProductFormList4 } from "./products_formlist/ProductFormList4";
 import { ProductFormList5 } from "./products_formlist/ProductFormList5";
-import { execProductCreate } from "lib/api/admin/product";
+import { execProductCreate } from "@/lib/api/admin/product";
 
 
 
@@ -126,10 +126,10 @@ export const AdminsAddProduct:React.FC = () => {
   // ------------------------------------------------
 
   const [open,setOpen] = useState<boolean>(true)
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const handleClose = () => {
     setOpen(false)
-    navigate("/admins")
+    // navigate("/admins")
   }
 
   // step

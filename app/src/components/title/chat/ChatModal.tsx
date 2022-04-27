@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import ActionCable from 'actioncable'
-import { product } from "interfaces/product";
+import { product } from "@/interfaces/product";
 import { Button, TextField, Modal, FormHelperText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 import { ChatListItem } from "./ChatListItem";
-import { OpenContext } from "contexttype/contexttype";
+import { OpenContext } from "@/contexttype/contexttype";
 // import { UserModalSign } from "component/aplication/lefts/UserModalSign";
 import { ChatModalListItems } from "./ChatModalListItems";
 import { IoMdClose } from "react-icons/io";
 // import { ngword } from "hook/NgWord";
-import { pussingMessageDataAction } from "store/message/actions";
-import { ngword } from "lib/ini/ngWord";
-import { ErrorMessage } from "lib/ini/message";
-import { useUser } from "lib/data/user/useUser";
+import { pussingMessageDataAction } from "@/store/message/actions";
+import { ngword } from "@/lib/ini/ngWord";
+import { ErrorMessage } from "@/lib/ini/message";
+import { useUser } from "@/lib/data/user/useUser";
 // import { ErrorMessage } from "share/message";
 
 type Props = {

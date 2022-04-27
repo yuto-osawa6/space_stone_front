@@ -1,9 +1,9 @@
-import { execStudioSearch } from "lib/api/main";
+import { execStudioSearch } from "@/lib/api/main";
 import { useEffect, useRef, useState } from "react";
 import { HiChevronDoubleDown } from "react-icons/hi";
 import { IoSearchCircle } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 import { GenresLists } from "../GenresLists";
 import { GenresTag } from "../GenresTag";
 import { StudiosLists } from "./StudioLists";

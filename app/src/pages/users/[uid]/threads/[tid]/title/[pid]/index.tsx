@@ -1,10 +1,10 @@
-import { ShareMain } from "components/share/main/ShareMain"
-import { Threads } from "components/threads/Threads"
-import { ProductShow } from "components/title/productShow"
-import { ProductReviews } from "components/title/review/form/ProductReviews"
-import { ProductThreads } from "components/title/thread/form/ProductThreads"
-import { UserShowThreads } from "components/users/show/main/threads/UserShowThreads"
-import { UsersShow } from "components/users/show/UsersShow"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { Threads } from "@/components/threads/Threads"
+import { ProductShow } from "@/components/title/productShow"
+import { ProductReviews } from "@/components/title/review/form/ProductReviews"
+import { ProductThreads } from "@/components/title/thread/form/ProductThreads"
+import { UserShowThreads } from "@/components/users/show/main/threads/UserShowThreads"
+import { UsersShow } from "@/components/users/show/UsersShow"
 
 
 

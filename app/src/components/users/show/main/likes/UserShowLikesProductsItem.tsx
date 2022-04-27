@@ -1,8 +1,8 @@
-import { product } from "interfaces/product";
+import { product } from "@/interfaces/product";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
-import { actionSettingProductData2 } from "store/product/actions"
+import { actionSettingProductData2 } from "@/store/product/actions"
 
 type Props = {
   product : product

@@ -3,8 +3,8 @@ import { useState,useEffect, ReactChild } from "react"
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux"
 // import { useLocation, useNavigate } from "react-router";
-import { RootState } from "store";
-import { pussingtodoStylesDataAction } from "store/todostyles/actions";
+import { RootState } from "@/store";
+import { pussingtodoStylesDataAction } from "@/store/todostyles/actions";
 
 // }
 interface Props {

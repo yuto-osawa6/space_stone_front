@@ -1,8 +1,8 @@
-import { ShareMain } from "components/share/main/ShareMain"
-import { ProductShowEpisords } from "components/title/episords/ProductShowEpisords"
-import { ProductShow } from "components/title/productShow"
-import { ProductShowThreads } from "components/title/thread/ProductShowThread"
-import { productShow } from "interfaces/product"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { ProductShowEpisords } from "@/components/title/episords/ProductShowEpisords"
+import { ProductShow } from "@/components/title/productShow"
+import { ProductShowThreads } from "@/components/title/thread/ProductShowThread"
+import { productShow } from "@/interfaces/product"
 import { GetServerSideProps } from "next"
 import { NextSeo } from "next-seo"
 
@@ -40,7 +40,7 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
       //  description={Props.data.products.}
       >
       </NextSeo>
-      <ProductShowThreads/>
+      <ProductShowThreads><></></ProductShowThreads>
     </>
   )
 }

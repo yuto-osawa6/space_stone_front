@@ -1,10 +1,10 @@
-import { Cast } from "interfaces/search";
-import { execCastSearch } from "lib/api/main";
+import { Cast } from "@/interfaces/search";
+import { execCastSearch } from "@/lib/api/main";
 import { useEffect, useRef, useState } from "react";
 import { HiChevronDoubleDown } from "react-icons/hi";
 import { IoSearchCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 import { CastsLists } from "./CastsLists";
 import { CastsTag } from "./CastsTag";
 

@@ -1,4 +1,4 @@
-import { Article } from "interfaces/article"
+import { Article } from "@/interfaces/article"
 import { useState } from "react"
 import { DeleteArticleModal } from "./DeleteArticleModal"
 import { EditArticleModal } from "./EditArticleModal"

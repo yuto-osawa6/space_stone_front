@@ -1,16 +1,16 @@
 import { Button, FormControl, FormHelperText, Modal, TextField } from "@mui/material"
 // import { ngword } from "hook/NgWord"
-import { execCreateOverviewToUser } from "lib/api/users"
-import { ErrorMessage } from "lib/ini/message"
-import { ngword } from "lib/ini/ngWord"
+import { execCreateOverviewToUser } from "@/lib/api/users"
+import { ErrorMessage } from "@/lib/ini/message"
+import { ngword } from "@/lib/ini/ngWord"
 import { useMemo, useRef, useState } from "react"
 import { IoMdClose } from "react-icons/io"
 // import ReactQuill from "react-quill"
 import { useDispatch, useSelector } from "react-redux"
 // import { ErrorMessage } from "share/message"
-import { RootState } from "store"
-import { pussingMessageDataAction } from "store/message/actions"
-import { updateOverviewAction } from "store/user/actions"
+import { RootState } from "@/store"
+import { pussingMessageDataAction } from "@/store/message/actions"
+import { updateOverviewAction } from "@/store/user/actions"
 
 
 const ReactQuill =

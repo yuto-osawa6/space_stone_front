@@ -1,21 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 
 // material-ui
 import React, { useEffect, useRef, useState } from "react";
-import { getCurrentUser, signOut } from "lib/api/users/sign";
-import { userLoginAction } from "store/user/actions";
+import { getCurrentUser, signOut } from "@/lib/api/users/sign";
+import { userLoginAction } from "@/store/user/actions";
 import Cookies from "js-cookie";
 import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
 import { AiOutlineUser } from "react-icons/ai";
 import { IoChevronDownOutline, IoSettingsOutline } from "react-icons/io5";
-import { userInitialState } from "store/user/reducer";
+import { userInitialState } from "@/store/user/reducer";
 import { useRouter } from "next/router";
-import { OpenContext } from "contexttype/contexttype";
+import { OpenContext } from "@/contexttype/contexttype";
 import { UserModalSign } from "./UserModalSign";
 import { BiUserCircle } from "react-icons/bi"
 import { mutate } from "swr";
 import { SettingUserModal } from "./setting/SettingUserModal";
+import { getCurrentUserMock } from "@/mocks/api/user/signin";
 
 
 export const UserCertification:React.FC = () => {
@@ -36,6 +37,7 @@ export const UserCertification:React.FC = () => {
       const res = await signOut()
       console.log(res)
       if (res.data.success === true) {
+        console.log("singgggggggeggiengo22232")
         // サインアウト時には各Cookieを削除
         Cookies.remove("_access_token")
         Cookies.remove("_client")
@@ -94,7 +96,8 @@ export const UserCertification:React.FC = () => {
       router.push(`/admins`)
     }
 
-    // console.log(data)
+    console.log(userSwr)
+    // console.log(getCurrentUserMock)
   return(
     <>
       {!userSwr.login||!userSwr.user?

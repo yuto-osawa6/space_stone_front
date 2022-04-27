@@ -1,5 +1,5 @@
-import { product } from "interfaces/product"
-import { execPublishedOne } from "lib/api/admin/product"
+import { product } from "@/interfaces/product"
+import { execPublishedOne } from "@/lib/api/admin/product"
 import { useEffect, useState } from "react"
 import { BsFillSuitHeartFill ,BsFillSuitClubFill,BsFillSuitSpadeFill, BsFillSuitDiamondFill} from "react-icons/bs"
 // import { useNavigate } from "react-router-dom"

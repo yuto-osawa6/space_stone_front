@@ -1,4 +1,4 @@
-import { product } from "interfaces/product"
+import { product } from "@/interfaces/product"
 import { memo, useEffect, useState } from "react"
 import { TierProductList } from "./TierProductList"
 

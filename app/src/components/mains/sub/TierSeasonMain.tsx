@@ -1,5 +1,5 @@
-import { product } from "interfaces/product"
-import { execTierSeasonMain } from "lib/api/main"
+import { product } from "@/interfaces/product"
+import { execTierSeasonMain } from "@/lib/api/main"
 import React, { useEffect, useState } from "react"
 import { TierSeasonMainList } from "./tiers/TierSeasonMainList"
 

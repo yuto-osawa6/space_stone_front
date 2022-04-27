@@ -1,8 +1,8 @@
-import { ShareMain } from "components/share/main/ShareMain"
-import { Top100 } from "components/mains/sub/Top100"
-import { WeekliyRankingsMain } from "components/mains/sub/WeeklyRankingMain"
-import { Admins } from "components/admins/Admins"
-import { AdminsTop } from "components/admins/top/AdminsTop"
+import { ShareMain } from "@/components/share/main/ShareMain"
+import { Top100 } from "@/components/mains/sub/Top100"
+import { WeekliyRankingsMain } from "@/components/mains/sub/WeeklyRankingMain"
+import { Admins } from "@/components/admins/Admins"
+import { AdminsTop } from "@/components/admins/top/AdminsTop"
 
 type Props = {
   // data:productShow
