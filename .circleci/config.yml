@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@5.0.2
 jobs:
   build:
-    working_directory: app
+    working_directory: app23
     docker:
       - image: cimg/node:16.15.0
     steps:
