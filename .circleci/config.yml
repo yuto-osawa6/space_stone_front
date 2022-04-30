@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@5.0.2
 jobs:
   build:
-    working_directory: space_stone_front/app
+    # working_directory: ~/space_stone_front/app
     docker:
       - image: cimg/node:16.15.0
     steps:
@@ -12,7 +12,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
   test:
-    working_directory: ~/space_stone_front/app
+    # working_directory: ~/space_stone_front/app
     parallelism: 1
     docker:
       - image: cimg/node:16.15.0
