@@ -57,6 +57,8 @@ jobs:
     # executor:
     #   name: node/default
     #   tag: '16'
+    docker:
+      - image: cimg/node:16.15.0
     steps:
       - checkout
       - node/install-packages:
