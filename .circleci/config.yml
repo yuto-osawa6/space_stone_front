@@ -54,7 +54,7 @@ orbs:
   node: circleci/node@5.0.2
 jobs:
   test:
-    working_directory: ~/space_stone_front/app
+    working_directory: ~/space_stone_front/app/
     # executor:
     #   name: node/default
     #   tag: '16'
