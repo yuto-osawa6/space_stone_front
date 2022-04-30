@@ -51,12 +51,12 @@
 
 version: '2.1'
 orbs:
-  node: circleci/node@x.y
+  node: circleci/node@5.0.2
 jobs:
   test:
-    executor:
-      name: node/default
-      tag: '16'
+    # executor:
+    #   name: node/default
+    #   tag: '16'
     steps:
       - checkout
       - node/install-packages:
