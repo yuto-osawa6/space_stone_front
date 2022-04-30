@@ -63,7 +63,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          app-dir: app
+          app-dir: app2
           pkg-manager: yarn
       # - run:
       #     command: yarn run test
