@@ -34,17 +34,17 @@ import Home from '@/pages';
 // )
 // const ReactTestRenderer = require('react-test-renderer');
 
-// describe("Sampleコンポーネント", () => {
-//   beforeAll(() => server.listen());
-//   afterEach(() => server.resetHandlers());
-//   afterAll(() => server.close());
+describe("Sampleコンポーネント", () => {
+  beforeAll(() => server.listen());
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
 
-//   test('main page', async() => {
-//       render(
-//         <Home
+  test('main page', async() => {
+    //   render(
+    //     <Home
         
-//         ></Home>
-//       );
-//     screen.debug();
-//   });
-// });
+    //     ></Home>
+    //   );
+    // screen.debug();
+  });
+});
