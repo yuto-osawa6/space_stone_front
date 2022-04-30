@@ -54,7 +54,7 @@ orbs:
   node: circleci/node@5.0.2
 jobs:
   test:
-    working_directory: /space_stone_front/appoko
+    # working_directory: /space_stone_front/appoko
     # executor:
     #   name: node/default
     #   tag: '16'
@@ -63,6 +63,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
+          app-dir: app
           pkg-manager: yarn
       # - run:
       #     command: yarn run test
