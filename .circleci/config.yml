@@ -31,20 +31,40 @@
 #           requires:
 #             - build
 
+# version: '2.1'
+# orbs:
+#   node: circleci/node@5.0.2
+# jobs:
+#   install-node-example:
+#     docker:
+#       - image: 'cimg/base:stable'
+#     steps:
+#       - checkout
+#       - node/install:
+#           install-yarn: true
+#           node-version: '16.13'
+#       - run: node --version
+# workflows:
+#   test_my_app:
+#     jobs:
+#       - install-node-example
+
 version: '2.1'
 orbs:
-  node: circleci/node@5.0.2
+  node: circleci/node@x.y
 jobs:
-  install-node-example:
-    docker:
-      - image: 'cimg/base:stable'
+  test:
+    executor:
+      name: node/default
+      tag: '16'
     steps:
       - checkout
-      - node/install:
-          install-yarn: true
-          node-version: '16.13'
-      - run: node --version
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn run test
+          name: Run YARN tests
 workflows:
   test_my_app:
     jobs:
-      - install-node-example
+      - test
