@@ -1,10 +1,10 @@
 // import { ShowHeader } from "component/products/show/header/header"
 // import { getCurrentUser } from "lib/api/users"
-import { useUser } from "lib/data/user/useUser"
+import { useUser } from "@/lib/data/user/useUser"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 // import { Outlet } from "react-router-dom"
-import { RootState } from "store"
+import { RootState } from "@/store"
 
 type Props = {
   children: React.ReactNode

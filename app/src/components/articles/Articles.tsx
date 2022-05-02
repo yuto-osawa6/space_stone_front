@@ -9,7 +9,7 @@ import { HiChevronDoubleDown } from "react-icons/hi"
 import { IoSearchCircle } from "react-icons/io5"
 import { useDispatch, useSelector } from "react-redux"
 // import { Outlet } from "react-router-dom"
-import { RootState } from "store"
+import { RootState } from "@/store"
 import { NavigatingLeftArticleDataAction } from "@/store/lefts/article/actions"
 import { ArticlesLists } from "./ArticlesLists"
 

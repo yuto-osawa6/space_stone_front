@@ -5,7 +5,7 @@ import ReactCrop, { Crop } from 'react-image-crop';
 // import ReactCrop from "react-image-crop/dist/ReactCrop";
 import 'react-image-crop/dist/ReactCrop.css';
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 import { updateBacgroundImageAction } from "@/store/user/actions";
 
 type Props = {
@@ -29,7 +29,7 @@ export const UserBackgroupdModal:React.FC<Props> = (Props) => {
   y:0,
   width:0,
   height:0,
-  aspect: 10 / 3
+  // aspect: 10
 });
   const [preview, setPreview] = useState<string>();
   const [newImage,setNewImage] = useState<any>();

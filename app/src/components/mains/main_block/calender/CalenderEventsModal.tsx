@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { RootState } from '@/store';
 import { Modal } from '@mui/material';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { OpenContext } from '@/contexttype/contexttype';

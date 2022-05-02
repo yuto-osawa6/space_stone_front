@@ -1,5 +1,5 @@
 import { Modal } from "@mui/material"
-import { Article } from "interfaces/article"
+import { Article } from "@/interfaces/article"
 import { execAcsessArticleCountHandler, execArticleArticleAssosiationsHandler, execArticleShowHandler } from "@/lib/api/article"
 import { useEffect, useMemo, useState } from "react"
 // import ReactQuill from "react-quill"

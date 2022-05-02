@@ -1,4 +1,5 @@
-import { product } from "vinterfaces/product";
+// import { product } from "vinterfaces/product";
+import { product } from "@/interfaces/product";
 import { execToptenAcsessAll, execToptenLikeAll } from "@/lib/api/mains/toptens";
 import { useEffect, useState } from "react";
 import { ToptensList2 } from "../item/ToptensList2";
