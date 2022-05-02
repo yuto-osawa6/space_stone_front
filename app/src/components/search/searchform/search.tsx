@@ -46,7 +46,7 @@ type Studios = {
 }
 
 
-const Search:React.FC = ()=> {
+const Search:React.FC = function SearchFunc(){
   // 
 
   const [data, setData] = useState<SearchData>(initialData);

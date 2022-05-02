@@ -7,7 +7,7 @@ import { deletingtodoKisetsuDataAllAction } from "@/store/kisetsu/actions";
 import { SeasonItem } from "./SeasonItem";
 
 
-export const SeasonLists:React.FC = () =>{
+export const SeasonLists:React.FC = function SeasonListsFunc(){
   const KisetsuStore = useSelector((state: RootState) => state.kisetsu);
   const season = [{id:2,name:"春"},{id:3,name:"夏"},{id:4,name:"秋"},{id:5,name:"冬"},{id:6,name:"不定期"}]
   const dispatch = useDispatch();

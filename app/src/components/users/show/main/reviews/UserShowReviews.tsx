@@ -26,7 +26,7 @@ type Props = {
   // children:ReactNode
 }
 
-export const UserShowReviews:React.FC<Props> = (Props) => {
+export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Props){
   const [emotions,setEmotions] = useState<emotion[]>([])
   const [emotion,setEmotion] = useState<emotion>()
   const handlerOne = async() => {

@@ -13,7 +13,7 @@ type Review = {
   id: number
   productId:number
 }
-export const ProductReviewsItems:React.FC<Props> = (Props) => {
+export const ProductReviewsItems:React.FC<Props> = function ProductReviewsItemsFunc(Props){
   const router = useRouter()
 
   const handleNavigate = () => {

@@ -14,7 +14,7 @@ type Props = {
   alice?: boolean
 }
 
-export const ShowCloudsItems2:React.FC<Props> = (Props) => {
+export const ShowCloudsItems2:React.FC<Props> = function ShowCloudsItems2Func(Props){
 
   const [content,setContent] = useState<string>("")
   const firstReadMoreHandler = () => {

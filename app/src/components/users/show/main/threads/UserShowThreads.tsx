@@ -12,7 +12,7 @@ import { IoSearchCircle } from "react-icons/io5"
 import { UserShowReviewsItem } from "../reviews/UserShowReviewsItem"
 import { UserShowThreadItem } from "./UserShowThreadItem"
 
-export const UserShowThreads:React.FC = () => {
+export const UserShowThreads:React.FC = function UserShowThreadsFunc(){
  // context
  const {user} = useContext(UserShowContext)
 

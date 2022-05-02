@@ -13,7 +13,7 @@ import { ErrorMessage } from '@/lib/ini/message';
 import { mutate } from 'swr';
 
 
-export const UsersSign:React.FC = () =>{
+export const UsersSign:React.FC = function UsersSignFunc(){
   const key = process.env.NEXT_PUBLIC_GOOGLE_KEY
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();

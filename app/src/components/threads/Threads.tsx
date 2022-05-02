@@ -18,7 +18,7 @@ import { ThreadsLists } from "./ThreadsLists"
 type Props = {
   children:React.ReactNode
 }
-export const Threads:React.FC<Props> = (Props) => {
+export const Threads:React.FC<Props> = function ThreadsFunc(Props){
   const LeftThreadStore = useSelector((state:RootState)=>state.leftThread)
   const array:number[] = [1,2,3,4,5,6,7,8,9,0]
   const [page,SetPage] = useState<number>(1)

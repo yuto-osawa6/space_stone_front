@@ -87,7 +87,7 @@ const ini:s= [
 
 
 
-export const SortLists:React.FC = () => {
+export const SortLists:React.FC = function SortListsFunc(){
   const [sort,setSort] = useState<string>("アクセス")
   const sortstore = useSelector((state: RootState) => state.sort);
 

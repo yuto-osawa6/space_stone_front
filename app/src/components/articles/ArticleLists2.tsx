@@ -9,7 +9,7 @@ type Props = {
   id :number
   article:Article
 }
-export const ArticlesLists2:React.FC<Props> = memo((Props) => {
+export const ArticlesLists2:React.FC<Props> = memo(function ArticlesLists2Func(Props){
   const [colornumber,setColornumber ]= useState<number>(0)
 
   useEffect(()=>{

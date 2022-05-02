@@ -16,7 +16,7 @@ interface Props {
   children:ReactChild
 }
 
-export const SeasonSearch:React.FC = () =>{
+export const SeasonSearch:React.FC = function SeasonSearchFunc(){
 
   const ref = useRef<HTMLDivElement>(null!);
 

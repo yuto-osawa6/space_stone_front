@@ -105,7 +105,7 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
           {/* <p>{Props.rank}</p> */}
         </div>
         <div className = "ToptensContainerGridListImage">
-          <img src={Props.product.imageUrl}></img>
+          <img src={Props.product.imageUrl} alt=""></img>
         </div>
         <div className = "ToptensContainerGridListBox1">
           <div className = "ToptensContainerGridListTitle">

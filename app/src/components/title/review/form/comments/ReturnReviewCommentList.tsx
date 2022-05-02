@@ -57,7 +57,7 @@ const ini:like_return_comment = {
   goodbad:0
 }
 
-export const ReturnReviewCommentList:React.FC<Props> = (Props) => {
+export const ReturnReviewCommentList:React.FC<Props> = function ReturnReviewCommentListFunc(Props){
   // console.log(Props)
   // const user = useSelector((state:RootState) => state.user)
   const {userSwr} = useUser()

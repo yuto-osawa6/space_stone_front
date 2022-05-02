@@ -8,7 +8,7 @@
 // // import { AllDeleteSubClassAction, DeilyEndQteQAction, DeilyStartQteQAction, SubNewSearchAction, SubPickupSearchAction, SubPrivateSearchAction } from "store/subsearches/actions"
 // import { SettingYearSearchAction } from "store/year/actions"
 
-export const SubSearches:React.FC = () =>{
+export const SubSearches:React.FC = function SubSearchesFunc(){
   return(<>
   </>
   )

@@ -19,7 +19,7 @@ interface Props {
 }
 
 
-export const SeasonItem:React.FC<Props> = (Props) =>{
+export const SeasonItem:React.FC<Props> = function SeasonItemFunc(Props){
   const [ontime,Setonime] = useState<boolean>(Props.select)
 
   const stylesselected = useSelector((state: RootState) => state.todostyles);

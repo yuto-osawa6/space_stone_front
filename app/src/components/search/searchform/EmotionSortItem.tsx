@@ -27,7 +27,7 @@ type emotion = {
   emotion:string
 }
 
-export const EmotionSortItem:React.FC<Props> = (Props) => {
+export const EmotionSortItem:React.FC<Props> = function EmotionSortItemFunc(Props){
   // const [sort,setSort] = useState<sort>()
   // const sortstore = useSelector((state: RootState) => state.sort);
 

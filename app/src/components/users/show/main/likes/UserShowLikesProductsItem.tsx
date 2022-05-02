@@ -8,7 +8,7 @@ type Props = {
   product : product
 }
 
-export const UserShowLikesProductsItem:React.FC<Props> = (Props) => {
+export const UserShowLikesProductsItem:React.FC<Props> = function UserShowLikesProductsItemFunc(Props){
 
   // const navigate = useNavigate()
   const router = useRouter()

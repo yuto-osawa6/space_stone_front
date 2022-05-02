@@ -12,7 +12,7 @@ type Props = {
   id :number
   review:review
 }
-export const ThreadsLists:React.FC<Props> = memo((Props) => {
+export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props){
   const router = useRouter()
   const [colornumber,setColornumber ]= useState<number>(0)
 

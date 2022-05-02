@@ -32,7 +32,7 @@ type Props = {
 }
 
 
-export const ReviewComment:React.FC<Props> = (Props) => {
+export const ReviewComment:React.FC<Props> = function ReviewCommentFunc(Props){
   const imageHandlerLink = () => {
     var range = quillref.current.getEditor().getSelection();
     if (range==null)return 

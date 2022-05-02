@@ -19,7 +19,7 @@ type episords = {
   title: string
   releaseDate:string
 }
-export const WeeklyRankingMainItems:React.FC<Props> = (Props) => {
+export const WeeklyRankingMainItems:React.FC<Props> = function WeeklyRankingMainItemsFunc(Props){
 
   const [count,setCount] = useState<number>(0)
   const [persent,setPersent] = useState<string>("calc(100% - 0%)")

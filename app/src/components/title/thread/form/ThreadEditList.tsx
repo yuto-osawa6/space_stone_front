@@ -13,7 +13,7 @@ type Props = {
   setProduct: React.Dispatch<React.SetStateAction<product | undefined>>
   handleCloseAll: () => void
 }
-export const ThreadEditList:React.FC<Props> = (Props) => {
+export const ThreadEditList:React.FC<Props> = function ThreadEditListFunc(Props){
   const[open,setOpen] = useState<boolean>(false)
   const[open2,setOpen2] = useState<boolean>(false)
 

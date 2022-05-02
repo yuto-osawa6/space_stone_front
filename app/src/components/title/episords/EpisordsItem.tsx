@@ -39,7 +39,7 @@ type Props = {
   params_id: string | undefined
   userEmotion: userReview
 }
-export const EpisordsItem:React.FC<Props> = (Props) => {
+export const EpisordsItem:React.FC<Props> = function EpisordsItemFunc(Props){
   const[emotionListLength,setEmotionListLength] = useState<number>(0)
   const[emotions,setEmotions] = useState<emotions[]>([])
   const [count,setCount] = useState<number>(0)

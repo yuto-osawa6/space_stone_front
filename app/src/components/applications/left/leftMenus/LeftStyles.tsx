@@ -17,7 +17,7 @@ type Props =  {
   count:number
 }
 
-const LeftStyle: React.FC<Props> = ({name,count,id}) =>{
+const LeftStyle: React.FC<Props> = function LeftStyleFUnc({name,count,id}){
   const dispatch = useDispatch()
   const router = useRouter()
   const clickHandler = (e:React.MouseEvent<HTMLLIElement>) => {

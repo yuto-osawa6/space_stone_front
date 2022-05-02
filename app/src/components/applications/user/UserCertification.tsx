@@ -19,7 +19,7 @@ import { SettingUserModal } from "./setting/SettingUserModal";
 import { getCurrentUserMock } from "@/mocks/api/user/signin";
 
 
-export const UserCertification:React.FC = () => {
+export const UserCertification:React.FC = function UserCertification(){
   // const user = useSelector((state: RootState) => state.user);
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);

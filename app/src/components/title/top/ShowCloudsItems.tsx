@@ -15,7 +15,7 @@ type Props = {
   
 }
 
-export const ShowCloudsItems:React.FC<Props> = (Props) => {
+export const ShowCloudsItems:React.FC<Props> = function ShowCloudsItemsFunc(Props){
   const router = useRouter()
 
   const [content,setContent] = useState<string>("")

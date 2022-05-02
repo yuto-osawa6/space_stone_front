@@ -14,7 +14,7 @@ type Props = {
   setOn:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const UserBackgroupdModal:React.FC<Props> = (Props) => {
+export const UserBackgroupdModal:React.FC<Props> = function UserBackgroupdModalFunc(Props){
   // dispatch
   const dispatch = useDispatch()
   // const UserStore = useSelector((state:RootState)=>state.user)

@@ -17,7 +17,7 @@ type Props = {
   // doneyet-1-next 再レンダー問題、reduxでlocationの管理をするかどうか
 }
 
-const Lefts:React.FC<Props> = (Props) =>{
+const Lefts:React.FC<Props> = function LeftsFunc(Props){
 const dispatch = useDispatch();
 const {data,error} = execLeft()
 

@@ -18,7 +18,7 @@ type Props = {
   children : ReactNode
 }
 
-export const  UsersShow:React.FC<Props> = (Props) => {
+export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
   // const params = useParams()
   // const outlet = useOutlet()
   const router = useRouter()

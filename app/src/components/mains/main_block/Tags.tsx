@@ -8,7 +8,7 @@ type Props = {
 tags:tags[]
 tagsTop100:tags[]
 }
-export const Tags:React.FC<Props> = (Props) => {
+export const Tags:React.FC<Props> = function TagsFunc(Props){
   console.log(Props)
 
   return(

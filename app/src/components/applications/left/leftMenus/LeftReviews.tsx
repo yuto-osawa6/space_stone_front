@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
 import { NavigatingLeftReviewDataAction } from "@/store/lefts/review/actions"
 
-export const LeftsReviews:React.FC = () => {
+export const LeftsReviews:React.FC = function LeftsReviewsFunc(){
   const dispatch = useDispatch()
   const router = useRouter()
 

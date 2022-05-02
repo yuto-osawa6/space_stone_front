@@ -53,7 +53,7 @@ const modules = {
     // ["clean"],
   ], 
 }
-export const ReviewCommentList:React.FC<Props> = (Props) => {
+export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(Props){
   // store
   // const user = useSelector((state:RootState) => state.user)
   const {userSwr} = useUser()

@@ -28,7 +28,7 @@ type Props = {
   setUserScore: React.Dispatch<React.SetStateAction<productScores | undefined>>
 }
 
-export const ScoreModal2:React.FC<Props> = (Props) => {
+export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
   const {stats,setStats} = useContext(OpenScoreContext)
   const [value,setValue] = useState<number>(50)
   const [value2,setValue2] = useState<number | null | undefined>(Props.userScore?.all)

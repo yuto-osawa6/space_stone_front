@@ -15,7 +15,7 @@ import { UserCertification } from "../user/UserCertification";
 type Props = {
   locationNumber: number | undefined
 }
-export const Header:React.FC<Props> = (Props) => {
+export const Header:React.FC<Props> = function HeaderFunc(Props){
   // const navigate = useNavigate()
   // const location = useLocation()
   // useScrollPosition

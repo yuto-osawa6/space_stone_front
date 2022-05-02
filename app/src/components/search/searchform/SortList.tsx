@@ -20,7 +20,7 @@ interface Props {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const SortList:React.FC<Props> = (Props) => {
+export const SortList:React.FC<Props> = function SortListFunc(Props){
   // const [sort,setSort] = useState<sort>()
   // const sortstore = useSelector((state: RootState) => state.sort);
 

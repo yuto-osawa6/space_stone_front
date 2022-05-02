@@ -7,7 +7,7 @@ import { GridNewMessage } from "./newmessage/GridNewMessage";
 type Props = {
   // news : news[]
 }
-export const NewMessage:React.FC<Props> = memo((Props) => {
+export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
   let isMounted2 = true;
   const [active, setActive] = useState<number>(0);
   const [page,SetPage] = useState<number>(1)

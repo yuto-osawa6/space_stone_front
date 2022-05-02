@@ -18,7 +18,7 @@ type Props = {
 type avgScore = {
   [k:number]:string
 }
-export const CalendarProduct:React.FC<Props> = (Props) => {
+export const CalendarProduct:React.FC<Props> = function CalendarProductFunc(Props){
   const[startProduct,setStartProduct] = useState<product[]>()
   const[product,setProduct] = useState<product>()
   const[productEpisord,setProductEpisord] = useState<product[]>()

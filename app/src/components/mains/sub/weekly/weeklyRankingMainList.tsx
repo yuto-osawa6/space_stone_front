@@ -11,7 +11,7 @@ type weekly = {
   week:string
   products:product[]
 }
-export const WeekliyRankingsMainList:React.FC<Props> = (Props) => {
+export const WeekliyRankingsMainList:React.FC<Props> = function  WeekliyRankingsMainListFunc(Props){
   // console.log(Props)
   const [from,setFrom] = useState<string>("")
   const [to,setTo] = useState<string>("")

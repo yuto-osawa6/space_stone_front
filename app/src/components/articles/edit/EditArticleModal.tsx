@@ -16,7 +16,7 @@ type Props = {
   setOpen:React.Dispatch<React.SetStateAction<boolean>>
   article: Article | undefined
 }
-export const EditArticleModal:React.FC<Props> = (Props) => {
+export const EditArticleModal:React.FC<Props> = function EditArticleModalFunc(Props){
   const handleClose = () => Props.setOpen(false)
   // ----------------------------------------------
   const userStore = useSelector((state:RootState) => state.user)

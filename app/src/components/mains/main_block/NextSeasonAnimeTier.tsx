@@ -43,7 +43,7 @@ type avgScore = {
 type tierData = {
 
 }
-export const NextSeasonAnimeTier:React.FC<Props> = (Props) => {
+export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierFunc(Props){
   // const {data} = useThisSeasonTier()
   const {data} = execGetNextSeasonTier()
   // const {data} = useNextSeasonTier()

@@ -3,7 +3,7 @@ import {  products_reds } from "@/lib/api/products_red"
 import { useEffect, useState } from "react"
 
 
-export const Ota2:React.FC = () => {
+export const Ota2:React.FC = function Ota2Func(){
   const [products,setProducts] = useState<product[]>()
   const [message,setMessage] = useState<string>("")
   const [count,setCount] = useState<number>(0)

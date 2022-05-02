@@ -22,7 +22,7 @@ type Props = {
   product: product | undefined
   handleCloseAll: () => void
 }
-export const DeleteThreadModal2:React.FC<Props> = (Props) => {
+export const DeleteThreadModal2:React.FC<Props> = function DeleteThreadModal2Func(Props){
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   const dispatch = useDispatch()
   const handleClose = () => Props.setOpen(false)

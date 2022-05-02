@@ -22,7 +22,7 @@ type Props = {
   setOn:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const UserOverviewModal:React.FC<Props> = (Props) => {
+export const UserOverviewModal:React.FC<Props> = function UserOverviewModal(Props){
   const dispatch = useDispatch()
   // 
   const closeHandler = () => Props.setOn(false)

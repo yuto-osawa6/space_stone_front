@@ -41,7 +41,7 @@ type yearTier = {
 }
 
 
-export const UserShowMyTiers:React.FC = () => {
+export const UserShowMyTiers:React.FC = function UserShowMyTiersFunc(){
   const [updateTier,setUpdateTier] = useState<boolean>(false)
   const {user} = useContext(UserShowContext)
   const [yearTiers,setYearTiers] = useState<yearTier[]>([])

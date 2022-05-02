@@ -102,7 +102,7 @@ type selectOption = {
   label: string;
 }
 // -------------------------------------------------------------------------------------------------------------
-export const EditReviewModal:React.FC<Props> = (Props) => {
+export const EditReviewModal:React.FC<Props> = function EditReviewModalFunc(Props){
 
   const imageHandlerLink = () => {
     var range = quillref.current.getEditor().getSelection();

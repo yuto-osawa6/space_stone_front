@@ -15,7 +15,7 @@ type Props = {
   product:product
 }
 
-export const TierProductList:React.FC<Props> = (Props) => {
+export const TierProductList:React.FC<Props> = function TierProductListFunc(Props){
   // const navigate = useNavigate()
   // console.log(Props)
   const dispatch = useDispatch()

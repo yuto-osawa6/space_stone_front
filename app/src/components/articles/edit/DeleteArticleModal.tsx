@@ -14,7 +14,7 @@ type Props = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   article:Article | undefined
 }
-export const DeleteArticleModal:React.FC<Props> = (Props) => {
+export const DeleteArticleModal:React.FC<Props> = function DeleteArticleModalFunc(Props){
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   const dispatch = useDispatch()
   const handleClose = () => Props.setOpen(false)

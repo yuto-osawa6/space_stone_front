@@ -10,7 +10,7 @@ type timeRange = {
   to:string
 }
 
-export const WeeklyRanking:React.FC = memo(() => {
+export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
   const [products,setProducts] = useState<product[]>([])
   const [timeRange,setTimeRange] = useState<timeRange>({
     from:"",

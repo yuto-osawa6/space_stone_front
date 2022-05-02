@@ -33,7 +33,7 @@ type yearTier = {
   products: product[]
   year: year
 }
-export const TierSeasonMain:React.FC = () => {
+export const TierSeasonMain:React.FC = function TierSeasonMainFunc(){
   const [updateTier,setUpdateTier] = useState<boolean>(false)
   const [yearTiers,setYearTiers] = useState<yearTier[]>([])
   const handleFirst = async() => {

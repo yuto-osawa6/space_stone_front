@@ -5,7 +5,7 @@ type Props = {
   title:string
 }
 
-export const ToptensParent1:React.FC<Props> = (Props) => {
+export const ToptensParent1:React.FC<Props> = function ToptensParent1Func(Props){
   return(
     <>
      <div className = "Toptens">

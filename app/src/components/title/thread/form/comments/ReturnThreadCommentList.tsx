@@ -56,7 +56,7 @@ const ini:like_return_comment = {
   goodbad:0
 }
 
-export const ReturnThreadCommentList:React.FC<Props> = (Props) => {
+export const ReturnThreadCommentList:React.FC<Props> = function ReturnThreadCommentListFunc(Props){
   // console.log(Props)
   // const user = useSelector((state:RootState) => state.user)
   const {userSwr} = useUser()

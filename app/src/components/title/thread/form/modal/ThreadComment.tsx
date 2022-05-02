@@ -33,7 +33,7 @@ type Props = {
 }
 
 
-export const ThreadComment:React.FC<Props> = (Props) => {
+export const ThreadComment:React.FC<Props> = function ThreadCommentFunc(Props){
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   // validation
   const [validatetext,setValidatetext] = useState<string>("")

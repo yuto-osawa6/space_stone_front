@@ -49,7 +49,7 @@ type tierProduct = {
 }
 
 
-export const UserShowOverview:React.FC=()=>{
+export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
   // const LoginUserStore = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser()
   const LoginUserStore = userSwr

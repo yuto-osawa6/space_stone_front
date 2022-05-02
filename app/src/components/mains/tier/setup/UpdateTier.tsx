@@ -55,7 +55,7 @@ type UserTier = {
   userId: number
 }
 
-export const UpdateTier:React.FC<Props> = (Props) => {
+export const UpdateTier:React.FC<Props> = function UpdateTierFunc(Props){
   const [firstProduct,setFirstProduct] = useState<product[]>([])
   // const user = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser()

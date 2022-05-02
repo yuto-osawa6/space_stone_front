@@ -98,7 +98,7 @@ type selectOption = {
   label: string;
 }
 
-export const ReviewModal:React.FC<Props> = (Props) => {
+export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
 
   const imageHandlerLink = () => {
     var range = quillref.current.getEditor().getSelection();

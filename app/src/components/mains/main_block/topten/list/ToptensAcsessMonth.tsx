@@ -9,7 +9,7 @@ type scoreAvg = {
   [k:number]:string
 }
 
-export const ToptensAcsessMonth:React.FC = () => {
+export const ToptensAcsessMonth:React.FC = function  ToptensAcsessMonthFunc(){
   const [LikeToptensAll,setLikeToptensAll] = useState<product[]>([]);
   const [averageScore,setAverageScore] = useState<scoreAvg>()
   const [likeMonth,setLikeMonth] = useState<scoreAvg>()

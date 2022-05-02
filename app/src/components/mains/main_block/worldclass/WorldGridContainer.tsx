@@ -8,7 +8,7 @@ type Props = {
   product :product
 }
 
-export const WorldGridContainer:React.FC<Props> = memo((Props) => {
+export const WorldGridContainer:React.FC<Props> = memo(function WorldGridContainerFunc(Props){
 
   const nodeRef = useRef(null)
   const [imageloding,setImageLoding] = useState<boolean>(false)

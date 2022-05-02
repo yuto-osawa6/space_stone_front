@@ -33,7 +33,7 @@ type emotion = {
   emotion:string
 }
 
-export const EditReviewModal2:React.FC<Props> = (Props) => {
+export const EditReviewModal2:React.FC<Props> = function EditReviewModal2Func(Props){
   const [emotionsList,setEmotionsList] = useState<emotion[]>([])
   const handleFirst = async() => {
     const res = await execGetEmotionList()

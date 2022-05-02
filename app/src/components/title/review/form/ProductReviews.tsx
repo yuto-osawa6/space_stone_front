@@ -38,7 +38,7 @@ const ini:like_review = {
   userId:0
 }
 
-export const ProductReviews:React.FC = () => {
+export const ProductReviews:React.FC = function ProductReviewsFunc(){
   const dispatch = useDispatch()
   const modules = {
     toolbar: [

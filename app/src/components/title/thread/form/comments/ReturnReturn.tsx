@@ -26,7 +26,7 @@ type Props = {
   comment_review_id:number
   setUpdateJudge?: (() => Promise<void>) | undefined
 }
-export const ReturnReturn:React.FC<Props> = (Props) => {
+export const ReturnReturn:React.FC<Props> = function ReturnReturnFunc(Props){
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   const [validatetext,setValidatetext] = useState<string>("")
   const {openReviewComment, setOpenReviewComment} = useContext(OpenReviewCommentContext)

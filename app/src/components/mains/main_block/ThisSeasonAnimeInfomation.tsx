@@ -50,7 +50,7 @@ type Props = {
   currentSeason: string
 }
 
-export const ThisSeasonAnimeInfomation:React.FC<Props> = memo((Props) => {
+export const ThisSeasonAnimeInfomation:React.FC<Props> = memo(function ThisSeasonAnimeInfomationFunc(Props){
   const ref = useRef<HTMLDivElement>(null!)
   const [products, setProducts] = useState<product[]>()
   const [currentSeason,setCurrentSeason] = useState<string>("")

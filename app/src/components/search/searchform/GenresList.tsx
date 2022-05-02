@@ -22,7 +22,7 @@ interface Props {
 
 
 
-export const GenresList:React.FC<Props>= (Props) =>{
+export const GenresList:React.FC<Props>= function GenresListFunc(Props){
   // const [data, Setdata] = useState<Props>(Props);
   const [ontime,Setonime] = useState<boolean>(Props.select)
   // const todogenres = useSelector((state: RootState) => state.todogenres);

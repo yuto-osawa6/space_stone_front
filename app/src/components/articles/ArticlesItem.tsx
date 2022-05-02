@@ -16,7 +16,7 @@ const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
 
-export const ArticlesItem:React.FC = () => {
+export const ArticlesItem:React.FC = function  ArticlesItemFunc(){
   const modules =  useMemo(() => (
     {
     toolbar:{ 

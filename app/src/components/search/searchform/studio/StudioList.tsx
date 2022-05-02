@@ -17,7 +17,7 @@ interface Studios{
   company:string
 }
 
-export const StudioList:React.FC<Props> = (Props) => {
+export const StudioList:React.FC<Props> = function StudioListFunc(Props){
   // state
   const [Select,SetSelect] = useState<boolean>(Props.select)
   const dispatch = useDispatch()

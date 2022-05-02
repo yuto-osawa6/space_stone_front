@@ -12,7 +12,7 @@ type emotions = {
   emotion:string
 }
 
-export const UserShowOverviewEmotion:React.FC<Props> = (Props) => {
+export const UserShowOverviewEmotion:React.FC<Props> = function UserShowOverviewEmotionFunc(Props){
   const handleSetup = () => {
   }
   const [emotionColor,setEmotionColor] = useState<string>("")

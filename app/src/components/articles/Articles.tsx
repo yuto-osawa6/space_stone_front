@@ -13,7 +13,7 @@ import { RootState } from "@/store"
 import { NavigatingLeftArticleDataAction } from "@/store/lefts/article/actions"
 import { ArticlesLists } from "./ArticlesLists"
 
-export const Articles:React.FC = () => {
+export const Articles:React.FC = function ArticlesFunc(){
   const LeftArtocleStore = useSelector((state:RootState)=>state.leftArticle)
   const array:number[] = [1,2,3,4,5,6,7,8,9,0]
   const [page,SetPage] = useState<number>(1)

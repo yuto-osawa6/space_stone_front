@@ -31,7 +31,7 @@ type Group = {
   group:string
   // tier:string
 }
-export const UserTierList:React.FC<Props> = (Props) => {
+export const UserTierList:React.FC<Props> = function UserTierListFunc(Props){
   console.log(Props)
 
   const [length,setLength] = useState<number>(0)

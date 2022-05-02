@@ -17,7 +17,7 @@ type score = {
   value: number
   story: number
 }
-export const UserShowScoresProducts:React.FC = () => {
+export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFunc(){
   // context
   const {user} = useContext(UserShowContext)
   // state

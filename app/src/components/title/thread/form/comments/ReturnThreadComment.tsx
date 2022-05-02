@@ -32,7 +32,7 @@ type Props = {
   setUpdateJudge?: () => Promise<void>
 }
 
-export const ReturnThreadComment:React.FC<Props> = (Props) => {
+export const ReturnThreadComment:React.FC<Props> = function ReturnThreadCommentFunc(Props){
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   // validation
   const [validatetext,setValidatetext] = useState<string>("")

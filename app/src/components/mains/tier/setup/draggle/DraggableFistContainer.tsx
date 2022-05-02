@@ -9,7 +9,7 @@ type Props = {
   group:number
 }
 
-export const DraggableFistContainer:React.FC<Props> = memo((Props) => {
+export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFistContainerFunc(Props){
   const [{ handlerId2,isDragging }, drag] = useDrag({
     type: ItemType.Box,
     item:{ 

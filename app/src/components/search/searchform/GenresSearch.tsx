@@ -16,7 +16,7 @@ interface genresdata{
   name:string
 }
 
-export const GenresSearch:React.FC= () =>{
+export const GenresSearch:React.FC= function GenresSearchFunc(){
 
   const [searchinput,Setserachinput] = useState<string>("")
   const [show, setShow] = useState(true);

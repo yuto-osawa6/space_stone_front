@@ -16,7 +16,7 @@ import { DestroyYearSearchAction, SettingYearSearchAction } from "@/store/year/a
 type Props = {
   tag : tags
 }
-export const TagsGrid:React.FC<Props> = (Props) => {
+export const TagsGrid:React.FC<Props> = function TagsGridFunc(Props){
   // const navigate = useNavigate()
   const dispatch = useDispatch()
   const navigateYearHandler = () => {

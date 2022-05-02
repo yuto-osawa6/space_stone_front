@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { UserBackgroupdModal } from "./UserBackgroundModal"
 
-export const UserBackgroupdSetUp:React.FC = () => {
+export const UserBackgroupdSetUp:React.FC = function UserBackgroupdSetUpFunc(){
   const [on,setOn] = useState<boolean>(false)
   // symple handler
   const changeOnHandler = () => setOn(true)

@@ -8,7 +8,7 @@ import { GridAction } from "@/store/grid/actions";
 import { sortAction } from "@/store/sort/actions";
 
 
-export const GridStyles:React.FC = () => {
+export const GridStyles:React.FC = function GridStylesFunc(){
   const g = useSelector((state: RootState) => state.grid);
   const [grid,setGrid] = useState<string>(g.grid)
 

@@ -21,7 +21,7 @@ type Group = {
   products:product[]
   group:number
 }
-export const TierGroupList: React.FC<Props> = memo((Props) => {
+export const TierGroupList: React.FC<Props> = memo(function TierGroupListFunc(Props){
   const [{isOver,isOverCurrent,canDrop}, ref] = useDrop({
     accept: ItemType.Box,
     drop(dragItem: DragItem) {

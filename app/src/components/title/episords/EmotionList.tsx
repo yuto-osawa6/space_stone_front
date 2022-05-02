@@ -12,7 +12,7 @@ type Props = {
   emotionAllLength: number
 }
 
-export const EmotionList:React.FC<Props> = (Props) => {
+export const EmotionList:React.FC<Props> = function EmotionListFunc(Props){
 
   const [emotionColor,setEmotionColor] = useState<string>("")
   useEffect(()=>{

@@ -9,7 +9,7 @@ type Props = {
   user_id:number
 }
 
-export const ScoreModal:React.FC<Props> = (Props) => {
+export const ScoreModal:React.FC<Props> = function ScoreModalFunc(Props){
   const {openscore, setOpenscore} = useContext(OpenScoreContext)
   const {score,setScore} = useContext(OpenScoreContext)
   const {scoreid,setScoreid} = useContext(OpenScoreContext)

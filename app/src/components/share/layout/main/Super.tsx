@@ -7,7 +7,7 @@ type Props = {
   locationNumber?: number | undefined
 }
 
-export const Super:React.FC<Props> = (Props) => {
+export const Super:React.FC<Props> = function SuperFunc(Props){
 
   return(
       <SuperDiv>

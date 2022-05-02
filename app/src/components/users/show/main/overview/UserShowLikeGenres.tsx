@@ -4,7 +4,7 @@ type Props = {
   genre : genre
 }
 
-export const UserShowLikeGenres:React.FC<Props> = (Props) => {
+export const UserShowLikeGenres:React.FC<Props> = function UserShowLikeGenresFunc(Props){
 
   return(
     <>

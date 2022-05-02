@@ -15,7 +15,7 @@ interface Studios{
   company:string
 }
 
-export const StudioSearch:React.FC= () =>{
+export const StudioSearch:React.FC= function StudioSearchFunc(){
 
   const [searchinput,Setserachinput] = useState<string>("")
   const [ishover, setIshover] = useState(false);

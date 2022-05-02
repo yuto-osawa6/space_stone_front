@@ -11,7 +11,7 @@ type Props = {
   select:boolean
 }
 
-export const CastList:React.FC<Props> = (Props) => {
+export const CastList:React.FC<Props> = function CastListFunc(Props){
   // state
   const [Select,SetSelect] = useState<boolean>(Props.select)
   const dispatch = useDispatch()

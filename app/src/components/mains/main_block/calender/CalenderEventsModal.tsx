@@ -19,7 +19,7 @@ type Color = {
   backgroundColor:string
 }
 
-export const CalendarEventsModal:React.FC<Props> = (Props) =>{
+export const CalendarEventsModal:React.FC<Props> = function CalendarEventsModalFunc(Props){
   const modules = useMemo(()=>({
     toolbar:{ 
       container:[

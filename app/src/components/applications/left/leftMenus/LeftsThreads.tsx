@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
 import { NavigatingLeftThreadDataAction } from "@/store/lefts/thread/actions"
 
-export const LeftsThreads:React.FC = () => {
+export const LeftsThreads:React.FC = function LeftsThreadsFunc(){
   const dispatch = useDispatch()
   const router = useRouter()
   const handleOpen = () => {

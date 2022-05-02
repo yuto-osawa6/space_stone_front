@@ -31,7 +31,7 @@ interface genresdata2{
 //   name:"a"]
 // }
 
-export const GenresLists:React.FC<Props>= (Props) =>{
+export const GenresLists:React.FC<Props>= function GenresListsFunc(Props){
   // console.log(Props.genresdata)
   // console.log(Props)
   // console.log(hand)

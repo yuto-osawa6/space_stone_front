@@ -13,7 +13,7 @@ type chatList = {
   user_id: number
 }
 
-export const ChatModalListItems:React.FC<Props> = (Props) => {
+export const ChatModalListItems:React.FC<Props> = function ChatModalListItemsFunc(Props){
   // const user = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser() 
   return(

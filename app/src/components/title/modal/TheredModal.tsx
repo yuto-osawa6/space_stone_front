@@ -51,7 +51,7 @@ type Props = {
   setProductThreads: React.Dispatch<React.SetStateAction<productThreads[]>>
 }
 
-export const TheredModal:React.FC<Props> = (Props) => {
+export const TheredModal:React.FC<Props> = function TheredModalFunc(Props){
   const {openthered, setOpenthered} = useContext(OpenTheredContext)
   const handleClose = () => setOpenthered(false)
 

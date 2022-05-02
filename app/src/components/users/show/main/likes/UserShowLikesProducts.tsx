@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { UserShowLikesGenres } from "./UserShowLikesGenres"
 import { UserShowLikesProductsItem } from "./UserShowLikesProductsItem"
 
-export const UserShowLikesProducts:React.FC = () => {
+export const UserShowLikesProducts:React.FC = function UserShowLikesProductsFunc(){
   // context
   const {user} = useContext(UserShowContext)
   // state
