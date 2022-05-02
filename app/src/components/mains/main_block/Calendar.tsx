@@ -1,4 +1,5 @@
-import FullCalendar, { EventClickArg } from "@fullcalendar/react";
+import Calendar from '@fullcalendar/react'
+import FullCalendar,{ EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; // pluginは、あとから
 import { product } from "@/interfaces/product";
 import { OpenContext } from "@/contexttype/contexttype";
@@ -7,6 +8,11 @@ import { useEffect, useState } from "react";
 import listPlugin from '@fullcalendar/list';
 import { execCalendarHandler } from "@/lib/api/mains/main_blocks";
 import { CalendarEventsModal } from "./calender/CalenderEventsModal";
+
+
+
+// const FullCalendar = dynamic(() => import("@fullcalendar/react"), { ssr: false });
+
 
 type Props = {
   calendarData: {
@@ -101,15 +107,21 @@ export const CalendarProduct:React.FC<Props> = function CalendarProductFunc(Prop
       headerToolbar={{
         end: 'today dayGridMonth,dayGridWeek,listWeek,prev,next',
       }}
+      // nowIndicator={true}
+      // editable={true}
       initialView="listWeek" 
       locale="ja"
-      // timeZone= 'Asia/Tokyo'
       events={array}
       dayMaxEvents={true}
       validRange={{start:`${year2}-${("0"+(month2)).slice( -2 )}-01`,end:`${year1}-${("0"+(month1)).slice( -2 )}-01`}}
       // eventMouseEnter={mouseEnterHandler}
       eventClick={handleEvent}
       />
+      {/* <Calendar
+        plugins={[dayGridPlugin]}
+        locale="ja"
+        initialEvents={[{ title: 'initial event', start: new Date() }]}
+      /> */}
       </div>
       </div>
       {open&&product!=undefined&&(
