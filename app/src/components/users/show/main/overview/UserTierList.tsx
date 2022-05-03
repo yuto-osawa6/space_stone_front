@@ -91,9 +91,10 @@ export const UserTierList:React.FC<Props> = function UserTierListFunc(Props){
       // marginBottom: "30px"
     }}
     >
-      {tierProductGroup.map((item)=>{
+      {tierProductGroup.map((item,index)=>{
         return(
           <ThisMonthTierList
+            key={index}
             group={item.group}
             products={item.products}
           />

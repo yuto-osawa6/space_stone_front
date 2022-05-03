@@ -1,7 +1,7 @@
 import { UserModalSign } from "@/components/applications/user/UserModalSign"
 import { OpenContext } from "@/contexttype/contexttype"
 import { product } from "@/interfaces/product"
-import { execGetNextSeasonTier, execGetThisSeasonTier, execGetUserTier, execGetUserTier2 } from "@/lib/api/mains/tier/tier"
+import { useExecGetNextSeasonTier, useExecGetThisSeasonTier, useExecGetUserTier, useExecGetUserTier2 } from "@/lib/api/mains/tier/tier"
 import { useNextSeasonTier, useThisSeasonTier } from "@/lib/data/tier/thisSeasonTier"
 import { useUser } from "@/lib/data/user/useUser"
 import { useEffect, useState } from "react"
@@ -45,7 +45,7 @@ type tierData = {
 }
 export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierFunc(Props){
   // const {data} = useThisSeasonTier()
-  const {data} = execGetNextSeasonTier()
+  const {data} = useExecGetNextSeasonTier()
   // const {data} = useNextSeasonTier()
   console.log(data)
 
@@ -116,7 +116,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
   const [updateTier,setUpdateTier] = useState<boolean>(false)
   // loginによる切り替え-------------------------------------
   const { userSwr } = useUser()
-  const {userTier,error} = execGetUserTier2(2)
+  const {userTier,error} = useExecGetUserTier2(2)
   useEffect(()=>{
     if(userSwr.login==false) return
     mutate('/mainblocks/mains/user_this_season_tier/2')

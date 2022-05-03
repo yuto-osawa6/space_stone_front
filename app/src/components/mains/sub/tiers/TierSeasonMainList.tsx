@@ -273,9 +273,10 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
             >
             
             {/* <> */}
-              {tierProductGroup.map((item)=>{
+              {tierProductGroup.map((item,index)=>{
                 return(
                   <ThisMonthTierList
+                    key = {index}
                     group = {item.group}
                     products = {item.products}
                   

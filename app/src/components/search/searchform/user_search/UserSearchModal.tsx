@@ -183,6 +183,7 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
                 {user.map((item)=>{
                   return(
                     <UserSearchItem
+                      key={item.id}
                       user = {item}
                     />
                     )

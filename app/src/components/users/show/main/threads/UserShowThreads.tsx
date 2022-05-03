@@ -225,6 +225,7 @@ export const UserShowThreads:React.FC = function UserShowThreadsFunc(){
             {reviews.map((item)=>{
               return(
                 <UserShowThreadItem
+                key={item.id}
                 review = {item}
                 user_id={user.id}
                 />

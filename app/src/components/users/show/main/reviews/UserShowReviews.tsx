@@ -309,6 +309,7 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
             {reviews.map((item)=>{
               return(
                 <UserShowReviewsItem
+                key={item.id}
                 review = {item}
                 user_id = {user.id}
                 />

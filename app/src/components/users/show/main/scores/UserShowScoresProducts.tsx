@@ -136,6 +136,7 @@ export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFu
               {product?.map((item)=>{
                 return(
                   <UserShowScoresProductsItem
+                  key={item.id}
                   scoreIndex={scoreIndex}
                   product={item}
                   yourScores={yourScores.filter(i=>i.productId==item.id)[0]}

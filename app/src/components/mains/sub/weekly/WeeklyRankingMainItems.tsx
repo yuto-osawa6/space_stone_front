@@ -84,7 +84,7 @@ export const WeeklyRankingMainItems:React.FC<Props> = function WeeklyRankingMain
             {Props.product.title}
             {episords.map((item,index)=>{
               return(
-                <span className="weekyEpisords">ep{item.episord}{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
+                <span className="weekyEpisords" key={index}>ep{item.episord}{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
                
               )
             })}

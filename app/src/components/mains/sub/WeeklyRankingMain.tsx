@@ -47,6 +47,7 @@ export const WeekliyRankingsMain:React.FC = function WeekliyRankingsMainFunc(){
         {weekly.map((item)=>{
           return(
             <WeekliyRankingsMainList
+              key = {item.id}
               week = {item}
             />
           )

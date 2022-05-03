@@ -9,13 +9,13 @@ type Data = {
   tier:product[] 
   tierAverage:any
 }
-export const execGetThisSeasonTier = (): { data: Data } => {
+export const useExecGetThisSeasonTier = (): { data: Data } => {
   const fetcher = () => client.get('/mainblocks/mains/update_tier_list',{params:{current_number:1}}).then((res) => res.data)
   const { data, error } = useSWRImmutable('/mainblocks/mains/update_tier_list/1', fetcher)
   return { data: data}
 }
 
-export const execGetNextSeasonTier = (): { data: Data } => {
+export const useExecGetNextSeasonTier = (): { data: Data } => {
   const fetcher = () => client.get('/mainblocks/mains/update_tier_list',{params:{current_number:2}}).then((res) => res.data)
   const { data, error } = useSWRImmutable('/mainblocks/mains/update_tier_list/2', fetcher)
   return { data: data}
@@ -29,7 +29,7 @@ type UserTier = {
   userId: number
 }
 
-export const execGetUserTier = (current_number:number) => {
+export const useExecGetUserTier = (current_number:number) => {
     const { userSwr } = useUser()
     console.log("aaaaaaaaaa",userSwr)
     const fetcher = async() => {
@@ -69,7 +69,7 @@ export const execGetUserTier = (current_number:number) => {
 }
 
 
-export const execGetUserTier2 = (current_number:number) => {
+export const useExecGetUserTier2 = (current_number:number) => {
   const { userSwr } = useUser()
   console.log("aaaaaaaaaa",userSwr)
   const fetcher = async() => {

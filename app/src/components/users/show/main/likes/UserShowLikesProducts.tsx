@@ -76,6 +76,7 @@ export const UserShowLikesProducts:React.FC = function UserShowLikesProductsFunc
           {product?.map((item)=>{
             return(
               <UserShowLikesProductsItem
+              key={item.id}
               product={item}
               />
             )

@@ -91,6 +91,7 @@ export const ProductShowEpisords:React.FC = function ProductShowEpisordsFunc(){
           {episords.map((item)=>{
             return(
               <EpisordsItem
+                key = {item.id}
                 episord = {item}
                 params_id = { params_id as string }
                 userEmotion = {props.userReviews.filter(i=>i.episordId==item.id)[0]}

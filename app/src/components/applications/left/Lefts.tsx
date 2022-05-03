@@ -3,7 +3,7 @@ import { style,genre } from "@/interfaces/product"
 import { useDispatch } from 'react-redux';
 import { BsFillSuitClubFill, BsFillSuitDiamondFill, BsFillSuitHeartFill, BsFillSuitSpadeFill } from "react-icons/bs"
 import { IoChevronDownOutline } from "react-icons/io5";
-import { execLeft } from "@/lib/api/left";
+import { useExecLeft } from "@/lib/api/left";
 import LeftStyle from "./leftMenus/LeftStyles";
 import LeftGenre from "./leftMenus/LeftGenres";
 import { LeftsArticles } from "./leftMenus/LeftArticles";
@@ -19,7 +19,7 @@ type Props = {
 
 const Lefts:React.FC<Props> = function LeftsFunc(Props){
 const dispatch = useDispatch();
-const {data,error} = execLeft()
+const {data,error} = useExecLeft()
 
 // chage
 const [openFormats,SetOpenFormats] = useState<boolean>(true)

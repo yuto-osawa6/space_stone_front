@@ -125,6 +125,7 @@ const currentMaxHandler = () => SetCurrent(page)
           {yearTiers.map((item)=>{
           return(
             <TierSeasonMainList
+              key = {item.id}
               updateTier = {updateTier}
               setUpdateTier={setUpdateTier}
               tiers = {item}

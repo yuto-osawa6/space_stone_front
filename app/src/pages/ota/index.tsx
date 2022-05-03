@@ -1,7 +1,7 @@
 import { ShareMain } from "@/components/share/main/ShareMain"
 import { productShow } from "@/interfaces/product"
 import { execChangeGrid } from "@/lib/api/main"
-import { getCurrentUser } from "@/lib/api/users/sign"
+// import { getCurrentUser } from "@/lib/api/users/sign"
 import { useUser } from "@/lib/data/user/useUser"
 import { GetServerSideProps, GetStaticProps } from "next"
 import Link from "next/link"
