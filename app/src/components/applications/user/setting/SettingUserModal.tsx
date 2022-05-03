@@ -25,7 +25,7 @@ type Props = {
   setSettingModalOpen : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const SettingUserModal:React.FC<Props> = (Props) => {
+export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Props){
 
   const handleClose = () => {
     Props.setSettingModalOpen(false)

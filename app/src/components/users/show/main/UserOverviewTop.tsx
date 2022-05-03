@@ -12,7 +12,7 @@ type Props = {
   user: UserShow
 }
 
-export const UserOverviewTop:React.FC<Props> = (Props) => {
+export const UserOverviewTop:React.FC<Props> = function UserOverviewTopFunc(Props){
   const modules = useMemo(()=>({
     toolbar:{ 
       container:[

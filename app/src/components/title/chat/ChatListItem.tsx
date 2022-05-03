@@ -10,7 +10,7 @@ type chatList = {
   user_id: number
 }
 
-export const ChatListItem:React.FC<Props> = (Props) => {
+export const ChatListItem:React.FC<Props> = function ChatListItemFunc(Props){
 
 
   return(

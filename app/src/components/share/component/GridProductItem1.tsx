@@ -26,7 +26,7 @@ type Tags = {
   rank:number
 }
 
-export const GridProductItem1:React.FC<Props> = memo((Props) => {
+export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Func(Props){
   // colornumber
   const [colornumber,setColornumber ]= useState<number>(0)
   const colorNumberHandler = () => {

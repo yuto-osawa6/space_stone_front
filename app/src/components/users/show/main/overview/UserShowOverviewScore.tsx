@@ -58,7 +58,7 @@ type Props = {
   score:number[]
 }
 
-export const UserShowOverviewScore:React.FC<Props> = (Props) => {
+export const UserShowOverviewScore:React.FC<Props> = function UserShowOverviewScoreFunc(Props){
   const data = {
     // x 軸のラベル
     labels: ["10", "20", "30", "40", "50", "60","70","80","90","100"],

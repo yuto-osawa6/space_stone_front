@@ -20,9 +20,7 @@ type Data = {
 // const dispatch = useDispatch()
 
 export const execLeftfetcher = async() => {
-  console.log("glakog")
   const res =  await client.get('/products/left')
-  console.log("aaomueeeeeeeeer")
   if (res.status===200) {
     // doneyet-1-next 後々変更 (redux使う必要がない。)
     // dispatch(actionSettingGenresData(res.data.genres));
@@ -36,10 +34,7 @@ export const execLeftfetcher = async() => {
 }
 
 
-export const execLeft = (): { data: Data; error: any } => {
-  
-  
-  // const { data, error } = useSWR('/products/left', fetcher)
+export const useExecLeft = (): { data: Data; error: any } => {
   const { data, error } = useSWRImmutable('/products/left', execLeftfetcher)
   return { data: data, error }
 }

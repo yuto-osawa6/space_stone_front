@@ -119,7 +119,7 @@ type Props = {
   children?:React.ReactNode
 }
 
-export const Top:React.FC<Props> = memo((Props) => {
+export const Top:React.FC<Props> = memo(function TopFunc(Props){
   const props = useContext(Productshowcontext)
   // const user = useSelector((state: RootState) => state.user);
   const { userSwr,error } = useUser()

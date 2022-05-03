@@ -4,7 +4,7 @@ import { useContext, useEffect,useMemo } from "react"
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
-export const Overview:React.FC = () => {
+export const Overview:React.FC = function OverviewFunc(){
   const props = useContext(Productshowcontext)
 
   const handleSetUp = () => {

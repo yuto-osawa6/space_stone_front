@@ -6,7 +6,7 @@ import { SettingSortPeriodAction } from "@/store/sortperiod/actions"
 type Props = {
   tag : tags
 }
-export const TagsTop100:React.FC<Props> = (Props) => {
+export const TagsTop100:React.FC<Props> = function TagsTop100Func(Props){
   // const navigate = useNavigate()
   const dispatch = useDispatch()
 

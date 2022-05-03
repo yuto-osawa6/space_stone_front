@@ -53,7 +53,7 @@ type Props = {
   reviewcomment:review_comments
 
 }
-export const ReturnThreadCommentAll:React.FC<Props> = (Props) =>{
+export const ReturnThreadCommentAll:React.FC<Props> = function ReturnThreadCommentAllFunc(Props){
   const {openReturnReviewComment,setOpenReturnReviewComment} = useContext(OpenReturnReviewCommentContext)
   const handleClose = () => {
     setOpenReturnReviewComment(false);

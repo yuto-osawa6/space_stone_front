@@ -1,5 +1,5 @@
 import { Modal } from "@mui/material"
-import { Article } from "interfaces/article"
+import { Article } from "@/interfaces/article"
 import { execAcsessArticleCountHandler, execArticleArticleAssosiationsHandler, execArticleShowHandler } from "@/lib/api/article"
 import { useEffect, useMemo, useState } from "react"
 // import ReactQuill from "react-quill"
@@ -16,7 +16,7 @@ const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
 
-export const ArticlesItem:React.FC = () => {
+export const ArticlesItem:React.FC = function  ArticlesItemFunc(){
   const modules =  useMemo(() => (
     {
     toolbar:{ 

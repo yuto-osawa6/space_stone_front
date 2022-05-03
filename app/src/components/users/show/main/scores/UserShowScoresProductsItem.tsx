@@ -23,7 +23,7 @@ type score = {
   story: number
 }
 
-export const UserShowScoresProductsItem:React.FC<Props> = (Props) => {
+export const UserShowScoresProductsItem:React.FC<Props> = function UserShowScoresProductsItemFunc(Props){
   const [yourScore,setYourScore] = useState<number | undefined>(0)
   const handleYourScore = () => {
     // switch(Props.scoreIndex){

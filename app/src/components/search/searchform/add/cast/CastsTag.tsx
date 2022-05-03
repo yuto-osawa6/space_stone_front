@@ -19,7 +19,7 @@ interface Props {
 
 
 
-export const CastsTag:React.FC<Props> = (Props) =>{
+export const CastsTag:React.FC<Props> = function CastsTagFunc(Props){
   const router = useRouter()
   
   const [cast,Setcast] = useState<Cast>() 

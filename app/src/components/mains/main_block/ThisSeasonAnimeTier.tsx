@@ -1,7 +1,7 @@
 import { UserModalSign } from "@/components/applications/user/UserModalSign"
 import { OpenContext } from "@/contexttype/contexttype"
 import { product } from "@/interfaces/product"
-import { execGetThisSeasonTier, execGetUserTier } from "@/lib/api/mains/tier/tier"
+import { useExecGetThisSeasonTier, useExecGetUserTier } from "@/lib/api/mains/tier/tier"
 import { useThisSeasonTier } from "@/lib/data/tier/thisSeasonTier"
 import { useUser } from "@/lib/data/user/useUser"
 import { useEffect, useState } from "react"
@@ -43,9 +43,9 @@ type avgScore = {
 type tierData = {
 
 }
-export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
+export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierFunc(Props){
   // const {data} = useThisSeasonTier()
-  const {data} = execGetThisSeasonTier()
+  const {data} = useExecGetThisSeasonTier()
   // console.log(data)
 
   const [avgScore,setAvgScore] = useState<avgScore>()
@@ -115,7 +115,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = (Props) => {
   const [updateTier,setUpdateTier] = useState<boolean>(false)
   // loginによる切り替え-------------------------------------
   const { userSwr } = useUser()
-  const {userTier,error} = execGetUserTier(1)
+  const {userTier,error} = useExecGetUserTier(1)
   useEffect(()=>{
     if(userSwr.login==false) return
     mutate('/mainblocks/mains/user_this_season_tier/1')

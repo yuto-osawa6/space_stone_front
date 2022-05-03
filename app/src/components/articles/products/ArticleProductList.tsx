@@ -9,7 +9,7 @@ import { actionSettingProductData2 } from "@/store/product/actions"
 type Props = {
   product:product
 }
-export const ArticleProductList:React.FC<Props> = memo((Props) => {
+export const ArticleProductList:React.FC<Props> = memo(function ArticleProductList(Props){
   const [colornumber,setColornumber ]= useState<number>(0)
   // const navigate = useNavigate()
   const dispatch = useDispatch()

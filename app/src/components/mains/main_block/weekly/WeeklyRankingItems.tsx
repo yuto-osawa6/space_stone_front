@@ -24,7 +24,7 @@ type episords = {
   releaseDate:string
 }
 
-export const WeeklyRankingItems:React.FC<Props> = memo((Props) => {
+export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingItemsFunc(Props){
   const [count,setCount] = useState<number>(0)
   const [persent,setPersent] = useState<string>("calc(100% - 0%)")
   const [persentTitle,setPersentTitle] = useState<string>("0")

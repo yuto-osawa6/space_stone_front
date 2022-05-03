@@ -17,7 +17,7 @@ type User = {
 }
 const dammy:User[] = [{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""}]
 
-export const UserSearchModal:React.FC<Props> = (Props) => {
+export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Props){
   const handleClose = () => {
     Props.setOpenUserSearchModal(false)
   }
@@ -183,6 +183,7 @@ export const UserSearchModal:React.FC<Props> = (Props) => {
                 {user.map((item)=>{
                   return(
                     <UserSearchItem
+                      key={item.id}
                       user = {item}
                     />
                     )

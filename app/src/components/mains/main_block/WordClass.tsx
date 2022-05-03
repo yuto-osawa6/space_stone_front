@@ -21,7 +21,7 @@ type SSRData = {
   worldRanking: product[];
 }
 
-export const WorldClass:React.FC<Props> = memo((Props) => {
+export const WorldClass:React.FC<Props> = memo(function WorldClassFunc(Props){
   const [viewproduct,setViewproduct] = useState<product>()
   const [viewProductV2,setViewProductV2] = useState<product[]>(Props.data.worldRanking.length>2?[Props.data.worldRanking[Props.data.worldRanking.length-1],Props.data.worldRanking[0],Props.data.worldRanking[1]]:[]) 
   const [products,setProducts] = useState<product[]>(Props.data.worldRanking)
@@ -100,7 +100,7 @@ export const WorldClass:React.FC<Props> = memo((Props) => {
   // },[useraction])
 
   return(
-    <>
+    <div>
       {validateProduct==true&&(
         <div className = "WorldClassContainer"
         >
@@ -138,6 +138,6 @@ export const WorldClass:React.FC<Props> = memo((Props) => {
         </div>
       </div>
       )}
-    </>
+    </div>
   )
 })

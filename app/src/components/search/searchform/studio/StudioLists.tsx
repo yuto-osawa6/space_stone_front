@@ -18,7 +18,7 @@ interface Studios{
 }
 
 
-export const StudiosLists:React.FC<Props>= (Props) =>{
+export const StudiosLists:React.FC<Props>= function StudiosListsFunc(Props){
 
   const studios = useSelector((state: RootState) => state.studios);
   const [hand, Sethand] = useState<number>(Props.handle);

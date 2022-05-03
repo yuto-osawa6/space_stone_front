@@ -8,7 +8,7 @@ import { BsFillGridFill } from "react-icons/bs"
 import Link from "next/link"
 
 // import { Link } from "react-router-dom"
-export const UserRight:React.FC = () => {
+export const UserRight:React.FC = function UserRightFunc(){
 
   const {user} = useContext(UserShowContext)
   console.log(user)

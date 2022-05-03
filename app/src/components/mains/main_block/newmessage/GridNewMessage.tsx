@@ -5,7 +5,7 @@ type Props = {
   news:news
   tagsactive:number
 }
-export const GridNewMessage:React.FC<Props> = memo((Props) =>{
+export const GridNewMessage:React.FC<Props> = memo(function GridNewMessageFunc(Props){
   console.log(Props)
   return(
     <>

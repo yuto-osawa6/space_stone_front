@@ -46,7 +46,7 @@ type tiers= {
   product:number[]
 }
 
-export const CreateTier:React.FC<Props> = (Props) => {
+export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
   // const user = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser()
   const [groupProduct,setGroupProduct] = useState<Group[]>([

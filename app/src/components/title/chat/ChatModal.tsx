@@ -34,7 +34,7 @@ type chatList = {
   user_id: number
 }
 
-export const ChatModal:React.FC<Props> = (Props) => {
+export const ChatModal:React.FC<Props> = function ChatModalFunc(Props){
   const [message,setMessage] = useState<string>("")
   // const userStore = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser()

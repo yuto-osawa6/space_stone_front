@@ -22,7 +22,7 @@ interface genresdata2{
   name:string
 }
 
-export const CastsLists:React.FC<Props>= (Props) =>{
+export const CastsLists:React.FC<Props>= function CastsLists(Props){
 
   const casts = useSelector((state: RootState) => state.cast);
 

@@ -7,7 +7,7 @@ type Props = {
   children:ReactNode
   locationNumber?: number
 }
-export const ShareMain:React.FC<Props> = (Props) =>{
+export const ShareMain:React.FC<Props> = function ShareMainFunc(Props){
   
   return(
     <>

@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import { actionSettingProductData2 } from "@/store/product/actions"
+import dynamic from "next/dynamic"
 
-const ReactQuill =
-  typeof window === "object" ? require("react-quill") : () => false;
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+// const ReactQuill =
+//   typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   product : product
@@ -17,7 +19,7 @@ type Color = {
   backgroundColor:string
 }
 
-export const WorldClassViewGrid:React.FC<Props> = (Props) => {
+export const WorldClassViewGrid:React.FC<Props> = function WorldClassViewGridFunc(Props){
   const nodeRef = useRef(null)
   const [imageloding,setImageLoding2] = useState<boolean>(false)
   // const navigate = useNavigate()
@@ -191,7 +193,8 @@ export const WorldClassViewGrid:React.FC<Props> = (Props) => {
             <div className="WorldClassContainerViewsRightArasuzi">
               <ReactQuill
                 className = "reviews_modal_quill"     
-                modules={modules} value={Props.product.arasuzi} 
+                modules={modules} 
+                value={Props.product.arasuzi} 
                 theme="bubble"
                 readOnly={true}       
               />

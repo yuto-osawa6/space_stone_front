@@ -5,23 +5,27 @@ import ReactCrop, { Crop } from 'react-image-crop';
 // import ReactCrop from "react-image-crop/dist/ReactCrop";
 import 'react-image-crop/dist/ReactCrop.css';
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
+import { RootState } from "@/store";
 import { updateBacgroundImageAction } from "@/store/user/actions";
+import { useUser } from "@/lib/data/user/useUser";
 
 type Props = {
   on:boolean
   setOn:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const UserBackgroupdModal:React.FC<Props> = (Props) => {
+export const UserBackgroupdModal:React.FC<Props> = function UserBackgroupdModalFunc(Props){
   // dispatch
   const dispatch = useDispatch()
-  const UserStore = useSelector((state:RootState)=>state.user)
+  // const UserStore = useSelector((state:RootState)=>state.user)
+  const {userSwr} = useUser()
   // ref
   const reactCropRef = useRef<HTMLDivElement>(null!)
   const reactCropRef2 = useRef<ReactCrop>()
   // store
-  const user_id = useSelector((state:RootState)=>state.user).user.id
+  // const user_id = useSelector((state:RootState)=>state.user).user.id
+
+  const user_id =  userSwr.user.id
   const [crop, setCrop] = useState<Crop>(
     {
   unit: '%',
@@ -29,7 +33,7 @@ export const UserBackgroupdModal:React.FC<Props> = (Props) => {
   y:0,
   width:0,
   height:0,
-  aspect: 10 / 3
+  // aspect: 10
 });
   const [preview, setPreview] = useState<string>();
   const [newImage,setNewImage] = useState<any>();
@@ -158,7 +162,7 @@ export const UserBackgroupdModal:React.FC<Props> = (Props) => {
       const res =  await execUserBackgroundImageHandler(user_id,formData as FormData)
       if(res.status==200){
         setSubmitLoading(false)
-        dispatch(updateBacgroundImageAction(UserStore.user,res.data.background))
+        dispatch(updateBacgroundImageAction(userSwr.user,res.data.background))
         closeHandler()
 
       }

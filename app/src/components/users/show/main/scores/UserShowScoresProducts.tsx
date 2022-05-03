@@ -17,7 +17,7 @@ type score = {
   value: number
   story: number
 }
-export const UserShowScoresProducts:React.FC = () => {
+export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFunc(){
   // context
   const {user} = useContext(UserShowContext)
   // state
@@ -136,6 +136,7 @@ export const UserShowScoresProducts:React.FC = () => {
               {product?.map((item)=>{
                 return(
                   <UserShowScoresProductsItem
+                  key={item.id}
                   scoreIndex={scoreIndex}
                   product={item}
                   yourScores={yourScores.filter(i=>i.productId==item.id)[0]}

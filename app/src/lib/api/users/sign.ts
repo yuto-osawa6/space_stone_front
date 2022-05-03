@@ -45,7 +45,7 @@ type Data2 = {
 }
 
 // doneyet-1-next userにundefinedを入れるかどうか。(reduxで管理していたため、そのままの状態)
-export const getCurrentUser = (): { userSwr: Data2, error: any } => {
+export const useGetCurrentUser = (): { userSwr: Data2, error: any } => {
   console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaasgg")
   // const dispatch = useDispatch()
   const fetcher = async() => {

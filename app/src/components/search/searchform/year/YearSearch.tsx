@@ -14,7 +14,7 @@ type Props = {
 }
 
 
-export const YearSearch:React.FC<Props> = (Props) => {
+export const YearSearch:React.FC<Props> = function YearSearchFunc(Props){
   // 
   const router = useRouter()
 

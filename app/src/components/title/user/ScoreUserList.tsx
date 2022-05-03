@@ -5,7 +5,7 @@ type Props = {
   nickname:string
 }
 
-export const ScoreUserList:React.FC<Props> = (Props) => {
+export const ScoreUserList:React.FC<Props> = function ScoreUserListFunc(Props){
   console.log(Props)
   const handleColer= (averageScore:number | null) => {
     var color = {backgroundColor:""}

@@ -3,7 +3,7 @@ import { RootState } from "@/store";
 
 // material-ui
 import React, { useEffect, useRef, useState } from "react";
-import { getCurrentUser, signOut } from "@/lib/api/users/sign";
+import { useGetCurrentUser, signOut } from "@/lib/api/users/sign";
 import { userLoginAction } from "@/store/user/actions";
 import Cookies from "js-cookie";
 import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
@@ -19,7 +19,7 @@ import { SettingUserModal } from "./setting/SettingUserModal";
 import { getCurrentUserMock } from "@/mocks/api/user/signin";
 
 
-export const UserCertification:React.FC = () => {
+export const UserCertification:React.FC = function UserCertification(){
   // const user = useSelector((state: RootState) => state.user);
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
@@ -30,7 +30,7 @@ export const UserCertification:React.FC = () => {
   // if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")){
   //   //   return { data:undefined,error:undefined}
   //   }
-  const {userSwr,error} = getCurrentUser()
+  const {userSwr,error} = useGetCurrentUser()
   
   const handleSignOut = async (e: React.MouseEvent<HTMLDivElement>) => {
     try {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { deletingMessageDataAction } from "@/store/message/actions"
 
-export const MessageContainer:React.FC = () => {
+export const MessageContainer:React.FC =  function MessageContainerFunc(){
   const Message = useSelector((state:RootState)=>state.message)
   const dispatch = useDispatch()
   useEffect(()=>{

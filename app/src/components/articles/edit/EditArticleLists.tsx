@@ -6,7 +6,7 @@ type Props = {
   article: Article | undefined
 }
 
-export const EditArticleLists:React.FC<Props> = (Props) => {
+export const EditArticleLists:React.FC<Props> = function EditArticleLists(Props){
   const[open,setOpen] = useState<boolean>(false)
   const[open2,setOpen2] = useState<boolean>(false)
 

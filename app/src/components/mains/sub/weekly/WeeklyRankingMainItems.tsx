@@ -19,7 +19,7 @@ type episords = {
   title: string
   releaseDate:string
 }
-export const WeeklyRankingMainItems:React.FC<Props> = (Props) => {
+export const WeeklyRankingMainItems:React.FC<Props> = function WeeklyRankingMainItemsFunc(Props){
 
   const [count,setCount] = useState<number>(0)
   const [persent,setPersent] = useState<string>("calc(100% - 0%)")
@@ -84,7 +84,7 @@ export const WeeklyRankingMainItems:React.FC<Props> = (Props) => {
             {Props.product.title}
             {episords.map((item,index)=>{
               return(
-                <span className="weekyEpisords">ep{item.episord}{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
+                <span className="weekyEpisords" key={index}>ep{item.episord}{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
                
               )
             })}

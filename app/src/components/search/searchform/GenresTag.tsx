@@ -12,7 +12,7 @@ interface Props {
   ishover:boolean
 }
 
-export const GenresTag:React.FC<Props> = (Props) =>{
+export const GenresTag:React.FC<Props> = function GenresTagFunc(Props){
   const router = useRouter()
 
 

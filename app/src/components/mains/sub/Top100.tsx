@@ -19,7 +19,7 @@ type avgScore = {
 }
 
 
-export const Top100:React.FC = () => {
+export const Top100:React.FC = function Top100Func(){
   const PeriodStore = useSelector((state:RootState)=>state.SortPeriod)
   const dispatch = useDispatch()
 

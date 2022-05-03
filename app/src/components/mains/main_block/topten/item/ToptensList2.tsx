@@ -18,7 +18,7 @@ type Color = {
 type scoreAvg = {
   [k:number]:string
 }
-export const ToptensList2:React.FC<Props> = memo((Props) => {
+export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props){
   const [colornumber,setColornumber ]= useState<number>(0)
 
   useEffect(()=>{

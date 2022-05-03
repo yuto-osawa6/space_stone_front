@@ -19,7 +19,7 @@ type Props = {
   children:ReactNode
 }
 
-export const ProductShowThreads:React.FC<Props> = (Props) => {
+export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFunc(Props){
   const [episords,setEpisords] = useState<string[]>([])
   const router = useRouter()
   const {pid} = router.query

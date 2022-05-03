@@ -13,7 +13,7 @@ type User = {
 
 // const dammy = [{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""}]
 
-export const UserSearchItem:React.FC<Props> = (Props) => {
+export const UserSearchItem:React.FC<Props> = function UserSearchItemFunc(Props){
   const router = useRouter()
 
   const handleNavigate = () => {

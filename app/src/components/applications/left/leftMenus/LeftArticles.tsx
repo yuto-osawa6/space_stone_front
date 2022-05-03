@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
 import { NavigatingLeftArticleDataAction } from "@/store/lefts/article/actions"
 
-export const LeftsArticles:React.FC = () => {
+export const LeftsArticles:React.FC = function LeftsArticlesFunc(){
   const dispatch = useDispatch()
   const router = useRouter()
 

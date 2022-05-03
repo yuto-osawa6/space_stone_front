@@ -9,7 +9,7 @@ import { ToptensScoreAll } from "./topten/list/ToptensScoreAll"
 import { ToptensScoreMonth } from "./topten/list/ToptensScoreMonth"
 
 
-export const Toptens2:React.FC = memo(() => {
+export const Toptens2:React.FC = memo(function Toptens2Func(){
 
   return(
     <>

@@ -12,7 +12,7 @@ type Props = {
   review : review
   user_id: number
 }
-export const UserShowReviewsItem:React.FC<Props> = (Props) => {
+export const UserShowReviewsItem:React.FC<Props> = function  UserShowReviewsItemFunc(Props){
   const [colornumber,setColornumber ]= useState<number>(0)
 
   useEffect(()=>{

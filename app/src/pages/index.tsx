@@ -162,9 +162,9 @@ type UserTier = {
         // news = { decisionnews }
       />
 
-      <CalendarProduct
+      {/* <CalendarProduct
        calendarData={Props.calendarData}
-      />
+      /> */}
 
       <Toptens2
 

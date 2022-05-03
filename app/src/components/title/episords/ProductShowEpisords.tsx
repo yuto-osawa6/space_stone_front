@@ -35,7 +35,7 @@ type Episords = {
   weeks:week[]
 }
 
-export const ProductShowEpisords:React.FC = () => {
+export const ProductShowEpisords:React.FC = function ProductShowEpisordsFunc(){
   const [episords,setEpisords] = useState<Episords[]>([])
   // const params = useParams();
   // const params_id = params.productId
@@ -91,6 +91,7 @@ export const ProductShowEpisords:React.FC = () => {
           {episords.map((item)=>{
             return(
               <EpisordsItem
+                key = {item.id}
                 episord = {item}
                 params_id = { params_id as string }
                 userEmotion = {props.userReviews.filter(i=>i.episordId==item.id)[0]}

@@ -21,7 +21,7 @@ interface Props {
 
 
 
-export const StudiosTag:React.FC<Props> = (Props) =>{
+export const StudiosTag:React.FC<Props> = function StudiosTagFunc(Props){
   const router = useRouter()
 
   

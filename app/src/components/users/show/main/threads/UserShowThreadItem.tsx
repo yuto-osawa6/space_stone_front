@@ -11,7 +11,7 @@ type Props = {
   review : review
   user_id:number
 }
-export const UserShowThreadItem:React.FC<Props> = (Props) => {
+export const UserShowThreadItem:React.FC<Props> = function UserShowThreadItemFunc(Props){
   const [colornumber,setColornumber ]= useState<number>(0)
 
   useEffect(()=>{

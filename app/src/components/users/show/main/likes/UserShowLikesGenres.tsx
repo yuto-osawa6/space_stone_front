@@ -11,7 +11,7 @@ import { deletingtodoGenresDataExceptOneAction } from "@/store/todogenres/action
 type Props ={
   // genres : genre
 }
-export const UserShowLikesGenres:React.FC<Props> = (Props) => {
+export const UserShowLikesGenres:React.FC<Props> = function UserShowLikesGenresFunc(Props){
   const {user} = useContext(UserShowContext)
   const [genres,setGenres] = useState<genre[]>([])
   const setupHandler = async() =>{

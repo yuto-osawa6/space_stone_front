@@ -30,7 +30,7 @@ type Props = {
   setUpdateJudge?: (() => Promise<void>) | undefined
 
 }
-export const ReturnReturn:React.FC<Props> = (Props) => {
+export const ReturnReturn:React.FC<Props> = function ReturnReturnFunc(Props){
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   // validation
   const [validatetext,setValidatetext] = useState<string>("")

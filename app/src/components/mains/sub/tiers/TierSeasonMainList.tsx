@@ -67,7 +67,7 @@ type UserTier = {
   userId: number
 }
 
-export const TierSeasonMainList:React.FC<Props> = (Props) => {
+export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFunc(Props){
 
   const [length,setLength] = useState<number>(0)
   const [tierProductGroup,setTierProductGroup] = useState<TierProductGroup[]>([
@@ -273,9 +273,10 @@ export const TierSeasonMainList:React.FC<Props> = (Props) => {
             >
             
             {/* <> */}
-              {tierProductGroup.map((item)=>{
+              {tierProductGroup.map((item,index)=>{
                 return(
                   <ThisMonthTierList
+                    key = {index}
                     group = {item.group}
                     products = {item.products}
                   

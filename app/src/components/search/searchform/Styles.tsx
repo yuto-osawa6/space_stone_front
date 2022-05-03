@@ -13,7 +13,7 @@ interface Props {
   children:ReactChild
 }
 
-export const Styles:React.FC = () =>{
+export const Styles:React.FC = function StylesFunc(){
 
   const ref = useRef<HTMLDivElement>(null!);
 

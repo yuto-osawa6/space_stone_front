@@ -11,7 +11,7 @@ type Props = {
   id :number
   review:review
 }
-export const ReviewsLists:React.FC<Props> = memo((Props) => {
+export const ReviewsLists:React.FC<Props> = memo(function ReviewsListsFunc(Props){
   const [colornumber,setColornumber ]= useState<number>(0)
 
   useEffect(()=>{

@@ -8,7 +8,7 @@ type Props = {
 // nickname: string
 }
 
-export const UserEpisordEmotionList:React.FC<Props> = (Props) => {
+export const UserEpisordEmotionList:React.FC<Props> = function UserEpisordEmotionListFunc(Props){
   
   console.log(Props)
   return(

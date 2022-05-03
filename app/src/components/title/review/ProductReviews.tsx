@@ -23,7 +23,7 @@ type Props = {
   children:React.ReactNode
 }
 
-export const ProductShowReviews:React.FC<Props> = (Props) => {
+export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFunc(Props){
   const [episords,setEpisords] = useState<string[]>([])
   const router = useRouter()
   const {pid} = router.query

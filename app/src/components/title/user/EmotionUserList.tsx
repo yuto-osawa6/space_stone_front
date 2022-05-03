@@ -12,7 +12,7 @@ type lengthK = {
   [k:number]:number
 }
 
-export const EmotionUserList:React.FC = () => {
+export const EmotionUserList:React.FC = function EmotionUserListFunc(){
   
   const props = useContext(Productshowcontext)
   console.log(props.userReviews)

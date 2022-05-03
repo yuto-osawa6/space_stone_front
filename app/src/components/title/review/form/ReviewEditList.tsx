@@ -11,7 +11,7 @@ type Props = {
   setProduct: React.Dispatch<React.SetStateAction<product | undefined>>
   handleCloseAll: () => void
 }
-export const ReviewEditList:React.FC<Props> = (Props) => {
+export const ReviewEditList:React.FC<Props> = function ReviewEditListFunc(Props){
   const[open,setOpen] = useState<boolean>(false)
   const[open2,setOpen2] = useState<boolean>(false)
 

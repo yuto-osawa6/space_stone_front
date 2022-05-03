@@ -31,7 +31,7 @@ type Props = {
 }
 
 
-export const ReturnReviewComment:React.FC<Props> = (Props) => {
+export const ReturnReviewComment:React.FC<Props> = function ReturnReviewCommentFunc(Props){
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   // validation
   const [validatetext,setValidatetext] = useState<string>("")

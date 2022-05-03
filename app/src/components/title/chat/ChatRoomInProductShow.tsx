@@ -25,7 +25,7 @@ type chatList = {
   product_id: number
   user_id: number
 }
-export const ChatRoomInProductShow:React.FC<Props> = (Props) => {
+export const ChatRoomInProductShow:React.FC<Props> = function ChatRoomInProductShowFunc(Props){
 
   // const cable = ActionCable.createConsumer('ws://localhost:3001/cable');
   // const sub = cable.subscriptions.create('');

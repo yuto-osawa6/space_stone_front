@@ -18,7 +18,7 @@ type DragItem  = {
   group:number
 }
 
-export const Draggable: React.FC<Props> = memo((Props) => {
+export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
   const ref = useRef<HTMLDivElement>(null)
   const [{ handlerId }, drop] = useDrop<
     DragItem,

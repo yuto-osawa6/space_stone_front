@@ -15,7 +15,7 @@ type styleslists={
   name:string
 }
 
-export const StylesLists:React.FC = () =>{
+export const StylesLists:React.FC = function StylesListsFunc(){
   const stylesListsStore = useSelector((state: RootState) => state.styles);
   const stylesselected = useSelector((state: RootState) => state.todostyles);
 

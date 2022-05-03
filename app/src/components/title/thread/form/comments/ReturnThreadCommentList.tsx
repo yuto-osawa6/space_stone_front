@@ -13,7 +13,7 @@ import { ReturnReturn } from "./ReturnReturn"
 // import { ReturnReturn } from "./ReturnReturn"
 // import { DeltaStatic } from "quill"
 // import { useParams } from "react-router-dom"
-import { pussingMessageDataAction } from "store/message/actions"
+import { pussingMessageDataAction } from "@/store/message/actions"
 import { useUser } from "@/lib/data/user/useUser"
 import { useRouter } from "next/router"
 import { ErrorMessage } from "@/lib/ini/message"
@@ -56,7 +56,7 @@ const ini:like_return_comment = {
   goodbad:0
 }
 
-export const ReturnThreadCommentList:React.FC<Props> = (Props) => {
+export const ReturnThreadCommentList:React.FC<Props> = function ReturnThreadCommentListFunc(Props){
   // console.log(Props)
   // const user = useSelector((state:RootState) => state.user)
   const {userSwr} = useUser()
@@ -229,7 +229,7 @@ export const ReturnThreadCommentList:React.FC<Props> = (Props) => {
 
   const [readMore,setReadMore] = useState<boolean>(false) 
   const [readMoreLength,setReadMoreLength] = useState<number>(0)
-  const [content,setContent] = useState<string|DeltaStatic>("")
+  const [content,setContent] = useState<string>("")
   const readMoreHandler = () => {
     readMore==true?setReadMore(false):setReadMore(true)
   }

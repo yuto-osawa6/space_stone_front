@@ -31,7 +31,7 @@ type Group = {
   group:string
   // tier:string
 }
-export const UserTierList:React.FC<Props> = (Props) => {
+export const UserTierList:React.FC<Props> = function UserTierListFunc(Props){
   console.log(Props)
 
   const [length,setLength] = useState<number>(0)
@@ -91,9 +91,10 @@ export const UserTierList:React.FC<Props> = (Props) => {
       // marginBottom: "30px"
     }}
     >
-      {tierProductGroup.map((item)=>{
+      {tierProductGroup.map((item,index)=>{
         return(
           <ThisMonthTierList
+            key={index}
             group={item.group}
             products={item.products}
           />

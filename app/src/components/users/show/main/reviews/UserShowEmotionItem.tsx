@@ -11,7 +11,7 @@ type emotion = {
   emotion:string
 }
 
-export const UserShowEmotionItem:React.FC<Props> = (Props) => {
+export const UserShowEmotionItem:React.FC<Props> = function UserShowEmotionItemFunc(Props){
 
   const handleClick = () =>{
     Props.setEmotion(Props.emotionItem)

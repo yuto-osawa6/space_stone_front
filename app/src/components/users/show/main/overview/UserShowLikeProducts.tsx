@@ -4,7 +4,7 @@ type Props = {
   product : product
 }
 
-export const UserShowLikeProducts:React.FC<Props> = (Props) => {
+export const UserShowLikeProducts:React.FC<Props> = function UserShowLikeProductsFunc(Props){
   
   return (
     <>

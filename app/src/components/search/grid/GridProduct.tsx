@@ -26,7 +26,7 @@ type Color = {
   color:string
 }
 
-export const GridProducts:React.FC<Props> = (Props)=>{
+export const GridProducts:React.FC<Props> = function GridProductsFunc(Props){
   const [colornumber,setColornumber ]= useState<number>()
   // 平均スコア
   // const [averageScore,setAverageScore] = useState<number>()

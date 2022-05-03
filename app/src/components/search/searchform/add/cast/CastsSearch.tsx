@@ -8,7 +8,7 @@ import { RootState } from "@/store";
 import { CastsLists } from "./CastsLists";
 import { CastsTag } from "./CastsTag";
 
-export const CastsSearch:React.FC = () => {
+export const CastsSearch:React.FC = function CastsSearchFunc(){
   // usestate
   const [isMenuOpen,setIsMenuOpen] = useState<boolean>(false)
   const [searchinput,Setserachinput] = useState<string>("")

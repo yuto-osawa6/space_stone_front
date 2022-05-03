@@ -33,7 +33,7 @@ type Color = {
 }
 
 
-export const ScoresListInProductShow:React.FC<Props> = (Props) => {
+export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProductShowFunc(Props){
   const[music,setMusic] = useState<number>(0)
   const[animation,setAnimation] = useState<number>(0)
   const[character,setCharacter] = useState<number>(0)

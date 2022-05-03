@@ -1,5 +1,5 @@
 import { Button, FormControl, FormHelperText, InputLabel, MenuItem, Modal, Select, SelectChangeEvent, TextField } from "@mui/material"
-import { execPublishedAll } from "lib/api/admin/product"
+import { execPublishedAll } from "@/lib/api/admin/product"
 import { useState } from "react"
 
 type Props = {

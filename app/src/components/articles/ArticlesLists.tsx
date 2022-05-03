@@ -14,7 +14,7 @@ type Props = {
   id :number
   article:Article
 }
-export const ArticlesLists:React.FC<Props> = memo((Props) => {
+export const ArticlesLists:React.FC<Props> = memo(function ArticlesListsFunc(Props){
   const router = useRouter()
   const [colornumber,setColornumber ]= useState<number>(0)
 

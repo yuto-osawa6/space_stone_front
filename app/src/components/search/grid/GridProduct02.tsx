@@ -20,7 +20,7 @@ type Color = {
   backgroundColor:string
 }
 
-export const GridProduct02:React.FC<Props> = memo((Props) => {
+export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Props){
   const [colornumber,setColornumber ]= useState<number>()
 
   const elm = useRef<HTMLDivElement>(null!);

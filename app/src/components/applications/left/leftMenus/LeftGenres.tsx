@@ -18,7 +18,7 @@ type Props =  {
   count:number
 }
 
-const LeftGenre: React.FC<Props> = ({name,count,id}) =>{
+const LeftGenre: React.FC<Props> = function LeftGenreFunc({name,count,id}){
   const dispatch = useDispatch()
   const router = useRouter()
 

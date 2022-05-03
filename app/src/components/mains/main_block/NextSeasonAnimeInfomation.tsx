@@ -48,7 +48,7 @@ type UserTier = {
 type avgScore = {
   [k:number]:string
 }
-export const NextSeasonAnimeInfomation:React.FC<Props> = (Props) => {
+export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnimeInfomationFunc(Props){
   const ref = useRef<HTMLDivElement>(null!)
   const [left_grid,setLeft_grid] = useState<number[]>([])
   const [maxleft,setMaxLeft] = useState<number>(0)

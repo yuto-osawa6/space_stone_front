@@ -1,4 +1,5 @@
-import { product } from "vinterfaces/product";
+// import { product } from "vinterfaces/product";
+import { product } from "@/interfaces/product";
 import { execToptenAcsessAll, execToptenLikeAll } from "@/lib/api/mains/toptens";
 import { useEffect, useState } from "react";
 import { ToptensList2 } from "../item/ToptensList2";
@@ -10,7 +11,7 @@ type scoreAvg = {
   [k:number]:string
 }
 
-export const ToptensAcsessAll:React.FC = () => {
+export const ToptensAcsessAll:React.FC = function ToptensAcsessAllFunc(){
   const [LikeToptensAll,setLikeToptensAll] = useState<product[]>([]);
   const [averageScore,setAverageScore] = useState<scoreAvg>()
   const [likeMonth,setLikeMonth] = useState<scoreAvg>()

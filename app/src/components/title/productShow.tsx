@@ -51,7 +51,7 @@ type Props = {
   // data: productShow
 }
 
-export const ProductShow:React.FC<Props> = (Props) => {
+export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   // console.log(Props.data)
   const router = useRouter()
   const {pid} = router.query

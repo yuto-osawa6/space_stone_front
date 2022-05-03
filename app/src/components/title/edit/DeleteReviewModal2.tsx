@@ -21,7 +21,7 @@ type Props = {
   product: product | undefined
   handleCloseAll: () => void
 }
-export const DeleteReviewModal2:React.FC<Props> = (Props) => {
+export const DeleteReviewModal2:React.FC<Props> = function DeleteReviewModal2Func(Props){
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   const dispatch = useDispatch()
   const handleClose = () => Props.setOpen(false)

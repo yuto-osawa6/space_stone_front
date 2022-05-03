@@ -11,7 +11,7 @@ type weekly = {
   products:product[]
 }
 
-export const WeekliyRankingsMain:React.FC = () => {
+export const WeekliyRankingsMain:React.FC = function WeekliyRankingsMainFunc(){
   const [weekly,setWeekliy] = useState<weekly[]>([])
   // const 
   const handleFirst = async() => {
@@ -47,6 +47,7 @@ export const WeekliyRankingsMain:React.FC = () => {
         {weekly.map((item)=>{
           return(
             <WeekliyRankingsMainList
+              key = {item.id}
               week = {item}
             />
           )

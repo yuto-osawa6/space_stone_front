@@ -8,7 +8,7 @@ type Props = {
   setMenuOpen:React.Dispatch<React.SetStateAction<boolean>>
   setCurrent:React.Dispatch<React.SetStateAction<number>>
 }
-export const MenuProduLists:React.FC<Props> = (Props) => {
+export const MenuProduLists:React.FC<Props> = function MenuProduListsFunc(Props){
 
   const setProductHandler = () => {
     Props.setCurrent(1)

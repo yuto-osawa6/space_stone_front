@@ -13,7 +13,7 @@ type Props = {
   // products: tierProduct[]
   products: product[]
 }
-export const ThisMonthTierList:React.FC<Props> = (Props) => {
+export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(Props){
   const [color,setColor] = useState<string>()
   useEffect(()=>{
     switch (Props.group) {

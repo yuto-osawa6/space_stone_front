@@ -14,7 +14,7 @@ import { OpenContext } from '@/contexttype/contexttype';
 //   open :boolean
 // }
 
-export const UserModalSign:React.FC = () =>{
+export const UserModalSign:React.FC = function UserModalSign(){
   const key = process.env.REACT_APP_GOOGLE_KEY;
   const user = useSelector((state: RootState) => state.user);
   const {open, setOpen} = useContext(OpenContext)

@@ -13,7 +13,7 @@ interface Props {
   ishover:boolean
 }
 
-export const HoverClose:React.FC<Props> = (Props) =>{
+export const HoverClose:React.FC<Props> = function HoverCloseFunc(Props){
 
  
   return(

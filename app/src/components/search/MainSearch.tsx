@@ -36,7 +36,7 @@ for (let i = 0; i < 10; i++) {
   array.push(i)
 }
 
-const MainSearch:React.FC= () =>{
+const MainSearch:React.FC= function MainSearchFunc(){
   const [products,setProducts] = useState<product[]>([]);
   // const [data, setData] = useState<SearchData>(initialData);
   const todoList = useSelector((state: RootState) => state.search);

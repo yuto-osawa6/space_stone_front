@@ -53,7 +53,7 @@ const modules = {
     // ["clean"],
   ], 
 }
-export const ThreadCommentList:React.FC<Props> = (Props) => {
+export const ThreadCommentList:React.FC<Props> = function ThreadCommentListFunc(Props){
   // store
   // const user = useSelector((state:RootState) => state.user)
   const {userSwr} = useUser()

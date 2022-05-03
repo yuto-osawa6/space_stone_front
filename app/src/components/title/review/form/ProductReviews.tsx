@@ -1,11 +1,11 @@
 import { product } from "@/interfaces/product";
-import { like_review, review, review_comments } from "i@/nterfaces/review";
+import { like_review, review, review_comments } from "@/interfaces/review";
 import { execProductReviewShow } from "@/lib/api/products";
 import { useEffect, useRef, useState } from "react";
 // import ReactQuill from "react-quill";
 import { useDispatch, useSelector } from "react-redux";
 // import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { RootState } from "store";
+import { RootState } from "@/store";
 
 // icon
 import { FaRegThumbsUp, FaRegThumbsDown, FaThumbsUp, FaThumbsDown } from "react-icons/fa"
@@ -38,7 +38,7 @@ const ini:like_review = {
   userId:0
 }
 
-export const ProductReviews:React.FC = () => {
+export const ProductReviews:React.FC = function ProductReviewsFunc(){
   const dispatch = useDispatch()
   const modules = {
     toolbar: [

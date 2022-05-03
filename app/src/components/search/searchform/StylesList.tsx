@@ -18,7 +18,7 @@ type styleslists={
   name:string
 }
 
-export const StylesList:React.FC<Props> = (Props) =>{
+export const StylesList:React.FC<Props> = function StylesListFunc(Props){
   const [ontime,Setonime] = useState<boolean>(Props.select)
 
   const stylesselected = useSelector((state: RootState) => state.todostyles);

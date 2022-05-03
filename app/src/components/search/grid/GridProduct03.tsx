@@ -11,7 +11,7 @@ type Props = {
 type Color = {
   color:string
 }
-export const GridProduct03:React.FC<Props> = (Props) => {
+export const GridProduct03:React.FC<Props> = function GridProduct03Func(Props){
   const [colornumber,setColornumber ]= useState<number>(0)
 
   useEffect(()=>{

@@ -12,7 +12,7 @@ import { IoSearchCircle } from "react-icons/io5"
 import { UserShowReviewsItem } from "../reviews/UserShowReviewsItem"
 import { UserShowThreadItem } from "./UserShowThreadItem"
 
-export const UserShowThreads:React.FC = () => {
+export const UserShowThreads:React.FC = function UserShowThreadsFunc(){
  // context
  const {user} = useContext(UserShowContext)
 
@@ -225,6 +225,7 @@ export const UserShowThreads:React.FC = () => {
             {reviews.map((item)=>{
               return(
                 <UserShowThreadItem
+                key={item.id}
                 review = {item}
                 user_id={user.id}
                 />

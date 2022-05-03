@@ -15,7 +15,7 @@ type Props = {
 type Color = {
   backgroundColor:string
 }
-export const GridProduct04:React.FC<Props> = memo((Props) => {
+export const GridProduct04:React.FC<Props> = memo(function GridProduct04(Props){
   const [colornumber,setColornumber ]= useState<number>()
 
   useEffect(()=>{

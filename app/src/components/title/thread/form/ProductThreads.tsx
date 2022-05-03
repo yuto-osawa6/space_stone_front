@@ -40,7 +40,7 @@ const ini:like_review = {
   userId:0
 }
 
-export const ProductThreads:React.FC = () => {
+export const ProductThreads:React.FC = function ProductThreadsFunc(){
   const modules = {
     toolbar: [
       // [{ font: [] }],

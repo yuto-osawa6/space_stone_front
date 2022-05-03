@@ -17,7 +17,7 @@ type Color = {
 }
 
 
-export const EmotionUserItem:React.FC<Props> = (Props) => {
+export const EmotionUserItem:React.FC<Props> = function EmotionUserItemFunc(Props){
 
    const [emotionColor,setEmotionColor] = useState<Color>({backgroundColor:""})
   useEffect(()=>{
