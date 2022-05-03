@@ -16,33 +16,33 @@ import Ota from ".."
 //   // getLayout: (page: any) => JSX.Element
 // }
 
-export const  getStaticProps: GetStaticProps = async(context) => {
-  // const { pid } = context.query
-  const params = {
-    active:"1",
-    last:"2"
-  }
-  const query_params = new URLSearchParams(params); 
-  const [productShowRes] = await Promise.all([
-    fetch(`${process.env.API_PATH_V1}/products/${1}`), 
-    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
-    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
-    // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
-  ]);
-  const [data] = await Promise.all([
-    productShowRes.json()
-  ]);
-  return { 
-    props: { 
-      data
-    } 
-  };
-}
+// export const  getStaticProps: GetStaticProps = async(context) => {
+//   // const { pid } = context.query
+//   const params = {
+//     active:"1",
+//     last:"2"
+//   }
+//   const query_params = new URLSearchParams(params); 
+//   const [productShowRes] = await Promise.all([
+//     fetch(`${process.env.API_PATH_V1}/products/${1}`), 
+//     // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
+//     // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
+//     // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
+//   ]);
+//   const [data] = await Promise.all([
+//     productShowRes.json()
+//   ]);
+//   return { 
+//     props: { 
+//       data
+//     } 
+//   };
+// }
 
 type Props = {
   // getLayout: (page: any) => JSX.Element
   // children:ReactNode
-  data?:productShow
+  // data?:productShow
 }
 
 

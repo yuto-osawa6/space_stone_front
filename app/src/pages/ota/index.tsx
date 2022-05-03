@@ -11,33 +11,33 @@ import useSWR from "swr"
 import { NextSeo } from 'next-seo';
 
 
-export const getStaticProps: GetStaticProps = async(context) => {
-  // const { pid } = context.query
-  const params = {
-    active:"1",
-    last:"2"
-  }
-  const query_params = new URLSearchParams(params); 
-  const [productShowRes] = await Promise.all([
-    fetch(`${process.env.API_PATH_V1}/products/${18}/seo`), 
-    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
-    // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
-    // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
-  ]);
-  const [data] = await Promise.all([
-    productShowRes.json()
-  ]);
-  return { 
-    props: { 
-      data
-    } 
-  };
-}
+// export const getStaticProps: GetStaticProps = async(context) => {
+//   // const { pid } = context.query
+//   const params = {
+//     active:"1",
+//     last:"2"
+//   }
+//   const query_params = new URLSearchParams(params); 
+//   const [productShowRes] = await Promise.all([
+//     fetch(`${process.env.API_PATH_V1}/products/${18}/seo`), 
+//     // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
+//     // fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams))
+//     // fetch(`${process.env.ApiPathV1}/mainblocks/mains/update_tier_list?`+)
+//   ]);
+//   const [data] = await Promise.all([
+//     productShowRes.json()
+//   ]);
+//   return { 
+//     props: { 
+//       data
+//     } 
+//   };
+// }
 
 type Props = {
   // getLayout: (page: any) => JSX.Element
-  children:ReactNode
-  data?:productShow
+  // children:ReactNode
+  // data?:productShow
 }
 
 const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) => {
@@ -61,11 +61,11 @@ const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) 
   console.log(Props)
   return(
     <>
-      <NextSeo
+      {/* <NextSeo
        title={`${Props.data?.products.title} - SpaceTone`}
       //  description={Props.data.products.}
       >
-      </NextSeo>
+      </NextSeo> */}
       {/* <ShareMain> */}
         {/* aaaaaaaaajklkaaaaafl */}
         {/* {userSwr.user?.nickname} */}
@@ -81,17 +81,17 @@ const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) 
           <a>Home</a>
       </Link>
       <div className="">
-        {Props.data?.products.imageUrl}
+        {/* {Props.data?.products.imageUrl} */}
       </div>
       aaaaaaallllllllllllllaaa
       <div className="">
         {Props.children}
       </div>
       bbbbbbb
-
+{/* 
       <Link href={`/title/${Props.data?.products.id}`}>
           <a>Home</a>
-      </Link>
+      </Link> */}
 
     </>
   )

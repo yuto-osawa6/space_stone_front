@@ -13,44 +13,44 @@ import Ota from ".."
 
 
 
-export const  getStaticProps: GetStaticProps = async(context) => {
-  // const { pid } = context.query
-  // const params = {
-  //   active:"1",
-  //   last:"2"
-  // }
-  // const query_params = new URLSearchParams(params); 
-  // const [productShowRes] = await Promise.all([
-  //   fetch(`${process.env.API_PATH_V1}/products/red`), 
-  // ]);
-  const res = await fetch(`${process.env.API_PATH_V1}/products/red`)
-  const data = await res.json()
+// export const  getStaticProps: GetStaticProps = async(context) => {
+//   // const { pid } = context.query
+//   // const params = {
+//   //   active:"1",
+//   //   last:"2"
+//   // }
+//   // const query_params = new URLSearchParams(params); 
+//   // const [productShowRes] = await Promise.all([
+//   //   fetch(`${process.env.API_PATH_V1}/products/red`), 
+//   // ]);
+//   const res = await fetch(`${process.env.API_PATH_V1}/products/red`)
+//   const data = await res.json()
 
-  // if (productShowRes.status !== 200) {
-    if (res.status !== 200) {
-      return {
-        notFound: true
-      };
-    }
+//   // if (productShowRes.status !== 200) {
+//     if (res.status !== 200) {
+//       return {
+//         notFound: true
+//       };
+//     }
     
-  // const [data] = await Promise.all([
-  //   productShowRes.json()
-  // ]);
+//   // const [data] = await Promise.all([
+//   //   productShowRes.json()
+//   // ]);
   
-  return { 
-    props: { 
-      data
-    } 
-  };
-}
+//   return { 
+//     props: { 
+//       data
+//     } 
+//   };
+// }
 
 type Props = {
   // getLayout: (page: any) => JSX.Element
   // children:ReactNode
   // data?:productShow
-  data:{
-    message:string
-  }
+  // data:{
+  //   message:string
+  // }
 }
 
 
@@ -77,16 +77,16 @@ const Home2: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props
 
   return(
     <>
-      aaa
-      <Ota2></Ota2>
-      aaa
+     {/* Ota2>
+      aaa aaa
+      <Ota2></
       {Props.data.message.length>0?
       <div className="">
         tests
       </div>
       :
         <div className="">nocontent</div>
-      }
+      } */}
     </>
   )
 }

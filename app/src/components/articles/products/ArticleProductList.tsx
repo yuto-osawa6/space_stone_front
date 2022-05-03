@@ -1,10 +1,13 @@
 import { product } from "@/interfaces/product"
 import { memo, useEffect, useState } from "react"
 import { IoTimer } from "react-icons/io5"
-import ReactQuill from "react-quill"
+// import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
 import { actionSettingProductData2 } from "@/store/product/actions"
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   product:product
@@ -67,14 +70,12 @@ export const ArticleProductList:React.FC<Props> = memo(function ArticleProductLi
               </div>
             )} */}
             <div className="ArticleProductsGridRightArasuzi margin_bottom_list">
-              <></>
               <ReactQuill
               className = "preview_quill"
               value={Props.product!=undefined?Props.product.arasuzi:""} 
               theme="bubble"
               readOnly={true}
               />
-              {/* {Props.product?.arasuzi} */}
             </div>
           </div>
          <div className={`ArticleProductsGridRightBottom HeaderGrid${colornumber}`}>
