@@ -1,9 +1,12 @@
 import { Article } from "@/interfaces/article"
 import React, { memo, useEffect, useMemo, useRef, useState } from "react"
-import ReactQuill from "react-quill"
+// import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
 import { SelectiongArticleDataAction } from "@/store/article/actions"
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   id :number
@@ -33,7 +36,7 @@ export const ArticlesLists2:React.FC<Props> = memo(function ArticlesLists2Func(P
   }
   ),[])
 
-  const quillref = useRef<ReactQuill>(null!)
+  const quillref = useRef<any>(null!)
   const dispatch = useDispatch()
   // const navigate = useNavigate()
 

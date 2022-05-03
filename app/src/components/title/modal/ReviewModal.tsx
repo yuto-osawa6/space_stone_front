@@ -18,6 +18,7 @@ import { ErrorMessage } from "@/lib/ini/message";
 import { submitSpin } from "@/lib/color/submit-spin";
 import dynamic from "next/dynamic";
 // const ReactQuill = dynamic(() => from("react-quill"), { ssr: false });
+// const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 // const Quill = dynamic(() => import("react-quill"), { ssr: false });
 
 const ReactQuill =

@@ -1,11 +1,14 @@
 import { Article } from "@/interfaces/article"
 import { Button,  FormControl,  FormControlLabel,  FormHelperText,  FormLabel,  Modal, Radio, RadioGroup, Slider, TextField, Tooltip } from "@mui/material";
 import { useEffect, useMemo, useRef, useState } from "react";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 import { execArticleProductList, execUpdateArticle } from "@/lib/api/article";
 import Select, { InputActionMeta } from 'react-select'
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 type articleoption = {
   value:string
@@ -27,7 +30,7 @@ export const EditArticleModal:React.FC<Props> = function EditArticleModalFunc(Pr
   const [valueRadio,setvalueRadio] = useState<number>(Props.article!=undefined?Props.article?.weekormonth==false?0:1:2)
   const [errorradio,setErrorradio] = useState<boolean>(false)
   const [helpertextradio,setHelpertextradio] = useState<string>("")
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
   const handleChange = (content: string):void | undefined => {
     setValue(content)
   }

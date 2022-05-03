@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import ReactQuill,{Quill} from "react-quill"
+// import ReactQuill,{Quill} from "react-quill"
 
 import { Button,  FormControl,  FormControlLabel,  FormHelperText,  FormLabel,  Modal, Radio, RadioGroup, Slider, TextField, Tooltip } from "@mui/material";
 import { execArticleProductList, execCreateArticle, uploadArticleFile } from "@/lib/api/article";
@@ -13,6 +13,9 @@ import { product } from "@/interfaces/product";
 
 // import { Delta } from 'quill-delta';
 import Parchment from 'parchment';
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
 
 // const icons = Quill.import('ui/icons');
 // icons.netflix = "N"; //
@@ -83,7 +86,7 @@ export const AdminsArticle:React.FC = () => {
   const [errorradio,setErrorradio] = useState<boolean>(false)
   const [helpertextradio,setHelpertextradio] = useState<string>("")
 
-  const quillref  = useRef<ReactQuill>(null!)
+  const quillref  = useRef<any>(null!)
 
   const handleChange = (content: string):void | undefined => {
     // console.log(quillref.current.getEditor().getText(0,20).replace(/\r?\n/g, ''))
