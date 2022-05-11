@@ -11,7 +11,8 @@ const options = {
 }
 
  const client = applyCaseMiddleware(axios.create({
-  baseURL: "http://localhost:3001/api/v1",
+  // baseURL: "http://localhost:3001/api/v1",
+  baseURL: process.env.NODE_ENV === "production" ? "https://api.meruplanet.com" : "http://localhost:3001/api/v1",
   withCredentials: true,
   // headers: { 'X-Requested-With': 'XMLHttpRequest' }
   // ,"Content-Type": "multipart/form-data" 
