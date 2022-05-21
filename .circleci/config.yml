@@ -30,7 +30,7 @@ workflows:
               - test
       - aws-ecs/deploy-service-update:
           cluster-name: 'meruplanet-cluster'
-          container-image-name-updates: 'container=meruplanet-api-container,tag=${CIRCLE_SHA1}'
+          container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
           family: 'meruplanet-front-task'
           service-name: "meruplanet-front-service"
           requires:
