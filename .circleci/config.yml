@@ -19,3 +19,17 @@ workflows:
   test_my_app:
     jobs:
       - test
+      - aws-ecr/build-and-push-image:
+            account-url: AWS_ACCOUNT_URL
+            region: AWS_REGION
+            repo: 'supace-stone-front'
+            tag: '${CIRCLE_SHA1}'
+            requires:
+              - test
+        - aws-ecs/deploy-service-update:
+            cluster-name: 'meruplanet-cluster'
+            container-image-name-updates: 'container=meruplanet-api-container,tag=${CIRCLE_SHA1}'
+            family: 'meruplanet-front-task'
+            service-name: "meruplanet-front-service"
+            requires:
+              - aws-ecr/build-and-push-image
