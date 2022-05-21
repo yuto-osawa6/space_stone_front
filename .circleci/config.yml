@@ -24,7 +24,7 @@ workflows:
       - aws-ecr/build-and-push-image:
             account-url: AWS_ACCOUNT_URL
             region: AWS_REGION
-            repo: 'space-stone-front'
+            repo: 'space_stone_front'
             tag: '${CIRCLE_SHA1}'
             requires:
               - test
