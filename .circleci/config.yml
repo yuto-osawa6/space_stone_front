@@ -35,3 +35,4 @@ workflows:
           service-name: "meruplanet-front-service"
           requires:
             - aws-ecr/build-and-push-image
+            # - aws-ecr/build-and-push-image
