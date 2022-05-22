@@ -25,7 +25,10 @@ export const UserModalSign:React.FC = function UserModalSign(){
 
   const dispatch = useDispatch();
   
-
+  console.log(process.env.NEXT_PUBLIC_A1)
+  console.log(process.env.NEXT_PUBLIC_A4)
+  console.log(process.env.NEXT_PUBLIC_GOOGLE_KEY)
+  console.log(process.env.NEXT_PUBLIC_P_GOOGLE_KEY)
   return (
     <>
       <Modal
