@@ -14,7 +14,7 @@ import { mutate } from 'swr';
 
 
 export const UsersSign:React.FC = function UsersSignFunc(){
-  const key = process.env.NEXT_PUBLIC_GOOGLE_KEY
+  const key = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_GOOGLE_KEY : process.env.NEXT_PUBLIC_P_GOOGLE_KEY
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   // execGoogle 
