@@ -31,15 +31,15 @@ jobs:
     #  build_and_push_image_frontend:
     machine:
       image: ubuntu-1604:201903-01
-    - run:
-        command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
-        name: env2
-    - run:
-        command: echo "$(<app/.env.production)"
-        name: env3
-        NEXT_PUBLIC_A4
     steps:
       - checkout
+      - run:
+        command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
+        name: env2
+      - run:
+          command: echo "$(<app/.env.production)"
+          name: env3
+          NEXT_PUBLIC_A4
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
           repo: 'space_stone_front'
