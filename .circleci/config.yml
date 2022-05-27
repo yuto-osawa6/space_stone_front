@@ -28,6 +28,8 @@ jobs:
       #     name: env3
           # NEXT_PUBLIC_A4
   test2:
+    docker:
+      - image: cimg/node:16.15.0
     steps:
       - run:
             command: echo NEXT_PUBLIC_A9=a55555555556>>app/.env.production
