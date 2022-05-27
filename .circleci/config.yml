@@ -39,7 +39,6 @@ jobs:
       - run:
           command: echo "$(<app/.env.production)"
           name: env3
-          NEXT_PUBLIC_A4
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
           repo: 'space_stone_front'
