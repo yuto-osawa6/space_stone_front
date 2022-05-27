@@ -34,8 +34,8 @@ jobs:
     steps:
       - checkout
       - run:
-        command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
-        name: env2
+          command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
+          name: env2
       - run:
           command: echo "$(<app/.env.production)"
           name: env3
