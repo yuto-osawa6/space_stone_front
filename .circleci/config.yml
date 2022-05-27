@@ -17,12 +17,12 @@ jobs:
           command: yarn run test
           name: Run YARN tests
           working_directory: app
-      # - run:
-      #     command: echo NEXT_PUBLIC_A9=a55555555556>>app/.env.production
-      #     name: env
-      # - run:
-      #     command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
-      #     name: env2
+      - run:
+          command: echo NEXT_PUBLIC_A9=a55555555556>>app/.env.production
+          name: env
+      - run:
+          command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
+          name: env2
       - run:
           command: echo "$(<app/.env.production)"
           name: env3
