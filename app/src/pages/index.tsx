@@ -24,6 +24,17 @@ import { ssr_url } from '@/lib/client/clientssr'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
+  console.log(process.env.NEXT_PUBLIC_A1)
+  console.log(process.env.NEXT_PUBLIC_A4)
+  console.log(process.env.NEXT_PUBLIC_GOOGLE_KEY)
+  console.log(process.env.NEXT_PUBLIC_P_GOOGLE_KEY)
+  console.log(process.env)
+  console.log("aaaaa")
+  console.log(process.env.MY_ENV_VAR)
+  console.log(process.env.MY_ENV_VAR2)
+  console.log(process.env.API_ORIGIN4)
+  console.log(process.env.NEXT_PUBLIC_API_ORIGIN4)
+  console.log("aaaaaaaaaaaggggggggggg")
   // const res = await fetch(`${process.env.ApiPathV1}/mainblocks/mains/new_netflix`, {method: "GET"});
   // const json = await res.json();
   // return {
