@@ -17,10 +17,15 @@ jobs:
           command: yarn run test
           name: Run YARN tests
           working_directory: app
+      - run:
+          command: echo NEXT_PUBLIC_A4=AWS_REGION >> .env.production
+          name: env
+          # NEXT_PUBLIC_A4
 workflows:
   test_my_app:
     jobs:
       - test
+      # - echo NEXT_PUBLIC_FOO=AWS_REGION >> .env.production
       - aws-ecr/build-and-push-image:
             account-url: AWS_ACCOUNT_URL
             region: AWS_REGION

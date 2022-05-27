@@ -35,6 +35,7 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   console.log(process.env.API_ORIGIN4)
   console.log(process.env.NEXT_PUBLIC_API_ORIGIN4)
   console.log("aaaaaaaaaaaggggggggggg")
+  // const product_google_key = process.env.NEXT_PUBLIC_P_GOOGLE_KEY
   // const res = await fetch(`${process.env.ApiPathV1}/mainblocks/mains/new_netflix`, {method: "GET"});
   // const json = await res.json();
   // return {
