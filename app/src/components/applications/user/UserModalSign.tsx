@@ -30,6 +30,8 @@ export const UserModalSign:React.FC = function UserModalSign(){
   console.log(process.env.NEXT_PUBLIC_GOOGLE_KEY)
   console.log(process.env.NEXT_PUBLIC_P_GOOGLE_KEY)
   console.log(process.env)
+  console.log("aaaaa")
+  console.log(ENV["NEXT_PUBLIC_A1"])
   return (
     <>
       <Modal
