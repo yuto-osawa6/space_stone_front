@@ -32,12 +32,12 @@ jobs:
       - run:
             command: echo NEXT_PUBLIC_A9=a55555555556>>app/.env.production
             name: env
-        - run:
-            command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
-            name: env2
-        - run:
-            command: echo "$(<app/.env.production)"
-            name: env3
+      - run:
+          command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
+          name: env2
+      - run:
+          command: echo "$(<app/.env.production)"
+          name: env3
 workflows:
   test_my_app:
     jobs:
@@ -52,6 +52,7 @@ workflows:
             #   command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
             requires:
               - test
+              - test2
       - aws-ecs/deploy-service-update:
           cluster-name: 'meruplanet-cluster'
           container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
