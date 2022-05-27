@@ -34,7 +34,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: echo NEXT_PUBLIC_A5=a55555555555)>>app/.env.production
+          command: echo NEXT_PUBLIC_A5=7>app/.env.production
           name: env2
       - run:
           command: echo "$(<app/.env.production)"
@@ -46,11 +46,11 @@ jobs:
       # - run:
       #     command: echo "$(</usr/src/app/.env.production)"
       #     name: env5
-      # - aws-ecr/build-and-push-image:
-      #     account-url: AWS_ACCOUNT_URL
-      #     repo: 'space_stone_front'
-      #     region: AWS_REGION
-      #     tag: "${CIRCLE_SHA1}"
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ACCOUNT_URL
+          repo: 'space_stone_front'
+          region: AWS_REGION
+          tag: "${CIRCLE_SHA1}"
       # - run:
       #     command: echo "$(<app/.env.production)"
       #     name: env6
@@ -74,21 +74,21 @@ workflows:
       #       - test
 
 
-      # # - aws-ecr/build-and-push-image:
-      # #       account-url: AWS_ACCOUNT_URL
-      # #       region: AWS_REGION
-      # #       repo: 'space_stone_front'
-      # #       tag: '${CIRCLE_SHA1}'
-      # #       # extra-build-args: 
-      # #       #   command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
-      # #       requires:
-      # #         - test
-      # #         - test2
-      # - aws-ecs/deploy-service-update:
-      #     cluster-name: 'meruplanet-cluster'
-      #     container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
-      #     family: 'meruplanet-front-task'
-      #     service-name: "meruplanet-front-service"
-      #     requires:
-      #       - test2
-      #       # - aws-ecr/build-and-push-image
+      # - aws-ecr/build-and-push-image:
+      #       account-url: AWS_ACCOUNT_URL
+      #       region: AWS_REGION
+      #       repo: 'space_stone_front'
+      #       tag: '${CIRCLE_SHA1}'
+      #       # extra-build-args: 
+      #       #   command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
+      #       requires:
+      #         - test
+      #         - test2
+      - aws-ecs/deploy-service-update:
+          cluster-name: 'meruplanet-cluster'
+          container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
+          family: 'meruplanet-front-task'
+          service-name: "meruplanet-front-service"
+          requires:
+            - test2
+            # - aws-ecr/build-and-push-image
