@@ -34,7 +34,7 @@ export const UserModalSign:React.FC = function UserModalSign(){
   console.log(process.env.MY_ENV_VAR)
   console.log(process.env.MY_ENV_VAR2)
   console.log(process.env.API_ORIGIN4)
-  // console.log(MY_ENV_VAR2)
+  console.log(process.env.NEXT_PUBLIC_API_ORIGIN4)
 
   // console.log(ENV["NEXT_PUBLIC_A1"])
   return (
