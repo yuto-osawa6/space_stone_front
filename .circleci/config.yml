@@ -18,7 +18,7 @@ jobs:
           name: Run YARN tests
           working_directory: app
       - run:
-          command: echo NEXT_PUBLIC_A4=AWS_REGION >> .env.production
+          command: echo NEXT_PUBLIC_A5=a5555555555 >> .env.production
           name: env
           # NEXT_PUBLIC_A4
 workflows:
