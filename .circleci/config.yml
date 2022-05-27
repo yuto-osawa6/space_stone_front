@@ -41,10 +41,10 @@ jobs:
           name: env3
           
       - run:
-          command: echo NEXT_PUBLIC_A5=a55555555555>>usr/src/app/.env.production
+          command: echo NEXT_PUBLIC_A5=a55555555555>>/usr/src/app/.env.production
           name: env4
       - run:
-          command: echo "$(<usr/src/app/.env.production)"
+          command: echo "$(</usr/src/app/.env.production)"
           name: env5
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
@@ -55,7 +55,7 @@ jobs:
           command: echo "$(<app/.env.production)"
           name: env6
       - run:
-          command: echo "$(<usr/src/app/.env.production)"
+          command: echo "$(</usr/src/app/.env.production)"
           name: env6
           # path: ./frontend/
 
