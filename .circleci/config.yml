@@ -81,14 +81,14 @@ workflows:
             tag: '${CIRCLE_SHA1}'
             extra-build-args: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
               # command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
-            requires:
-              - test
-              - test2
+            # requires:
+            #   - test
+            #   - test2
       - aws-ecs/deploy-service-update:
           cluster-name: 'meruplanet-cluster'
           container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
           family: 'meruplanet-front-task'
           service-name: "meruplanet-front-service"
           requires:
-            - test2
-            # - aws-ecr/build-and-push-image
+            # - test2
+            - aws-ecr/build-and-push-image
