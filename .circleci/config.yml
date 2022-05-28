@@ -17,18 +17,7 @@ jobs:
           command: yarn run test
           name: Run YARN tests
           working_directory: app
-      # - run:
-      #     command: echo NEXT_PUBLIC_A9=a55555555556>>app/.env.production
-      #     name: env
-      # - run:
-      #     command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
-      #     name: env2
-      # - run:
-      #     command: echo "$(<app/.env.production)"
-      #     name: env3
-          # NEXT_PUBLIC_A4
-  test2:
-    #  build_and_push_image_frontend:
+  build_and_set:
     machine:
       image: ubuntu-1604:201903-01
     steps:
@@ -39,13 +28,6 @@ jobs:
       - run:
           command: echo "$(<app/.env.production)"
           name: env3
-          
-      # # - run:
-      # #     command: echo NEXT_PUBLIC_A5=a55555555555>>/usr/src/app/.env.production
-      # #     name: env4
-      # - run:
-      #     command: echo "$(</usr/src/app/.env.production)"
-      #     name: env5
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
           repo: 'space_stone_front'
@@ -59,24 +41,14 @@ jobs:
       - run:
           command: echo "$(<app/.env.production)"
           name: env3
-      # - run:
-      #     command: echo NEXT_PUBLIC_A5=a55555555555>>/usr/src/app/.env.production
-      #     name: env4
-      # - run:
-      #     command: echo "$(</usr/src/app/.env.production)"
-      #     name: env6
-      # - run:
-      #     command: echo "$(</ur/src/app/.env.production)"
-      #     name: env6
-          # path: ./frontend/
 
 workflows:
   test_my_app:
     jobs:
-      # - test
-      - test2
-      #     requires:
-      #       - test
+      - test
+      - build_and_set
+        requires:
+          - test
 
 
       # - aws-ecr/build-and-push-image:
@@ -91,11 +63,11 @@ workflows:
             # requires:
             #   - test
             #   - test2
-      # - aws-ecs/deploy-service-update:
-      #     cluster-name: 'meruplanet-cluster'
-      #     container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
-      #     family: 'meruplanet-front-task'
-      #     service-name: "meruplanet-front-service"
-      #     requires:
-      #       - test2
+      - aws-ecs/deploy-service-update:
+          cluster-name: 'meruplanet-cluster'
+          container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
+          family: 'meruplanet-front-task'
+          service-name: "meruplanet-front-service"
+          requires:
+            - build_and_set
             # - aws-ecr/build-and-push-image
