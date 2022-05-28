@@ -32,20 +32,20 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - checkout
-      - run:
-          command: echo NEXT_PUBLIC_A5=7>app/.env.production
-          name: env2
-      - run:
-          command: echo "$(<app/.env.production)"
-          name: env3
-          
+      # - checkout
       # - run:
-      #     command: echo NEXT_PUBLIC_A5=a55555555555>>/usr/src/app/.env.production
-      #     name: env4
-      - run:
-          command: echo "$(</usr/src/app/.env.production)"
-          name: env5
+      #     command: echo NEXT_PUBLIC_A5=7>app/.env.production
+      #     name: env2
+      # - run:
+      #     command: echo "$(<app/.env.production)"
+      #     name: env3
+          
+      # # - run:
+      # #     command: echo NEXT_PUBLIC_A5=a55555555555>>/usr/src/app/.env.production
+      # #     name: env4
+      # - run:
+      #     command: echo "$(</usr/src/app/.env.production)"
+      #     name: env5
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
           repo: 'space_stone_front'
