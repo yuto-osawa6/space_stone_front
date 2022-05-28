@@ -37,16 +37,16 @@ jobs:
       - run:
           command: echo "$(<app/.env.production)"
           name: env6
-      - checkout
-      - run:
-          command: echo "$(<app/.env.production)"
-          name: env3
+      # - checkout
+      # - run:
+      #     command: echo "$(<app/.env.production)"
+      #     name: env3
 
 workflows:
   test_my_app:
     jobs:
       - test
-      - build_and_set
+      - build_and_set:
         requires:
           - test
 
