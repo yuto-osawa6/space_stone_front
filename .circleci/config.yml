@@ -24,8 +24,9 @@ jobs:
     steps:
       - checkout
       - run:
-          command: 'echo NEXT_PUBLIC_A5=7>app/.env.production' \
-            'echo NEXT_PUBLIC_P_GOOGLE_KEY=${GOOGLE_KEY} >> app/.env.production'
+          command: 
+            echo NEXT_PUBLIC_A5=7>app/.env.production
+            echo NEXT_PUBLIC_P_GOOGLE_KEY=${GOOGLE_KEY} >> app/.env.production
             # echo NEXT_PUBLIC_P_GOOGLE_KEY=GOOGLE_KEY >> app/.env.production
           name: env2
       - run:
