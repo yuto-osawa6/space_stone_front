@@ -17,6 +17,7 @@ jobs:
           command: yarn run test
           name: Run YARN tests
           working_directory: app
+
   build_and_set:
     machine:
       image: ubuntu-1604:201903-01
@@ -47,8 +48,8 @@ workflows:
     jobs:
       - test
       - build_and_set:
-        requires:
-          - test
+          requires:
+            - test
 
 
       # - aws-ecr/build-and-push-image:
@@ -57,12 +58,12 @@ workflows:
       #       repo: 'space_stone_front'
       #       tag: '${CIRCLE_SHA1}'
       #       extra-build-args: "echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production"
-            # extra-build-args: "--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}"
-            # path: ./app
-              # command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
-            # requires:
-            #   - test
-            #   - test2
+      #       extra-build-args: "--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}"
+      #       path: ./app
+      #         command: echo NEXT_PUBLIC_A5=a55555555555>>app/.env.production
+      #       requires:
+      #         - test
+      #         - test2
       - aws-ecs/deploy-service-update:
           cluster-name: 'meruplanet-cluster'
           container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
