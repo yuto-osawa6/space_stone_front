@@ -25,7 +25,7 @@ jobs:
       - checkout
       - run:
           command: 
-            echo -e '\nNEXT_PUBLIC_P_GOOGLE_KEY=GOOGLE_KEY' >> app/.env.production
+            echo -e '\nNEXT_PUBLIC_P_GOOGLE_KEY=$GOOGLE_KEY' >> app/.env.production
           name: env_google
       #  - run:
       #     command: 
