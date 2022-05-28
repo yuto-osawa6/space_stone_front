@@ -77,6 +77,7 @@ export const useGetCurrentUser = (): { userSwr: Data2, error: any } => {
 }
 
 export const execGoogle = (response:any) => {
+  console.log("aaabbb")
   try{
     const data = {
       provider: "google_oauth2",
