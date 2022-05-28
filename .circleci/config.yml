@@ -28,22 +28,22 @@ jobs:
             NEXT_PUBLIC_P_GOOGLE_KEY=${GOOGLE_KEY} >> app/.env.production
             # echo NEXT_PUBLIC_P_GOOGLE_KEY=GOOGLE_KEY >> app/.env.production
           name: env2
-      - run:
-          command: echo "$(<app/.env.production)"
-          name: env3
-      # - aws-ecr/build-and-push-image:
-      #     account-url: AWS_ACCOUNT_URL
-      #     repo: 'space_stone_front'
-      #     region: AWS_REGION
-      #     tag: "${CIRCLE_SHA1}"
-      #     checkout: false
+      # - run:
+      #     command: echo "$(<app/.env.production)"
+      #     name: env3
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ACCOUNT_URL
+          repo: 'space_stone_front'
+          region: AWS_REGION
+          tag: "${CIRCLE_SHA1}"
+          checkout: false
       # - run:
       #     command: echo "$(<app/.env.production)"
       #     name: env6
       # - checkout
-      - run:
-          command: echo ${GOOGLE_KEY}
-          name: env3
+      # - run:
+      #     command: echo ${GOOGLE_KEY}
+      #     name: env3
 
 workflows:
   test_my_app:
@@ -66,11 +66,11 @@ workflows:
       #       requires:
       #         - test
       #         - test2
-      # - aws-ecs/deploy-service-update:
-      #     cluster-name: 'meruplanet-cluster'
-      #     container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
-      #     family: 'meruplanet-front-task'
-      #     service-name: "meruplanet-front-service"
-      #     requires:
-      #       - build_and_set
+      - aws-ecs/deploy-service-update:
+          cluster-name: 'meruplanet-cluster'
+          container-image-name-updates: 'container=meruplanet-front-container,tag=${CIRCLE_SHA1}'
+          family: 'meruplanet-front-task'
+          service-name: "meruplanet-front-service"
+          requires:
+            - build_and_set
             # - aws-ecr/build-and-push-image

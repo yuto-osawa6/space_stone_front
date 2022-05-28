@@ -25,19 +25,19 @@ export const UserModalSign:React.FC = function UserModalSign(){
 
   const dispatch = useDispatch();
   
-  // console.log(process.env.NEXT_PUBLIC_A1)
-  // console.log(process.env.NEXT_PUBLIC_A4)
-  // console.log(process.env.NEXT_PUBLIC_GOOGLE_KEY)
-  // console.log(process.env.NEXT_PUBLIC_P_GOOGLE_KEY)
-  // console.log(process.env)
-  // console.log("aaaaa")
-  // console.log(process.env.MY_ENV_VAR)
-  // console.log(process.env.MY_ENV_VAR2)
-  // console.log(process.env.API_ORIGIN4)
-  // console.log(process.env.NEXT_PUBLIC_API_ORIGIN4)
-  // console.log(process.env.NEXT_PUBLIC_FOO)
-  // console.log(process.env.NEXT_PUBLIC_A5)
-  // console.log(process.env.NEXT_PUBLIC_A9)
+  console.log(process.env.NEXT_PUBLIC_A1)
+  console.log(process.env.NEXT_PUBLIC_A4)
+  console.log(process.env.NEXT_PUBLIC_GOOGLE_KEY)
+  console.log(process.env.NEXT_PUBLIC_P_GOOGLE_KEY)
+  console.log(process.env)
+  console.log("aaaaa")
+  console.log(process.env.MY_ENV_VAR)
+  console.log(process.env.MY_ENV_VAR2)
+  console.log(process.env.API_ORIGIN4)
+  console.log(process.env.NEXT_PUBLIC_API_ORIGIN4)
+  console.log(process.env.NEXT_PUBLIC_FOO)
+  console.log(process.env.NEXT_PUBLIC_A5)
+  console.log(process.env.NEXT_PUBLIC_A9)
 
 
   // console.log(ENV["NEXT_PUBLIC_A1"])
