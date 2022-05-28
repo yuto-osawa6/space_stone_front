@@ -51,6 +51,7 @@ jobs:
           repo: 'space_stone_front'
           region: AWS_REGION
           tag: "${CIRCLE_SHA1}"
+          checkout: false
       - run:
           command: echo "$(<app/.env.production)"
           name: env6
