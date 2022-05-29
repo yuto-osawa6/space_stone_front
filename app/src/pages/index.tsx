@@ -20,9 +20,22 @@ import { Toptens2 } from '@/components/mains/main_block/Toptens2'
 import { Tags } from '@/components/mains/main_block/Tags'
 import { tags } from '@/interfaces/main'
 import { WeeklyRanking } from '@/components/mains/main_block/WeeklyRanking'
+import { ssr_url } from '@/lib/client/clientssr'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
+  // console.log(process.env.NEXT_PUBLIC_A1)
+  // console.log(process.env.NEXT_PUBLIC_A4)
+  // console.log(process.env.NEXT_PUBLIC_GOOGLE_KEY)
+  // console.log(process.env.NEXT_PUBLIC_P_GOOGLE_KEY)
+  // console.log(process.env)
+  // console.log("aaaaa")
+  // console.log(process.env.MY_ENV_VAR)
+  // console.log(process.env.MY_ENV_VAR2)
+  // console.log(process.env.API_ORIGIN4)
+  // console.log(process.env.NEXT_PUBLIC_API_ORIGIN4)
+  // console.log("aaaaaaaaaaaggggggggggg")
+  // const product_google_key = process.env.NEXT_PUBLIC_P_GOOGLE_KEY
   // const res = await fetch(`${process.env.ApiPathV1}/mainblocks/mains/new_netflix`, {method: "GET"});
   // const json = await res.json();
   // return {
@@ -47,13 +60,13 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   // }
   const query_params = new URLSearchParams(params); 
   const [thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,calendarRes,tagsRes] = await Promise.all([
-    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/new_netflix`), 
-    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/pickup?`+ query_params),
-    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams)),
-    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams2)),
-    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/worldclass`),
-    fetch(`${process.env.API_PATH_V1}/mainblocks/mains/calendar`),
-    fetch(`${process.env.API_PATH_V1}/mains`),
+    fetch(`${ssr_url}/mainblocks/mains/new_netflix`), 
+    fetch(`${ssr_url}/mainblocks/mains/pickup?`+ query_params),
+    fetch(`${ssr_url}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams)),
+    fetch(`${ssr_url}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams2)),
+    fetch(`${ssr_url}/mainblocks/mains/worldclass`),
+    fetch(`${ssr_url}/mainblocks/mains/calendar`),
+    fetch(`${ssr_url}/mains`),
 
 
   ]);
@@ -132,6 +145,7 @@ type UserTier = {
 
  const Home: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   console.log(Props)
+  console.log(process.env.NODE_ENV)
   const fallback= Props.fallback
   return(
     <>

@@ -14,15 +14,19 @@ import { mutate } from 'swr';
 
 
 export const UsersSign:React.FC = function UsersSignFunc(){
-  const key = process.env.NEXT_PUBLIC_GOOGLE_KEY
+  // const key = process.env.NEXT_PUBLIC_GOOGLE_KEY
+  const key = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_P_GOOGLE_KEY : process.env.NEXT_PUBLIC_GOOGLE_KEY
+
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   // execGoogle 
   const responseGoogle = async(response:any) =>{
     const res = await execGoogle(response)
     console.log(res)
+    console.log("resoponseGoogle")
     if(res==undefined){
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      console.log("aaaaaaaaaaaiueeeppppp")
       return
     }
     // console.log(res)
@@ -38,6 +42,11 @@ export const UsersSign:React.FC = function UsersSignFunc(){
     }
   }
 
+  const responseFailure = () => {
+    console.log("resoponseGoogle2")
+    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+  }
+
   return (
     <>
 
@@ -45,7 +54,7 @@ export const UsersSign:React.FC = function UsersSignFunc(){
       clientId={String(key)}
       buttonText="Googleでログイン"
       onSuccess={responseGoogle}
-      onFailure={responseGoogle}
+      onFailure={responseFailure}
       cookiePolicy={'single_host_origin'}
   />
       {/* <FacebookLogin
