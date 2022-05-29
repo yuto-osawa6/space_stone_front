@@ -10,6 +10,7 @@ export const AdminNews:React.FC = () => {
   // const navigate = useNavigate()
   const handleClose = () => {
     setOpen(false)
+    
     // navigate("/admins")
   }
   // juge------------
@@ -76,7 +77,7 @@ export const AdminNews:React.FC = () => {
 
   return(
     <>
-     <Modal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -121,7 +122,7 @@ export const AdminNews:React.FC = () => {
                   fullWidth
                   // disabled={true}
                 />
-                 <TextField
+                <TextField
                   error={title2Error}
                   inputProps={{ maxLength: 40, pattern: "^[a-zA-Z0-9_]+$" }}
                   placeholder="タイトルを入力してください（必須:40文字以内）"
