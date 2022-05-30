@@ -21,6 +21,7 @@ export const UsersSign:React.FC = function UsersSignFunc(){
   const dispatch = useDispatch();
   // execGoogle 
   const responseGoogle = async(response:any) =>{
+    console.log("aabb")
     const res = await execGoogle(response)
     console.log(res)
     console.log("resoponseGoogle")
@@ -54,7 +55,7 @@ export const UsersSign:React.FC = function UsersSignFunc(){
       clientId={String(key)}
       buttonText="Googleでログイン"
       onSuccess={responseGoogle}
-      onFailure={responseFailure}
+      onFailure={err => console.log('fail', err)}
       cookiePolicy={'single_host_origin'}
     />
       {/* <FacebookLogin
