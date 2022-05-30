@@ -78,11 +78,13 @@ export const useGetCurrentUser = (): { userSwr: Data2, error: any } => {
 
 export const execGoogle = (response:any) => {
   console.log("aaabbb")
+  console.log(response)
+
   try{
     const data = {
       provider: "google_oauth2",
       uid:response.googleId,
-      id_token: response.tokenId,
+      // id_token: response.tokenId,
       info: {
         email: response.profileObj.email,
         name:response.profileObj.name,
@@ -92,9 +94,9 @@ export const execGoogle = (response:any) => {
     }
     return  clientSocial.post("/social_auth/callback",{
       headers: {
-        'Authorization': `Bearer ${response.accessToken}`,
-        'Content-Type': 'application/json',
-        'access_token': `${response.accessToken}`
+        // 'Authorization': `Bearer ${response.accessToken}`,
+        // 'Content-Type': 'application/json',
+        // 'access_token': `${response.accessToken}`
       },
       resource_class:"User",
       body:data

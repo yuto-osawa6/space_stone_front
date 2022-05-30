@@ -10,6 +10,9 @@ import Link from 'next/link'
 import { AiOutlineComment, AiOutlineHome } from "react-icons/ai"
 import { RiArticleLine } from "react-icons/ri"
 import { UserCertification } from "../user/UserCertification";
+import {  NextCertification } from "@/components/applications/user/nextauth/NextCertification"
+import { useSession } from "next-auth/react";
+import { getToken } from "next-auth/jwt";
 // import { UserCertification } from "../user/UserCertification";
 
 type Props = {
@@ -133,6 +136,10 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
       }
     }
  }
+//  const { data: session } = useSession()
+// //  const token = await getToken({ req, secret })
+//  console.log(session)
+//  console.log(session)
 
   return(
     <>
@@ -170,6 +177,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
             <li><Link href="/reviews"><a><AiOutlineComment/> Reviews</a></Link></li>
             <li><Link href="/threads"><a><AiOutlineComment/> Threads</a></Link></li>
             <li className="headerUserSighIn"><UserCertification/></li>
+            {/* <li><NextCertification/></li> */}
             <li 
               className = "subMenu"
               ref={submenuref}
@@ -195,7 +203,6 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
             </li>
           </ul>
         </div>
-       
       </div>
     </>
   )

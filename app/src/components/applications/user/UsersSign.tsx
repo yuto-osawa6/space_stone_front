@@ -56,7 +56,7 @@ export const UsersSign:React.FC = function UsersSignFunc(){
       onSuccess={responseGoogle}
       onFailure={responseFailure}
       cookiePolicy={'single_host_origin'}
-  />
+    />
       {/* <FacebookLogin
       appId={`${process.env.REACT_APP_FACEBOOK_KEY}`}
       autoLoad={false}

@@ -25,22 +25,9 @@ export const UserModalSign:React.FC = function UserModalSign(){
 
   const dispatch = useDispatch();
   
-  // console.log(process.env.NEXT_PUBLIC_A1)
-  // console.log(process.env.NEXT_PUBLIC_A4)
-  // console.log(process.env.NEXT_PUBLIC_GOOGLE_KEY)
   console.log(process.env.NEXT_PUBLIC_P_GOOGLE_KEY)
-  // console.log(process.env)
-  // console.log("aaaaa")
-  // console.log(process.env.MY_ENV_VAR)
-  // console.log(process.env.MY_ENV_VAR2)
-  // console.log(process.env.API_ORIGIN4)
-  // console.log(process.env.NEXT_PUBLIC_API_ORIGIN4)
-  // console.log(process.env.NEXT_PUBLIC_FOO)
   console.log(process.env.NEXT_PUBLIC_A5)
-  // console.log(process.env.NEXT_PUBLIC_A9)
 
-
-  // console.log(ENV["NEXT_PUBLIC_A1"])
   return (
     <>
       <Modal
@@ -52,11 +39,6 @@ export const UserModalSign:React.FC = function UserModalSign(){
         <div className = "social_login_all">
           <div className = "social_login_title">
             Sign In
-            {process.env.NEXT_PUBLIC_A1}
-            {process.env.NEXT_PUBLIC_A3}
-            {process.env.NEXT_PUBLIC_A4}
-
-
           </div>
           <div className = "user_social_login"
           onClick={handleClose}

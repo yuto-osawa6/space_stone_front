@@ -10,7 +10,7 @@ export const AdminNews:React.FC = () => {
   // const navigate = useNavigate()
   const handleClose = () => {
     setOpen(false)
-    
+
     // navigate("/admins")
   }
   // juge------------

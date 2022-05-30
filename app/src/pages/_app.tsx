@@ -8,6 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css'; 
 import { DefaultSeo } from 'next-seo';
 import store from '@/store'
+import { SessionProvider } from 'next-auth/react'
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 
@@ -17,10 +18,12 @@ type NextPageWithLayout = NextPage & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+// function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
   return(
       <Provider store={store}> 
+        {/* <SessionProvider session={session}> */}
         {getLayout( 
           <>
             <DefaultSeo
@@ -40,9 +43,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             //   cardType: 'summary_large_image',
             // }}
             />
+            
             <Component {...pageProps} />
           </>
         )}
+        {/* </SessionProvider> */}
       </Provider>
   )
 }
