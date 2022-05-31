@@ -12,6 +12,8 @@ import { pussingMessageDataAction } from '@/store/message/actions';
 import { ErrorMessage } from '@/lib/ini/message';
 import { mutate } from 'swr';
 
+import { GoogleButton } from '@/components/applications/user/GoogleButton'
+
 
 export const UsersSign:React.FC = function UsersSignFunc(){
   // const key = process.env.NEXT_PUBLIC_GOOGLE_KEY
@@ -64,6 +66,7 @@ export const UsersSign:React.FC = function UsersSignFunc(){
       fields="name,email,picture"
       // onClick={componentClicked}
       callback={responseGoogle} /> */}
+      <GoogleButton/>
     </>
   )
 }

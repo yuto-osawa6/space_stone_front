@@ -10,6 +10,8 @@ import { DefaultSeo } from 'next-seo';
 import store from '@/store'
 import { SessionProvider } from 'next-auth/react'
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Script from 'next/script'
+
 
 
 type NextPageWithLayout = NextPage & {
@@ -43,7 +45,7 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
             //   cardType: 'summary_large_image',
             // }}
             />
-            
+            <Script src="https://accounts.google.com/gsi/client" />
             <Component {...pageProps} />
           </>
         )}

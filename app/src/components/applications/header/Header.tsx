@@ -13,6 +13,7 @@ import { UserCertification } from "../user/UserCertification";
 import {  NextCertification } from "@/components/applications/user/nextauth/NextCertification"
 import { useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
+import { GoogleButton } from '@/components/applications/user/GoogleButton'
 // import { UserCertification } from "../user/UserCertification";
 
 type Props = {
@@ -178,6 +179,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
             <li><Link href="/threads"><a><AiOutlineComment/> Threads</a></Link></li>
             <li className="headerUserSighIn"><UserCertification/></li>
             {/* <li><NextCertification/></li> */}
+            <li><GoogleButton/></li>
             <li 
               className = "subMenu"
               ref={submenuref}
