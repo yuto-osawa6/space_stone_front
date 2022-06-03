@@ -1,5 +1,5 @@
 import Lefts from "@/components/applications/left/Lefts";
-import { execLeft, execLeftfetcher } from "@/lib/api/left";
+import { execLeftfetcher } from "@/lib/api/left";
 import { GetError } from "@/lib/error/error";
 import { API } from "@/mocks/handlers";
 import { server } from "@/mocks/server";
