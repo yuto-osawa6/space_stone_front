@@ -21,7 +21,7 @@ jobs:
   build_and_set:
     machine:
       # image: ubuntu-1604:201903-01
-      image: Ubuntu 22.04:LTS
+      image: ubuntu-2204:LTS
     steps:
       - checkout
       - run:
