@@ -92,11 +92,13 @@ export const execGoogle = (response:any) => {
       }
     
     }
-    return  clientSocial.post("/social_auth/callback",{
+    
+    return  clientSocial.post("/omniauth/google_oauth2/callback",{
+    // return  clientSocial.post("/social_auth/callback",{
       headers: {
-        // 'Authorization': `Bearer ${response.accessToken}`,
-        // 'Content-Type': 'application/json',
-        // 'access_token': `${response.accessToken}`
+        'Authorization': `Bearer ${response.accessToken}`,
+        'Content-Type': 'application/json',
+        'access_token': `${response.accessToken}`
       },
       resource_class:"User",
       body:data
@@ -164,3 +166,10 @@ export const signOut = () => {
     "uid": `${Cookies.get("_uid")}`
   }})  
 }
+
+
+// export const GoogleLogin2 = () => {
+//   return  clientSocial.get("/auth/google_oauth2",{
+  
+//   })
+// }

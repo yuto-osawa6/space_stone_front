@@ -10,10 +10,11 @@ import Link from 'next/link'
 import { AiOutlineComment, AiOutlineHome } from "react-icons/ai"
 import { RiArticleLine } from "react-icons/ri"
 import { UserCertification } from "../user/UserCertification";
-import {  NextCertification } from "@/components/applications/user/nextauth/NextCertification"
+// import {  NextCertification } from "@/components/applications/user/nextauth/NextCertification"
 import { useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
 import { GoogleButton } from '@/components/applications/user/GoogleButton'
+import { useRouter } from "next/router";
 // import { UserCertification } from "../user/UserCertification";
 
 type Props = {
@@ -141,6 +142,8 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
 // //  const token = await getToken({ req, secret })
 //  console.log(session)
 //  console.log(session)
+//  const router = useRouter()
+//  console.log(router)
 
   return(
     <>
@@ -179,7 +182,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
             <li><Link href="/threads"><a><AiOutlineComment/> Threads</a></Link></li>
             <li className="headerUserSighIn"><UserCertification/></li>
             {/* <li><NextCertification/></li> */}
-            <li><GoogleButton/></li>
+            {/* <li><GoogleButton/></li> */}
             <li 
               className = "subMenu"
               ref={submenuref}
