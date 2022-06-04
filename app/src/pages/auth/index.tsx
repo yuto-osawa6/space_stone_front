@@ -5,6 +5,8 @@ import nookies from 'nookies'
 
 export const getServerSideProps: GetServerSideProps = async(ctx) => {
   const cookies = nookies.get(ctx)
+  console.log(ctx)
+  // console.log(cookies)
   nookies.set(ctx, '_client', ctx.query.client_id as string, {
     maxAge: 30 * 24 * 60 * 60,
     path: '/',

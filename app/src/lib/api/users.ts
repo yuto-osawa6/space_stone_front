@@ -2,7 +2,7 @@
 import Cookies from "js-cookie"
 import qs from "qs"
 import client from "../client/client"
-import { clientSocial } from "../client/clientSocial"
+import  clientSocial  from "../client/clientSocial"
 
 
 export const google_oauth = () => {

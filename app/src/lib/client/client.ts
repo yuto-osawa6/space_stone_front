@@ -19,9 +19,15 @@ const options = {
   // headers: {
   //   "Content-Type": "multipart/form-data" // 画像ファイルを取り扱うのでform-dataで送信
   // }
+  // headers: { 'X-Requested-With': 'XMLHttpRequest' },
+
 }), 
 options
 )
+
+// client.defaults.xsrfCookieName = 'CSRF-TOKEN'
+// client.defaults.xsrfHeaderName = 'X-CSRF-Token'
+// client.defaults.withCredentials = true
 
 export default client
 // http://api.meruplanet.com/api/v1/products/red

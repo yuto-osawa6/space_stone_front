@@ -5,9 +5,15 @@ const options = {
   ignoreHeaders: true 
 }
 
-export const clientSocial = applyCaseMiddleware(axios.create({
+const clientSocial = applyCaseMiddleware(axios.create({
   // baseURL: "http://localhost:3001/",
   baseURL: process.env.NODE_ENV === "production" ? "https://api.meruplanet.com/" : "http://localhost:3001/",
   withCredentials: true,
-  headers: { 'X-Requested-With': 'XMLHttpRequest' },
+  // headers: { 'X-Requested-With': 'XMLHttpRequest' },
 }), options)
+
+// clientSocial.defaults.xsrfCookieName = 'CSRF-TOKEN'
+// clientSocial.defaults.xsrfHeaderName = 'X-CSRF-Token'
+// clientSocial.defaults.withCredentials = true
+
+export default clientSocial
