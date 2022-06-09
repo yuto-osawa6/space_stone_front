@@ -13,7 +13,7 @@ import { UserCertification } from "../user/UserCertification";
 // import {  NextCertification } from "@/components/applications/user/nextauth/NextCertification"
 import { useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
-import { GoogleButton } from '@/components/applications/user/GoogleButton'
+// import { GoogleButton } from '@/components/applications/user/AuthButton'
 import { useRouter } from "next/router";
 // import { UserCertification } from "../user/UserCertification";
 

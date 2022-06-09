@@ -8,7 +8,7 @@ import { Modal } from '@mui/material';
 import { UsersSign } from './UsersSign';
 import { useContext, useState } from 'react';
 import { OpenContext } from '@/contexttype/contexttype';
-import { GoogleButton } from "./GoogleButton";
+import { AuthButton } from "./AuthButton";
 // import { OpenContext } from './UserCertification';
 
 // type Props = {
@@ -46,7 +46,7 @@ export const UserModalSign:React.FC = function UserModalSign(){
           >
             {/* <UsersSign
             /> */}
-           <GoogleButton/>
+           <AuthButton/>
           </div>
         </div>
 

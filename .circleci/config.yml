@@ -32,6 +32,10 @@ jobs:
           command: 
             echo -e \\nNEXT_PUBLIC_AUTH_URL=${AUTH_URL} >> app/.env.production
           name: env_google
+      - run:
+          command: 
+            echo -e \\nNEXT_PUBLIC_TWITTER_URL=${TWITTER_URL} >> app/.env.production
+          name: env_google
       #  - run:
       #     command: 
             # echo NEXT_PUBLIC_A5=7>>app/.env.production
