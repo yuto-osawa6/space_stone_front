@@ -23,6 +23,7 @@ export const AuthButton:React.FC = function Btn(){
       {process.env.NODE_ENV === "production"&&(
         <>
           <a href={`${process.env.NEXT_PUBLIC_TWITTER_URL}${router.pathname}`}>Sign in with Twitter</a>
+          <a href={`${process.env.NEXT_PUBLIC_FACEBOOK_URL}${router.pathname}`}>Sign in with FaceBook</a>
         </>
       )}
       
