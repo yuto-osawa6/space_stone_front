@@ -35,7 +35,11 @@ jobs:
       - run:
           command: 
             echo -e \\nNEXT_PUBLIC_TWITTER_URL=${TWITTER_URL} >> app/.env.production
-          name: env_google
+          name: env_twitter
+      - run:
+          command: 
+            echo -e \\nNEXT_PUBLIC_FACEBOOK_URL=${FACEBOOK_URL} >> app/.env.production
+          name: env_facebook
       #  - run:
       #     command: 
             # echo NEXT_PUBLIC_A5=7>>app/.env.production
