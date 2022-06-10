@@ -124,7 +124,8 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
           {/* <CSSTransition in={imageloding}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit> */}
           {/* {<img src = {Props.product.imageUrl} ref={nodeRef}/>} */}
           {Props.product.imageUrl!=undefined&&(
-          <Image src={Props.product.imageUrl} layout='fill' priority={true}/>
+          <img src = {Props.product.imageUrl} ref={nodeRef}/>
+          // <Image src={Props.product.imageUrl} layout='fill' priority={true}/>
           )}
           {/* </CSSTransition> */}
         </div>

@@ -10,7 +10,8 @@ const withTM = require('next-transpile-modules')([
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['api','localhost','api.meruplanet.com'],
+    // domains: ['api','localhost','api.meruplanet.com'],
+    domains: ['api','localhost'],
   },
   env: {
     MY_ENV_VAR: process.env.MY_ENV_VAR,
