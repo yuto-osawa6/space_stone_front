@@ -29,11 +29,11 @@ describe('Setting', () => {
     const field = screen.getByRole('input').querySelector('input')
     const input = screen.getByRole('input').querySelector('input') as HTMLElement ;
     // validation
-    fireEvent.click(screen.getByText('Submit'))
+    fireEvent.click(screen.getByText('保存'))
     await waitFor(() => screen.findByText('3文字以上で入力してください'))
     expect(screen.getByText('3文字以上で入力してください')).toBeInTheDocument();
     fireEvent.change(input, {target: {value: '1234567891011121314151617181920'}})
-    fireEvent.click(screen.getByText('Submit'))
+    fireEvent.click(screen.getByText('保存'))
     await waitFor(() => screen.findByText('20文字以内で入力してください'))
     expect(screen.getByText('20文字以内で入力してください')).toBeInTheDocument();
     fireEvent.change(input, {target: {value: 'test'}})
