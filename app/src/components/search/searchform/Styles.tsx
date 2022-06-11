@@ -96,7 +96,9 @@ export const Styles:React.FC = function StylesFunc(){
             ishover = {ishover}
             />
            )}
-          {Number(styleListsStore.styles_id_eq)-1>=0? styles.styles[Number(styleListsStore.styles_id_eq)-1].name:"Any"}
+          {/* {Number(styleListsStore.styles_id_eq)-1>=0? styles.styles[Number(styleListsStore.styles_id_eq)-1].name:"Any"} */}
+          {Number(styleListsStore.styles_id_eq)-1>=0? styles.styles.filter((data:any) => data.id === Number(styleListsStore.styles_id_eq))[0].name:"Any"}
+
           
         </div>
       </>

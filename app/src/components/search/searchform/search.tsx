@@ -162,11 +162,18 @@ const Search:React.FC = function SearchFunc(){
         <div className="header-search-contents__boxes__List"
         onClick={()=>deletingtag3()}
         >
-          {Number(todoList3.styles_id_eq)-1>=0? todoList4.styles[Number(todoList3.styles_id_eq)-1].name:""}
+          {/* {Number(todoList3.styles_id_eq)-1>=0? todoList4.styles[Number(todoList3.styles_id_eq)-1].name:""} */}
+          {Number(todoList3.styles_id_eq)-1>=0? todoList4.styles.filter((data:any) => data.id === Number(todoList3.styles_id_eq))[0].name:""}
         </div>
       </>
     )
   }
+  // console.log(todoList3)
+  // console.log(todoList4)
+  // console.log(todoList4)
+  // console.log(todoList4.styles.filter((data:any) => data.id === Number(todoList3.styles_id_eq))[0].name)
+
+
 
   const tag_clear_click=()=>{
     dispatch(deletingtodoGenresDataALLAction())
