@@ -38,7 +38,7 @@ describe('Setting', () => {
     expect(screen.getByText('20文字以内で入力してください')).toBeInTheDocument();
     fireEvent.change(input, {target: {value: 'test'}})
     expect(field?.value).toEqual("test")
-    fireEvent.click(screen.getByText('Submit'))
+    fireEvent.click(screen.getByText('保存'))
     screen.debug()
   });
 
