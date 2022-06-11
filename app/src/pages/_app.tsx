@@ -51,7 +51,8 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
               startPosition={0.3}
               stopDelayMs={200}
               height={2}
-              showOnShallow={true}
+              options={{ showSpinner: false }}
+              // showOnShallow={false}
             />
             <Script src="https://accounts.google.com/gsi/client" />
             <Component {...pageProps} />
