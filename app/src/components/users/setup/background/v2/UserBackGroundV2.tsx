@@ -14,6 +14,12 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 import { execUserBackgroundImageHandler, execUserTopImageHandler } from '@/lib/api/users'
 import { useUser } from '@/lib/data/user/useUser'
 import { getCanvasCroppedImg } from '../../topimage/submit/TopimageSubmit'
+import { useDispatch } from 'react-redux'
+import { pussingMessageDataAction } from '@/store/message/actions'
+import { TailSpin } from 'react-loader-spinner'
+import { submitSpin } from '@/lib/color/submit-spin'
+import { mutate } from 'swr'
+import { ErrorMessage } from '@/lib/ini/message'
 
 // This is to demonstate how to make and center a % aspect crop
 // which is a bit trickier so we use some helper functions.
@@ -53,6 +59,9 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
   const [scale, setScale] = useState(1)
   const [rotate, setRotate] = useState(0)
   const [aspect, setAspect] = useState<number | undefined>(10 / 3)
+  const dispatch = useDispatch()
+  // loading
+  const [loading,setLoading] = useState<boolean>(false)
 
   function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files && e.target.files.length > 0) {
@@ -109,13 +118,17 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
   const user_id =  userSwr.user.id
 
   const TopimageSubmitHandler = async() =>{
+  setLoading(true)
   console.log(imgRef)
 
   if (imgRef.current==undefined){
-    // setHelperText("*画像が選択されていません")
+    dispatch(pussingMessageDataAction({title:"画像が選択されていません。",select:0}))
     return
   }
-  if(completedCrop == undefined) return
+  if(completedCrop == undefined){
+    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+    return
+  }
   const croppedImageUrl = await getCanvasCroppedImg(imgRef.current,completedCrop,'newFile.jpeg');
   console.log(croppedImageUrl)
   // setNewImage(croppedImageUrl);
@@ -125,7 +138,10 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
   console.log(fileReader)
 
   var formData= new FormData();
-  if (croppedImageUrl==undefined) return
+  if (croppedImageUrl==undefined){
+    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+    return
+  }
   formData.append('bg_img', croppedImageUrl)
   formData.append("user_id",String(user_id))
   // formData.append("user_id",String(1))
@@ -136,11 +152,13 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
   const res =  await execUserBackgroundImageHandler(user_id,formData as FormData)
   if(res.status==200){
     console.log(res)
-    // setSubmitLoading(false)
-    // dispatch(updateBacgroundImageAction(userSwr.user,res.data.background))
-    // closeHandler()
+    setLoading(false)
+    mutate
+    dispatch(pussingMessageDataAction({title:"背景画像を更新しました。",select:1}))
+    closeHandler()
   }else{
-
+    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+    return
   }
   }
 
@@ -215,18 +233,27 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
             )}
             <div>
             <div className = "UserBackgroupdModalSubmit">
-              <Button variant="contained"
+              {/* <Button variant="contained"
                 className = "TheredModalButton"
                 onClick = { TopimageSubmitHandler }
               >
               Submit
-              </Button>
+              </Button> */}
               {/* {submitLoading==true&&(
                 <>
                   loading(しばらくお待ちください)
                 </>
               )} */}
+              <Button variant="contained"
+              className={"tail-spin-loading"}
+              onClick = {TopimageSubmitHandler}
+              >保存
+              {loading==true&&(
+                <TailSpin color={submitSpin.color} height={20} width={20} />
+              )}
+            </Button>
             </div>
+            
               {/* {completedCrop!=undefined && (
                 <canvas
                   ref={previewCanvasRef}

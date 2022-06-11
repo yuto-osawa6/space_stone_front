@@ -11,6 +11,7 @@ import store from '@/store'
 import { SessionProvider } from 'next-auth/react'
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Script from 'next/script'
+import NextNprogress from 'nextjs-progressbar';
 
 
 
@@ -44,6 +45,13 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
             //   site: '@site',
             //   cardType: 'summary_large_image',
             // }}
+            />
+            <NextNprogress
+              color="#29D"
+              startPosition={0.3}
+              stopDelayMs={200}
+              height={2}
+              showOnShallow={true}
             />
             <Script src="https://accounts.google.com/gsi/client" />
             <Component {...pageProps} />

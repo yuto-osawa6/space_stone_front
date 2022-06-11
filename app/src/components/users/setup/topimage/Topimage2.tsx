@@ -14,6 +14,11 @@ import { getCanvasCroppedImg } from './submit/TopimageSubmit'
 import { execUserBackgroundImageHandler, execUserTopImageHandler } from '@/lib/api/users'
 import { useUser } from '@/lib/data/user/useUser'
 import { mutate } from 'swr'
+import { useDispatch } from 'react-redux'
+import { pussingMessageDataAction } from '@/store/message/actions'
+import { TailSpin } from 'react-loader-spinner'
+import { submitSpin } from '@/lib/color/submit-spin'
+import { ErrorMessage } from '@/lib/ini/message'
 
 // This is to demonstate how to make and center a % aspect crop
 // which is a bit trickier so we use some helper functions.
@@ -53,6 +58,8 @@ const TopImageV2:React.FC<Props> = function TopimageV2func(Props) {
   const [scale, setScale] = useState(1)
   const [rotate, setRotate] = useState(0)
   const [aspect, setAspect] = useState<number | undefined>(1 / 1)
+  const [loading,setLoading] = useState<boolean>(false)
+
 
   function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files && e.target.files.length > 0) {
@@ -107,15 +114,20 @@ const TopImageV2:React.FC<Props> = function TopimageV2func(Props) {
   // submit 
   const {userSwr} = useUser()
   const user_id =  userSwr.user.id
+  const dispatch = useDispatch()
 
   const TopimageSubmitHandler = async() =>{
+  setLoading(true)
   console.log(imgRef)
 
   if (imgRef.current==undefined){
-    // setHelperText("*画像が選択されていません")
+    dispatch(pussingMessageDataAction({title:"画像が選択されていません。",select:0}))
     return
   }
-  if(completedCrop == undefined) return
+  if(completedCrop == undefined){
+    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+    return
+  }
   const croppedImageUrl = await getCanvasCroppedImg(imgRef.current,completedCrop,'newFile.jpeg');
   console.log(croppedImageUrl)
   // setNewImage(croppedImageUrl);
@@ -125,7 +137,10 @@ const TopImageV2:React.FC<Props> = function TopimageV2func(Props) {
   console.log(fileReader)
 
   var formData= new FormData();
-  if (croppedImageUrl==undefined) return
+  if (croppedImageUrl==undefined){
+    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+    return
+  }
   formData.append('tp_img', croppedImageUrl)
   formData.append("user_id",String(user_id))
   // formData.append("user_id",String(1))
@@ -137,11 +152,11 @@ const TopImageV2:React.FC<Props> = function TopimageV2func(Props) {
   if(res.status==200){
     console.log(res)
     mutate('/session_user')
-    // setSubmitLoading(false)
-    // dispatch(updateBacgroundImageAction(userSwr.user,res.data.background))
-    // closeHandler()
+    setLoading(false)
+    dispatch(pussingMessageDataAction({title:"画像を更新しました。",select:1}))
+    closeHandler()
   }else{
-
+    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
   }
   }
 
@@ -216,11 +231,19 @@ const TopImageV2:React.FC<Props> = function TopimageV2func(Props) {
             )}
             <div>
             <div className = "UserBackgroupdModalSubmit">
-              <Button variant="contained"
+              {/* <Button variant="contained"
                 className = "TheredModalButton"
                 onClick = { TopimageSubmitHandler }
               >
               Submit
+              </Button> */}
+              <Button variant="contained"
+              className={"tail-spin-loading"}
+              onClick = {TopimageSubmitHandler}
+              >Submit
+              {loading==true&&(
+                <TailSpin color={submitSpin.color} height={20} width={20} />
+              )}
               </Button>
               {/* {submitLoading==true&&(
                 <>
