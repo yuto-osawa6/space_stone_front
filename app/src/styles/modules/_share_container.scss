@@ -218,3 +218,17 @@
       padding: 0px!important;
     }
   }
+
+  // crop
+  .cropCircle{
+    .ReactCrop__crop-selection{
+      border-radius: 100%;
+    }
+  }
+  .UsersShowTopSettingListBackgroudImage{
+
+    &:hover{
+      color: #3788d8;
+    }
+  }
+  

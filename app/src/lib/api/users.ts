@@ -95,6 +95,18 @@ export const execUserBackgroundImageHandler = (user_id:number,data:FormData) => 
   })
 }
 
+// 6/12
+export const execUserTopImageHandler = (data:FormData) => {
+  return client.patch(`/users/topimage`,data,{
+    headers:{
+          "content-type": "multipart/form-data"
+        },
+    // user:{
+
+    // }
+  })
+}
+
 
 export const execCreateOverviewToUser = (user_id:number,content:string) => {
   return client.patch(`/users/overview`,{

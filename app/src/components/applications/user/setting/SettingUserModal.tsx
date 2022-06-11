@@ -17,6 +17,7 @@ import { useUser } from "@/lib/data/user/useUser"
 import { ErrorMessage } from "@/lib/ini/message"
 import { useRouter } from "next/router"
 import { mutate } from "swr"
+import { TopImageSetUp } from "@/components/users/setup/topimage/TopImageSetUp"
 
 
 
@@ -116,7 +117,7 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
         <>
           <div className = "settingModalOpenClass">
             <div className = "settingModalOpenClassTitle">
-              Setting
+              設定
             </div>
             <div className = "settingModalOpenClassMain">
                 
@@ -135,17 +136,23 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
                   // value={"title"}
                 />
               </div>
-              <div className = "settingModalOpenClassImage">
+              <div className = "settingModalOpenClassImage"
+              style={{fontSize:"1rem",color:"rgba(0, 0, 0, 0.6)"}}
+              >
                 Image
               </div>
-              <div className = "settingModalOpenClassImageExplain">
+              <img src = {userSwr.user.image}
+              style = {{width:"70px",height:"70px",borderRadius:"70px",margin:"10px"}}
+              />
+              {/* <div className = "settingModalOpenClassImageExplain">
                 *画像は各SNSプラットフォームサービスの画像を使用させていただいておりますので、下記のリンクから設定をお願い致します。
                 {userSwr.user.provider==="google_oauth2"&&(
                   <a href = "https://myaccount.google.com/personal-info" target="_blank" rel="noopener noreferrer">
                     https://myaccount.google.com/personal-info
                   </a>
                 )}
-              </div>
+              </div> */}
+              <TopImageSetUp/>
             </div>
             <div className = "settingModalOpenClassButton"
               style={{
@@ -157,13 +164,13 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
                 // className = "TheredModalButton"
                 onClick = { handleSubmit }
               >
-                Submit
+                保存
               </Button>
               <Button variant="contained"
                 style={{backgroundColor:"#ff3073"}}
                 onClick = { handleDeleteUser }
               >
-                Delete
+                削除
               </Button>
             </div>
           </div>

@@ -14,16 +14,12 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //   setOn:React.Dispatch<React.SetStateAction<boolean>>
 // }
 
-// export const UserBackgroupdModal:React.FC<Props> = function UserBackgroupdModalFunc(Props){
+// export const EditTopImage:React.FC<Props> = function UserBackgroupdModalFunc(Props){
 //   // dispatch
 //   const dispatch = useDispatch()
-//   // const UserStore = useSelector((state:RootState)=>state.user)
 //   const {userSwr} = useUser()
 //   // ref
 //   const reactCropRef = useRef<HTMLDivElement>(null!)
-//   const reactCropRef2 = useRef<ReactCrop>()
-//   // store
-//   // const user_id = useSelector((state:RootState)=>state.user).user.id
 
 //   const user_id =  userSwr.user.id
 //   const [crop, setCrop] = useState<Crop>(
@@ -31,9 +27,9 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //   unit: '%',
 //   x: 0,
 //   y:0,
-//   width:0,
-//   height:0,
-//   // aspect: 10
+//   width:100,
+//   height:100,
+//   aspect: 4 / 3
 // });
 //   const [preview, setPreview] = useState<string>();
 //   const [newImage,setNewImage] = useState<any>();
@@ -46,23 +42,11 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //   const closeHandler = () => Props.setOn(false)
 
 //   // image 
-
-//   // const setPreviewHandler = (image:string) => {
-//   //   // setPreview(image)
-//   //   return new Promise((resolve, reject) => {
-//   //     resolve(setPreview(image))
-//   //   })
-//   // }
-
 //   const imageFileChangeHandler = (e:React.ChangeEvent<HTMLInputElement>) =>{
-//     console.log(e.target)
-    
 //     if (e.target.files && e.target.files.length > 0) {
 //       const { files } = e.target;
 //       console.log(files)
-      
 //       const reader = new FileReader();
-
 //       reader.addEventListener("load", () =>
 //       setPreview(reader.result as string))
 //       reader.readAsDataURL(e.target.files[0]);
@@ -75,71 +59,72 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //   }
 
 //   const cropChangeHandler = (crop: Crop, percentageCrop: Crop) => {
-   
 //     setCrop(crop)
 //   }
 
 //   const onCropCompleteHandler = (crop: Crop, percentageCrop: Crop) => {
 //     console.log("aaa")
-//     setChangeCrop(crop)
+//     // setChangeCrop(crop)
 //   }
 
 
 //   const onImageLoadedHandler = useCallback((image: HTMLImageElement) => {
 //     setImageRef(image)
-    
 //   },[])
 
-//   useEffect(()=>{
-//     if (imageRef==undefined)return
-//     const { width,height } = imageRef.getBoundingClientRect()
-//     console.log(width)
-//     console.log(height)
-//     console.log(width*3/10)
-//     console.log(width*3/10<height)
-//     if(width*3/10<height){
-//     setCrop({
-//       unit: 'px',
-//       x: 0,
-//       y:0,
-//       width:width,
-//       height:3/10*width,
-//       // width:200,
-//       // height:250,
-//       aspect: 10 / 3
-//     })
-//     setChangeCrop({
-//       unit: 'px',
-//       x: 0,
-//       y:0,
-//       width:width,
-//       height:3/10*width,
-//       // width:200,
-//       // height:250,
-//       aspect: 10 / 3
-//     })
-//   }else{
-//     setCrop({
-//       unit: 'px',
-//       x: 0,
-//       y:0,
-//       width:10/3*height,
-//       height:height,
-//       aspect: 10 / 3
-//     })
+//   // useEffect(()=>{
+//   //   if (imageRef==undefined)return
+//   //   const { width,height } = imageRef.getBoundingClientRect()
+//   //   console.log(width)
+//   //   console.log(height)
+//   //   console.log(width*3/10)
+//   //   console.log(width*3/10<height)
+//   //   if(width*3/10<height){
+//   //   setCrop({
+//   //     unit: 'px',
+//   //     x: 0,
+//   //     y:0,
+//   //     // width:width,
+//   //     // height:3/10*width,
+//   //     width:width,
+//   //     height:height,
+//   //     // width:200,
+//   //     // height:250,
+//   //     aspect: 10 / 3
+//   //   })
+//   //   setChangeCrop({
+//   //     unit: 'px',
+//   //     x: 0,
+//   //     y:0,
+//   //     width:width,
+//   //     height:height,
+//   //     // height:3/10*width,
+//   //     // width:200,
+//   //     // height:250,
+//   //     aspect: 10 / 3
+//   //   })
+//   // }else{
+//   //   setCrop({
+//   //     unit: 'px',
+//   //     x: 0,
+//   //     y:0,
+//   //     width:10/3*height,
+//   //     height:height,
+//   //     aspect: 10 / 3
+//   //   })
 
-//     setChangeCrop({
-//       unit: 'px',
-//       x: 0,
-//       y:0,
-//       width:10/3*height,
-//       height:height,
-//       aspect: 10 / 3
-//     })
-//   }
+//   //   setChangeCrop({
+//   //     unit: 'px',
+//   //     x: 0,
+//   //     y:0,
+//   //     width:10/3*height,
+//   //     height:height,
+//   //     aspect: 10 / 3
+//   //   })
+//   // }
 
 
-//   },[imageRef,preview as string])
+//   // },[imageRef,preview as string])
 
 //   const makeClientCrop = async(crop:Crop) => {
 //     // console.log(imageRef)
@@ -159,14 +144,14 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //       formData.append("user_id",String(user_id))
 
 //       console.log(croppedImageUrl)
-//       const res =  await execUserBackgroundImageHandler(user_id,formData as FormData)
-//       if(res.status==200){
-//         setSubmitLoading(false)
-//         dispatch(updateBacgroundImageAction(userSwr.user,res.data.background))
-//         closeHandler()
+//       // const res =  await execUserBackgroundImageHandler(user_id,formData as FormData)
+//       // if(res.status==200){
+//       //   setSubmitLoading(false)
+//       //   dispatch(updateBacgroundImageAction(userSwr.user,res.data.background))
+//       //   closeHandler()
 
-//       }
-     
+//       // }
+    
 
 //     }else{
 //       console.log("aaa")
@@ -176,20 +161,16 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //   }
 
 //   const getCroppedImg = (image:HTMLImageElement, crop:Crop, fileName:string) => {
-
 //     const canvas = document.createElement('canvas');
 //     const pixelRatio = window.devicePixelRatio;
 //     const scaleX = image.naturalWidth / image.width;
 //     const scaleY = image.naturalHeight / image.height;
 //     const ctx = canvas.getContext('2d');
-
 //     canvas.width = crop.width * pixelRatio * scaleX;
 //     canvas.height = crop.height * pixelRatio * scaleY;
 //     if (ctx==null)return
-
 //     ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
 //     ctx.imageSmoothingQuality = 'high';
-
 //     ctx.drawImage(
 //       image,
 //       crop.x * scaleX,
@@ -201,7 +182,6 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //       crop.width * scaleX,
 //       crop.height * scaleY
 //     );
-
 //     return new Promise<Blob>((resolve, reject) => {
 //       // canvas.toDataURL
 //       canvas.toBlob(
@@ -210,15 +190,12 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //             console.error('Canvas is empty');
 //             return;
 //           }
-        
 //           resolve(blob)
 //         },
 //         'image/jpeg',
 //         1
 //       );
-
 //     });
-
 //   }
 
 //   // submit
@@ -241,10 +218,10 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //     }
 //   }
 
-
+//   console.log(newImage)
 //   return(
 //     <>
-//      <Modal
+//       <Modal
 //       open={Props.on}
 //       onClose={closeHandler}
 //       aria-labelledby="modal-modal-title"
@@ -253,11 +230,11 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //         <>
 //           <div className = "UserBackgroupdModal">
 //             <div className = "UserBackgroupdModalTitle">
-//               背景画像の変更
+//               画像の変更
 //             </div>
 //             <FormHelperText>{helperText}</FormHelperText>
 //             <div className = "inputFile">
-//               <label>ファイルの選択
+//               <label>ファイルの選択２９０
 //               <input type = "file" accept="image/*" onChange={imageFileChangeHandler}></input>
 //               </label>
 //             </div>
@@ -266,17 +243,16 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //             >
 //               {preview !=undefined&&(
 //               <ReactCrop 
-//               // ref={reactCropRef2}
 //               src={preview} 
 //               crop={crop}
-//               locked={true}
-//               ruleOfThirds={true}
+//               // locked={true}
+//               // ruleOfThirds={true}
 //               onChange={cropChangeHandler}
 //               onComplete={onCropCompleteHandler}
 //               onImageLoaded={onImageLoadedHandler}
 //               />
-//              )}
-//               {/* <img src={newImage} /> */}
+//             )}
+              
 //             </div>
 //             <div className = "UserBackgroupdModalSubmit">
 //               <Button variant="contained"
@@ -292,8 +268,8 @@ import { Button, FormHelperText, Modal } from "@mui/material"
 //               )}
 //             </div>
 //           </div>
+//           <img src={newImage} />
 //         </>
-
 //       </Modal>
 //     </>
 //   )
