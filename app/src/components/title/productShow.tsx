@@ -158,7 +158,14 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
     if (product==undefined) return
     if (product.episords==undefined) return
     if(product.episords[0]==undefined)return
+    if(product.episords[0].releaseDate == undefined){
+      setFirstEpisord("0")
+      setAvgTime("0分")
+      return
+    }
     const firstE = new Date(product.episords[0].releaseDate)
+    // console.log(firstE)
+    // console.log(product.episords[0].releaseDate)
     setFirstEpisord(`${firstE.getFullYear()}-${firstE.getMonth()+1}-${firstE.getDate()} ${firstE.getHours()}時${firstE.getMinutes()}分`)
     const length = product?.episords.filter(item => item.time !== undefined).length
     const time = product?.episords.reduce((sum,i)=>i.time!=undefined?sum+new Date(i.time).getTime():sum,0)
@@ -351,7 +358,8 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
    const [openChatRoom,setOpenChatRoom] = useState<boolean>(false)
    const modalOpenChatRoom = () => setOpenChatRoom(true)
 
-  //  console.log(ProductStore)
+   console.log(ProductStore)
+   console.log(product)
   //  let countR = 0
   //  countR += 1
    console.log(userSwr.user)
@@ -539,22 +547,30 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     {airing!=""&&(
                     <li>放送まで: {airing}</li>
                     )}
-                    {ProductStore.id!=Number(params_id)&&product!=undefined&&product.productStyles.length>0&&(
+                    {/* {ProductStore.id!=Number(params_id)&&product!=undefined&&product.productStyles.length>0&&(
                     <li>フォーマット: {product.productStyles[0].name}</li>
-                    )}
-                     {ProductStore.id==Number(params_id)&&ProductStore.productStyles!=undefined&&ProductStore.productStyles.length>0&&(
+                    )} */}
+                    {/* {ProductStore.id==Number(params_id)&&ProductStore.productStyles!=undefined&&ProductStore.productStyles.length>0&&(
                     <li>フォーマット: {productStore?.productStyles[0].name}</li>
+                    )} */}
+                    {product!=undefined&&product.productStyles.length>0&&(
+                    <li>フォーマット: {product?.productStyles[0].name}</li>
                     )}
-                    <li>初回放送日: {firstEpisord}</li>
-                    <li>エピソード数: {product?.episords.length}</li>
+                    {firstEpisord!="0"&&(<li>初回放送日: {firstEpisord}</li>)}
+                    {product!=undefined&&product?.episords.length>0&&(<li>エピソード数: {product?.episords.length}</li>)}
+                    {avgTime != "0分"&&(
                     <li>一話平均: {avgTime}</li>
-                    <li className = "productShowStudio">スタジオ: {product?.productStudio.map((item,index)=>{
+                    )}
+                    {product!=undefined&&product?.productStudio.length>0&&(
+                    <li className = "productShowStudio"> スタジオ: 
+                    {product?.productStudio.map((item,index)=>{
                       return(
                         <span key = {item.id}>{item.company}
                         {index>=0&&index<product.productStudio.length-1?",":""}
                         </span>
                       )
                     })}</li>
+                    )}
                     {product?.productYearSeason!=undefined&&product?.productYearSeason.length>0&&(
                     <li>シーズン: {yearSeason}
                     </li>

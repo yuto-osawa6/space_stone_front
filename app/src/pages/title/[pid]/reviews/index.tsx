@@ -4,6 +4,7 @@ import { ProductShowEpisords } from "@/components/title/episords/ProductShowEpis
 import { ProductShow } from "@/components/title/productShow"
 import { ProductShowReviews } from "@/components/title/review/ProductReviews"
 import { productShow } from "@/interfaces/product"
+import { ssr_url } from "@/lib/client/clientssr"
 import { GetServerSideProps } from "next"
 import { NextSeo } from "next-seo"
 
@@ -15,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   }
   const query_params = new URLSearchParams(params); 
   const [productShowRes] = await Promise.all([
-    fetch(`${process.env.API_PATH_V1}/products/${pid}/seo`), 
+    fetch(`${ssr_url}/products/${pid}/seo`), 
   ]);
   const [data] = await Promise.all([
     productShowRes.json()
