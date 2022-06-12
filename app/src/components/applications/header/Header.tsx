@@ -157,6 +157,7 @@ const handleClick = () => {
   dispatch(SubMenuAction(true))
 }
 
+
   return(
     <>
       <div className = "HeaderV1">
@@ -213,7 +214,7 @@ const handleClick = () => {
                 <div onClick={handleClick}><Link href ="/#movies" scroll={true}><a>映画情報</a></Link></div>
                 <div onClick={handleClick}><Link href ="/#news"><a>おしらせ</a></Link></div>
                 {/* <div><Link href ="/#e"><a>放送情報カレンダー</a></Link></div> */}
-                <div><Link href ="/#toptens"><a>Top10</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#toptens"><a>Top10</a></Link></div>
                 <div className = "Top100SubMenu"><Link href ="top100"><a>Top100</a></Link></div>
                 <div className = "Top100SubMenu"><Link href ="tier"><a>tier</a></Link></div>
                 <div className = "Top100SubMenu"><Link href ="weekly"><a>weekly</a></Link></div>

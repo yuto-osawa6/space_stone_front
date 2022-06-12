@@ -354,7 +354,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   //  console.log(ProductStore)
   //  let countR = 0
   //  countR += 1
-  //  console.log(countR)
+   console.log(userSwr.user)
   return(
     <>
       <div className = "product_show"
@@ -370,7 +370,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                   }
                   <div className = "show_contents01_header_top_shadow">
                   </div>
-                  {userSwr.user.administratorGold==true&&(
+                  {userSwr.user!=undefined&&userSwr.user.administratorGold==true&&(
                     <div className = "UserAdminEdit"
                     onClick={handleOpenEditProduct}
                     >

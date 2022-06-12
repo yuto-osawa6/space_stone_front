@@ -13,17 +13,26 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
     last:"2"
   }
   const query_params = new URLSearchParams(params); 
-  const [productShowRes] = await Promise.all([
-    fetch(`${process.env.API_PATH_V1}/products/${pid}/seo`), 
-  ]);
-  const [data] = await Promise.all([
-    productShowRes.json()
-  ]);
-  return { 
-    props: { 
-      data
-    } 
-  };
+  try {
+    const [productShowRes] = await Promise.all([
+      fetch(`${process.env.API_PATH_V1}/products/${pid}/seo`), 
+    ]);
+    // console.log(productShowRes.status!=200)
+    if (productShowRes.status==200){
+    const [data] = await Promise.all([
+      productShowRes.json()
+    ]);
+      return { 
+        props: { 
+          data
+        } 
+      };
+    }else{
+      return {notFound: true }
+    }
+  } catch (err) {
+    return { notFound: true }
+  }
 }
 
 type Props = {
