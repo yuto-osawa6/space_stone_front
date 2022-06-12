@@ -28,9 +28,11 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
         } 
       };
     }else{
+      console.log("エラーがおきました")
       return {notFound: true }
     }
   } catch (err) {
+    console.log(err)
     return { notFound: true }
   }
 }
