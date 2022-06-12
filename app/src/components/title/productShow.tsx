@@ -529,7 +529,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     </div>
                     <div className = "show_contents01_header_bottom_right_netflix"
                     >
-                      <a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list}>
+                      <a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list} target="_blank" rel="noopener noreferrer">
                         公式サイトへ
                       </a>
                     </div>
