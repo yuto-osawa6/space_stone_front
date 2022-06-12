@@ -113,6 +113,9 @@ export const ActionTypes = {
   // message
   pusshingMessage:"PUSSHING_MESSAGE",
   deleteingMessage:"DELETING_MESSAGE",
-  selectDeleteMessage:"SELECT_DELETE_MESSAGE"
+  selectDeleteMessage:"SELECT_DELETE_MESSAGE",
+
+  // submenu
+  submenustate:"SUBMENU_STATE"
 
 } as const;

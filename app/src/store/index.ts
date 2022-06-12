@@ -29,6 +29,7 @@ import { sortReducer } from './sort/reducer';
 import { updateReviewReducer } from './reviewUpdate/reducer';
 import { updateThreadReducer } from './updateThread/reducer';
 import { topMessageReducer } from './message/reducer';
+import { subMenuReducer } from './submenu/reducer';
 // import { settiongtodoGenresReducer } from './todogenres/reducer';
 // import { settiongtododGenresReducer } from './todogenre/reducer';
 
@@ -73,7 +74,8 @@ const rootReducer = combineReducers({
   sortEmotion:sortEmotionReducer,
   updateReview:updateReviewReducer,
   updateThread:updateThreadReducer,
-  message:topMessageReducer
+  message:topMessageReducer,
+  submenu:subMenuReducer
 
 });
 

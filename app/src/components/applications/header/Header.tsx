@@ -15,7 +15,9 @@ import { useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
 // import { GoogleButton } from '@/components/applications/user/AuthButton'
 import { useRouter } from "next/router";
+import { SubMenuAction } from "@/store/submenu/actions";
 // import { UserCertification } from "../user/UserCertification";
+// import { Link as Scroll } from 'react-scroll';
 
 type Props = {
   locationNumber: number | undefined
@@ -24,6 +26,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
   // const navigate = useNavigate()
   // const location = useLocation()
   // useScrollPosition
+  const dispatch = useDispatch()
   const [showMenu, setShowMenu] = useState<boolean>(true);
   const [currentPostion,setCurrentPositon] = useState<number>(0)
   useScrollPosition(({ prevPos, currPos }) => {
@@ -143,7 +146,16 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
 //  console.log(session)
 //  console.log(session)
 //  const router = useRouter()
-//  console.log(router)
+// //  console.log(router)
+// const handleOffset = ():number|undefined => {
+//   let elem = document.getElementById(router.asPath.slice(2))
+//   if(elem==null)return
+//   const top = elem.getBoundingClientRect().top
+//   return top<0?top + window.pageYOffset-66.8:top + window.pageYOffset-20
+// }
+const handleClick = () => {
+  dispatch(SubMenuAction(true))
+}
 
   return(
     <>
@@ -193,13 +205,15 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
               {openMenu==true&&(
               <div className = "subMenuList"
               >
-                <div><Link href ="/#a"><a>今シーズンの作品</a></Link></div>
-                <div><Link href ="/#b"><a>昨シーズンの作品</a></Link></div>
-                <div><Link href ="/#c"><a>来シーズンの作品</a></Link></div>
-                <div><Link href ="/#d"><a>映画情報</a></Link></div>
-                <div><Link href ="/#e"><a>おしらせ</a></Link></div>
-                <div><Link href ="/#f"><a>放送情報カレンダー</a></Link></div>
-                <div><Link href ="/#g"><a>Top10</a></Link></div>
+                {/* <Scroll to="c" smooth={true} duration={600} offset={handleOffset}>コンセプト</Scroll> */}
+                <div onClick={handleClick}><Link href ="/#weekly-ranking" scroll={false}><a>今週のアンケート</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#this-season" scroll={false} ><a>今シーズンの作品</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#last-season" scroll={true}><a>昨シーズンの作品</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#next-season" scroll={true}><a>来シーズンの作品</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#movies" scroll={true}><a>映画情報</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#news"><a>おしらせ</a></Link></div>
+                {/* <div><Link href ="/#e"><a>放送情報カレンダー</a></Link></div> */}
+                <div><Link href ="/#toptens"><a>Top10</a></Link></div>
                 <div className = "Top100SubMenu"><Link href ="top100"><a>Top100</a></Link></div>
                 <div className = "Top100SubMenu"><Link href ="tier"><a>tier</a></Link></div>
                 <div className = "Top100SubMenu"><Link href ="weekly"><a>weekly</a></Link></div>

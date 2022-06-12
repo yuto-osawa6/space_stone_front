@@ -21,29 +21,14 @@ import { Tags } from '@/components/mains/main_block/Tags'
 import { tags } from '@/interfaces/main'
 import { WeeklyRanking } from '@/components/mains/main_block/WeeklyRanking'
 import { ssr_url } from '@/lib/client/clientssr'
+import Router, { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/store'
+import { SubMenuAction } from '@/store/submenu/actions'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
-  // console.log(process.env.NEXT_PUBLIC_A1)
-  // console.log(process.env.NEXT_PUBLIC_A4)
-  // console.log(process.env.NEXT_PUBLIC_GOOGLE_KEY)
-  // console.log(process.env.NEXT_PUBLIC_P_GOOGLE_KEY)
-  // console.log(process.env)
-  // console.log("aaaaa")
-  // console.log(process.env.MY_ENV_VAR)
-  // console.log(process.env.MY_ENV_VAR2)
-  // console.log(process.env.API_ORIGIN4)
-  // console.log(process.env.NEXT_PUBLIC_API_ORIGIN4)
-  // console.log("aaaaaaaaaaaggggggggggg")
-  // const product_google_key = process.env.NEXT_PUBLIC_P_GOOGLE_KEY
-  // const res = await fetch(`${process.env.ApiPathV1}/mainblocks/mains/new_netflix`, {method: "GET"});
-  // const json = await res.json();
-  // return {
-  //   props: {
-  //     data: json
-  //   },
-  // };
-  // console.log(context)
   const params = {
     active:"1",
     last:"2"
@@ -55,9 +40,6 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   const tierParams2 = {
     current_number:"2"
   }
-  // const tierParams = {
-
-  // }
   const query_params = new URLSearchParams(params); 
   const [thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,calendarRes,tagsRes] = await Promise.all([
     fetch(`${ssr_url}/mainblocks/mains/new_netflix`), 
@@ -147,15 +129,43 @@ type UserTier = {
   console.log(Props)
   console.log(process.env.NODE_ENV)
   const fallback= Props.fallback
+  const submenu = useSelector((state:RootState)=>state.submenu)
+  const dispatch = useDispatch()
+   // location scroll-------------------------------
+  //  const location = useLocation()
+  const router = useRouter()
+  console.log(router)
+  console.log(router.asPath.slice(2))
+  useEffect(()=>{
+    if(submenu.state==false)return
+    if (router.asPath) {
+      let elem = document.getElementById(`${router.asPath.slice(2)}-a`)
+      if(elem==null)return
+        const top = elem.getBoundingClientRect().top
+      if (elem) {
+      console.log("agadadga2222")
+        top<0?window.scrollTo({top:top + window.pageYOffset-66.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-20,left:0, behavior: "smooth"})
+      }
+    } else {
+    window.scrollTo({top:0,left:0, behavior: "smooth"})
+    }
+    dispatch(SubMenuAction(false))
+  // },[router.asPath,])
+},[submenu])
+
   return(
     <>
     {/* <div className = "mainContents share_middle_container01"> */}
+      <div id="weekly-ranking-a">
       <WeeklyRanking
       />
+      </div>
+      <div id="this-season-a">
       <ThisSeasonAnimeInfomation
       products = {Props.data.products}
       currentSeason = {Props.data.currentSeason}
       />
+      </div>
       <SWRConfig value={{ fallback }}>
         <ThisSeasonAnimeTier 
         products = {Props.data.products}
@@ -168,26 +178,34 @@ type UserTier = {
       />
       </SWRConfig>
 
+      <div id="movies-a">
       <WorldClass
       data = {Props.worldData}
       />
+      </div>
 
+      <div id="news-a">
       <NewMessage
-        // news = { decisionnews }
       />
+      </div>
 
       {/* <CalendarProduct
        calendarData={Props.calendarData}
       /> */}
 
+      <div id="toptens-a">
       <Toptens2
 
       />
+      </div>
 
+      
+      <div id="tags-a">
       <Tags
       tags = {Props.tagsData.tags}
       tagsTop100 = {Props.tagsData.top100}
       />
+      </div>
        
 
       {/* <SWRConfig value={{ fallback }}>
@@ -196,9 +214,9 @@ type UserTier = {
         currentSeason = {Props.data.currentSeason}
        />
       </SWRConfig> */}
-      <Link href="/ota">
+      {/* <Link href="/ota">
           <a>Home</a>
-      </Link>
+      </Link> */}
       {/* </div> */}
     </>
   )

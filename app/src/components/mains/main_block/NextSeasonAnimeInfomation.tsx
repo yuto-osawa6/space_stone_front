@@ -223,7 +223,7 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
   }
   return(
     <>
-     <div id = "b">
+     <div id = "last-season-a">
     <div className = "NewNetflixContainer">
         <div className = "NewNetflixContainerRow">
           <div className = "NewNetflixContainerTitle share_middle_container_title">
@@ -360,7 +360,7 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
 
 
 
-       <div id = "c">
+      <div id = "next-season-a">
       <div className = "NewNetflixContainer">
         <div className = "NewNetflixContainerRow">
           <div className = "NewNetflixContainerTitle share_middle_container_title">
