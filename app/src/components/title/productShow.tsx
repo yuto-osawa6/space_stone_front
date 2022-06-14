@@ -335,28 +335,28 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   const [chatList,setChatList] = useState<chatList[]>([])
   // const cable = ActionCable.createConsumer('ws://localhost:3001/cable');
 
-  useEffect(() => {
-  const cable = ActionCable.createConsumer('ws://localhost:3001/cable');
-    if (product==undefined) return
-    const channel = cable.subscriptions.create(
-      {
-        channel: 'ProductsChannel',
-        id: product.id,
-      },
-      {
-        received: (data:any) => {
-          setChatList(data.chatList)
-        },
-      }
-    )
-    setChannel(channel)
-    return () => {
-      channel.unsubscribe()
-    }
-  }, [product?.id])
+  // useEffect(() => {
+  // const cable = ActionCable.createConsumer('ws://localhost:3001/cable');
+  //   if (product==undefined) return
+  //   const channel = cable.subscriptions.create(
+  //     {
+  //       channel: 'ProductsChannel',
+  //       id: product.id,
+  //     },
+  //     {
+  //       received: (data:any) => {
+  //         setChatList(data.chatList)
+  //       },
+  //     }
+  //   )
+  //   setChannel(channel)
+  //   return () => {
+  //     channel.unsubscribe()
+  //   }
+  // }, [product?.id])
 
-   const [openChatRoom,setOpenChatRoom] = useState<boolean>(false)
-   const modalOpenChatRoom = () => setOpenChatRoom(true)
+  //  const [openChatRoom,setOpenChatRoom] = useState<boolean>(false)
+  //  const modalOpenChatRoom = () => setOpenChatRoom(true)
 
    console.log(ProductStore)
    console.log(product)
@@ -626,7 +626,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     ><Link href={`/title/${params_id}/reviews`}>Review</Link></li>
                     <li
                     ><Link href={`/title/${params_id}/threads`}>Thread</Link></li> 
-                    {userSwr.login==true?
+                    {/* {userSwr.login==true?
                       <>
                         <li
                         onClick={modalOpenChatRoom}
@@ -638,7 +638,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                         onClick={modalopenJugde}
                         >ChatRoom</li>
                       </>
-                     }
+                     } */}
                   </ul>    
                 </div>
               </div>
@@ -656,7 +656,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
         setOpenEdit = {setOpenEdit}
         />
       )}
-       {openChatRoom&&product!=undefined&&(
+       {/* {openChatRoom&&product!=undefined&&(
           <ChatModal
             product = {product}
             openChatRoom = {openChatRoom}
@@ -665,7 +665,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
             chatList = {chatList}
             setChatList = {setChatList}
           />
-        )}
+        )} */}
 
       
     </>

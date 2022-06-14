@@ -593,16 +593,15 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
         nickname = {userSwr.user.nickname}
       />
       )}
-      {props.product!=undefined&&(
+      {/* {props.product!=undefined&&(
       <ChatRoomInProductShow
       product={props.product}
       Channel = {props.Channel}
       chatList = {props.chatList}
       setChatList = {props.setChatList}
       />
-      )}  
+      )}   */}
       </div>
-      {/* <Outlet/> */}
       <div className="">
         {Props.children}
       </div>

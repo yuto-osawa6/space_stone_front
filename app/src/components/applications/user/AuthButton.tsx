@@ -16,14 +16,15 @@ export const AuthButton:React.FC = function Btn(){
   //   console.log(blankForm)
   //   document.body.removeChild(blankForm)
   // }
+  console.log(router)
   
   return (
     <>
-      <a href={`${process.env.NEXT_PUBLIC_AUTH_URL}${router.pathname}`}>Sign in with Google</a>
+      <a href={`${process.env.NEXT_PUBLIC_AUTH_URL}${router.asPath}`}>Sign in with Google</a>
       {process.env.NODE_ENV === "production"&&(
         <>
-          <a href={`${process.env.NEXT_PUBLIC_TWITTER_URL}${router.pathname}`}>Sign in with Twitter</a>
-          <a href={`${process.env.NEXT_PUBLIC_FACEBOOK_URL}${router.pathname}`}>Sign in with FaceBook</a>
+          <a href={`${process.env.NEXT_PUBLIC_TWITTER_URL}${router.asPath}`}>Sign in with Twitter</a>
+          <a href={`${process.env.NEXT_PUBLIC_FACEBOOK_URL}${router.asPath}`}>Sign in with FaceBook</a>
         </>
       )}
       

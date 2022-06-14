@@ -69,7 +69,7 @@ export const ProductReviews:React.FC<Props> = function ProductReviewsFunc(Props)
   const params_review_id = rid
   const params_user_id = uid
 
-
+  console.log(Props)
   // usestate
   // const [review,setReview] = useState<review>()
   // const [product,setProduct] = useState<product>()
