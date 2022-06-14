@@ -42,9 +42,7 @@ const ThreadsIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
   // const fallback= Props.fallback
   return(
     <>
-      <Threads>
-        <></>
-      </Threads>
+      
     </>
   )
 }
@@ -56,11 +54,9 @@ ThreadsIndex.getLayout = (page) => {
     <ShareMain
       // locationNumber={1}
     >
-      {/* <ProductShow
-      // data = {Props.data}
-      > */}
+      <Threads>
         {page}
-      {/* </ProductShow>    */}
+      </Threads>
     </ShareMain>
   )
 }

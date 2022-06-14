@@ -41,7 +41,10 @@ export const UserShowThreadItem:React.FC<Props> = function UserShowThreadItemFun
   const router = useRouter()
   const navigateHandler = () => {
     // doneyet-1 (idが必要)
-    router.push(`/users/${Props.user_id}/threads/${Props.review.id}/products/${Props.review.reviewProduct.id}`)
+    const options = {
+      scroll:false
+    }
+    router.push(`/users/${Props.user_id}/threads/${Props.review.id}/products/${Props.review.reviewProduct.id}`,undefined,options)
   }
   return(
     <> 

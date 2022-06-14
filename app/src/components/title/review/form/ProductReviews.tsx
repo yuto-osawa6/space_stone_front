@@ -38,7 +38,16 @@ const ini:like_review = {
   userId:0
 }
 
-export const ProductReviews:React.FC = function ProductReviewsFunc(){
+type Props = {
+  data:{
+    product:product
+    review:review
+    reviewComments:review_comments[]
+    status:number
+  }
+}
+
+export const ProductReviews:React.FC<Props> = function ProductReviewsFunc(Props){
   const dispatch = useDispatch()
   const modules = {
     toolbar: [
@@ -62,15 +71,15 @@ export const ProductReviews:React.FC = function ProductReviewsFunc(){
 
 
   // usestate
-  const [review,setReview] = useState<review>()
-  const [product,setProduct] = useState<product>()
+  // const [review,setReview] = useState<review>()
+  // const [product,setProduct] = useState<product>()
     const [likeReview,setLikeReview] = useState<like_review>(ini)
     const [likeReviewScore,setLikeReviewScore] = useState<number>(0)
     const [likeReviewLength,setLikeReviewLength] = useState<number>(0)
     const [likeReviewGood,setLikeReviewGood] = useState<number>(0)
 
     // comment
-    const [reviewComments,setReviewComments] = useState<review_comments[]>([])
+    // const [reviewComments,setReviewComments] = useState<review_comments[]>([])
 
 
   
@@ -92,64 +101,89 @@ export const ProductReviews:React.FC = function ProductReviewsFunc(){
   const modalOpenJugdeReviewComment= () => setOpenReviewComment(true)
 
   // v1.01------------------------------------------------------------------------
-  const [goodLength,setGoodlength] = useState<number>()
-  const [likeCommentScore,setLikeCommentScore] = useState<string>()
-  const [userLikesJugde,setUserLikesJudge] = useState<number>(0)
-  const [totalLength,setTotalLength] = useState<number>(0)
-  const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
+  // const [goodLength,setGoodlength] = useState<number>()
+  // const [likeCommentScore,setLikeCommentScore] = useState<string>()
+  // const [userLikesJugde,setUserLikesJudge] = useState<number>(0)
+  // const [totalLength,setTotalLength] = useState<number>(0)
+  // const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
 
-  // const [user,setUser] = useState<User>()
+  //  v1.02-------------------------------------------------------------------------
+  const [review,setReview] = useState<review | undefined>(Props.data.review)
+  const [product,setProduct] = useState<product | undefined>(Props.data.product)
+  const [reviewComments,setReviewComments] = useState<review_comments[]>(Props.data.reviewComments)
+  const [reviewLoaded,setReviewLoaded] = useState<boolean>(true)
+  const [firstloding,setFirstloding] = useState<boolean>(true);
+  const [totalLength,setTotalLength] = useState<number>(Props.data.review.likeReviewLength)
+  const [likeCommentScore,setLikeCommentScore] = useState<string>(Props.data.review.score)
+  const [goodLength,setGoodlength] = useState<number>(Props.data.review.likeReviewGood)
+  const [userLikesJugde,setUserLikesJudge] = useState<number>(Props.data.review.userLikeReview!=undefined? Props.data.review.userLikeReview.goodbad: 0)
+  // const [userLikesJugde,setUserLikesJudge] = useState<number>(1)
 
-  const setdata = async() =>{
-    const res = await execProductReviewShow(params_product_id as string,params_review_id as string,page)
-    console.log(res)
-    if (res.data.status === 200) {
-      setProduct(res.data.product)
-      setReview(res.data.review)
-      setReviewComments(res.data.reviewComments)
-      setReviewLoaded(true)
-      setFirstloding(true)
-
-    }else if(res.data.status===400){
-      dispatch(pussingMessageDataAction({title:ErrorMessage.delete,select:0}))
-    }else{
-      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
-    }
-  }
-  console.log(goodLength,likeCommentScore,userLikesJugde)
-
-  const setData2 = () => {
-    if (review==undefined) return
-    setTotalLength(review.likeReviews.length)
-    if(review.likeReviews.length>0){
-      const good = review.likeReviews.reduce(function(a:any, x:any){return a + (x.goodbad==1?x.goodbad:0)}, 0);
-      const parsent = ((good/review.likeReviews.length)*100).toFixed(1)
-      setLikeCommentScore(parsent)
-      setGoodlength(good)
-    }
-    if (user.login==true){
-      const currentUserDict = review.likeReviews.filter((item:any)=>item.userId==user.user.id)
-      if(currentUserDict.length==1){
-        setUserLikesJudge(currentUserDict[0].goodbad)
-      }
-    }
-  }
-
-  useEffect(()=>{
-    setData2()
-  },[review])
+  console.log(Props.data.review.userLikeReview)
+  console.log(userLikesJugde)
+  // userLikeReview
 
 
-  useEffect(()=>{
-    if(pid==undefined||rid==undefined)return
-    setdata()
-  },[pid,rid])
+
+
+
+  // const setdata = async() =>{
+  //   const res = await execProductReviewShow(params_product_id as string,params_review_id as string,page)
+  //   console.log(res)
+  //   if (res.data.status === 200) {
+  //     setProduct(res.data.product)
+  //     setReview(res.data.review)
+  //     setReviewComments(res.data.reviewComments)
+  //     setReviewLoaded(true)
+  //     setFirstloding(true)
+
+  //   }else if(res.data.status===400){
+  //     dispatch(pussingMessageDataAction({title:ErrorMessage.delete,select:0}))
+  //   }else{
+  //     dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+  //   }
+  // }
+  // console.log(goodLength,likeCommentScore,userLikesJugde)
+
+  // doneyet-1 likereviewの修正（全てを取ってきてしまってる）*バックエンドでやればいい。修正が面倒なので後回し
+  // const setData2 = () => {
+    
+  //   if (review==undefined) return
+  //   setTotalLength(review.likeReviews.length)
+  //   if(review.likeReviews.length>0){
+  //     const good = review.likeReviews.reduce(function(a:any, x:any){return a + (x.goodbad==1?x.goodbad:0)}, 0);
+  //     const parsent = ((good/review.likeReviews.length)*100).toFixed(1)
+  //     setLikeCommentScore(parsent)
+  //     setGoodlength(good)
+  //   }
+  //   console.log(review,user)
+  //   if (user.login==true){
+  //     const currentUserDict = review.likeReviews.filter((item:any)=>item.userId==user.user.id)
+  //     console.log(currentUserDict)
+  //     if(currentUserDict.length==1){
+  //       setUserLikesJudge(currentUserDict[0].goodbad)
+  //     }
+  //   }
+  // }
+  // console.log(review,user.login,userLikesJugde)
+
+  // useEffect(()=>{
+  //   setData2()
+  // },[review])
+
+
+  // useEffect(()=>{
+  //   if(pid==undefined||rid==undefined)return
+  //   setdata()
+  // },[pid,rid])
 
 
   // userChange effect
+  console.log(userLikesJugde)
 
   const UserChangeHandler  = async() => {
     const res = await execProductReviewShowSort(params_product_id as string,params_review_id as string,selectSort,page)
+    console.log(res)
     if (res.status == 200){
       scrollRef.current?.scrollTo({
         top: 0,
@@ -251,11 +285,12 @@ export const ProductReviews:React.FC = function ProductReviewsFunc(){
     setSelectSort(event.target.value);
     console.log(event.target.value)
     const res = await execProductReviewShowSort(params_product_id as string,params_review_id as string,event.target.value,page)
+    console.log(res)
     if (res.data.status == 200){
       scrollRef.current?.scrollTo({
         top: 0,
       })
-      console.log(res)
+      // console.log(res)
       setPage2(2)
       setReviewComments(res.data.reviewComments)
       setHasMore(true)
@@ -269,20 +304,24 @@ export const ProductReviews:React.FC = function ProductReviewsFunc(){
   // const navigate = useNavigate()
   // const location = useLocation()
   const [openModal,setOpenModal] = useState<boolean>(true)
+  const options = {
+    scroll:false
+  }
   const handleClose = () => {
     setOpenModal(false)
     console.log(location.pathname)
+    
     // koko-1
     if(location.pathname===`/title/${params_product_id}/top/reviews/${params_review_id}`){
-      router.push(`/title/${params_product_id}`)
+      router.push(`/title/${params_product_id}`,undefined,options)
       // navigate(-1)
     }else if(location.pathname===`/reviews/${params_review_id}/title/${params_product_id}`){
-      router.push(`/reviews`)
+      router.push(`/reviews`,undefined,options)
       // navigate(-1)
     }else if(location.pathname=== `/users/${params_user_id}/reviews/${params_review_id}/title/${params_product_id}`){
-      router.push(`/users/${params_user_id}/reviews`)
+      router.push(`/users/${params_user_id}/reviews`,undefined,options)
     }else{
-      router.push(`/title/${params_product_id}/reviews`)
+      router.push(`/title/${params_product_id}/reviews`,undefined,options)
     }
   }
 
@@ -291,7 +330,7 @@ export const ProductReviews:React.FC = function ProductReviewsFunc(){
   const [loaded,setLoaded] = useState<boolean>(false)
   const [hasMore, setHasMore] = useState(true); 
   const [page,setPage] = useState<number>(1)
-  const [firstloding,setFirstloding] = useState<boolean>(false);
+  // const [firstloding,setFirstloding] = useState<boolean>(false);
 
   const [page2,setPage2] = useState<number>(2)
 
@@ -513,14 +552,14 @@ const handleUpdateContents  = async() => {
               <div className = "ProductReviewShowMainValuationGood"
                 onClick={UserModalOpen}
               >
-                <FaRegThumbsUp/>3
+                <FaRegThumbsUp/>
               </div>
               
 
               <div className = "ProductReviewShowMainValuationBad"
                 onClick={UserModalOpen}
               >
-                <FaRegThumbsDown/>3
+                <FaRegThumbsDown/>
               </div>
 
               </>

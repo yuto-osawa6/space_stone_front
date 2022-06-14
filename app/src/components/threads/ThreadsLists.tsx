@@ -39,10 +39,12 @@ export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props
   const quillref = useRef<any>(null!)
   const dispatch = useDispatch()
   // const navigate = useNavigate()
-  
+  const options = {
+    scroll:false
+  }
 
   const movementHandler = () => {
-    router.push(`/threads/${Props.review.id}/title/${Props.review.reviewProduct.id}`)
+    router.push(`/threads/${Props.review.id}/title/${Props.review.reviewProduct.id}`,undefined,options)
   }
 
   return(

@@ -24,6 +24,7 @@ type Props = {
 }
 
 export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFunc(Props){
+  console.log("aaaagdgdasgdalkmkdsafmadsfoafio")
   const [episords,setEpisords] = useState<string[]>([])
   const router = useRouter()
   const {pid} = router.query
@@ -33,7 +34,11 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
 
   let  isMounted = true;
   const handleFirst = async() => {
+    console.log("aaa")
     // check-3
+    // console.log("aaaagdgdasgdalkmkdsafmadsfoafio44")   
+    // console.log(params_id) 
+    // console.log(router.query)
     if (params_id==undefined) return
     const res = await  execProductShowReview(params_id as string,current,episords)
     if(res.status == 200){
@@ -61,7 +66,8 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
   const [page,SetPage] = useState<number>(1)
   const [current,SetCurrent] = useState<number>(1)
 
-  useEffect(()=>{     
+  useEffect(()=>{ 
+    // console.log("aaaagdgdasgdalkmkdsafmadsfoafio33")    
     const timer = setTimeout(() => {
       handleFirst()
     }, 500)
@@ -69,7 +75,7 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
       isMounted = false;
       clearTimeout(timer)
     }
-  },[current,episords])
+  },[current,episords,params_id])
   
   const [pageNaviGation,setPageNaviGation] = useState<number[]>([])
   

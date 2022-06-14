@@ -43,7 +43,7 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
       //  description={Props.data.products.}
       >
       </NextSeo>
-      <ProductShowReviews><></></ProductShowReviews>
+      
     </>
   )
 }
@@ -58,7 +58,9 @@ TitleIndex.getLayout = (page) => {
       <ProductShow
       // data = {Props.data}
       >
+        <ProductShowReviews>
         {page}
+        </ProductShowReviews>
       </ProductShow>   
     </ShareMain>
   )

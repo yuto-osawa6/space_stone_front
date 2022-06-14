@@ -30,12 +30,15 @@ export const ShowCloudsItems2:React.FC<Props> = function ShowCloudsItems2Func(Pr
   },[])
   // -------------------------------------------------------------------------
   // const navigate = useNavigate();
+  const options = {
+    scroll:false
+  }
   const router = useRouter()
   const ReviewClickNavigate = () =>{
     if(Props.alice==true){
-      router.push(`/title/${Props.productId}/threads/${Props.item.id}`)
+      router.push(`/title/${Props.productId}/threads/${Props.item.id}`,undefined,options)
     }else{
-      router.push(`/title/${Props.productId}/top/threads/${Props.item.id}`)
+      router.push(`/title/${Props.productId}/top/threads/${Props.item.id}`,undefined,options)
     }
   }
 

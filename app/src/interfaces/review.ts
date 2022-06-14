@@ -16,6 +16,11 @@ export interface review {
   questions:questions[]
   title:string
   episordId:number
+  // 追加
+  score: string
+  likeReviewLength:number
+  likeReviewGood:number
+  userLikeReview:like_review
   // return:boolean
 }
 type emotions = {

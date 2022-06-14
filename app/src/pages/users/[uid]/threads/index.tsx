@@ -17,7 +17,7 @@ const UserScoreShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element } 
   // const fallback= Props.fallback
   return(
     <>
-      <UserShowThreads/>
+      
     </>
   )
 }
@@ -30,6 +30,7 @@ UserScoreShow.getLayout = (page) => {
       locationNumber={1}
     >
       <UsersShow>
+      <UserShowThreads/>
         {page}
       </UsersShow>
     </ShareMain>

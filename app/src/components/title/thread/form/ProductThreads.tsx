@@ -40,7 +40,16 @@ const ini:like_review = {
   userId:0
 }
 
-export const ProductThreads:React.FC = function ProductThreadsFunc(){
+type Props = {
+  data:{
+    product:product
+    review:review
+    reviewComments:review_comments[]
+    status:number
+  }
+}
+
+export const ProductThreads:React.FC<Props> = function ProductThreadsFunc(Props){
   const modules = {
     toolbar: [
       // [{ font: [] }],
@@ -67,8 +76,8 @@ export const ProductThreads:React.FC = function ProductThreadsFunc(){
   const params_user_id = uid
 
   // usestate
-  const [review,setReview] = useState<review>()
-  const [product,setProduct] = useState<product>()
+  // const [review,setReview] = useState<review>()
+  // const [product,setProduct] = useState<product>()
     // likecheck
     // const [liked,setLiked] = useState<number>(0)
     // const [goodBad,setGoodBad] = useState<number>(0)
@@ -79,7 +88,7 @@ export const ProductThreads:React.FC = function ProductThreadsFunc(){
     const [likeReviewGood,setLikeReviewGood] = useState<number>(0)
 
     // comment
-    const [reviewComments,setReviewComments] = useState<review_comments[]>([])
+    // const [reviewComments,setReviewComments] = useState<review_comments[]>([])
 
 
   
@@ -100,12 +109,22 @@ export const ProductThreads:React.FC = function ProductThreadsFunc(){
   const [openReviewComment,setOpenReviewComment] = useState<boolean>(false)
   const modalOpenJugdeReviewComment= () => setOpenReviewComment(true)
 
-// v1.01------------------------------------------------------------------------
-const [goodLength,setGoodlength] = useState<number>()
-const [likeCommentScore,setLikeCommentScore] = useState<string>()
-const [userLikesJugde,setUserLikesJudge] = useState<number>(0)
-const [totalLength,setTotalLength] = useState<number>(0)
-const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
+  // // v1.01------------------------------------------------------------------------
+  // const [goodLength,setGoodlength] = useState<number>()
+  // const [likeCommentScore,setLikeCommentScore] = useState<string>()
+  // const [userLikesJugde,setUserLikesJudge] = useState<number>(0)
+  // const [totalLength,setTotalLength] = useState<number>(0)
+  // const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
+  //  v1.02-------------------------------------------------------------------------
+  const [review,setReview] = useState<review | undefined>(Props.data.review)
+  const [product,setProduct] = useState<product | undefined>(Props.data.product)
+  const [reviewComments,setReviewComments] = useState<review_comments[]>(Props.data.reviewComments)
+  const [reviewLoaded,setReviewLoaded] = useState<boolean>(true)
+  const [firstloding,setFirstloding] = useState<boolean>(true);
+  const [totalLength,setTotalLength] = useState<number>(Props.data.review.likeReviewLength)
+  const [likeCommentScore,setLikeCommentScore] = useState<string>(Props.data.review.score)
+  const [goodLength,setGoodlength] = useState<number>(Props.data.review.likeReviewGood)
+  const [userLikesJugde,setUserLikesJudge] = useState<number>(Props.data.review.userLikeReview!=undefined? Props.data.review.userLikeReview.goodbad: 0)
 
   
   const [loading,setLoding] = useState<boolean>(false)
@@ -113,49 +132,49 @@ const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
   // const params = useParams()
   // const params_review_id = params.reviewId
 
-  const setdata = async() =>{
-    const res = await execProductThreadShow(params_product_id as string,params_review_id as string)
-    if (res.data.status === 200) {
-      console.log(res)
-      setProduct(res.data.product)
-      setReview(res.data.review)
-      setReviewComments(res.data.reviewComments)
+  // const setdata = async() =>{
+  //   const res = await execProductThreadShow(params_product_id as string,params_review_id as string)
+  //   if (res.data.status === 200) {
+  //     console.log(res)
+  //     setProduct(res.data.product)
+  //     setReview(res.data.review)
+  //     setReviewComments(res.data.reviewComments)
 
-      setReviewLoaded(true)
-      setFirstloding(true)
+  //     setReviewLoaded(true)
+  //     setFirstloding(true)
       
-    }else if(res.data.status===400){
-      dispatch(pussingMessageDataAction({title:ErrorMessage.delete,select:0}))
-    }else{
-      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
-    }
-  }
+  //   }else if(res.data.status===400){
+  //     dispatch(pussingMessageDataAction({title:ErrorMessage.delete,select:0}))
+  //   }else{
+  //     dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+  //   }
+  // }
 
-  const setData2 = () => {
-    if (review==undefined) return
-    setTotalLength(review.likeReviews.length)
-    if(review.likeReviews.length>0){
-      const good = review.likeReviews.reduce(function(a:any, x:any){return a + (x.goodbad==1?x.goodbad:0)}, 0);
-      const parsent = ((good/review.likeReviews.length)*100).toFixed(1)
-      setLikeCommentScore(parsent)
-      setGoodlength(good)
-    }
-    if (user.login==true){
-      const currentUserDict = review.likeReviews.filter((item:any)=>item.userId==user.user.id)
-      if(currentUserDict.length==1){
-        setUserLikesJudge(currentUserDict[0].goodbad)
-      }
-    }
-  }
+  // const setData2 = () => {
+  //   if (review==undefined) return
+  //   setTotalLength(review.likeReviews.length)
+  //   if(review.likeReviews.length>0){
+  //     const good = review.likeReviews.reduce(function(a:any, x:any){return a + (x.goodbad==1?x.goodbad:0)}, 0);
+  //     const parsent = ((good/review.likeReviews.length)*100).toFixed(1)
+  //     setLikeCommentScore(parsent)
+  //     setGoodlength(good)
+  //   }
+  //   if (user.login==true){
+  //     const currentUserDict = review.likeReviews.filter((item:any)=>item.userId==user.user.id)
+  //     if(currentUserDict.length==1){
+  //       setUserLikesJudge(currentUserDict[0].goodbad)
+  //     }
+  //   }
+  // }
 
-  useEffect(()=>{
-    if(pid==undefined || tid == undefined)return
-    setdata()
-  },[pid,tid])
+  // useEffect(()=>{
+  //   if(pid==undefined || tid == undefined)return
+  //   setdata()
+  // },[pid,tid])
 
-  useEffect(()=>{
-    setData2()
-  },[review])
+  // useEffect(()=>{
+  //   setData2()
+  // },[review])
 
   // user
   const UserChangeHandler  = async() => {
@@ -284,18 +303,21 @@ const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
   const [openModal,setOpenModal] = useState<boolean>(true)
   // const params_product_title = params.title
   // const params_user_id = params.userId
+  const options = {
+    scroll:false
+  }
 
   const handleClose = () => {
     setOpenModal(false)
     // console.log(location.pathname)
     if(location.pathname===`/title/${params_product_id}/top/threads/${params_review_id}`){
-      router.push(`/title/${params_product_id}`)
+      router.push(`/title/${params_product_id}`,undefined,options)
     }else if(location.pathname===`/threads/${params_review_id}/title/${params_product_id}`){
-      router.push(`/threads`)
+      router.push(`/threads`,undefined,options)
     }else if(location.pathname=== `/users/${params_user_id}/threads/${params_review_id}/title/${params_product_id}`){
-      router.push(`/users/${params_user_id}/threads`)
+      router.push(`/users/${params_user_id}/threads`,undefined,options)
     }else{
-      router.push(`/title/${params_product_id}/threads`)
+      router.push(`/title/${params_product_id}/threads`,undefined,options)
     }
   }
 
@@ -304,7 +326,7 @@ const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
   const [loaded,setLoaded] = useState<boolean>(false)
   const [hasMore, setHasMore] = useState(true); 
   const [page,setPage] = useState<number>(1)
-  const [firstloding,setFirstloding] = useState<boolean>(false);
+  // const [firstloding,setFirstloding] = useState<boolean>(false);
 
   const [page2,setPage2] = useState<number>(2)
 

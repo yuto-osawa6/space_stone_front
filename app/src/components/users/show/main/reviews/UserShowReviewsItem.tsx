@@ -44,7 +44,10 @@ export const UserShowReviewsItem:React.FC<Props> = function  UserShowReviewsItem
   const navigateHandler = () => {
     // doneyet-1 (idが必要)
     // navigate(`/reviews/${Props.review.id}/products/1`)
-    router.push(`/users/${Props.user_id}/reviews/${Props.review.id}/products/${Props.review.reviewProduct.id}`)
+    const options = {
+      scroll:false
+    }
+    router.push(`/users/${Props.user_id}/reviews/${Props.review.id}/products/${Props.review.reviewProduct.id}`,undefined,options)
 
     
   }
