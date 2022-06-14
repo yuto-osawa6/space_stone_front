@@ -29,8 +29,9 @@ UserReviewShow.getLayout = (page) => {
       locationNumber={1}
     >
       <UsersShow>
-      <UserShowReviews/>
-        {page}
+        <UserShowReviews>
+          {page}
+        </UserShowReviews>
       </UsersShow>
     </ShareMain>
   )

@@ -23,7 +23,7 @@ type emotion = {
 }
 
 type Props = {
-  // children:ReactNode
+  children:ReactNode
 }
 
 export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Props){
@@ -394,7 +394,7 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
       </div>
       
       {/* <Outlet/> */}
-      {/* {Props.children} */}
+      {Props.children}
       
     </>
   )

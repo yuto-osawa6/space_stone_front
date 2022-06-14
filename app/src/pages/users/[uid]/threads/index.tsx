@@ -30,8 +30,9 @@ UserScoreShow.getLayout = (page) => {
       locationNumber={1}
     >
       <UsersShow>
-      <UserShowThreads/>
-        {page}
+        <UserShowThreads>
+          {page}
+        </UserShowThreads>
       </UsersShow>
     </ShareMain>
   )

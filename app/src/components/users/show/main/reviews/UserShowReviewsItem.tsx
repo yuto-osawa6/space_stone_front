@@ -47,7 +47,7 @@ export const UserShowReviewsItem:React.FC<Props> = function  UserShowReviewsItem
     const options = {
       scroll:false
     }
-    router.push(`/users/${Props.user_id}/reviews/${Props.review.id}/products/${Props.review.reviewProduct.id}`,undefined,options)
+    router.push(`/users/${Props.user_id}/reviews/${Props.review.id}/title/${Props.review.reviewProduct.id}`,undefined,options)
 
     
   }

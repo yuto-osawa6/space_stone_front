@@ -44,7 +44,7 @@ export const UserShowThreadItem:React.FC<Props> = function UserShowThreadItemFun
     const options = {
       scroll:false
     }
-    router.push(`/users/${Props.user_id}/threads/${Props.review.id}/products/${Props.review.reviewProduct.id}`,undefined,options)
+    router.push(`/users/${Props.user_id}/threads/${Props.review.id}/title/${Props.review.reviewProduct.id}`,undefined,options)
   }
   return(
     <> 

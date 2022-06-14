@@ -5,14 +5,18 @@ import { product } from "@/interfaces/product"
 import { review } from "@/interfaces/review"
 import { execProductSearchHandler } from "@/lib/api/main"
 import { execUserShowReviewsHandler, execUserShowThreadsHandler } from "@/lib/api/users"
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { ReactNode, useContext, useEffect, useRef, useState } from "react"
 import { HiChevronDoubleDown } from "react-icons/hi"
 import { IoSearchCircle } from "react-icons/io5"
 // import { Outlet } from "react-router-dom"
 import { UserShowReviewsItem } from "../reviews/UserShowReviewsItem"
 import { UserShowThreadItem } from "./UserShowThreadItem"
 
-export const UserShowThreads:React.FC = function UserShowThreadsFunc(){
+type Props = {
+  children:ReactNode
+}
+
+export const UserShowThreads:React.FC<Props> = function UserShowThreadsFunc(Props){
  // context
  const {user} = useContext(UserShowContext)
 
@@ -282,7 +286,7 @@ export const UserShowThreads:React.FC = function UserShowThreadsFunc(){
         </div>
         )}
       </div>
-      {/* <Outlet/> */}
+      {Props.children}
     </>
   )
 }

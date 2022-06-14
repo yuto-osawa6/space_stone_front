@@ -16,11 +16,11 @@ import nookies from 'nookies'
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
   const cookies = nookies.get(context)
-  const { pid,rid } = context.query
+  const { pid,tid } = context.query
   try{
     // const query_params = new URLSearchParams(params); 
     const [res] = await Promise.all([
-      fetch(`${ssr_url}/products/${pid as string}/reviews/${rid as string}?page=1`,{
+      fetch(`${ssr_url}/products/${pid as string}/thereds/${tid as string}?page=1`,{
         headers:{
           "access-token": `${cookies._access_token}`,
           "client": `${cookies._client}`,
