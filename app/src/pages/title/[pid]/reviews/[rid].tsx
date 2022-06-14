@@ -9,7 +9,7 @@ import { GetServerSideProps } from "next"
 // import Error from "next/error"
 import nookies from 'nookies'
 import  Custom404  from "@/pages/4e04" 
-import { CustomError } from "@/pages/CustomError"
+// import { CustomError } from "@/pages/_CustomError"
 import Error from "@/pages/_error"
 
 
