@@ -12,12 +12,14 @@ import { OpenCloseManagementSubSearchAction } from "@/store/subsearchopenmanagem
 import { deletingtodoGenresDataALLAction } from "@/store/todogenres/actions"
 import { deletingtodoStylesDataAllAction } from "@/store/todostyles/actions"
 import { DestroyYearSearchAction, SettingYearSearchAction } from "@/store/year/actions"
+import { useRouter } from "next/router"
 
 type Props = {
   tag : tags
 }
 export const TagsGrid:React.FC<Props> = function TagsGridFunc(Props){
   // const navigate = useNavigate()
+  const router = useRouter()
   const dispatch = useDispatch()
   const navigateYearHandler = () => {
     dispatch(SettingYearSearchAction(Props.tag.year,Props.tag.year))
@@ -31,6 +33,7 @@ export const TagsGrid:React.FC<Props> = function TagsGridFunc(Props){
     // 2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
+    router.push('/search')
     // navigate("/search")
   }
   const navigateSeasonHandler = () => {
@@ -45,6 +48,7 @@ export const TagsGrid:React.FC<Props> = function TagsGridFunc(Props){
     dispatch(DestroySeasonSearchAction())
     // 2.0
     dispatch(deletingtodoStudiosDataALLAction())
+    router.push('/search')
     // navigate("/search")
   }
   return(
@@ -52,24 +56,23 @@ export const TagsGrid:React.FC<Props> = function TagsGridFunc(Props){
       <div className="TagsGridContainer">
         {typeof Props.tag.year != "undefined"&&(
           <>
-             <div className="TagsGridContainerYear"
-             onClick={navigateYearHandler}
-             >
-                {Props.tag.year.slice(0,4)}
-             </div>
+            <div className="TagsGridContainerYear"
+            onClick={navigateYearHandler}
+            >
+              {Props.tag.year.slice(0,4)}
+            </div>
           </>
         )}
         {typeof Props.tag.season != "undefined"&&(
           <>
-             <div className="TagsGridContainerYear"
-             onClick={navigateSeasonHandler}
-             >
-                {Props.tag.season}
-             </div>
+            <div className="TagsGridContainerYear"
+            onClick={navigateSeasonHandler}
+            >
+              {Props.tag.season}
+            </div>
           </>
         )}
       </div>
-
     </>
   )
 }

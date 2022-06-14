@@ -33,27 +33,31 @@ export const Tags:React.FC<Props> = function TagsFunc(Props){
               )
             })}
           </div>
-        <div className = "TagsContainerRow ShareMiddleContainerTitleRow">
-          <div className = "TagsContainerTitle share_middle_container_title">
-            期別TOP100
-          </div>     
-          {/* <div className = "TagsContainerRowAction share_middle_container_right_text">
-            もっと見る
-          </div> */}
-        </div>
-        <div className = "TagsContainerGrid">
-          {Props.tagsTop100.map((item)=>{
-            return(
-               <TagsTop100
-                tag = {item}
-                key={item.tagId}
-               />
-         
-              )
-            })}
+        {Props.tagsTop100.length!=0&&(
+          <>
+            <div className = "TagsContainerRow ShareMiddleContainerTitleRow">
+              <div className = "TagsContainerTitle share_middle_container_title">
+                期別TOP100
+              </div>     
+              {/* <div className = "TagsContainerRowAction share_middle_container_right_text">
+                もっと見る
+              </div> */}
+            </div>
+            <div className = "TagsContainerGrid">
+              {Props.tagsTop100.map((item)=>{
+                return(
+                  <TagsTop100
+                    tag = {item}
+                    key={item.tagId}
+                  />
             
-          </div>     
-        </div>
+                  )
+                })}
+                
+            </div> 
+          </>
+        )}
+      </div>  
     </>
   )
 }
