@@ -4,6 +4,7 @@ import { BsFillSuitHeartFill ,BsFillSuitClubFill,BsFillSuitSpadeFill, BsFillSuit
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
 import { actionSettingProductData2 } from "@/store/product/actions"
+import { useRouter } from "next/router"
 
 type Props = {
   product:product
@@ -73,10 +74,12 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
 
   // }
   // const navigate = useNavigate()
+  const router = useRouter()
   const dispatch = useDispatch()
   const navigateHandler = () => {
-    dispatch(actionSettingProductData2(Props.product));
+    // dispatch(actionSettingProductData2(Props.product));
     // navigate(`/products/${Props.product.id}`)
+    router.push(`/title/${Props.product.id}`)
   }
   // year season
   const [YearSeason,setYearSeason]= useState<string>("")

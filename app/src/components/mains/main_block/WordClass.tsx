@@ -106,7 +106,7 @@ export const WorldClass:React.FC<Props> = memo(function WorldClassFunc(Props){
         >
           <div className = "WorldClassContainerRow">
             <div className = "WorldClassContainerTitle share_middle_container_title">
-              映画情報（1年前〜1年後）
+              映画情報(今シーズン)
             </div>
             <div className = "WorldClassContainerRowAction share_middle_container_right_text">
             </div>

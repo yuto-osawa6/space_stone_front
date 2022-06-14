@@ -232,7 +232,7 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
           </div>
          
           </div>
-        <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
+        <div className = {`NewNetflixContainerGrid ${onMoreState2?"moreActiveAction":""}`}
          ref={ref}
         >
            {Props.data.products!=undefined&&(
