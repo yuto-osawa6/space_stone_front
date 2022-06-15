@@ -27,7 +27,7 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
   })
   const opacity = isDragging ? 0 : 1
 
-  console.log(Props.product.imageUrl?Props.product.imageUrl.replace("api", "localhost").replace("3000", "3001"):"")
+  console.log(Props.product.imageUrl)
   return(
     <>
       <div ref={drag}
@@ -39,7 +39,7 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
           position:"relative"
         }}
         >
-        <img src={Props.product.imageUrl?Props.product.imageUrl.replace("api", "localhost").replace("3000", "3001"):""}
+        <img src={Props.product.imageUrl}
         style={{
           borderRadius:"5px",
           top:"0",
