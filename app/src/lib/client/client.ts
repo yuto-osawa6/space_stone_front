@@ -1,5 +1,6 @@
 import applyCaseMiddleware from "axios-case-converter"
 import axios from "axios"
+import Cookies from "js-cookie"
 
 // applyCaseMiddleware:
 // axiosで受け取ったレスポンスの値をスネークケース→キャメルケースに変換
@@ -20,6 +21,11 @@ const options = {
   //   "Content-Type": "multipart/form-data" // 画像ファイルを取り扱うのでform-dataで送信
   // }
   // headers: { 'X-Requested-With': 'XMLHttpRequest' },
+  headers:{
+    "access-token": `${Cookies.get("_access_token")}`,
+    "client": `${Cookies.get("_client")}`,
+    "uid": `${Cookies.get("_uid")}`
+  }
 
 }), 
 options

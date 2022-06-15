@@ -27,12 +27,12 @@ type Props = {
 }
 
 export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Props){
-
+  const {userSwr,error} = useUser()
   const handleClose = () => {
     Props.setSettingModalOpen(false)
   }
   // changeTextHandler
-  const [nickname,setNickname] = useState<string>("")
+  const [nickname,setNickname] = useState<string>(userSwr.user.nickname)
   const [validateText,setValidateText] = useState<string>("")
   const changeTextHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value)
@@ -44,7 +44,7 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
     // redux
     // const UserStore = useSelector((state:RootState)=>state.user)
     // swr
-    const {userSwr,error} = useUser()
+    // const {userSwr,error} = useUser()
     const router = useRouter()
 
     const dispatch = useDispatch()
@@ -59,7 +59,8 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
     }
 
     const res = await execSettingUserHandler(nickname,userSwr.user.id)
-    if (res.status === 200){
+    console.log(res)
+    if (res.data.status === 200){
       console.log(res)
       // dispatch(updateNicknameAction(userSwr.user,res.data.user.nickname))
       mutate('/session_user')
@@ -105,7 +106,7 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
       // console.log(err)
     }
   }
-
+  // console.log(userSwr.user.nickname)
   return(
     <>
       <Modal
