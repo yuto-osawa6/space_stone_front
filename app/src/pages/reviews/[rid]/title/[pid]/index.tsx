@@ -9,6 +9,7 @@ import { ssr_url } from "@/lib/client/clientssr"
 import { GetServerSideProps } from "next"
 
 import nookies from 'nookies'
+import { NextSeo } from "next-seo"
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
@@ -63,6 +64,9 @@ const ReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   // const fallback= Props.fallback
   return(
     <>
+      <NextSeo
+      canonical = {`https://meruplanet.com/title/${Props.data.product.id}/reviews/${Props.data.review.id}`}
+      />
       <ProductReviews
       data = {Props.data}
       />

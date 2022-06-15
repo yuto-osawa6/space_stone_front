@@ -4,7 +4,7 @@ import { ProductShow } from "@/components/title/productShow"
 import { Top } from "@/components/title/top/Top"
 import { productShow } from "@/interfaces/product"
 import { ssr_url } from "@/lib/client/clientssr"
-import { GetServerSideProps } from "next"
+import { GetServerSideProps, NextPage } from "next"
 import { NextSeo } from 'next-seo';
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
@@ -43,7 +43,7 @@ type Props = {
 }
 
 const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
+// const TitleIndex: NextPage<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   // const fallback= Props.fallback
   return(
     <>

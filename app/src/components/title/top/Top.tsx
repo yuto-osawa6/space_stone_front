@@ -591,6 +591,15 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
       <ScoreUserList
         userScore = {props.userScore}
         nickname = {userSwr.user.nickname}
+        // 追加
+        scoreid = {props.scoreid}
+        product = {props.product}
+        setScore = { props.setScore}
+        setProductScores = {props.setProductScores}
+        setScoreaverage= {props.setScoreaverage}
+        setStats = {props.setStats}
+        setUserScore = {props.setUserScore}
+        
       />
       )}
       {/* {props.product!=undefined&&(

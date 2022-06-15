@@ -1,12 +1,26 @@
-import { productScores } from "@/interfaces/product"
+import { product, productScores } from "@/interfaces/product"
+import { execDestroyScore } from "@/lib/api/products"
+import { useUser } from "@/lib/data/user/useUser"
+import { pussingMessageDataAction } from "@/store/message/actions"
+import { useDispatch } from "react-redux"
 
 type Props = {
   userScore: productScores
   nickname:string
+
+  product : product
+  // openscore:boolean
+  setScore: React.Dispatch<React.SetStateAction<number | null>>
+  scoreid:number | null
+  setStats:React.Dispatch<React.SetStateAction<number[]>>
+  setScoreaverage:React.Dispatch<React.SetStateAction<string>>
+  setProductScores:React.Dispatch<React.SetStateAction<productScores[]>>
+  setUserScore: React.Dispatch<React.SetStateAction<productScores | undefined>>
 }
 
 export const ScoreUserList:React.FC<Props> = function ScoreUserListFunc(Props){
   console.log(Props)
+  const {userSwr,error} = useUser()
   const handleColer= (averageScore:number | null) => {
     var color = {backgroundColor:""}
     if(averageScore == null){
@@ -39,11 +53,34 @@ export const ScoreUserList:React.FC<Props> = function ScoreUserListFunc(Props){
     }
     return color
   }
+  // ーーーーーーーーーーーーーーーdestroy
+  const dispatch = useDispatch()
+  const execDestroyScoreFunc = async() => {
+    if (typeof Props.product === 'undefined') return
+    // setSubmitLoading(true)
+    const res = await execDestroyScore(Props.product.id,userSwr.user.id,Props.scoreid as number)
+    if (res.data.status === 200) {
+      console.log(res)
+      Props.setScore(null)
+      Props.setScoreaverage(res.data.scoreAverage)
+      Props.setStats(res.data.statsArray)
+      // 2.0
+      Props.setProductScores(res.data.productScores)
+      Props.setUserScore(undefined)
+      dispatch(pussingMessageDataAction(res.data.message))
+    }else{
+      dispatch(pussingMessageDataAction({title:"予期しないエラーが発生しました。もう一度試すか、お問い合わせください。",select:0}))
+    }
+    // setSubmitLoading(false)
+  }
   return(
     <>
       <div className = "ScoresListInProductShow ProductShowTopbottom">
         <div className = "ScoresListInProductShowTitle ProductShowTopbottomTitle">
-          {Props.nickname}さんの評価
+          {Props.nickname}さんの評価　
+          <span
+          onClick={execDestroyScoreFunc}
+          >削除</span>
         </div>
         
          

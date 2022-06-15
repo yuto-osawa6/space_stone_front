@@ -77,6 +77,15 @@ export const execScoreUpdate = (id:number,user_id:number,value:number | null | u
   })
 }
 
+// score delete
+export const execDestroyScore = (id:number,user_id:number,score_id:number) => {
+  return client.delete(`/products/${id}/scores/${score_id}`,{
+    params:{
+      user_id:user_id,
+      product_id:id,
+    }
+  })
+}
 // acsesses
 // execAcsesscount
 

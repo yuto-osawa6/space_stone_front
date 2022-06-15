@@ -6,6 +6,7 @@ import { product } from "@/interfaces/product"
 import { review, review_comments } from "@/interfaces/review"
 import { ssr_url } from "@/lib/client/clientssr"
 import { GetServerSideProps } from "next"
+import { NextSeo } from "next-seo"
 
 import nookies from 'nookies'
 
@@ -63,6 +64,9 @@ const ReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   // const fallback= Props.fallback
   return(
     <>
+      <NextSeo
+      canonical = {`https://meruplanet.com/title/${Props.data.product.id}/reviews/${Props.data.review.id}`}
+      />
       <ProductReviews
       data = {Props.data}
       />
