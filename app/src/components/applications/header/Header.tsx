@@ -215,9 +215,9 @@ const handleClick = () => {
                 <div onClick={handleClick}><Link href ="/#news"><a>おしらせ</a></Link></div>
                 {/* <div><Link href ="/#e"><a>放送情報カレンダー</a></Link></div> */}
                 <div onClick={handleClick}><Link href ="/#toptens"><a>Top10リスト</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="top100"><a>Top100リスト</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="tier"><a>過去シーズンのTier情報</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="weekly"><a>過去のエピソードアンケート情報</a></Link></div>
+                <div className = "Top100SubMenu"><Link href ="/top100"><a>Top100リスト</a></Link></div>
+                <div className = "Top100SubMenu"><Link href ="/tier"><a>過去シーズンのTier情報</a></Link></div>
+                <div className = "Top100SubMenu"><Link href ="/weekly"><a>過去のエピソードアンケート情報</a></Link></div>
               </div>
               )}
             </li>

@@ -22,7 +22,7 @@ export const TierProductList:React.FC<Props> = function TierProductListFunc(Prop
   const router = useRouter()
   const handleNavigateShowProduct = () => {
     dispatch(actionSettingProductData2(Props.product));
-    router.push(`/products/${Props.product.id}`)
+    router.push(`/title/${Props.product.id}`)
   }
   return(
     <>
@@ -33,8 +33,7 @@ export const TierProductList:React.FC<Props> = function TierProductListFunc(Prop
       }}
       onClick={handleNavigateShowProduct}
       >
-        {/* <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""} */}
-        <img src = {Props.product.imageUrl}
+        <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}
         style={{
           borderRadius:"5px",
           top:"0",

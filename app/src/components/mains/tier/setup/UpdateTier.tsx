@@ -108,6 +108,7 @@ useEffect(()=>{
   }
   const [validateText,setValidateText] = useState<string>("")
   const moveItem23 = useCallback((dragIndex: number, hoverIndex: number,group: number,pregroup:any | undefined,id:number) => {
+
     console.log(dragIndex,hoverIndex,group,pregroup,id)
       if(validateText!=""){
         setValidateText("")
@@ -183,6 +184,7 @@ useEffect(()=>{
     const array = i.products.map(i=>i.id)
     createTierProduct[index] = {group:index,product:array}
    })
+   console.log(createTierProduct)
    const res = await execCreateTierHandler(createTierProduct,Props.season,userSwr.user.id)
    console.log(res)
    if (res.data.status == 200){

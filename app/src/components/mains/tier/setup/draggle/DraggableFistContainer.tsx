@@ -1,7 +1,8 @@
 import { product } from "@/interfaces/product"
-import { memo } from "react"
-import { useDrag } from "react-dnd"
+import { memo, useEffect, useState } from "react"
+import { DragPreviewImage, useDrag } from "react-dnd"
 import { ItemType } from "../CreateTier"
+import { knightImage } from "./images"
 
 type Props = {
   product : product
@@ -10,7 +11,7 @@ type Props = {
 }
 
 export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFistContainerFunc(Props){
-  const [{ handlerId2,isDragging }, drag] = useDrag({
+  const [{ handlerId2,isDragging }, drag, preview] = useDrag({
     type: ItemType.Box,
     item:{ 
       id:Props.product.id,
@@ -27,9 +28,33 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
   })
   const opacity = isDragging ? 0 : 1
 
-  console.log(Props.product.imageUrl)
+  const [imageUrl,setImageUrl] = useState<string>("")
+
+//   useEffect(() => {
+//     console.log("aa")
+//     if(Props.product.imageUrl==null)return
+//     const img = new Image();
+//     img.src = Props.product.imageUrl.replace("api:3000", "localhost:3001");
+//     const ctx = document.createElement('canvas').getContext('2d');
+//     if(ctx == null) return
+//     ctx.canvas.width = 120;
+//     ctx.canvas.height = 63;
+//     img.crossOrigin = "localhost"; 
+//     img.onload = () => {
+//     ctx?.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
+//           img.src = ctx.canvas.toDataURL();
+//           // console.log(img.src)
+//           setImageUrl(img.src)
+//     preview(img);
+//     };
+// }, []);
+
+  // console.log(Props.product.imageUrl)
   return(
     <>
+      {/* <DragPreviewImage connect={preview} src={imageUrl}></DragPreviewImage> */}
+      {/* <DragPreviewImage connect={preview} src={Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}></DragPreviewImage> */}
+
       <div ref={drag}
         data-handler-id={handlerId2}
         style={{
@@ -39,9 +64,10 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
           position:"relative"
         }}
         >
-        <img src={Props.product.imageUrl}
+          
+        <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}
         style={{
-          borderRadius:"5px",
+          // borderRadius:"5px",
           top:"0",
           // position:"absolute",
           // width:"52.5px",
@@ -55,3 +81,5 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
     </>
   )
 })
+ {/* <img src={Props.product.imageUrl} */}
+        {/* <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""} */}

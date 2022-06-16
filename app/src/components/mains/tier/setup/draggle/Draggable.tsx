@@ -93,12 +93,13 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
       opacity,
       width: "100%",
       paddingTop:"52.5%",
-      position:"relative"
+      position:"relative",
+      borderRadius:"5px",
     }}
     >
-      <img src={Props.product.imageUrl}
+      <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}
       style={{
-        borderRadius:"5px",
+        // borderRadius:"5px",
         top:"0",
         position:"absolute",
         width:"100%",
