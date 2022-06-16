@@ -1,5 +1,5 @@
 export interface search {
-  title_cont:string
+  title_or_titleKa_or_titleEn_or_titleRo_cont:string
 }
 // export const arrayGenres:string[] =[]
 

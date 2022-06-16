@@ -33,11 +33,11 @@ import { UserSearchModal } from "./user_search/UserSearchModal";
 import { useRouter } from "next/router";
 
 interface SearchData {
-  title_cont: string,
+  title_or_titleKa_or_titleEn_or_titleRo_cont: string,
   quicked:boolean,
 }
 const initialData: SearchData = {
-  title_cont:"",
+  title_or_titleKa_or_titleEn_or_titleRo_cont:"",
   quicked:false
 }
 type Studios = {
@@ -94,7 +94,7 @@ const Search:React.FC = function SearchFunc(){
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setData({...data,title_cont: value});
+    setData({...data,title_or_titleKa_or_titleEn_or_titleRo_cont: value});
     // console.log("ccccccccccccc")
 
 
@@ -107,7 +107,7 @@ const Search:React.FC = function SearchFunc(){
   const afterhandleChange = (quicked:boolean) => {
     console.log(quicked)
     if(quicked===false){
-    dispatch(addTodoAction(data.title_cont));
+    dispatch(addTodoAction(data.title_or_titleKa_or_titleEn_or_titleRo_cont));
 
     }
     setData({...data,quicked:false})
@@ -135,20 +135,20 @@ const Search:React.FC = function SearchFunc(){
 
     return () => clearTimeout(timer)
     }
-  }, [data.title_cont])
+  }, [data.title_or_titleKa_or_titleEn_or_titleRo_cont])
 
 
 
 
   const title_count_check = () =>{
-    if (todoList.title_cont.length===0) return
+    if (todoList.title_or_titleKa_or_titleEn_or_titleRo_cont.length===0) return
 
     return(
       <>
         <div className="header-search-contents__boxes__List"
          onClick={()=>deletingtag1()}
         >
-          {todoList.title_cont}
+          {todoList.title_or_titleKa_or_titleEn_or_titleRo_cont}
         </div>
       </>
     )
@@ -179,7 +179,7 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
     dispatch(clearTitleAction())
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
     // subCategorys
     dispatch(AllDeleteSubClassAction())
@@ -213,7 +213,7 @@ const Search:React.FC = function SearchFunc(){
 
   const tag_clear = () =>{
     console.log(StudiosStore)
-    if(todoList.title_cont===""&& todoList2.janls_id_in.length===1&&todoList3.styles_id_eq===""&&CastsStore.castids.casts_id_in.length===1&&subSearchesTitle.length===0&&DuringStore.times.time_gteq===""&&YearStore.years.year_season_years_year_gteq===""&&SeasonStore.season_gteq===""&&StudiosStore.studio.length===0&&KisetsuStore.kisetsusids.year_season_seasons_id_eq==="") return 
+    if(todoList.title_or_titleKa_or_titleEn_or_titleRo_cont===""&& todoList2.janls_id_in.length===1&&todoList3.styles_id_eq===""&&CastsStore.castids.casts_id_in.length===1&&subSearchesTitle.length===0&&DuringStore.times.time_gteq===""&&YearStore.years.year_season_years_year_gteq===""&&SeasonStore.season_gteq===""&&StudiosStore.studio.length===0&&KisetsuStore.kisetsusids.year_season_seasons_id_eq==="") return 
     return (
       <>
         <div className="clear-botton"
@@ -249,7 +249,7 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
 
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     if (router.pathname==="/search"){
       // console.log(location.pathname)
       
@@ -262,7 +262,7 @@ const Search:React.FC = function SearchFunc(){
   const deletingtag3 = () =>{
     dispatch(clearTitleAction())
     dispatch(deletingtodoGenresDataALLAction())
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
 
      // subCategorys
@@ -329,7 +329,7 @@ const Search:React.FC = function SearchFunc(){
     dispatch(clearTitleAction())
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataExceptOneAction(String(item),Cast))
 
      // subCategorys
@@ -364,7 +364,7 @@ const Search:React.FC = function SearchFunc(){
     dispatch(clearTitleAction())
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
     dispatch(deletingtodoStudiosDataExceptOneAction(item,studios))
     dispatch(deletingtodoKisetsuDataAllAction())
@@ -397,7 +397,7 @@ const Search:React.FC = function SearchFunc(){
     dispatch(clearTitleAction())
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
     dispatch(deletingtodoStudiosDataALLAction())
     // dispatch(deletingtodoKisetsuDataAllAction)
@@ -431,7 +431,7 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
     dispatch(clearTitleAction())
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
     // subCategorys
     // dispatch(AllDeleteSubClassAction())
@@ -457,7 +457,7 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
     dispatch(clearTitleAction())
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
     // subCategorys
     dispatch(AllDeleteSubClassAction())
@@ -481,7 +481,7 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
     dispatch(clearTitleAction())
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
     // subCategorys
     dispatch(AllDeleteSubClassAction())
@@ -505,7 +505,7 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
     dispatch(clearTitleAction())
-    setData({...data,quicked:true,title_cont:""})
+    setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
     // subCategorys
     dispatch(AllDeleteSubClassAction())
@@ -648,7 +648,7 @@ const Search:React.FC = function SearchFunc(){
           name="name" 
           placeholder="タイトルを入力してください"
           // value={todoList.title_cont}
-          value={data.title_cont}
+          value={data.title_or_titleKa_or_titleEn_or_titleRo_cont}
           autoComplete="off"
           onChange={handleChange}
           // onClick={()=>handleClick()}

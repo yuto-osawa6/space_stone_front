@@ -43,12 +43,12 @@ import { SearchProductsActionTypes, SearchProductsData } from './types';
 
 // const initialState: SPD = [];
 const initialState:SearchProductsData = {
-  title_cont:"",
+  title_or_titleKa_or_titleEn_or_titleRo_cont:"",
   // janls_id_in:[""]
 }
 
 
-export const searchProdcutsReducer = (state = initialState, action: SearchProductsActionTypes) => {
+export const searchProdcutsReducer = (state = initialState, action: SearchProductsActionTypes):SearchProductsData => {
   // const latestId = state.length;
   switch (action.type) {
     case ActionTypes.searchProductsTexts:
@@ -60,7 +60,7 @@ export const searchProdcutsReducer = (state = initialState, action: SearchProduc
       // console.log("gggggg111111111111111111aaaaaaaaaa")
 
       return  {
-        title_cont:action.payload.title_cont,
+        title_or_titleKa_or_titleEn_or_titleRo_cont:action.payload.title_or_titleKa_or_titleEn_or_titleRo_cont,
         // janls_id_in:[""]
         // janls_id_in:action.payload.janls_id_in
       };
@@ -75,7 +75,7 @@ export const searchProdcutsReducer = (state = initialState, action: SearchProduc
     // }
     case ActionTypes.searchClearTitle:
     return {
-      title_cont:""
+      title_or_titleKa_or_titleEn_or_titleRo_cont:""
     }
 
     default:
