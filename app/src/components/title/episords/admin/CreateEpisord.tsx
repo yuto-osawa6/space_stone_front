@@ -14,7 +14,7 @@ type Props = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const CreateEpisord:React.FC<Props> = function createEpisordFunc(Props){
+export const CreateEpisord:React.FC<Props> = function CreateEpisordFunc(Props){
   const [episordNumber,setEpisordNumber] = useState<number>(0)
   const [episordNumberHelper,setEpisordNumberHelper] = useState<string>("")
     const handleClose = () => {
