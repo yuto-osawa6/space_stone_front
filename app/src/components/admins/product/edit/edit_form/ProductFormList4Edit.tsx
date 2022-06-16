@@ -137,16 +137,16 @@ export const ProductFormList4Edit:React.FC<Props> = (Props) => {
 
 // select----------------------------------------------
 
-// const [isMenuOpen,setIsMenuOpen] = useState<boolean>(false)
-//   const handleInputChange = (newValue: string, actionMeta: InputActionMeta) => {
-//     console.log(newValue,actionMeta)
-//     if(newValue==""){
-//       setIsMenuOpen(false)
-//     }else if(newValue.length>1){
-//       setIsMenuOpen(true)
-//     }
+const [isMenuOpen,setIsMenuOpen] = useState<boolean>(false)
+  const handleInputChange = (newValue: string, actionMeta: InputActionMeta) => {
+    console.log(newValue,actionMeta)
+    if(newValue==""){
+      setIsMenuOpen(false)
+    }else if(newValue.length>1){
+      setIsMenuOpen(true)
+    }
     
-//   }
+  }
 
 // console.log(character)
 // character -------------------
@@ -335,14 +335,14 @@ const handleSubmitGenres = async() => {
           closeMenuOnSelect={false}
           isMulti
           value={characterIdList}
-          // menuIsOpen={isMenuOpen}
+          menuIsOpen={isMenuOpen}
           // components={animatedComponents}
           onChange={handleSelectChangeCharacter}
           styles={{ menu: (provided, state) => ({ ...provided, zIndex: 10 }) }}
           // onInputChange={inputValue =>
           //   (inputValue.length <= 1 ? inputValue : inputValue.substr(0, 1))
           // }
-          // onInputChange={handleInputChange}
+          onInputChange={handleInputChange}
           />
         <FormHelperText className = "helpertexts">{staffValidateText}</FormHelperText>
         <div className = "FormProductList2AddGenreFlexBox">

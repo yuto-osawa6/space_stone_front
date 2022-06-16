@@ -119,7 +119,7 @@ export const ProductFormList1:React.FC<Props> = (Props) => {
    const handleChangeImageUrlh1 = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
      setImageUrlh1(e?.currentTarget.value)
      setImageUrlEroorh1(false)
-     setImageUrlValidateTexth1("")
+    //  setImageUrlValidateTexth1("")
    }
    const [imageUrlh2,setImageUrlh2] = useState<string | undefined>(Props.product.imageUrl)
    const handleChangeImageUrlh2 = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
@@ -313,16 +313,16 @@ export const ProductFormList1:React.FC<Props> = (Props) => {
       setImageUrlValidateText("imageUrlが入力されていません。")
       return
     }
-    if(imageUrlh1==undefined){
-      setImageUrlEroorh1(true)
-      setImageUrlValidateTexth1("imageUrlが未定義です。")
-      return
-    }
-    if(imageUrlh1.length==0){
-      setImageUrlEroorh1(true)
-      setImageUrlValidateTexth1("imageUrlが入力されていません。")
-      return
-    }
+    // if(imageUrlh1==undefined){
+    //   setImageUrlEroorh1(true)
+    //   setImageUrlValidateTexth1("imageUrlが未定義です。")
+    //   return
+    // }
+    // if(imageUrlh1.length==0){
+    //   setImageUrlEroorh1(true)
+    //   setImageUrlValidateTexth1("imageUrlが入力されていません。")
+    //   return
+    // }
 
     // if(list?.length==0){
     //   setListEroor(true)
@@ -331,10 +331,12 @@ export const ProductFormList1:React.FC<Props> = (Props) => {
     const blob = new Blob([value])
     const editor = quillref.current?.getEditor()
     if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length>300){
+      console.log(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length)
       setArasuziValidationText("300文字までです。")
       return
     }else if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length==0){
       setArasuziValidationText("入力されていません。")
+      return
     }
     if(blob.size>3000){
       console.log(new Blob([value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")]).size)
@@ -548,13 +550,13 @@ export const ProductFormList1:React.FC<Props> = (Props) => {
             error={imageUrlErrorh1}
             inputProps={{ pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="title En"
-            // defaultValue=""
+            // defaultValue=""k
             defaultValue={Props.product.imageUrlh1}
             id="outlined-basic"
             label="title En"
             variant="outlined"
             // helperText={inputRef?.current?.validationMessage}
-            helperText={imageUrlValidateTexth1}
+            // helperText={imageUrlValidateTexth1}
             onChange={handleChangeImageUrlh1}
             size="small"
             fullWidth

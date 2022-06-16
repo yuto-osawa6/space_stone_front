@@ -70,8 +70,14 @@ type articleoption = {
   label:string
 }
 
+type Props = {
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-export const AdminsArticle:React.FC = () => {
+
+
+export const AdminsArticle:React.FC<Props> = (Props) => {
   const user = useSelector((state:RootState) => state.user)
   // 
   const [value,setValue] = useState<string>("")
@@ -364,11 +370,22 @@ export const AdminsArticle:React.FC = () => {
   }
 
   // console.log(product)
+  const handleClose = () => {
+    // setOpen(false)
+    Props.setOpen(false)
+    // navigate("/admins")
+  }
 
  return(
    <>
-
-    <div className = "article">
+   <Modal
+    open={Props.open}
+    onClose={handleClose}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+  >
+    <>
+      <div className = "article">
       
 
           <TextField 
@@ -447,8 +464,10 @@ export const AdminsArticle:React.FC = () => {
 
         </div>
       {/* </div> */}
+      </>
+    </Modal>
    </>
  )
- }
+}
 
  

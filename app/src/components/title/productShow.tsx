@@ -556,9 +556,9 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     {product!=undefined&&product.productStyles.length>0&&(
                     <li>フォーマット: {product?.productStyles[0].name}</li>
                     )}
-                    {firstEpisord!="0"&&(<li>初回放送日: {firstEpisord}</li>)}
+                    {firstEpisord!=undefined||firstEpisord!="0"&&(<li>初回放送日: {firstEpisord}</li>)}
                     {product!=undefined&&product?.episords.length>0&&(<li>エピソード数: {product?.episords.length}</li>)}
-                    {avgTime != "0分"&&(
+                    {avgTime !=undefined||avgTime != "0分"&&(
                     <li>一話平均: {avgTime}</li>
                     )}
                     {product!=undefined&&product?.productStudio.length>0&&(

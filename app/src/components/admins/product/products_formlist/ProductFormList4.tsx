@@ -263,6 +263,16 @@ const handleSubmitGenres = async() => {
 
     
   }
+  const [isMenuOpen,setIsMenuOpen] = useState<boolean>(false)
+  const handleInputChange = (newValue: string, actionMeta: InputActionMeta) => {
+    console.log(newValue,actionMeta)
+    if(newValue==""){
+      setIsMenuOpen(false)
+    }else if(newValue.length>1){
+      setIsMenuOpen(true)
+    }
+    
+  }
 
 
   Props.childFunc4.current = handleErrorCheck
@@ -325,21 +335,21 @@ const handleSubmitGenres = async() => {
         <div className = "FormProductList2Genres">
           Staff
         </div>
-        {/* *2文字以上の入力が必要です。 */}
+        *2文字以上の入力が必要です。
         <Select
           placeholder={"Characters select..."}
           options={character} 
           closeMenuOnSelect={false}
           isMulti
           value={characterIdList}
-          // menuIsOpen={isMenuOpen}
+          menuIsOpen={isMenuOpen}
           // components={animatedComponents}
           onChange={handleSelectChangeCharacter}
           styles={{ menu: (provided, state) => ({ ...provided, zIndex: 10 }) }}
           // onInputChange={inputValue =>
           //   (inputValue.length <= 1 ? inputValue : inputValue.substr(0, 1))
           // }
-          // onInputChange={handleInputChange}
+          onInputChange={handleInputChange}
           />
         <FormHelperText className = "helpertexts">{staffValidateText}</FormHelperText>
         <div className = "FormProductList2AddGenreFlexBox">

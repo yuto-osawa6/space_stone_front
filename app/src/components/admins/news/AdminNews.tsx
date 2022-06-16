@@ -3,13 +3,18 @@ import { execNewsCreate } from "@/lib/api/admin/news"
 import { useState } from "react"
 // import { useNavigate } from "react-router-dom"
 
+type Props = {
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 
-export const AdminNews:React.FC = () => {
+
+export const AdminNews:React.FC<Props> = (Props) => {
   const [open,setOpen] = useState<boolean>(true)
   // const navigate = useNavigate()
   const handleClose = () => {
-    setOpen(false)
+    Props.setOpen(false)
 
     // navigate("/admins")
   }
@@ -78,7 +83,7 @@ export const AdminNews:React.FC = () => {
   return(
     <>
       <Modal
-        open={open}
+        open={Props.open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

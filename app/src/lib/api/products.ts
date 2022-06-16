@@ -221,11 +221,12 @@ export const execProductReviewShow = (product_id:string,review_id:string,page:nu
 
 // product_show_episords
 
-export const execProductShowEpisord = (product_id:string) => {
+export const execProductShowEpisord = (product_id:string,page:number) => {
   
   return client.get(`/products/product_episords`, { 
    params:{
-    product_id:product_id
+    product_id:product_id,
+    page:page
    }
   })
 }

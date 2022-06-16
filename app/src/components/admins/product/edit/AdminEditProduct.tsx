@@ -150,7 +150,7 @@ export const AdminsEditProduct:React.FC<Props> = (Props) => {
   }>({});
 
 
-  const steps = ['ProductSetting', 'Formats & Genres', 'Character & Cast','Staff & Studio','Episord'];
+  const steps = ['ProductSetting', 'Formats & Genres', 'Character & Cast','Staff & Studio'];
 
   const totalSteps = () => {
     return steps.length;
@@ -343,7 +343,7 @@ const [formProduct,setFormProduct] = useState<productForm>()
                    formProduct = {formProduct}
                 />
 
-                <ProductFormList5Edit
+                {/* <ProductFormList5Edit
                   activeStep = {activeStep}
                   childFunc5={ childFunc5}
                   completed = {completed}
@@ -354,7 +354,7 @@ const [formProduct,setFormProduct] = useState<productForm>()
                   setEpisord={setEpisord}
 
                   formProduct = {formProduct}
-                />
+                /> */}
                 </>
                 )}
 

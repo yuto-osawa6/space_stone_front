@@ -365,16 +365,16 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
       setImageUrlValidateText("imageUrlが入力されていません。")
       return
     }
-    if(imageUrlh1==undefined){
-      setImageUrlEroorh1(true)
-      setImageUrlValidateTexth1("imageUrlが未定義です。")
-      return
-    }
-    if(imageUrlh1.length==0){
-      setImageUrlEroorh1(true)
-      setImageUrlValidateTexth1("imageUrlが入力されていません。")
-      return
-    }
+    // if(imageUrlh1==undefined){
+    //   setImageUrlEroorh1(true)
+    //   setImageUrlValidateTexth1("imageUrlが未定義です。")
+    //   return
+    // }
+    // if(imageUrlh1.length==0){
+    //   setImageUrlEroorh1(true)
+    //   setImageUrlValidateTexth1("imageUrlが入力されていません。")
+    //   return
+    // }
 
     
     const blob = new Blob([value])
@@ -384,7 +384,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
       return
     }else if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length==0){
       setArasuziValidationText("入力されていません。")
-      // return
+      return
     }
     if(blob.size>3000){
       console.log(new Blob([value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")]).size)
@@ -578,7 +578,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
             label="title En"
             variant="outlined"
             // helperText={inputRef?.current?.validationMessage}
-            helperText={imageUrlValidateTexth1}
+            // helperText={imageUrlValidateTexth1}
             onChange={handleChangeImageUrlh1}
             size="small"
             fullWidth

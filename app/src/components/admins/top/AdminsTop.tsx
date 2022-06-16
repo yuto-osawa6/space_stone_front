@@ -14,6 +14,10 @@ import { useSelector } from "react-redux";
 import { PublishedAll } from "./PublishedAll";
 import { AdminProductGrid } from "./AdminProductGrid";
 import { RootState } from '@/store';
+import { useRouter } from 'next/router';
+import { AdminsAddProduct } from '../product/AdminsAddProduct';
+import { AdminNews } from '../news/AdminNews';
+import { AdminsArticle } from '../article/AdminsArticle';
 
 
 type q = {
@@ -29,16 +33,29 @@ type year = {
 
 export const AdminsTop:React.FC = () => {
   // const navigate = useNavigate();
+  const [open1,setOpen1] = useState<boolean>(false)
+  const [open2,setOpen2] = useState<boolean>(false)
+  const [open3,setOpen3] = useState<boolean>(false)
+
+  const router = useRouter()
  const handleAdminArticle = () => {
+  setOpen2(true)
   // navigate("/admins/article")
+  // router.push("/admins/article")
  }
 
  const handleAdminAddProducts = () => {
+  setOpen1(true)
   // navigate("/admins/product")
+  // router.push("/admins/product")
+
  }
 
  const handleAdminNewMessage = () => {
+  setOpen3(true)
   // navigate("/admins/news")
+  // router.push("/admins/news")
+
  }
 
 //  -search
@@ -398,6 +415,24 @@ return(
 
 
     </div>
+    {open1==true&&(
+      <AdminsAddProduct
+      open = {open1}
+      setOpen = {setOpen1}
+      />
+    )}
+    {open2==true&&(
+      <AdminsArticle
+      open = {open2}
+      setOpen = {setOpen2}
+      />
+    )}
+     {open3==true&&(
+      <AdminNews
+      open = {open3}
+      setOpen = {setOpen3}
+      />
+    )}
 
     {openPublishedAll==true&&(
       <PublishedAll

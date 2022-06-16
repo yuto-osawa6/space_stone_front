@@ -72,6 +72,11 @@ const getArrayDeleteDouble2 = (ary:emotions[], key:any) => {
 }
 
 const LoginUser = useSelector((state:RootState)=>state.user)
+
+// console.log(Props.episord.releaseDate)
+// console.log(new Date(Props.episord.releaseDate))
+
+// console.log(Props.episord.releaseDate != null)
   return(
     <>
     <div className=""
@@ -109,7 +114,16 @@ const LoginUser = useSelector((state:RootState)=>state.user)
           color:"grey"
         }}
         >
-          ({`${new Date(Props.episord.releaseDate).getFullYear()}/${new Date(Props.episord.releaseDate).getMonth()+1}/${new Date(Props.episord.releaseDate).getDate()}`})
+          <div className="">
+          {/* {Props.episord.releaseDate == undefined} */}
+          </div>
+          {Props.episord.releaseDate != null &&(
+            <>
+              ({`${new Date(Props.episord.releaseDate).getFullYear()}/${new Date(Props.episord.releaseDate).getMonth()+1}/${new Date(Props.episord.releaseDate).getDate()}`})
+            </>
+          )}
+          
+          
         </div>
         <div className="">
         </div>      

@@ -81,7 +81,12 @@ type episord = {
   episordReleaseDate:Date | null
 }
 
-export const AdminsAddProduct:React.FC = () => {
+type Props = {
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const AdminsAddProduct:React.FC<Props> = (Props) => {
   //  product
   const [product,setProduct] = useState<product>({
     title:"",
@@ -128,7 +133,8 @@ export const AdminsAddProduct:React.FC = () => {
   const [open,setOpen] = useState<boolean>(true)
   // const navigate = useNavigate()
   const handleClose = () => {
-    setOpen(false)
+    // setOpen(false)
+    Props.setOpen(false)
     // navigate("/admins")
   }
 
@@ -140,7 +146,7 @@ export const AdminsAddProduct:React.FC = () => {
   }>({});
 
 
-  const steps = ['ProductSetting', 'Formats & Genres', 'Character & Cast','Staff & Studio','Episord'];
+  const steps = ['ProductSetting', 'Formats & Genres', 'Character & Cast','Staff & Studio'];
 
   const totalSteps = () => {
     return steps.length;
@@ -187,8 +193,8 @@ export const AdminsAddProduct:React.FC = () => {
     case 3:
       childFunc4.current()
     break
-    case 4:
-      childFunc5.current()
+    // case 4:
+    //   childFunc5.current()
     break
     }
 
@@ -227,7 +233,7 @@ export const AdminsAddProduct:React.FC = () => {
   return(
     <>
       <Modal
-        open={open}
+        open={Props.open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -294,7 +300,7 @@ export const AdminsAddProduct:React.FC = () => {
                   setStaffMiddle={setStaffMiddle}
                 />
 
-                <ProductFormList5
+                {/* <ProductFormList5
                   activeStep = {activeStep}
                   childFunc5={ childFunc5}
                   completed = {completed}
@@ -303,7 +309,7 @@ export const AdminsAddProduct:React.FC = () => {
                   
                   episord={episord}
                   setEpisord={setEpisord}
-                />
+                /> */}
 
             </div>
           </div>
