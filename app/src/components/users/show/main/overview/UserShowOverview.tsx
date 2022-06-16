@@ -169,7 +169,7 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
     setScoreArrayies(user.score)
   },[])
   console.log(LoginUserStore)
-
+  console.log(user.overview)
   return(
     <>
       
@@ -194,9 +194,9 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
             </div>
           )}
           <div className = "UserShowOverviewContents">
-            {user.overview!=undefined&&LoginUserStore.user.overview!=""&&LoginUserStore.user.overview!="<p><br></p>"?
+            {user.overview!=undefined&&user.overview!="<p><br></p>"||LoginUserStore.user.overview!=""&&LoginUserStore.user.overview!="<p><br></p>"?
 
-           
+          
             <ReactQuill
               className = "reviews_modal_quill"
               // ref={quillref}

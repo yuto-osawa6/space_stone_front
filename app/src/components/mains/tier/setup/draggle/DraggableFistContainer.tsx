@@ -2,7 +2,7 @@ import { product } from "@/interfaces/product"
 import { memo, useEffect, useState } from "react"
 import { DragPreviewImage, useDrag } from "react-dnd"
 import { ItemType } from "../CreateTier"
-import { knightImage } from "./images"
+// import { knightImage } from "./images"
 
 type Props = {
   product : product
@@ -65,7 +65,7 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
         }}
         >
           
-        <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}
+        <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
         style={{
           // borderRadius:"5px",
           top:"0",

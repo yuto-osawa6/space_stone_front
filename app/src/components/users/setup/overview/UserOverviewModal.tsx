@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { updateOverviewAction } from "@/store/user/actions"
+import { useUser } from "@/lib/data/user/useUser"
+import { mutate } from "swr"
 
 
 const ReactQuill =
@@ -67,7 +69,10 @@ export const UserOverviewModal:React.FC<Props> = function UserOverviewModal(Prop
   }
   ),[])
 
-  const user = useSelector((state: RootState) => state.user);
+
+  // const user = useSelector((state: RootState) => state.user);
+  const {userSwr} = useUser()
+  const user = userSwr
 
   // 
   const [value,setValue] = useState<string>(user.user.overview)
@@ -118,7 +123,9 @@ export const UserOverviewModal:React.FC<Props> = function UserOverviewModal(Prop
     const res = await execCreateOverviewToUser(user.user.id,value_text.replaceAll("<p><br></p><p><br></p><p><br></p>", ""))
     if(res.status===200){
     console.log(res)
-    dispatch(updateOverviewAction(user.user,res.data.overview))
+    mutate('/session_user')
+    // dispatch(updateOverviewAction(user.user,res.data.overview))
+    dispatch(pussingMessageDataAction({title:"概要を更新しました。",select:1}))
     closeHandler()
     }else{
       // doneyet(エラー確認していない)

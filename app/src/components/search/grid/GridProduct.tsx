@@ -5,10 +5,11 @@ import React, { useEffect, useRef, useState ,forwardRef } from "react"
 // import { findDOMNode } from "react-dom";
 import { IoCloudyNightOutline } from "react-icons/io5";
 import { MdOutlineStarRate } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { Navigate, useNavigate } from "react-router";
 import { CSSTransition } from 'react-transition-group';
 import { actionSettingProductData2 } from "@/store/product/actions";
+import { RootState } from "@/store";
 
 type ProductGenres = {
   id:number
@@ -27,6 +28,22 @@ type Color = {
 }
 
 export const GridProducts:React.FC<Props> = function GridProductsFunc(Props){
+  const todoList = useSelector((state: RootState) => state.search);
+  const todoGenresList = useSelector((state: RootState) => state.todogenres);
+  const todoStylesList = useSelector((state: RootState) => state.todostyles);
+  const CastsStore = useSelector((state: RootState)=> state.cast)
+  const SubSearchesStore = useSelector((state: RootState)=> state.subsearch)
+  const TimeStore = useSelector((state:RootState)=> state.timesearch)
+  const YearStore = useSelector((state:RootState)=> state.yearsearch)
+  const SeasonStore = useSelector((state:RootState)=> state.seasonsearch)
+  const PeriodStore = useSelector((state:RootState)=>state.SortPeriod)
+  // v2.0
+  const StudiosStore = useSelector((state:RootState)=>state.studios)
+  const KisetsuStore = useSelector((state:RootState)=>state.kisetsu)
+  const EmotionSortStore = useSelector((state:RootState)=>state.sortEmotion)
+  const grid = useSelector((state: RootState) => state.grid);
+  const sort = useSelector((state: RootState) => state.sort)
+
   const [colornumber,setColornumber ]= useState<number>()
   // 平均スコア
   // const [averageScore,setAverageScore] = useState<number>()
@@ -76,23 +93,34 @@ export const GridProducts:React.FC<Props> = function GridProductsFunc(Props){
   const dispatch = useDispatch();
 
   const handlehoverEnter = () => {
-    lefts === Props.left_grid&&rights===Props.right?setIshover2(true):setIshover(true)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    left === Props.left_grid&&right===Props.right?setIshover2(true):setIshover(true)
+
   };
   const handlehoverLeave = () => {
-    lefts === Props.left_grid&&rights===Props.right?setIshover2(false):setIshover(false)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    // lefts === Props.left_grid&&rights===Props.right?setIshover2(false):setIshover(false)
+    left === Props.left_grid&&right===Props.right?setIshover2(false):setIshover(false)
+
   }
 
   useEffect(()=>{
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    setRights(right)
-    setLefts(left)
     Props.push(left)
+    if(Props.product.imageUrl==null)return
     const img = new Image()
     img.src = Props.product.imageUrl
     img.onload = () => {
       setImageLoding(true)
     };
   },[])
+
+  // useEffect(()=>{
+  //   const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+  //   setRights(right)
+  //   setLefts(left)
+  //   Props.push(left)
+  // },[todoList,todoGenresList,todoStylesList,sort,grid,CastsStore,SubSearchesStore,TimeStore,YearStore,SeasonStore,PeriodStore,StudiosStore,KisetsuStore,EmotionSortStore])
 
   const navigateProductShow =() =>{
     dispatch(actionSettingProductData2(Props.product));
@@ -124,6 +152,7 @@ export const GridProducts:React.FC<Props> = function GridProductsFunc(Props){
 
     }
   }
+  // console.log(Props)
 
   return (
     <>

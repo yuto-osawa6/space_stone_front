@@ -97,6 +97,7 @@ export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
               <>
                 <CSSTransition in={imageloding2}  nodeRef={nodeRef2} timeout={300} classNames="my-node"  unmountOnExit>
                 {<img src={LoginUserStore.user.backgroundImage}/>}
+                 {/* <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""} */}
                 </CSSTransition>
               </>
               :
@@ -127,7 +128,8 @@ export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
             </div>
             
             <div className = "UsersShowTopImageUserInfo">
-              <img src={user?.image}/>
+              {/* <img src={user?.image}/> */}
+              <img src = {LoginUserStore.user.id == Number(user_id)?LoginUserStore.user.image:user?.image}/>
               <p>{LoginUserStore.user.id == Number(user_id)?LoginUserStore.user.nickname:user?.nickname}</p>
 
             </div>

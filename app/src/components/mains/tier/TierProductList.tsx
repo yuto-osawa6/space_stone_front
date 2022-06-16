@@ -33,7 +33,7 @@ export const TierProductList:React.FC<Props> = function TierProductListFunc(Prop
       }}
       onClick={handleNavigateShowProduct}
       >
-        <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}
+        <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
         style={{
           borderRadius:"5px",
           top:"0",

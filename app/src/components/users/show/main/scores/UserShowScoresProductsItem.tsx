@@ -84,7 +84,7 @@ export const UserShowScoresProductsItem:React.FC<Props> = function UserShowScore
   const dispatch = useDispatch()
   const navigateHandler = () => {
     dispatch(actionSettingProductData2(Props.product));
-    router.push(`/products/${Props.product.id}`)
+    router.push(`/title/${Props.product.id}`)
   }
   console.log(Props)
   console.log(yourScore)

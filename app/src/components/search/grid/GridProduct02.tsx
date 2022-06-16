@@ -54,9 +54,10 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   useEffect(()=>{
     handleSetupYearSeason()
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    setRights(right)
-    setLefts(left)
+    // setRights(right)
+    // setLefts(left)
     Props.pushgridleft02(left)
+    
   },[])
 
   const [scoreColor,setScoreColor] = useState<Color>({backgroundColor:""})
@@ -90,13 +91,13 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   const [ishover,setIshover] = useState<boolean>(false)
   const [ishover2,setIshover2] = useState<boolean>(false)
   const handlehoverEnter = () => {
-    console.log(lefts,Props.maxleft02,rights,Props.right)
-    console.log(lefts === Props.maxleft02&&rights===Props.right)
-    lefts === Props.maxleft02&&rights===Props.right?setIshover2(true):setIshover(true)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    left === Props.maxleft02&&right===Props.right?setIshover2(true):setIshover(true)
 
   };
   const handlehoverLeave = () => {
-    lefts === Props.maxleft02&&rights===Props.right?setIshover2(false):setIshover(false)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    left === Props.maxleft02&&right===Props.right?setIshover2(false):setIshover(false)
 
   }
   const [YearSeason,setYearSeason]= useState<string>("")

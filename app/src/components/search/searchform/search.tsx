@@ -201,7 +201,7 @@ const Search:React.FC = function SearchFunc(){
 
 
 
-
+    // console.log(router.pathname)
     if (router.pathname==="/search"){
       // console.log(location.pathname)
       

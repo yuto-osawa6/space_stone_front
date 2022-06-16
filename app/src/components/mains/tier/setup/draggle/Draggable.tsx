@@ -97,7 +97,7 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
       borderRadius:"5px",
     }}
     >
-      <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}
+      <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
       style={{
         // borderRadius:"5px",
         top:"0",

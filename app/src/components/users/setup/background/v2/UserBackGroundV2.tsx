@@ -153,7 +153,7 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
   if(res.status==200){
     console.log(res)
     setLoading(false)
-    mutate
+    mutate('/session_user')
     dispatch(pussingMessageDataAction({title:"背景画像を更新しました。",select:1}))
     closeHandler()
   }else{
