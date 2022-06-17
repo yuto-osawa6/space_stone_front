@@ -44,17 +44,18 @@ type Props = {
 }
 
 const Ota: React.FC<Props>& { getLayout: (page: any) => JSX.Element } = (Props) => {
-  const { userSwr, error } = useUser()
-  const changeGridexec = async() => {
-    const res = await exec_sessions()
-    if (res.status === 200) {
-      console.log(res)
-    }
-  }
+  console.log(new Date())
+  // const { userSwr, error } = useUser()
+  // const changeGridexec = async() => {
+  //   const res = await exec_sessions()
+  //   if (res.status === 200) {
+  //     console.log(res)
+  //   }
+  // }
 
-  useEffect(()=>{
-    changeGridexec()
-  },[])
+  // useEffect(()=>{
+  //   changeGridexec()
+  // },[])
   return(
     <>
      aaa

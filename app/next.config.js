@@ -9,6 +9,16 @@ const withTM = require('next-transpile-modules')([
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  i18n: {
+    locales: ["en", "ja"],
+    defaultLocale: "ja",
+  },
+  domains: [
+    {
+      domain: 'meruplanet.com',
+      defaultLocale: 'ja',
+    }
+  ],
   images: {
     // domains: ['api','localhost','api.meruplanet.com'],
     domains: ['api','localhost'],
