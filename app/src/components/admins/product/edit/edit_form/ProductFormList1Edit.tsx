@@ -294,13 +294,14 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   const [kisetsuError,setKisetsuError] = useState<boolean>(false)
 
   // delivery-end start--------------------------------------
-  const [deliveryEnd, setDeliveryEnd] = useState<Date | null>(null);
-  const [deliveryStart, setDeliveryStart] = useState<Date | null>(new Date(Props.formProduct.deliveryStart));
+  const [deliveryEnd, setDeliveryEnd] = useState<Date | null>(Props.formProduct.deliveryEnd!=undefined?new Date(Props.formProduct.deliveryEnd):null);
+  const [deliveryStart, setDeliveryStart] = useState<Date | null>(Props.formProduct.deliveryStart!=undefined?new Date(Props.formProduct.deliveryStart):null);
 
   const [deliveryStartValidationText,setDeliveryStartValidationText] = useState<string>("")
   const [deliveryEndValidationText,setDeliveryEndValidationText] = useState<string>("")
 
-
+  console.log(Props.formProduct)
+  console.log(Props.formProduct.deliveryStart!=undefined)
   // 
   const handleChangeKisetsu = (e:SelectChangeEvent<string[]>) => {
     // setKisetsu(e.target.value as string)

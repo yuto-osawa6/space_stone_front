@@ -50,7 +50,7 @@ type episord = {
 
 
 export const execProductCreate = (product:product,genresArray:string[],formatsArray:string[],characterMiddleData:character[],studiosArray:string[],staffMiddle:character2[],episord:episord[]) => {
-  return client.post(`/products/`,{ 
+  return client.post(`/products`,{ 
     product:product,
     genresArray:genresArray,
     formatsArray:formatsArray,

@@ -14,6 +14,9 @@ import { ProductFormList3 } from "./products_formlist/ProductFormList3";
 import {ProductFormList4 } from "./products_formlist/ProductFormList4";
 import { ProductFormList5 } from "./products_formlist/ProductFormList5";
 import { execProductCreate } from "@/lib/api/admin/product";
+import { pussingMessageDataAction } from "@/store/message/actions";
+import { useDispatch } from "react-redux";
+import { ErrorMessage } from "@/lib/ini/message";
 
 
 
@@ -195,7 +198,7 @@ export const AdminsAddProduct:React.FC<Props> = (Props) => {
     break
     // case 4:
     //   childFunc5.current()
-    break
+    // break
     }
 
     // setCompleted({[0]:true})
@@ -213,14 +216,19 @@ export const AdminsAddProduct:React.FC<Props> = (Props) => {
   const childFunc5 = useRef<any>(!null)
 
 
-
+  const dispatch = useDispatch()
   const handleSubmit = async() => {
       // console.log("ラストですよ")
+     
       const res = await execProductCreate(product,genresArray,formatsArray,characterMiddleData,studiosArray,staffMiddle,episord)
-      if(res.status=200){
-        console.log(res)
-      }else{
 
+      console.log(res)
+      if(res.data.status==200){
+        dispatch(pussingMessageDataAction({title:"productが作成されました。",select:1}))
+      }else if(res.data.status==390){
+        dispatch(pussingMessageDataAction({title:"既に存在するproductです。",select:0}))
+      }else{
+        dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
       }
   }
 

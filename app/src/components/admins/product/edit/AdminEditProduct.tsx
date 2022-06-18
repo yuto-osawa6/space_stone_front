@@ -21,6 +21,9 @@ import { ProductFormList4Edit } from "./edit_form/ProductFormList4Edit";
 import { ProductFormList5Edit } from "./edit_form/ProductFormList5Edit";
 import { StepperEdit } from "./StepperEdit";
 import { product, productForm } from "@/interfaces/product";
+import { useDispatch } from "react-redux";
+import { pussingMessageDataAction } from "@/store/message/actions";
+import { ErrorMessage } from "@/lib/ini/message";
 
 
 type product_form = {
@@ -223,15 +226,17 @@ export const AdminsEditProduct:React.FC<Props> = (Props) => {
 
 
   // 送信
+  const dispatch = useDispatch()
   const handleSubmit = async() => {
     if (formProduct==undefined) return
     console.log(formProduct.id,product,genresArray,formatsArray,characterMiddleData,studiosArray,staffMiddle,episord)
     // koko
     const res = await execProductUpdate(formProduct.id,product,genresArray,formatsArray,characterMiddleData,studiosArray,staffMiddle,episord)
-    if(res.status=200){
+    if(res.data.status==200){
       console.log(res)
+      dispatch(pussingMessageDataAction({title:"productが更新されました。",select:1}))
     }else{
-
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
   }
 
