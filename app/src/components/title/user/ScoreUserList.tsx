@@ -59,6 +59,7 @@ export const ScoreUserList:React.FC<Props> = function ScoreUserListFunc(Props){
     if (typeof Props.product === 'undefined') return
     // setSubmitLoading(true)
     const res = await execDestroyScore(Props.product.id,userSwr.user.id,Props.scoreid as number)
+    console.log(res)
     if (res.data.status === 200) {
       console.log(res)
       Props.setScore(null)

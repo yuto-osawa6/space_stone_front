@@ -30,6 +30,7 @@ import { pussingMessageDataAction } from "@/store/message/actions";
 import { useRouter } from "next/router";
 import { useUser } from "@/lib/data/user/useUser";
 import { ErrorMessage } from "@/lib/ini/message";
+import { DefaultPaste } from "@/lib/ini/quill/QuillEffect";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -50,6 +51,7 @@ type Props = {
 }
 
 export const ProductThreads:React.FC<Props> = function ProductThreadsFunc(Props){
+  DefaultPaste()
   const modules = {
     toolbar: [
       // [{ font: [] }],

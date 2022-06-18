@@ -28,6 +28,7 @@ import { pussingMessageDataAction } from "@/store/message/actions";
 import { useRouter } from "next/router";
 import { ErrorMessage } from "@/lib/ini/message";
 import { useUser } from "@/lib/data/user/useUser";
+import { DefaultPaste } from "@/lib/ini/quill/QuillEffect";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -48,6 +49,7 @@ type Props = {
 }
 
 export const ProductReviews:React.FC<Props> = function ProductReviewsFunc(Props){
+  DefaultPaste()
   const dispatch = useDispatch()
   const modules = {
     toolbar: [

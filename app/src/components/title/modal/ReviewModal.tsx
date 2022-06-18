@@ -17,6 +17,7 @@ import { ngword } from "@/lib/ini/ngWord";
 import { ErrorMessage } from "@/lib/ini/message";
 import { submitSpin } from "@/lib/color/submit-spin";
 import dynamic from "next/dynamic";
+import { QuillSettings } from "@/lib/ini/quill/QuillSettings";
 // const ReactQuill = dynamic(() => from("react-quill"), { ssr: false });
 // const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 // const Quill = dynamic(() => import("react-quill"), { ssr: false });
@@ -222,16 +223,16 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
       return
     }
     // check(バイト数制限どこまでにするか)
-    if ( blob.size  > 100000){
+    if ( blob.size  >  QuillSettings.blobSizeMain){
       // setHelpertextradio(`サイズが大きすぎます`)
       dispatch(pussingMessageDataAction({title:ErrorMessage.tenover,select:0}))
       return
     }
-    if ( quillref.current.getEditor().getText().length > 20000){
-      // setHelpertextradio(`サイズが大きすぎます`)
-      dispatch(pussingMessageDataAction({title:ErrorMessage.byteSize,select:0}))
-      return
-    }
+    // if ( quillref.current.getEditor().getText().length > 20000){
+    //   // setHelpertextradio(`サイズが大きすぎます`)
+    //   dispatch(pussingMessageDataAction({title:ErrorMessage.byteSize,select:0}))
+    //   return
+    // }
      // ngword
     if(ngword.some((ngWord) => text_all.includes(ngWord))){
       // setHelpertextradio(`使用できない文字が含まれています`)
@@ -273,7 +274,7 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
 
 
   const handleChangeEpisord = (event: SelectChangeEvent) => {
-    console.log(event.target)
+    console.log(event.target.value as string)
     SetEpisordValue(event.target.value as string);
   
   }
@@ -282,6 +283,31 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
   // const [episord,setEpisord] = usestate<episord[]>([])
   const handleSetUp = () => {
     if(Props.product == undefined)return
+    if(Props.product.episords[0]==undefined){
+      Props.product.episords.unshift({
+        arasuzi: "",
+        episord: 0,
+        id: null,
+        image: "",
+        season: 0,
+        seasonTitle: "",
+        time: undefined,
+        title: ",",
+        releaseDate:""
+      })
+      // console.log(Props.product.episords[0].length)
+      const array = Props.userReview.map(i=>i.episordId)
+      setUserEpisord(Props.product.episords.filter(i=>array.includes(i.id)==false))
+      console.log(Props.product.episords.length)
+      if(Props.product.episords.length==1){
+        SetEpisordValue("null");
+      }
+      return
+      
+    }
+    if(Props.product.episords.length==1){
+      SetEpisordValue("null");
+    }
     if(Props.product.episords[0].id!=null){
       Props.product.episords.unshift({
         arasuzi: "",
@@ -298,9 +324,6 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
     
     const array = Props.userReview.map(i=>i.episordId)
     setUserEpisord(Props.product.episords.filter(i=>array.includes(i.id)==false))
-    // console.log(Props.product.episords)
-    // console.log(Props)
-    // console.log(Props.product.episords.filter(i=>array.includes(i.id)==false))
     
   }
 
@@ -333,7 +356,10 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
     setEmotionError(false)
   }
   console.log(emotions)
-   
+
+  // useEffect(()=>{
+
+  // },[])
   return(
     <>
      <Modal
@@ -420,10 +446,12 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
               // helperText={validatetext}
               onChange={handleChangetext}
               /> */}
-               <FormControl fullWidth className="selectLabel" size="small">
+              
+              {Props.product&&Props.product.episords.length>1&&(
+              <FormControl fullWidth className="selectLabel" size="small">
               <InputLabel id="demo-simple-select-label">Episord(*必須)</InputLabel>
               <Select
-                // value={episordValue}
+                value={episordValue}
                 label="Episord(*必須)"
                 onChange={handleChangeEpisord}
                 error={errorEpisordValue}
@@ -445,6 +473,7 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
 
               </Select>
               </FormControl>
+              )}
             {/* <FormHelperText className = "helpertexts">{helpertextradio}</FormHelperText> */}
             {/* <Select
               placeholder={"Emotion Select..."}

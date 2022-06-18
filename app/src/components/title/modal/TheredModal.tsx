@@ -161,6 +161,8 @@ export const TheredModal:React.FC<Props> = function TheredModalFunc(Props){
       Props.setProductThreads(res.data.productThreads)
       setOpenthered(false)
       dispatch(pussingMessageDataAction(res.data.message))
+    }else if (res.data.status == 492){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message492,select:0}))
     }else{
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }

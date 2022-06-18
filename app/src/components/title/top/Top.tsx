@@ -384,7 +384,7 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
              <div className=""
              style={{display:"flex",gap:"10px"}}
              >
-            {props.product!=undefined&&props.userReviews!=undefined&&((props.product.episords.length)-props.userReviews.length)>0&&(
+            {props.product!=undefined&&props.userReviews!=undefined&&((props.product.episords.filter(i=>i.id!=null).length)-props.userReviews.length)>=0&&(
               <div className = "show_09_review_write"
               style={{cursor:"pointer"}}
               onClick={modalopenJugdereview}

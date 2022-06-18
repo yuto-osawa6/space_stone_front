@@ -15,6 +15,8 @@ import { TailSpin } from "react-loader-spinner"
 import { useDispatch } from "react-redux"
 // import { ErrorMessage } from "share/message"
 import { pussingMessageDataAction } from "@/store/message/actions"
+import { DefaultPaste } from "@/lib/ini/quill/QuillEffect"
+import { QuillSettings } from "@/lib/ini/quill/QuillSettings"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -34,6 +36,7 @@ type Props = {
 
 
 export const ThreadComment:React.FC<Props> = function ThreadCommentFunc(Props){
+  // DefaultPaste()
   const [helpertextradio,setHelpertextradio] = useState<string>("")
   // validation
   const [validatetext,setValidatetext] = useState<string>("")
@@ -64,21 +67,21 @@ export const ThreadComment:React.FC<Props> = function ThreadCommentFunc(Props){
   
     
     const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length
-      if ( validationText < 10){
+      if ( validationText < QuillSettings.textLength){
         dispatch(pussingMessageDataAction({title:ErrorMessage.tenover,select:0}))
         return
       }
-      if ( quillref.current.getEditor().getText().length > 2000){
-        dispatch(pussingMessageDataAction({title:ErrorMessage.twothousanddown,select:0}))
-        return
-      }
+      // if ( quillref.current.getEditor().getText().length > 2000){
+      //   dispatch(pussingMessageDataAction({title:ErrorMessage.twothousanddown,select:0}))
+      //   return
+      // }
        // ngword
-       const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
+      const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
       if(ngword.some((ngWord) => text_all.includes(ngWord))){
         dispatch(pussingMessageDataAction({title:ErrorMessage.ngword,select:0}))
         return
       }
-      if(new Blob([value]).size>100000){
+      if(new Blob([value]).size>QuillSettings.blobSize){
         console.log(new Blob([value]).size)
         dispatch(pussingMessageDataAction({title:ErrorMessage.byteSize,select:0}))
         return
@@ -96,6 +99,10 @@ export const ThreadComment:React.FC<Props> = function ThreadCommentFunc(Props){
     closehandle()
     }else if(res.data.status===400){
       dispatch(pussingMessageDataAction({title:ErrorMessage.delete,select:0}))
+    }else if(res.data.status===493){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message493,select:0}))
+    }else if(res.data.status===490){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message490,select:0}))
     }else{
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }

@@ -297,6 +297,29 @@ export const EditReviewModal:React.FC<Props> = function EditReviewModalFunc(Prop
   const [userEpisord,setUserEpisord] = useState<episord[]>([])
   const handleSetUp = () => {
     if(Props.product == undefined)return
+    if(Props.product.episords[0]==undefined){
+      Props.product.episords.unshift({
+        arasuzi: "",
+        episord: 0,
+        id: null,
+        image: "",
+        season: 0,
+        seasonTitle: "",
+        time: undefined,
+        title: ",",
+        releaseDate:""
+      })
+      const array = Props.userReview.map(i=>i.episordId)
+      setUserEpisord(Props.product.episords.filter(i=>array.includes(i.id)==false))
+      if(Props.product.episords.length==1){
+        SetEpisordValue("null");
+      }
+      return
+      
+    }
+    if(Props.product.episords.length==1){
+      SetEpisordValue("null");
+    }
     if(Props.product.episords[0].id!=null){
       Props.product.episords.unshift({
         arasuzi: "",
@@ -369,6 +392,7 @@ export const EditReviewModal:React.FC<Props> = function EditReviewModalFunc(Prop
         <>
         {episordValue==undefined?
         <>
+        {Props.product&&Props.product.episords.length>1&&(
         <div className = "EditReviewModal">
         <p style={{marginBottom:"10px"}}>
         編集するエピソードを選んでください
@@ -399,6 +423,7 @@ export const EditReviewModal:React.FC<Props> = function EditReviewModalFunc(Prop
           閉じる
         </Button>
         </div>
+        )}
         </>
         :
         <>

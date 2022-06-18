@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux"
 // import { useParams } from "react-router-dom"
 // import { ErrorMessage } from "share/message"
 import { pussingMessageDataAction } from "@/store/message/actions"
+import { QuillSettings } from "@/lib/ini/quill/QuillSettings"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -66,15 +67,15 @@ export const ReturnThreadComment:React.FC<Props> = function ReturnThreadCommentF
 
   const handlesubmit = async() => {
     const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length
-      if ( validationText < 10){
+      if ( validationText < QuillSettings.textLength){
         dispatch(pussingMessageDataAction({title:ErrorMessage.tenover,select:0}))
         return
       }
       // doneyet(バイト数制限)
-      if ( quillref.current.getEditor().getText().length > 2000){
-        dispatch(pussingMessageDataAction({title:ErrorMessage.twothousanddown,select:0}))
-        return
-      }
+      // if ( quillref.current.getEditor().getText().length > 2000){
+      //   dispatch(pussingMessageDataAction({title:ErrorMessage.twothousanddown,select:0}))
+      //   return
+      // }
   
        // ngword
        const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
@@ -82,7 +83,7 @@ export const ReturnThreadComment:React.FC<Props> = function ReturnThreadCommentF
         dispatch(pussingMessageDataAction({title:ErrorMessage.ngword,select:0}))
         return
       }
-      if(new Blob([value]).size>100000){
+      if(new Blob([value]).size>QuillSettings.blobSize){
         console.log(new Blob([value]).size)
         dispatch(pussingMessageDataAction({title:ErrorMessage.byteSize,select:0}))
         return
@@ -101,6 +102,12 @@ export const ReturnThreadComment:React.FC<Props> = function ReturnThreadCommentF
       dispatch(pussingMessageDataAction({title:ErrorMessage.delete,select:0}))
     }else if(res.data.status===410){
       dispatch(pussingMessageDataAction({title:ErrorMessage.message410,select:0}))
+    }else if(res.data.status===494){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message494,select:0}))
+    }else if(res.data.status===495){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message495,select:0}))
+    }else if(res.data.status===490){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message490,select:0}))
     }else{
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }

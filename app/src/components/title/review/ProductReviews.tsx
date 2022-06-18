@@ -24,7 +24,7 @@ type Props = {
 }
 
 export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFunc(Props){
-  console.log("aaaagdgdasgdalkmkdsafmadsfoafio")
+  // console.log("aaaagdgdasgdalkmkdsafmadsfoafio")
   const [episords,setEpisords] = useState<string[]>([])
   const router = useRouter()
   const {pid} = router.query
