@@ -29,6 +29,9 @@ export const IniProductData:product = {
   imageUrlh1: undefined,
   imageUrlh2: undefined,
   imageUrlh3: undefined,
+
+  annict:0,
+  shoboi:0,
   // 
   averageScore:"",
   likeCount:0,

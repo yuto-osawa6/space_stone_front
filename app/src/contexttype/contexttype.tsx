@@ -14,7 +14,7 @@ type chatList = {
 
 export const Productshowcontext = React.createContext({} as {
   product:product | undefined
-  switchnumber: number
+  switchnumber: number | undefined
   // stats:{ [key: string]: number }
   acsesses: acsesses | undefined
 

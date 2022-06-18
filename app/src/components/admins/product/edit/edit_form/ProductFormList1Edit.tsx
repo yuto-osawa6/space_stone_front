@@ -1,5 +1,5 @@
 import { FormControl, FormHelperText, InputLabel, MenuItem, Modal, Select, SelectChangeEvent, TextField } from "@mui/material"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 // import ReactQuill, { Quill } from "react-quill"
 // import { Navigate, useNavigate } from "react-router-dom"
 
@@ -9,6 +9,7 @@ import DatePicker from '@mui/lab/DatePicker';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import { product, productForm } from "@/interfaces/product";
 import { YearSeasonsEdit } from "./YearSeasonsEdit";
+import { DefaultPasteForTitle } from "@/lib/ini/quill/QuillEffectForTitle";
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 // import { product } from "interfaces/product";
@@ -62,7 +63,15 @@ type year_season = {
 
 
 export const ProductFormList1Edit:React.FC<Props> = (Props) => {
+  const a = useMemo(()=>{
+    // console.log("aaaaaiiiiii")
+    DefaultPasteForTitle()
+  },[])
+  a
+  // -------------------
+  
   useEffect(()=>{
+    // DefaultPasteForTitle()
     handleSetUpYear()
   },[])
 

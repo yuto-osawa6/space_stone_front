@@ -20,6 +20,8 @@ export interface product {
   imageUrlh3:string | undefined
 
   arasuzi:string
+  annict:number
+  shoboi:number
   // 
   averageScore:string
   likeCount:number

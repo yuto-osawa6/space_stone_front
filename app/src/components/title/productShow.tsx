@@ -33,10 +33,10 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 
 
-var array:number[] = new Array()
-for (let i = 0; i < 10; i++) {
-  array.push(i)
-}
+// var array:number[] = new Array()
+// for (let i = 0; i < 10; i++) {
+//   array.push(i)
+// }
 
 type chatList = {
   created_at: string
@@ -58,7 +58,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   const params_id = pid
   const [product,setProduct] = useState<product>()
   const [productStore,setProductStore] = useState<product>()
-  const [switchnumber,setSwitchnumber] = useState<number>(0)
+  const [switchnumber,setSwitchnumber] = useState<number>()
   const [heart,setHeart] = useState<boolean>(false)
   const [heartId,setHeartId] = useState<number>()
   const [loded,setLoded] = useState<boolean>(false)
@@ -76,7 +76,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
 
   const ProductStore = useSelector((state: RootState) => state.product);
   const dispatch = useDispatch();
-  const colornumber:number = array[Math.floor(Math.random() * array.length)]
+  // const colornumber:number = array[Math.floor(Math.random() * array.length)]
   const elm = useRef<HTMLDivElement>(null!);
   const elm2 = useRef<HTMLDivElement>(null!);
   // const user = useSelector((state: RootState) => state.user);
@@ -224,7 +224,9 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
 
   useEffect(()=>{
     if(params_id===undefined)return
-    setSwitchnumber(colornumber)
+    const array:number[] = [1,2,3,4,5,6,7,8,9,0]
+    const colorNumber:number = array[Math.floor(Math.random() * array.length)]
+    setSwitchnumber(colorNumber)
     setdata()
     return () => {
       isMounted = false
@@ -516,7 +518,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                           readOnly={true}
                         />
                       )}
-                       {ProductStore.id==Number(params_id)&&(
+                      {ProductStore.id==Number(params_id)&&(
                         <ReactQuill
                           className = "reviews_modal_quill"
                           // value={ProductStore.arasuzi!=undefined?ProductStore.arasuzi:product?.arasuzi} 
@@ -528,10 +530,23 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                       )}
                     </div>
                     <div className = "show_contents01_header_bottom_right_netflix"
+                  
                     >
-                      <a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list} target="_blank" rel="noopener noreferrer">
-                        公式サイトへ
-                      </a>
+                      {product?.annict!=undefined&&product?.annict!=0&&(
+                        <a href = {`https://cal.syoboi.jp/tid/${product?.shoboi}`} target="_blank" rel="noopener noreferrer">
+                          しょぼいカレンダー
+                        </a>
+                      )}
+                      {product?.annict!=undefined&&product?.annict!=0&&(
+                        <a href = {`https://annict.com/works/${product?.annict}`} target="_blank" rel="noopener noreferrer">
+                          Annict
+                        </a>
+                      )}
+                      {product?.list!=undefined&&product?.list.length!=0&&(
+                        <a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list} target="_blank" rel="noopener noreferrer">
+                          公式サイト
+                        </a>
+                      )}
                     </div>
                   </div>  
                 </div>
