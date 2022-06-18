@@ -10,6 +10,8 @@ export const testProductData:product = {
   imageUrlh1: undefined,
   imageUrlh2: undefined,
   imageUrlh3: undefined,
+  annict:0,
+  shoboi:0,
   // 
   averageScore:"10",
   likeCount:1,
