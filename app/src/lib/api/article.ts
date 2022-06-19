@@ -3,7 +3,7 @@ import client from "../client/client"
 
 
 
-export const execCreateArticle = (user_id:number,content:string,text:string,radio:number,productIds:string[]) => {
+export const execCreateArticle = (user_id:number,content:string,text:string,radio:number,productIds:string[],hashIds:string[]) => {
 
   return client.post(`/admin/articles`,{
     // product_id:product_id,
@@ -12,7 +12,8 @@ export const execCreateArticle = (user_id:number,content:string,text:string,radi
     content:content,
     title:text,
     weekormonth:radio,
-    product_ids:productIds
+    product_ids:productIds,
+    hashtag_ids:hashIds
     }
   })
 }
@@ -122,5 +123,11 @@ export const execAcsessArticleCountHandler = (review_id:number | string,date:Dat
   return client.post(`/acsesses/acsess_articles`,{
     article_id:review_id,
     date:date
+  })
+}
+
+export const execSubmitHash = (hash:string) => {
+  return client.post(`/hashtags`,{
+    hash:hash
   })
 }

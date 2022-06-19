@@ -16,6 +16,7 @@ import { getToken } from "next-auth/jwt";
 // import { GoogleButton } from '@/components/applications/user/AuthButton'
 import { useRouter } from "next/router";
 import { SubMenuAction } from "@/store/submenu/actions";
+import { useLocale } from "@/lib/ini/local/local";
 // import { UserCertification } from "../user/UserCertification";
 // import { Link as Scroll } from 'react-scroll';
 
@@ -156,6 +157,9 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
 const handleClick = () => {
   dispatch(SubMenuAction(true))
 }
+// locate
+const { t } = useLocale()
+// console.log(t.ARTICLE)
 
 
   return(
@@ -187,12 +191,12 @@ const handleClick = () => {
             handleStyle2()
           }
           >
-            <li><Link href="/"><a><AiOutlineHome/> Top</a></Link></li>
-            <li><Link href="/search"><a><HiOutlineSearchCircle/> Search</a></Link></li>
+            <li><Link href="/"><a><AiOutlineHome/> {t.Headers.TOP}</a></Link></li>
+            <li><Link href="/search"><a><HiOutlineSearchCircle/> {t.Headers.SEARCH}</a></Link></li>
             <li
-            ><Link href="/articles"><a><RiArticleLine/> Articles</a></Link></li>
-            <li><Link href="/reviews"><a><AiOutlineComment/> Reviews</a></Link></li>
-            <li><Link href="/threads"><a><AiOutlineComment/> Threads</a></Link></li>
+            ><Link href="/articles"><a><RiArticleLine/> {t.Headers.ARTICLE}</a></Link></li>
+            <li><Link href="/reviews"><a><AiOutlineComment/> {t.Headers.REVIEWS}</a></Link></li>
+            <li><Link href="/threads"><a><AiOutlineComment/> {t.Headers.THREAD}</a></Link></li>
             <li className="headerUserSighIn"><UserCertification/></li>
             {/* <li><NextCertification/></li> */}
             {/* <li><GoogleButton/></li> */}

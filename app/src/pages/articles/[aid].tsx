@@ -3,20 +3,63 @@ import { ShareMain } from "@/components/share/main/ShareMain"
 import { ProductShow } from "@/components/title/productShow"
 import { ProductReviews } from "@/components/title/review/form/ProductReviews"
 import { ProductThreads } from "@/components/title/thread/form/ProductThreads"
+import { Article } from "@/interfaces/article"
+import { ssr_url } from "@/lib/client/clientssr"
+import { GetServerSideProps, GetStaticProps } from "next"
+import nookies from "nookies"
 
-
+export const getServerSideProps: GetServerSideProps = async(context) => {
+  const cookies = nookies.get(context)
+  const { aid } = context.query
+  try{
+    // const query_params = new URLSearchParams(params); 
+    const [res] = await Promise.all([
+      fetch(`${ssr_url}/articles/${Number(aid as string)}`,{
+        headers:{
+          "access-token": `${cookies._access_token}`,
+          "client": `${cookies._client}`,
+          "uid": `${cookies._uid}`
+        }
+      }), 
+    ]);
+    
+    const [data] = await Promise.all([
+      res.json()
+    ]);
+    // console.log("a")
+    // console.log(data)
+    // console.log("a")
+    if(data.status ==200){
+    return { 
+      props: { 
+        data
+      } 
+    };
+  }else{
+    return { notFound:true}
+  }
+  }catch{
+    return { notFound:true}
+  }
+}
+// type Props = {
+//   data:productShow
+// }
 
 
 type Props = {
-  // data:productShow
+  data:{
+    article:Article
+  }
 }
-
 const ArticleShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   console.log(Props)
   // const fallback= Props.fallback
   return(
     <>
-      <ArticlesItem/>
+      <ArticlesItem
+        data={Props.data}
+      />
     </>
   )
 }

@@ -4,6 +4,7 @@ import React, { memo, useEffect, useMemo, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
 import { SelectiongArticleDataAction } from "@/store/article/actions"
+import { useRouter } from "next/router";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -38,11 +39,11 @@ export const ArticlesLists2:React.FC<Props> = memo(function ArticlesLists2Func(P
 
   const quillref = useRef<any>(null!)
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
-
+  const router = useRouter()
   const movementHandler = () => {
     dispatch(SelectiongArticleDataAction(Props.article))
     // navigate(`/articles/${Props.article.id}`)
+    router.push(`/articles/${Props.article.id}`)
   }
   return(
     <React.Fragment>
@@ -61,7 +62,7 @@ export const ArticlesLists2:React.FC<Props> = memo(function ArticlesLists2Func(P
             )}
           </div>
          <ul>
-          {Props.article.articleProducts.map((item)=>{
+          {Props.article.articleProducts.map((item:any)=>{
             return(
                 <li
                 key={item.id}

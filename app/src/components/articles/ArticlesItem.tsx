@@ -11,12 +11,19 @@ import { IoMdClose } from "react-icons/io"
 import { ArticlesLists2 } from "./ArticleLists2"
 import { EditArticleLists } from "./edit/EditArticleLists"
 import { useRouter } from "next/router"
+import { useUser } from "@/lib/data/user/useUser"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
+  type Props = {
+    data:{
+      article:Article
+    }
+  }
 
-export const ArticlesItem:React.FC = function  ArticlesItemFunc(){
+export const ArticlesItem:React.FC<Props> = function  ArticlesItemFunc(Props){
+  console.log(Props)
   const modules =  useMemo(() => (
     {
     toolbar:{ 
@@ -50,17 +57,19 @@ export const ArticlesItem:React.FC = function  ArticlesItemFunc(){
   // state
   const [on,Seton] = useState<boolean>(false)
   const [article,setArtlce] = useState<Article[]>([])
-  const [data,setData] = useState<Article>()
+  const [article2,setArticle2] = useState<Article[]>([])
 
-  const setdata = async() => {
-    if (params_id==undefined) return
-    const res = await execArticleShowHandler(params_id)
-    if (res.status==200){
-      console.log(res)
-      setData(res.data.article) 
-    }else{
-    }
-  }
+  const [data,setData] = useState<Article>(Props.data.article)
+
+  // const setdata = async() => {
+  //   if (params_id==undefined) return
+  //   const res = await execArticleShowHandler(params_id)
+  //   if (res.status==200){
+  //     console.log(res)
+  //     setData(res.data.article) 
+  //   }else{
+  //   }
+  // }
   
 
   const setAssociatedProduct = async() => {
@@ -69,17 +78,19 @@ export const ArticlesItem:React.FC = function  ArticlesItemFunc(){
     if (res.status==200){
       console.log(res)
       setArtlce(res.data.articles)  
+      setArticle2(res.data.articles2)
     }else{
     }
   }
   useEffect(()=>{
-    if (articleStore.id == Number(params_id)){
-      Seton(true)
-    }else{
-    setdata()
-    }
+    // if (articleStore.id == Number(params_id)){
+    //   Seton(true)
+    // }else{
+    // setdata()
+    // }
     setAssociatedProduct()
-  },[articleStore])
+  // },[articleStore])
+},[params_id])
   // 
   
 
@@ -95,25 +106,27 @@ export const ArticlesItem:React.FC = function  ArticlesItemFunc(){
   },[data,articleStore.id])
 
   const acsessCountHandler = async() => {
-    if (articleStore.id == Number(params_id)){
-      var article_id:number|undefined = articleStore.id 
-    }else{
-      var article_id:number|undefined = data?.id
-    }
+    // if (articleStore.id == Number(params_id)){
+    //   var article_id:number|undefined = articleStore.id 
+    // }else{
+      var article_id:number = data.id
+    // }
       if(article_id==undefined) return
       const currentToday =  new Date()
       // doneyet (react側の時間設定 世界標準時間になっている) 
       currentToday.setHours(currentToday.getHours() + 9)
       const res =  await execAcsessArticleCountHandler(article_id,currentToday) 
       if(res.status === 200){
-        console.log(res)
+        // console.log(res)
       }else{
 
       }
   }
 
   // user
-  const userStore = useSelector((state:RootState)=>state.user)
+  // console.log(Props.data.article.hashtagArticles[0].name)
+  const {userSwr} = useUser()
+  const userStore = userSwr
   return(
     <>
       {/* <Modal
@@ -159,6 +172,11 @@ export const ArticlesItem:React.FC = function  ArticlesItemFunc(){
         </div>  
         <div className = "ProductReviewShowMain">
           <div className = "ProductReviewShowMainQuill">
+            {Props.data.article.hashtagArticles.map((i:any)=>{
+              return(
+                <div className="" key={i.id}>{i.name}</div>
+              )
+            })}
             <ReactQuill
               className="quill_reviews"
               modules={modules} 
@@ -216,11 +234,32 @@ export const ArticlesItem:React.FC = function  ArticlesItemFunc(){
           <div className = "ArticlesAssociateGenres ArticlesAssociateProducts">
             <div className="ArticlesAssociateProductsTitle margin_bottom_20"
             style={{ fontWeight: "bold" }}
-            >関連度の高い記事</div>
+            >関連度の高い記事（タイトル）</div>
             <div className = "ArticlesContainerMain ArticlesAssociateArticlesBox"
             style={{padding:"0px"}}
             >
             {article.map((item)=>{
+              return(
+                <ArticlesLists2
+                id={item.id}
+                article={item}
+                key={item.id}
+                />
+              )
+            })}
+            </div>
+           </div>
+           :""
+           }
+           { article2.length>0?
+          <div className = "ArticlesAssociateGenres ArticlesAssociateProducts">
+            <div className="ArticlesAssociateProductsTitle margin_bottom_20"
+            style={{ fontWeight: "bold" }}
+            >関連度の高い記事(タグ)</div>
+            <div className = "ArticlesContainerMain ArticlesAssociateArticlesBox"
+            style={{padding:"0px"}}
+            >
+            {article2.map((item)=>{
               return(
                 <ArticlesLists2
                 id={item.id}

@@ -5,6 +5,7 @@ import { IoTimer } from "react-icons/io5"
 import { useDispatch } from "react-redux"
 // import { useNavigate } from "react-router-dom"
 import { actionSettingProductData2 } from "@/store/product/actions"
+import { useRouter } from "next/router"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -16,10 +17,12 @@ export const ArticleProductList:React.FC<Props> = memo(function ArticleProductLi
   const [colornumber,setColornumber ]= useState<number>(0)
   // const navigate = useNavigate()
   const dispatch = useDispatch()
+  const router = useRouter()
   const Movementhandler = () => {
     if(Props.product==undefined)return
     dispatch(actionSettingProductData2(Props.product))
     // navigate(`/products/${Props.product?.id}`)
+    router.push(`/title/${Props.product?.id}`)
   }
 
   useEffect(()=>{

@@ -17,6 +17,7 @@ import { BiUserCircle } from "react-icons/bi"
 import { mutate } from "swr";
 import { SettingUserModal } from "./setting/SettingUserModal";
 import { getCurrentUserMock } from "@/mocks/api/user/signin";
+import { useLocale } from "@/lib/ini/local/local";
 
 
 export const UserCertification:React.FC = function UserCertification(){
@@ -96,8 +97,9 @@ export const UserCertification:React.FC = function UserCertification(){
       router.push(`/admins`)
     }
 
-    console.log(userSwr)
+    // console.log(userSwr)
     // console.log(getCurrentUserMock)
+    const { t } = useLocale()
   return(
     <>
       {!userSwr.login||!userSwr.user?
@@ -108,7 +110,7 @@ export const UserCertification:React.FC = function UserCertification(){
             onClick={handleOpen}
             >
               <IoMdLogIn/>
-              SignIn
+              {t.UserInfomation.SIGNIN}
             </div>
             {open&&(
              <OpenContext.Provider value={{ open, setOpen }}>
@@ -117,18 +119,18 @@ export const UserCertification:React.FC = function UserCertification(){
             )} 
           </div>
         </div>
-       </>
-       :
-       
-       <>
-       
+      </>
+      :
+      
+      <>
+      
         <div className = "user_box_false"
         ref = {ref}
         >
           <div className = "user_mypage"
           onClick={clickOpenMenuHandler}
           >
-            <BiUserCircle/>UserMenu<IoChevronDownOutline
+            <BiUserCircle/>{t.Headers.USERMENU}<IoChevronDownOutline
             className={`leftDownArrow ${openMenu == true?"addTitleOnTime":""}`}
             />
           </div>
@@ -148,24 +150,24 @@ export const UserCertification:React.FC = function UserCertification(){
                   <div className = "user_logout"
                   onClick={MovetoMypageHandler}
                   >
-                    <AiOutlineUser/>マイページ
+                    <AiOutlineUser/>  {t.UserInfomation.MYPAGE}
                   </div>
                   <div className = "user_logout"
                   onClick={SettingModalHandler}
                   >
-                    <IoSettingsOutline/>設定
+                    <IoSettingsOutline/> {t.UserInfomation.SETTING}
                   </div>
                   <div className = "user_logout"
                   onClick={handleSignOut}
                   >
-                    <IoMdLogOut/>ログアウト
+                    <IoMdLogOut/>{t.UserInfomation.LOGOUT}
                   </div>
                   {userSwr.user.administratorGold == true &&(
                     <>
                       <div className = "user_logout"
                         onClick={adminHandler}
                         >
-                          アドミン
+                          {t.UserInfomation.ADMIN}
                       </div>
                     </>
                   )}

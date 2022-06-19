@@ -6,4 +6,10 @@ export interface Article {
   content:string
   articleProducts:product[]
   weekormonth:boolean
+  hashtagArticles:hash[]
+}
+
+type hash = {
+  id:number
+  name:string
 }
