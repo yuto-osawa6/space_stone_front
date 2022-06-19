@@ -6,7 +6,7 @@ import ja from './ja';
 export const useLocale = () => {
   const { locale } = useRouter();
   // const t = locale === "en"?en:ja
-  const t = ja
+  const t = locale === "ja"?ja : ja
   // let t = undefined
   // switch (locale) {
   //   case "ja":

@@ -8,6 +8,21 @@ import { getPage } from "next-page-tester";
 import { Ota2 } from '@/components/ota/Ota';
 import "whatwg-fetch"
 
+// import * as nextRouter from 'next/router';
+
+// nextRouter.useRouter = jest.fn();
+// nextRouter.useRouter.mockImplementation(() => ({ route: '/' }));
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
 
 // import "whatwg-fetch"
 // import { getPage } from 'next-page-tester';

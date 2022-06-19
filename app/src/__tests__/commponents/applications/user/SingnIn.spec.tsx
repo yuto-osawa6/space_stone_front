@@ -11,6 +11,18 @@ import { getCurrentUserMock } from "@/mocks/api/user/signin";
 import Cookies from "js-cookie";
 import { rest } from "msw";
 
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
+
 
 describe('Header', () => {
   beforeAll(() => server.listen())
