@@ -47,6 +47,7 @@ export const EpisordsItem:React.FC<Props> = function EpisordsItemFunc(Props){
   const [rank,setRank] = useState<number>(0)
 
   const handleSetupEmotionList = () => {
+    // console.log(Props)
     const result = Props.episord.emotions.length
     setEmotionListLength(result)
     let result2 = getArrayDeleteDouble2(Props.episord.emotions, "id");
@@ -59,6 +60,7 @@ export const EpisordsItem:React.FC<Props> = function EpisordsItemFunc(Props){
         // donyet-2(weeksが複数であるがエピソードは一回しか記録しないため0設定)
         setRank(Props.episord.weeks[0].array.sort((a,b)=>b.count - a.count).findIndex(i=>i.productId==Number(Props.params_id))+1)
       }
+      console.log(Props.episord.weeks)
     }
 
   }

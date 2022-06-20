@@ -35,18 +35,6 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
     const curr = new Date();
     const curr2 = new Date();
     if(curr.getDay()==1&&curr.getHours()<6){
-      const first = curr.getDate() - curr.getDay() - 20
-      var startDate = new Date(curr.setDate(first));
-      startDate.setHours(0)
-      startDate.setMinutes(0)
-      startDate.setSeconds(0)
-      startDate.setMilliseconds(0)
-      var episordStartWeek = new Date(startDate)
-      var episordEndWeek = new Date(startDate)
-      episordStartWeek.setHours(6)
-      episordEndWeek.setHours(6)
-      episordEndWeek.setDate(episordEndWeek.getDate() + 7)
-    }else{
       const first = curr.getDate() - curr.getDay() - 13
       var startDate = new Date(curr.setDate(first));
       startDate.setHours(0)
@@ -58,7 +46,21 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
       episordStartWeek.setHours(6)
       episordEndWeek.setHours(6)
       episordEndWeek.setDate(episordEndWeek.getDate() + 7)
+    }else{
+      const first = curr.getDate() - curr.getDay() - 6
+      console.log(first)
+      var startDate = new Date(curr.setDate(first));
+      startDate.setHours(0)
+      startDate.setMinutes(0)
+      startDate.setSeconds(0)
+      startDate.setMilliseconds(0)
+      var episordStartWeek = new Date(startDate)
+      var episordEndWeek = new Date(startDate)
+      episordStartWeek.setHours(6)
+      episordEndWeek.setHours(6)
+      episordEndWeek.setDate(episordEndWeek.getDate() + 7)
     }
+    // console.log(startDate,episordStartWeek,episordEndWeek)
     return {startDate,episordStartWeek,episordEndWeek}
   }
   

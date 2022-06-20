@@ -73,8 +73,8 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
   const elm = useRef<HTMLDivElement>(null!);
    useEffect(()=>{
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    setLefts(left)
-    setRights(right)
+    // setLefts(left)
+    // setRights(right)
     Props.push(left)
     // const img = new Image()
     // console.log(Props.product.imageUrl)
@@ -91,10 +91,15 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
     Router.push(`/title/${Props.product.id}`)
   }
   const handlehoverLeave = () => {
-    lefts === Props.left_grid&&rights===Props.right?setIshover2(false):setIshover(false)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    left === Props.left_grid&&right===Props.right?setIshover2(false):setIshover(false)
   }
   const handlehoverEnter = () => {
-    lefts === Props.left_grid&&rights===Props.right?setIshover2(true):setIshover(true)
+    // console.log(Props.left_grid,left,right,Props.right)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    console.log(Props.left_grid,left,right,Props.right)
+
+    left === Props.left_grid&&right===Props.right?setIshover2(true):setIshover(true)
   };
 
   // year season

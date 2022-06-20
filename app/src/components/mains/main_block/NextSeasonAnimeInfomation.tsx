@@ -135,6 +135,9 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
   //     isMounted = false;
   //   };
   // },[])
+  useEffect(()=>{
+    setRight(ref.current.getBoundingClientRect().right)
+  },[])
 
   const pushgridleft = useCallback(( flg:number )=> {
     setLeft_grid([...left_grid, left_grid.push(flg)]) ;

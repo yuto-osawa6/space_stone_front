@@ -24,7 +24,11 @@ export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
     if(res.status == 200){
       if(isMounted==true){
         console.log(res)
-        setWeeklyVote(res.data.weeklyVote)
+        if(navigator.cookieEnabled == true){
+          setWeeklyVote(res.data.weeklyVote)
+        }else{
+          setWeeklyVote(true)
+        }
         setProducts(res.data.products)
         setWeeklyCount(res.data.weeklyCount)
         setTimeRange({from:`${new Date(res.data.from).getMonth()+1}月${new Date(res.data.from).getDate()}日`,to:`${new Date(res.data.to).getMonth()+1}月${new Date(res.data.to).getDate()}日`})
@@ -33,6 +37,7 @@ export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
     }
   }
   useEffect(()=>{
+    console.log(navigator.cookieEnabled)
     const timer = setTimeout(() => {
       handlefirst()
     }, 300)
@@ -43,6 +48,15 @@ export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
   },[])
   // ------------------------------------------------------------------------
   const ref1 = useRef<HTMLDivElement>(null)
+
+  // if (navigator.cookieEnabled) {
+  //   //cookie 有効の場合
+  //   obj[0].textContent = "クッキーは有効です";
+  // } else {
+  //   //cookie 無効の場合
+  //   obj[0].textContent = "クッキーは無効です";
+  // }
+  // console.log(navigator.cookieEnabled)
   return(
     <>
       <div className = "WeekliyRankings"
