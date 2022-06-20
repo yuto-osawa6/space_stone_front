@@ -15,6 +15,7 @@ export interface news{
   id:number
   title:string
   description:string
+  information:string
   judge:number
   date:string
 }

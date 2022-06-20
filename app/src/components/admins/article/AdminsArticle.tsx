@@ -63,11 +63,12 @@ export const AdminsArticle:React.FC<Props> = (Props) => {
     //   setErrorradio(true)
     //   return
     // }
+    // doneyet-1 close させるか
     const res =  await execCreateArticle(user.user.id,value,text,valueRadio,product_ids,hash_ids)
     if (res.data.status == 200){
-
+      dispatch(pussingMessageDataAction({title:"記事を作成しました",select:1}))
     }else{
-
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
   }
 
@@ -99,10 +100,6 @@ export const AdminsArticle:React.FC<Props> = (Props) => {
       return fileName
     }
   }
-
-  // const custom = new QuillToolbarButton({
-  //   icon: `<svg viewBox="0 0 18 18"> <path class="ql-stroke" d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path></svg>`
-  //   })
 
   const netflixHandlar = () => {
     const editor = quillref.current.getEditor()
@@ -198,15 +195,6 @@ export const AdminsArticle:React.FC<Props> = (Props) => {
     }
   }
 
-  // const setHashList = () => {
-  //   const res = await execArticleHashList()
-  //   if (res.status == 200){
-  //     setHash(res.data.hashes)
-  //   }else{
-
-  //   }
-  // }
-
   const selectChangehandle = (value:any) => {
     setproductidList(value)
   }
@@ -234,7 +222,6 @@ const handleInputChange2 = (newValue: string, actionMeta: InputActionMeta) => {
   }
 }
 // hashtag
-
 const handleSelectChangeCharacter = (value:any) => {
   setHashIdList(value) 
   if (addHashError == true){
@@ -319,22 +306,15 @@ const handleSubmitHash = async() => {
                     onInputChange={handleInputChange}
                   />
                   *2文字以上の入力が必要です。
-                  <p>a</p>
-                  <p>a</p> <p>a</p> <p>a</p> <p>a</p> <p></p> <p></p>
-                
                 <Select
-                  placeholder={"Characters select..."}
+                  placeholder={"Tag select..."}
                   options={hash} 
                   closeMenuOnSelect={false}
                   isMulti
                   value={hashIdList}
                   menuIsOpen={isMenuOpen2}
-                  // components={animatedComponents}
                   onChange={handleSelectChangeCharacter}
                   styles={{ menu: (provided, state) => ({ ...provided, zIndex: 10 }) }}
-                  // onInputChange={inputValue =>
-                  //   (inputValue.length <= 1 ? inputValue : inputValue.substr(0, 1))
-                  // }
                   onInputChange={handleInputChange2}
                   />
                   <div className = "FormProductList2AddGenreFlexBox">
@@ -344,7 +324,7 @@ const handleSubmitHash = async() => {
                       placeholder="Tagを入力してください(30文字以内）"
                       defaultValue=""
                       id="outlined-basic"
-                      label="Add Character"
+                      label="Add Tag"
                       variant="outlined"
                       helperText={addHashValidateText}
                       onChange={handleChangeAddHash}

@@ -1,28 +1,28 @@
 import { Button, FormControl, FormHelperText, InputLabel, MenuItem, Modal, Select, SelectChangeEvent, TextField } from "@mui/material"
 import { execNewsCreate } from "@/lib/api/admin/news"
-import { useState } from "react"
-// import { useNavigate } from "react-router-dom"
+import { useMemo, useRef, useState } from "react"
+import { useDispatch } from "react-redux"
+import { pussingMessageDataAction } from "@/store/message/actions"
+import { ErrorMessage } from "@/lib/ini/message"
+
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
+
 
 type Props = {
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-
-
 export const AdminNews:React.FC<Props> = (Props) => {
   const [open,setOpen] = useState<boolean>(true)
-  // const navigate = useNavigate()
   const handleClose = () => {
     Props.setOpen(false)
-
-    // navigate("/admins")
   }
   // juge------------
   const [value,setValue] = useState<string>("")
   const [valueError,setValueError] = useState<boolean>()
   const [valueValidateText,setValueValidateText] = useState<string>()
-  // const [valueValidationText] = useState<string>("")
   const handleChangeValue = (e:SelectChangeEvent) => {
     setValue(e.target.value as string)
     setValueValidateText("")
@@ -30,7 +30,6 @@ export const AdminNews:React.FC<Props> = (Props) => {
   }
 
   // title-----------------
-
   const [title,setTitle] = useState<string | undefined>("")
   const [titleError,setTitleEroor] = useState<boolean>()
   const [titleValidateText,setTitleValidateText] = useState<string>()
@@ -49,6 +48,36 @@ export const AdminNews:React.FC<Props> = (Props) => {
     setTitle2Eroor(false)
     setTitle2ValidateText("")
   }
+
+  // infomation
+  const [info,setInfo] = useState<string>("")
+  const quillref  = useRef<any>(null!)
+  const handleChange = (content: string):void | undefined => {
+    setInfo(content)
+  }
+
+  const modules =  useMemo(() => (
+    {
+    toolbar:{ 
+      container:[
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ color: [] }, { background: [] }],
+      ["blockquote"],
+      ["code-block"],
+      [{ list:  "ordered" }, { list:  "bullet" }],
+      [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
+      ["link", "image", "video"],
+      ['link'],   
+    ],
+    handlers: {
+      },
+    },
+  }
+  ),[]);
+  
+
+  const dispatch = useDispatch()
 
   const handleSubmitNews = async() => {
     let count = 0
@@ -70,12 +99,13 @@ export const AdminNews:React.FC<Props> = (Props) => {
     if (title==undefined) return
     if (title2==undefined) return
 
+    
     if( count >0) return 
-    const res = await execNewsCreate(value,title,title2)
-    if(res.status === 200){
-      console.log(res)
+    const res = await execNewsCreate(value,title,title2,info)
+    if(res.data.status === 200){
+      dispatch(pussingMessageDataAction({title:"Newを追加しました。",select:1}))
     }else{
-
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
     
   }
@@ -93,9 +123,8 @@ export const AdminNews:React.FC<Props> = (Props) => {
             <div className = "FormProduct">
               <div className = "FormProductSetTitle">
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Year</InputLabel>
+                <InputLabel id="demo-simple-select-label">Select</InputLabel>
                 <Select
-                  // error={yearError}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={value}
@@ -110,40 +139,36 @@ export const AdminNews:React.FC<Props> = (Props) => {
                 </Select>
               <FormHelperText className = "helpertexts">{valueValidateText}</FormHelperText>
               </FormControl>
-
                 <TextField
                   error={titleError}
                   inputProps={{ maxLength: 40, pattern: "^[a-zA-Z0-9_]+$" }}
                   placeholder="タイトルを入力してください（必須:40文字以内）"
-                  // defaultValue=""
-                  // defaultValue={Props.product.title}
                   id="outlined-basic"
                   label="Title"
                   variant="outlined"
-                  // helperText={inputRef?.current?.validationMessage}
                   helperText={titleValidateText}
                   onChange={handleChangeTitle}
                   size="small"
                   fullWidth
-                  // disabled={true}
                 />
                 <TextField
                   error={title2Error}
                   inputProps={{ maxLength: 40, pattern: "^[a-zA-Z0-9_]+$" }}
-                  placeholder="タイトルを入力してください（必須:40文字以内）"
-                  // defaultValue=""
-                  // defaultValue={Props.product.title}
+                  placeholder="概要を入力してください（必須:40文字以内）"
                   id="outlined-basic"
-                  label="Title"
+                  label="description"
                   variant="outlined"
-                  // helperText={inputRef?.current?.validationMessage}
                   helperText={title2ValidateText}
                   onChange={handleChangeTitle2}
                   size="small"
                   fullWidth
-                  // disabled={true}
                 />
-
+                <ReactQuill 
+                  className = "reviews_modal_quill"
+                  ref={quillref}
+                  modules={modules} value={info} onChange={handleChange}  
+                  theme="snow"
+                />
                 <Button variant="contained"
                   onClick = { handleSubmitNews }
                   >

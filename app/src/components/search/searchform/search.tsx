@@ -31,6 +31,7 @@ import { deletingtodoStudiosDataALLAction, deletingtodoStudiosDataExceptOneActio
 import { deletingtodoKisetsuDataAllAction } from "@/store/kisetsu/actions";
 import { UserSearchModal } from "./user_search/UserSearchModal";
 import { useRouter } from "next/router";
+import { execDataInfo } from "@/lib/api/admin/data-info";
 
 interface SearchData {
   title_or_titleKa_or_titleEn_or_titleRo_cont: string,
@@ -611,6 +612,18 @@ const Search:React.FC = function SearchFunc(){
     setOpenUserSearchModal(true)
   }
 
+  //
+  const [dataInfo,setDataInfo] = useState<string>("")
+  useEffect(()=>{
+    const handleSetDataInfo = async() => {
+      const res = await execDataInfo()
+      if (res.data.status==200){
+        setDataInfo(res.data.info)
+      }
+    }
+    handleSetDataInfo()
+  },[])
+
 
 
   return(
@@ -639,6 +652,7 @@ const Search:React.FC = function SearchFunc(){
       >
         user  
       </div>
+      {dataInfo}
       </div>
         <div className= "SearchInputContainer">
         <div className = "search__input__box">

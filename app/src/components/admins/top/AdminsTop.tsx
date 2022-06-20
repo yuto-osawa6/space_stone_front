@@ -18,6 +18,7 @@ import { useRouter } from 'next/router';
 import { AdminsAddProduct } from '../product/AdminsAddProduct';
 import { AdminNews } from '../news/AdminNews';
 import { AdminsArticle } from '../article/AdminsArticle';
+import { AdminDataInfo } from '../datainfo/AdminDataInfo';
 
 
 type q = {
@@ -36,18 +37,16 @@ export const AdminsTop:React.FC = () => {
   const [open1,setOpen1] = useState<boolean>(false)
   const [open2,setOpen2] = useState<boolean>(false)
   const [open3,setOpen3] = useState<boolean>(false)
+  const [open4,setOpen4] = useState<boolean>(false)
 
   const router = useRouter()
  const handleAdminArticle = () => {
   setOpen2(true)
-  // navigate("/admins/article")
-  // router.push("/admins/article")
  }
 
  const handleAdminAddProducts = () => {
   setOpen1(true)
   // navigate("/admins/product")
-  // router.push("/admins/product")
 
  }
 
@@ -57,6 +56,8 @@ export const AdminsTop:React.FC = () => {
   // router.push("/admins/news")
 
  }
+
+
 
 //  -search
   const [products,setProducts] = useState<product[]>([])
@@ -206,6 +207,11 @@ return(
         onClick={handleAdminNewMessage}
         >
           おしらせの追加
+        </div>
+        <div className = "admin_kizi"
+        onClick={()=>setOpen4(true)}
+        >
+          データー公開情報の編集
         </div>
         <div className = "admin_kizi"
         onClick={()=>setOpenPublishedAll(true)}
@@ -431,6 +437,12 @@ return(
       <AdminNews
       open = {open3}
       setOpen = {setOpen3}
+      />
+    )}
+    {open4 == true &&(
+      <AdminDataInfo
+      open = {open4}
+      setOpen = {setOpen4}
       />
     )}
 

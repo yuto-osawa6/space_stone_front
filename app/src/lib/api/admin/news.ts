@@ -2,13 +2,24 @@ import client from "../../client/client"
 
 
 
-export const execNewsCreate = (value:string,title:string,title2:string) => {
+export const execNewsCreate = (value:string,title:string,title2:string,info:string) => {
   return client.post(`/admin/news`,{ 
     newmessage:{
       judge:value,
       title:title,
-      description:title2
+      description:title2,
+      information:info
     }
    
+  })
+}
+
+
+
+export const execDeleteNews = (id:number) => {
+  return client.delete(`/admin/news/${id}`,{ 
+    params:{
+      news_id:id
+    }
   })
 }
