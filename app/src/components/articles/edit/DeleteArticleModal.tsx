@@ -21,7 +21,6 @@ export const DeleteArticleModal:React.FC<Props> = function DeleteArticleModalFun
   const handleSubmit = async() => {
     if(Props.article==undefined)return
     const res = await execDeleteArticle(Props.article.id)
-    console.log(res)
     if(res.data.status==200){
       setHelpertextradio("削除されました。")
     }else{
@@ -47,7 +46,6 @@ export const DeleteArticleModal:React.FC<Props> = function DeleteArticleModalFun
             }}
           >
             削除しますか？　
-
             <Button variant="contained"
               onClick = {handleSubmit}
             >削除

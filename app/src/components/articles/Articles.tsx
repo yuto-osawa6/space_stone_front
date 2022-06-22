@@ -4,16 +4,19 @@ import { Article } from "@/interfaces/article"
 import { product } from "@/interfaces/product"
 import { execArticleHandler } from "@/lib/api/article"
 import { execProductSearchHandler } from "@/lib/api/main"
-import React, { useEffect, useRef, useState } from "react"
+import React, { ReactNode, useEffect, useRef, useState } from "react"
 import { HiChevronDoubleDown } from "react-icons/hi"
 import { IoSearchCircle } from "react-icons/io5"
 import { useDispatch, useSelector } from "react-redux"
-// import { Outlet } from "react-router-dom"
 import { RootState } from "@/store"
 import { NavigatingLeftArticleDataAction } from "@/store/lefts/article/actions"
 import { ArticlesLists } from "./ArticlesLists"
+import { useLocale } from "@/lib/ini/local/local"
 
-export const Articles:React.FC = function ArticlesFunc(){
+type Props = {
+  children:ReactNode
+}
+export const Articles:React.FC<Props> = function ArticlesFunc(Props){
   const LeftArtocleStore = useSelector((state:RootState)=>state.leftArticle)
   const array:number[] = [1,2,3,4,5,6,7,8,9,0]
   const [page,SetPage] = useState<number>(1)
@@ -22,11 +25,9 @@ export const Articles:React.FC = function ArticlesFunc(){
   const [loaded,setLoaded] = useState<boolean>(false)
   const [product,setProduct] = useState<product>()
 
-
   let  isMounted = true; 
   const ArticleHandler = async() => {
     const res = await execArticleHandler(current,weekormonth,product?.id)
-    console.log(res)
     if (res.status == 200){
       if(isMounted){
         SetArticle(res.data.articles) 
@@ -55,7 +56,7 @@ export const Articles:React.FC = function ArticlesFunc(){
   },[current,weekormonth,product])
 
   const GfNavigation = (Props:number) => {
-      const limit = Math.ceil(Props / 2)
+      const limit = Math.ceil(Props / 20)
       currentPage(current,limit)
       SetPage(limit)
   }
@@ -117,7 +118,6 @@ export const Articles:React.FC = function ArticlesFunc(){
   const productSearchHandler = async() => {
     const res = await execProductSearchHandler(searchInput)
     if (res.status == 200){
-      console.log(res)
       setProductData(res.data.products)
     }else{
 
@@ -143,28 +143,29 @@ export const Articles:React.FC = function ArticlesFunc(){
     setProduct(undefined)
   }
 
+  const {t} = useLocale()
   return(
   
     <React.Fragment>
       <div className = "ArticlesContainer"
       >
         <div className = "ArticlesContainerTitle">
-          Articles
+          {t.Component.Article.Article}
         </div>
         <div className = "ArticlesContainerNavigate">
           <ul className = "ArticlesContainerNavigateUl">
             <li
             className={weekormonth==null?"activeArticlesWeekorMonth":""}
             onClick={()=>weekormonthHandler(null)}
-            >All</li>
+            >{t.Component.Article.All}</li>
             <li
             className={weekormonth==0?"activeArticlesWeekorMonth":""}
             onClick={()=>weekormonthHandler(0)}
-            >Weekly</li>
+            >{t.Component.Article.Weekly}</li>
             <li
             className={weekormonth==1?"activeArticlesWeekorMonth":""}
             onClick={()=>weekormonthHandler(1)}
-            >Monthly</li>
+            >{t.Component.Article.Monthly}</li>
           </ul>
           <div className = "ArticlesContainerSort">
             <ul>
@@ -177,11 +178,11 @@ export const Articles:React.FC = function ArticlesFunc(){
               <IoSearchCircle/>
             </div>
             <input type="text"
-             value={searchInput}
-             autoComplete="off"
-             onChange={handleProductTitleChange}
-             onClick={menuOpenHandler}
-             placeholder="映画・TVタイトル(3文字以上)"
+            value={searchInput}
+            autoComplete="off"
+            onChange={handleProductTitleChange}
+            onClick={menuOpenHandler}
+            placeholder={t.Component.Article.Title_P}
             />
             <div className = "selected_style_icons">
               <HiChevronDoubleDown
@@ -213,7 +214,7 @@ export const Articles:React.FC = function ArticlesFunc(){
                 <p className = "lefttitleSearchingforTitle">{product?.title}</p>      
                 <p className = "lefttitleSearchingforClear"
                 onClick={clearProductHandler}
-                >Clear</p>   
+                >{t.Component.Article.Clear}</p>   
               </div>
             )}
             </>
@@ -266,16 +267,16 @@ export const Articles:React.FC = function ArticlesFunc(){
             )}
             {page>1&&(
             <li
-             onClick={currentMaxHandler}
-             className={current==page?"activeCurrent":""}
+              onClick={currentMaxHandler}
+              className={current==page?"activeCurrent":""}
             >{page}</li>
             )}
             </ul>
           </div>
           <div className="ModalArticle">
-            {/* <Outlet/> */}
           </div>
       </div>
+      {Props.children}
     </React.Fragment>
   )
 }

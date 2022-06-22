@@ -6,7 +6,6 @@ type Props = {
   children:React.ReactNode
   locationNumber?: number | undefined
 }
-
 export const Super:React.FC<Props> = function SuperFunc(Props){
 
   return(
@@ -49,7 +48,6 @@ const SuperSheet:React.FC<Props> = (Props) => {
     }
   }
   return(
-    // <div className = {`super-sheet`}>
     <div className = {`super-sheet`} style={handleStyle()}>
       {Props.children}
     </div>
@@ -66,7 +64,6 @@ const SearchDiv:React.FC<Props> = (Props) => {
   }
 
   return(
-    // <div className = "header__message__box">
       <div className = "header__search" style={handleStyle2()}>
       <div className = "header__search">
         {Props.children}
@@ -76,7 +73,6 @@ const SearchDiv:React.FC<Props> = (Props) => {
 }
 
 const InsertBox:React.FC<Props> = (Props) => {
-
   return(
     <div className = "insert_box">
       {Props.children}

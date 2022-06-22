@@ -14,7 +14,6 @@ type chatList = {
 }
 
 export const ChatModalListItems:React.FC<Props> = function ChatModalListItemsFunc(Props){
-  // const user = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser() 
   return(
     <>

@@ -1,25 +1,19 @@
 import { Button, MenuItem, SelectChangeEvent,FormHelperText, TextField,Select as SelectMaterial } from "@mui/material";
-// import { Select as SelectMaterial} fo
 import { genre, product, productForm } from "@/interfaces/product";
 import { execCreateFormat, execGetFormatsList } from "@/lib/api/admin/formats";
 import { execCreateGenreLib, execGetGenresList } from "@/lib/api/admin/janls";
 import { useEffect, useState } from "react";
-// import Select from "react-select/dist/declarations/src/Select";
 import Select from 'react-select'
 
 type Props = {
   activeStep : number
   childFunc2: React.MutableRefObject<any>
-
   completed: {[k: number]: boolean;}
   setCompleted:React.Dispatch<React.SetStateAction<{[k: number]: boolean;}>>
   handleNext: () => void
-
   setFormatsArray:React.Dispatch<React.SetStateAction<string[]>>
   setGenresArray: React.Dispatch<React.SetStateAction<string[]>>
-
   formatsArray: string[]
-
   formProduct: productForm
 }
 
@@ -29,36 +23,17 @@ type selectOption = {
 }
 
 export const ProductFormList2Edit:React.FC<Props> = (Props) => {
-  // 初期データー
-  // const [formatsArray,setFormatsArray] = useState<string[]>([])
-  // const [genresArray,setGenresArray] = useState<string[]>([])
-
-
   const keysAfter = ['value', 'label'];
   useEffect(()=>{
-  //   console.log(Props.formProduct.productStyles.filter(item=>item.name))
-  //   var a = Props.formProduct.productStyles.map(e => 
-  //     Object.fromEntries(                      
-  //        Object.entries(e).map(([k, v]) => [keysAfter[0], v])
-  //    )
-  //  );
-  // //  console.log(a)
-  // console.log(Props.formProduct.productStyles.map(e=>Object.fromEntries(Object.entries(e).map(([e,i],index)=>[keysAfter[index],i]))))
-  // const a = Props.formProduct.productStyles.map(e=>Object.fromEntries(Object.entries(e).map(([e,i],index)=>[keysAfter[index],i])))
-  // setFormats()
-  // console.log(Props.formProduct.productGenres.map(e=>Object.entries(e)))
   const result = {}
   },[Props.formProduct.productStyles])
   // message
   const [message,setMessage] = useState<string>("")
-
   // select formats -----------------------------------------
   const [formats,setFormats] = useState<selectOption[]>()
   const [formatsIdList,setFormatsIdList] = useState<selectOption>(Props.formProduct.formStyle[0])
   const [addedFormat,setAddedFormat] = useState<string>("")
   const [formatsValidationText,setFormatValidationText] =  useState<string>()
-
-
   useEffect(()=>{
     handleGetFormatsList()
   },[addedFormat])
@@ -66,36 +41,18 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
   const handleGetFormatsList = async() => {
     const res = await execGetFormatsList()
     if (res.status == 200){
-      console.log(res)
       setFormats(res.data.styles)
-      // console.log(Props.formProduct.formStyle[0])
-      // setFormatsIdList(Props.formProduct.formStyle[0])
     }else{
-
     }
   }
-
   const handleSelectChangeFormats = (value:any) => {
-    console.log(value)
     setFormatsIdList(value)
     setFormatValidationText("")
-  
   }
-
-  // const [selectFormats,setSelectFormats] = useState<string>("")
-  // const handleChangeFormats = (e:SelectChangeEvent) => {
-  //   // set(e.target.value as string)
-  //   const target = e.target.value as string
-  //   setSelectFormats(target)
- 
-  // }
-
   // create formats -------------------------------------
   const [addFormat,setAddFormat] = useState<string | undefined>("")
   const [addFormatError,setAddFormatEroor] = useState<boolean>(false)
   const [addFormatValidateText,setAddFormatValidateText] = useState<string>()
-  // const [setFormatsValidationText,setFormatValidationText] =  useState<string>()
-  // const [addedGenre,setAddedGenre] = useState<string>("")
   const handleChangeAddFormat = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
     setAddFormat(e?.currentTarget.value)
     if(addFormatError==true){
@@ -112,7 +69,6 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
     }
     const res = await execCreateFormat(addFormat)
     if (res.status == 200){
-      console.log(res)
       if(res.data.status==200){
         setOnMessage(true)
         setMessage(`フォーマット(${res.data.style.name})が追加されました`)
@@ -136,27 +92,20 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
   const handleFirstGetGenresList = async() => {
     const res = await execGetGenresList()
     if (res.status == 200){
-      console.log(res)
       setGenres(res.data.genres)
-      console.log(Props.formProduct.formGenre)
     }else{
-
     }
   }
 
   const selectChangehandle = (value:any) => {
-    console.log(value)
     setGenresIdList(value)
     setGenresValidationText("")
-  
   }
-
   // add Genre -----------------------------------------------------------
   const [addGenre,setAddGenre] = useState<string | undefined>("")
   const [addGenreError,setAddGenreEroor] = useState<boolean>(false)
   const [addGenreValidateText,setaddGenreValidateText] = useState<string>()
   const [genresValidationText,setGenresValidationText] = useState<string>()
-  // const [addedGenre,setAddedGenre] = useState<string>("")
   const handleChangeAddGenre = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
     setAddGenre(e?.currentTarget.value)
     if(addGenreError==true){
@@ -173,7 +122,6 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
     }
     const res = await execCreateGenreLib(addGenre)
     if (res.status == 200){
-      console.log(res)
       if(res.data.status==200){
         setOnMessage(true)
         setMessage(`ジャンル(${res.data.genre.name})が追加されました`)
@@ -195,9 +143,6 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
 
   // ------------------
   const handleErrorCheck = () =>{
-    console.log(genres)
-    console.log(genresIdList)
-    console.log(formatsIdList)
     if(formatsIdList==undefined){
       setFormatValidationText("formatが選択されていません。")
       return
@@ -206,26 +151,8 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
       setGenresValidationText("genreが選択されていません。")
       return
     }
-
-    
-    console.log(formatsIdList,genresIdList)
-
-    // return
-
-
-    // return
-    // 保持
-    console.log("ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp")
-    
-    // let formats = arr1.map(item => item.value);
-    console.log(formatsIdList)
-    console.log(Props)
-
-    // Props.setFormatsArray([Props.formatsArray[0],formatsIdList.value])
     Props.setFormatsArray([formatsIdList.value])
     Props.setGenresArray(genresIdList.map(item=>item.value))
-
-    // console.log(Props.completed)
     const newCompleted = Props.completed
     newCompleted[Props.activeStep] = true
     Props.setCompleted(newCompleted)
@@ -241,7 +168,6 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
       <div className = "Stepper2" style={Props.activeStep!=1?{display:"none"}:undefined}>
         <div className = {`FormProductList2Message ${onMessage == true?"activeFormProductList2Message":""}`}>
           {message}
-          {/* {count} */}
         </div>
         <div className = "FormProductLabel">
           Formats & Genres情報の追加
@@ -251,33 +177,14 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
         </div>
         <FormHelperText className = "helpertexts">{formatsValidationText}</FormHelperText>
         <Select
-          // inputValue={pokemon}
-          // error={false}
           placeholder={"Formats select..."}
           options={formats} 
           isSearchable={false}
           closeMenuOnSelect={false}
-          // isMulti
           value={formatsIdList}
-          // components={animatedComponents}
           onChange={handleSelectChangeFormats}
           styles={{ menu: (provided, state) => ({ ...provided, zIndex: 10 }) }}
           />
-          {/* <SelectMaterial
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={selectFormats}
-            label="Age"
-            onChange={handleChangeFormats}
-            size="small"
-            fullWidth
-          >
-            {formats.map((item)=>{
-              return(
-              <MenuItem value={item.value} key={item.value}>{item.label}</MenuItem>
-              )
-            })}
-          </SelectMaterial> */}
         <div className = "FormProductList2AddGenreFlexBox">
         <TextField
           error={addFormatError}
@@ -287,15 +194,13 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
           id="outlined-basic"
           label="Add Format"
           variant="outlined"
-          // helperText={inputRef?.current?.validationMessage}
           helperText={addFormatValidateText}
           onChange={handleChangeAddFormat}
           size="small"
           fullWidth
         />
         <Button variant="contained"
-            // className = "TheredModalButton"
-            onClick = { handleSubmitFormats }
+          onClick = { handleSubmitFormats }
           >
           Add
         </Button>
@@ -306,13 +211,11 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
         </div>
         <FormHelperText className = "helpertexts">{genresValidationText}</FormHelperText>
         <Select
-          // inputValue={pokemon}
           placeholder={"Genres select..."}
           options={genres} 
           closeMenuOnSelect={false}
           isMulti
           value={genresIdList}
-          // components={animatedComponents}
           onChange={selectChangehandle}
           styles={{ menu: (provided, state) => ({ ...provided, zIndex: 10 }) }}
           />
@@ -325,20 +228,17 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
             id="outlined-basic"
             label="Add Genre"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
             helperText={addGenreValidateText}
             onChange={handleChangeAddGenre}
             size="small"
             fullWidth
           />
           <Button variant="contained"
-              // className = "TheredModalButton"
-              onClick = { handleSubmitGenres }
-            >
+            onClick = { handleSubmitGenres }
+          >
             Add
           </Button>
           </div>
-          {/* </> */}
       </div>
       :
       <>

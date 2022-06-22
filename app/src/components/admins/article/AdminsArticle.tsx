@@ -7,9 +7,9 @@ import { useUser } from "@/lib/data/user/useUser";
 import { useDispatch } from "react-redux";
 import { pussingMessageDataAction } from "@/store/message/actions";
 import { ErrorMessage } from "@/lib/ini/message";
+import { useLocale } from "@/lib/ini/local/local";
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
-
 type articleoption = {
   value:string
   label:string
@@ -18,8 +18,8 @@ type Props = {
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
-
 export const AdminsArticle:React.FC<Props> = (Props) => {
+  const {t} = useLocale()
   const {userSwr} = useUser()
   const user = userSwr
   // value(記事)
@@ -32,14 +32,11 @@ export const AdminsArticle:React.FC<Props> = (Props) => {
   const [valueRadio,setvalueRadio] = useState<number>(2)
   const [errorradio,setErrorradio] = useState<boolean>(false)
   const [helpertextradio,setHelpertextradio] = useState<string>("")
-
   // hash
   const [hash,setHash] = useState<articleoption[]>([])
   const [hashIdList,setHashIdList] = useState<articleoption[]>([])
-  // 
   const quillref  = useRef<any>(null!)
   const dispatch = useDispatch()
-
   const handleChange = (content: string):void | undefined => {
     setValue(content)
   }
@@ -54,7 +51,7 @@ export const AdminsArticle:React.FC<Props> = (Props) => {
       hash_ids.push(item.value)
     })
     if (text.length===0){
-      setValidatetext("タイトルを入力してください。")
+      setValidatetext(`${t.Message.TITLE}`)
       setInputError(true)
       return
     }
@@ -66,9 +63,9 @@ export const AdminsArticle:React.FC<Props> = (Props) => {
     // doneyet-1 close させるか
     const res =  await execCreateArticle(user.user.id,value,text,valueRadio,product_ids,hash_ids)
     if (res.data.status == 200){
-      dispatch(pussingMessageDataAction({title:"記事を作成しました",select:1}))
+      dispatch(pussingMessageDataAction({title:t.Message.CREATEARTICLE,select:1}))
     }else{
-      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      dispatch(pussingMessageDataAction({title:t.ErrorMessage.message,select:0}))
     }
   }
 
@@ -191,7 +188,7 @@ export const AdminsArticle:React.FC<Props> = (Props) => {
       setProduct(res.data.products)
       setHash(res.data.hashes)
     }else{
-      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      dispatch(pussingMessageDataAction({title:t.ErrorMessage.message,select:0}))
     }
   }
 
@@ -206,7 +203,6 @@ export const AdminsArticle:React.FC<Props> = (Props) => {
 const [isMenuOpen,setIsMenuOpen] = useState<boolean>(false)
 const [isMenuOpen2,setIsMenuOpen2] = useState<boolean>(false)
 const handleInputChange = (newValue: string, actionMeta: InputActionMeta) => {
-  console.log(newValue,actionMeta)
   if(newValue==""){
     setIsMenuOpen(false)
   }else if(newValue.length>1){
@@ -214,7 +210,6 @@ const handleInputChange = (newValue: string, actionMeta: InputActionMeta) => {
   }
 }
 const handleInputChange2 = (newValue: string, actionMeta: InputActionMeta) => {
-  console.log(newValue,actionMeta)
   if(newValue==""){
     setIsMenuOpen2(false)
   }else if(newValue.length>1){
@@ -243,16 +238,16 @@ const handleChangeAddHash = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInput
 const handleSubmitHash = async() => {
   if(addHash.length==0){
     setAddHashError(true)
-    setAddHashValidateText("入力されていません。")
+    setAddHashValidateText(t.Message.NOTIPE)
     return
   }
   const res = await execSubmitHash(addHash)
   if (res.data.status == 200){
-    dispatch(pussingMessageDataAction({title:"ハッシュタグが追加されました。",select:1}))
+    dispatch(pussingMessageDataAction({title:t.Message.CREATEHASH,select:1}))
   }else if (res.data.status == 300){
-    dispatch(pussingMessageDataAction({title:"存在するハッシュタグです。",select:0}))
+    dispatch(pussingMessageDataAction({title:t.Message.EXISTHASH,select:0}))
   }else{
-    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+    dispatch(pussingMessageDataAction({title:t.ErrorMessage.message,select:0}))
   }
 }
 
@@ -274,7 +269,7 @@ const handleSubmitHash = async() => {
                     fullWidth 
                     error={inputError}
                     inputProps={{ maxLength: 20, pattern: "^[a-zA-Z0-9_]+$" }}
-                    placeholder="タイトルを入力してください（必須:20文字以内）"
+                    placeholder={t.Message.TITLE20}
                     defaultValue=""
                     id="outlined-basic"
                     label="Title"
@@ -283,7 +278,7 @@ const handleSubmitHash = async() => {
                     onChange={handleChangetext}
                   />
                   <FormControl error={errorradio}>
-                    <FormLabel id="demo-radio-buttons-group-label">Week or Month</FormLabel>
+                    <FormLabel id="demo-radio-buttons-group-label">{t.Component.AdminsArticle.WEEKORMONTH}</FormLabel>
                     <RadioGroup
                       aria-labelledby="demo-radio-buttons-group-label"
                       defaultValue="female"
@@ -305,7 +300,7 @@ const handleSubmitHash = async() => {
                     menuIsOpen={isMenuOpen}
                     onInputChange={handleInputChange}
                   />
-                  *2文字以上の入力が必要です。
+                  {t.Component.AdminsArticle.CHARACTER2}
                 <Select
                   placeholder={"Tag select..."}
                   options={hash} 
@@ -321,7 +316,7 @@ const handleSubmitHash = async() => {
                     <TextField
                       error={addHashError}
                       inputProps={{ maxLength: 30, pattern: "^[a-zA-Z0-9_]+$" }}
-                      placeholder="Tagを入力してください(30文字以内）"
+                      placeholder={t.Component.AdminsArticle.TAG30}
                       defaultValue=""
                       id="outlined-basic"
                       label="Add Tag"
@@ -334,7 +329,7 @@ const handleSubmitHash = async() => {
                     <Button variant="contained"
                       onClick = { handleSubmitHash }
                     >
-                      Add
+                      {t.Component.AdminsArticle.ADD}
                     </Button>
                   </div>
                   <div className = "articleQuill">
@@ -360,7 +355,7 @@ const handleSubmitHash = async() => {
                       className = "TheredModalButton"
                       onClick = { handlesubmit }
                     >
-                      Submit
+                      {t.Component.AdminsArticle.SUBMIT}
                     </Button>
                   </div>
                 </div>

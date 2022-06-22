@@ -9,7 +9,6 @@ export const getCanvasCroppedImg = (image:HTMLImageElement, crop:PixelCrop, file
   const ctx = canvas.getContext('2d');
   canvas.width = crop.width * pixelRatio * scaleX;
   canvas.height = crop.height * pixelRatio * scaleY;
-  // canvas.width = 20
   if (ctx==null)return
   
   ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
@@ -18,24 +17,18 @@ export const getCanvasCroppedImg = (image:HTMLImageElement, crop:PixelCrop, file
     image,
     crop.x * scaleX,
     crop.y * scaleY,
-    // 100,
-    // 100,
     crop.width * scaleX,
     crop.height * scaleY,
     0,
     0,
     crop.width * scaleX,
     crop.height * scaleY
-    // 100,
-    // 100
   );
-  // ctx.arc(100, 75, 50, 0, 2 * Math.PI);
   return new Promise<Blob>((resolve, reject) => {
     // canvas.toDataURL
     canvas.toBlob(
       (blob) => {
         if (!blob) {
-          console.error('Canvas is empty');
           return;
         }
         resolve(blob)

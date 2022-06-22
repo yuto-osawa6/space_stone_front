@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { execSearch, execSearchScroll } from "@/lib/api/main";
 import { product } from "../../interfaces/product";
-// import {GridProducts} from "./GridProduct";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -10,24 +9,6 @@ import { GridProduct03 } from "./grid/GridProduct03";
 import { GridProduct04 } from "./grid/GridProduct04";
 import { GridProducts } from "./grid/GridProduct";
 
-  // interface SearchData {
-  //   title_cont: string,
-  //   janls_id_in:string[]
-  // }
-  // 初期データ
-  // const initialData: SearchData = {
-  //   title_cont: '',
-  //   janls_id_in:[""]
-  // }
-  // interface tgds {
-  //   genres_id:string
-  // }
-  // interface tgdss{
-  //   janls_id_in:string[]
-  // }
-  // const ini:tgdss = {
-  //   janls_id_in:[""]
-  // }
   type avgScore = {
     [k:number]:string
   }
@@ -38,7 +19,6 @@ for (let i = 0; i < 10; i++) {
 
 const MainSearch:React.FC= function MainSearchFunc(){
   const [products,setProducts] = useState<product[]>([]);
-  // const [data, setData] = useState<SearchData>(initialData);
   const todoList = useSelector((state: RootState) => state.search);
   const todoGenresList = useSelector((state: RootState) => state.todogenres);
   const todoStylesList = useSelector((state: RootState) => state.todostyles);
@@ -52,32 +32,22 @@ const MainSearch:React.FC= function MainSearchFunc(){
   const StudiosStore = useSelector((state:RootState)=>state.studios)
   const KisetsuStore = useSelector((state:RootState)=>state.kisetsu)
   const EmotionSortStore = useSelector((state:RootState)=>state.sortEmotion)
-
-
-
-
-
   const grid = useSelector((state: RootState) => state.grid);
   const dispatch = useDispatch();
   const sort = useSelector((state: RootState) => state.sort)
   const copied = { ...todoList,...todoGenresList,...todoStylesList,...sort,...CastsStore.castids,...SubSearchesStore,...TimeStore.times,...YearStore.years,...SeasonStore,...PeriodStore,...StudiosStore.studiosids,...KisetsuStore.kisetsusids,...EmotionSortStore};
   const [left_grid,setLeft_grid] = useState<number[]>([])
   const [maxleft,setMaxLeft] = useState<number>(0)
-
   const [left_grid02,setLeft_grid02] = useState<number[]>([])
   const [maxleft02,setMaxLeft02] = useState<number>(0)
-
   const [hasMore, setHasMore] = useState(true); 
   const [page,setPage] = useState<number>(1)
   const [firstloding,setFirstloding] = useState<boolean>(false);
   const [avgScore,setAvgScore] = useState<avgScore>()
-
-  
   let isMounted = true;
   const handleExec = async () => {
   const res = await execSearch(copied)
   if (res.status === 200) {
-    console.log(res)
     if(isMounted){
       setProducts(res.data.products)
       setAvgScore(res.data.scores.avgScore)
@@ -115,8 +85,6 @@ useEffect(()=>{
   window.scrollTo({top:0,left:0, behavior: "smooth"})
 },[])
 
-
-
 // add loading state
   const [loaded,setLoaded] = useState<boolean>(false)
 
@@ -125,11 +93,9 @@ const handleScrollingExec = async () => {
   if(loaded==true)return
   const res = await execSearchScroll(copied,String(page))
   if (res.status === 200) {
-    console.log(res)
     setLeft_grid([])
     setPage(page+1)
     if (res.data.products.length < 1) {
-      console.log(11111111111111111111111111111111112222222)
       setHasMore(false);
       setLoaded(false)
       return;
@@ -163,7 +129,6 @@ const loader =<div className="loader" key={0}>Loading ...</div>;
                   left_grid = { maxleft}
                   right={right}
                   avgScore = {avgScore!=undefined?avgScore[item.id]!=undefined?avgScore[item.id]:undefined:undefined}
-                  // colornumber = {colornumber}
                   />
                 )
               })}

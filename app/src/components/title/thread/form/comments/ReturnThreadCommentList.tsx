@@ -6,18 +6,13 @@ import { execCheckLikeReturnCommentThread, execCreateLikeReturnCommentThread, ex
 import { useEffect, useRef, useState } from "react"
 import { BsReply } from "react-icons/bs"
 import { FaRegThumbsDown, FaRegThumbsUp, FaThumbsDown, FaThumbsUp } from "react-icons/fa"
-// import ReactQuill from "react-quill"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { ReturnReturn } from "./ReturnReturn"
-// import { ReturnReturn } from "./ReturnReturn"
-// import { DeltaStatic } from "quill"
-// import { useParams } from "react-router-dom"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { useUser } from "@/lib/data/user/useUser"
 import { useRouter } from "next/router"
 import { ErrorMessage } from "@/lib/ini/message"
-// import { ErrorMessage } from "share/message"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -27,27 +22,18 @@ type Props = {
   setUpdateJudge?: () => Promise<void>
   firstHandler: () => Promise<void>
   setFirstloding: React.Dispatch<React.SetStateAction<boolean>>
-
-
-  // returnReviewList:return_review_comments[]
-  // setReturnReviewList:React.Dispatch<React.SetStateAction<return_review_comments[]>>
 }
 
 const modules = {
   toolbar: [
-    // [{ font: [] }],
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
     ["bold", "italic", "underline", "strike"],
     [{ color: [] }, { background: [] }],
-    // [{ script:  "sub" }, { script:  "super" }],
     ["blockquote"
   ],
-    // "code-block"],
     [{ list:  "ordered" }, { list:  "bullet" }],
     [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
-    // ["link", "image", "video"],
     ['link'],   
-    // ["clean"],
   ], 
 }
 
@@ -57,8 +43,6 @@ const ini:like_return_comment = {
 }
 
 export const ReturnThreadCommentList:React.FC<Props> = function ReturnThreadCommentListFunc(Props){
-  // console.log(Props)
-  // const user = useSelector((state:RootState) => state.user)
   const {userSwr} = useUser()
   const user = userSwr
   // usestate
@@ -79,7 +63,6 @@ export const ReturnThreadCommentList:React.FC<Props> = function ReturnThreadComm
   // return modal
   const [openReturnReviewComment,setOpenReturnReviewComment] = useState<boolean>(false)
   const ModalOpenReturnComment = () => {setOpenReturnReviewComment(true)
-  console.log("aa")
   }
 
  // !userlogin usermodal
@@ -87,8 +70,6 @@ export const ReturnThreadCommentList:React.FC<Props> = function ReturnThreadComm
   e?.stopPropagation()
   setOpen(true)
 }
-
-
   const dispatch = useDispatch()
   // const params = useParams()
   const router = useRouter()
@@ -144,35 +125,6 @@ export const ReturnThreadCommentList:React.FC<Props> = function ReturnThreadComm
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
   }
-  // // check
-  // useEffect(()=>{
-  //   CheckLikeReview()
-  // },[user])
-
-  // const CheckLikeReview = async() => {
-  //   // if(!user.login) return
-  //   const res = await execCheckLikeReturnCommentThread(Props.reviewcomment.id,user.user.id)
-  //   if (res.data.status === 200) {
-  //     console.log(res)
-
-  //     setLikeCommentReview(res.data.like)
-
-  //     setLikeReviewScore(res.data.like.score)
-  //     setLikeReviewLength(res.data.like.reviewLength)
-  //     setLikeReviewGood(res.data.like.reviewGood)
-  //   }
-  //   if (res.data.status === 201){
-    
-  //     console.log(res)
-  //     // console.log("no login")
-  //     setLikeReviewScore(res.data.score)
-  //     setLikeReviewLength(res.data.reviewLength)
-  //     setLikeReviewGood(res.data.reviewGood)
-  //   }
-  //   else{
-
-  //   }
-  // }
   // // delete
   const reviewValuationGooddelete = async(e:React.MouseEvent<HTMLDivElement> | undefined) => {
     e?.stopPropagation()
@@ -201,9 +153,7 @@ export const ReturnThreadCommentList:React.FC<Props> = function ReturnThreadComm
     firstHandler()
   },[])
   const firstHandler = () => {
-    console.log(Props)
     setTotalLength(Props.reviewcomment.likeReturnCommentReviews.length)
-
     if(Props.reviewcomment.likeReturnCommentReviews.length>0){
       const good = Props.reviewcomment.likeReturnCommentReviews.reduce(function(a, x){return a + (x.goodbad==1?x.goodbad:0)}, 0);
       const parsent = ((good/Props.reviewcomment.likeReturnCommentReviews.length)*100).toFixed(1)
@@ -213,9 +163,7 @@ export const ReturnThreadCommentList:React.FC<Props> = function ReturnThreadComm
       setLikeCommentScore(undefined)
       setGoodlength(undefined)
     }
-
     if (user.login==true){
-
       const currentUserDict = Props.reviewcomment.likeReturnCommentReviews.filter(item=>item.userId==user.user.id)
       if(currentUserDict.length==1){
         setUserLikesJudge(currentUserDict[0].goodbad)
@@ -237,11 +185,9 @@ export const ReturnThreadCommentList:React.FC<Props> = function ReturnThreadComm
     setContent("")
     setReadMore(false)
     var doc = new DOMParser().parseFromString(Props.reviewcomment.comment, "text/html")
-    console.log(doc.getElementsByTagName('body')[0].innerText)
     const doc200 = doc.getElementsByTagName('body')[0].innerText.slice(0,200)
     setContent(doc200.length!=200?doc200:doc200+"...")
     setReadMoreLength(doc200.length)
-
   }
 
   useEffect(()=>{
@@ -263,7 +209,6 @@ const ReviewCommentListRef = useRef<HTMLDivElement>(null)
     e?.stopPropagation()
     if(params_thread_id==undefined)return
     const res = await execDeleteReturnThreadComment(Props.reviewcomment.id,Props.reviewcomment.commentReviewId,params_thread_id)
-    console.log(res)
     if (res.data.status == 200){
       Props.setFirstloding(false)
       Props.firstHandler()
@@ -280,9 +225,8 @@ const ReviewCommentListRef = useRef<HTMLDivElement>(null)
  
 
   return(
-    <>
-     
-     <div className = {readMore==false?"ReviewCommentList ReviewCommentListHover":"ReviewCommentList"}
+    <> 
+    <div className = {readMore==false?"ReviewCommentList ReviewCommentListHover":"ReviewCommentList"}
       onClick={clickHandler}
       ref = {ReviewCommentListRef}
       >
@@ -319,31 +263,21 @@ const ReviewCommentListRef = useRef<HTMLDivElement>(null)
           </>
           )}
         <div className = "ReviewCommentListMain">
-
           <ReactQuill
             className = "review_comment_list_modal_quill"
-            // ref={quillref}
-            // ref='editor'
             modules={modules} 
             value={readMore==true?Props.reviewcomment.comment:content}
-            // theme="bubble" 
             theme="bubble"
             readOnly={true}
-            
           />
           </div>
         <div className = "ReviewCommentListUnderflex">
           <div className = "ReviewCommentListUnderflexReturnAll"
           onClick ={ModalOpenReturnComment}
           >
-            
           </div>
-              
-            
-        
           <div className = "ReviewCommentListGoodBad">
             <div className = "ProductReviewShowMainValuationPeacentage">
-              
               {readMore==true&&(
                 <div
                 onClick={clickHandler2}
@@ -413,15 +347,15 @@ const ReviewCommentListRef = useRef<HTMLDivElement>(null)
                 >
                   <FaRegThumbsUp/>
                   {goodLength!=undefined&&goodLength!=0&&(
-                   <>
-                     {goodLength}
-                   </>
+                    <>
+                      {goodLength}
+                    </>
                   )}
                 </div>
                 <div className = "ProductReviewShowMainValuationBad"
                 onClick={reviewValuationGooddelete}
                 >
-                   <FaThumbsDown/>
+                  <FaThumbsDown/>
                 </div>
                 </>
                 )}
@@ -439,25 +373,11 @@ const ReviewCommentListRef = useRef<HTMLDivElement>(null)
                   </>
                   )}
                 </div>
-                
-                  {/* {open&&(
-                    <OpenContext.Provider value={{ open, setOpen }}>
-                      <UserModalSign/>
-                    </OpenContext.Provider>
-                  )} */}
-
                 <div className = "ProductReviewShowMainValuationBad"
                   onClick={UserModalOpen}
                 >
                   <FaRegThumbsDown/>
                 </div>
-
-                  {/* {open&&(
-                    <OpenContext.Provider value={{ open, setOpen }}>
-                      <UserModalSign/>
-                    </OpenContext.Provider>
-                  )} */}
-
                 </>
                 }
                 {user.login?
@@ -467,20 +387,6 @@ const ReviewCommentListRef = useRef<HTMLDivElement>(null)
                   >
                     返信する
                   </div>
-                  {/* {openReviewComment&&(
-                  <OpenReviewCommentContext.Provider value={{openReviewComment, setOpenReviewComment}}>
-       
-                    <ReturnReturn
-                    user_id={user.user.id}
-                    return_comment_review_id={Props.reviewcomment.id}
-                    comment_review_id = {Props.reviewcomment.commentReviewId}
-                    // setReviewComments = {setReviewComments}
-                    // reviewComments = {reviewComments}
-                    setReturnReviewList = {Props.setReturnReviewList}
-                    returnReviewList = {Props.returnReviewList}
-                    />
-                  </OpenReviewCommentContext.Provider>
-                )}    */}
                 </>
                 :
                 <>
@@ -489,30 +395,18 @@ const ReviewCommentListRef = useRef<HTMLDivElement>(null)
                   >
                     返信する
                   </div>
-                  {/* {open&&(
-                    <OpenContext.Provider value={{ open, setOpen }}>
-                      <UserModalSign/>
-                    </OpenContext.Provider>
-                  )} */}
                 </>
                 }
-    
-
           </div>
         </div>
 
       </div>
       {openReviewComment&&(
         <OpenReviewCommentContext.Provider value={{openReviewComment, setOpenReviewComment}}>
-
           <ReturnReturn
           user_id={user.user.id}
           return_comment_review_id={Props.reviewcomment.id}
           comment_review_id = {Props.reviewcomment.commentReviewId}
-          // setReviewComments = {setReviewComments}
-          // reviewComments = {reviewComments}
-          // setReturnReviewList = {Props.setReturnReviewList}
-          // returnReviewList = {Props.returnReviewList}
           setUpdateJudge = {Props.setUpdateJudge}
           />
         </OpenReviewCommentContext.Provider>

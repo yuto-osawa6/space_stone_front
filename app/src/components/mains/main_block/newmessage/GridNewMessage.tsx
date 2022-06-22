@@ -12,11 +12,9 @@ type Props = {
   tagsactive:number
 }
 export const GridNewMessage:React.FC<Props> = memo(function GridNewMessageFunc(Props){
-  console.log(Props)
   const {userSwr} = useUser()
   const dispatch  = useDispatch()
   const handleDeleteNews = async(e:React.MouseEvent<HTMLDivElement> | undefined) => {
-    console.log(e)
     e?.stopPropagation()
     const res = await execDeleteNews(Props.news.id)
     if(res.data.status === 200){
@@ -26,7 +24,6 @@ export const GridNewMessage:React.FC<Props> = memo(function GridNewMessageFunc(P
     }
   }
   const handleOpen = (e:React.MouseEvent<HTMLDivElement> | undefined) => {
-    console.log(e)
     setOpen(true)
   }
   const [open,setOpen] = useState<boolean>(false)
@@ -89,7 +86,6 @@ export const GridNewMessage:React.FC<Props> = memo(function GridNewMessageFunc(P
         {Props.news.description}
         </div>
         <div className = "gridNewMessageListTag">
-        {/* {String(Props.news.jugde)} */}
         {Props.news.judge == 1&&(
           <>
             #アニメ

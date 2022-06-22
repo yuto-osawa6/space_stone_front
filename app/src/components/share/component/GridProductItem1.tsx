@@ -1,11 +1,8 @@
 import { product } from "@/interfaces/product"
-// import Image from "next/image";
 import Router from "next/router";
 import { memo, useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { CSSTransition } from "react-transition-group";
-
-
 
 type Props = {
   product : product
@@ -42,7 +39,6 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
   const [lefts,setLefts] = useState<number>(0)
   const [rights,setRights] = useState<number>(0)
   // 平均スコア-----------------------------------------------------------
-  // const [averageScore,setAverageScore] = useState<number | undefined>(Props.avgScore!=undefined?Number(Props.avgScore):undefined)
   const [scoreColor,setScoreColor] = useState<Color>({color:""})
   useEffect(()=>{
     if(Props.avgScore==undefined)return
@@ -69,25 +65,15 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
       setScoreColor({color:'rgba(255, 0, 235, 1)'})
     }
   },[Props.avgScore])
-  // const navigate = useNavigate();
   const elm = useRef<HTMLDivElement>(null!);
-   useEffect(()=>{
+  useEffect(()=>{
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    // setLefts(left)
-    // setRights(right)
     Props.push(left)
-    // const img = new Image()
-    // console.log(Props.product.imageUrl)
-    // img.src = Props.product.imageUrl
-    // img.onload = () => {
-    //   setImageLoding(true)
-    // };
     colorNumberHandler()
     handleSetupYearSeason()
   },[])
   const dispatch = useDispatch()
   const navigateProductShow =() =>{
-    // dispatch(actionSettingProductData2(Props.product));
     Router.push(`/title/${Props.product.id}`)
   }
   const handlehoverLeave = () => {
@@ -95,10 +81,7 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
     left === Props.left_grid&&right===Props.right?setIshover2(false):setIshover(false)
   }
   const handlehoverEnter = () => {
-    // console.log(Props.left_grid,left,right,Props.right)
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    console.log(Props.left_grid,left,right,Props.right)
-
     left === Props.left_grid&&right===Props.right?setIshover2(true):setIshover(true)
   };
 

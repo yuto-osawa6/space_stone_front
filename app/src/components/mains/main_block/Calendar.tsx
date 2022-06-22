@@ -4,16 +4,9 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // pluginは、あとから
 import { product } from "@/interfaces/product";
 import { OpenContext } from "@/contexttype/contexttype";
 import { useEffect, useState } from "react";
-// import { CalendarEventsModal } from "./CalenderEventsModal";
 import listPlugin from '@fullcalendar/list';
 import { execCalendarHandler } from "@/lib/api/mains/main_blocks";
 import { CalendarEventsModal } from "./calender/CalenderEventsModal";
-
-
-
-// const FullCalendar = dynamic(() => import("@fullcalendar/react"), { ssr: false });
-
-
 type Props = {
   calendarData: {
     deliveryStart: product[];

@@ -4,7 +4,6 @@ type Props = {
   emotion:emotion | undefined
   setEmotion:React.Dispatch<React.SetStateAction<emotion | undefined>>
   setCurrent: React.Dispatch<React.SetStateAction<number>>
-  // SetPage: React.Dispatch<React.SetStateAction<number>>
 }
 type emotion = {
   id:number

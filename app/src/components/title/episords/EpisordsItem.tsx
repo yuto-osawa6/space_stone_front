@@ -47,7 +47,6 @@ export const EpisordsItem:React.FC<Props> = function EpisordsItemFunc(Props){
   const [rank,setRank] = useState<number>(0)
 
   const handleSetupEmotionList = () => {
-    // console.log(Props)
     const result = Props.episord.emotions.length
     setEmotionListLength(result)
     let result2 = getArrayDeleteDouble2(Props.episord.emotions, "id");
@@ -60,9 +59,7 @@ export const EpisordsItem:React.FC<Props> = function EpisordsItemFunc(Props){
         // donyet-2(weeksが複数であるがエピソードは一回しか記録しないため0設定)
         setRank(Props.episord.weeks[0].array.sort((a,b)=>b.count - a.count).findIndex(i=>i.productId==Number(Props.params_id))+1)
       }
-      console.log(Props.episord.weeks)
     }
-
   }
   useEffect(()=>{
     handleSetupEmotionList()
@@ -72,13 +69,7 @@ const getArrayDeleteDouble2 = (ary:emotions[], key:any) => {
   let map = new Map(ary.map((o:any) => [o[key], o]));
   return Array.from(map.values());
 }
-
 const LoginUser = useSelector((state:RootState)=>state.user)
-
-// console.log(Props.episord.releaseDate)
-// console.log(new Date(Props.episord.releaseDate))
-
-// console.log(Props.episord.releaseDate != null)
   return(
     <>
     <div className=""
@@ -117,15 +108,12 @@ const LoginUser = useSelector((state:RootState)=>state.user)
         }}
         >
           <div className="">
-          {/* {Props.episord.releaseDate == undefined} */}
           </div>
           {Props.episord.releaseDate != null &&(
             <>
               ({`${new Date(Props.episord.releaseDate).getFullYear()}/${new Date(Props.episord.releaseDate).getMonth()+1}/${new Date(Props.episord.releaseDate).getDate()}`})
             </>
           )}
-          
-          
         </div>
         <div className="">
         </div>      
@@ -163,7 +151,7 @@ const LoginUser = useSelector((state:RootState)=>state.user)
             flexWrap:"wrap",
             paddingBottom:"10px",
             overflow:"scroll"
-         }}
+        }}
           >
           <li
           style={{fontSize:"0.9rem"}}
@@ -178,7 +166,6 @@ const LoginUser = useSelector((state:RootState)=>state.user)
           })}
         </ul>
       )}
-
       {rank!=0&&count!=0&&(
         <div className=""
         style={{

@@ -1,12 +1,9 @@
-// import { ProductReviews } from "@/component/products/reviews/ProductReviews";
 import { Productshowcontext } from "@/contexttype/contexttype";
 import { execProductShowReview, execProductShowThread } from "@/lib/api/products";
 import { useRouter } from "next/router";
 import React, { ReactNode, useContext, useEffect, useState } from "react";
-// import { Outlet, useParams } from "react-router-dom";
 import { ShowCloudsItems } from "../top/ShowCloudsItems";
 import { ShowCloudsItems2 } from "../top/ShowCloudsItems2";
-// import { ProductReviewsItems } from "./ProductReviewsItems";
 
 type Review = {
   content: string
@@ -32,7 +29,6 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
     if (params_id==undefined) return
     const res = await  execProductShowThread(params_id as string,current)
     if(res.status == 200){
-      console.log(res)
       if(isMounted){
         setItems(res.data.threads)
         GfNavigation(res.data.itemLength)
@@ -50,8 +46,7 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
     const props = useContext(Productshowcontext)
 
     const GfNavigation = (Props:number) => {
-      const limit = Math.ceil(Props / 2)
-      // console.log(limit)
+      const limit = Math.ceil(Props / 50)
       currentPage(current,limit)
       SetPage(limit)
     }
@@ -103,7 +98,7 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
 
   return(
     <>
-     <div className = {`show_top_contens`}> 
+      <div className = {`show_top_contens`}> 
         <div className = {`show_top_dummy p_contens_grid_color${props.switchnumber}`}>
         </div>
         <div className="Overview">
@@ -122,9 +117,6 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
             <>
             {items.map((item)=>{
               return(
-                // <ProductReviewsItems
-                //   item = {item}
-                // />
                 <ShowCloudsItems2
                 key={item.id}
                 item={item}
@@ -137,20 +129,16 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
             })}
           </>
           )}
-         
-        
         </div>
 
         <div className = "ArticlesContainerPage"
         style={{position:"relative"}}
         >
             <ul>
-           
             <li
             onClick={currentFirstHandler}
             className={current==1?"activeCurrent":""}
             >1</li>
-           
             {page>5&&current!=1&&(
               <li
               onClick={currentPrevHandler}
@@ -158,23 +146,20 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
             )}
             {pageNaviGation.map((item,index)=>
             {
-              // console.log(item!=1&&(item!=page||page!=1))
               return(
                 
                   <React.Fragment
                     key={index}
                     >
                   {item!=1&&item!=page&&(
-                     <li
+                    <li
                     key={item}
                     onClick={()=>currentSetHandler(item)}
                     className={current==item?"activeCurrent":""}
-                     >{item}</li>
+                    >{item}</li>
                   )}    
                   </React.Fragment>     
-      
               )
-             
             })}
             {page>5&&current!=page&&(
               <li
@@ -183,14 +168,12 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
             )}
             {page>1&&(
             <li
-             onClick={currentMaxHandler}
-             className={current==page?"activeCurrent":""}
+              onClick={currentMaxHandler}
+              className={current==page?"activeCurrent":""}
             >{page}</li>
             )}
             </ul>
           </div>
-      
-          {/* <Outlet/> */}
           {Props.children}
       </div>
     </>

@@ -4,10 +4,6 @@ type Props = {
   item: {
     id: number;
     emotion: string;
-    // length:[{
-    //   id:number
-    //   productId:number
-    // }]
     length:number
   }
   emotionListLength: number
@@ -19,10 +15,9 @@ type Color = {
 
 export const EmotionItem:React.FC<Props> = function EmotionItemFunc(Props){
 
-   const [emotionColor,setEmotionColor] = useState<Color>({backgroundColor:""})
+  const [emotionColor,setEmotionColor] = useState<Color>({backgroundColor:""})
   useEffect(()=>{
     const averageScore = Math.floor(Props.item.length/Props.emotionListLength*100)
-    // if(averageScore==undefined)return
     if(averageScore<=10){
       setEmotionColor({backgroundColor:'rgb(246 61 32)'})
     }else if(10<averageScore&&averageScore<=20){

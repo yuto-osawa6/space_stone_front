@@ -6,8 +6,6 @@ import ReactCrop, {
   Crop,
   PixelCrop,
 } from 'react-image-crop'
-// import { canvasPreview } from './canvasPreview'
-// import { useDebounceEffect } from './useDebounceEffect'
 import 'react-image-crop/dist/ReactCrop.css'
 import { Button, FormHelperText, Modal } from "@mui/material"
 
@@ -81,28 +79,6 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
     }
   }
 
-  // useDebounceEffect(
-  //   async () => {
-  //     if (
-  //       completedCrop?.width &&
-  //       completedCrop?.height &&
-  //       imgRef.current &&
-  //       previewCanvasRef.current
-  //     ) {
-  //       // We use canvasPreview as it's much faster than imgPreview.
-  //       canvasPreview(
-  //         imgRef.current,
-  //         previewCanvasRef.current,
-  //         completedCrop,
-  //         scale,
-  //         rotate,
-  //       )
-  //     }
-  //   },
-  //   100,
-  //   [completedCrop, scale, rotate],
-  // )
-
   function handleToggleAspectClick() {
     if (aspect) {
       setAspect(undefined)
@@ -119,8 +95,6 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
 
   const TopimageSubmitHandler = async() =>{
   setLoading(true)
-  console.log(imgRef)
-
   if (imgRef.current==undefined){
     dispatch(pussingMessageDataAction({title:"画像が選択されていません。",select:0}))
     return
@@ -130,13 +104,10 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
     return
   }
   const croppedImageUrl = await getCanvasCroppedImg(imgRef.current,completedCrop,'newFile.jpeg');
-  console.log(croppedImageUrl)
   // setNewImage(croppedImageUrl);
 
   let fileReader = new FileReader();
   fileReader.readAsArrayBuffer(croppedImageUrl as Blob)
-  console.log(fileReader)
-
   var formData= new FormData();
   if (croppedImageUrl==undefined){
     dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
@@ -144,14 +115,8 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
   }
   formData.append('bg_img', croppedImageUrl)
   formData.append("user_id",String(user_id))
-  // formData.append("user_id",String(1))
-
-
-  console.log(croppedImageUrl)
-  console.log(formData)
   const res =  await execUserBackgroundImageHandler(user_id,formData as FormData)
   if(res.status==200){
-    console.log(res)
     setLoading(false)
     mutate('/session_user')
     dispatch(pussingMessageDataAction({title:"背景画像を更新しました。",select:1}))

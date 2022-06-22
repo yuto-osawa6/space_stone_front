@@ -44,9 +44,6 @@ export const UserShowOverviewScoreEmotion:React.FC<Props> = function UserShowOve
   // useEffect(()=>{
   //   handleSetup()
   // },[])
-
-  // console.log(Props)
-
   return(
     <>
       <li

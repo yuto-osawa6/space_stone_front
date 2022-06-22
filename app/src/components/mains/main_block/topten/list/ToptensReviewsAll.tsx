@@ -3,7 +3,6 @@ import { execToptenLikeAll, execToptenReviewAll } from "@/lib/api/mains/toptens"
 import { useEffect, useState } from "react";
 import { ToptensList2 } from "../item/ToptensList2";
 import { ToptensParent1 } from "../parent/ToptensParent1";
-// import { ToptensList } from "../ToptensList";
 
 type scoreAvg = {
   [k:number]:string
@@ -16,7 +15,6 @@ export const ToptensReviewsAll:React.FC = function ToptensReviewsAllFunc(){
   let isMounted = true;
   const setupHandler = async() => {
     const res = await execToptenReviewAll()
-    console.log(res)
     if(res.status === 200){
       if(isMounted){
         setLikeToptensAll(res.data.products)
@@ -35,12 +33,10 @@ export const ToptensReviewsAll:React.FC = function ToptensReviewsAllFunc(){
       isMounted = false;
     };
   },[])
-  console.log(averageScore)
 
   var count:number = 0
   var ranks:number = 1
   const ranksjudge = (l:number,i:number) => {
-    console.log(l)
     if(count==l){
     }else{
       ranks = i + 1

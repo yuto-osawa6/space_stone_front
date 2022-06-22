@@ -30,8 +30,8 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
         {getLayout( 
           <>
             <DefaultSeo
-              defaultTitle = "SpaceTone"
-              description = "SpaceToneは、評価やレビューで探せるアニメ評価サイトです。あなたが評価したい作品を正当に評価でき、共有されることを願っています。"
+              defaultTitle = "MeruPlanet"
+              description = "MeruPlanet(めるぷらねっと)は、評価やレビューを共有することができるアニメ評価サイトです。あなたが評価したい作品を正当に評価でき、共有されることを願っています。"
               // あにこれβはおすすめアニメ動画を成分タグ・ランキング・レビュー感想や放送時期でさがせるアニメ評価サイト。参加するとアニメ動画をコレクションできるアニメ棚がもらえるぞ。あにこれβで今すぐアニメを棚で管理！おすすめアニメ動画をみんなで教えあおう！
               // AniList：次世代アニメプラットフォーム・AniListを使用して、お気に入りのアニメやマンガを追跡、共有、発見します。・サイトのテーマ。
             // openGraph={{

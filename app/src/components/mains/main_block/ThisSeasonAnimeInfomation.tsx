@@ -1,26 +1,11 @@
-// import { ThisSeasonProduct } from "api/Main/ThisSeasonSSR"
 import { GridProductItem1 } from "@/components/share/component/GridProductItem1"
 import { product } from "@/interfaces/product"
-// import { execGetUserTier, execNewNetflixMainHandler, execUpdateTierList } from "lib/api/mains/main_blocks"
 import { memo, useCallback, useEffect, useRef, useState } from "react"
-// import { MdArrowDropDownCircle, MdOutlineKeyboardArrowDown } from "react-icons/md"
-// import { MdKeyboardArrowDown } from "react-icons/md"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
-// import { BsArrowDownShort } from "react-icons/bs"
 import { IoChevronDownOutline } from "react-icons/io5"
 import { mutate } from "swr"
-// import { MdKeyboardArrowDown } from "react-icons/md"
-// import { GridProducts2 } from "./GridProducts2"
-// import { CreateTier } from "./tier/CreateTier"
-// import { HTML5Backend } from 'react-dnd-html5-backend'
-// import { DndProvider } from 'react-dnd'
-// import { useSelector } from "react-redux"
-// import { RootState } from "store"
-// import { OpenContext } from "contexttype/contexttype"
-// import { UserModalSign } from "component/aplication/lefts/UserModalSign"
-// import { ThisMonthTierList } from "./tier/thismonth/ThisMonthTierList"
-// import { UpdateTier } from "./tier/UpdateTier"
+
 
 type tierProduct = {
   id:number
@@ -30,7 +15,6 @@ type tierProduct = {
 }
 type TierProductGroup = {
   group:string
-  // products:tierProduct[]
   products:product[]
 }
 type UserTier = {
@@ -106,37 +90,13 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo(function ThisSeaso
 
   let isMounted = true;
   let isMounted2 = true;
-  // const setupHandler = async() => {
-  //   if(isMounted==true){
-  //   const res = await execNewNetflixMainHandler()
 
-  //   if (res.status === 200){
-  //     console.log(res)
-  //     if(isMounted==true){
-  //     setProducts(res.data.products)
-  //     setCurrentSeason(res.data.currentSeason)
-  //     setUpSecond(res.data.tier,res.data.tierAverage)
-  //     setAvgScore(res.data.scores.avgScore)
-  //     setRight(ref.current.getBoundingClientRect().right)
-  //     }
-  //   }else{
-  //   }
-  // }
-  // }
   // 座標
   const [left_grid,setLeft_grid] = useState<number[]>([])
   const [maxleft,setMaxLeft] = useState<number>(0)
   const [right,setRight] = useState<number>(0)
   useEffect(()=>{
     setRight(ref.current.getBoundingClientRect().right)
-    // const timer = setTimeout(() => {
-    //   setupHandler()
-  
-    // }, 300)
-    // return () => {
-    //   clearTimeout(timer)
-    //   isMounted = false;
-    // };
   },[])
   const pushgridleft = useCallback(( flg:number )=> {
     setLeft_grid([...left_grid, left_grid.push(flg)]) ;
@@ -152,70 +112,7 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo(function ThisSeaso
   const handleOpenTierCreateModal = () =>  setOpenTier(true)
   const handleOpenSign = () => setOpen(true)
   const [updateTier,setUpdateTier] = useState<boolean>(false)
-  // loginによる切り替え-------------------------------------
-  // const [userTier,setUserTier] = useState<UserTier[]>([])
-  // const handleGetUserTier = async()=>{
-  // const res = await execGetUserTier(user.user.id,1)
-  //   if(res.status == 200){
-  //     if(isMounted2==true){
-  //       console.log(res)
-  //       res.data.userTier.forEach((i:any)=>{
-  //         const tier = i.tier
-  //         if(0<=tier&&tier<=10){
-  //         Object.assign(i,{group:5})
-  //         }else if(10<tier&&tier<=30) {
-  //         Object.assign(i,{group:4})
-  //         }else if(30<tier&&tier<=50){
-  //         Object.assign(i,{group:3})
-  //         }else if(50<tier&&tier<=70){
-  //         Object.assign(i,{group:2})
-  //         }else if(70<tier&&tier<=90){
-  //         Object.assign(i,{group:1})
-  //         }else if(90<tier&&tier<=100){
-  //         Object.assign(i,{group:0})
-  //         }else{
-  //         }
-  //       })
-  //       setUserTier(res.data.userTier)
-  //     }else{}
-  //   }else{
-  //   }
-  // }
-  // useEffect(()=>{
-  //   if(user.login!=true)return
-  //   const timer = setTimeout(() => {
-  //     handleGetUserTier()
-  //   }, 250)
-  //   return () => {
-  //     clearTimeout(timer)
-  //     isMounted2 = false;
-  //   };
-  // },[user.login])
 
-  // --------------------------------------------------------------
-  // let isMounted3 = true
-  // const handleUpdateTierList = async() => {
-  //   const res = await execUpdateTierList(user.user.id,1)
-  //   if (res.status === 200){
-  //     console.log(res)
-  //     if(isMounted3){
-  //       setUpSecond(res.data.tier,res.data.tierAverage)
-  //       setUpdateTier(false)
-  //     }
-  //   }else{
-
-  //   }
-  // }
-  // useEffect(()=>{
-  //   if(updateTier===false)return
-  //   // handleGetUserTier()
-  //   // handleUpdateTierList()
-  //   mutate('/mainblocks/mains/update_tier_list/1')
-  //   mutate('/mainblocks/mains/user_this_season_tier/1')
-  //   // return () => {
-  //   //   isMounted3 = false
-  //   // };
-  // },[updateTier])
   // --------------------------------------------------------------
   const [openTierUpdate,setOpenTierUpdate] = useState<boolean>(false)
   const handleOpenTierUpdateModal = () => {setOpenTierUpdate(true)
@@ -252,93 +149,11 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo(function ThisSeaso
         onClick={moreActionHandler}
         >
           もっと見る
-          {/* <MdArrowDropDownCircle
-          className = {onMoreState?"addTitleOnTime":""}
-          /> */}
           <IoChevronDownOutline
             className = {onMoreState?"addTitleOnTime":""}
           />
         </div>
       </div>
-      {/* <div className=""
-      style={{
-      fontWeight:"bold",
-      marginBottom: "10px",
-      fontSize: "1.5rem"
-      }}
-      >
-       今シーズンのTier
-      </div>
-      <div className=""
-      style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-      gap: "10px",
-      marginBottom: "30px"
-      }}
-      >
-        {tierProductGroup.map((item,index)=>{
-          return(
-          <ThisMonthTierList
-          key={index}
-          group = {item.group}
-          products = {item.products}
-          />
-          )
-        })}
-      {products!=undefined&&(
-      <>
-      {userTier.length==0&&(
-      <div className=""
-      onClick={user.login==true?handleOpenTierCreateModal:handleOpenSign}
-      style={{
-        cursor:"pointer"
-      }}
-      >
-        Tierを作成する
-      </div>
-      )}
-      {userTier.length!=0&&(
-      <div className=""
-      onClick={user.login==true?handleOpenTierUpdateModal:handleOpenSign}
-      style={{
-        cursor:"pointer"
-      }}
-      >
-        Tierを更新する
-      </div>
-      )}
-      {openTier&&(
-      <DndProvider backend={HTML5Backend}>
-        <CreateTier
-        products = {products}
-        season = {currentSeason}
-        open = {openTier}
-        setOpen = {setOpenTier}
-        setUpdateTier={setUpdateTier}
-        />
-      </DndProvider>
-      )}
-      {openTierUpdate&&(
-      <DndProvider backend={HTML5Backend}>
-        <UpdateTier
-        products = {products}
-        season = {currentSeason}
-        open = {openTierUpdate}
-        setOpen = {setOpenTierUpdate}
-        userTier = {userTier}
-        setUpdateTier={setUpdateTier}
-        />
-      </DndProvider>
-      )}
-      </>
-      )}   
-      {open&&(
-      <OpenContext.Provider value={{ open, setOpen }}>
-        <UserModalSign/>
-      </OpenContext.Provider>
-      )}  
-      </div> */}
     </>
   )
 })

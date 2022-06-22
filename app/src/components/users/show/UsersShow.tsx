@@ -4,7 +4,6 @@ import { execUsersShowHandler } from "@/lib/api/users"
 import { useRouter } from "next/router"
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
-// import { Outlet, useOutlet, useParams } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import { RootState } from "@/store"
 import { UserBackgroupdSetUp } from "../setup/background/UserBackgroundSetUp"
@@ -19,28 +18,20 @@ type Props = {
 }
 
 export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
-  // const params = useParams()
-  // const outlet = useOutlet()
   const router = useRouter()
   const {uid} = router.query
   const user_id = uid as string
   const [colornumber,setColornumber ]= useState<number>(0)
   const [P404page,setP404page]= useState<boolean>(false)
-
-
-  
-
   // state
   const [user,setUser] = useState<UserShow>()
 
   // store
-  // const LoginUserStore = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser()
   const LoginUserStore = userSwr
   
   const setFirstDataHandler = async() => {
     const res = await execUsersShowHandler(user_id as string) 
-    console.log(res)
     if(res.data.status == 200){
       setUser(res.data.user)
     }else{
@@ -85,7 +76,6 @@ export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
 
   return(
     <>
-      {/* {P404page==false?( */}
       <div className = "UsersShow">
         <div className ="UsersShowCenter">
           <div className = "UserShowCenterLeft">
@@ -97,7 +87,6 @@ export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
               <>
                 <CSSTransition in={imageloding2}  nodeRef={nodeRef2} timeout={300} classNames="my-node"  unmountOnExit>
                 {<img src={LoginUserStore.user.backgroundImage}/>}
-                 {/* <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""} */}
                 </CSSTransition>
               </>
               :
@@ -128,7 +117,6 @@ export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
             </div>
             
             <div className = "UsersShowTopImageUserInfo">
-              {/* <img src={user?.image}/> */}
               <img src = {LoginUserStore.user.id == Number(user_id)?LoginUserStore.user.image:user?.image}/>
               <p>{LoginUserStore.user.id == Number(user_id)?LoginUserStore.user.nickname:user?.nickname}</p>
 
@@ -137,16 +125,14 @@ export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
           {user!=undefined&&(
               <UserShowContext.Provider value={ {user} }>
               <UserRight
-              // user = {user?.id} 
               />
               </UserShowContext.Provider>
-             )}
+            )}
           <div className = "UsersShowMain"
           style={{
             margin: "0px 20px"
           }}
           >
-            {/* <out></> */}
             {user!=undefined&&(
             <UserShowContext.Provider value={ {user} }>
               {Props.children}
@@ -159,12 +145,6 @@ export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
         </div>
       </div>
     </div>
-    {/* {P404page==true&&(
-     <>
-      No User
-     </> 
-    )} */}
-
   </>
   )
 }

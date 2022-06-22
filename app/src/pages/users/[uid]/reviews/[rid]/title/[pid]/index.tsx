@@ -16,7 +16,6 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   const cookies = nookies.get(context)
   const { pid,rid } = context.query
   try{
-    // const query_params = new URLSearchParams(params); 
     const [res] = await Promise.all([
       fetch(`${ssr_url}/products/${pid as string}/reviews/${rid as string}?page=1`,{
         headers:{
@@ -37,18 +36,13 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
       } 
     };
   }else{
-    // return {props: { statesCode:res.status}}
     return { notFound:true}
   }
   }catch{
-    // return  {props: { statesCode:500}}
     return { notFound:true}
   }
 }
 
-// type Props = {
-//   data:productShow
-// }
 
 
 type Props = {
@@ -61,8 +55,6 @@ type Props = {
 }
 
 const ReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
-  // const fallback= Props.fallback
   return(
     <>
       <NextSeo

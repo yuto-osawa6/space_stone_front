@@ -11,6 +11,7 @@ import { LeftsThreads } from "./leftMenus/LeftsThreads";
 import { LeftsReviews } from "./leftMenus/LeftReviews";
 import { actionSettingGenresData } from "@/store/genres/action";
 import { actionSettingStylesData } from "@/store/styles/actions";
+import { useLocale } from "@/lib/ini/local/local";
 
 type Props = {
   locationNumber: number | undefined
@@ -66,34 +67,6 @@ const changeOpenFormats5 = () => {
     SetOpenThreads(false)
   }
 }
-// console.log(data)
-// console.log(error)
-
-// const handleStyle = () => {
-//   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)==null){
-//     return {}
-//   }
-//   if(location.pathname.match(/products/)!=null&&location.pathname.match(/reviews/)!=null){
-//     return {}
-//   }
-//   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)!=null){
-//     return {}
-//   }
-//   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)==null){
-//     return {}
-//   }
-//   if(location.pathname.match(/products/)!=null&&location.pathname.match(/threads/)!=null){
-//     return {}
-//   }
-//   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)!=null){
-//     return {}
-//   }
-//   if(location.pathname.match(/products/)!=null){
-//    return {display:"none"}
-//   }
-//   return {}
-
-// }
 const handleStyle = () => {
   if(Props.locationNumber===undefined){
     return {}
@@ -101,7 +74,6 @@ const handleStyle = () => {
     return {display:"none"}
   }
 }
-
 // doneyet-1 必要ない下
 useEffect(()=>{
   if(!data)return
@@ -109,19 +81,9 @@ useEffect(()=>{
   dispatch(actionSettingStylesData(data.styles));
 },[data])
 
-
-console.log(data,error)
-console.log(!error)
-// console.log(data?data.genres[0].name:"")
-// console.log()
+const {t} = useLocale()
   return(
     <>
-    {/* {error&&(
-      <div className="">
-        error
-      </div>
-    )} */}
-    {/* {data.genres[0].id} */}
       <div className = "main-left" 
       style={handleStyle()}
       >
@@ -130,7 +92,7 @@ console.log(!error)
             <h3
             onClick={changeOpenFormats}
             ><BsFillSuitClubFill
-            />Formats <IoChevronDownOutline
+            />{t.Component.Lefts.FORMATS} <IoChevronDownOutline
             className={`leftDownArrow ${openFormats == true?"addTitleOnTime":""}`}
             /></h3>
           </div>
@@ -147,7 +109,7 @@ console.log(!error)
             <div className = "category__title">
               < h3
               onClick={changeOpenFormats2}
-              ><BsFillSuitSpadeFill/><div>Genres</div>
+              ><BsFillSuitSpadeFill/><div>{t.Component.Lefts.GENRES}</div>
               <IoChevronDownOutline
               className={`leftDownArrow ${openGenres == true?"addTitleOnTime":""}`}
               />
@@ -168,7 +130,7 @@ console.log(!error)
             <div className = "category__title">
               <h3
               onClick={changeOpenFormats3}
-              ><BsFillSuitDiamondFill/><div>Articles</div>
+              ><BsFillSuitDiamondFill/><div>{t.Component.Lefts.ARTICLE}</div>
               <IoChevronDownOutline
               className={`leftDownArrow ${openArticles == true?"addTitleOnTime":""}`}
               />
@@ -183,7 +145,7 @@ console.log(!error)
             <div className = "category__title">
               <h3
               onClick={changeOpenFormats4}
-              ><BsFillSuitHeartFill/><div>Reviews</div>
+              ><BsFillSuitHeartFill/><div>{t.Component.Lefts.REVIEW}</div>
               <IoChevronDownOutline
               className={`leftDownArrow ${openReviews == true?"addTitleOnTime":""}`}
               />
@@ -199,7 +161,7 @@ console.log(!error)
             <div className = "category__title">
               <h3
               onClick={changeOpenFormats5}
-              ><BsFillSuitHeartFill/><div>Threads</div>
+              ><BsFillSuitHeartFill/><div>{t.Component.Lefts.THREADS}</div>
               <IoChevronDownOutline
               className={`leftDownArrow ${openThreads == true?"addTitleOnTime":""}`}
               />

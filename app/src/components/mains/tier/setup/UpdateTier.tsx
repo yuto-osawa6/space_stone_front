@@ -12,8 +12,6 @@ import { pussingMessageDataAction } from "@/store/message/actions"
 import { mutate } from "swr"
 import { DraggableFistContainer } from "./draggle/DraggableFistContainer"
 import { TierGroupList } from "./list/TierGroupList"
-// import { TierGroupList } from "./TierGroupList"
-// import { DraggableFistContainer } from "./tier_group/DraggableFistContainer"
 
 export const ItemType = {
   Box: "BOX",
@@ -57,7 +55,6 @@ type UserTier = {
 
 export const UpdateTier:React.FC<Props> = function UpdateTierFunc(Props){
   const [firstProduct,setFirstProduct] = useState<product[]>([])
-  // const user = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser()
   const [groupProduct,setGroupProduct] = useState<Group[]>([
     {
@@ -90,7 +87,6 @@ export const UpdateTier:React.FC<Props> = function UpdateTierFunc(Props){
 useEffect(()=>{
   const array = Props.userTier.map(i=>i.product.id)
   const group6_array = Props.products.filter(i=> array.includes(i.id)==false)
-  console.log(Props)
   setFirstProduct(Props.products.filter(i=> array.includes(i.id)))
   const copy = groupProduct.slice()
   copy[0] = {group:0,products:Props.userTier.filter(i=>i.group==0).map(i=>i.product)}
@@ -108,8 +104,6 @@ useEffect(()=>{
   }
   const [validateText,setValidateText] = useState<string>("")
   const moveItem23 = useCallback((dragIndex: number, hoverIndex: number,group: number,pregroup:any | undefined,id:number) => {
-
-    console.log(dragIndex,hoverIndex,group,pregroup,id)
       if(validateText!=""){
         setValidateText("")
       }
@@ -144,7 +138,6 @@ useEffect(()=>{
   },[],)
 
   useEffect(()=>{
-    console.log(groupProduct)
   },[groupProduct])
   // --------------------
   const [,ref] = useDrop({
@@ -158,7 +151,6 @@ useEffect(()=>{
       dragItem.index = targetIndex;
       dragItem.group = 6
     }catch(e){
-      console.log(e)
     }
     },
     collect: (monitor) => ({
@@ -170,40 +162,37 @@ useEffect(()=>{
   // submit --------------------------------
   const dispatch = useDispatch()
   const handleCreateTier = async() => {
-   const product_length = groupProduct.filter(i=>i.group!=6).reduce((sum,i)=>i.products.length + sum,0)
+  const product_length = groupProduct.filter(i=>i.group!=6).reduce((sum,i)=>i.products.length + sum,0)
   //  if(product_length==0){
   //   setValidateText("Tierリストにコンテンツがありません。")
   //    return
   //  }
-   const createTierProduct:tiers[] = [{
-     group:0,
-     product:[]
-   }]
-   const FixedProductTier = groupProduct.filter(i=>i.group!=6).slice()
-   FixedProductTier.map((i,index)=>{
+  const createTierProduct:tiers[] = [{
+    group:0,
+    product:[]
+    }]
+    const FixedProductTier = groupProduct.filter(i=>i.group!=6).slice()
+    FixedProductTier.map((i,index)=>{
     const array = i.products.map(i=>i.id)
     createTierProduct[index] = {group:index,product:array}
-   })
-   console.log(createTierProduct)
-   const res = await execCreateTierHandler(createTierProduct,Props.season,userSwr.user.id)
-   console.log(res)
-   if (res.data.status == 200){
-    if (Props.setUpdateTier!=undefined){
-      Props.setUpdateTier(true)
-    }
-      console.log("aa")
-      // mutate('/mainblocks/mains/update_tier_list/1')
-      // mutate('/mainblocks/mains/user_this_season_tier/1')
-      dispatch(pussingMessageDataAction(res.data.message))
-      Props.setOpen(false)
-   }else{
-      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
-   }
+  })
+  const res = await execCreateTierHandler(createTierProduct,Props.season,userSwr.user.id)
+  if (res.data.status == 200){
+  if (Props.setUpdateTier!=undefined){
+    Props.setUpdateTier(true)
+  }
+    // mutate('/mainblocks/mains/update_tier_list/1')
+    // mutate('/mainblocks/mains/user_this_season_tier/1')
+    dispatch(pussingMessageDataAction(res.data.message))
+    Props.setOpen(false)
+  }else{
+    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+  }
   }
 
   return(
     <>
-     <Modal
+    <Modal
         open={Props.open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -260,7 +249,6 @@ useEffect(()=>{
           >
           {groupProduct.slice(0,6).map((item,index)=>renderCard(item,index))}
           </div>
-         
         </div>
         <div
           ref={ref}

@@ -3,7 +3,6 @@ import { execArticleProductAssosiationsHandler } from "@/lib/api/article"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import { memo, useEffect, useState } from "react"
-// import { setDatasets } from "react-chartjs-2/dist/utils"
 import { IoTimeOutline, IoTimer } from "react-icons/io5"
 import { useDispatch } from "react-redux"
 import { actionSettingProductData, actionSettingProductData2 } from "@/store/product/actions"
@@ -23,15 +22,10 @@ export const GridProduct04:React.FC<Props> = memo(function GridProduct04(Props){
     const colorNumber:number = array[Math.floor(Math.random() * array.length)]
     setColornumber(colorNumber)
     setAverageScoreHandler()
-    // setData()
   },[])
 
   const router = useRouter()
-
-  // const dispatch = useDispatch()
   const Movementhandler = () => {
-    // if(product==undefined)return
-    // dispatch(actionSettingProductData2(product))
     router.push(`/products/${Props.product.id}`)
   }
 
@@ -66,16 +60,14 @@ export const GridProduct04:React.FC<Props> = memo(function GridProduct04(Props){
   const setAverageScoreHandler = () => {
     if (Props.product.scores.length>0){
     const result = Props.product.scores.reduce(function(a, x){return a + x.value;}, 0);
-    // console.log(result/Props.product.scores.length)
     setAverageScore(result/Props.product.scores.length)
     }
   }
-
   return(
     <> 
-       <div className = "ArticleProductsGrid"
-       onClick={Movementhandler}
-       >
+      <div className = "ArticleProductsGrid"
+      onClick={Movementhandler}
+      >
           <div className = "ArticleProductsGridLeft">
             <img src={Props.product.imageUrl}/>
             <div className="ArticleProductsGridLeftTitle">
@@ -103,7 +95,6 @@ export const GridProduct04:React.FC<Props> = memo(function GridProduct04(Props){
                     {Props.product?.year}
                   </div>
                   <div className="ArticleProductsGridRightDuration">
-                    {/* <IoTimer/> */}
                     <p>{Props.product?.duration}</p>
                   </div>
                 </div>
@@ -112,11 +103,7 @@ export const GridProduct04:React.FC<Props> = memo(function GridProduct04(Props){
                 {/* {Props.product.arasuzi} doneyet arasuziではなくdescriptionという形でapiから送られている*/}
                 <ReactQuill
                   className = "reviews_modal_quill"     
-                  // ref={quillref}
-                  // ref='editor'
-                  // modules={modules} 
                   value={Props.product.arasuzi} 
-                  // theme="bubble" 
                   theme="bubble"
                   readOnly={true}       
                 />

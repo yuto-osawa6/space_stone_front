@@ -45,7 +45,6 @@ export const UserShowOverviewEmotion:React.FC<Props> = function UserShowOverview
   //   handleSetup()
   // },[])
 
-  // console.log(Props)
 
   return(
     <>

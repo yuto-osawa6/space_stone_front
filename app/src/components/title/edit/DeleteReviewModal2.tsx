@@ -1,5 +1,4 @@
 import { Button, FormHelperText, Modal } from "@mui/material"
-// import { submitSpin } from "color/submit-spin"
 import { product } from "@/interfaces/product"
 import { review } from "@/interfaces/review"
 import { execDeleteReview } from "@/lib/api/products"
@@ -8,11 +7,8 @@ import { ErrorMessage } from "@/lib/ini/message"
 import React, { useState } from "react"
 import { TailSpin } from "react-loader-spinner"
 import { useDispatch } from "react-redux"
-// import { ErrorMessage } from "share/message"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { updateReviewAction } from "@/store/reviewUpdate/actions";
-
-
 
 type Props = {
   open: boolean
@@ -31,7 +27,6 @@ export const DeleteReviewModal2:React.FC<Props> = function DeleteReviewModal2Fun
     if(Props.product==undefined)return
     setSubmitLoading(true)
     const res = await execDeleteReview(Props.product.id,Props.review.id)
-    console.log(res)
     if(res.data.status==200){
       dispatch(updateReviewAction(true))
       dispatch(pussingMessageDataAction(res.data.message))
@@ -66,7 +61,7 @@ export const DeleteReviewModal2:React.FC<Props> = function DeleteReviewModal2Fun
               onClick = {handleSubmit}
               className={"tail-spin-loading"}
             >削除
-             {submitLoading==true&&(
+            {submitLoading==true&&(
               <TailSpin color={submitSpin.color} height={20} width={20} />
             )}
             </Button> 

@@ -2,8 +2,6 @@ import { product } from "@/interfaces/product"
 import { execWeekliyRankingsMain } from "@/lib/api/main"
 import { useEffect, useState } from "react"
 import { WeekliyRankingsMainList } from "./weekly/weeklyRankingMainList"
-// import { WeekliyRankingsMainList } from "./weeklyRankingMainList"
-// import { weeklyRankingMainList } from "./weeklyRankingMainList"
 
 type weekly = {
   id:number
@@ -17,17 +15,14 @@ export const WeekliyRankingsMain:React.FC = function WeekliyRankingsMainFunc(){
   const handleFirst = async() => {
     const res = await execWeekliyRankingsMain()
     if(res.status == 200){
-      console.log(res)
       setWeekliy(res.data.weekly)
     }else{
-
     }
   }
   useEffect(()=>{
     handleFirst()
   },[])
 
-  // console.log(weekly)
 
   return(
     <>

@@ -1,11 +1,9 @@
 import { FormControl, FormControlLabel, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-// import { ProductReviews } from "component/products/reviews/ProductReviews";
 import { Productshowcontext } from "@/contexttype/contexttype";
 import { execProductShowReview, execSecondUpdateReview } from "@/lib/api/products";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Outlet, useParams } from "react-router-dom";
 import { RootState } from "@/store";
 import { updateReviewAction } from "@/store/reviewUpdate/actions";
 import { ShowCloudsItems } from "../top/ShowCloudsItems";
@@ -16,58 +14,41 @@ type Review = {
   episordId: null | number
   id: number
   discribe:string
-  // productId: number
-  // user
 }
 type Props = {
   children:React.ReactNode
 }
 
 export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFunc(Props){
-  // console.log("aaaagdgdasgdalkmkdsafmadsfoafio")
   const [episords,setEpisords] = useState<string[]>([])
   const router = useRouter()
   const {pid} = router.query
-  // const params = useParams();
   const params_id = pid
   const [items,setItems] = useState<Review[]>([])
-
   let  isMounted = true;
   const handleFirst = async() => {
-    console.log("aaa")
     // check-3
-    // console.log("aaaagdgdasgdalkmkdsafmadsfoafio44")   
-    // console.log(params_id) 
-    // console.log(router.query)
     if (params_id==undefined) return
     const res = await  execProductShowReview(params_id as string,current,episords)
     if(res.status == 200){
-      console.log(res)
       if( isMounted){
         setItems(res.data.reviews)
         GfNavigation(res.data.itemLength)
       }
     }else{
-
     }
   }
 
   // -----------------------------------------
   const props = useContext(Productshowcontext)
-
-  // 
   const GfNavigation = (Props:number) => {
-    const limit = Math.ceil(Props / 2)
-    // console.log(limit)
+    const limit = Math.ceil(Props / 50)
     currentPage(current,limit)
     SetPage(limit)
   }
-
   const [page,SetPage] = useState<number>(1)
   const [current,SetCurrent] = useState<number>(1)
-
-  useEffect(()=>{ 
-    // console.log("aaaagdgdasgdalkmkdsafmadsfoafio33")    
+  useEffect(()=>{  
     const timer = setTimeout(() => {
       handleFirst()
     }, 500)
@@ -78,7 +59,6 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
   },[current,episords,params_id])
   
   const [pageNaviGation,setPageNaviGation] = useState<number[]>([])
-  
   const currentPage = (i:number,c:number) => {
   if (c >= 6){
   
@@ -119,13 +99,9 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
     SetPage(1)
     SetCurrent(1)
   }
-
-  console.log(episords)
-  // 
   const updateReviewState = useSelector((state:RootState)=>state.updateReview)
   const userStore = useSelector((state:RootState)=>state.user)
   const dispatch = useDispatch()
-  console.log(updateReviewState)
   useEffect(()=>{
     if(updateReviewState.update == false)return
     handleSecondUpdateReview()
@@ -136,7 +112,6 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
   const handleSecondUpdateReview = async() => {
     if(props.product==undefined)return
     const res = await execSecondUpdateReview(props.product?.id,userStore.user.id)
-    console.log(res)
     if(res.status==200){
       // check-1 
       if(isMounted){
@@ -151,7 +126,7 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
 
   return(
     <>
-     <div className = {`show_top_contens`}> 
+      <div className = {`show_top_contens`}> 
         <div className = {`show_top_dummy p_contens_grid_color${props.switchnumber}`}>
         </div>
         <div className="Overview">
@@ -212,20 +187,15 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
             })}
           </>
           )}
-         
-        
         </div>
-
         <div className = "ArticlesContainerPage"
         style={{position:"relative"}}
         >
             <ul>
-           
             <li
             onClick={currentFirstHandler}
             className={current==1?"activeCurrent":""}
             >1</li>
-           
             {page>5&&current!=1&&(
               <li
               onClick={currentPrevHandler}
@@ -233,23 +203,20 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
             )}
             {pageNaviGation.map((item,index)=>
             {
-              // console.log(item!=1&&(item!=page||page!=1))
               return(
                 
                   <React.Fragment
                     key={index}
                     >
                   {item!=1&&item!=page&&(
-                     <li
+                    <li
                     key={item}
                     onClick={()=>currentSetHandler(item)}
                     className={current==item?"activeCurrent":""}
-                     >{item}</li>
+                    >{item}</li>
                   )}    
                   </React.Fragment>     
-      
               )
-             
             })}
             {page>5&&current!=page&&(
               <li
@@ -258,14 +225,12 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
             )}
             {page>1&&(
             <li
-             onClick={currentMaxHandler}
-             className={current==page?"activeCurrent":""}
+              onClick={currentMaxHandler}
+              className={current==page?"activeCurrent":""}
             >{page}</li>
             )}
             </ul>
           </div>
-      
-          {/* <Outlet/> */}
           {Props.children}
       </div>
     </>

@@ -9,15 +9,12 @@ type Props = {
 }
 
 export const UserShowLikesProductsItem:React.FC<Props> = function UserShowLikesProductsItemFunc(Props){
-
-  // const navigate = useNavigate()
   const router = useRouter()
   const dispatch = useDispatch()
   const navigateHandler = () => {
     dispatch(actionSettingProductData2(Props.product));
     router.push(`/title/${Props.product.id}`)
   }
-  // console.log(Props)
   return(
     <>
       <div className = "UserShowLikesProductsItem"
@@ -25,7 +22,6 @@ export const UserShowLikesProductsItem:React.FC<Props> = function UserShowLikesP
       onClick={navigateHandler}
       >
         <img src={Props.product.imageUrl}/>
-        {/* {Props.product.yourScore} */}
       </div>
     </>
   )

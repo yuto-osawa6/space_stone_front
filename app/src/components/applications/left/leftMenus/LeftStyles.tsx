@@ -10,6 +10,9 @@ import { AllDeleteSubClassAction } from "@/store/subsearches/actions"
 import { deletingtodoGenresDataALLAction } from "@/store/todogenres/actions"
 import { pussingtodoStylesDataAction } from "@/store/todostyles/actions"
 import { DestroyYearSearchAction } from "@/store/year/actions"
+import { useLocale } from "@/lib/ini/local/local"
+import { useEffect } from "react"
+import { useStyleJa } from "@/hook/useStyle"
 
 type Props =  {
   id:number
@@ -33,12 +36,14 @@ const LeftStyle: React.FC<Props> = function LeftStyleFUnc({name,count,id}){
     dispatch(deletingtodoKisetsuDataAllAction())
     router.push("/search")
   }
+  // const {t,locale} = useLocale()
+  const {nameStyle} = useStyleJa(name)
 
   return(
     <li className = "LeftFormatsList"
     onClick={clickHandler}
     >
-      {name}
+      {nameStyle}
       <span>({count})</span>
     </li>
   )

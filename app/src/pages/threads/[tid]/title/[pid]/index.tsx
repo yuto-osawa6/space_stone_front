@@ -8,6 +8,7 @@ import { ProductThreads } from "@/components/title/thread/form/ProductThreads"
 import { product } from "@/interfaces/product"
 import { review, review_comments } from "@/interfaces/review"
 import { ssr_url } from "@/lib/client/clientssr"
+import { useLocale } from "@/lib/ini/local/local"
 import { GetServerSideProps } from "next"
 import { NextSeo } from "next-seo"
 
@@ -18,7 +19,6 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   const cookies = nookies.get(context)
   const { pid,tid } = context.query
   try{
-    // const query_params = new URLSearchParams(params); 
     const [res] = await Promise.all([
       fetch(`${ssr_url}/products/${pid as string}/thereds/${tid as string}?page=1`,{
         headers:{
@@ -39,17 +39,12 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
       } 
     };
   }else{
-    // return {props: { statesCode:res.status}}
     return { notFound:true}
   }
   }catch{
-    // return  {props: { statesCode:500}}
     return { notFound:true}
   }
 }
-// type Props = {
-//   data:productShow
-// }
 
 
 type Props = {
@@ -62,12 +57,13 @@ type Props = {
 }
 
 
+
 const ThreadShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
-  // const fallback= Props.fallback
+  const {t} = useLocale()
   return(
     <>
       <NextSeo
+      title={`Thread - ${t.domain}`}
       canonical = {`https://meruplanet.com/title/${Props.data.product.id}/threads/${Props.data.review.id}`}
       />
       <ProductThreads

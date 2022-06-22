@@ -2,7 +2,6 @@
 
 
 import { Button, MenuItem, SelectChangeEvent, TextField,Select as SelectMaterial, FormHelperText } from "@mui/material";
-// import { Select as SelectMaterial} fo
 import { genre, productForm } from "@/interfaces/product";
 import { execCreateCharacter, execGetCharacterList } from "@/lib/api/admin/character";
 import { execCreateFormat, execGetFormatsList } from "@/lib/api/admin/formats";
@@ -10,38 +9,28 @@ import { execCreateGenreLib, execGetGenresList } from "@/lib/api/admin/janls";
 import { execCreateStaffLib, execGetStaffList } from "@/lib/api/admin/staff";
 import { execCreateStudiosLib, execGetStudiosList } from "@/lib/api/admin/studios";
 import { useEffect, useRef, useState } from "react";
-// import Select from "react-select/dist/declarations/src/Select";
 import Select, { InputActionMeta } from 'react-select'
 import { StaffRollEdit } from "./StaffRollEdit";
-// import { StaffRollsFormList } from "./StaffRollsFormList";
 
 type Props = {
   activeStep : number
-
   childFunc4: React.MutableRefObject<any>
   completed: {[k: number]: boolean;}
   setCompleted:React.Dispatch<React.SetStateAction<{[k: number]: boolean;}>>
   handleNext: () => void
-
   setStudiosArray: React.Dispatch<React.SetStateAction<string[]>>
-
   staffMiddle:character[]
-  // setStaffMiddle: React.Dispatch<React.SetStateAction<character[]>>
   setStaffMiddle: React.Dispatch<React.SetStateAction<character[]>>
-   // formProduct
-   formProduct:productForm
+  formProduct:productForm
 }
 
 type selectOption = {
   value: string;
   label: string;
 }
-
 type character = {
-  // characterId:number
   castId:string
   characterName:string
-  // characterImageUrl?:string
 }
 export const ProductFormList4Edit:React.FC<Props> = (Props) => {
   const [characterPlot,setCharacterPlot] = useState<character[]>(Props.formProduct.formOccupation)
@@ -64,7 +53,6 @@ export const ProductFormList4Edit:React.FC<Props> = (Props) => {
   const handleGetStaffList = async() => {
     const res = await execGetStaffList()
     if (res.status == 200){
-      console.log(res)
       setCharacter(res.data.staffs)
     }else{
 
@@ -72,29 +60,17 @@ export const ProductFormList4Edit:React.FC<Props> = (Props) => {
   }
 
   const handleSelectChangeCharacter = (value:any) => {
-    console.log(value)
     const current_value = value.map((item:any) => item.value)
-    console.log(current_value)
     setCharacterIdList(value)
-    // setCharacterPlot([])
-    // if(characterPlot.length<value.length){
-
-    
-    // } else if(characterPlot.length>value.length){
-      const character_filter = characterPlot.filter(item => current_value.includes(item.castId))
-      childFunc01.current = childFunc01.current.filter((item:any) => current_value.includes(item.id))
-      // console.log(character_filter)
-      setCharacterPlot(character_filter)
-      setStaffValidateText("")
-    // }
-  
+    const character_filter = characterPlot.filter(item => current_value.includes(item.castId))
+    childFunc01.current = childFunc01.current.filter((item:any) => current_value.includes(item.id))
+    setCharacterPlot(character_filter)
+    setStaffValidateText("")
   }
-
   // create staff -------------------------------------
   const [addCharacter,setAddCharacter] = useState<string | undefined>("")
   const [addCharacterError,setAddCharacterEroor] = useState<boolean>(false)
   const [addCharacterValidateText,setAddCharacterValidateText] = useState<string>()
-  // const [addedGenre,setAddedGenre] = useState<string>("")
   const handleChangeAddCharacter = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
     setAddCharacter(e?.currentTarget.value)
     if(addCharacterError==true){
@@ -111,7 +87,6 @@ export const ProductFormList4Edit:React.FC<Props> = (Props) => {
     }
     const res = await execCreateStaffLib(addCharacter)
     if (res.status == 200){
-      console.log(res)
       if(res.data.status==200){
         setOnMessage(true)
         setMessage(`フォーマット(${res.data.staff.name})が追加されました`)
@@ -121,11 +96,7 @@ export const ProductFormList4Edit:React.FC<Props> = (Props) => {
 
     }
   }
- 
-
   // -----------------------------------------message
- 
-
   const [onMessage,setOnMessage] = useState<boolean>(false)
   useEffect(() => {
     const interval = setInterval(() => {
@@ -139,7 +110,6 @@ export const ProductFormList4Edit:React.FC<Props> = (Props) => {
 
 const [isMenuOpen,setIsMenuOpen] = useState<boolean>(false)
   const handleInputChange = (newValue: string, actionMeta: InputActionMeta) => {
-    console.log(newValue,actionMeta)
     if(newValue==""){
       setIsMenuOpen(false)
     }else if(newValue.length>1){
@@ -147,13 +117,6 @@ const [isMenuOpen,setIsMenuOpen] = useState<boolean>(false)
     }
     
   }
-
-// console.log(character)
-// character -------------------
-// const handleChangeCharacterName = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined,index:number,castId:string) => {
-//   console.log(index,e,castId)
-//   setCharacterPlot([characterPlot[index],{characterName:e?.target.value as string,castId}])
-// }
 
 // studio ---------------------------------------------------------------------------------------
   // select
@@ -169,7 +132,6 @@ useEffect(()=>{
 const handleFirstGetStudiosList = async() => {
   const res = await execGetStudiosList()
   if (res.status == 200){
-    console.log(res)
     setGenres(res.data.genres)
   }else{
 
@@ -177,7 +139,6 @@ const handleFirstGetStudiosList = async() => {
 }
 
 const selectChangehandle = (value:any) => {
-  console.log(value)
   setGenresIdList(value)
   setStudioValidateText("")
 
@@ -204,7 +165,6 @@ const handleSubmitGenres = async() => {
   }
   const res = await execCreateStudiosLib(addGenre)
   if (res.status == 200){
-    console.log(res)
     if(res.data.status==200){
       setOnMessage(true)
       setMessage(`ジャンル(${res.data.genre.company})が追加されました`)
@@ -214,9 +174,6 @@ const handleSubmitGenres = async() => {
 
   }
 }
-
-
-// console.log(characterPlot)
 
 // ----------------------------------------
   // studio
@@ -238,45 +195,28 @@ const handleSubmitGenres = async() => {
     const array:number[] = []
     childFunc01.current.map((i:Function,index:number)=>
     array.push(childFunc01.current[index].func())
-    // childFunc01.current[index]()
     )
-    console.log(array)
-
     let total = array.reduce(function(sum, element){
       return sum + element;
     }, 0);
-
-    console.log(total)
     if(total>0){
       return
     }
-
-    console.log(genresIdList,characterPlot)
-    console.log(Props.formProduct.formOccupation)
     // state
     Props.setStudiosArray(genresIdList.map(item=>item.value))
     Props.setStaffMiddle(characterPlot)
-
-
-
     const newCompleted = Props.completed
     newCompleted[Props.activeStep] = true
     Props.setCompleted(newCompleted)
     Props.handleNext();
-
-    
   }
-
-
   Props.childFunc4.current = handleErrorCheck
   return(
     <>
       {Props.completed[3]!=true?
       <div className = "Stepper4" style={Props.activeStep!=3?{display:"none"}:undefined}>
-
         <div className = {`FormProductList2Message ${onMessage == true?"activeFormProductList2Message":""}`}>
           {message}
-          {/* {count} */}
         </div>
         <div className = "FormProductLabel">
           Staff & Studio情報の追加
@@ -287,13 +227,11 @@ const handleSubmitGenres = async() => {
         </div>
 
         <Select
-          // inputValue={pokemon}
           placeholder={"Genres select..."}
           options={genres} 
           closeMenuOnSelect={false}
           isMulti
           value={genresIdList}
-          // components={animatedComponents}
           onChange={selectChangehandle}
           styles={{ menu: (provided, state) => ({ ...provided, zIndex: 10 }) }}
           />
@@ -307,28 +245,20 @@ const handleSubmitGenres = async() => {
             id="outlined-basic"
             label="Add Studio"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
             helperText={addGenreValidateText}
             onChange={handleChangeAddGenre}
             size="small"
             fullWidth
           />
           <Button variant="contained"
-              // className = "TheredModalButton"
-              onClick = { handleSubmitGenres }
-            >
+            onClick = { handleSubmitGenres }
+          >
             Add
           </Button>
           </div>
-
-        {/* -------------------------------------------------------- */}
-
-
-
         <div className = "FormProductList2Genres">
           Staff
         </div>
-        {/* *2文字以上の入力が必要です。 */}
         <Select
           placeholder={"Characters select..."}
           options={character} 
@@ -336,12 +266,8 @@ const handleSubmitGenres = async() => {
           isMulti
           value={characterIdList}
           menuIsOpen={isMenuOpen}
-          // components={animatedComponents}
           onChange={handleSelectChangeCharacter}
           styles={{ menu: (provided, state) => ({ ...provided, zIndex: 10 }) }}
-          // onInputChange={inputValue =>
-          //   (inputValue.length <= 1 ? inputValue : inputValue.substr(0, 1))
-          // }
           onInputChange={handleInputChange}
           />
         <FormHelperText className = "helpertexts">{staffValidateText}</FormHelperText>
@@ -354,45 +280,22 @@ const handleSubmitGenres = async() => {
           id="outlined-basic"
           label="Add Staff"
           variant="outlined"
-          // helperText={inputRef?.current?.validationMessage}
           helperText={addCharacterValidateText}
           onChange={handleChangeAddCharacter}
           size="small"
           fullWidth
         />
         <Button variant="contained"
-            // className = "TheredModalButton"
-            onClick = { handleSubmitCharacter }
-          >
+          onClick = { handleSubmitCharacter }
+        >
           Add
         </Button>
         </div>
-
         <div className = "FormProductList2Genres">
           Role
         </div>
-
         {characterIdList.map((item,index)=>{
           return(
-            // <div className = "CharacterList" key={index}>
-            //   <div className = "CastTitle">
-            //     {item.label}{item.value}
-            //   </div>
-            //   <TextField
-            //     // error={addGenreError}
-            //     inputProps={{ maxLength: 50, pattern: "^[a-zA-Z0-9_]+$" }}
-            //     placeholder="character名を入力してください(50文字以内）"
-            //     defaultValue=""
-            //     id="outlined-basic"
-            //     label="Character"
-            //     variant="outlined"
-            //     // helperText={inputRef?.current?.validationMessage}
-            //     // helperText={addGenreValidateText}
-            //     onChange={(e)=>handleChangeCharacterName(e,index,item.value)}
-            //     size="small"
-            //     fullWidth
-            //   />
-            // </div>
             <StaffRollEdit
               item={item}
               key={item.value}
@@ -405,8 +308,6 @@ const handleSubmitGenres = async() => {
             />
           )
         })}
-
-
       </div>
       :<></>
       }

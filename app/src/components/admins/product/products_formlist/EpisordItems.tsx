@@ -2,7 +2,6 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns"
 import LocalizationProvider from "@mui/lab/LocalizationProvider"
 import { FormHelperText, TextField } from "@mui/material"
 import { useEffect, useMemo, useRef, useState } from "react"
-// import ReactQuill, { Quill } from "react-quill"
 import TimePicker from '@mui/lab/TimePicker';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 
@@ -23,7 +22,6 @@ type Props = {
   array_number:number
   episord:episord[]
   setEpisord: React.Dispatch<React.SetStateAction<episord[]>>
-
   childFunc01:React.MutableRefObject<any>
   array: number[]
 }
@@ -35,16 +33,13 @@ export const EpisordItems:React.FC<Props> = (Props) => {
     {
     toolbar:{ 
       container:[
-      // [{ font: [] }],
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
       ["bold", "italic", "underline", "strike"],
       [{ color: [] }, { background: [] }],
-      // [{ script:  "sub" }, { script:  "super" }],
       ["blockquote"],
       ["code-block"],
       [{ list:  "ordered" }, { list:  "bullet" }],
       [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
-      // ["link", "image", "video"],
       ['netflix'],
       ['boxcontents'],   
     ],
@@ -77,7 +72,6 @@ export const EpisordItems:React.FC<Props> = (Props) => {
     })
 
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:value,
@@ -104,7 +98,6 @@ export const EpisordItems:React.FC<Props> = (Props) => {
     })
 
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:episordItem.episordTittle,
@@ -128,9 +121,7 @@ export const EpisordItems:React.FC<Props> = (Props) => {
       episordTime:episordItem.episordTime,
       episordReleaseDate:episordItem.episordReleaseDate
     })
-
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:episordItem.episordTittle,
@@ -140,19 +131,14 @@ export const EpisordItems:React.FC<Props> = (Props) => {
       episordReleaseDate:episordItem.episordReleaseDate
     }
     Props.setEpisord(copy)
-
   }
   // time
 
   const [time, setTime] = useState<Date | null>(null);
   const [timeValidationText,setTimeValidationText] = useState<string>("")
-
-  // const [deliveryStart, setDeliveryStart] = useState<Date | null>(null);
-
   useEffect(()=>{
     handleSetUpTime()
   },[time])
-
   const handleSetUpTime= ()=> {
     setEpisordItem({
       episordNumber:Props.index+1,
@@ -162,9 +148,7 @@ export const EpisordItems:React.FC<Props> = (Props) => {
       episordTime:time,
       episordReleaseDate:episordItem.episordReleaseDate
     })
-
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:episordItem.episordTittle,
@@ -174,14 +158,11 @@ export const EpisordItems:React.FC<Props> = (Props) => {
       episordReleaseDate:releaseDate
     }
     Props.setEpisord(copy)
-
   }
 
   // release
   const [releaseDate, setReleaseDate] = useState<Date | null>(null);
   const [releaseDateValidationText,setReleaseDateValidationText] = useState<string>("")
-  // const [deliveryStart, setDeliveryStart] = useState<Date | null>(null);
-
   useEffect(()=>{
     handleSetUpReleateDate()
   },[releaseDate])
@@ -197,7 +178,6 @@ export const EpisordItems:React.FC<Props> = (Props) => {
     })
 
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:episordItem.episordTittle,
@@ -207,9 +187,7 @@ export const EpisordItems:React.FC<Props> = (Props) => {
       episordReleaseDate:releaseDate
     }
     Props.setEpisord(copy)
-
   }
-
   const isInvalidDate = (date: Date | null):boolean => {
     if(date==null){
       return true
@@ -218,17 +196,11 @@ export const EpisordItems:React.FC<Props> = (Props) => {
   }
   // -------------------------------
   const handleError = ():number => {
-    console.log("aaa")
     let count = 0
     if(title.length==0){
       setError(true)
       count += 1
     }
-    // if(imageUrl.length==0){
-    //   setError2(true)
-    //   count += 1
-    // }
-
     const blob = new Blob([valueArasuzi])
     const editor = quillref.current?.getEditor()
     if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length>300){
@@ -239,7 +211,6 @@ export const EpisordItems:React.FC<Props> = (Props) => {
       count += 1
     }
     if(blob.size>3000){
-      console.log(new Blob([valueArasuzi.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")]).size)
       setArasuziValidationText("サイズが大きすぎます。")
       count += 1
     }
@@ -251,21 +222,14 @@ export const EpisordItems:React.FC<Props> = (Props) => {
       setReleaseDateValidationText("適切な形で入力してください。")
       count += 1
     }
-
-
     Props.array.push(count)
     return count
-  
   }
-  
-  
     Props.childFunc01.current[Props.index] = {index:Props.index,func:handleError}
-    // id:Props.item.value
 
   return(
     <>
       {Props.index+1}話
-      {/* {Props.array_number} */}
       <TextField
         error={Error}
         inputProps={{ maxLength: 100, pattern: "^[0-9_]+$" }}
@@ -274,28 +238,22 @@ export const EpisordItems:React.FC<Props> = (Props) => {
         id="outlined-basic"
         label="episord Title"
         variant="outlined"
-        // helperText={inputRef?.current?.validationMessage}
-        // helperText={episordValidateText}
         onChange={handleChangeEpisordTitle}
         size="small"
         fullWidth
       />
-       <TextField
+      <TextField
         error={Error2}
-        // error={episordError}
         inputProps={{ maxLength: 2000, pattern: "^[0-9_]+$" }}
         placeholder="Episord ImageUrlを入力してください(30文字以内）"
         defaultValue=""
         id="outlined-basic"
         label="episord ImageUrl"
         variant="outlined"
-        // helperText={inputRef?.current?.validationMessage}
-        // helperText={episordValidateText}
         onChange={handleChangeEpisordImageUrl}
         size="small"
         fullWidth
       />
-      
       <ReactQuill 
         className = "adminProductDescriptionQuill"
         ref={quillref}
@@ -306,7 +264,6 @@ export const EpisordItems:React.FC<Props> = (Props) => {
       <FormHelperText className = "helpertexts">{arasuziValidationText}</FormHelperText>
       
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-      {/* <Stack spacing={3}> */}
         <TimePicker
           ampm={false}
           openTo="hours"
@@ -320,30 +277,13 @@ export const EpisordItems:React.FC<Props> = (Props) => {
           }}
           renderInput={(params) => <TextField {...params} />}
         /> 
-        {/* </Stack> */}
         </LocalizationProvider>
         <FormHelperText className = "helpertexts">{timeValidationText}</FormHelperText>
       
       
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-      {/* <Stack spacing={3}> */}
-        {/* <TimePicker
-          ampm={false}
-          openTo="hours"
-          views={['hours', 'minutes', 'seconds']}
-          inputFormat="HH:mm:ss"
-          mask="__:__:__"
-          label="With seconds"
-          value={releaseDate}
-          onChange={(newValue) => {
-            setReleaseDate(newValue);
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />  */}
-        {/* </Stack> */}
         <DateTimePicker
           label="配信開始"
-          // type="datetime-local"
           value={releaseDate}
           onChange={(newValue) => {
             setReleaseDate(newValue);
@@ -352,10 +292,6 @@ export const EpisordItems:React.FC<Props> = (Props) => {
         />
         </LocalizationProvider>
         <FormHelperText className = "helpertexts">{releaseDateValidationText}</FormHelperText>
-
-       
-
-     
     </>
   )
 }

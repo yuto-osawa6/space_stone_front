@@ -1,6 +1,5 @@
 import { tags } from "@/interfaces/main"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { DeletingCastsDataAllAction } from "@/store/casts/actions"
 import { DestroyTimeSearchAction } from "@/store/during/actions"
 import { deletingtodoKisetsuDataAllAction, pussingtodoKisetsuDataAction } from "@/store/kisetsu/actions"
@@ -18,7 +17,6 @@ type Props = {
   tag : tags
 }
 export const TagsGrid:React.FC<Props> = function TagsGridFunc(Props){
-  // const navigate = useNavigate()
   const router = useRouter()
   const dispatch = useDispatch()
   const navigateYearHandler = () => {
@@ -34,7 +32,6 @@ export const TagsGrid:React.FC<Props> = function TagsGridFunc(Props){
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
     router.push('/search')
-    // navigate("/search")
   }
   const navigateSeasonHandler = () => {
     dispatch(pussingtodoKisetsuDataAction(String(Props.tag.seasonId),Props.tag.kisetsu))
@@ -49,7 +46,6 @@ export const TagsGrid:React.FC<Props> = function TagsGridFunc(Props){
     // 2.0
     dispatch(deletingtodoStudiosDataALLAction())
     router.push('/search')
-    // navigate("/search")
   }
   return(
     <>

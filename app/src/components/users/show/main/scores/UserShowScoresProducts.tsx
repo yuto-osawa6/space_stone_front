@@ -3,7 +3,6 @@ import { product } from "@/interfaces/product"
 import { execUserShowLikesProductsHandler, execUserShowScoresProductsHandler } from "@/lib/api/users"
 import React, { useContext, useEffect, useState } from "react"
 import { UserShowScoresProductsItem } from "./UserShowScoresProductsItem"
-// import { UserShowLikesProductsItem } from "./UserShowLikesProductsItem"
 
 type score = {
   all: number
@@ -30,15 +29,12 @@ export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFu
   const fistSetupHandler = async() => {
     const res = await execUserShowScoresProductsHandler(user.id,current,scoreIndex)
     if (res.status == 200){
-      console.log(res)
       setProduct(res.data.products)
       setYourScores(res.data.yourSocres)
       GfNavigation(res.data.length.length)
     }else{
-
     }
   }
-
   useEffect(()=>{
     fistSetupHandler()
   },[current,scoreIndex])
@@ -46,14 +42,12 @@ export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFu
   const [pageNaviGation,setPageNaviGation] = useState<number[]>([])
 
   const GfNavigation = (Props:number) => {
-    const limit = Math.ceil(Props / 2)
-    // console.log(limit)
+    const limit = Math.ceil(Props / 50)
     currentPage(current,limit)
     SetPage(limit)
 }
 
   const currentPage = (i:number,c:number) => {
-    // console.log(i,c)
     if (c >= 6){
 
     if(i <= 3){
@@ -84,14 +78,11 @@ export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFu
 
   // ----------------------------------
   const array = ['平均','総合','ストーリー','アニメーション','演出','音楽','キャラクター']
-  
   const handleChangeScoreValue = (index:number) => {
     setScoreIndex(index)
     SetCurrent(1)
     SetPage(1)
-  }
-  console.log(yourScores)
- 
+  } 
   return(
     <>
       <div className = "UserShowLikesProducts">
@@ -111,7 +102,6 @@ export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFu
         >
           <ul className="ArticlesContainerNavigateUl"
           style={{
-            // borderBottom: "1px solid",
             padding: "10px",
             display: "flex",
             gap:"10px"
@@ -143,18 +133,16 @@ export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFu
                   />
                 )
               })}
-           </>
+          </>
           )}
         </div>
         {product?.length>0&&(
         <div className = "ArticlesContainerPage">
             <ul>
-           
             <li
             onClick={currentFirstHandler}
             className={current==1?"activeCurrent":""}
             >1</li>
-           
             {page>5&&current!=1&&(
               <li
               onClick={currentPrevHandler}
@@ -162,23 +150,21 @@ export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFu
             )}
             {pageNaviGation.map((item,index)=>
             {
-              // console.log(item!=1&&(item!=page||page!=1))
               return(
                 
                   <React.Fragment
                         key={index}
                         >
                   {item!=1&&item!=page&&(
-                     <li
+                    <li
                     key={item}
                     onClick={()=>currentSetHandler(item)}
                     className={current==item?"activeCurrent":""}
-                     >{item}</li>
+                    >{item}</li>
                   )}    
                   </React.Fragment>     
       
               )
-             
             })}
             {page>5&&current!=page&&(
               <li
@@ -187,8 +173,8 @@ export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFu
             )}
             {page>1&&(
             <li
-             onClick={currentMaxHandler}
-             className={current==page?"activeCurrent":""}
+              onClick={currentMaxHandler}
+              className={current==page?"activeCurrent":""}
             >{page}</li>
             )}
             </ul>

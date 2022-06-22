@@ -22,16 +22,12 @@ type avgScore = {
 export const Top100:React.FC = function Top100Func(){
   const PeriodStore = useSelector((state:RootState)=>state.SortPeriod)
   const dispatch = useDispatch()
-
   const [monthList,setMonthList] = useState<month[]>([])
   const [currentPeriod,setCurrentPeriod] = useState<Date | undefined>(PeriodStore.month)
   const [currentNumber,setCurrentNumber] = useState<number>(PeriodStore.periodnumber)
-
   const firstHandler = async() => {
-
     const res = await execMonthDuringHandler()
     if(res.status == 200){
-      console.log(res)
       setMonthList(res.data.month)
     }else{
 
@@ -62,56 +58,39 @@ export const Top100:React.FC = function Top100Func(){
   const [products,setProducts]= useState<product[]>([])
   const [avgScore,setAvgScore] = useState<avgScore>()
   const top100Handler = async() => {
-    console.log("aaaaaaaaaaaaaaaaaaaaiiiiiiiiiiiiii")
     const res = await execTop100Handler(currentPeriod,currentNumber)
     if(res.status == 200){
-      console.log(res)
       setProducts(res.data.products)
       setAvgScore(res.data.scores.avgScore)
     }else{
-      // console.log(11111111111111111)
     }
   }
 
   useEffect(()=>{
-    console.log("aaaaaaaaaaaaaaaa")
     top100Handler()
   },[currentNumber,currentPeriod])
-// },[PeriodStore])
-
-  console.log(currentNumber)
-
   // ------------------------------------
-
   const grid = useSelector((state: RootState) => state.grid);
-
-
   const [left_grid,setLeft_grid] = useState<number[]>([])
   const [maxleft,setMaxLeft] = useState<number>(0)
-
   const [left_grid02,setLeft_grid02] = useState<number[]>([])
   const [maxleft02,setMaxLeft02] = useState<number>(0)
-  // 
+
   // left 座標
 const pushgridleft = ( flg:number )=> {
   setLeft_grid([...left_grid, left_grid.push(flg)]) ;
-  setMaxLeft(Math.max(...left_grid))
-  
+  setMaxLeft(Math.max(...left_grid)) 
 }
-
 const pushgridleft02 = ( flg:number )=> {
   setLeft_grid02([...left_grid02, left_grid02.push(flg)]) ;
   setMaxLeft02(Math.max(...left_grid02))
   
 }
-
 const [right,setRight] = useState<number>(0)
 const ref = useRef<HTMLDivElement>(null!)
 useEffect(()=>{
   setRight(ref.current.getBoundingClientRect().right)
 },[])
-
-console.log(currentSelect)
 
   return(
     <>
@@ -152,26 +131,6 @@ console.log(currentSelect)
                 className={currentSelect==0?"activeTop100":""}
                 onClick={resetMonthDuringHandler}
                 >全て</li>
-                {/* <li
-                className={currentSelect==13?"activeTop100":""}
-                onClick={resetMonthDuringHandler}
-                >全て</li>
-                <li
-                className={currentSelect==13?"activeTop100":""}
-                onClick={resetMonthDuringHandler}
-                >全て</li>
-                <li
-                className={currentSelect==13?"activeTop100":""}
-                onClick={resetMonthDuringHandler}
-                >全て</li>
-                <li
-                className={currentSelect==13?"activeTop100":""}
-                onClick={resetMonthDuringHandler}
-                >全て</li>
-                <li
-                className={currentSelect==13?"activeTop100":""}
-                onClick={resetMonthDuringHandler}
-                >全て</li> */}
                 {monthList.map((item)=>{
                   return(
                     <li 
@@ -186,10 +145,8 @@ console.log(currentSelect)
             </div>
           </div>
         </div>
-        {/* grid */}
         {grid.grid === "01"&&(
         <div className = "Top100ProductList products_infinitescroll"
-        // ref = {ref}
         > 
           {products.map((item: product)=>{
             return(
@@ -204,10 +161,9 @@ console.log(currentSelect)
             )
           })}
         </div>
-         )}
-         {grid.grid === "02"&&(
+        )}
+        {grid.grid === "02"&&(
         <div className = "Top100ProductList products_infinitescroll02"
-        // ref = {ref}
         > 
           {products.map((item: product)=>{
             return(
@@ -222,11 +178,10 @@ console.log(currentSelect)
             )
           })}
         </div>
-         )}
+        )}
         
         {grid.grid === "03"&&(
         <div className = "Top100ProductList products_infinitescroll03 ToptensContainerGrid"
-        // ref = {ref}
         > 
           {products.map((item: product)=>{
             return(
@@ -238,11 +193,10 @@ console.log(currentSelect)
             )
           })}
         </div>
-         )}
+        )}
 
         {grid.grid === "04"&&(
         <div className = "Top100ProductList products_infinitescroll04 ArticlesAssociateProductsBox"
-        // ref = {ref}
         > 
           {products.map((item: product)=>{
             return(
@@ -254,8 +208,7 @@ console.log(currentSelect)
             )
           })}
         </div>
-         )}
-
+        )}
       </div>
     </>
   )

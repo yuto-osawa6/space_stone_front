@@ -44,10 +44,7 @@ type tierData = {
 
 }
 export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierFunc(Props){
-  // const {data} = useThisSeasonTier()
   const {data} = useExecGetThisSeasonTier()
-  // console.log(data)
-
   const [avgScore,setAvgScore] = useState<avgScore>()
   const [tierProductGroup,setTierProductGroup] = useState<TierProductGroup[]>([
   {
@@ -77,7 +74,6 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
     setUpSecond(data.tier,data.tierAverage)
   },[data])
 
-  // console.log(tierData)
   const setUpSecond = (tiers:any,tierAvg:any) => {
     tiers.forEach((i:any)=>{
       const avg = Number(tierAvg.tierAvg[i.id])
@@ -127,14 +123,9 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
 
   useEffect(()=>{
     if(updateTier===false)return
-    // handleGetUserTier()
-    // handleUpdateTierList()
     mutate('/mainblocks/mains/update_tier_list/1')
     mutate('/mainblocks/mains/user_this_season_tier/1')
     setUpdateTier(false)
-    // return () => {
-    //   isMounted3 = false
-    // };
   },[updateTier])
   return(
     <>
@@ -145,7 +136,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
       fontSize: "1.5rem"
       }}
       >
-       今シーズンのTier
+      今シーズンのTier
       </div>
       <div className=""
       style={{

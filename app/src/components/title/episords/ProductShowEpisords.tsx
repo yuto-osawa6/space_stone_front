@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react"
-// import { useParams } from "react-router-dom";
 import { execProductShowEpisord } from "@/lib/api/products"
 import { Productshowcontext } from "@/contexttype/contexttype";
 import { EpisordsItem } from "./EpisordsItem";
 import { useRouter } from "next/router";
 import { useUser } from "@/lib/data/user/useUser";
 import { CreateEpisord } from "./admin/CreateEpisord";
-// import { display } from "@mui/system";
 
 type emotions = {
   id:number
@@ -40,8 +38,6 @@ type Episords = {
 
 export const ProductShowEpisords:React.FC = function ProductShowEpisordsFunc(){
   const [episords,setEpisords] = useState<Episords[]>([])
-  // const params = useParams();
-  // const params_id = params.productId
   const router = useRouter()
   const {pid} = router.query
   const params_id = pid
@@ -51,13 +47,10 @@ export const ProductShowEpisords:React.FC = function ProductShowEpisordsFunc(){
   // ----------------------------------------
   let  isMounted = true;
   const handleFirst = async() => {
-    // check-3
-    // check-1-next
     if (params_id==undefined) return
     const res = await execProductShowEpisord(params_id as string,current)
     if(res.status == 200){
       if(isMounted==true){
-      console.log(res)
       setEpisords(res.data.episords)
       GfNavigation(res.data.episordsLength)
       }
@@ -79,7 +72,7 @@ export const ProductShowEpisords:React.FC = function ProductShowEpisordsFunc(){
   // -------------------------------------------
 
   const GfNavigation = (Props:number) => {
-    const limit = Math.ceil(Props / 2)
+    const limit = Math.ceil(Props / 50)
     currentPage(current,limit)
     SetPage(limit)
   }
@@ -112,10 +105,6 @@ export const ProductShowEpisords:React.FC = function ProductShowEpisordsFunc(){
   const currentNextHandler = () => SetCurrent(current+1)
   const currentFirstHandler = () => SetCurrent(1)
   const currentMaxHandler = () => SetCurrent(page)
-
-  // console.log(Current)
-  // console.log(page)
-
 
   // -----------------------------------------
   const props = useContext(Productshowcontext)
@@ -161,7 +150,6 @@ export const ProductShowEpisords:React.FC = function ProductShowEpisordsFunc(){
               />
             )
           })}
-
           <div className = "ArticlesContainerPage"
           style = {{position: "relative"}}
           >

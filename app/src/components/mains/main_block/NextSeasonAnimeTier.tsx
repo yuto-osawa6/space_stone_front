@@ -44,11 +44,7 @@ type tierData = {
 
 }
 export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierFunc(Props){
-  // const {data} = useThisSeasonTier()
   const {data} = useExecGetNextSeasonTier()
-  // const {data} = useNextSeasonTier()
-  console.log(data)
-
   const [avgScore,setAvgScore] = useState<avgScore>()
   const [tierProductGroup,setTierProductGroup] = useState<TierProductGroup[]>([
   {
@@ -77,8 +73,6 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
     if(data.tier==undefined)return
     setUpSecond(data.tier,data.tierAverage)
   },[data])
-
-  // console.log(tierData)
   const setUpSecond = (tiers:any,tierAvg:any) => {
     tiers.forEach((i:any)=>{
       const avg = Number(tierAvg.tierAvg[i.id])
@@ -128,14 +122,9 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
 
   useEffect(()=>{
     if(updateTier===false)return
-    // handleGetUserTier()
-    // handleUpdateTierList()
     mutate('/mainblocks/mains/update_tier_list/2')
     mutate('/mainblocks/mains/user_this_season_tier/2')
     setUpdateTier(false)
-    // return () => {
-    //   isMounted3 = false
-    // };
   },[updateTier])
   return(
     <>

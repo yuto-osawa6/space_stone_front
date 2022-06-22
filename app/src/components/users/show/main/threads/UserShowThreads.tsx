@@ -1,4 +1,3 @@
-// import { MenuProduLists } from "@/component/custom/MenuProduLists"
 import { MenuProduLists } from "@/components/share/component/MenuProduLists"
 import { UserShowContext } from "@/contexttype/contexttype"
 import { product } from "@/interfaces/product"
@@ -8,7 +7,6 @@ import { execUserShowReviewsHandler, execUserShowThreadsHandler } from "@/lib/ap
 import React, { ReactNode, useContext, useEffect, useRef, useState } from "react"
 import { HiChevronDoubleDown } from "react-icons/hi"
 import { IoSearchCircle } from "react-icons/io5"
-// import { Outlet } from "react-router-dom"
 import { UserShowReviewsItem } from "../reviews/UserShowReviewsItem"
 import { UserShowThreadItem } from "./UserShowThreadItem"
 
@@ -18,69 +16,64 @@ type Props = {
 
 export const UserShowThreads:React.FC<Props> = function UserShowThreadsFunc(Props){
  // context
- const {user} = useContext(UserShowContext)
+  const {user} = useContext(UserShowContext)
 
- // state
- const [reviews,setReviews] = useState<review[]>([])
- const [current,SetCurrent] = useState<number>(1)
- const [page,SetPage] = useState<number>(1)
- const [product,setProduct] = useState<product>()
- const [selectSort,setSelectSort] = useState<number | null>(null)
+  // state
+  const [reviews,setReviews] = useState<review[]>([])
+  const [current,SetCurrent] = useState<number>(1)
+  const [page,SetPage] = useState<number>(1)
+  const [product,setProduct] = useState<product>()
+  const [selectSort,setSelectSort] = useState<number | null>(null)
 
- useEffect(()=>{
-   firstSetUpHandler()
- },[current,product,selectSort])
+  useEffect(()=>{
+    firstSetUpHandler()
+  },[current,product,selectSort])
 
- const firstSetUpHandler = async() => {
-   const res = await execUserShowThreadsHandler(user.id,current,product?.id,selectSort)
-   if(res.status === 200){
-     console.log(res)
-     setReviews(res.data.reviews)
-     GfNavigation(res.data.reviewLength)
-   }else{
+  const firstSetUpHandler = async() => {
+    const res = await execUserShowThreadsHandler(user.id,current,product?.id,selectSort)
+    if(res.status === 200){
+      setReviews(res.data.reviews)
+      GfNavigation(res.data.reviewLength)
+    }else{
 
-   }
- }
+    }
+  }
+  const [pageNaviGation,setPageNaviGation] = useState<number[]>([])
 
- // 
- const [pageNaviGation,setPageNaviGation] = useState<number[]>([])
+  const GfNavigation = (Props:number) => {
+    const limit = Math.ceil(Props / 20)
+    currentPage(current,limit)
+    SetPage(limit)
+  }
 
- const GfNavigation = (Props:number) => {
-   const limit = Math.ceil(Props / 2)
-   console.log(limit)
-   currentPage(current,limit)
-   SetPage(limit)
-}
+  const currentPage = (i:number,c:number) => {
+    if (c >= 6){
 
- const currentPage = (i:number,c:number) => {
-   // console.log(i,c)
-   if (c >= 6){
+    if(i <= 3){
+      setPageNaviGation([1,2,3,4,5,6])
+    }else if(i == c-2){
+      setPageNaviGation([i-3,i-2,i-1,i,i+1,i+2])
+    }else if(i == c-1){
+      setPageNaviGation([i-4,i-3,i-2,i-1,i,i+1])
+    }else if(i == c){
+      setPageNaviGation([i-5,i-4,i-3,i-2,i-1,i])
+    }else{
+      setPageNaviGation([i-2,i-1,i,i+1,i+2])
+    }
+  }else{
+    const array:number[] = []
+    for (let step = 1; step <= c; step++) {
+      array.push(step)
+    }
+    setPageNaviGation(array)
+  }
+  }
 
-   if(i <= 3){
-     setPageNaviGation([1,2,3,4,5,6])
-   }else if(i == c-2){
-     setPageNaviGation([i-3,i-2,i-1,i,i+1,i+2])
-   }else if(i == c-1){
-     setPageNaviGation([i-4,i-3,i-2,i-1,i,i+1])
-   }else if(i == c){
-     setPageNaviGation([i-5,i-4,i-3,i-2,i-1,i])
-   }else{
-     setPageNaviGation([i-2,i-1,i,i+1,i+2])
-   }
- }else{
-   const array:number[] = []
-   for (let step = 1; step <= c; step++) {
-     array.push(step)
-   }
-   setPageNaviGation(array)
- }
- }
-
- const currentSetHandler = (item:number) => {SetCurrent(item) }
- const currentPrevHandler = () => SetCurrent(current-1)
- const currentNextHandler = () => SetCurrent(current+1)
- const currentFirstHandler = () => SetCurrent(1)
- const currentMaxHandler = () => SetCurrent(page)
+  const currentSetHandler = (item:number) => {SetCurrent(item) }
+  const currentPrevHandler = () => SetCurrent(current-1)
+  const currentNextHandler = () => SetCurrent(current+1)
+  const currentFirstHandler = () => SetCurrent(1)
+  const currentMaxHandler = () => SetCurrent(page)
 
 
   // ----------------product search
@@ -106,7 +99,6 @@ export const UserShowThreads:React.FC<Props> = function UserShowThreadsFunc(Prop
   const productSearchHandler = async() => {
     const res = await execProductSearchHandler(searchInput)
     if (res.status == 200){
-      console.log(res)
       setProductData(res.data.products)
     }else{
 
@@ -126,8 +118,6 @@ export const UserShowThreads:React.FC<Props> = function UserShowThreadsFunc(Prop
       if (menuOpen && ref.current && !ref.current.contains(e.target)) {
         setMenuOpen(false);
       }
-      console.log(e.target)
-      console.log(ref.current)
     };
 
     document.addEventListener("mousedown", checkIfClickedOutside);
@@ -150,8 +140,8 @@ export const UserShowThreads:React.FC<Props> = function UserShowThreadsFunc(Prop
     <div className = "UserShowReviews">
         <div className = "UserShowReviewsTitle"
         style={{
-         fontWeight:"bold",
-         margin: "20px 20px 0px 20px"
+          fontWeight:"bold",
+          margin: "20px 20px 0px 20px"
         }}
         >
           スレッド 一覧
@@ -178,11 +168,11 @@ export const UserShowThreads:React.FC<Props> = function UserShowThreadsFunc(Prop
               <IoSearchCircle/>
             </div>
             <input type="text"
-             value={searchInput}
-             autoComplete="off"
-             onChange={handleProductTitleChange}
-             onClick={menuOpenHandler}
-             placeholder="映画・TVタイトル(3文字以上)"
+              value={searchInput}
+              autoComplete="off"
+              onChange={handleProductTitleChange}
+              onClick={menuOpenHandler}
+              placeholder="映画・TVタイトル(3文字以上)"
             />
             <div className = "selected_style_icons">
               <HiChevronDoubleDown
@@ -240,12 +230,10 @@ export const UserShowThreads:React.FC<Props> = function UserShowThreadsFunc(Prop
         {reviews?.length>0&&(
         <div className = "ArticlesContainerPage">
             <ul>
-           
             <li
             onClick={currentFirstHandler}
             className={current==1?"activeCurrent":""}
             >1</li>
-           
             {page>5&&current!=1&&(
               <li
               onClick={currentPrevHandler}
@@ -253,23 +241,21 @@ export const UserShowThreads:React.FC<Props> = function UserShowThreadsFunc(Prop
             )}
             {pageNaviGation.map((item,index)=>
             {
-              // console.log(item!=1&&(item!=page||page!=1))
               return(
                 
                   <React.Fragment
                         key={index}
                         >
                   {item!=1&&item!=page&&(
-                     <li
+                    <li
                     key={item}
                     onClick={()=>currentSetHandler(item)}
                     className={current==item?"activeCurrent":""}
-                     >{item}</li>
+                    >{item}</li>
                   )}    
                   </React.Fragment>     
       
               )
-             
             })}
             {page>5&&current!=page&&(
               <li
@@ -278,8 +264,8 @@ export const UserShowThreads:React.FC<Props> = function UserShowThreadsFunc(Prop
             )}
             {page>1&&(
             <li
-             onClick={currentMaxHandler}
-             className={current==page?"activeCurrent":""}
+              onClick={currentMaxHandler}
+              className={current==page?"activeCurrent":""}
             >{page}</li>
             )}
             </ul>

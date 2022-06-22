@@ -15,9 +15,7 @@ type chatList = {
 export const Productshowcontext = React.createContext({} as {
   product:product | undefined
   switchnumber: number | undefined
-  // stats:{ [key: string]: number }
   acsesses: acsesses | undefined
-
   userReviews: userReview[]
   setUserReviews: React.Dispatch<React.SetStateAction<userReview[]>>
   productReviews: productReviews[]
@@ -26,7 +24,6 @@ export const Productshowcontext = React.createContext({} as {
   setProductThreads: React.Dispatch<React.SetStateAction<productThreads[]>>
   emotionLists: emotionList[]
   setEmotionLists: React.Dispatch<React.SetStateAction<emotionList[]>>
-
   chatList: chatList[]
   setChatList : React.Dispatch<React.SetStateAction<chatList[]>>
   Channel: any
@@ -34,7 +31,6 @@ export const Productshowcontext = React.createContext({} as {
   setProductScores:React.Dispatch<React.SetStateAction<productScores[]>>
   score: number | null
   setScore:React.Dispatch<React.SetStateAction<number | null>>
-
   openscore: boolean
   setOpenscore: React.Dispatch<React.SetStateAction<boolean>>
   // score:
@@ -55,7 +51,6 @@ export const OpenContext = React.createContext({} as {
   })
 
   export const OpenScoreContext = React.createContext({} as {
-    // product_id:number | undefined
     openscore: boolean
     setOpenscore: React.Dispatch<React.SetStateAction<boolean>>
     // score:
@@ -63,28 +58,20 @@ export const OpenContext = React.createContext({} as {
     setScore:React.Dispatch<React.SetStateAction<number|null>>
     scoreid:number | null
     setScoreid:React.Dispatch<React.SetStateAction<number|null>>
-
     stats:number[]
     setStats:React.Dispatch<React.SetStateAction<number[]>>
-
     scoreaverage:string
     setScoreaverage:React.Dispatch<React.SetStateAction<string>>
-
   })
 
   export const OpenReviewContext = React.createContext({} as {
-    // product_id:number | undefined
     openreview: boolean
     setOpenreview: React.Dispatch<React.SetStateAction<boolean>>
 
   })
-  // openthered,setOpenthered
-
   export const OpenTheredContext = React.createContext({} as {
-    // product_id:number | undefined
     openthered: boolean
     setOpenthered: React.Dispatch<React.SetStateAction<boolean>>
-
   })
 
   export const MainProduct = React.createContext({} as {
@@ -102,20 +89,16 @@ export const OpenContext = React.createContext({} as {
   })
 // reviews
   export const OpenReviewCommentContext = React.createContext({} as {
-    // product_id:number | undefined
     openReviewComment: boolean
     setOpenReviewComment: React.Dispatch<React.SetStateAction<boolean>>
-
   })
 
   export const OpenReturnReviewCommentContext = React.createContext({} as {
     openReturnReviewComment: boolean
     setOpenReturnReviewComment: React.Dispatch<React.SetStateAction<boolean>>
-
   })
 
 // user
-
 export const UserShowContext = React.createContext({} as {
   user:UserShow
 })

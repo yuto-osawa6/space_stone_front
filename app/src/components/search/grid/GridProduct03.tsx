@@ -2,7 +2,6 @@ import { product } from "@/interfaces/product"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { BsFillSuitHeartFill ,BsFillSuitClubFill,BsFillSuitSpadeFill, BsFillSuitDiamondFill} from "react-icons/bs"
-// import { useNavigate } from "react-router-dom"
 
 type Props = {
   product:product
@@ -18,15 +17,10 @@ export const GridProduct03:React.FC<Props> = function GridProduct03Func(Props){
     const array:number[] = [1,2,3,4,5,6,7,8,9,0]
     const colorNumber:number = array[Math.floor(Math.random() * array.length)]
     setColornumber(colorNumber)
-    // setAverageScoreHandler()
     handleSetupYearSeason()
-    // settingNumberOfDigits(Props.product.scores.length)
   },[])
-
-  // const [averageScore,setAverageScore] = useState<number>()
   const [scoreColor,setScoreColor] = useState<Color>({color:""})
   useEffect(()=>{
-    // if(averageScore==undefined)return
     if(Props.avgScore==undefined)return
     const averageScore = Number(Props.avgScore)
     if(averageScore<=10){
@@ -52,14 +46,6 @@ export const GridProduct03:React.FC<Props> = function GridProduct03Func(Props){
     }
   },[Props.avgScore])
 
-  // const setAverageScoreHandler = () => {
-  //   if (Props.product.scores.length>0){
-  //   const result = Props.product.scores.reduce(function(a, x){return a + x.value;}, 0);
-  //   // console.log(result/Props.product.scores.length)
-  //   setAverageScore(result/Props.product.scores.length)
-  //   }
-  // }
-
   const [scoreLenght,setScoreLength] = useState<string>("")
   // 1k 1m setting 
   const settingNumberOfDigits = (i:number) => {
@@ -73,11 +59,8 @@ export const GridProduct03:React.FC<Props> = function GridProduct03Func(Props){
     }else{
       setScoreLength(String(i))
     }
-
   }
-  // const navigate = useNavigate()
   const router = useRouter()
-
   const navigateHandler = () => {
     router.push(`/products/${Props.product.id}`)
   }
@@ -92,7 +75,6 @@ export const GridProduct03:React.FC<Props> = function GridProduct03Func(Props){
         setYearSeason(`${new Date(yearSeasonYear[0].year.year).getFullYear()} ${yearSeasonYear[0].season.name} ~ ${new Date(yearSeasonYear[yearSeasonYear.length-1].year.year).getFullYear()}  ${yearSeasonYear[yearSeasonYear.length-1].season.name}`)
       }
     }catch(e){
-
     }
   }
   return(
@@ -123,11 +105,10 @@ export const GridProduct03:React.FC<Props> = function GridProduct03Func(Props){
             <p style={scoreColor}>{Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):undefined}%</p>
           )}
           </div>
-           <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
+          <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
           </div>
         </div>
         <div className = "ToptensContainerGridSeries">
-
           <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
           {Props.product.productStyles.length>0&&(
             <p>{Props.product.productStyles[0].name}</p>

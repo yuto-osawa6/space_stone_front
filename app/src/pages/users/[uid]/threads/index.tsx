@@ -9,12 +9,9 @@ import { UsersShow } from "@/components/users/show/UsersShow"
 
 
 type Props = {
-  // data:productShow
 }
 
 const UserScoreShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
-  // const fallback= Props.fallback
   return(
     <>
       

@@ -1,7 +1,6 @@
 import { product } from "@/interfaces/product"
 import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { actionSettingProductData2 } from "@/store/product/actions"
 
 type tierProduct = {
@@ -11,13 +10,10 @@ type tierProduct = {
   title:string
 }
 type Props = {
-  // product:tierProduct
   product:product
 }
 
 export const TierProductList:React.FC<Props> = function TierProductListFunc(Props){
-  // const navigate = useNavigate()
-  // console.log(Props)
   const dispatch = useDispatch()
   const router = useRouter()
   const handleNavigateShowProduct = () => {

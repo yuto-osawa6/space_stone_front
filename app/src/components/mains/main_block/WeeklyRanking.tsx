@@ -2,8 +2,6 @@ import { product } from "@/interfaces/product"
 import { execWeeklyRanking } from "@/lib/api/mains/main_blocks"
 import { memo, useEffect, useMemo, useRef, useState } from "react"
 import { WeeklyRankingItems } from "./weekly/WeeklyRankingItems"
-// import { WeeklyRankingItems } from "./WeeklyRankingItems"
-// import { WeeklyRankingItemsTrue } from "./WeeklyRankingItemsTrue"
 
 type timeRange = {
   from:string
@@ -23,7 +21,6 @@ export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
     const res = await execWeeklyRanking()
     if(res.status == 200){
       if(isMounted==true){
-        console.log(res)
         if(navigator.cookieEnabled == true){
           setWeeklyVote(res.data.weeklyVote)
         }else{
@@ -37,7 +34,6 @@ export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
     }
   }
   useEffect(()=>{
-    console.log(navigator.cookieEnabled)
     const timer = setTimeout(() => {
       handlefirst()
     }, 300)
@@ -49,21 +45,13 @@ export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
   // ------------------------------------------------------------------------
   const ref1 = useRef<HTMLDivElement>(null)
 
-  // if (navigator.cookieEnabled) {
-  //   //cookie 有効の場合
-  //   obj[0].textContent = "クッキーは有効です";
-  // } else {
-  //   //cookie 無効の場合
-  //   obj[0].textContent = "クッキーは無効です";
-  // }
-  // console.log(navigator.cookieEnabled)
   return(
     <>
       <div className = "WeekliyRankings"
       ref = {ref1}
       >
         <div className="WeekliyRankingsTitle"
-         style={{
+        style={{
           fontSize: "1.5rem",
           marginBottom: "20px",
           display: "block",

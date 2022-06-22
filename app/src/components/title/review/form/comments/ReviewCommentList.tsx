@@ -4,26 +4,21 @@ import { like_review, return_review_comments, review_comments } from "@/interfac
 import { execCheckLikeCommentReview, execCheckReturnCommentReview, execCreateLikeCommentReview, execDeleteLikeCommentReview } from "@/lib/api/reviews"
 import { useEffect, useRef, useState } from "react"
 import { FaRegThumbsDown, FaRegThumbsUp, FaThumbsDown, FaThumbsUp } from "react-icons/fa"
-// import ReactQuill from "react-quill"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { ReturnReviewCommentAll } from "../modal/ReturnReviewCommentAll"
 import { ReturnReviewComment } from "./ReturnReviewComment"
-// import { DeltaStatic } from "quill"
 import { execDeleteComment } from "@/lib/api/reviews"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { useRouter } from "next/router"
 import { ErrorMessage } from "@/lib/ini/message"
 import { useUser } from "@/lib/data/user/useUser"
-// import { ErrorMessage } from "share/message"
-// import { useParams } from "react-router-dom"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
 type Props = {
   reviewcomment : review_comments
-  // setUpdateJudge?: () => Promise<void>
   selectSort: string
   product_id: string | undefined
   review_id: string | undefined
@@ -38,41 +33,32 @@ const ini:like_review = {
 }
 const modules = {
   toolbar: [
-    // [{ font: [] }],
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
     ["bold", "italic", "underline", "strike"],
     [{ color: [] }, { background: [] }],
-    // [{ script:  "sub" }, { script:  "super" }],
     ["blockquote"
   ],
-    // "code-block"],
     [{ list:  "ordered" }, { list:  "bullet" }],
     [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
-    // ["link", "image", "video"],
     ['link'],   
-    // ["clean"],
   ], 
 }
 export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(Props){
-  // store
-  // const user = useSelector((state:RootState) => state.user)
   const {userSwr} = useUser()
   const user = userSwr
   // usestate
   const [open, setOpen] = useState<boolean>(false)
   const [likeCommentReview, setLikeCommentReview] = useState<like_review>(ini)
     // score
-    const [likeReviewScore,setLikeReviewScore] = useState<number>(0)
-    const [likeReviewLength,setLikeReviewLength] = useState<number>(0)
-    const [likeReviewGood,setLikeReviewGood] = useState<number>(0)
-    const dispatch = useDispatch()
-    // const params = useParams()
-    const router = useRouter()
-    const {pid,rid} = router.query
-    const params_review_id = rid as string
-    // return
-    const [returnReviewList,setReturnReviewList] = useState<return_review_comments[]>([])
-    
+  const [likeReviewScore,setLikeReviewScore] = useState<number>(0)
+  const [likeReviewLength,setLikeReviewLength] = useState<number>(0)
+  const [likeReviewGood,setLikeReviewGood] = useState<number>(0)
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const {pid,rid} = router.query
+  const params_review_id = rid as string
+  // return
+  const [returnReviewList,setReturnReviewList] = useState<return_review_comments[]>([])
   const [openReviewComment,setOpenReviewComment] = useState<boolean>(false)
   const modalOpenJugdeReviewComment= (e:React.MouseEvent<HTMLDivElement> | undefined) => {
     e?.stopPropagation()
@@ -97,7 +83,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
     e?.stopPropagation()
     if(params_review_id==undefined)return
     const res = await execCreateLikeCommentReview(Props.reviewcomment.id,user.user.id,1,params_review_id)
-    console.log(res)
     if (res.data.status === 200) {
       // v1.01------------------------------------------------------------------------
       setGoodlength(res.data.reviewGood)
@@ -117,7 +102,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
     e?.stopPropagation()
     if(params_review_id==undefined)return
     const res = await execCreateLikeCommentReview(Props.reviewcomment.id,user.user.id,2,params_review_id)
-    console.log(res)
     if (res.data.status === 200) {
       setGoodlength(res.data.reviewGood)
       setLikeCommentScore(res.data.score.toFixed(1))
@@ -136,7 +120,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
     e?.stopPropagation()
     if(params_review_id==undefined)return
     const res = await execDeleteLikeCommentReview(Props.reviewcomment.id,user.user.id,likeCommentReview.id,params_review_id)
-    console.log(res)
     if (res.data.status === 200) {
       setGoodlength(res.data.reviewGood)
       setLikeCommentScore(res.data.score.toFixed(1))
@@ -153,49 +136,20 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
   }
-
-  // set first data
-  // const CheckReturnReview = async() => {
-  //   const res = await execCheckReturnCommentReview(Props.reviewcomment.id)
-  //   if (res.data.status === 200) {
-  //     console.log(res)
-  //     setReturnReviewList(res.data.returncomment)
-  //   }else{
-
-  //   }
-  // }
-
-  // useEffect(()=>{
-  //   // CheckReturnReview()
-  // },[Props.reviewcomment])
-
 // v1.01------------------------------------------------------------------------------------------------------
 // (n+1問題の解消、速度の改善)
-  // like_review_comments
-
   const [goodLength,setGoodlength] = useState<number>()
   const [likeCommentScore,setLikeCommentScore] = useState<string>()
   const [userLikesJugde,setUserLikesJudge] = useState<number>(0)
   const [totalLength,setTotalLength] = useState<number>(0)
   const [reviewLoaded,setReviewLoaded] = useState<boolean>(false)
-
   const [returnJugde,setReturnJugde] = useState<boolean>(false)
-
-
   useEffect(()=>{
     if(rid == undefined)return
     firstHandler()
   },[Props.reviewcomment,rid])
-
-  // useEffect(()=>{
-
-  // },[Props.reviewcomment])
-
   const firstHandler = () => {
-    console.log(Props)
-    console.log(Props.reviewcomment.likeComment)
     setTotalLength(Props.reviewcomment.likeComment.length)
-
     if(Props.reviewcomment.likeComment.length>0){
       const good = Props.reviewcomment.likeComment.reduce(function(a, x){return a + (x.goodbad==1?x.goodbad:0)}, 0);
       const parsent = ((good/Props.reviewcomment.likeComment.length)*100).toFixed(1)
@@ -207,9 +161,7 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
     }
 
     setReturnJugde(Props.reviewcomment.returnJugde)
-
     if (user.login==true){
-
       const currentUserDict = Props.reviewcomment.likeComment.filter(item=>item.userId==user.user.id)
       if(currentUserDict.length==1){
         setUserLikesJudge(currentUserDict[0].goodbad)
@@ -229,22 +181,15 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
       readMore==true?setReadMore(false):setReadMore(true)
     }
     const firstReadMoreHandler = () => {
-      console.log(readMore)
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-
       setReadMore(false)
       var doc = new DOMParser().parseFromString(Props.reviewcomment.comment, "text/html")
-      console.log(doc.getElementsByTagName('body')[0].innerText)
       const doc200 = doc.getElementsByTagName('body')[0].innerText.slice(0,200)
       setContent(doc200.length!=200?doc200:doc200+"...")
       setReadMoreLength(doc200.length)
-
     }
   
     useEffect(()=>{
       firstReadMoreHandler()
-    // },[Props.selectSort]) 
-    // doneyet -2 selectsortでhandlerを起動させるかどうか、ロード中
   },[])
   useEffect(()=>{
     setReadMore(false)
@@ -253,26 +198,13 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
   // ----------------------------------------------------------
   const ReviewCommentListRef = useRef<HTMLDivElement>(null)
     const clickHandler = () => {
-      console.log("aaaaaaaaaaaaa")
-      // readMore==true?setReadMore(false):setReadMore(true)
       setReadMore(true)
     }
     const clickHandler2 = (e:React.MouseEvent<HTMLDivElement> | undefined) => {
-      // console.log("aaaaaaaaaaaaa")
-      // e?.stopPropagation()
       e?.stopPropagation()
-      // readMore==true?setReadMore(false):setReadMore(true)
       setReadMore(false)
       ReviewCommentListRef.current?.scrollIntoView()
     }
-  
-    // console.log(readMore)
-
-  
-// console.log(userLikesJugde)
-// console.log(goodLength!=undefined&&goodLength!=0)
-// console.log(Props)
-
   // deleteComments 
   // const params = useParams()
   const handleDeleteReviewComment = async(e:React.MouseEvent<HTMLDivElement> | undefined) => {
@@ -280,7 +212,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
     if(Props.product_id==undefined)return
     if(Props.review_id==undefined)return
     const res = await execDeleteComment(Props.product_id,Props.review_id,Props.reviewcomment.id)
-    console.log(res)
     if (res.data.status == 200){
       Props.handleUpdateContents()
     }else if(res.data.status===400){
@@ -294,8 +225,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
 
   return (
     <>
-      {/* aa */}
-      {/* {Props.reviewcomment.id} */}
       <div className = {readMore==false?"ReviewCommentList ReviewCommentListHover":"ReviewCommentList"}
       onClick={clickHandler}
       ref={ReviewCommentListRef}
@@ -313,15 +242,10 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
 
           <ReactQuill
             className = "review_comment_list_modal_quill"
-            // ref={quillref}
-            // ref='editor'
             modules={modules} 
-            // value={Props.reviewcomment.comment} 
             value={readMore==true?Props.reviewcomment.comment:content}
-            // theme="bubble" 
             theme="bubble"
             readOnly={true}
-            
           />
           </div>
         <div className = "ReviewCommentListUnderflex">
@@ -334,36 +258,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
                 </>
               )}   
           </div>
-
-            {/* {openReturnReviewComment&&(
-                <OpenReturnReviewCommentContext.Provider value = {{openReturnReviewComment, setOpenReturnReviewComment}}>
-                  
-                  <ReturnReviewCommentAll
-                    // returnReviewList = {returnReviewList}
-                    // setReturnReviewList = { setReturnReviewList }
-                    returnCommentReviewId = {Props.reviewcomment.id} 
-                    // v1.01-------------------------------------------------------------------------------------
-                    totalLength ={totalLength }
-                    likeCommentScore = {likeCommentScore}
-                    userLikesJugde={userLikesJugde}
-                    reviewValuationGood={reviewValuationGood}
-                    goodLength={goodLength}
-                    reviewValuationBad={reviewValuationBad}
-                    reviewValuationGooddelete={reviewValuationGooddelete}
-                    UserModalOpen={UserModalOpen}
-                    setReturnJugde={setReturnJugde}
-                    setReturnReviewList={setReturnReviewList}
-                    returnReviewList={returnReviewList}
-                    reviewcomment = {Props.reviewcomment}
-                    // open={open}
-                    // setOpen={setOpen}
-                    // modalOpenJugdeReviewComment={modalOpenJugdeReviewComment}
-
-                  />
-                </OpenReturnReviewCommentContext.Provider>
-              )} */}
-              
-            
         
           <div className = "ReviewCommentListGoodBad">
             <div className = "ProductReviewShowMainValuationPeacentage">
@@ -392,7 +286,7 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
                   </>
                 )}
               </div>
-             
+            
             </div>
             {user.login?
                 <>
@@ -442,7 +336,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
                   <FaRegThumbsUp/>
             
                   {goodLength!=undefined&&goodLength!=0&&(
-                   
                     <>
                       {goodLength}
                     </>
@@ -451,7 +344,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
                 <div className = "ProductReviewShowMainValuationBad"
                 onClick={reviewValuationGooddelete}
                 >
-                  {/* <FaRegThumbsDown/> */}
                   <FaThumbsDown/>
                 </div>
                 </>
@@ -464,32 +356,17 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
                   onClick={UserModalOpen}
                 >
                   <FaRegThumbsUp/>
-                 
                   {goodLength&&goodLength!=0&&(
                     <>
                       {goodLength}
                     </>
                   )}
                 </div>
-                
-                  {/* {open&&(
-                    <OpenContext.Provider value={{ open, setOpen }}>
-                      <UserModalSign/>
-                    </OpenContext.Provider>
-                  )} */}
-
                 <div className = "ProductReviewShowMainValuationBad"
                   onClick={UserModalOpen}
                 >
                   <FaRegThumbsDown/>
                 </div>
-{/* 
-                  {open&&(
-                    <OpenContext.Provider value={{ open, setOpen }}>
-                      <UserModalSign/>
-                    </OpenContext.Provider>
-                  )} */}
-
                 </>
                 }
                 {user.login?
@@ -499,19 +376,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
                   >
                     返信する
                   </div>
-                  {/* {openReviewComment&&(
-                  <OpenReviewCommentContext.Provider value={{openReviewComment, setOpenReviewComment}}>
-                    
-                    <ReturnReviewComment
-                    user_id={user.user.id}
-                    comment_review_id = {Props.reviewcomment.id}
-                    setReturnReviewList = {setReturnReviewList}
-                    returnReviewList = {returnReviewList}
-
-                    setReturnJugde = {setReturnJugde}
-                    />
-                  </OpenReviewCommentContext.Provider>
-                )}    */}
                 </>
                 :
                 <>
@@ -520,30 +384,19 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
                   >
                     返信する
                   </div>
-                  {/* {open&&(
-                    <OpenContext.Provider value={{ open, setOpen }}>
-                      <UserModalSign/>
-                    </OpenContext.Provider>
-                  )} */}
                 </>
                 }
-    
-
           </div>
         </div>
-        
-
       </div>
       {/* モーダル */}
       {openReviewComment&&(
         <OpenReviewCommentContext.Provider value={{openReviewComment, setOpenReviewComment}}>
-          
           <ReturnReviewComment
           user_id={user.user.id}
           comment_review_id = {Props.reviewcomment.id}
           setReturnReviewList = {setReturnReviewList}
           returnReviewList = {returnReviewList}
-
           setReturnJugde = {setReturnJugde}
           />
         </OpenReviewCommentContext.Provider>
@@ -556,10 +409,7 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
 
       {openReturnReviewComment&&(
         <OpenReturnReviewCommentContext.Provider value = {{openReturnReviewComment, setOpenReturnReviewComment}}>
-          
           <ReturnReviewCommentAll
-            // returnReviewList = {returnReviewList}
-            // setReturnReviewList = { setReturnReviewList }
             returnCommentReviewId = {Props.reviewcomment.id} 
             // v1.01-------------------------------------------------------------------------------------
             totalLength ={totalLength }
@@ -574,10 +424,6 @@ export const ReviewCommentList:React.FC<Props> = function ReviewCommentListFunc(
             setReturnReviewList={setReturnReviewList}
             returnReviewList={returnReviewList}
             reviewcomment = {Props.reviewcomment}
-            // open={open}
-            // setOpen={setOpen}
-            // modalOpenJugdeReviewComment={modalOpenJugdeReviewComment}
-
           />
         </OpenReturnReviewCommentContext.Provider>
       )}

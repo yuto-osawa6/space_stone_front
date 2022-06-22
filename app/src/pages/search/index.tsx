@@ -1,25 +1,23 @@
 import MainSearch from "@/components/search/MainSearch"
 import { ShareMain } from "@/components/share/main/ShareMain"
+import { useLocale } from "@/lib/ini/local/local"
+import { NextSeo } from "next-seo"
 
- const SearchIndex: React.FC& { getLayout: (page: any) => JSX.Element }  = () => {
-  // const fallback= Props.fallback
-  return(
-    <>
+const SearchIndex: React.FC& { getLayout: (page: any) => JSX.Element }  = () => {
+  const {t} = useLocale()
+
+return(
+  <>
+    <NextSeo
+      title={`Search - ${t.domain}`}
+     //  description={Props.data.products.}
+    ></NextSeo>
       <MainSearch/>
     </>
   )
 }
 
 export default SearchIndex
-
-// Home.getLayout = function getLayout(page) {
-//   return (
-//     <ShareMain>
-//       {/* <NestedLayout>{page}</NestedLayout> */}
-//       {page}
-//     </ShareMain>
-//   )
-// }
 
 SearchIndex.getLayout = (page) => {
   return (

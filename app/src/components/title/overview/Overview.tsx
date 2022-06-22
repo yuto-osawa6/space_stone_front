@@ -1,20 +1,16 @@
 import { Productshowcontext } from "@/contexttype/contexttype"
 import { DefaultPasteForTitle } from "@/lib/ini/quill/QuillEffectForTitle";
 import { useContext, useEffect,useMemo } from "react"
-// import ReactQuill, { Quill } from "react-quill"
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
 export const Overview:React.FC = function OverviewFunc(){
   const a = useMemo(()=>{
-    console.log("aaaaaiiiiii")
     DefaultPasteForTitle()
   },[])
   a
   const props = useContext(Productshowcontext)
-
   const handleSetUp = () => {
-
   }
   useEffect(()=>{
     handleSetUp()
@@ -24,16 +20,13 @@ export const Overview:React.FC = function OverviewFunc(){
     {
     toolbar:{ 
       container:[
-      // [{ font: [] }],
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
       ["bold", "italic", "underline", "strike"],
       [{ color: [] }, { background: [] }],
-      // [{ script:  "sub" }, { script:  "super" }],
       ["blockquote"],
       ["code-block"],
       [{ list:  "ordered" }, { list:  "bullet" }],
       [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
-      // ["link", "image", "video"],
       ['netflix'],
       ['boxcontents'],   
     ],
@@ -65,7 +58,6 @@ export const Overview:React.FC = function OverviewFunc(){
             </div>
             <ReactQuill
               className = "ovevierReactQuill"
-              // ref={quillref2}
               modules={modules} 
               value={props.product?.overview} 
               theme="bubble"
@@ -73,12 +65,9 @@ export const Overview:React.FC = function OverviewFunc(){
               readOnly={true}
                 
               />
-         
           </div>
-        
-        
-         </div>
-         </>
+          </div>
+        </>
       )}    
     </>
   )

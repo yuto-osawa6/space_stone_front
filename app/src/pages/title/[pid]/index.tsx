@@ -4,10 +4,13 @@ import { ProductShow } from "@/components/title/productShow"
 import { Top } from "@/components/title/top/Top"
 import { productShow } from "@/interfaces/product"
 import { ssr_url } from "@/lib/client/clientssr"
+import { useLocale } from "@/lib/ini/local/local"
 import { GetServerSideProps, NextPage } from "next"
 import { NextSeo } from 'next-seo';
+import nookies from 'nookies'
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
+  const cookies = nookies.get(context)
   const { pid } = context.query
   const params = {
     active:"1",
@@ -16,24 +19,28 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   const query_params = new URLSearchParams(params); 
   try {
     const [productShowRes] = await Promise.all([
-      fetch(`${ssr_url}/products/${pid}/seo`), 
+      fetch(`${ssr_url}/products/${pid}/seo`,{
+        headers:{
+          "access-token": `${cookies._access_token}`,
+          "client": `${cookies._client}`,
+          "uid": `${cookies._uid}`
+        }
+      }), 
     ]);
-    // console.log(productShowRes.status!=200)
-    if (productShowRes.status==200){
+   
     const [data] = await Promise.all([
       productShowRes.json()
     ]);
+    if (data.status==200){
       return { 
         props: { 
           data
         } 
       };
     }else{
-      console.log("エラーがおきました")
       return {notFound: true }
     }
   } catch (err) {
-    console.log(err)
     return { notFound: true }
   }
 }
@@ -43,20 +50,15 @@ type Props = {
 }
 
 const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-// const TitleIndex: NextPage<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  // const fallback= Props.fallback
+  const {t} = useLocale()
+
   return(
     <>
       <NextSeo
-       title={`${Props.data.products.title} - SpaceTone`}
-      //  description={Props.data.products.}
+        title={`${Props.data.products.title} - ${t.domain}`}
       >
       </NextSeo>
-      {/* <ProductShow
-        // data={Props.data}
-      > */}
-        <Top/>
-      {/* </ProductShow>    */}
+      <Top/>
     </>
   )
 }

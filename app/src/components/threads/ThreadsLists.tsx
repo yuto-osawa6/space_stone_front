@@ -1,9 +1,7 @@
 import { review } from "@/interfaces/review"
 import { useRouter } from "next/router";
 import React, { memo, useEffect, useMemo, useRef, useState } from "react"
-// import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -38,7 +36,6 @@ export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props
 
   const quillref = useRef<any>(null!)
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
   const options = {
     scroll:false
   }

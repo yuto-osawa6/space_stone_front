@@ -2,13 +2,9 @@ import React, {useEffect,useRef,useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { addTodoAction, clearTitleAction } from '@/store/search/actions';
-// import { useNavigate } from "react-router-dom";
 import { GenresSearch } from "./GenresSearch";
 import { IoSearchCircle } from 'react-icons/io5'
 import { FaTags,FaSort } from 'react-icons/fa'
-// import {
-//   useLocation
-// } from "react-router-dom";
 import { Styles } from "./Styles";
 import { deletingtodoGenresDataALLAction, deletingtodoGenresDataExceptOneAction} from "@/store/todogenres/actions";
 import { deletingtodoStylesDataAllAction } from "@/store/todostyles/actions";
@@ -45,13 +41,8 @@ type Studios = {
   id:number
   company:string
 }
-
-
 const Search:React.FC = function SearchFunc(){
-  // 
-
   const [data, setData] = useState<SearchData>(initialData);
-  // const [title,setTitle] = useState<string>("")
   const todoList5 = useSelector((state: RootState) => state.genres);
   const todoList = useSelector((state: RootState) => state.search);
   const todoList2 = useSelector((state: RootState) => state.todogenres);
@@ -65,40 +56,23 @@ const Search:React.FC = function SearchFunc(){
   const OpenSubSearchStore = useSelector((state:RootState)=>state.OpenCloseSubSearch)
   const StudiosStore = useSelector((state:RootState)=>state.studios)
   const KisetsuStore = useSelector((state:RootState)=>state.kisetsu)
-
-  // checkd
   const [checked1, setChecked1] = useState(DuringStore.times.time_gteq==""&&DuringStore.times.time_lteq==""?true:false);
   const [checked2, setChecked2] = useState(YearStore.years.year_season_years_year_gteq==""&&YearStore.years.year_season_years_year_lteq==""?true:false);
   const [checked3, setChecked3] = useState(SeasonStore.season_gteq==""&&SeasonStore.season_lteq==""?true:false);
-  // const sort = useSelector((state: RootState) => state.sort)
-
   const dispatch = useDispatch();
-  const router = useRouter()
-  // 
+  const router = useRouter() 
   const isFirstRender = useRef(false)
   const isFirstRender2 = useRef(false)
   useEffect(() => { // このeffectは初回レンダー時のみ呼ばれるeffect
     isFirstRender.current = true
-    isFirstRender2.current = true
-    // isFirstRender3.current = true
-  
+    isFirstRender2.current = true  
   }, [])
-  // 
-
   const handleSubmit :React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();    
-    console.log(e);
   };
-
-
-
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setData({...data,title_or_titleKa_or_titleEn_or_titleRo_cont: value});
-    // console.log("ccccccccccccc")
-
-
     if (router.pathname==="/search"){
     }else{
       router.push(`/search`)
@@ -106,48 +80,28 @@ const Search:React.FC = function SearchFunc(){
   }
 
   const afterhandleChange = (quicked:boolean) => {
-    console.log(quicked)
     if(quicked===false){
     dispatch(addTodoAction(data.title_or_titleKa_or_titleEn_or_titleRo_cont));
-
     }
     setData({...data,quicked:false})
-
-    // if (location.pathname==="/search"){
-    //   }else{
-    //     navigate(`/search`)
-    //   }
-
   };
-
   useEffect(() => {
-
     if(isFirstRender.current) { // 初回レンダー判定
-
       isFirstRender.current = false // もう初回レンダーじゃないよ代入
     } else {
     const timer = setTimeout(() => {
-      console.log(data)
-      // console.log("kkkkkkkkkkkkkkkkkk")
       afterhandleChange(data.quicked)
-    
-
     }, 500)
-
     return () => clearTimeout(timer)
     }
   }, [data.title_or_titleKa_or_titleEn_or_titleRo_cont])
 
-
-
-
   const title_count_check = () =>{
     if (todoList.title_or_titleKa_or_titleEn_or_titleRo_cont.length===0) return
-
     return(
       <>
         <div className="header-search-contents__boxes__List"
-         onClick={()=>deletingtag1()}
+          onClick={()=>deletingtag1()}
         >
           {todoList.title_or_titleKa_or_titleEn_or_titleRo_cont}
         </div>
@@ -157,24 +111,16 @@ const Search:React.FC = function SearchFunc(){
 
   const styles_eq_check = () =>{
     if (Number(todoList3.styles_id_eq)===0) return
-
     return(
       <>
         <div className="header-search-contents__boxes__List"
         onClick={()=>deletingtag3()}
         >
-          {/* {Number(todoList3.styles_id_eq)-1>=0? todoList4.styles[Number(todoList3.styles_id_eq)-1].name:""} */}
           {Number(todoList3.styles_id_eq)-1>=0? todoList4.styles.filter((data:any) => data.id === Number(todoList3.styles_id_eq))[0].name:""}
         </div>
       </>
     )
   }
-  // console.log(todoList3)
-  // console.log(todoList4)
-  // console.log(todoList4)
-  // console.log(todoList4.styles.filter((data:any) => data.id === Number(todoList3.styles_id_eq))[0].name)
-
-
 
   const tag_clear_click=()=>{
     dispatch(deletingtodoGenresDataALLAction())
@@ -182,11 +128,8 @@ const Search:React.FC = function SearchFunc(){
     dispatch(clearTitleAction())
     setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
-    // subCategorys
     dispatch(AllDeleteSubClassAction())
     setSubSearchesTitle("")
-    // SetSubDefault("All")
-    // SetMdMenuOpenState(false)
     MdmuneCloseHandler()
     SetDefaultValue("All")
     dispatch(DestroyTimeSearchAction())
@@ -198,14 +141,7 @@ const Search:React.FC = function SearchFunc(){
     // 2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
-   
-
-
-
-    // console.log(router.pathname)
-    if (router.pathname==="/search"){
-      // console.log(location.pathname)
-      
+    if (router.pathname==="/search"){      
     }else{
       router.push(`/search`)
     }
@@ -213,7 +149,6 @@ const Search:React.FC = function SearchFunc(){
   }
 
   const tag_clear = () =>{
-    console.log(StudiosStore)
     if(todoList.title_or_titleKa_or_titleEn_or_titleRo_cont===""&& todoList2.janls_id_in.length===1&&todoList3.styles_id_eq===""&&CastsStore.castids.casts_id_in.length===1&&subSearchesTitle.length===0&&DuringStore.times.time_gteq===""&&YearStore.years.year_season_years_year_gteq===""&&SeasonStore.season_gteq===""&&StudiosStore.studio.length===0&&KisetsuStore.kisetsusids.year_season_seasons_id_eq==="") return 
     return (
       <>
@@ -224,7 +159,6 @@ const Search:React.FC = function SearchFunc(){
         </div>
       </>
     )
-    
   }
 // genre
   const deletingtag2 = (item:number) =>{
@@ -232,32 +166,24 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoGenresDataExceptOneAction(String(item)))
     dispatch(deletingtodoStylesDataAllAction())
     dispatch(DeletingCastsDataAllAction())
-
-     // subCategorys
-     dispatch(AllDeleteSubClassAction())
-     setSubSearchesTitle("")
-     // SetSubDefault("All")
-    //  SetMdMenuOpenState(false)
-     MdmuneCloseHandler()
-     SetDefaultValue("All")
-     dispatch(DestroyTimeSearchAction())
-     setChecked1(true)
-     dispatch(DestroyYearSearchAction())
-     setChecked2(true)
-     dispatch(DestroySeasonSearchAction())
-     setChecked3(true)
+    dispatch(AllDeleteSubClassAction())
+    setSubSearchesTitle("")
+    MdmuneCloseHandler()
+    SetDefaultValue("All")
+    dispatch(DestroyTimeSearchAction())
+    setChecked1(true)
+    dispatch(DestroyYearSearchAction())
+    setChecked2(true)
+    dispatch(DestroySeasonSearchAction())
+    setChecked3(true)
     //  
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
-
     setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
-    if (router.pathname==="/search"){
-      // console.log(location.pathname)
-      
+    if (router.pathname==="/search"){      
     }else{
       router.push(`/search`)
     }
-
   }
 // style
   const deletingtag3 = () =>{
@@ -265,30 +191,21 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoGenresDataALLAction())
     setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
-
      // subCategorys
-     dispatch(AllDeleteSubClassAction())
-     setSubSearchesTitle("")
-     // SetSubDefault("All")
-    //  SetMdMenuOpenState(false)
-     MdmuneCloseHandler()
-     SetDefaultValue("All")
-     dispatch(DestroyTimeSearchAction())
-     setChecked1(true)
-     dispatch(DestroyYearSearchAction())
-     setChecked2(true)
-     dispatch(DestroySeasonSearchAction())
-     setChecked3(true)
+    dispatch(AllDeleteSubClassAction())
+    setSubSearchesTitle("")
+    MdmuneCloseHandler()
+    SetDefaultValue("All")
+    dispatch(DestroyTimeSearchAction())
+    setChecked1(true)
+    dispatch(DestroyYearSearchAction())
+    setChecked2(true)
+    dispatch(DestroySeasonSearchAction())
+    setChecked3(true)
     //  2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
-
-    // setData({...data,title_cont: ""});
-
-
     if (router.pathname==="/search"){
-      // console.log(location.pathname)
-      
     }else{
       router.push(`/search`)
     }
@@ -298,68 +215,50 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
     dispatch(DeletingCastsDataAllAction())
-
      // subCategorys
-     dispatch(AllDeleteSubClassAction())
-     setSubSearchesTitle("")
-     // SetSubDefault("All")
-    //  SetMdMenuOpenState(false)
-     MdmuneCloseHandler()
-     SetDefaultValue("All")
-     dispatch(DestroyTimeSearchAction())
-     setChecked1(true)
-     dispatch(DestroyYearSearchAction())
-     setChecked2(true)
-     dispatch(DestroySeasonSearchAction())
-     setChecked3(true)
-
+    dispatch(AllDeleteSubClassAction())
+    setSubSearchesTitle("")
+    MdmuneCloseHandler()
+    SetDefaultValue("All")
+    dispatch(DestroyTimeSearchAction())
+    setChecked1(true)
+    dispatch(DestroyYearSearchAction())
+    setChecked2(true)
+    dispatch(DestroySeasonSearchAction())
+    setChecked3(true)
     //  2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
-
-    if (router.pathname==="/search"){
-      // console.log(location.pathname)
-      
+    if (router.pathname==="/search"){      
     }else{
       router.push(`/search`)
     }
   }
-
-// cast
+  // cast
   const deletingtagcast = (item:number,Cast:Cast) => {
     dispatch(clearTitleAction())
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
     setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataExceptOneAction(String(item),Cast))
-
-     // subCategorys
-     dispatch(AllDeleteSubClassAction())
-     setSubSearchesTitle("")
-     // SetSubDefault("All")
-    //  SetMdMenuOpenState(false)
-      MdmuneCloseHandler()
-     SetDefaultValue("All")
-     dispatch(DestroyTimeSearchAction())
-     setChecked1(true)
-     dispatch(DestroyYearSearchAction())
-     setChecked2(true)
-     dispatch(DestroySeasonSearchAction())
-     setChecked3(true)
-
+    dispatch(AllDeleteSubClassAction())
+    setSubSearchesTitle("")
+    MdmuneCloseHandler()
+    SetDefaultValue("All")
+    dispatch(DestroyTimeSearchAction())
+    setChecked1(true)
+    dispatch(DestroyYearSearchAction())
+    setChecked2(true)
+    dispatch(DestroySeasonSearchAction())
+    setChecked3(true)
      //  2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
-
-
-    if (router.pathname==="/search"){
-      // console.log(location.pathname)
-      
+    if (router.pathname==="/search"){      
     }else{
       router.push(`/search`)
     }
   }
-
   // deletingtagstudio
   const deletingtagstudio = (item:string,studios:Studios) => {
     dispatch(clearTitleAction())
@@ -370,28 +269,20 @@ const Search:React.FC = function SearchFunc(){
     dispatch(deletingtodoStudiosDataExceptOneAction(item,studios))
     dispatch(deletingtodoKisetsuDataAllAction())
      // subCategorys
-     dispatch(AllDeleteSubClassAction())
-     setSubSearchesTitle("")
-     // SetSubDefault("All")
-    //  SetMdMenuOpenState(false)
-      MdmuneCloseHandler()
-     SetDefaultValue("All")
-     dispatch(DestroyTimeSearchAction())
-     setChecked1(true)
-     dispatch(DestroyYearSearchAction())
-     setChecked2(true)
-     dispatch(DestroySeasonSearchAction())
-     setChecked3(true)
-
-
-
+    dispatch(AllDeleteSubClassAction())
+    setSubSearchesTitle("")
+    MdmuneCloseHandler()
+    SetDefaultValue("All")
+    dispatch(DestroyTimeSearchAction())
+    setChecked1(true)
+    dispatch(DestroyYearSearchAction())
+    setChecked2(true)
+    dispatch(DestroySeasonSearchAction())
+    setChecked3(true)
     if (router.pathname==="/search"){
-      // console.log(location.pathname)
-      
     }else{
       router.push(`/search`)
     }
-
   }
   // deletingtagsKisetsu()
   const deletingtagsKisetsu = () => {
@@ -401,33 +292,24 @@ const Search:React.FC = function SearchFunc(){
     setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
     dispatch(deletingtodoStudiosDataALLAction())
-    // dispatch(deletingtodoKisetsuDataAllAction)
-
-     // subCategorys
-     dispatch(AllDeleteSubClassAction())
-     setSubSearchesTitle("")
-     // SetSubDefault("All")
-    //  SetMdMenuOpenState(false)
-      MdmuneCloseHandler()
-     SetDefaultValue("All")
-     dispatch(DestroyTimeSearchAction())
-     setChecked1(true)
-     dispatch(DestroyYearSearchAction())
-     setChecked2(true)
-     dispatch(DestroySeasonSearchAction())
-     setChecked3(true)
-
-
-    if (router.pathname==="/search"){
-      // console.log(location.pathname)
-      
+    // subCategorys
+    dispatch(AllDeleteSubClassAction())
+    setSubSearchesTitle("")
+    MdmuneCloseHandler()
+    SetDefaultValue("All")
+    dispatch(DestroyTimeSearchAction())
+    setChecked1(true)
+    dispatch(DestroyYearSearchAction())
+    setChecked2(true)
+    dispatch(DestroySeasonSearchAction())
+    setChecked3(true)
+    if (router.pathname==="/search"){      
     }else{
       router.push(`/search`)
     }
   }
 
   // sub click handler
-
   const deleteSubCategoryiesHandler = () => {
     dispatch(deletingtodoGenresDataALLAction())
     dispatch(deletingtodoStylesDataAllAction())
@@ -435,22 +317,16 @@ const Search:React.FC = function SearchFunc(){
     setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
     // subCategorys
-    // dispatch(AllDeleteSubClassAction())
-    // setSubSearchesTitle("")
-    // SetMdMenuOpenState(false)
     MdmuneCloseHandler()
-    // SetDefaultValue("All")
     dispatch(DestroyTimeSearchAction())
     setChecked1(true)
     dispatch(DestroyYearSearchAction())
     setChecked2(true)
     dispatch(DestroySeasonSearchAction())
     setChecked3(true)
-
     //  2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
-
   }
 
 
@@ -463,16 +339,12 @@ const Search:React.FC = function SearchFunc(){
     // subCategorys
     dispatch(AllDeleteSubClassAction())
     setSubSearchesTitle("")
-    // SetMdMenuOpenState(false)
     MdmuneCloseHandler()
     SetDefaultValue("All")
-    // dispatch(DestroyTimeSearchAction())
-    // setChecked1(true)
     dispatch(DestroyYearSearchAction())
     setChecked2(true)
     dispatch(DestroySeasonSearchAction())
     setChecked3(true)
-
     //  2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
@@ -484,19 +356,14 @@ const Search:React.FC = function SearchFunc(){
     dispatch(clearTitleAction())
     setData({...data,quicked:true,title_or_titleKa_or_titleEn_or_titleRo_cont:""})
     dispatch(DeletingCastsDataAllAction())
-    // subCategorys
     dispatch(AllDeleteSubClassAction())
     setSubSearchesTitle("")
-    // SetMdMenuOpenState(false)
     MdmuneCloseHandler()
     SetDefaultValue("All")
     dispatch(DestroyTimeSearchAction())
     setChecked1(true)
-    // dispatch(DestroyYearSearchAction())
-    // setChecked2(true)
     dispatch(DestroySeasonSearchAction())
     setChecked3(true)
-
     //  2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
@@ -511,15 +378,12 @@ const Search:React.FC = function SearchFunc(){
     // subCategorys
     dispatch(AllDeleteSubClassAction())
     setSubSearchesTitle("")
-    // SetMdMenuOpenState(false)
     MdmuneCloseHandler()
     SetDefaultValue("All")
     dispatch(DestroyTimeSearchAction())
     setChecked1(true)
     dispatch(DestroyYearSearchAction())
     setChecked2(true)
-    // dispatch(DestroySeasonSearchAction())
-    // setChecked3(true)
     //  2.0
     dispatch(deletingtodoStudiosDataALLAction())
     dispatch(deletingtodoKisetsuDataAllAction())
@@ -539,16 +403,10 @@ const Search:React.FC = function SearchFunc(){
   }
 
   // default value
-  // const [timeDefault,setTimeDefault] = useState<number[]>([0,240])
   const [defaultValue,SetDefaultValue] = useState<string>("All")
   const [subSearchesTitle,setSubSearchesTitle] = useState<string>("")
-  // 
-  // const [count,setcount] =useState<number>(0)
   useEffect(()=>{
-    // setcount(count+1)
-    console.log(isFirstRender2.current)
     if(isFirstRender2.current) { // 初回レンダー判定
-
       isFirstRender2.current = false // もう初回レンダーじゃないよ代入
     } else {
     const timer = setTimeout(() => {
@@ -585,9 +443,6 @@ const Search:React.FC = function SearchFunc(){
   }
   
 },[defaultValue])
-// console.log(count)
-// console.log(count)
-
   // 
   useEffect(()=>{
     if(OpenSubSearchStore.open==false){
@@ -661,17 +516,12 @@ const Search:React.FC = function SearchFunc(){
           type="text" 
           name="name" 
           placeholder="タイトルを入力してください"
-          // value={todoList.title_cont}
           value={data.title_or_titleKa_or_titleEn_or_titleRo_cont}
           autoComplete="off"
           onChange={handleChange}
-          // onClick={()=>handleClick()}
           />
         </div>
         <MdMenuOpen
-        // className = {MdMenuOpenState==false?"mdmenuopen":"mdmenuopen active-mdmenuopen"}
-        // onClick={MdMenuOpenState==false?MdmenuOpenHandler:MdmuneCloseHandler}
-
         className = {MdMenuOpenState2==false?"mdmenuopen":"mdmenuopen active-mdmenuopen"}
         onClick={MdMenuOpenState2==false?MdmenuOpenHandler2:MdmuneCloseHandler2}
         />
@@ -695,7 +545,6 @@ const Search:React.FC = function SearchFunc(){
             </div>
           </>
         )} */}
-
         </div>
       <div className = {`search__commit__box ${MdMenuOpenState2==false?"activeSubSearchV2":""}` }>
         <GenresSearch/>
@@ -705,7 +554,6 @@ const Search:React.FC = function SearchFunc(){
         <SeasonSearch/>
         <YearSearch/>
         {/* <CategorySearch/> */}
-        
       </div>
       <div className="header-search-contents">
         <div className="header-search-contents__boxes">
@@ -716,7 +564,7 @@ const Search:React.FC = function SearchFunc(){
             <div className = "header-search-contens__boxes__Lists__clean">
               {tag_clear()}
             </div>
-             {title_count_check()}
+              {title_count_check()}
             {todoList2.janls_id_in.map(Number).filter(x=>x>0).map((item:number)=>{
               return(
                 <>
@@ -729,25 +577,25 @@ const Search:React.FC = function SearchFunc(){
                 </>
               )
             })}
-             {styles_eq_check()}
-             {CastsStore.cast.map((item)=>{
-               return(
-                 <>
-                    <div className="header-search-contents__boxes__List"
-                    key={item.id}
-                    onClick={()=>deletingtagcast(item.id,item)}
-                    >
-                      {item.name}
-                    </div>
-                 </>
-               )
+              {styles_eq_check()}
+            {CastsStore.cast.map((item)=>{
+              return(
+                <>
+                  <div className="header-search-contents__boxes__List"
+                  key={item.id}
+                  onClick={()=>deletingtagcast(item.id,item)}
+                  >
+                    {item.name}
+                  </div>
+                </>
+              )
               })}
               {subSearchesTitle.length>0?
-               <div className="header-search-contents__boxes__List"
-               onClick={deleteSubCategoryiesHandler}
-               >
+              <div className="header-search-contents__boxes__List"
+              onClick={deleteSubCategoryiesHandler}
+              >
                   {subSearchesTitle}
-               </div>
+              </div>
               :
               ""
               }
@@ -772,17 +620,17 @@ const Search:React.FC = function SearchFunc(){
                   }
                 </>
               )}
-               {StudiosStore.studio.map((item)=>{
-               return(
-                 <>
+              {StudiosStore.studio.map((item)=>{
+                return(
+                  <>
                     <div className="header-search-contents__boxes__List"
                     key={item.id}
                     onClick={()=>deletingtagstudio(String(item.id),item)}
                     >
                       {item.company}
                     </div>
-                 </>
-               )
+                  </>
+                )
               })}
               {KisetsuStore.kisetsusids.year_season_seasons_id_eq!=""&&(
                 <div className="header-search-contents__boxes__List"
@@ -814,7 +662,7 @@ const Search:React.FC = function SearchFunc(){
                   }
                 </>
               )} */}
-               {YearStore.years.year_season_years_year_gteq!=""&&(
+              {YearStore.years.year_season_years_year_gteq!=""&&(
                 <>
                   {YearStore.years.year_season_years_year_gteq==YearStore.years.year_season_years_year_lteq?
                   <>
@@ -841,7 +689,7 @@ const Search:React.FC = function SearchFunc(){
                   {SeasonStore.season_gteq==SeasonStore.season_lteq?
                   <>
                     <div className="header-search-contents__boxes__List"
-                     onClick={deleteSeasonHandler}
+                      onClick={deleteSeasonHandler}
                     >
                       {SeasonStore.season_gteq+"シーズン"}
                     </div>
@@ -849,7 +697,7 @@ const Search:React.FC = function SearchFunc(){
                   :
                   <>
                     <div className="header-search-contents__boxes__List"
-                     onClick={deleteSeasonHandler}
+                      onClick={deleteSeasonHandler}
                     >
                     {SeasonStore.season_gteq+"シーズン"} ~ {SeasonStore.season_lteq+"シーズン"}
                     </div>
@@ -857,8 +705,6 @@ const Search:React.FC = function SearchFunc(){
                   }
                 </>
               )}
-             
-             
           </div>
           <div className = "header-search-contents__boxes__Lists__right">
             {/* <div className = "header-search-contents__boxes__Lists__right__Lists"> */}

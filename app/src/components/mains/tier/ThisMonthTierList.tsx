@@ -10,7 +10,6 @@ type tierProduct = {
 }
 type Props = {
   group: string
-  // products: tierProduct[]
   products: product[]
 }
 export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(Props){
@@ -38,8 +37,6 @@ export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(
       default:  
     }
   },[])
-  // console.log("plop")
-  // console.log(Props)
   return (
     <>
       <div className = "ThisMonthTierList"
@@ -104,7 +101,7 @@ export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(
           }}
         ></p>
         <p
-         style={{
+        style={{
           position: "absolute",
           right:"0",
           top: "0",

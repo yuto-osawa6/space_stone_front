@@ -11,8 +11,6 @@ type chatList = {
 }
 
 export const ChatListItem:React.FC<Props> = function ChatListItemFunc(Props){
-
-
   return(
     <>
       <p className = "">

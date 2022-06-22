@@ -28,7 +28,7 @@ export const MenuProduLists:React.FC<Props> = function MenuProduListsFunc(Props)
       onClick={Props.products.id!=Props.product?.id?setProductHandler:deleteProductHandler}
       >
         {Props.products.id==Props.product?.id&&(
-           <AiOutlineCheckCircle/>
+            <AiOutlineCheckCircle/>
         )}
         {Props.products.title}
         

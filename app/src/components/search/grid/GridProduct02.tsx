@@ -1,13 +1,9 @@
 import { product } from "@/interfaces/product"
 import { useRouter } from "next/router"
 import { memo, useEffect, useRef, useState } from "react"
-// import { useNavigate } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
-
-
 
 type Props = {
   product:product
@@ -54,10 +50,7 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   useEffect(()=>{
     handleSetupYearSeason()
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    // setRights(right)
-    // setLefts(left)
     Props.pushgridleft02(left)
-    
   },[])
 
   const [scoreColor,setScoreColor] = useState<Color>({backgroundColor:""})
@@ -118,8 +111,7 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   return(
     <>
       <div className = "WorldClassContainerViews GridProduct02Views"
-       ref={elm}
-       
+        ref={elm}
       >
         <div className = "WorldClassContainerViewsImg">
         <CSSTransition in={imageloding}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
@@ -144,7 +136,6 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
               {Number(Props.avgScore).toFixed(1)}%
             </div>
             )}
-
         </div>
         <div className={`GridProduct02Arasuzi`}
         onMouseEnter={handlehoverEnter}
@@ -188,7 +179,6 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
             })}
           </ul>
         </div>
-
         <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
           <div className = "p_contents_grid_hover_contents" ref={nodeRef}
           >
@@ -221,13 +211,11 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
         <CSSTransition in={ishover2}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
           <div className = "p_contents_grid_hover_contents2" ref={nodeRef}
           >
-            <div className = "p_contents_grid_hover_contents__before2">
-              
+            <div className = "p_contents_grid_hover_contents__before2">   
               <div className = "p_contents_grid_hover_contents_arasuzi_Title">
                   あらすじ
               </div>
               <div className = "p_contents_grid_hover_contents_arasuzi">
-
                 <ReactQuill
                 className = "reviews_modal_quill"     
                 value={Props.product.arasuzi} 

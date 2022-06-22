@@ -1,5 +1,4 @@
 
-// import { MenuProduLists } from "@/component/custom/MenuProduLists"
 import { MenuProduLists } from "@/components/share/component/MenuProduLists"
 import { product } from "@/interfaces/product"
 import { review } from "@/interfaces/review"
@@ -9,7 +8,6 @@ import React, { useEffect, useRef, useState } from "react"
 import { HiChevronDoubleDown } from "react-icons/hi"
 import { IoSearchCircle } from "react-icons/io5"
 import { useDispatch, useSelector } from "react-redux"
-// import { Outlet } from "react-router-dom"
 import { RootState } from "@/store"
 import { NavigatingLeftThreadDataAction } from "@/store/lefts/thread/actions"
 import { ThreadsLists } from "./ThreadsLists"
@@ -32,7 +30,6 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
   let isMounted = true
   const ArticleHandler = async() => {
     const res = await execThreadHandler(current,selectSort,rangeNumber,rangeLikesNumber,rangePopulerNumber,product?.id)
-    console.log(res)
     if (res.status == 200){
       if(isMounted){
         setReviews(res.data.reviews)
@@ -40,10 +37,8 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
       }
     }
   }
-
   const [current,SetCurrent] = useState<number>(1)
   const dispatch = useDispatch()
-
   useEffect(()=>{
     window.scrollTo({top:0,left:0, behavior: "smooth"})
   },[])
@@ -62,7 +57,7 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
   },[current,selectSort,product,rangeNumber,rangeLikesNumber,rangePopulerNumber])
 
   const GfNavigation = (Props:number) => {
-    const limit = Math.ceil(Props / 2)
+    const limit = Math.ceil(Props / 20)
     currentPage(current,limit)
     SetPage(limit)
   }
@@ -116,14 +111,12 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
     const timer = setTimeout(() => {
       productSearchHandler()
     }, 500)
-
     return () => clearTimeout(timer)
   },[searchInput])
 
   const productSearchHandler = async() => {
     const res = await execProductSearchHandler(searchInput)
     if (res.status == 200){
-      console.log(res)
       setProductData(res.data.products)
     }else{
     }
@@ -258,11 +251,11 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
                   >全て</li>
                   <li
                   className={rangeNumber==2?"activeRange":""}
-                   onClick={()=>rangeNumberHandler(2)}
+                  onClick={()=>rangeNumberHandler(2)}
                   >１ヶ月</li>
                   <li
                   className={rangeNumber==3?"activeRange":""}
-                   onClick={()=>rangeNumberHandler(3)}
+                  onClick={()=>rangeNumberHandler(3)}
                   >１年</li>
                 </ul>
               </div>
@@ -285,15 +278,15 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
                   >全て</li>
                   <li
                   className={rangeLikesNumber==1?"activeRange":""}
-                   onClick={()=>rangeLikesNumberHandler(1)}
+                  onClick={()=>rangeLikesNumberHandler(1)}
                   >１週間</li>
                   <li
                   className={rangeLikesNumber==2?"activeRange":""}
-                   onClick={()=>rangeLikesNumberHandler(2)}
+                  onClick={()=>rangeLikesNumberHandler(2)}
                   >１ヶ月</li>
                   <li
                   className={rangeLikesNumber==3?"activeRange":""}
-                   onClick={()=>rangeLikesNumberHandler(3)}
+                  onClick={()=>rangeLikesNumberHandler(3)}
                   >１年</li>
                 </ul>
               </div>
@@ -318,18 +311,17 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
                   >全て</li>
                   <li
                   className={rangePopulerNumber==2?"activeRange":""}
-                   onClick={()=>rangePopulerNumberHandler(2)}
+                  onClick={()=>rangePopulerNumberHandler(2)}
                   >今月</li>
                   <li
                   className={rangePopulerNumber==3?"activeRange":""}
-                   onClick={()=>rangePopulerNumberHandler(3)}
+                  onClick={()=>rangePopulerNumberHandler(3)}
                   >今年</li>
                 </ul>
               </div>
             </div>
             </li>
           </ul>
-
           )}
           <div className = "ArticlesContainerProductSearch"
           ref={ref}
@@ -338,11 +330,11 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
               <IoSearchCircle/>
             </div>
             <input type="text"
-             value={searchInput}
-             autoComplete="off"
-             onChange={handleProductTitleChange}
-             onClick={menuOpenHandler}
-             placeholder="映画・TVタイトル(3文字以上)"
+              value={searchInput}
+              autoComplete="off"
+              onChange={handleProductTitleChange}
+              onClick={menuOpenHandler}
+              placeholder="映画・TVタイトル(3文字以上)"
             />
             <div className = "selected_style_icons">
               <HiChevronDoubleDown
@@ -411,11 +403,11 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
                   key={index}
                   >
                   {item!=1&&item!=page&&(
-                     <li
+                    <li
                     key={item}
                     onClick={()=>currentSetHandler(item)}
                     className={current==item?"activeCurrent":""}
-                     >{item}</li>
+                    >{item}</li>
                   )}    
                 </React.Fragment>     
               )  
@@ -434,7 +426,6 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
           </ul>
         </div>
         <div className="ModalArticle">
-          {/* <Outlet/> */}
           {Props.children}
         </div>
       </div>

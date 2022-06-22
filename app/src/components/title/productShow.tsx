@@ -52,7 +52,6 @@ type Props = {
 }
 
 export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
-  // console.log(Props.data)
   const router = useRouter()
   const {pid} = router.query
   const params_id = pid
@@ -94,15 +93,12 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
 
   let isMounted = true
   const setdata = async() =>{
-    console.log("aaaaaaaaaaa")
     if (ProductStore.id == Number(params_id)){
       setProductStore(ProductStore)
     }
     const res = await execProductShow(Number(params_id))
-    console.log(res)
     if (res.data.status === 200) {
       if (isMounted) {
-        console.log(res)
         if (ProductStore.id != Number(params_id)){
           dispatch(actionSettingProductData2(res.data.products));
         }   
@@ -164,8 +160,6 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
       return
     }
     const firstE = new Date(product.episords[0].releaseDate)
-    // console.log(firstE)
-    // console.log(product.episords[0].releaseDate)
     setFirstEpisord(`${firstE.getFullYear()}-${firstE.getMonth()+1}-${firstE.getDate()} ${firstE.getHours()}時${firstE.getMinutes()}分`)
     const length = product?.episords.filter(item => item.time !== undefined).length
     const time = product?.episords.reduce((sum,i)=>i.time!=undefined?sum+new Date(i.time).getTime():sum,0)
@@ -254,9 +248,6 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   },[userSwr.login])
 
   useEffect(()=>{
-    console.log(product)
-    console.log(stats)
-    console.log(acsesses)
   },[acsesses])
 
   // acsesses
@@ -277,7 +268,6 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
     const res = await execCheckingHeart(product.id,userSwr.user.id)
     if (res.status === 200) {
       // 確認
-      console.log(res)
       setHeart(res.data.liked.liked)
       if (res.data.liked.liked===true){
         setHeartId(res.data.liked.like)
@@ -298,7 +288,6 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
     // doneyet エラー表示 上のも下も
     if (typeof product === 'undefined') return
     const res = await execProductCreateHeart(product.id,userSwr.user.id)
-      console.log(res)
     if (res.data.status === 200) {
       setHeartId(res.data.like.id)
       setHeart(true)
@@ -313,7 +302,6 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   const deleteheart = async() => {
     if (typeof product === 'undefined' || typeof heartId=== 'undefined') return
     const res = await execProductDeleteHeart(product.id,heartId,userSwr.user.id)
-      console.log(res)
     if (res.data.status === 200) {
       setHeart(false)
       setLikecount(res.data.likeCount)
@@ -359,12 +347,6 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
 
   //  const [openChatRoom,setOpenChatRoom] = useState<boolean>(false)
   //  const modalOpenChatRoom = () => setOpenChatRoom(true)
-
-   console.log(ProductStore)
-   console.log(product)
-  //  let countR = 0
-  //  countR += 1
-   console.log(userSwr.user)
   return(
     <>
       <div className = "product_show"

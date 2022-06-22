@@ -7,11 +7,8 @@ import { GiMedievalGate} from "react-icons/gi"
 import { BsFillGridFill } from "react-icons/bs"
 import Link from "next/link"
 
-// import { Link } from "react-router-dom"
 export const UserRight:React.FC = function UserRightFunc(){
-
   const {user} = useContext(UserShowContext)
-  console.log(user)
   return(
     <>
       <div className ="UsersShowRight">
@@ -24,7 +21,6 @@ export const UserRight:React.FC = function UserRightFunc(){
                 <li><Link href={`/users/${user.id}`}><a><GiMedievalGate/>Top</a></Link></li>
                 <li><Link href={`/users/${user.id}/likes`}><a><MdFavoriteBorder/>Like</a></Link></li>
                 <li><Link href={`/users/${user.id}/scores`}><a><MdScore/>Score</a></Link></li>
-                {/* <li><ImStatsBars/>統計</li> */}
                 <li><Link href={`/users/${user.id}/reviews`}><a><MdOutlineRateReview/>Review</a></Link></li>
                 <li><Link href={`/users/${user.id}/threads`}><a><MdOutlineRateReview/>Thread</a></Link></li>
                 <li><Link href={`/users/${user.id}/tiers`}><a><BsFillGridFill/>MyTier</a></Link></li>

@@ -1,9 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-// import Image from 'next/image'
 import { ShareMain } from '@/components/share/main/ShareMain'
-// import { ShareMain } from 'src/components/share/main/ShareMain'
-// import { ShareMain } from '../src/components/share/main/ShareMain'
 import styles from 'styles/Home.module.scss'
 import {BiTestTube} from 'react-icons/bi'
 import { ThisSeasonAnimeInfomation } from '@/components/mains/main_block/ThisSeasonAnimeInfomation'
@@ -126,16 +123,12 @@ type UserTier = {
 }
 
  const Home: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
-  console.log(process.env.NODE_ENV)
   const fallback= Props.fallback
   const submenu = useSelector((state:RootState)=>state.submenu)
   const dispatch = useDispatch()
    // location scroll-------------------------------
   //  const location = useLocation()
   const router = useRouter()
-  console.log(router)
-  console.log(router.asPath.slice(2))
   useEffect(()=>{
     if(submenu.state==false)return
     if (router.asPath) {
@@ -143,7 +136,6 @@ type UserTier = {
       if(elem==null)return
         const top = elem.getBoundingClientRect().top
       if (elem) {
-      console.log("agadadga2222")
         top<0?window.scrollTo({top:top + window.pageYOffset-66.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-20,left:0, behavior: "smooth"})
       }
     } else {

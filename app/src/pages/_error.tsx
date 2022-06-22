@@ -18,12 +18,7 @@ Error.getLayout = (page) => {
     <ShareMain
       locationNumber={0}
     >
-      {/* <ProductShow
-      >
-        <ProductShowReviews> */}
-          {page}
-        {/* </ProductShowReviews>
-      </ProductShow>    */}
+      {page}
     </ShareMain>
   )
 }

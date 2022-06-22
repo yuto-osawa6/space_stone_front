@@ -1,8 +1,6 @@
 import { Modal } from "@mui/material"
 import { MenuProduLists } from "@/components/share/component/MenuProduLists"
 import { UserShowEmotionItem } from "@/components/share/component/UserShowEmotionItem"
-// import { MenuProduLists } from "component/custom/MenuProduLists"
-// import { UserShowEmotionItem } from "component/users/show/main/reviews/UserShowEmotionItem"
 import { product } from "@/interfaces/product"
 import { review } from "@/interfaces/review"
 import { execGetEmotionList, execProductSearchHandler } from "@/lib/api/main"
@@ -12,12 +10,10 @@ import { HiChevronDoubleDown } from "react-icons/hi"
 import { IoSearchCircle } from "react-icons/io5"
 import { MdInsertEmoticon } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
-// import { Outlet } from "react-router-dom"
 import { RootState } from "@/store"
 import { NavigatingLeftReviewDataAction } from "@/store/lefts/review/actions"
 import { updateReviewAction } from "@/store/reviewUpdate/actions"
 import { ReviewsLists } from "./ReviewsLists"
-
 
 type emotion = {
   id:number
@@ -34,7 +30,6 @@ export const Reviews:React.FC<Props> = function ReviewsFunc(Props){
   const handlerOne = async() => {
     const res = await execGetEmotionList()
     if(res.status==200){
-      console.log(res)
       setEmotions(res.data.emotionList)
     }
   }
@@ -53,12 +48,9 @@ export const Reviews:React.FC<Props> = function ReviewsFunc(Props){
   const [rangeLikesNumber,setRangeLikesNumber] = useState<number>()
   const [rangePopulerNumber,setRangePopulerNumber] = useState<number>()
 
-
-
   let isMounted = true
   const ArticleHandler = async() => {
     const res = await execReviewHandler(current,selectSort,rangeNumber,rangeLikesNumber,rangePopulerNumber,product?.id,emotion?.id)
-    console.log(res)
     if (res.status == 200){
       if(isMounted){
         setReviews(res.data.reviews)
@@ -91,11 +83,8 @@ useEffect(()=>{
   window.scrollTo({top:0,left:0, behavior: "smooth"})
 },[])
 
-
-
-
   const GfNavigation = (Props:number) => {
-    const limit = Math.ceil(Props / 2)
+    const limit = Math.ceil(Props / 20)
     currentPage(current,limit)
     SetPage(limit)
   }
@@ -156,7 +145,6 @@ useEffect(()=>{
   const productSearchHandler = async() => {
     const res = await execProductSearchHandler(searchInput)
     if (res.status == 200){
-      console.log(res)
       setProductData(res.data.products)
     }else{
 
@@ -262,8 +250,6 @@ useEffect(()=>{
 
     // updateReview
     const updateReviewState = useSelector((state:RootState)=>state.updateReview)
-    // const userStore = useSelector((state:RootState)=>state.user)
-    console.log(updateReviewState)
     useEffect(()=>{
       if(updateReviewState.update == false)return
       ArticleHandler()
@@ -309,11 +295,11 @@ useEffect(()=>{
                   >全て</li>
                   <li
                   className={rangeNumber==2?"activeRange":""}
-                   onClick={()=>rangeNumberHandler(2)}
+                  onClick={()=>rangeNumberHandler(2)}
                   >１ヶ月</li>
                   <li
                   className={rangeNumber==3?"activeRange":""}
-                   onClick={()=>rangeNumberHandler(3)}
+                  onClick={()=>rangeNumberHandler(3)}
                   >１年</li>
                 </ul>
               </div>
@@ -336,15 +322,15 @@ useEffect(()=>{
                   >全て</li>
                   <li
                   className={rangeLikesNumber==1?"activeRange":""}
-                   onClick={()=>rangeLikesNumberHandler(1)}
+                  onClick={()=>rangeLikesNumberHandler(1)}
                   >１週間</li>
                   <li
                   className={rangeLikesNumber==2?"activeRange":""}
-                   onClick={()=>rangeLikesNumberHandler(2)}
+                  onClick={()=>rangeLikesNumberHandler(2)}
                   >１ヶ月</li>
                   <li
                   className={rangeLikesNumber==3?"activeRange":""}
-                   onClick={()=>rangeLikesNumberHandler(3)}
+                  onClick={()=>rangeLikesNumberHandler(3)}
                   >１年</li>
                 </ul>
               </div>
@@ -369,11 +355,11 @@ useEffect(()=>{
                   >全て</li>
                   <li
                   className={rangePopulerNumber==2?"activeRange":""}
-                   onClick={()=>rangePopulerNumberHandler(2)}
+                  onClick={()=>rangePopulerNumberHandler(2)}
                   >今月</li>
                   <li
                   className={rangePopulerNumber==3?"activeRange":""}
-                   onClick={()=>rangePopulerNumberHandler(3)}
+                  onClick={()=>rangePopulerNumberHandler(3)}
                   >今年</li>
                 </ul>
               </div>
@@ -390,11 +376,11 @@ useEffect(()=>{
               <IoSearchCircle/>
             </div>
             <input type="text"
-             value={searchInput}
-             autoComplete="off"
-             onChange={handleProductTitleChange}
-             onClick={menuOpenHandler}
-             placeholder="映画・TVタイトル(3文字以上)"
+            value={searchInput}
+            autoComplete="off"
+            onChange={handleProductTitleChange}
+            onClick={menuOpenHandler}
+            placeholder="映画・TVタイトル(3文字以上)"
             />
             <div className = "selected_style_icons">
               <HiChevronDoubleDown
@@ -518,7 +504,6 @@ useEffect(()=>{
             </ul>
           </div>
           <div className="ModalArticle">
-            {/* <Outlet/> */}
             {Props.children}
           </div>
         </div>
@@ -538,7 +523,6 @@ useEffect(()=>{
                     emotion = {emotion}
                     setEmotion = {setEmotion}
                     setCurrent = {SetCurrent}
-                    // setPage = {SetPage}
                     setIsMenuOpen2={setIsMenuOpen2}
                     key={item.id}
                   />

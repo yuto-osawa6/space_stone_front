@@ -1,4 +1,16 @@
+import { ErrorMessage } from "../message";
+import { ArticleMessageJa } from "./ja/ArticleMessageJa";
+import { AdminAriticleMessageJa, MessageJa, SettingUserModalMessageJa } from "./ja/ja-error";
+import { LeftMessageJa } from "./ja/LeftMessageJa";
+import { UserMessageJa } from "./ja/UserMessageJa";
+
 export default {
+  domain:"MeruPlanet",
+  Logo:{
+    G:"Meru",
+    F:"Planet",
+    SUBTITLE:"めるぷらねっと"
+  },
   Headers:{
     TOP: "Home",
     SEARCH: "Search",
@@ -8,12 +20,13 @@ export default {
     USERMENU: "UserMenu"
   },
   SubHeader:{
-    TOP: "トップ",
-    SEARCH: "サーチ",
+    TOP: "ホーム",
+    SEARCH: "検索",
     ARTICLE: "記事",
     REVIEWS: "レビュー",
     THREAD: "スレッド",
-    // USERMENU: ""
+    SINGIN: "サインイン",
+    USERMENU: "ユーザーメニュー"
   },
   UserInfomation:{
     SIGNIN:"SignIn",
@@ -29,8 +42,8 @@ export default {
     NEXTSEASON: "来シーズンの作品",
     MOVIE: "映画情報（今シーズン）",
     NEWS: "おしらせ",
-    TOP10: "Top10リスト",
-    TOP100: "Top100リスト",
+    TOP10: "Top10",
+    TOP100: "Top100",
     TIER: "過去のTier情報",
     LASTQUESTIONNAIRE: "過去のアンケート結果"
   },
@@ -38,5 +51,16 @@ export default {
     Article:{
       TITLE_VALIDATION:"タイトルを入力してください。"
     }
+  },
+  Message:MessageJa,
+  ErrorMessage:ErrorMessage,
+  Component:{
+    AdminsArticle:AdminAriticleMessageJa,
+    SettingUserModal:SettingUserModalMessageJa,
+
+
+    Lefts:LeftMessageJa,
+    USER:UserMessageJa,
+    Article:ArticleMessageJa
   }
 }

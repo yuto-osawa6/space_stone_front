@@ -14,9 +14,7 @@ type Props = {
 export const ReviewEditList:React.FC<Props> = function ReviewEditListFunc(Props){
   const[open,setOpen] = useState<boolean>(false)
   const[open2,setOpen2] = useState<boolean>(false)
-
   const handleDelete = () => {
-    console.log(Props)
     setOpen2(true)
   }
   const handleEdit = () => {
@@ -50,15 +48,14 @@ export const ReviewEditList:React.FC<Props> = function ReviewEditListFunc(Props)
             編集
           </li>
           <li
-           style={{
-            // cursor:"pointer",
+            style={{
             borderRadius: "5px",
             cursor: "pointer",
             padding: "5px",
             backgroundColor: "#ff3073",
             color: "white",
           }}
-           onClick={handleDelete}
+            onClick={handleDelete}
           >
               削除
           </li>
@@ -81,10 +78,6 @@ export const ReviewEditList:React.FC<Props> = function ReviewEditListFunc(Props)
         review = {Props.review}
         product = {Props.product}
         handleCloseAll={Props.handleCloseAll}
-        // review = {Props.review}
-        // product = {Props.product}
-        // setReview={Props.setReview}
-        // setProduct={Props.setProduct}
       />
       )}
     </>

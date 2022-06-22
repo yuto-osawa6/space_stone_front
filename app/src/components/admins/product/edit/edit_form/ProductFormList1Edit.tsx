@@ -1,8 +1,5 @@
 import { FormControl, FormHelperText, InputLabel, MenuItem, Modal, Select, SelectChangeEvent, TextField } from "@mui/material"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-// import ReactQuill, { Quill } from "react-quill"
-// import { Navigate, useNavigate } from "react-router-dom"
-
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
@@ -12,8 +9,6 @@ import { YearSeasonsEdit } from "./YearSeasonsEdit";
 import { DefaultPasteForTitle } from "@/lib/ini/quill/QuillEffectForTitle";
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
-// import { product } from "interfaces/product";
-// import { HorizontalNonLinearStepper } from "./stepper/Stepper";
 
 type Props = {
   activeStep : number
@@ -52,7 +47,6 @@ type form_product = {
 
   yearSeason:year_season[]
   overview:string | undefined
-  // time:Date | null
 }
 
 type year_season = {
@@ -64,14 +58,12 @@ type year_season = {
 
 export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   const a = useMemo(()=>{
-    // console.log("aaaaaiiiiii")
     DefaultPasteForTitle()
   },[])
   a
   // -------------------
   
   useEffect(()=>{
-    // DefaultPasteForTitle()
     handleSetUpYear()
   },[])
 
@@ -79,19 +71,14 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   const childFunc01 = useRef<any>([])
  
   // productTitle------------------------------
-    // const [title,setTitle] = useState<string | undefined>("")
     const [title,setTitle] = useState<string | undefined>(Props.formProduct.title)
-
     const [titleError,setTitleError] = useState<boolean>()
     const [titleValidateText,setValidateText] = useState<string>()
     const handleChangetext = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
       setTitle(e?.currentTarget.value)
-      console.log("aaaa")
       setTitleError(false)
       setValidateText("")
     }
-
-  // setProduct({title:"",imageUrl:""})
   // imageUrl-----------------------------------
 
   const [imageUrl,setImageUrl] = useState<string | undefined>(Props.formProduct.imageUrl)
@@ -164,13 +151,10 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
 
 
   const underlineWavyHandler = () => {
-    console.log("aaa")
     const editor = quillref.current.getEditor()
     const range = editor.getSelection()
 
     if(range!=null){
-      console.log(quillref.current.getEditor().getFormat(range).UnderlineWavy)
-      console.log(quillref.current.getEditor().getFormat())
       editor.format('textdecorationcolor',"#ff9900")
       quillref.current.getEditor().getFormat(range).UnderlineWavy==true?editor.format('UnderlineWavy',false):editor.format('UnderlineWavy',true)
     }
@@ -208,13 +192,6 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   ),[]);
   const handleChange = (content: string):void | undefined => {
     const editor = quillref.current?.getEditor()
-    // setArasuziLength(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length)
-   console.log(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length)
-
-    // console.log(quillref.current.getEditor().getText(0,20).replace(/\r?\n/g, ''))
-    // const ss = quillref.current.getEditor().getText(0,20)
-    // const ss2 = quillref.current.getEditor().getLength()
-    console.log(new Blob([content]).size)
     setValue(content)
     setArasuziLength(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length)
     if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length>300){
@@ -260,11 +237,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     setYearValidationText("")
     setYearError(false)
   }
-  console.log(yearList)
-
   // year2-----------------------------------------------
-  // const [years,setYears] = useState<string[]>([])
-  // Props.formProduct.productYear.map(item=>item.year.slice(0,4))
   const [yearsValidationText,setYearsValidationText] = useState<string>("")
   const [yearsError,setYearsError] = useState<boolean>(false)
 
@@ -274,16 +247,11 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
       target: { value },
     } = e;
     setYears(
-      // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
     setYearsValidationText("")
     setYearsError(false)
-
-    console.log(value)
     const character_filter = yearSeason.filter(item => value.includes(item.year))
-    console.log(yearSeason)
-    console.log(character_filter)
     childFunc01.current = childFunc01.current.filter((item:any) => value.includes(item.id))
     setYearSeason(character_filter)
   }
@@ -299,9 +267,6 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
 
   const [deliveryStartValidationText,setDeliveryStartValidationText] = useState<string>("")
   const [deliveryEndValidationText,setDeliveryEndValidationText] = useState<string>("")
-
-  console.log(Props.formProduct)
-  console.log(Props.formProduct.deliveryStart!=undefined)
   // 
   const handleChangeKisetsu = (e:SelectChangeEvent<string[]>) => {
     // setKisetsu(e.target.value as string)
@@ -349,7 +314,6 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   // error complete validation
   const handleErrorCheck = () => {
     // title
-    console.log(title)
     if(title==undefined){
       setTitleError(true)
       setValidateText("タイトルが未定義です。")
@@ -397,7 +361,6 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
       return
     }
     if(blob.size>3000){
-      console.log(new Blob([value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")]).size)
       setArasuziValidationText("サイズが大きすぎます。")
       return
     }
@@ -407,7 +370,6 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     //   setYearError(true)
     //   return
     // } 
-    // console.log(kisetsu.length)
 
     // if(kisetsu.length==0){
     //   setKisetsuValidationText("選択されていません。")
@@ -422,32 +384,23 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     //   setDeliveryEndValidationText("入力されていません。")
     //   return
     // }
-    console.log(yearSeason)
     // --------------------------------------------------------------------
     const array:number[] = []
     childFunc01.current.map((i:Function,index:number)=>
     array.push(childFunc01.current[index].func())
     // childFunc01.current[index]()
     )
-    console.log(array)
 
     let total = array.reduce(function(sum, element){
       return sum + element;
     }, 0);
 
-    console.log(total)
     if(total>0){
       return
     }
 
 
     // ---------------------------------------------------------------------
-
-    // console.log(isInvalidDate(deliveryStart))
-    // console.log(isInvalidDate(deliveryEnd))
-    // console.log(deliveryStart)
-    // console.log(deliveryEnd)
-
     // if(isInvalidDate(deliveryStart)){
     //   setDeliveryStartValidationText("適切な形で入力してください。")
     //   return
@@ -485,8 +438,6 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     })
 
     // return
-    
-    console.log(Props.completed)
     const newCompleted = Props.completed
     newCompleted[Props.activeStep] = true
     Props.setCompleted(newCompleted)
@@ -496,13 +447,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
 
   }
 
-  console.log(Props.completed)
-  
-  
-  console.log(title)
-
   const handlererror = () => {
-    console.log("aaa")
   }
 
   // doneyet-1(このやり方が推奨かどうかわからない)
@@ -521,44 +466,35 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
             error={titleError}
             inputProps={{ maxLength: 40, pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="タイトルを入力してください（必須:40文字以内）"
-            // defaultValue=""
             defaultValue={Props.formProduct!=undefined?Props.formProduct.title:"a"}
             id="outlined-basic"
             label="Title"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
             helperText={titleValidateText}
             onChange={handleChangetext}
             size="small"
             fullWidth
-            // disabled={true}
           />
           <TextField
             error={imageUrlError}
             inputProps={{ maxLength: 1000, pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="ImageUrlを入力してください(base64以外の画像リンク）"
-            // defaultValue=""
             defaultValue={Props.formProduct.imageUrl}
             id="outlined-basic"
             label="ImageUrl"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
             helperText={imageUrlValidateText}
             onChange={handleChangeImageUrl}
             size="small"
             fullWidth
           />
           <TextField
-            // error={imageUrlError}
             inputProps={{ maxLength: 1000, pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="ImageUrlを入力してください(base64以外の画像リンク）"
-            // defaultValue=""
             defaultValue={Props.formProduct.imageUrl2}
             id="outlined-basic"
             label="ImageUrl2"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
-            // helperText={imageUrlValidateText}
             onChange={handleChangeImageUrl2}
             size="small"
             fullWidth
@@ -567,12 +503,10 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
             error={imageUrlError}
             inputProps={{ maxLength: 1000, pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="title Ka"
-            // defaultValue=""
             defaultValue={Props.formProduct.imageUrl3}
             id="outlined-basic"
             label="title Ka"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
             helperText={imageUrlValidateText}
             onChange={handleChangeImageUrl3}
             size="small"
@@ -582,106 +516,79 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
             error={imageUrlErrorh1}
             inputProps={{ pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="title En"
-            // defaultValue=""
             defaultValue={Props.formProduct.imageUrlh1}
             id="outlined-basic"
             label="title En"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
-            // helperText={imageUrlValidateTexth1}
             onChange={handleChangeImageUrlh1}
             size="small"
             fullWidth
           />
           <TextField
-            // error={imageUrlError}
             inputProps={{ pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="title Ro"
-            // defaultValue=""
             defaultValue={Props.formProduct.imageUrlh2}
             id="outlined-basic"
             label="title Ro"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
-            // helperText={imageUrlValidateText}
             onChange={handleChangeImageUrlh2}
             size="small"
             fullWidth
           />
           <TextField
-            // error={imageUrlError}
             inputProps={{ pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="wiki"
-            // defaultValue=""
             defaultValue={Props.formProduct.imageUrlh3}
             id="outlined-basic"
             label="wiki"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
-            // helperText={imageUrlValidateText}
             onChange={handleChangeImageUrlh3}
             size="small"
             fullWidth
           />
 
             <TextField
-            // error={imageUrlError}
             inputProps={{ pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="wikiEn"
-            // defaultValue=""
             defaultValue={Props.formProduct.wikiEn}
             id="outlined-basic"
             label="wikiEn"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
-            // helperText={imageUrlValidateText}
             onChange={handleChangeImageUrl4}
             size="small"
             fullWidth
           />
           <TextField
-            // error={imageUrlError}
             inputProps={{ pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="copyright"
-            // defaultValue=""
             defaultValue={Props.formProduct.copyright}
             id="outlined-basic"
             label="copyright"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
-            // helperText={imageUrlValidateText}
             onChange={handleChangeImageUrl5}
             size="small"
             fullWidth
           />
           <TextField
-            // error={imageUrlError}
             inputProps={{ pattern: "^[0-9_]+$" }}
             placeholder="annictId"
-            // defaultValue=""
             defaultValue={Props.formProduct.annitictId}
             id="outlined-basic"
             label="annitictId"
             variant="outlined"
             value={annitictId}
-            // helperText={inputRef?.current?.validationMessage}
-            // helperText={imageUrlValidateText}
             onChange={handleChangeImageUrl6}
             size="small"
             fullWidth
           />
           <TextField
-            // error={imageUrlError}
             inputProps={{ pattern: "^[0-9_]+$" }}
             placeholder="shoboiTid"
-            // defaultValue=""
             defaultValue={Props.formProduct.shoboiTid}
             id="outlined-basic"
             label="shoboiTid"
             variant="outlined"
             value={shoboiTid}
-            // helperText={inputRef?.current?.validationMessage}
-            // helperText={imageUrlValidateText}
             onChange={handleChangeImageUrl7}
             size="small"
             fullWidth
@@ -695,27 +602,18 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
             id="outlined-basic"
             label="Site URL"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
             helperText={listValidateText}
             onChange={handleChangeList}
             size="small"
             fullWidth
           />
-          
-          
-          
           現在の文字数{arasuziLength}
           <FormHelperText className = "helpertexts">{arasuziValidationText}</FormHelperText>
           <ReactQuill 
             className = "adminProductDescriptionQuill"
             ref={quillref}
             modules={modules} 
-            // value={value.replace(/\s/g,"").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")} 
-            // value={value.replace(/(<p>\s+<\/p>){1,}/g,"").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")} 
             value={value!=undefined?value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>"):value} 
-
-
-            // onChange={handleChange}  
             theme="bubble"
             placeholder="preview"
             readOnly={true}
@@ -769,35 +667,24 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
               })}
             </Select>
             <FormHelperText className = "helpertexts">{yearValidationText}</FormHelperText>
-            {/* <FormHelperText>{helpertextradio}</FormHelperText> */}
           </FormControl>
-
-         
           {/* 2.0 */}
           {years.map((item,index)=>{
-           return(
-             <YearSeasonsEdit
-              key={item}
-              index = {index}
-              item = {item}
-              yearSeason = {yearSeason}
-              setYearSeason = {setYearSeason}
-              childFunc01 = {childFunc01}
-             />
-           ) 
+            return(
+              <YearSeasonsEdit
+                key={item}
+                index = {index}
+                item = {item}
+                yearSeason = {yearSeason}
+                setYearSeason = {setYearSeason}
+                childFunc01 = {childFunc01}
+              />
+            ) 
           })}
-
-
-           <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateTimePicker
-              // readOnly={true}
-              // disabled={true}
-              
               label="配信開始"
-              // onError={console.log("aaaaaaaaaaaaaaa")}
-              // disable
               onError={handlererror}
-              // type="datetime-local"
               value={deliveryStart}
               onChange={(newValue) => {
                 setDeliveryStart(newValue)
@@ -807,47 +694,32 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
               renderInput={(params) => 
                 <TextField 
                   {...params}
-                 />}
+                />}
             />
           </LocalizationProvider>
           <FormHelperText className = "helpertexts">{deliveryStartValidationText}</FormHelperText>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              
+            <LocalizationProvider dateAdapter={AdapterDateFns}>  
             <DateTimePicker
               label="配信終了"
-              onError={console.log}
-              // type="datetime-local"
               value={deliveryEnd}
               onChange={(newValue) => {
                 setDeliveryEnd(newValue)
                 setDeliveryEndValidationText("")
-
-
               }}
               renderInput={(params) => <TextField {...params} />}
             />
           </LocalizationProvider>
           <FormHelperText className = "helpertexts">{deliveryEndValidationText}</FormHelperText>
-            
-          
-
-
           現在の文字数{overviewLength}
           <FormHelperText className = "helpertexts">{overviewValidationText}</FormHelperText>
           <ReactQuill 
             className = "adminProductDescriptionQuill"
             ref={quillref2}
             modules={modules} 
-            // value={value.replace(/\s/g,"").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")} 
-            // value={value.replace(/(<p>\s+<\/p>){1,}/g,"").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")} 
             value={overview!=undefined?overview.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>"):overview} 
-
-
-            // onChange={handleChange}  
             theme="bubble"
             placeholder="preview"
             readOnly={true}
-            
           />
           <ReactQuill 
             className = "adminProductDescriptionQuill"
@@ -855,7 +727,6 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
             modules={modules} value={overview} onChange={handleChangeOverview}  
             theme="snow"
             placeholder="概要・見所(3000文字以内)"
-            
           />
         </div>
       </div>

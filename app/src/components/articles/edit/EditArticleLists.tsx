@@ -5,19 +5,16 @@ import { EditArticleModal } from "./EditArticleModal"
 type Props = {
   article: Article | undefined
 }
-
 export const EditArticleLists:React.FC<Props> = function EditArticleLists(Props){
   const[open,setOpen] = useState<boolean>(false)
   const[open2,setOpen2] = useState<boolean>(false)
 
   const handleDelete = () => {
-    console.log(Props)
     setOpen2(true)
   }
   const handleEdit = () => {
     setOpen(true)
   }
-
   return(
     <>
       <div className="">
@@ -33,7 +30,6 @@ export const EditArticleLists:React.FC<Props> = function EditArticleLists(Props)
           <li
             onClick={handleEdit}
             style={{
-            // cursor:"pointer",
             borderRadius: "5px",
             cursor: "pointer",
             padding: "5px",
@@ -44,17 +40,16 @@ export const EditArticleLists:React.FC<Props> = function EditArticleLists(Props)
             編集
           </li>
           <li
-           style={{
-            // cursor:"pointer",
+          style={{
             borderRadius: "5px",
             cursor: "pointer",
             padding: "5px",
             backgroundColor: "#ff3073",
             color: "white",
           }}
-           onClick={handleDelete}
+          onClick={handleDelete}
           >
-              削除
+            削除
           </li>
         </ul>
       </div> 

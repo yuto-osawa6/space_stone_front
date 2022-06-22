@@ -25,16 +25,12 @@ export const TierGroupList: React.FC<Props> = memo(function TierGroupListFunc(Pr
   const [{isOver,isOverCurrent,canDrop}, ref] = useDrop({
     accept: ItemType.Box,
     drop(dragItem: DragItem) {
-    // try{
       const dragIndex = dragItem.index;
       if (dragItem.group === Props.group.group) return;
       const targetIndex = Props.group.products.length
       Props.moveItem23(dragIndex, targetIndex, Props.group.group,dragItem.group,dragItem.id);
       dragItem.index = targetIndex;
       dragItem.group = Props.group.group
-    // }catch(e){
-    //   // console.log(e)
-    // }
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -43,7 +39,7 @@ export const TierGroupList: React.FC<Props> = memo(function TierGroupListFunc(Pr
     }),
   });
   const moveItem2 = useCallback((dragIndex: number, hoverIndex: number,group: number,pregroup:any | undefined,id:number) => {
-    console.log(dragIndex,hoverIndex,group,pregroup,id)
+    // console.log(dragIndex,hoverIndex,group,pregroup,id)
     try{
     Props.setGroupProduct((prevState:Group[]) => {
       const copy0009 = prevState.slice()
@@ -79,11 +75,8 @@ export const TierGroupList: React.FC<Props> = memo(function TierGroupListFunc(Pr
     },
     [],
   )
-  // const [onCharge,setOnCharge] = useState<boolean>(false)
-  // const backgroundColor = isOver&&canDrop? "red" : "aliceblue"
   const [tier,setTier] = useState<string>("")
   const [color,setColor] = useState<string>("")
- 
   useEffect(()=>{
     switch (Props.group.group) {
       case 0:

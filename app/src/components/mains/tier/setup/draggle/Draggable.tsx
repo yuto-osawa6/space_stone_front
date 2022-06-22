@@ -32,37 +32,26 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
       }
     },
     hover(item: DragItem, monitor) {
-      console.log("aaa")
       if (!ref.current) {
         return
       }
-      // console.log(ref.current?.getBoundingClientRect())
-      // console.log((monitor.getClientOffset() as XYCoord).x-ref.current?.getBoundingClientRect().left,(monitor.getClientOffset() as XYCoord).y - ref.current?.getBoundingClientRect().top)
       const dragIndex = item.index
       const hoverIndex = Props.index
-      console.log(dragIndex,hoverIndex)
       if (dragIndex === hoverIndex) {
         return
       }
       if (Props.group !== item.group) return
       const hoverBoundingRect = ref.current?.getBoundingClientRect()
-      // Get vertical middle
-      // const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
       const hoverMiddleX = (ref.current?.getBoundingClientRect().width) / 2
-      // Determine mouse position
       const clientOffset = monitor.getClientOffset()
-      // Get pixels to the top
-      // const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
       const hoverClientX = (clientOffset as XYCoord).x - hoverBoundingRect.left
-      // console.log(hoverBoundingRect,hoverMiddleY,clientOffset,hoverClientY,(clientOffset as XYCoord).x, hoverClientX)
       if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
         return
       }
-      // Dragging upwards
       if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
         return
       }
-     Props.moveCard(dragIndex, hoverIndex,Props.group,item.group,Props.product.id)
+    Props.moveCard(dragIndex, hoverIndex,Props.group,item.group,Props.product.id)
       item.index = hoverIndex
     },
   })
@@ -84,7 +73,6 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
   try{
   drag(drop(ref))
   }catch(e){
-    console.log(e)
   }
   return (
     <div ref={ref}
@@ -99,7 +87,6 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
     >
       <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
       style={{
-        // borderRadius:"5px",
         top:"0",
         position:"absolute",
         width:"100%",

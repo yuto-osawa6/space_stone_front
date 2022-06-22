@@ -4,8 +4,6 @@ import { Modal } from '@mui/material';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { OpenContext } from '@/contexttype/contexttype';
 import { product } from '@/interfaces/product';
-// import { useNavigate } from 'react-router-dom';
-// import ReactQuill from "react-quill"
 import { actionSettingProductData2 } from '@/store/product/actions';
 
 const ReactQuill =
@@ -23,14 +21,11 @@ export const CalendarEventsModal:React.FC<Props> = function CalendarEventsModalF
   const modules = useMemo(()=>({
     toolbar:{ 
       container:[
-      // [{ font: [] }],
       [{ header: 1 },{ header: 2 }],
       ["bold", "italic", "underline", "strike"],
       [{ color: [] }, { background: [] }],
-      // [{ script:  "sub" }, { script:  "super" }],
       ["blockquote"
     ],
-      // "code-block"],
       [{ list:  "ordered" }, { list:  "bullet" }],
       [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
     ],
@@ -45,7 +40,6 @@ export const CalendarEventsModal:React.FC<Props> = function CalendarEventsModalF
     setOpen(false);
   }
 
-  // const [averageScore,setAverageScore] = useState<number>()
   const [scoreColor,setScoreColor] = useState<Color>({backgroundColor:""})
   useEffect(()=>{
     if(Props.avgScore==undefined)return
@@ -95,7 +89,6 @@ export const CalendarEventsModal:React.FC<Props> = function CalendarEventsModalF
   const handleSetupYearSeason = () => {
     const kisetsu = ["冬","春","夏","秋"]
     const yearSeasonYear = Props.product.productYearSeason2.filter(i=>kisetsu.includes(i.season.name)).sort((a,b)=>kisetsu.indexOf(a.season.name) - kisetsu.indexOf(b.season.name)).sort((a,b)=>new Date(a.year.year).getTime() - new Date(b.year.year).getTime())
-    console.log(yearSeasonYear)
     try{
       if (yearSeasonYear.length==1){
         setYearSeason(`${new Date(yearSeasonYear[0].year.year).getFullYear()} ${yearSeasonYear[0].season.name}`)

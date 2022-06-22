@@ -6,18 +6,16 @@ import { product } from "@/interfaces/product"
 import { review, review_comments } from "@/interfaces/review"
 import { ssr_url } from "@/lib/client/clientssr"
 import { GetServerSideProps } from "next"
-// import Error from "next/error"
 import nookies from 'nookies'
-// import  Custom404  from "@/pages/4e04" 
-// import { CustomError } from "@/pages/_CustomError"
 import Error from "@/pages/_error"
+import { NextSeo } from "next-seo"
+import { useLocale } from "@/lib/ini/local/local"
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
   const cookies = nookies.get(context)
   const { pid,rid } = context.query
   try{
-    // const query_params = new URLSearchParams(params); 
     const [res] = await Promise.all([
       fetch(`${ssr_url}/products/${pid as string}/reviews/${rid as string}?page=1`,{
         headers:{
@@ -38,19 +36,12 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
       } 
     };
   }else{
-    // return {props: { statesCode:res.status}}
     return { notFound:true}
   }
   }catch{
-    // return  {props: { statesCode:500}}
     return { notFound:true}
   }
 }
-
-// type Props = {
-//   data:productShow
-// }
-
 
 type Props = {
   data:{
@@ -64,18 +55,14 @@ type Props = {
 }
 
 const ReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
-  // const fallback= Props.fallback
-  // if (Props.statesCode){
-  //   // ReviewShow.getLayout = false
-  //   return(
-  //     <>
-  //       <Error statusCode={Props.statesCode}></Error>
-  //     </>
-  //   )
-  // }
+  const {t} = useLocale()
+
   return(
-    <>
+  <>
+      <NextSeo
+      title={`Review - ${t.domain}`}
+      canonical = {`https://meruplanet.com/title/${Props.data.product.id}/reviews/${Props.data.review.id}`}
+      />
       <ProductReviews
         data={Props.data}
       />
@@ -86,12 +73,6 @@ const ReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
 export default ReviewShow
 
 ReviewShow.getLayout = (page) => {
-  // console.log(p)
-  // if(p.statesCode==400){
-  //   <>
-
-  //   </>
-  // }
   return (
     <ShareMain
       locationNumber={1}

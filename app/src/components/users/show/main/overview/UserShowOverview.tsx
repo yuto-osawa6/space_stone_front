@@ -1,10 +1,6 @@
-// import { UserBackgroupdSetUp } from "@/component/users/setup/background/UserBackgroundSetUp"
-// import { UserOverviewSetUp } from "@/component/users/setup/overview/UserOverviewSetUp"
 import { UserShowContext } from "@/contexttype/contexttype"
 import { useContext, useMemo,useState,useEffect } from "react"
-// import ReactQuill from "react-quill"
 import { useSelector } from "react-redux"
-// import { useParams } from "react-router-dom"
 import { RootState } from "@/store"
 import { UserShowLikeGenres } from "./UserShowLikeGenres"
 import { UserShowLikeProducts } from "./UserShowLikeProducts"
@@ -14,12 +10,6 @@ import { UserShowOverviewScoreEmotion } from "./UserShowOverviewScoreEmotion"
 import { UserTierList } from "./UserTierList"
 import { product } from "@/interfaces/product"
 import { execGetUserTier, execGetUserTierUserPage } from "@/lib/api/mains/main_blocks"
-// import { CreateTier } from "component/main/main_block/tier/CreateTier"
-// import { UpdateTier } from "component/main/main_block/tier/UpdateTier"
-
-
-// import { CreateTier } from "./tier/CreateTier"
-
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import { execChangeScoreArrayies } from "@/lib/api/users"
@@ -50,10 +40,8 @@ type tierProduct = {
 
 
 export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
-  // const LoginUserStore = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser()
   const LoginUserStore = userSwr
-  // const params = useParams()
   const router = useRouter()
   const {uid} =router.query
   const user_id = uid
@@ -69,23 +57,16 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
       [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
       ["image"],
     ],
-    // handlers: {
-    // },
   }
   }
   ),[])
-
- 
-
   const {user} = useContext(UserShowContext)
-  console.log(user)
 
   // tier create update
   const [openTier,setOpenTier] = useState<boolean>(false)
   const handleOpenTierCreateModal = () =>  setOpenTier(true)
   const [openTierUpdate,setOpenTierUpdate] = useState<boolean>(false)
   const handleOpenTierUpdateModal = () => {setOpenTierUpdate(true)
-  // console.log(openTierUpdate)
   }
 
   // tier
@@ -101,18 +82,15 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
     if(res.status == 200){
       setCurrentSeason(res.data.currentSeason)
       setProducts(res.data.products)
-      console.log("aaaaaaaaaaaaaa")
-      console.log(res)
-
       res.data.userTier.forEach((i:any)=>{
         const tier = i.tier
-       if(0<=tier&&tier<=10){
-        Object.assign(i,{group:5})
-       }else if(10<tier&&tier<=30) {
-        Object.assign(i,{group:4})
-       }else if(30<tier&&tier<=50){
-        Object.assign(i,{group:3})
-       }else if(50<tier&&tier<=70){
+      if(0<=tier&&tier<=10){
+      Object.assign(i,{group:5})
+      }else if(10<tier&&tier<=30) {
+      Object.assign(i,{group:4})
+      }else if(30<tier&&tier<=50){
+      Object.assign(i,{group:3})
+      }else if(50<tier&&tier<=70){
         Object.assign(i,{group:2})
       }else if(70<tier&&tier<=90){
         Object.assign(i,{group:1})
@@ -123,25 +101,18 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
       }
     })
       setUserTier(res.data.userTier)
-      // console.log(res.data.userTIer)
     }else{
-
     }
-   
   }
 
   useEffect(()=>{
-    // console.log(user.id==LoginUserStore.user.id)
     if(user.id!=LoginUserStore.user.id)return
     if(LoginUserStore.login!=true)return
     handleGetUserTier()
   },[LoginUserStore.login])
-
-
   useEffect(()=>{
     if(updateTier==false)return
     setUpdateTier(false)
-    console.log("アップデートされました")
     handleGetUserTier()
   },[updateTier])
 
@@ -152,8 +123,6 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
   const handleChangeScores = async(index:number) => {
     const res = await execChangeScoreArrayies(user.id,index)
     if(res.status == 200){
-      console.log(res)
-      // console.log(res.data.scoreArrayies[10])
       if(res.data.scoreArrayies[10]!=undefined){
         res.data.scoreArrayies[9] = res.data.scoreArrayies[9] +res.data.scoreArrayies[10]
       }
@@ -165,11 +134,8 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
   }
 
   useEffect(()=>{
-    // setIndexNumber(index)
     setScoreArrayies(user.score)
   },[])
-  console.log(LoginUserStore)
-  console.log(user.overview)
   return(
     <>
       
@@ -256,7 +222,6 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
                   )}
                 
                 <UserTierList
-                // user = {user}
                 userTier={userTier}
                 />
                 </>
@@ -266,35 +231,14 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
                   user = {user}
                 />
                 )}
-               </>
+                </>
               )}
           </div>
           )}
-         
-
-        {/* <div className = "UserShowOverview">
-          <div className = "UserShowOverviewTitle"
-           style={{
-            fontWeight:"bold"
-          }}
-          >
-            お気に入り
-          </div>
-          <div className = "UserShowOverviewLikes">
-            {user.likeProducts.map((item)=>{
-              return(
-                <UserShowLikeProducts
-                  key={item.id}
-                  product={item}
-                />
-              )
-            })}
-          </div>     
-        </div> */}
 
         <div className = "UserShowOverview">
           <div className = "UserShowOverviewTitle"
-           style={{
+            style={{
             fontWeight:"bold"
           }}
           >
@@ -311,10 +255,9 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
             })}
           </div>     
         </div>
-
         <div className = "UserShowOverview">
           <div className = "UserShowOverviewTitle"
-           style={{
+          style={{
             fontWeight:"bold"
           }}
           >
@@ -330,19 +273,18 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
           }}
           >
             {scoreArray.map((item,index)=>{
-             return(
-               <>
-                <li
-                style={index==indexNumber?{cursor:"pointer",color:"#ff3073"}:{cursor:"pointer"}}
-                onClick={()=>handleChangeScores(index)}
-                >{item}</li>
-               </>
-             ) 
+              return(
+                <>
+                  <li
+                  style={index==indexNumber?{cursor:"pointer",color:"#ff3073"}:{cursor:"pointer"}}
+                  onClick={()=>handleChangeScores(index)}
+                  >{item}</li>
+                </>
+              ) 
             })}
           </ul>
           <div className = "UserShowOverviewLikes">
             <UserShowOverviewScore
-            // score = {user.score}
             score = {scoreArrayies}
             />
           </div>     
@@ -350,9 +292,9 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
 
         <div className = "UserShowOverview">
           <div className = "UserShowOverviewTitle"
-           style={{
-            fontWeight:"bold"
-          }}
+            style={{
+              fontWeight:"bold"
+            }}
           >
             頻繁に抱いた感情
           </div>
@@ -367,15 +309,14 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
                 />
               )
             })}
-           
           </div>     
         </div>
 
         <div className = "UserShowOverview">
           <div className = "UserShowOverviewTitle"
-           style={{
-            fontWeight:"bold"
-          }}
+            style={{
+              fontWeight:"bold"
+            }}
           >
             高スコアをつけた作品に抱いた感情
           </div>
@@ -390,7 +331,6 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
                 />
               )
             })}
-           
           </div>     
         </div>
 

@@ -5,6 +5,7 @@ import { Top } from "@/components/title/top/Top"
 import { product } from "@/interfaces/product"
 import { review, review_comments } from "@/interfaces/review"
 import { ssr_url } from "@/lib/client/clientssr"
+import { useLocale } from "@/lib/ini/local/local"
 import { GetServerSideProps } from "next"
 import { NextSeo } from "next-seo"
 
@@ -36,19 +37,12 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
       } 
     };
   }else{
-    // return {props: { statesCode:res.status}}
     return { notFound:true}
   }
   }catch{
-    // return  {props: { statesCode:500}}
     return { notFound:true}
   }
 }
-
-// type Props = {
-//   data:productShow
-// }
-
 
 type Props = {
   data:{
@@ -60,11 +54,12 @@ type Props = {
 }
 
 const ReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
-  // const fallback= Props.fallback
+  const {t} = useLocale()
+
   return(
-    <>
+  <>
       <NextSeo
+      title={`Review - ${t.domain}`}
       canonical = {`https://meruplanet.com/title/${Props.data.product.id}/reviews/${Props.data.review.id}`}
       />
       <ProductReviews

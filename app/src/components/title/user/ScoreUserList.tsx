@@ -19,7 +19,6 @@ type Props = {
 }
 
 export const ScoreUserList:React.FC<Props> = function ScoreUserListFunc(Props){
-  console.log(Props)
   const {userSwr,error} = useUser()
   const handleColer= (averageScore:number | null) => {
     var color = {backgroundColor:""}
@@ -57,11 +56,8 @@ export const ScoreUserList:React.FC<Props> = function ScoreUserListFunc(Props){
   const dispatch = useDispatch()
   const execDestroyScoreFunc = async() => {
     if (typeof Props.product === 'undefined') return
-    // setSubmitLoading(true)
     const res = await execDestroyScore(Props.product.id,userSwr.user.id,Props.scoreid as number)
-    console.log(res)
     if (res.data.status === 200) {
-      console.log(res)
       Props.setScore(null)
       Props.setScoreaverage(res.data.scoreAverage)
       Props.setStats(res.data.statsArray)
@@ -72,7 +68,6 @@ export const ScoreUserList:React.FC<Props> = function ScoreUserListFunc(Props){
     }else{
       dispatch(pussingMessageDataAction({title:"予期しないエラーが発生しました。もう一度試すか、お問い合わせください。",select:0}))
     }
-    // setSubmitLoading(false)
   }
   return(
     <>
@@ -82,9 +77,7 @@ export const ScoreUserList:React.FC<Props> = function ScoreUserListFunc(Props){
           <span
           onClick={execDestroyScoreFunc}
           >削除</span>
-        </div>
-        
-         
+        </div> 
         {Props.userScore!=undefined&&Props.userScore!=null&&(
           <div className="ScoresListInProductShowList">
             <ul>

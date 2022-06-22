@@ -2,7 +2,6 @@ import { product } from "@/interfaces/product"
 import { memo, useEffect, useState } from "react"
 import { BsFillSuitHeartFill ,BsFillSuitClubFill,BsFillSuitSpadeFill, BsFillSuitDiamondFill} from "react-icons/bs"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { actionSettingProductData2 } from "@/store/product/actions"
 import { useRouter } from "next/router"
 
@@ -27,7 +26,6 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
     const colorNumber:number = array[Math.floor(Math.random() * array.length)]
     setColornumber(colorNumber)
     handleSetupYearSeason()
-    // settingNumberOfDigits(Props.product.scores.length)
   },[])
   // doneyet_4 (undefinedが帰ってきた時エラー)
   const [averageScore,setAverageScore] = useState<number>()
@@ -77,8 +75,6 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
   const router = useRouter()
   const dispatch = useDispatch()
   const navigateHandler = () => {
-    // dispatch(actionSettingProductData2(Props.product));
-    // navigate(`/products/${Props.product.id}`)
     router.push(`/title/${Props.product.id}`)
   }
   // year season
@@ -86,7 +82,6 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
   const handleSetupYearSeason = () => {
     const kisetsu = ["冬","春","夏","秋"]
     const yearSeasonYear = Props.product.productYearSeason2.filter(i=>kisetsu.includes(i.season.name)).sort((a,b)=>kisetsu.indexOf(a.season.name) - kisetsu.indexOf(b.season.name)).sort((a,b)=>new Date(a.year.year).getTime() - new Date(b.year.year).getTime())
-    console.log(yearSeasonYear)
     try{
       if (yearSeasonYear.length==1){
         setYearSeason(`${new Date(yearSeasonYear[0].year.year).getFullYear()} ${yearSeasonYear[0].season.name}`)
@@ -97,7 +92,6 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
 
     }
   }
-  console.log(YearSeason)
   return(
     <>
       <div className = "ToptensContainerGridList"
@@ -151,18 +145,11 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
         </div>
         <div className = "ToptensContainerGridListScore">
           <div className = "ToptensContainerGridListScoreUpper ToptensContainerGridListUpperShare">
-          {/* {Props.product.scores.length>0&&(
-            <p style={scoreColor}>{averageScore?.toFixed(1)}%</p>
-          )} */}
           {Props.averageScore!=undefined&&(
             <p style={scoreColor}>{Number(Props.averageScore).toFixed(1)}%</p>
           )}
           </div>
            <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
-           {/* {Props.product.scores.length>0&&(
-            <p>{scoreLenght}</p>
-
-          )} */}
           </div>
         </div>
         
@@ -178,11 +165,9 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
         </div>
         <div className = "ToptensContainerGridSeries">
           <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
-              {/* {Props.product.year} */}
               {YearSeason}
           </div>
           <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
-            {/* {Props.product.duration} */}
           </div>
         </div>
       </div>

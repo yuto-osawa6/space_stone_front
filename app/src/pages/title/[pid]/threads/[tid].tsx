@@ -7,7 +7,9 @@ import { ProductShowThreads } from "@/components/title/thread/ProductShowThread"
 import { product } from "@/interfaces/product"
 import { review, review_comments } from "@/interfaces/review"
 import { ssr_url } from "@/lib/client/clientssr"
+import { useLocale } from "@/lib/ini/local/local"
 import { GetServerSideProps } from "next"
+import { NextSeo } from "next-seo"
 
 import nookies from 'nookies'
 
@@ -65,10 +67,15 @@ type Props = {
 }
 
 const ThreadShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
   // const fallback= Props.fallback
+  const {t} = useLocale()
+
   return(
-    <>
+  <>
+      <NextSeo
+      title={`Thread - ${t.domain}`}
+      canonical = {`https://meruplanet.com/title/${Props.data.product.id}/threads/${Props.data.review.id}`}
+      />
       <ProductThreads
       data={Props.data}
       />

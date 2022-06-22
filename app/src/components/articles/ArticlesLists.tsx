@@ -1,14 +1,12 @@
 import { Article } from "@/interfaces/article"
 import { useRouter } from "next/router";
 import React, { memo, useEffect, useMemo, useRef, useState } from "react"
-// import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { SelectiongArticleDataAction } from "@/store/article/actions"
+import { useLocale } from "@/lib/ini/local/local";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
-
 
 type Props = {
   id :number
@@ -39,16 +37,16 @@ export const ArticlesLists:React.FC<Props> = memo(function ArticlesListsFunc(Pro
   }
   ),[])
 
-  // const 
   const quillref = useRef<any>(null!)
-  // dispatch navigate
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
+  const options = {
+    scroll:false
+  }
 
   const movementHandler = () => {
-    dispatch(SelectiongArticleDataAction(Props.article))
-    router.push(`/articles/${Props.article.id}`)
+    router.push(`/articles/${Props.article.id}`,undefined,options)
   }
+  const {t} = useLocale()
 
   return(
     <React.Fragment>
@@ -62,11 +60,11 @@ export const ArticlesLists:React.FC<Props> = memo(function ArticlesListsFunc(Pro
           <div className = "ArticleListTitleAssociateTitle">
             {Props.article.articleProducts.length > 0&&(
               <>
-                *関連のあるタイトル
+                *{t.Component.Article.ArticleItem1}
               </>
             )}
           </div>
-         <ul>
+        <ul>
           {Props.article.articleProducts.map((item)=>{
             return(
               <li
@@ -77,7 +75,7 @@ export const ArticlesLists:React.FC<Props> = memo(function ArticlesListsFunc(Pro
           </ul>  
         </div>
         <div className = "ArticleListContent">
-         <ReactQuill
+        <ReactQuill
             className = "reviews_modal_quill"     
             ref={quillref}
             modules={modules} value={Props.article.content} 

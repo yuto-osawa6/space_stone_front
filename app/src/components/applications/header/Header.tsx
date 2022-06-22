@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { BsFillSuitHeartFill, BsListUl } from "react-icons/bs"
 import { MdDriveFileMoveOutline, MdHome, MdOutlineArticle, MdRateReview, MdSearch } from "react-icons/md";
 import { useDispatch } from "react-redux";
-// import { UserCertification } from "../lefts/UserCertification";
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import { HiOutlineSearchCircle } from "react-icons/hi";
 import { IoMdMenu } from "react-icons/io";
@@ -10,28 +9,18 @@ import Link from 'next/link'
 import { AiOutlineComment, AiOutlineHome } from "react-icons/ai"
 import { RiArticleLine } from "react-icons/ri"
 import { UserCertification } from "../user/UserCertification";
-// import {  NextCertification } from "@/components/applications/user/nextauth/NextCertification"
-import { useSession } from "next-auth/react";
-import { getToken } from "next-auth/jwt";
-// import { GoogleButton } from '@/components/applications/user/AuthButton'
-import { useRouter } from "next/router";
 import { SubMenuAction } from "@/store/submenu/actions";
 import { useLocale } from "@/lib/ini/local/local";
-// import { UserCertification } from "../user/UserCertification";
-// import { Link as Scroll } from 'react-scroll';
 
 type Props = {
   locationNumber: number | undefined
 }
 export const Header:React.FC<Props> = function HeaderFunc(Props){
-  // const navigate = useNavigate()
-  // const location = useLocation()
   // useScrollPosition
   const dispatch = useDispatch()
   const [showMenu, setShowMenu] = useState<boolean>(true);
   const [currentPostion,setCurrentPositon] = useState<number>(0)
   useScrollPosition(({ prevPos, currPos }) => {
-    // console.log(prevPos, currPos )
     setCurrentPositon(currPos.y)
     if (currPos.y>-1){
       setShowMenu(true)
@@ -58,82 +47,19 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
 
   const setOpenMenuHandler = (e:React.MouseEvent<HTMLLIElement> | undefined) => {
     e?.stopPropagation()
-    console.log("aaaa")
     openMenu==true?setOpenMenu(false):setOpenMenu(true)
   }
 
-  // const handleStyle = ()=>{
-  //   console.log(location.pathname.match(/products/)!=null&&location.pathname.match(/reviews/)!=null)
-  //   if(location.pathname.match(/products/)!=null&&location.pathname.match(/reviews/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)==null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)!=null&&location.pathname.match(/threads/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)!=null){
-  //     return {}
-  //   }
-    
-  //   if(location.pathname.match(/products/)!=null){
-  //     return {display:"none"}
-  //   }
-   
-
-  //   // all
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)==null){
-  //     // {}:{display:"none"}
-  //     return {}
-  //   }
-   
-
-    
-  //   return {}
-  // }
-
-  // const  handleStyle2 = () => {
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)==null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)!=null&&location.pathname.match(/reviews/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)==null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)!=null&&location.pathname.match(/threads/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)!=null){
-  //     if(currentPostion>-1){
-  //       return {width:"100%",backgroundColor: "transparent"}
-  //     }else{
-  //       return {width:"100%",backgroundColor:"#1a252f"}
-  //     }
-  //   }
-  //   return {}
-  // }
   const handleStyle = () => {
-     if(Props.locationNumber===undefined){
-      return {}
-     }else if(Props.locationNumber===1){
-      return {display:"none"}
-     }
+    if(Props.locationNumber===undefined){
+    return {}
+    }else if(Props.locationNumber===1){
+    return {display:"none"}
+    }
   }
   const handleStyle2 = () => {
     if(Props.locationNumber===undefined){
-     return {}
+    return {}
     }else if(Props.locationNumber===1){
       if(currentPostion>-1){
         return {width:"100%",backgroundColor: "transparent"}
@@ -141,27 +67,12 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
         return {width:"100%",backgroundColor:"#1a252f"}
       }
     }
- }
-//  const { data: session } = useSession()
-// //  const token = await getToken({ req, secret })
-//  console.log(session)
-//  console.log(session)
-//  const router = useRouter()
-// //  console.log(router)
-// const handleOffset = ():number|undefined => {
-//   let elem = document.getElementById(router.asPath.slice(2))
-//   if(elem==null)return
-//   const top = elem.getBoundingClientRect().top
-//   return top<0?top + window.pageYOffset-66.8:top + window.pageYOffset-20
-// }
+}
 const handleClick = () => {
   dispatch(SubMenuAction(true))
 }
 // locate
 const { t } = useLocale()
-// console.log(t.ARTICLE)
-
-
   return(
     <>
       <div className = "HeaderV1">
@@ -172,14 +83,22 @@ const { t } = useLocale()
             <div className = "HeaderMainLeftTitle">
               <div className = "LOGO">
                 <div className = "LogoG">
-                  G
+                  {t.Logo.G}
                 </div>
                 <div className = "LogoF">
-                  F
+                  {t.Logo.F}
                 </div>
                 <div className = "LogoHeart">
                   <BsFillSuitHeartFill/>
                 </div>
+              </div>
+              <div className=""
+              style={{
+                color: "#edf1f5",
+                fontSize: "0.9rem"
+              }}
+              >
+                {t.Logo.SUBTITLE}
               </div>
             </div>
           </div>
@@ -191,15 +110,12 @@ const { t } = useLocale()
             handleStyle2()
           }
           >
-            <li><Link href="/"><a><AiOutlineHome/> {t.Headers.TOP}</a></Link></li>
-            <li><Link href="/search"><a><HiOutlineSearchCircle/> {t.Headers.SEARCH}</a></Link></li>
-            <li
-            ><Link href="/articles"><a><RiArticleLine/> {t.Headers.ARTICLE}</a></Link></li>
-            <li><Link href="/reviews"><a><AiOutlineComment/> {t.Headers.REVIEWS}</a></Link></li>
-            <li><Link href="/threads"><a><AiOutlineComment/> {t.Headers.THREAD}</a></Link></li>
+            <li><Link href="/"><a><div><div><AiOutlineHome/> {t.Headers.TOP}</div><div className = {"home"}>{t.SubHeader.TOP}</div></div></a></Link></li>
+            <li><Link href="/search"><a><div><div><HiOutlineSearchCircle/> {t.Headers.SEARCH}</div><div className = {"home"}>{t.SubHeader.SEARCH}</div></div></a></Link></li>
+            <li><Link href="/articles"><a><div><div><RiArticleLine/> {t.Headers.ARTICLE}</div><div className = {"home"}>{t.SubHeader.ARTICLE}</div></div></a></Link></li>
+            <li><Link href="/reviews"><a><div><div><AiOutlineComment/> {t.Headers.REVIEWS}</div><div className = {"home"}>{t.SubHeader.REVIEWS}</div></div></a></Link></li>
+            <li><Link href="/threads"><a><div><div><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home"}>{t.SubHeader.THREAD}</div></div></a></Link></li>
             <li className="headerUserSighIn"><UserCertification/></li>
-            {/* <li><NextCertification/></li> */}
-            {/* <li><GoogleButton/></li> */}
             <li 
               className = "subMenu"
               ref={submenuref}
@@ -210,18 +126,16 @@ const { t } = useLocale()
               {openMenu==true&&(
               <div className = "subMenuList"
               >
-                {/* <Scroll to="c" smooth={true} duration={600} offset={handleOffset}>コンセプト</Scroll> */}
-                <div onClick={handleClick}><Link href ="/#weekly-ranking" scroll={false}><a>今週のアンケート</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#this-season" scroll={false} ><a>今シーズンの作品</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#last-season" scroll={true}><a>昨シーズンの作品</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#next-season" scroll={true}><a>来シーズンの作品</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#movies" scroll={true}><a>映画情報</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#news"><a>おしらせ</a></Link></div>
-                {/* <div><Link href ="/#e"><a>放送情報カレンダー</a></Link></div> */}
-                <div onClick={handleClick}><Link href ="/#toptens"><a>Top10リスト</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="/top100"><a>Top100リスト</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="/tier"><a>過去シーズンのTier情報</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="/weekly"><a>過去のエピソードアンケート情報</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#weekly-ranking" scroll={false}><a>{t.SubMenu.QUESTIONNAIRE}</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#this-season" scroll={false} ><a>{t.SubMenu.THISSEASON}</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#last-season" scroll={true}><a>{t.SubMenu.LASTSEASON}</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#next-season" scroll={true}><a>{t.SubMenu.NEXTSEASON}</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#movies" scroll={true}><a>{t.SubMenu.MOVIE}</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#news"><a>{t.SubMenu.NEWS}</a></Link></div>
+                <div onClick={handleClick}><Link href ="/#toptens"><a>{t.SubMenu.TOP10}</a></Link></div>
+                <div className = "Top100SubMenu"><Link href ="/top100"><a>{t.SubMenu.TOP100}</a></Link></div>
+                <div className = "Top100SubMenu"><Link href ="/tier"><a>{t.SubMenu.TIER}</a></Link></div>
+                <div className = "Top100SubMenu"><Link href ="/weekly"><a>{t.SubMenu.LASTQUESTIONNAIRE}</a></Link></div>
               </div>
               )}
             </li>

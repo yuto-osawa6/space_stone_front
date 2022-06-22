@@ -118,7 +118,6 @@ const TopImageV2:React.FC<Props> = function TopimageV2func(Props) {
 
   const TopimageSubmitHandler = async() =>{
   setLoading(true)
-  console.log(imgRef)
 
   if (imgRef.current==undefined){
     dispatch(pussingMessageDataAction({title:"画像が選択されていません。",select:0}))
@@ -129,12 +128,9 @@ const TopImageV2:React.FC<Props> = function TopimageV2func(Props) {
     return
   }
   const croppedImageUrl = await getCanvasCroppedImg(imgRef.current,completedCrop,'newFile.jpeg');
-  console.log(croppedImageUrl)
-  // setNewImage(croppedImageUrl);
 
   let fileReader = new FileReader();
   fileReader.readAsArrayBuffer(croppedImageUrl as Blob)
-  console.log(fileReader)
 
   var formData= new FormData();
   if (croppedImageUrl==undefined){
@@ -143,14 +139,8 @@ const TopImageV2:React.FC<Props> = function TopimageV2func(Props) {
   }
   formData.append('tp_img', croppedImageUrl)
   formData.append("user_id",String(user_id))
-  // formData.append("user_id",String(1))
-
-
-  console.log(croppedImageUrl)
-  console.log(formData)
   const res =  await execUserTopImageHandler(formData as FormData)
   if(res.status==200){
-    console.log(res)
     mutate('/session_user')
     setLoading(false)
     dispatch(pussingMessageDataAction({title:"画像を更新しました。",select:1}))

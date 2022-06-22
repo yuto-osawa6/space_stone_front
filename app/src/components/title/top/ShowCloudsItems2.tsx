@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react"
-// import { useNavigate } from "react-router-dom"
-
- type item = {
+type item = {
   id: number;
   content: string;
   discribe: string;
@@ -20,7 +18,6 @@ export const ShowCloudsItems2:React.FC<Props> = function ShowCloudsItems2Func(Pr
   const firstReadMoreHandler = () => {
     setContent("")
     var doc = new DOMParser().parseFromString(Props.item.content, "text/html")
-    console.log(doc.getElementsByTagName('body')[0].innerText)
     const doc200 = doc.getElementsByTagName('body')[0].innerText.slice(0,200)
     setContent(doc200.length!=200?doc200:doc200+"...")
 
@@ -29,7 +26,6 @@ export const ShowCloudsItems2:React.FC<Props> = function ShowCloudsItems2Func(Pr
     firstReadMoreHandler()
   },[])
   // -------------------------------------------------------------------------
-  // const navigate = useNavigate();
   const options = {
     scroll:false
   }
@@ -41,7 +37,6 @@ export const ShowCloudsItems2:React.FC<Props> = function ShowCloudsItems2Func(Pr
       router.push(`/title/${Props.productId}/top/threads/${Props.item.id}`,undefined,options)
     }
   }
-
   return(
     <>
       <div

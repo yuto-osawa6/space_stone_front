@@ -9,11 +9,7 @@ import { useEffect, useState } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { useSelector } from "react-redux"
-// import { useLocation, useParams } from "react-router-dom"
 import { RootState } from "@/store"
-// import { CreateTier } from "../main_block/tier/CreateTier"
-// import { ThisMonthTierList } from "../main_block/tier/thismonth/ThisMonthTierList"
-// import { UpdateTier } from "../main_block/tier/UpdateTier"
 
 type kisetsu = {
   id:number
@@ -33,7 +29,6 @@ type yearTier = {
   avg: avg
   id: number
   kisetsu: kisetsu
-  // products: tierProduct[]
   products:product[]
   year: year
 }
@@ -48,7 +43,6 @@ type tierProduct = {
 
 type TierProductGroup = {
   group:string
-  // products:tierProduct[]
   products:product[]
 
 }
@@ -94,16 +88,15 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
 
   const handleSetup = () =>{
      // tier
-      // const result1 = res.data.tier.map(i=>Object.assign(i,res.data.tierAverage.tier.filter((k,v)=>k=i.id))
       Props.tiers.products.forEach((i:any)=>{
         const avg = Number(Props.tiers.avg[i.id])
-       if(0<=avg&&avg<=10){
-        Object.assign(i,{avg:Props.tiers.avg[i.id]},{tier:"E"})
-       }else if(10<avg&&avg<=30) {
-        Object.assign(i,{avg:Props.tiers.avg[i.id]},{tier:"D"})
-       }else if(30<avg&&avg<=50){
-        Object.assign(i,{avg:Props.tiers.avg[i.id]},{tier:"C"})
-       }else if(50<avg&&avg<=70){
+      if(0<=avg&&avg<=10){
+      Object.assign(i,{avg:Props.tiers.avg[i.id]},{tier:"E"})
+      }else if(10<avg&&avg<=30) {
+      Object.assign(i,{avg:Props.tiers.avg[i.id]},{tier:"D"})
+      }else if(30<avg&&avg<=50){
+      Object.assign(i,{avg:Props.tiers.avg[i.id]},{tier:"C"})
+      }else if(50<avg&&avg<=70){
         Object.assign(i,{avg:Props.tiers.avg[i.id]},{tier:"B"})
       }else if(70<avg&&avg<=90){
         Object.assign(i,{avg:Props.tiers.avg[i.id]},{tier:"A"})
@@ -111,7 +104,6 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
         Object.assign(i,{avg:Props.tiers.avg[i.id]},{tier:"S"})
       }  
     })
-      // console.log(result)
       const copy = tierProductGroup.slice()
       copy[0] = {group:"S",products:Props.tiers.products.filter((i:any)=>i.tier=="S")}
       copy[1] = {group:"A",products:Props.tiers.products.filter((i:any)=>i.tier=="A")}
@@ -119,7 +111,6 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
       copy[3] = {group:"C",products:Props.tiers.products.filter((i:any)=>i.tier=="C")}
       copy[4] = {group:"D",products:Props.tiers.products.filter((i:any)=>i.tier=="D")}
       copy[5] = {group:"E",products:Props.tiers.products.filter((i:any)=>i.tier=="E")}
-      // setTierProduct(res.data.tier)
       setTierProductGroup(copy)
       setLength(copy.map(i=>i.products).length)
   }
@@ -128,11 +119,7 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
     handleSetup()  
   },[Props.tiers])
 
-  console.log(tierProductGroup)
-
   // mytier--------------------------------------------------------------------------------
-  // const location = useLocation()
-  // const params = useParams()
   const router = useRouter()
   const {uid} = router.query
   const user_id = uid as string
@@ -185,59 +172,52 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
   }
 
    // tier
-   const [products, setProducts] = useState<product[]>()
-   const [currentSeason,setCurrentSeason] = useState<string>("")
-   const [tierProduct,setTierProduct] = useState<tierProduct>()
- 
-   const [userTier,setUserTier] = useState<UserTier[]>([])
-   const handleGetUserTier = async()=>{
- 
-     const res = await execGetUserTier2(LoginUserStore.user.id,Props.tiers.year.id,Props.tiers.kisetsu.id)
-     if(res.status == 200){
-       setCurrentSeason(res.data.currentSeason)
-       setProducts(res.data.products)
-       console.log("aaaaaaaaaaaaaa")
-       console.log(res)
- 
-       res.data.userTier.forEach((i:any)=>{
-         const tier = i.tier
-        if(0<=tier&&tier<=10){
-         Object.assign(i,{group:5})
-        }else if(10<tier&&tier<=30) {
-         Object.assign(i,{group:4})
-        }else if(30<tier&&tier<=50){
-         Object.assign(i,{group:3})
-        }else if(50<tier&&tier<=70){
-         Object.assign(i,{group:2})
-       }else if(70<tier&&tier<=90){
-         Object.assign(i,{group:1})
-       }else if(90<tier&&tier<=100){
-         Object.assign(i,{group:0})
-       }else{
- 
-       }
-     })
-       setUserTier(res.data.userTier)
-       
-      //  handleJudgeModal()
-     }else{
- 
-     }
-    
-   }
+  const [products, setProducts] = useState<product[]>()
+  const [currentSeason,setCurrentSeason] = useState<string>("")
+  const [tierProduct,setTierProduct] = useState<tierProduct>()
 
-   useEffect(()=>{
-    if(products==undefined||products.length==0)return
-    if(currentSeason=="")return
-    handleJudgeModal()
-   },[userTier])
-   const  handleJudgeModal = () => {
-      if(userTier.length>0){
-        handleOpenTierUpdateModal()
+  const [userTier,setUserTier] = useState<UserTier[]>([])
+  const handleGetUserTier = async()=>{
+
+    const res = await execGetUserTier2(LoginUserStore.user.id,Props.tiers.year.id,Props.tiers.kisetsu.id)
+    if(res.status == 200){
+      setCurrentSeason(res.data.currentSeason)
+      setProducts(res.data.products)
+
+      res.data.userTier.forEach((i:any)=>{
+        const tier = i.tier
+      if(0<=tier&&tier<=10){
+        Object.assign(i,{group:5})
+      }else if(10<tier&&tier<=30) {
+        Object.assign(i,{group:4})
+      }else if(30<tier&&tier<=50){
+        Object.assign(i,{group:3})
+      }else if(50<tier&&tier<=70){
+        Object.assign(i,{group:2})
+      }else if(70<tier&&tier<=90){
+        Object.assign(i,{group:1})
+      }else if(90<tier&&tier<=100){
+        Object.assign(i,{group:0})
       }else{
-        handleOpenTierCreateModal()
       }
-   }
+    })
+      setUserTier(res.data.userTier) 
+    }else{
+    }
+  }
+
+  useEffect(()=>{
+  if(products==undefined||products.length==0)return
+  if(currentSeason=="")return
+  handleJudgeModal()
+  },[userTier])
+  const  handleJudgeModal = () => {
+    if(userTier.length>0){
+      handleOpenTierUpdateModal()
+    }else{
+      handleOpenTierCreateModal()
+    }
+  }
     // tier create update
   const [openTier,setOpenTier] = useState<boolean>(false)
   const handleOpenTierCreateModal = () =>  setOpenTier(true)
@@ -259,33 +239,25 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
             >
               {Props.tiers.year.year.slice(0,4)} {Props.tiers.kisetsu.name}
             </div>
-
             {jsxHandleCreateTier()}
-
             <div className=""
               style={{
                 display: "grid",
-                /* grid-template-columns: 1fr 1fr; */
                 gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
                 gap: "10px",
                 marginBottom: "30px"
               }}
             >
-            
-            {/* <> */}
               {tierProductGroup.map((item,index)=>{
                 return(
                   <ThisMonthTierList
                     key = {index}
                     group = {item.group}
-                    products = {item.products}
-                  
+                    products = {item.products}      
                   />
                   )
               })}
             </div>
-            
-
           </div>
         </>
       )}

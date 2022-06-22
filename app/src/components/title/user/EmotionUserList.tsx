@@ -13,17 +13,12 @@ type lengthK = {
 }
 
 export const EmotionUserList:React.FC = function EmotionUserListFunc(){
-  
-  const props = useContext(Productshowcontext)
-  console.log(props.userReviews)
-  
+  const props = useContext(Productshowcontext)  
   const [userEmotions,setUserEmotions] = useState<emotions[]>([])
   const [lengthK,setLengthK] = useState<lengthK>({0:0})
   const [allLength,setAllLength] = useState<number>(0)
   const handleSetup = () => {
-    console.log(props)
     const emotions = props.userReviews.map(i=>i.emotions).flat()
-    console.log(emotions)
     setAllLength(emotions.length)
     let length = emotions.reduce((pre:lengthK,cur)=>{
       pre[cur.id]=(pre[cur.id] || 0)+1
@@ -36,10 +31,8 @@ export const EmotionUserList:React.FC = function EmotionUserListFunc(){
   } 
   const getArrayDeleteDouble2 = (ary:emotions[], key:any) => {
     let map = new Map(ary.map((o:any) => [o[key], o]));
-    console.log(map.values())
     return Array.from(map.values());
   }
-  console.log(userEmotions,lengthK,allLength)
 
   
 

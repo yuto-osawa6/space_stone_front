@@ -1,10 +1,8 @@
 import { Modal } from "@mui/material"
 import { Article } from "@/interfaces/article"
 import { execAcsessArticleCountHandler, execArticleArticleAssosiationsHandler, execArticleShowHandler } from "@/lib/api/article"
-import { useEffect, useMemo, useState } from "react"
-// import ReactQuill from "react-quill"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
-// import { useNavigate, useParams } from "react-router-dom"
 import { RootState } from "@/store"
 import { ArticleProductList } from "./products/ArticleProductList"
 import { IoMdClose } from "react-icons/io"
@@ -12,6 +10,7 @@ import { ArticlesLists2 } from "./ArticleLists2"
 import { EditArticleLists } from "./edit/EditArticleLists"
 import { useRouter } from "next/router"
 import { useUser } from "@/lib/data/user/useUser"
+import { useLocale } from "@/lib/ini/local/local"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -23,7 +22,6 @@ const ReactQuill =
   }
 
 export const ArticlesItem:React.FC<Props> = function  ArticlesItemFunc(Props){
-  console.log(Props)
   const modules =  useMemo(() => (
     {
     toolbar:{ 
@@ -46,8 +44,6 @@ export const ArticlesItem:React.FC<Props> = function  ArticlesItemFunc(Props){
   }
   ),[]);
   // use
-  // const navigate = useNavigate()
-  // const params = useParams();
   const router = useRouter()
   // store
   const articleStore = useSelector((state: RootState) => state.article)
@@ -58,224 +54,201 @@ export const ArticlesItem:React.FC<Props> = function  ArticlesItemFunc(Props){
   const [on,Seton] = useState<boolean>(false)
   const [article,setArtlce] = useState<Article[]>([])
   const [article2,setArticle2] = useState<Article[]>([])
-
   const [data,setData] = useState<Article>(Props.data.article)
-
-  // const setdata = async() => {
-  //   if (params_id==undefined) return
-  //   const res = await execArticleShowHandler(params_id)
-  //   if (res.status==200){
-  //     console.log(res)
-  //     setData(res.data.article) 
-  //   }else{
-  //   }
-  // }
-  
-
   const setAssociatedProduct = async() => {
     if (params_id==undefined) return
     const res = await execArticleArticleAssosiationsHandler(params_id)
     if (res.status==200){
-      console.log(res)
       setArtlce(res.data.articles)  
       setArticle2(res.data.articles2)
     }else{
     }
   }
   useEffect(()=>{
-    // if (articleStore.id == Number(params_id)){
-    //   Seton(true)
-    // }else{
-    // setdata()
-    // }
     setAssociatedProduct()
-  // },[articleStore])
 },[params_id])
-  // 
-  
-
+  const options = {
+    scroll:false
+  }
   const [open,setOpen] = useState<boolean>(true)
   const handleClose = () => {
     setOpen(false)
-    // navigate("/articles")
+    router.push("/articles",undefined,options)
   }
-
   // acsess countーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
   useEffect(()=>{
     acsessCountHandler()
-  },[data,articleStore.id])
+  },[Props.data.article.id])
 
   const acsessCountHandler = async() => {
-    // if (articleStore.id == Number(params_id)){
-    //   var article_id:number|undefined = articleStore.id 
-    // }else{
-      var article_id:number = data.id
-    // }
-      if(article_id==undefined) return
-      const currentToday =  new Date()
-      // doneyet (react側の時間設定 世界標準時間になっている) 
-      currentToday.setHours(currentToday.getHours() + 9)
-      const res =  await execAcsessArticleCountHandler(article_id,currentToday) 
-      if(res.status === 200){
-        // console.log(res)
-      }else{
-
-      }
+    // var article_id:number = data.id
+    // if(article_id==undefined) return
+    const currentToday =  new Date()
+    currentToday.setHours(currentToday.getHours())
+    const res =  await execAcsessArticleCountHandler(Props.data.article.id,currentToday) 
+    if(res.status === 200){
+    }else{
+    }
   }
-
   // user
-  // console.log(Props.data.article.hashtagArticles[0].name)
   const {userSwr} = useUser()
   const userStore = userSwr
+  const ref = useRef<HTMLDivElement>(null!)
+  useEffect(()=>{
+    if(ref.current==null) return
+    ref.current.scrollTo({
+      top: 0,
+      left: 0,
+    })
+    if(data.id == Props.data.article.id) return
+    setData(Props.data.article)
+  },[Props.data.article.id])
+  const {t} = useLocale()
   return(
     <>
-      {/* <Modal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-      <>      */}
-      <div className = "ProductReviewShow ArticleModal">
-        <div className = "ProductReviewShowTop">
-          <div className = "ProductReviewShowTopImg">
-            <img src = 
-            {on==true?
-              articleStore.articleProducts.length !=0?
-                articleStore.articleProducts[0].imageUrl
+      <>     
+        <div className = "ProductReviewShow ArticleModal"
+        ref = {ref}
+        >
+          <div className = "ProductReviewShowTop">
+            <div className = "ProductReviewShowTopImg">
+              <img src = 
+              {on==true?
+                articleStore.articleProducts.length !=0?
+                  articleStore.articleProducts[0].imageUrl
+                  :""
+                  // doneyet初期画像セットする必要あり。また、画像を乱数表示するかどうか。
+                :data?.articleProducts.length !=0?
+                  data?.articleProducts[0].imageUrl
                 :""
-                // doneyet初期画像セットする必要あり。また、画像を乱数表示するかどうか。
-              :data?.articleProducts.length !=0?
-                data?.articleProducts[0].imageUrl
-              :""
-            }       
-            ></img>
-            <div className = "ProductReviewShowTopImgShadow"></div>
-            {userStore.user.administratorGold==true&&( 
-              <EditArticleLists
-                article = {on==true?articleStore:data}
-              /> 
-            )}
+              }       
+              ></img>
+              <div className = "ProductReviewShowTopImgShadow"></div>
+              {userStore.user.administratorGold==true&&( 
+                <EditArticleLists
+                  article = {on==true?articleStore:data}
+                /> 
+              )}
+            </div>  
+            <div className = "ProductReviewShowTopCenter">
+              <div className = "ProductReviewShowTopCenterTitle">
+                {on==true?articleStore.title:data?.title}
+              </div>
+              <div className = "ProductReviewShowTopCenterUser">
+              </div>
+            </div>
           </div>  
-          <div className = "ProductReviewShowTopCenter">
-            <div className = "ProductReviewShowTopCenterTitle">
-              {on==true?articleStore.title:data?.title}
-            </div>
-            <div className = "ProductReviewShowTopCenterUser">
-            </div>
-          </div>
-          {/* <div className="CloseButton"
-          onClick={handleClose}
-          >
-            <IoMdClose/>
-          </div> */}
-        </div>  
-        <div className = "ProductReviewShowMain">
-          <div className = "ProductReviewShowMainQuill">
-            {Props.data.article.hashtagArticles.map((i:any)=>{
-              return(
-                <div className="" key={i.id}>{i.name}</div>
-              )
-            })}
-            <ReactQuill
-              className="quill_reviews"
-              modules={modules} 
-              value={on==true?articleStore.content:data!=undefined?data.content:""} 
-              theme="bubble" 
-              readOnly={true}
-            />     
+          <div className = "ProductReviewShowMain">
+            <div className = "ProductReviewShowMainQuill">
+              {Props.data.article.hashtagArticles.map((i:any)=>{
+                return(
+                  <div className="" key={i.id}>{i.name}</div>
+                )
+              })}
+              <ReactQuill
+                className="quill_reviews"
+                modules={modules} 
+                value={on==true?articleStore.content:data!=undefined?data.content:""} 
+                theme="bubble" 
+                readOnly={true}
+              />     
 
-          </div>
-        {on==true?
-          articleStore.articleProducts.length>0?
-          <>
-          <div className = "ArticlesAssociateProducts">
-            <div className="ArticlesAssociateProductsTitle margin_bottom_20"
-            style={{ fontWeight: "bold" }}
-            
-            >関連のあるタイトル</div>
-            <div className = "ArticlesAssociateProductsBox">
-            {articleStore.articleProducts.map((item)=>{
-              return(
-                <ArticleProductList
-                key={item.id}
-                product={item}
-                />
-              )
-            })}
-            </div>    
-          </div>
-           
-           </>
-          : 
-          ""
-        :data?.articleProducts.length !=0?
-          <>
-            <div className = "ArticlesAssociateProducts">
-            <div className="ArticlesAssociateProductsTitle margin_bottom_20"
-            style={{ fontWeight: "bold" }}
-            
-            >関連のあるタイトル</div>
-            <div className = "ArticlesAssociateProductsBox">
-            {data?.articleProducts.map((item)=>{
-              return(
-                <ArticleProductList
-                key={item.id}
-                product={item}
-                />
-              )
-            })}
-            </div>    
-          </div>
-          </>
-          :""
-      }
-        { article.length>0?
-          <div className = "ArticlesAssociateGenres ArticlesAssociateProducts">
-            <div className="ArticlesAssociateProductsTitle margin_bottom_20"
-            style={{ fontWeight: "bold" }}
-            >関連度の高い記事（タイトル）</div>
-            <div className = "ArticlesContainerMain ArticlesAssociateArticlesBox"
-            style={{padding:"0px"}}
-            >
-            {article.map((item)=>{
-              return(
-                <ArticlesLists2
-                id={item.id}
-                article={item}
-                key={item.id}
-                />
-              )
-            })}
             </div>
-           </div>
-           :""
-           }
-           { article2.length>0?
-          <div className = "ArticlesAssociateGenres ArticlesAssociateProducts">
-            <div className="ArticlesAssociateProductsTitle margin_bottom_20"
-            style={{ fontWeight: "bold" }}
-            >関連度の高い記事(タグ)</div>
-            <div className = "ArticlesContainerMain ArticlesAssociateArticlesBox"
-            style={{padding:"0px"}}
-            >
-            {article2.map((item)=>{
-              return(
-                <ArticlesLists2
-                id={item.id}
-                article={item}
-                key={item.id}
-                />
-              )
-            })}
+            {on==true?
+              articleStore.articleProducts.length>0?
+              <>
+              <div className = "ArticlesAssociateProducts">
+                <div className="ArticlesAssociateProductsTitle margin_bottom_20"
+                style={{ fontWeight: "bold" }}
+                
+                >{t.Component.Article.ArticleItem1}</div>
+                <div className = "ArticlesAssociateProductsBox">
+                {articleStore.articleProducts.map((item)=>{
+                  return(
+                    <ArticleProductList
+                    key={item.id}
+                    product={item}
+                    />
+                  )
+                })}
+                </div>    
+              </div>
+              </>
+              : 
+              ""
+              :data?.articleProducts.length !=0?
+              <>
+                <div className = "ArticlesAssociateProducts">
+                  <div className="ArticlesAssociateProductsTitle margin_bottom_20"
+                  style={{ fontWeight: "bold" }}
+                  
+                  >{t.Component.Article.ArticleItem1}</div>
+                <div className = "ArticlesAssociateProductsBox">
+                {data?.articleProducts.map((item)=>{
+                  return(
+                    <ArticleProductList
+                    key={item.id}
+                    product={item}
+                    />
+                  )
+                })}
+                </div>    
+              </div>
+              </>
+              :""
+            }
+            { article.length>0?
+              <div className = "ArticlesAssociateGenres ArticlesAssociateProducts">
+                <div className="ArticlesAssociateProductsTitle margin_bottom_20"
+                style={{ fontWeight: "bold" }}
+                >{t.Component.Article.ArticleItem2}</div>
+                <div className = "ArticlesContainerMain ArticlesAssociateArticlesBox"
+                style={{padding:"0px"}}
+                >
+                {article.map((item)=>{
+                  return(
+                    <ArticlesLists2
+                    id={item.id}
+                    article={item}
+                    key={item.id}
+                    />
+                  )
+                })}
+                </div>
+              </div>
+            :""
+            }
+            { article2.length>0?
+              <div className = "ArticlesAssociateGenres ArticlesAssociateProducts">
+                <div className="ArticlesAssociateProductsTitle margin_bottom_20"
+                style={{ fontWeight: "bold" }}
+                >{t.Component.Article.ArticleItem3}</div>
+                <div className = "ArticlesContainerMain ArticlesAssociateArticlesBox"
+                style={{padding:"0px"}}
+                >
+                {article2.map((item)=>{
+                  return(
+                    <ArticlesLists2
+                    id={item.id}
+                    article={item}
+                    key={item.id}
+                    />
+                  )
+                })}
+                </div>
+              </div>
+            :""
+            }
             </div>
-           </div>
-           :""
-           }
-        </div>
-        </div>
-      </>
-    // </Modal>
-    // </>
+          </div>
+        </>
+      </Modal>
+    </>
   )
 }

@@ -1,5 +1,3 @@
-// import { isPropsValid } from "@fullcalendar/react"
-// import { UserModalSign } from "component/aplication/lefts/UserModalSign"
 import { UserModalSign } from "@/components/applications/user/UserModalSign"
 import { OpenContext, OpenScoreContext } from "@/contexttype/contexttype"
 import { product, productScores } from "@/interfaces/product"
@@ -7,7 +5,6 @@ import { useUser } from "@/lib/data/user/useUser"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
-// import { ScoreModal } from "../ScoreModal"
 import { ScoreModal2 } from "./ScoreModal2"
 
 type Props = {
@@ -16,14 +13,12 @@ type Props = {
   setProductScores:React.Dispatch<React.SetStateAction<productScores[]>>
   score: number | null
   setScore:React.Dispatch<React.SetStateAction<number | null>>
-
   scoreid:number | null
   setScoreid:React.Dispatch<React.SetStateAction<number|null>>
   stats: number[]
   setStats:React.Dispatch<React.SetStateAction<number[]>>
   scoreaverage:string
   setScoreaverage:React.Dispatch<React.SetStateAction<string>>
-
   userScore : productScores | undefined
   setUserScore: React.Dispatch<React.SetStateAction<productScores | undefined>>
 }
@@ -41,8 +36,6 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
   const[story,setStory] = useState<number>(0)
   const[value,setValue] = useState<number>(0)
   const[all,setAll] = useState<number>(0)
-
-
 
   useEffect(()=>{
     var aa = Props.productScores.reduce((sum,i)=>i.animation!=undefined?sum+i.animation:sum,0)
@@ -63,7 +56,6 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
     var fa = Props.productScores.reduce((sum,i)=>i.all!=undefined?sum+i.all:sum,0)
     var fb = Props.productScores.length-Props.productScores.filter(i=>i.all==undefined).length
     setAll(Math.floor(fa/fb))
-   
   },[Props.productScores])
 
   // modal
@@ -72,13 +64,10 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
   const [open,setOpen] = useState<boolean>(false)
   const handleOpenUser = () => setOpen(true)
   // store
-  // const user = useSelector((state:RootState)=>state.user)
   const {userSwr,error} = useUser()
-
   const handleColer= (averageScore:number) => {
     var color = {backgroundColor:""}
     if(averageScore<=10){
-      // rgb(26 37 47);
       color = {backgroundColor:'rgb(246 61 32)'}
     }else if(10<averageScore&&averageScore<=20){
       color ={backgroundColor:'rgb(255 106 0)'}
@@ -127,7 +116,7 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
           </>
           :
           <>
-             <div className="ScoresListInProductShowLink"
+            <div className="ScoresListInProductShowLink"
               onClick={handleOpenUser}
               style={{
                 width: "fit-content",
@@ -154,8 +143,6 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
         </div>
         )}
       </div>
-
-                    
         {openscore&&(
               <ScoreModal2
                 openscore={openscore}
@@ -171,7 +158,6 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
                 setScoreaverage = {Props.setScoreaverage}
                 stats = {Props.stats}
                 setStats = {Props.setStats}
-
                 setProductScores={Props.setProductScores}
                 userScore = {Props.userScore}
                 setUserScore = {Props.setUserScore}

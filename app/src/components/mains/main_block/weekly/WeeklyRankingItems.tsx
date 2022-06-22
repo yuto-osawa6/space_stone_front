@@ -48,7 +48,6 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
       episordEndWeek.setDate(episordEndWeek.getDate() + 7)
     }else{
       const first = curr.getDate() - curr.getDay() - 6
-      console.log(first)
       var startDate = new Date(curr.setDate(first));
       startDate.setHours(0)
       startDate.setMinutes(0)
@@ -60,7 +59,6 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
       episordEndWeek.setHours(6)
       episordEndWeek.setDate(episordEndWeek.getDate() + 7)
     }
-    // console.log(startDate,episordStartWeek,episordEndWeek)
     return {startDate,episordStartWeek,episordEndWeek}
   }
   
@@ -90,7 +88,6 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
   const handleVoteWeeklyRanking = async() => {
     const res = await execVoteWeeklyRanking(Props.product.id,episordIds)
     if(res.data.status === 200){
-      console.log(res)
       Props.setProducts(res.data.products)
       Props.setWeeklyCount(res.data.weeklyCount)
       Props.setWeeklyVote(res.data.weeklyVote)
@@ -174,10 +171,10 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
               width:persent
             }
           }
-           >
+          >
           </div>
           <div className="WeeklyRankingItemsPersentageTitle"
-           style={{
+          style={{
             position: "absolute",
             right: "10px",
             top: "50%",
