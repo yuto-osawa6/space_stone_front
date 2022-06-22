@@ -35,21 +35,32 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
         {getLayout( 
           <>
             <DefaultSeo
-              defaultTitle = "MeruPlanet"
-              description = "MeruPlanet(めるぷらねっと)は、評価やレビューを共有することができるアニメ評価サイトです。あなたが評価したい作品を正当に評価でき、共有されることを願っています。"
+              defaultTitle = "MeruPlanet2"
+              description = "MeruPlanet(めるぷらねっと)は、アニメの評価、レビューを共有することができるWebサービスです。流行している作品や高評価作品を見つけることができます。"
               // あにこれβはおすすめアニメ動画を成分タグ・ランキング・レビュー感想や放送時期でさがせるアニメ評価サイト。参加するとアニメ動画をコレクションできるアニメ棚がもらえるぞ。あにこれβで今すぐアニメを棚で管理！おすすめアニメ動画をみんなで教えあおう！
               // AniList：次世代アニメプラットフォーム・AniListを使用して、お気に入りのアニメやマンガを追跡、共有、発見します。・サイトのテーマ。
-            // openGraph={{
-            //   type: 'website',
-            //   locale: 'en_IE',
-            //   url: 'https://www.url.ie/',
-            //   site_name: 'SiteName',
-            // }}
-            // twitter={{
-            //   handle: '@handle',
-            //   site: '@site',
-            //   cardType: 'summary_large_image',
-            // }}
+              openGraph={{
+                type: "website",
+                title: "MeruPlanet",
+                description: "MeruPlanet(めるぷらねっと)は、アニメの評価、レビューを共有することができるWebサービスです。流行している作品や高評価作品を見つけることもできます。",
+                site_name: "MeruPlanet",
+                url: "https://meruplanet.com",
+                images: [
+                  {
+                  // 　url: "https://www.example.ie/og-image-01.jpg",
+                    url: "/meru-logo2",
+                    width: 800,
+                    height: 600,
+                    alt: 'Og Image Alt',
+                    type: 'image/png',
+                  },
+                ],
+              }}
+              twitter={{
+                handle: '@handle',
+                site: '@site',
+                cardType: 'summary_large_image',
+              }}
             />
             <NextNprogress
               color="#29D"

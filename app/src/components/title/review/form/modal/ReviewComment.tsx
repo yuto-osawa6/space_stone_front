@@ -51,7 +51,6 @@ export const ReviewComment:React.FC<Props> = function ReviewCommentFunc(Props){
       ["blockquote"
     ],
       [{ list:  "ordered" }, { list:  "bullet" }],
-      ["hash"]
     ],
     clipboard: {
       matchers: [

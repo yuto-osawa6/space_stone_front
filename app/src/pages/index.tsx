@@ -23,6 +23,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store'
 import { SubMenuAction } from '@/store/submenu/actions'
+import Image from 'next/image'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
@@ -148,6 +149,7 @@ type UserTier = {
 
   return(
     <>
+    {/* <img src="/meruplanet.png" alt="me" width="64" height="64" /> */}
     {/* <div className = "mainContents share_middle_container01"> */}
       <div id="weekly-ranking-a">
       <WeeklyRanking
