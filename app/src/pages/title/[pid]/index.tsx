@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
         }
       }), 
     ]);
-   
+  
     const [data] = await Promise.all([
       productShowRes.json()
     ]);
@@ -56,6 +56,29 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
     <>
       <NextSeo
         title={`${Props.data.products.title} - ${t.domain}`}
+        description = "MeruPlanet(めるぷらねっと)は、アニメの評価、レビューを共有することができるWebサービスです。流行している作品や高評価作品を見つけることができます。"
+        openGraph={{
+          type: "website",
+          title: "MeruPlanet",
+          description: "MeruPlanet(めるぷらねっと)は、アニメの評価、レビューを共有することができるWebサービスです。流行している作品や高評価作品を見つけることもできます。",
+          site_name: "MeruPlanet",
+          url: "https://meruplanet.com",
+          images: [
+            {
+            // url: "https://www.example.ie/og-image-01.jpg",
+              url: "/3",
+              width: 800,
+              height: 600,
+              alt: 'Og Image Alt',
+              type: 'image/png',
+            },
+          ],
+        }}
+        twitter={{
+          handle: '@handle',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
       >
       </NextSeo>
       <Top/>
