@@ -15,6 +15,8 @@ import { ErrorMessage } from "@/lib/ini/message";
 import { submitSpin } from "@/lib/color/submit-spin";
 import dynamic from "next/dynamic";
 import { QuillSettings } from "@/lib/ini/quill/QuillSettings";
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
+import { execSetreCaptchaToken } from "@/hook/useRecaptcha";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -46,6 +48,7 @@ type selectOption = {
 }
 
 export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const imageHandlerLink = () => {
     var range = quillref.current.getEditor().getSelection();
@@ -131,6 +134,18 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
   const [submitLoading,setSubmitLoading] = useState<boolean>(false)
   const dispatch = useDispatch()
   const handlesubmit = async() => {
+    // if (!executeRecaptcha) {
+    //       return
+    // }
+    // const reCaptchaToken = await executeRecaptcha('ReviewModal');
+    const reCaptchaToken = await execSetreCaptchaToken()
+    console.log(reCaptchaToken)
+    console.log("rev")
+    console.log("n")
+
+    if(!reCaptchaToken){
+      return
+    }
     const blob = new Blob([value])
     const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
     const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length

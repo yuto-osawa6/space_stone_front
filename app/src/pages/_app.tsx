@@ -12,6 +12,7 @@ import { SessionProvider } from 'next-auth/react'
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Script from 'next/script'
 import NextNprogress from 'nextjs-progressbar';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 
 
 
@@ -55,7 +56,9 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
               showOnShallow={true}
             />
             <Script src="https://accounts.google.com/gsi/client" />
-            <Component {...pageProps} />
+            <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY} language="ja">
+              <Component {...pageProps} />
+            </GoogleReCaptchaProvider>
           </>
         )}
         {/* </SessionProvider> */}
