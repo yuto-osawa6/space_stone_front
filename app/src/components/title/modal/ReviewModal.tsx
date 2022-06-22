@@ -138,6 +138,8 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
     //       return
     // }
     // const reCaptchaToken = await executeRecaptcha('ReviewModal');
+    console.log("rev")
+    console.log("n")
     const reCaptchaToken = await execSetreCaptchaToken()
     console.log(reCaptchaToken)
     console.log("rev")

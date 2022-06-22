@@ -9,6 +9,7 @@ export const execSetreCaptchaToken = async() => {
       return
     }
     const reCaptchaToken = await executeRecaptcha('ReviewModal');
+    console.log(reCaptchaToken)
   return reCaptchaToken
   }else{
     return "local"
