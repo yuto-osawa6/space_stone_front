@@ -10,7 +10,17 @@ import { testProductData } from '@/mocks/data/d_product'
 import { Provider } from 'react-redux';
 import store from '@/store';
 import { NextSeasonAnimeInfomation } from '@/components/mains/main_block/NextSeasonAnimeInfomation';
-
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
 describe("this season list", () => {
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());

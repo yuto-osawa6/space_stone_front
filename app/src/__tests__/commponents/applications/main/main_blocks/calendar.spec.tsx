@@ -9,7 +9,17 @@ import { testProductData } from '@/mocks/data/d_product'
 import { Provider } from 'react-redux';
 import store from '@/store';
 import { CalendarProduct } from '@/components/mains/main_block/Calendar';
-
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
 describe("this season list", () => {
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());

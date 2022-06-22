@@ -8,6 +8,17 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import { MockedRequest, ResponseResolver, rest, restContext } from "msw";
 import { Provider } from "react-redux";
 import { setupServer } from "msw/node";
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
 
 
 describe('Header', () => {

@@ -5,7 +5,6 @@ import {render, fireEvent, waitFor, screen, cleanup} from '@testing-library/reac
 import { Provider } from "react-redux";
 import renderer from 'react-test-renderer';
 import { getPage } from "next-page-tester";
-import { Ota2 } from '@/components/ota/Ota';
 import { UserCertification } from '@/components/applications/user/UserCertification' 
 import { getCurrentUserMock } from "@/mocks/api/user/signin";
 import Cookies from "js-cookie";
