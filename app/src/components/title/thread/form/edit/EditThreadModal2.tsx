@@ -94,13 +94,13 @@ export const EditTheredModal2:React.FC<Props> = function EditTheredModal2Func(Pr
       // }
     const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
     if (typeof Props.product_id === 'undefined') return
-    const res = await execCreateThered(text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,question_ids)
-    if(res.status===200){
-      Props.setProductThreads(res.data.productThreads)
-      setOpenthered(false)
-    }else{
-      setHelpertextradio("エラーが発生しました。")
-    }
+    // const res = await execCreateThered(text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,question_ids)
+    // if(res.status===200){
+    //   Props.setProductThreads(res.data.productThreads)
+    //   setOpenthered(false)
+    // }else{
+    //   setHelpertextradio("エラーが発生しました。")
+    // }
   }
   const names = [
     'Oliver Hansen',
