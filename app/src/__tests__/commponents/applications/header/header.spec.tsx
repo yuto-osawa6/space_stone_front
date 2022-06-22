@@ -44,8 +44,6 @@ describe('Header', () => {
     screen.debug();
     // await waitFor(() => screen.findByText(/Signed in as/))
     expect(container).toMatchSnapshot()
-
-   
   });
   // test('snapshot', async() => {
   //   const { container } = render(<Ota2/>)

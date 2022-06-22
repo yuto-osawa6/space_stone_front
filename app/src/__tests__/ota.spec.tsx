@@ -1,11 +1,8 @@
 import Home from '../pages/index'
 import '@testing-library/jest-dom'
-// import {client} from "@/lib/client/client"
 import { Header } from '@/components/applications/header/Header';
-import { Ota2 } from '@/components/ota/Ota';
 import axios from 'axios';
 import { products_reds2 } from '@/lib/api/products_red';
-
 import React from 'react'
 import {rest, setupWorker} from 'msw'
 import {setupServer} from 'msw/node'
@@ -13,7 +10,6 @@ import {render, fireEvent, waitFor, screen, cleanup} from '@testing-library/reac
 import '@testing-library/jest-dom'
 import { handlers } from '@/mocks/handlers';
 import { server } from '@/mocks/server';
-import Home2 from '@/pages/ota/la';
 import { mockProductReds } from '@/mocks/api/product_red';
 
 import { getPage } from 'next-page-tester';
@@ -42,28 +38,28 @@ describe("Sampleコンポーネント", () => {
     expect(false).toBe(false);
   });
 
-  test('renders App component', async() => {
-    server.use(
-      rest.get('http://localhost:3001/api/v1/products/red', (req, res, ctx) => {
-        // このケースではステータスコード500を返すようにした
-        return res(ctx.status(200),ctx.json({message:"aiueo"}));
-      })
-    );
+  // test('renders App component', async() => {
+  //   server.use(
+  //     rest.get('http://localhost:3001/api/v1/products/red', (req, res, ctx) => {
+  //       // このケースではステータスコード500を返すようにした
+  //       return res(ctx.status(200),ctx.json({message:"aiueo"}));
+  //     })
+  //   );
 
-    render(<Ota2/>);
+  //   render(<Ota2/>);
 
-    expect(false).toBe(false);
-    expect(screen.getByText('Welcome to Next.js!')).toBeInTheDocument();
-    expect(screen.queryByText('Searches for JavaScript')).not.toBeInTheDocument()
+  //   expect(false).toBe(false);
+  //   expect(screen.getByText('Welcome to Next.js!')).toBeInTheDocument();
+  //   expect(screen.queryByText('Searches for JavaScript')).not.toBeInTheDocument()
 
-    screen.debug();
+  //   screen.debug();
 
-    // expect(await screen.findByText(/Signed in as/)).toBeInTheDocument();
-    // await waitFor(() => screen.getByText('Welcome to Next.js!'))
-    await waitFor(() => screen.findByText(/Signed in as/))
+  //   // expect(await screen.findByText(/Signed in as/)).toBeInTheDocument();
+  //   // await waitFor(() => screen.getByText('Welcome to Next.js!'))
+  //   await waitFor(() => screen.findByText(/Signed in as/))
 
-    screen.debug();
-  });
+  //   screen.debug();
+  // });
 });
 
 
@@ -111,39 +107,39 @@ describe("Sampleコンポーネント", () => {
 //   });
 // });
 
-describe('App', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => {
-    server.resetHandlers()
-    cleanup()
-  })
-  afterAll(() => server.close())
+// describe('App', () => {
+//   beforeAll(() => server.listen())
+//   afterEach(() => {
+//     server.resetHandlers()
+//     cleanup()
+//   })
+//   afterAll(() => server.close())
 
-  test('false is falsy', async() => {
-    const message = {message:"aaaaaaa"}
-    const { container } = render(<Ota2 />)
-    screen.debug();
-    await waitFor(() => screen.findByText(/Signed in as/))
-    expect(container).toMatchSnapshot()
-    screen.debug();
-  });
-});
+//   test('false is falsy', async() => {
+//     const message = {message:"aaaaaaa"}
+//     const { container } = render(<Ota2 />)
+//     screen.debug();
+//     await waitFor(() => screen.findByText(/Signed in as/))
+//     expect(container).toMatchSnapshot()
+//     screen.debug();
+//   });
+// });
 
-describe('App', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => {
-    server.resetHandlers()
-    cleanup()
-  })
-  afterAll(() => server.close())
+// describe('App', () => {
+//   beforeAll(() => server.listen())
+//   afterEach(() => {
+//     server.resetHandlers()
+//     cleanup()
+//   })
+//   afterAll(() => server.close())
 
-  test('false is falsy', async() => {
-    const message = {message:"aaaaaaa"}
-    const { container } = render(<Ota2 />)
-    fireEvent.click(screen.getByRole(/button/))
-    screen.debug();
-    await waitFor(() => screen.findByText(/aaaaaaaaaaaiu/))
-    // expect(container).toMatchSnapshot()
-    screen.debug();
-  });
-});
+//   test('false is falsy', async() => {
+//     const message = {message:"aaaaaaa"}
+//     const { container } = render(<Ota2 />)
+//     fireEvent.click(screen.getByRole(/button/))
+//     screen.debug();
+//     await waitFor(() => screen.findByText(/aaaaaaaaaaaiu/))
+//     // expect(container).toMatchSnapshot()
+//     screen.debug();
+//   });
+// });
