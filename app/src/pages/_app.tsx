@@ -47,8 +47,8 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
                 url: "https://meruplanet.com",
                 images: [
                   {
-                  // 　url: "https://www.example.ie/og-image-01.jpg",
-                    url: "/meru-logo2",
+                  // url: "https://www.example.ie/og-image-01.jpg",
+                    url: "/3",
                     width: 800,
                     height: 600,
                     alt: 'Og Image Alt',
