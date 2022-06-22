@@ -20,6 +20,7 @@ import { ErrorMessage } from "@/lib/ini/message";
 import { submitSpin } from "@/lib/color/submit-spin";
 import dynamic from "next/dynamic";
 import { QuillSettings } from "@/lib/ini/quill/QuillSettings";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
@@ -71,36 +72,47 @@ export const TheredModal:React.FC<Props> = function TheredModalFunc(Props){
   const [nonhelpertextradio,setNonhelpertextradio] = useState<string>("")
   const dispatch = useDispatch()
   const [submitLoading,setSubmitLoading] = useState<boolean>(false)
+  const { executeRecaptcha } = useGoogleReCaptcha()
   const handlesubmit = async() => {
     // validation
-      const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length
-      if ( validationText < QuillSettings.textLength){
-        dispatch(pussingMessageDataAction({title:ErrorMessage.tenover,select:0}))
-        return
-      }
-      const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
-      if(ngword.some((ngWord) => text_all.includes(ngWord))){
-        // setHelpertextradio(`使用できない文字が含まれています`)
-        dispatch(pussingMessageDataAction({title:ErrorMessage.ngword,select:0}))
+    const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length
+    if ( validationText < QuillSettings.textLength){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.tenover,select:0}))
+      return
+    }
+    const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
+    if(ngword.some((ngWord) => text_all.includes(ngWord))){
+      // setHelpertextradio(`使用できない文字が含まれています`)
+      dispatch(pussingMessageDataAction({title:ErrorMessage.ngword,select:0}))
 
-        return
-      }
-      // doneyet(バイト数制限)
-      const blob = new Blob([value])
-      if ( blob.size  > QuillSettings.blobSizeMain){
-        // setHelpertextradio(`サイズが大きすぎます`)
-        dispatch(pussingMessageDataAction({title:ErrorMessage.byteSize,select:0}))
-        return
-      }
-      // if ( quillref.current.getEditor().getText().length > 2000){
-      //   // setHelpertextradio(`20,00文字以内で入力してください 文字数${quillref.current.getEditor().getText().length}`)
-      //   dispatch(pussingMessageDataAction({title:ErrorMessage.twodown,select:0})) 
-      //   return
-      // }  
+      return
+    }
+    // doneyet(バイト数制限)
+    const blob = new Blob([value])
+    if ( blob.size  > QuillSettings.blobSizeMain){
+      // setHelpertextradio(`サイズが大きすぎます`)
+      dispatch(pussingMessageDataAction({title:ErrorMessage.byteSize,select:0}))
+      return
+    }
+    // if ( quillref.current.getEditor().getText().length > 2000){
+    //   // setHelpertextradio(`20,00文字以内で入力してください 文字数${quillref.current.getEditor().getText().length}`)
+    //   dispatch(pussingMessageDataAction({title:ErrorMessage.twodown,select:0})) 
+    //   return
+    // }
+    if (!executeRecaptcha) {
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const reCaptchaToken = await executeRecaptcha('ThreadModal');
+    if(!reCaptchaToken){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
     setSubmitLoading(true)
     const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
     if (typeof Props.product_id === 'undefined') return
-    const res = await execCreateThered(text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,question_ids)
+    const res = await execCreateThered(text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,question_ids,reCaptchaToken)
+    // console.log(res)
     if(res.data.status===200){
       Props.setProductThreads(res.data.productThreads)
       setOpenthered(false)

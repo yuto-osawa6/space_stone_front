@@ -61,7 +61,6 @@ type Props = {
 }
 
 const ThreadShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
   // const fallback= Props.fallback
   return(
     <>

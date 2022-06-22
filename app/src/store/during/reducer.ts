@@ -15,7 +15,6 @@ const initialState:SubSearchTimeData = {
 export const TimeSearchReducer = (state = initialState, action:SubSearchTimeDataTypes):SubSearchTimeData => {
   switch (action.type) {
     case ActionTypes.DuringSearch:
-      console.log(action)
       return {
         times:{
         time_gteq: action.payload.time_gteq,
@@ -24,7 +23,6 @@ export const TimeSearchReducer = (state = initialState, action:SubSearchTimeData
         time_range: action.payload.time_range
         }
     case ActionTypes.DuringSearchDestroy:
-      console.log(action)
       return {
         times:{
         time_gteq: "",

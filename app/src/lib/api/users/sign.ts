@@ -46,13 +46,10 @@ type Data2 = {
 
 // doneyet-1-next userにundefinedを入れるかどうか。(reduxで管理していたため、そのままの状態)
 export const useGetCurrentUser = (): { userSwr: Data2, error: any } => {
-  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaasgg")
   // const dispatch = useDispatch()
   const fetcher = async() => {
     const cookie = document.cookie;
-    console.log(cookie);
     if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")){
-      console.log("aaaaaaaaaaagggeeg")
     return
     }
     const res =  await client.get('/session_user',{ headers: {
@@ -62,10 +59,8 @@ export const useGetCurrentUser = (): { userSwr: Data2, error: any } => {
           }})
           if (res?.data.isLogin === true) {
             // dispatch(userLoginAction(true,res.data.data))
-            console.log(res?.data.data)
           } else {
           }
-    console.log(res)
     return res.data
   }
   const { data, error } = useSWR('/session_user', fetcher)
@@ -77,8 +72,6 @@ export const useGetCurrentUser = (): { userSwr: Data2, error: any } => {
 }
 
 export const execGoogle = (response:any) => {
-  console.log("aaabbb")
-  console.log(response)
 
   try{
     const data = {
@@ -113,50 +106,6 @@ export const execGoogle = (response:any) => {
   }
 }
 
-// export const execGoogle = (response:any): { data: Data | undefined, error: any } => {
-//   const params = {
-//     provider: "google_oauth2",
-//     uid:response.googleId,
-//     id_token: response.tokenId,
-//     info: {
-//       email: response.profileObj.email,
-//       name:response.profileObj.name,
-//       image:response.profileObj.imageUrl
-//     }
-//   }
-//   const fetcher = async() => {
-//   const res = await clientSocial.post("/social_auth/callback",{
-//     headers: {
-//       'Authorization': `Bearer ${response.accessToken}`,
-//       'Content-Type': 'application/json',
-//       'access_token': `${response.accessToken}`
-//     },
-//     resource_class:"User",
-//     body:params
-//     ,paramsSerializer: function(params:any) {
-//       return qs.stringify(params, {arrayFormat: 'brackets'})
-//     }
-//   })
-//   if(res==undefined){
-//     dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
-//     return
-//   }
-//   console.log(res)
-//   if (res.status === 201) {
-//     Cookies.set("_access_token", res.data.headers.accessToken)
-//     Cookies.set("_client", res.data.headers.client)
-//     Cookies.set("_uid", res.data.headers.uid)
-//     console.log(res)
-//     dispatch(userLoginAction(true,res.data.data))
-//     // mutate('/session_user')
-//   }else{
-//     console.log("失敗しました。")
-//   }
-//   }
-//   // const { data, error } = useSWR('/social_auth/callback', fetcher)
-//   // return { data: data, error }
-// }
-
 
 
 export const signOut = () => {
@@ -166,10 +115,3 @@ export const signOut = () => {
     "uid": `${Cookies.get("_uid")}`
   }})  
 }
-
-
-// export const GoogleLogin2 = () => {
-//   return  clientSocial.get("/auth/google_oauth2",{
-  
-//   })
-// }

@@ -25,10 +25,10 @@ type AppPropsWithLayout = AppProps & {
 // function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
-  console.log("aagdafafefefesfes")
-  console.log(process.env.RECAPTCHA_KEY)
-  console.log(process.env.NEXT_PUBLIC_RECAPTCHA_KEY)
-  console.log("aagdafafefefesfes")
+  // console.log("aagdafafefefesfes")
+  // console.log(process.env.RECAPTCHA_KEY)
+  // console.log(process.env.NEXT_PUBLIC_RECAPTCHA_KEY)
+  // console.log("aagdafafefefesfes")
   return(
       <Provider store={store}> 
         {/* <SessionProvider session={session}> */}

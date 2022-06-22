@@ -32,9 +32,6 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
     const [data] = await Promise.all([
       res.json()
     ]);
-    // console.log("1093490204")
-    // console.log(data)
-    // console.log("1093490204")
 
     if(data.status ==200){
     return { 

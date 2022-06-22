@@ -57,7 +57,6 @@ export const searchProdcutsReducer = (state = initialState, action: SearchProduc
         // title: action.payload.title,
       // });
       // jsnls_id_in.push
-      // console.log("gggggg111111111111111111aaaaaaaaaa")
 
       return  {
         title_or_titleKa_or_titleEn_or_titleRo_cont:action.payload.title_or_titleKa_or_titleEn_or_titleRo_cont,
@@ -82,7 +81,6 @@ export const searchProdcutsReducer = (state = initialState, action: SearchProduc
       // const _ : never = action;
       // const _ : never = action;
       const _ : never = action
-      // console.log("gggggg111111111111111111")
 
       return state;
   }

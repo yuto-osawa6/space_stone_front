@@ -45,7 +45,6 @@ export const execDeleteArticle = (article_id:number) => {
 
 
 export const uploadArticleFile = (data:FormData)=> {
-  console.log(data)
   const kazuki = {name:"kazuki",year:"2020"}
   const a:string = `name:kazuki,year:2020`
   // b = {name:amber,size:""}

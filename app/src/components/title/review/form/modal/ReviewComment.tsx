@@ -12,6 +12,7 @@ import { ErrorMessage } from "@/lib/ini/message"
 import { submitSpin } from "@/lib/color/submit-spin"
 import { QuillSettings } from "@/lib/ini/quill/QuillSettings"
 import { DefaultPaste } from "@/lib/ini/quill/QuillEffect"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 const ReactQuill = typeof window === "object" ? require("react-quill") : () => false;
 const Quill = typeof window === "object" ? require("quill") : () => false;
 
@@ -92,7 +93,7 @@ export const ReviewComment:React.FC<Props> = function ReviewCommentFunc(Props){
 
   const dispatch = useDispatch()
   
-
+  const { executeRecaptcha } = useGoogleReCaptcha()
   const handlesubmit = async() => {
     const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length
       if ( validationText < QuillSettings.textLength){
@@ -111,8 +112,17 @@ export const ReviewComment:React.FC<Props> = function ReviewCommentFunc(Props){
         return
       }
     const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
+    if (!executeRecaptcha) {
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const reCaptchaToken = await executeRecaptcha('ReviewComment');
+    if(!reCaptchaToken){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
     setLoding(true)
-    const res = await execCreateCommentReview(Props.product_id,Props.review_id,Props.user_id,value_text,Props.selectSort)
+    const res = await execCreateCommentReview(Props.product_id,Props.review_id,Props.user_id,value_text,Props.selectSort,reCaptchaToken)
     if(res.data.status===200){
       Props.setPage2(2)
       Props.scrollRef.current?.scrollTo({top:0})

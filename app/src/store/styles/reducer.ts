@@ -17,7 +17,6 @@ export const settiongStylesReducer = (state = initialState, action:SettiongStyle
 
   switch (action.type) {
     case ActionTypes.setStyles:
-      // console.log(action)
       return {
           // genres:action.genres
           styles:action.styles   

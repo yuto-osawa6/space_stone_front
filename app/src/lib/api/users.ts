@@ -10,9 +10,7 @@ export const google_oauth = () => {
 }
 
 // export const execGoogle = (response:any) => {
-//   console.log(response, "I AM RESPONSE FROM GOOGLE")
 //   // var token = response;
-//   console.log(response)
 //   const data = {
 //     provider: "google_oauth2",
 //     // uid: response.xu.BW,
@@ -26,9 +24,7 @@ export const google_oauth = () => {
 //       name:response.profileObj.name,
 //       image:response.profileObj.imageUrl
 //     }
-   
 //   }
- 
 
 //   return  clientSocial.post("/social_auth/callback",{
 //     // params:{

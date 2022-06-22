@@ -12,6 +12,7 @@ import { TailSpin } from "react-loader-spinner"
 import { useDispatch } from "react-redux"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { QuillSettings } from "@/lib/ini/quill/QuillSettings"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -42,6 +43,7 @@ export const ReturnReturn:React.FC<Props> = function ReturnReturnFunc(Props){
   const router = useRouter()
   const {pid,tid} = router.query
   const params_thread_id = tid as string
+  const { executeRecaptcha } = useGoogleReCaptcha()
   const handlesubmit = async() => {
     const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length
       if ( validationText < QuillSettings.textLength){
@@ -64,11 +66,21 @@ export const ReturnReturn:React.FC<Props> = function ReturnReturnFunc(Props){
         return
       }
     if(params_thread_id==undefined)return
+    if (!executeRecaptcha) {
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const reCaptchaToken = await executeRecaptcha('ReturnReturnThread');
+    if(!reCaptchaToken){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
     setLoding(true)
     const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
-    const res = await execCreateReturnReturnCommentThread(Props.comment_review_id,Props.user_id,value_text,Props.return_comment_review_id,params_thread_id)
+    const res = await execCreateReturnReturnCommentThread(Props.comment_review_id,Props.user_id,value_text,Props.return_comment_review_id,params_thread_id,reCaptchaToken)
     if(res.data.status===200){
       Props.setUpdateJudge!=undefined&&(Props.setUpdateJudge())
+      dispatch(pussingMessageDataAction({title:"コメントを作成しました。",select:1}))
       closehandle()
     }else if(res.data.status===400){
       dispatch(pussingMessageDataAction({title:ErrorMessage.delete,select:0}))

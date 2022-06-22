@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { DefaultPaste } from "@/lib/ini/quill/QuillEffect"
 import { QuillSettings } from "@/lib/ini/quill/QuillSettings"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -56,35 +57,42 @@ export const ThreadComment:React.FC<Props> = function ThreadCommentFunc(Props){
   }
 
   const dispatch = useDispatch()
-
+  const { executeRecaptcha } = useGoogleReCaptcha()
   const handlesubmit = async() => {
-  
-    
     const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length
-      if ( validationText < QuillSettings.textLength){
-        dispatch(pussingMessageDataAction({title:ErrorMessage.tenover,select:0}))
-        return
-      }
-       // ngword
-      const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
-      if(ngword.some((ngWord) => text_all.includes(ngWord))){
-        dispatch(pussingMessageDataAction({title:ErrorMessage.ngword,select:0}))
-        return
-      }
-      if(new Blob([value]).size>QuillSettings.blobSize){
-        dispatch(pussingMessageDataAction({title:ErrorMessage.byteSize,select:0}))
-        return
-      }
-      
+    if ( validationText < QuillSettings.textLength){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.tenover,select:0}))
+      return
+    }
+      // ngword
+    const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
+    if(ngword.some((ngWord) => text_all.includes(ngWord))){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.ngword,select:0}))
+      return
+    }
+    if(new Blob([value]).size>QuillSettings.blobSize){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.byteSize,select:0}))
+      return
+    }
+    if (!executeRecaptcha) {
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const reCaptchaToken = await executeRecaptcha('ThreadComment');
+    if(!reCaptchaToken){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }    
     setLoding(true)
     const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
-    const res = await execCreateCommentThread(Props.product_id,Props.review_id,Props.user_id,value_text,Props.selectSort)
+    const res = await execCreateCommentThread(Props.product_id,Props.review_id,Props.user_id,value_text,Props.selectSort,reCaptchaToken)
     if(res.data.status===200){
-    Props.setPage2(2)
-    Props.scrollRef.current?.scrollTo({top:0})
-    Props.setReviewComments(res.data.reviewComments)
-    Props.setHasMore(true)
-    closehandle()
+      Props.setPage2(2)
+      Props.scrollRef.current?.scrollTo({top:0})
+      Props.setReviewComments(res.data.reviewComments)
+      Props.setHasMore(true)
+      dispatch(pussingMessageDataAction({title:res.data.message.title,select:1}))
+      closehandle()
     }else if(res.data.status===400){
       dispatch(pussingMessageDataAction({title:ErrorMessage.delete,select:0}))
     }else if(res.data.status===493){

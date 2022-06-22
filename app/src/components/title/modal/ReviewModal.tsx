@@ -134,20 +134,6 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
   const [submitLoading,setSubmitLoading] = useState<boolean>(false)
   const dispatch = useDispatch()
   const handlesubmit = async() => {
-    // if (!executeRecaptcha) {
-    //       return
-    // }
-    // const reCaptchaToken = await executeRecaptcha('ReviewModal');
-    console.log("rev")
-    console.log("n")
-    const reCaptchaToken = await execSetreCaptchaToken()
-    console.log(reCaptchaToken)
-    console.log("rev")
-    console.log("n")
-
-    if(!reCaptchaToken){
-      return
-    }
     const blob = new Blob([value])
     const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
     const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length
@@ -172,9 +158,18 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
       dispatch(pussingMessageDataAction({title:ErrorMessage.episordSelect,select:0}))
       return
     }
+    if (!executeRecaptcha) {
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const reCaptchaToken = await executeRecaptcha('ReviewModal');
+    if(!reCaptchaToken){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
     setSubmitLoading(true)
     const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
-    const res = await execCreateReview(episordValue,text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,emotions)
+    const res = await execCreateReview(episordValue,text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,emotions,reCaptchaToken)
     if(res.data.status===200){
       Props.setUserReview(res.data.userReview)
       Props.setEmotionLists(res.data.emotionLists)

@@ -23,7 +23,6 @@ const initialState:SubSearchData={
 export const SettiongSubSearchesReducer = (state=initialState, action:SubSearchDataTypes):SubSearchData => {
   switch (action.type) {
     case ActionTypes.DeliveryEndGteq:
-    console.log(action.payload.today)
       return {
         delivery_end_gteq:action.payload.today,
         delivery_start_gteq:"",

@@ -31,7 +31,6 @@ type UserTier = {
 
 export const useExecGetUserTier = (current_number:number) => {
     const { userSwr } = useUser()
-    console.log("aaaaaaaaaa",userSwr)
     const fetcher = async() => {
     if (userSwr.login==false)return
     const res =  await client.get('/mainblocks/mains/user_this_season_tier',{
@@ -40,9 +39,7 @@ export const useExecGetUserTier = (current_number:number) => {
         current_number:current_number
       }
     })
-    console.log(res)
     if (res.data.status == 200) {
-      console.log("a")
       res.data.userTier.forEach((i:any)=>{
         const tier = i.tier
         if(0<=tier&&tier<=10){
@@ -59,9 +56,8 @@ export const useExecGetUserTier = (current_number:number) => {
         Object.assign(i,{group:0})
         }else{
         }
-     })
+    })
     }
-    console.log(res.data.userTier)
     return res.data.userTier
   }
   const { data, error } = useSWRImmutable<UserTier[]>('/mainblocks/mains/user_this_season_tier/1', fetcher)
@@ -71,7 +67,6 @@ export const useExecGetUserTier = (current_number:number) => {
 
 export const useExecGetUserTier2 = (current_number:number) => {
   const { userSwr } = useUser()
-  console.log("aaaaaaaaaa",userSwr)
   const fetcher = async() => {
   if (userSwr.login==false)return
   const res =  await client.get('/mainblocks/mains/user_this_season_tier',{
@@ -80,9 +75,7 @@ export const useExecGetUserTier2 = (current_number:number) => {
       current_number:current_number
     }
   })
-  console.log(res)
   if (res.data.status == 200) {
-    console.log("a")
     res.data.userTier.forEach((i:any)=>{
       const tier = i.tier
       if(0<=tier&&tier<=10){
@@ -101,7 +94,6 @@ export const useExecGetUserTier2 = (current_number:number) => {
       }
    })
   }
-  console.log(res.data.userTier)
   return res.data.userTier
 }
 const { data, error } = useSWRImmutable<UserTier[]>('/mainblocks/mains/user_this_season_tier/2', fetcher)

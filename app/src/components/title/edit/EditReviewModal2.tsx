@@ -13,6 +13,7 @@ import { ngword } from "@/lib/ini/ngWord";
 import { ErrorMessage } from "@/lib/ini/message";
 import { submitSpin } from "@/lib/color/submit-spin";
 import { QuillSettings } from "@/lib/ini/quill/QuillSettings";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -76,6 +77,7 @@ export const EditReviewModal2:React.FC<Props> = function EditReviewModal2Func(Pr
   const [emotions,setEmotions] = useState<string[]>(Props.review.reviewEmotions.map(i=>String(i.id)))
   const dispatch = useDispatch()
   const [submitLoading,setSubmitLoading] = useState<boolean>(false)
+  const { executeRecaptcha } = useGoogleReCaptcha()
   const handlesubmit = async() => {
     const blob = new Blob([value])
     const text_all = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "")
@@ -95,8 +97,17 @@ export const EditReviewModal2:React.FC<Props> = function EditReviewModal2Func(Pr
     }
     const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
     if(Props.product==undefined)return
+    if (!executeRecaptcha) {
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const reCaptchaToken = await executeRecaptcha('EditReviewModal2');
+    if(!reCaptchaToken){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
     setSubmitLoading(true)
-    const res = await execUpdate2Review(Props.review.id,String(Props.review.episordId),text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product.id,Props.review.userId,emotions)
+    const res = await execUpdate2Review(Props.review.id,String(Props.review.episordId),text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product.id,Props.review.userId,emotions,reCaptchaToken)
     if(res.data.status===200){
       Props.setReview(res.data.review)
       dispatch(updateReviewAction(true))

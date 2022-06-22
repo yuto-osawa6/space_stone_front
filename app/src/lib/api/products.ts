@@ -97,7 +97,7 @@ export const execAcsesscount = (id:number,current_time:Date) => {
 }
 
 // review
-export const execCreateReview = (select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[]) => {
+export const execCreateReview = (select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[],reToken:string) => {
   
   return client.post(`/products/${product_id}/reviews`, { 
     // params:{
@@ -114,14 +114,15 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
       //   emotion_id:1,
       //   episord_id:1,
       // }]
-      }
+      },
+      recaptcha_token:reToken
   // }
 })
 }
 
   // review update
   
-  export const execUpdateReview = (review_id:number,select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[]) => {
+  export const execUpdateReview = (review_id:number,select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[],reCaptchaToken:string) => {
   
     return client.patch(`/products/${product_id}/reviews/${review_id}`, { 
       // params:{
@@ -138,11 +139,12 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
         //   emotion_id:1,
         //   episord_id:1,
         // }]
-        }
+        },
+        recaptcha_token:reCaptchaToken
     // }
   })
   }
-  export const execUpdate2Review = (review_id:number,select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[]) => {
+  export const execUpdate2Review = (review_id:number,select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[],reCaptchaToken:string) => {
   
     return client.patch(`/products/${product_id}/reviews/${review_id}/update2`, { 
       // params:{
@@ -159,7 +161,8 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
         //   emotion_id:1,
         //   episord_id:1,
         // }]
-        }
+        },
+        recaptcha_token:reCaptchaToken
     // }
   })
   }
@@ -167,7 +170,7 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
   
     return client.get(`/products/${product_id}/reviews/second`, { 
       params:{
-       user_id:user_id
+      user_id:user_id
     }
   })
   }
@@ -181,7 +184,7 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
   }
 
 // thered
-export const execCreateThered = (text:string,value:string,discribe:string,product_id:number,user_id:number,thered_question_questions_ids:string[]) => {
+export const execCreateThered = (text:string,value:string,discribe:string,product_id:number,user_id:number,thered_question_questions_ids:string[],reCaptchaToken:string) => {
   
   return client.post(`/products/${product_id}/thereds`, { 
     // params:{
@@ -192,7 +195,9 @@ export const execCreateThered = (text:string,value:string,discribe:string,produc
       user_id:user_id,
       question_ids:thered_question_questions_ids,
       // tt:"aa"
-    }
+      
+    },
+    recaptcha_token:reCaptchaToken
   // }
 })
 }

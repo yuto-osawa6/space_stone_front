@@ -20,7 +20,6 @@ export const settiongGenresReducer = (state = initialState, action:SettiongGenre
   // const latestId = state.length;
   switch (action.type) {
     case ActionTypes.setGenres:
-      console.log(action)
       return {
           genres:action.genres,
           loaded:true   

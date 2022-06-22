@@ -12,6 +12,7 @@ import { TailSpin } from "react-loader-spinner"
 import { useDispatch } from "react-redux"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { QuillSettings } from "@/lib/ini/quill/QuillSettings"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -50,6 +51,7 @@ export const ReturnReviewComment:React.FC<Props> = function ReturnReviewCommentF
   const router = useRouter()
   const {pid,rid} = router.query
   const params_review_id = rid as string
+  const { executeRecaptcha } = useGoogleReCaptcha()
   const handlesubmit = async() => {
     const validationText = quillref.current.getEditor().getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length
       if ( validationText < QuillSettings.textLength){
@@ -68,11 +70,21 @@ export const ReturnReviewComment:React.FC<Props> = function ReturnReviewCommentF
       }
       const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
     if(params_review_id==undefined)return
+    if (!executeRecaptcha) {
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const reCaptchaToken = await executeRecaptcha('ReturnReviewComment');
+    if(!reCaptchaToken){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
     setLoding(true)
-    const res = await execCreateReturnCommentReview(Props.comment_review_id,Props.user_id,value_text,params_review_id)
+    const res = await execCreateReturnCommentReview(Props.comment_review_id,Props.user_id,value_text,params_review_id,reCaptchaToken)
     if(res.data.status===200){
       Props.setReturnJugde(true)
       Props.setUpdateJudge!=undefined&&(Props.setUpdateJudge())
+      dispatch(pussingMessageDataAction({title:"コメントを作成しました。",select:1}))
       closehandle()
     }else if(res.data.status===400){
       dispatch(pussingMessageDataAction({title:ErrorMessage.delete,select:0}))
