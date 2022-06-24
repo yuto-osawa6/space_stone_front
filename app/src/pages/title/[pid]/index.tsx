@@ -51,6 +51,7 @@ type Props = {
 
 const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   const {t} = useLocale()
+  const image_path = process.env.NODE_ENV == "production"? `https://api.meruplanet.com/api/v1/ogp_images/${Props.data.products.id}` : `http://localhost:3001/api/v1/ogp_images/${Props.data.products.id}`
 
   return(
     <>
@@ -66,7 +67,7 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
           images: [
             {
             // url: "https://www.example.ie/og-image-01.jpg",
-              url: "/3",
+              url: image_path,
               width: 800,
               height: 600,
               alt: 'Og Image Alt',
