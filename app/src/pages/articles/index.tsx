@@ -22,7 +22,7 @@ const ArticlesIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element } 
       description = {`記事一覧。気になる記事をチェックしよう。`}
         openGraph={{
           type: "website",
-          title: "MeruPlanet",
+          title: "Article",
           description: `記事一覧。気になる記事をチェックしよう。`,
           site_name: "MeruPlanet",
           url: `https://meruplanet.com/articles`,

@@ -14,11 +14,11 @@ const TierIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (
   return(
     <>
       <NextSeo
-      title={`Tier`}
+      title={`Tier - ${t.domain}`}
       description = {`過去のTier(ティア)情報。シーズンごとのTierをチェックして、アニメの比較。`}
       openGraph={{
         type: "website",
-        title: "MeruPlanet",
+        title: "Tier情報",
         description: `過去のTier(ティア)情報。シーズンごとのTierをチェックして、アニメの比較。`,
         site_name: "MeruPlanet",
         url: `https://meruplanet.com/tier`,

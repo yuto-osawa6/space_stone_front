@@ -75,6 +75,7 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
   const router = useRouter()
   const dispatch = useDispatch()
   const navigateHandler = () => {
+    dispatch(actionSettingProductData2(Props.product));
     router.push(`/title/${Props.product.id}`)
   }
   // year season

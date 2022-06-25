@@ -61,7 +61,7 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
         description = {`${Props.data.products.title}の詳細ページのレビュ一覧。${Props.data.products.title}のレビューをチェックして感想を共有しよう。`}
         openGraph={{
           type: "website",
-          title: "MeruPlanet",
+          title: `Review - ${Props.data.products.title}`,
           description: `${Props.data.products.title}の詳細ページのレビュー一覧。${Props.data.products.title}のレビューをチェックして感想を共有しよう。`,
           site_name: "MeruPlanet",
           url: `https://meruplanet.com/title/${Props.data.products.id}/reviews`,

@@ -1,4 +1,5 @@
 import { product } from "@/interfaces/product"
+import { actionSettingProductData2 } from "@/store/product/actions";
 import Router from "next/router";
 import { memo, useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
@@ -74,6 +75,7 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
   },[])
   const dispatch = useDispatch()
   const navigateProductShow =() =>{
+    dispatch(actionSettingProductData2(Props.product));
     Router.push(`/title/${Props.product.id}`)
   }
   const handlehoverLeave = () => {

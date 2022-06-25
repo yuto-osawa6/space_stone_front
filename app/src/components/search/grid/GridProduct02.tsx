@@ -3,6 +3,8 @@ import { useRouter } from "next/router"
 import { memo, useEffect, useRef, useState } from "react"
 import { CSSTransition } from "react-transition-group"
 import dynamic from 'next/dynamic';
+import { actionSettingProductData2 } from "@/store/product/actions";
+import { useDispatch } from "react-redux";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 type Props = {
@@ -23,10 +25,12 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   const nodeRef = useRef(null)
   const [imageloding,setImageLoding2] = useState<boolean>(false)
   const router = useRouter()
+  const dispatch = useDispatch()
 
 
   const navigateshow = ()=>{
-    router.push(`/products/${Props.product.id}`)
+    dispatch(actionSettingProductData2(Props.product));
+    router.push(`/title/${Props.product.id}`)
   }
 
   useEffect(()=>{

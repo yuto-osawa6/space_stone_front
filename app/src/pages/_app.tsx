@@ -36,11 +36,11 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
           <>
             <DefaultSeo
               defaultTitle = "MeruPlanet - アニメ！"
-              description = "おすすめなアニメを評価・レビュー・ティアーで共有しよう！今期や来期のアニメ情報や流行している・高評価のアニメも探せます。"
+              description = "おすすめなアニメを評価・レビュー・ティアで共有しよう！今期や来期のアニメ情報や流行している・高評価のアニメも探せます。"
               openGraph={{
                 type: "website",
                 title: "MeruPlanet - アニメ！ ",
-                description: "おすすめなアニメを評価・レビュー・ティアーで共有しよう！今期や来期のアニメ情報や流行している・高評価のアニメも探せます。",
+                description: "おすすめなアニメを評価・レビュー・ティアで共有しよう！今期や来期のアニメ情報や流行している・高評価のアニメも探せます。",
                 site_name: "MeruPlanet",
                 url: "https://meruplanet.com",
                 images: [

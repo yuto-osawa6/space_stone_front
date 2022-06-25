@@ -10,6 +10,7 @@ import { UsersShow } from "@/components/users/show/UsersShow"
 import { product } from "@/interfaces/product"
 import { review, review_comments } from "@/interfaces/review"
 import { ssr_url } from "@/lib/client/clientssr"
+import { useLocale } from "@/lib/ini/local/local"
 import { GetServerSideProps } from "next"
 import { NextSeo } from "next-seo"
 import nookies from 'nookies'
@@ -62,11 +63,38 @@ type Props = {
 
 const ThreadShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   // const fallback= Props.fallback
+  const {t} = useLocale()
+  const title = Props.data.review.title?  Props.data.review.title :  `「${Props.data.product.title}」のスレッド`
+  const describe = Props.data.review.title?`${Props.data.review.title} スレッドで話し合おう！`: `${Props.data.product.title} スレッドで話し合おう。`
   return(
     <>
       <NextSeo
-      canonical = {`https://meruplanet.com/title/${Props.data.product.id}/threads/${Props.data.review.id}`}
-      />
+        title={`${title} - ${t.domain}`}
+        canonical = {`https://meruplanet.com/title/${Props.data.product.id}/threads/${Props.data.review.id}`}
+        description = {`${describe}`}
+        openGraph={{
+          type: "website",
+          title: `${title}`,
+          description: `${describe}`,
+          site_name: "MeruPlanet",
+          // url: `https://meruplanet.com/title/${Props.data.product.id}/top/threads/${Props.data.review.id}`,
+          // images: [
+          //   {
+          //   // url: "https://www.example.ie/og-image-01.jpg",
+          //     // url: image_path,
+          //     width: 1200,
+          //     height: 630,
+          //     alt: 'Og Image Alt',
+          //     type: 'image/png',
+          //   },
+          // ],
+        }}
+        // twitter={{
+        //   handle: '@handle',
+        //   site: '@site',
+        //   cardType: 'summary_large_image',
+        // }}
+      ></NextSeo>
       <ProductThreads
         // data={Props}
         data={Props.data}

@@ -66,19 +66,19 @@ type Props = {
 const ThreadShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   // const fallback= Props.fallback
   const {t} = useLocale()
-  const title = Props.data.review.title?  Props.data.review.title :  `${Props.data.product.title} スレッド`
+  const title = Props.data.review.title?  Props.data.review.title :  `「${Props.data.product.title}」の スレッド`
   const describe = Props.data.review.title?`${Props.data.review.title} スレッドで話し合おう！`: `${Props.data.product.title} スレッドで話し合おう!`
 
 
   return(
   <>
       <NextSeo
-        title={`${title}`}
+        title={`${title} - ${t.domain}`}
         canonical = {`https://meruplanet.com/title/${Props.data.product.id}/threads/${Props.data.review.id}`}
         description = {`${describe}`}
         openGraph={{
           type: "website",
-          title: "MeruPlanet",
+          title: `${title}`,
           description: `${describe}`,
           site_name: "MeruPlanet",
           url: `https://meruplanet.com/title/${Props.data.product.id}/threads/${Props.data.review.id}`,
@@ -92,7 +92,13 @@ const ThreadShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
           //     type: 'image/png',
           //   },
           // ],
-        }}></NextSeo>
+        }}
+        // twitter={{
+        //   handle: '@handle',
+        //   site: '@site',
+        //   cardType: 'summary_large_image',
+        // }}
+      ></NextSeo>
       <ProductThreads
       data={Props.data}
       />

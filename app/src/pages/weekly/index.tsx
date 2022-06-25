@@ -14,12 +14,12 @@ const WeeklyIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
   return(
     <>
       <NextSeo
-        title={`過去のアンケート`}
-        description = "１週間の範囲で、過去に放送されたエピソードのアンケート結果。放送されたエピソードの比較を見ることできます。"
+        title={`過去のエピソードアンケート - ${t.domain}`}
+        description = "１週間の範囲で、過去に放送されたエピソードのアンケート結果。放送されたエピソードの比較。"
         openGraph={{
           type: "website",
-          title: "MeruPlanet",
-          description: "１週間の範囲で、過去に放送されたエピソードのアンケート結果。放送されたエピソードの比較を見ることできます。",
+          title: "過去のエピソードアンケート",
+          description: "１週間の範囲で、過去に放送されたエピソードのアンケート結果。放送されたエピソードの比較。",
           site_name: "MeruPlanet",
           url: "https://meruplanet.com/weekly",
           images: [

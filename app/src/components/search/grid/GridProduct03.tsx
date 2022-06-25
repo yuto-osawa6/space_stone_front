@@ -1,7 +1,9 @@
 import { product } from "@/interfaces/product"
+import { actionSettingProductData2 } from "@/store/product/actions"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { BsFillSuitHeartFill ,BsFillSuitClubFill,BsFillSuitSpadeFill, BsFillSuitDiamondFill} from "react-icons/bs"
+import { useDispatch } from "react-redux"
 
 type Props = {
   product:product
@@ -61,8 +63,10 @@ export const GridProduct03:React.FC<Props> = function GridProduct03Func(Props){
     }
   }
   const router = useRouter()
+  const dispatch = useDispatch()
   const navigateHandler = () => {
-    router.push(`/products/${Props.product.id}`)
+    dispatch(actionSettingProductData2(Props.product));
+    router.push(`/title/${Props.product.id}`)
   }
   const [YearSeason,setYearSeason]= useState<string>("")
   const handleSetupYearSeason = () => {

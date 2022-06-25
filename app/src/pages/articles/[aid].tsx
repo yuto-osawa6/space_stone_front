@@ -55,7 +55,7 @@ const ArticleShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
       description = {``}
         openGraph={{
           type: "website",
-          title: "MeruPlanet",
+          title: `${Props.data.article.title}`,
           description: ``,
           site_name: "MeruPlanet",
           url: `https://meruplanet.com/articles/${Props.data.article.id}`,

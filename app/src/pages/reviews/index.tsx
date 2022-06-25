@@ -21,11 +21,11 @@ const {t} = useLocale()
 return(
   <>
     <NextSeo
-      title={`Review`}
+      title={`Review - ${t.domain}`}
       description = {`レビュー、一覧。気になるアニメのレビューをチェックして、感想をシェアしよう。`}
       openGraph={{
         type: "website",
-        title: "MeruPlanet",
+        title: "Review",
         description:`レビュー、一覧。気になるアニメのレビューをチェックして、感想をシェアしよう。`,
         site_name: "MeruPlanet",
         url: `https://meruplanet.com/reviews`,

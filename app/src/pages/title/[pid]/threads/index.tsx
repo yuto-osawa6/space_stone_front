@@ -54,11 +54,11 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   return(
     <>
         <NextSeo
-        title={`${Props.data.products.title}`}
+        title={`${Props.data.products.title} - ${t.domain}`}
         description = {`${Props.data.products.title}のスレッド一覧。${Props.data.products.title}のスレッドをチェックして感想を共有しよう。`}
         openGraph={{
           type: "website",
-          title: "MeruPlanet",
+          title: `スレッド - ${Props.data.products.title}`,
           description: `${Props.data.products.title}のスレッド一覧。${Props.data.products.title}のスレッドをチェックして感想を共有しよう。`,
           site_name: "MeruPlanet",
           url: `https://meruplanet.com/title/${Props.data.products.id}/threads`,

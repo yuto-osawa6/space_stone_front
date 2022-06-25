@@ -59,14 +59,14 @@ const ReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
 
   return(
     <>
-      <NextSeo
-        title={`${Props.data.product.title}のレビュー`}
+       <NextSeo
+        title={`「${Props.data.product.title}」のレビュー - ${t.domain}`}
         canonical = {`https://meruplanet.com/title/${Props.data.product.id}/reviews/${Props.data.review.id}`}
-        description = {`${Props.data.product.title}のレビュー。レビューをチェックして、感想をシェアしよう。`}
+        description = {`「${Props.data.product.title}」のレビュー。レビューをチェックして、感想をシェアしよう。`}
         openGraph={{
           type: "website",
-          title: "MeruPlanet",
-          description: `${Props.data.product.title}のレビュー。レビューをチェックして、感想をシェアしよう。`,
+          title: `「${Props.data.product.title}」のレビュー - ${t.domain}`,
+          description: `「${Props.data.product.title}」のレビュー。レビューをチェックして、感想をシェアしよう。`,
           site_name: "MeruPlanet",
           url: `https://meruplanet.com/title/${Props.data.product.id}/reviews/${Props.data.review.id}`,
           // images: [

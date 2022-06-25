@@ -19,7 +19,7 @@ const ThreadsIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
       description = {``}
       openGraph={{
         type: "website",
-        title: "MeruPlanet",
+        title: "プライバシーポリシー",
         description: ``,
         site_name: "MeruPlanet",
         url: `https://meruplanet.com/terms`,

@@ -56,12 +56,12 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   return(
     <>
       <NextSeo
-        title={`${Props.data.products.title}`}
-        description = {`${Props.data.products.title}の詳細ページ。スコア分布、あらすじ、ジャンル情報など。アニメをみて、抱いた感情や気になったことなどがあれば、レビューやスレッドを使おう！`}
+        title={`${Props.data.products.title} - ${t.domain}`}
+        description = {`「${Props.data.products.title}」の詳細ページ。スコア分布、あらすじ、ジャンル情報など。アニメをみて、抱いた感情や気になったことなどがあれば、レビューやスレッドを使おう！`}
         openGraph={{
           type: "website",
-          title: "MeruPlanet",
-          description: `${Props.data.products.title}の詳細ページ。スコア分布、あらすじ、ジャンル情報など。アニメをみて、抱いた感情や気になったことなどがあれば、レビューやスレッドを使おう！`,
+          title: `${Props.data.products.title}`,
+          description: `「${Props.data.products.title}」の詳細ページ。スコア分布、あらすじ、ジャンル情報など。アニメをみて、抱いた感情や気になったことなどがあれば、レビューやスレッドを使おう！`,
           site_name: "MeruPlanet",
           url: `https://meruplanet.com/title/${Props.data.products.id}`,
           images: [

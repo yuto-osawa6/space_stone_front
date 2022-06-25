@@ -12,11 +12,11 @@ const Top100Index: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
   return(
     <>
       <NextSeo
-        title={`Top100`}
+        title={`Top100 - ${t.domain}`}
         description = "スコア・いいね・流行・アクセス・などからTop100を絞り込めます。現在どんなアニメがTop100に入っているか、チェックしよう！。"
         openGraph={{
           type: "website",
-          title: "MeruPlanet",
+          title: "Top100",
           description: "スコア・いいね・流行・アクセス・などからTop100を絞り込めます。現在どんなアニメがTop100に入っているか、チェックしよう！",
           site_name: "MeruPlanet",
           url: "https://meruplanet.com/top100",
