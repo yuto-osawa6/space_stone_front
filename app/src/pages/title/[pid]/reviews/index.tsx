@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
         }
       }), 
     ]);
-   
+  
     const [data] = await Promise.all([
       productShowRes.json()
     ]);
@@ -53,12 +53,30 @@ type Props = {
 
 const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   const {t} = useLocale()
+  const image_path = process.env.NODE_ENV == "production"? `https://api.meruplanet.com/api/v1/ogp_images/${Props.data.products.id}` : `http://localhost:3001/api/v1/ogp_images/${Props.data.products.id}`
   return(
     <>
       <NextSeo
-        title={`${Props.data.products.title} - ${t.domain}`}
-      >
-      </NextSeo>
+        title={`${Props.data.products.title}`}
+        description = {`${Props.data.products.title}の詳細ページのレビュ一覧。${Props.data.products.title}のレビューをチェックして感想を共有しよう。`}
+        openGraph={{
+          type: "website",
+          title: "MeruPlanet",
+          description: `${Props.data.products.title}の詳細ページのレビュー一覧。${Props.data.products.title}のレビューをチェックして感想を共有しよう。`,
+          site_name: "MeruPlanet",
+          url: `https://meruplanet.com/title/${Props.data.products.id}/reviews`,
+          images: [
+            {
+            // url: "https://www.example.ie/og-image-01.jpg",
+              url: image_path,
+              width: 1200,
+              height: 630,
+              alt: 'Og Image Alt',
+              type: 'image/png',
+            },
+          ],
+        }}
+        ></NextSeo>
       
     </>
   )

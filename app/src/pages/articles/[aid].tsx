@@ -51,10 +51,26 @@ const ArticleShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
   return(
     <>
       <NextSeo
-        title={`${Props.data.article.title} - ${t.domain}`}
-      //  description={Props.data.products.}
-      >
-        </NextSeo>
+      title={`${Props.data.article.title}`}
+      description = {``}
+        openGraph={{
+          type: "website",
+          title: "MeruPlanet",
+          description: ``,
+          site_name: "MeruPlanet",
+          url: `https://meruplanet.com/articles/${Props.data.article.id}`,
+          // images: [
+          //   {
+          //   // url: "https://www.example.ie/og-image-01.jpg",
+          //     // url: image_path,
+          //     width: 1200,
+          //     height: 630,
+          //     alt: 'Og Image Alt',
+          //     type: 'image/png',
+          //   },
+          // ],
+      }}
+      ></NextSeo>
       <ArticlesItem
         data={Props.data}
       />

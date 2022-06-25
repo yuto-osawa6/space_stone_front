@@ -19,6 +19,24 @@ const ArticlesIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element } 
   <>
       <NextSeo
       title={`Article - ${t.domain}`}
+      description = {`記事一覧。気になる記事をチェックしよう。`}
+        openGraph={{
+          type: "website",
+          title: "MeruPlanet",
+          description: `記事一覧。気になる記事をチェックしよう。`,
+          site_name: "MeruPlanet",
+          url: `https://meruplanet.com/articles`,
+          // images: [
+          //   {
+          //   // url: "https://www.example.ie/og-image-01.jpg",
+          //     // url: image_path,
+          //     width: 1200,
+          //     height: 630,
+          //     alt: 'Og Image Alt',
+          //     type: 'image/png',
+          //   },
+          // ],
+      }}
       ></NextSeo>
     </>
   )

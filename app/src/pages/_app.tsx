@@ -37,9 +37,6 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
             <DefaultSeo
               defaultTitle = "MeruPlanet - アニメ！"
               description = "おすすめなアニメを評価・レビュー・ティアーで共有しよう！今期や来期のアニメ情報や流行している・高評価のアニメも探せます。"
-              // レビュー、スレッドで共有し、ティアーで比較しよう！!
-              // あにこれβはおすすめアニメ動画を成分タグ・ランキング・レビュー感想や放送時期でさがせるアニメ評価サイト。参加するとアニメ動画をコレクションできるアニメ棚がもらえるぞ。あにこれβで今すぐアニメを棚で管理！おすすめアニメ動画をみんなで教えあおう！
-              // AniList：次世代アニメプラットフォーム・AniListを使用して、お気に入りのアニメやマンガを追跡、共有、発見します。・サイトのテーマ。
               openGraph={{
                 type: "website",
                 title: "MeruPlanet",
@@ -48,10 +45,9 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
                 url: "https://meruplanet.com",
                 images: [
                   {
-                  // url: "https://www.example.ie/og-image-01.jpg",
-                    url: "https://meruplanet.com/3.png",
-                    // width: 800,
-                    // height: 600,
+                    url: "https://meruplanet.com/MeruPlanetOgp.png",
+                    width: 1200,
+                    height: 630,
                     alt: 'Og Image Alt',
                     type: 'image/png',
                   },

@@ -14,8 +14,29 @@ const WeeklyIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
   return(
     <>
       <NextSeo
-        title={`過去のアンケート - ${t.domain}`}
-       //  description={Props.data.products.}
+        title={`過去のアンケート`}
+        description = "１週間の範囲で、過去に放送されたエピソードのアンケート結果。放送されたエピソードの比較を見ることできます。"
+        openGraph={{
+          type: "website",
+          title: "MeruPlanet",
+          description: "１週間の範囲で、過去に放送されたエピソードのアンケート結果。放送されたエピソードの比較を見ることできます。",
+          site_name: "MeruPlanet",
+          url: "https://meruplanet.com/weekly",
+          images: [
+            {
+              url: "https://meruplanet.com/MeruPlanetOgp.png",
+              width: 1200,
+              height: 630,
+              alt: 'Og Image Alt',
+              type: 'image/png',
+            },
+          ],
+        }}
+        // twitter={{
+        //   handle: '@handle',
+        //   site: '@site',
+        //   cardType: 'summary_large_image',
+        // }}
       ></NextSeo>
       <WeekliyRankingsMain/>
     </>

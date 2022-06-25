@@ -21,8 +21,26 @@ const {t} = useLocale()
 return(
   <>
     <NextSeo
-      title={`Review - ${t.domain}`}
-    ></NextSeo>
+      title={`Review`}
+      description = {`レビュー、一覧。気になるアニメのレビューをチェックして、感想をシェアしよう。`}
+      openGraph={{
+        type: "website",
+        title: "MeruPlanet",
+        description:`レビュー、一覧。気になるアニメのレビューをチェックして、感想をシェアしよう。`,
+        site_name: "MeruPlanet",
+        url: `https://meruplanet.com/reviews`,
+        // images: [
+        //   {
+        //   // url: "https://www.example.ie/og-image-01.jpg",
+        //     url: image_path,
+        //     width: 1200,
+        //     height: 630,
+        //     alt: 'Og Image Alt',
+        //     type: 'image/png',
+        //   },
+        // ],
+      }}
+      ></NextSeo>
     </>
   )
 }

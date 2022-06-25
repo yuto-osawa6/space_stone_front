@@ -56,14 +56,14 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   return(
     <>
       <NextSeo
-        title={`${Props.data.products.title} - ${t.domain}`}
-        description = "MeruPlanet(めるぷらねっと)は、アニメの評価、レビューを共有することができるWebサービスです。流行している作品や高評価作品を見つけることができます。"
+        title={`${Props.data.products.title}`}
+        description = {`${Props.data.products.title}の詳細ページ。スコア分布、あらすじ、ジャンル情報など。アニメをみて、抱いた感情や気になったことなどがあれば、レビューやスレッドを使おう！`}
         openGraph={{
           type: "website",
           title: "MeruPlanet",
-          description: "MeruPlanet(めるぷらねっと)は、アニメの評価、レビューを共有することができるWebサービスです。流行している作品や高評価作品を見つけることもできます。",
+          description: `${Props.data.products.title}の詳細ページ。スコア分布、あらすじ、ジャンル情報など。アニメをみて、抱いた感情や気になったことなどがあれば、レビューやスレッドを使おう！`,
           site_name: "MeruPlanet",
-          url: "https://meruplanet.com",
+          url: `https://meruplanet.com/title/${Props.data.products.id}`,
           images: [
             {
             // url: "https://www.example.ie/og-image-01.jpg",

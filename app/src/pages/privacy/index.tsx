@@ -2,6 +2,7 @@ import { ShareMain } from "@/components/share/main/ShareMain"
 import { Policy } from "@/components/terms/policy"
 import { Terms } from "@/components/terms/terms"
 import { useLocale } from "@/lib/ini/local/local"
+import { NextSeo } from "next-seo"
 
 
 type Props = {
@@ -13,8 +14,8 @@ const ThreadsIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
 
   return(
     <>
-      {/* <NextSeo
-      title={`Thread - ${t.domain}`}></NextSeo> */}
+      <NextSeo
+      title={`プライバシーポリシー`}></NextSeo>
       <Policy/>
     </>
   )

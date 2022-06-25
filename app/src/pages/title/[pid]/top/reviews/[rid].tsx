@@ -59,9 +59,32 @@ const ReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   return(
   <>
       <NextSeo
-      title={`Review - ${t.domain}`}
-      canonical = {`https://meruplanet.com/title/${Props.data.product.id}/reviews/${Props.data.review.id}`}
-      />
+        title={`${Props.data.product.title}のレビュー`}
+        canonical = {`https://meruplanet.com/title/${Props.data.product.id}/reviews/${Props.data.review.id}`}
+        description = {`${Props.data.product.title}のレビュー。レビューをチェックして、感想をシェアしよう。`}
+        openGraph={{
+          type: "website",
+          title: "MeruPlanet",
+          description: `${Props.data.product.title}のレビュー。レビューをチェックして、感想をシェアしよう。`,
+          site_name: "MeruPlanet",
+          url: `https://meruplanet.com/title/${Props.data.product.id}/top/reviews/${Props.data.review.id}`,
+          // images: [
+          //   {
+          //   // url: "https://www.example.ie/og-image-01.jpg",
+          //     // url: image_path,
+          //     width: 1200,
+          //     height: 630,
+          //     alt: 'Og Image Alt',
+          //     type: 'image/png',
+          //   },
+          // ],
+        }}
+        // twitter={{
+        //   handle: '@handle',
+        //   site: '@site',
+        //   cardType: 'summary_large_image',
+        // }}
+      ></NextSeo>
       <ProductReviews
       data = {Props.data}
       />
