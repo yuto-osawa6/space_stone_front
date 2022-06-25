@@ -2,6 +2,7 @@ import { ShareMain } from "@/components/share/main/ShareMain"
 import { UserShowOverview } from "@/components/users/show/main/overview/UserShowOverview"
 import { UserOverviewTop } from "@/components/users/show/main/UserOverviewTop"
 import { UsersShow } from "@/components/users/show/UsersShow"
+import { NextSeo } from "next-seo"
 
 
 type Props = {

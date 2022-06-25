@@ -14,7 +14,27 @@ const ThreadsIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
   return(
     <>
       <NextSeo
-      title={`利用規約`}></NextSeo>
+      title={`利用規約`}
+      description = {``}
+      openGraph={{
+        type: "website",
+        title: "MeruPlanet",
+        description: ``,
+        site_name: "MeruPlanet",
+        url: `https://meruplanet.com/terms`,
+        // images: [
+        //   {
+        //   // url: "https://www.example.ie/og-image-01.jpg",
+        //     url: image_path,
+        //     width: 1200,
+        //     height: 630,
+        //     alt: 'Og Image Alt',
+        //     type: 'image/png',
+        //   },
+        // ],
+      }}>
+
+      </NextSeo>
       <Terms/>
     </>
   )
