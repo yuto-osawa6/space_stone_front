@@ -23,53 +23,53 @@ jest.mock("next/router", () => ({
 }));
 
 
-describe('Header', () => {
-  beforeAll(() => server.listen())
+// describe('Header', () => {
+//   beforeAll(() => server.listen())
 
-  beforeEach(() => {
-    Object.defineProperty(document, 'cookie', {
-        writable: true,
-        value: '_access_token=token; _client=client; _uid=uid;',
-    });
-});
-  afterEach(() => {
-    server.resetHandlers()
-    cleanup()
-  })
-  afterAll(() => server.close())
-  // check responseが起動しないため、
-  // test('google認証テスト', async() => {
-  //   // const { container } = 
-  //   render(<Provider store={store}>
-  //    <UserCertification/>
-  //   </Provider>)
-  //   fireEvent.click(screen.getByText(/SignIn/i))
-  //   screen.debug();
-  //   fireEvent.click(screen.getByText(/Googleでログイン/i))
-  //   // await screen.findByText('Clicked once')
-  //   // await screen.findByRole("button");
-  //   screen.debug();
-  //   await waitFor(() => screen.findByText(/UserMenu/))
-  //   screen.debug();
-  //   // await waitFor(() => screen.findByText(/Signed in as/))
-  //   // expect(container).toMatchSnapshot()
-  // });
+//   beforeEach(() => {
+//     Object.defineProperty(document, 'cookie', {
+//         writable: true,
+//         value: '_access_token=token; _client=client; _uid=uid;',
+//     });
+// });
+//   afterEach(() => {
+//     server.resetHandlers()
+//     cleanup()
+//   })
+//   afterAll(() => server.close())
+//   // check responseが起動しないため、
+//   // test('google認証テスト', async() => {
+//   //   // const { container } = 
+//   //   render(<Provider store={store}>
+//   //    <UserCertification/>
+//   //   </Provider>)
+//   //   fireEvent.click(screen.getByText(/SignIn/i))
+//   //   screen.debug();
+//   //   fireEvent.click(screen.getByText(/Googleでログイン/i))
+//   //   // await screen.findByText('Clicked once')
+//   //   // await screen.findByRole("button");
+//   //   screen.debug();
+//   //   await waitFor(() => screen.findByText(/UserMenu/))
+//   //   screen.debug();
+//   //   // await waitFor(() => screen.findByText(/Signed in as/))
+//   //   // expect(container).toMatchSnapshot()
+//   // });
 
-  
-  // test('サインインテスト(cookie)', async() => {
-  //   render(<Provider store={store}>
-  //    <UserCertification/>
-  //   </Provider>)
-  //   await waitFor(() => screen.findByText(/UserMenu/))
-  //   // screen.debug()
-  // });
-  // test('サインアウトテスト', async() => {
-  //   render(<Provider store={store}>
-  //    <UserCertification/>
-  //   </Provider>)
-  //   fireEvent.click(screen.getByText(/UserMenu/i))
-  //   fireEvent.click(screen.getByText(/ログアウト/i))
-  //   await waitFor(() => screen.findByText(/SignIn/))
-  //   screen.debug()
-  // });
-});
+
+//   // test('サインインテスト(cookie)', async() => {
+//   //   render(<Provider store={store}>
+//   //    <UserCertification/>
+//   //   </Provider>)
+//   //   await waitFor(() => screen.findByText(/UserMenu/))
+//   //   // screen.debug()
+//   // });
+//   // test('サインアウトテスト', async() => {
+//   //   render(<Provider store={store}>
+//   //    <UserCertification/>
+//   //   </Provider>)
+//   //   fireEvent.click(screen.getByText(/UserMenu/i))
+//   //   fireEvent.click(screen.getByText(/ログアウト/i))
+//   //   await waitFor(() => screen.findByText(/SignIn/))
+//   //   screen.debug()
+//   // });
+// });
