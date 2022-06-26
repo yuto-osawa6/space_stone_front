@@ -6,11 +6,6 @@ import { Provider } from "react-redux";
 import renderer from 'react-test-renderer';
 import { getPage } from "next-page-tester";
 import "whatwg-fetch"
-
-// import * as nextRouter from 'next/router';
-
-// nextRouter.useRouter = jest.fn();
-// nextRouter.useRouter.mockImplementation(() => ({ route: '/' }));
 jest.mock("next/router", () => ({
   useRouter() {
       return {
@@ -23,10 +18,6 @@ jest.mock("next/router", () => ({
   },
 }));
 
-// import "whatwg-fetch"
-// import { getPage } from 'next-page-tester';
-// import { initTestHelpers } from 'next-page-tester'; 
-// initTestHelpers();
 describe('Header', () => {
   beforeAll(() => server.listen())
   afterEach(() => {
@@ -35,18 +26,13 @@ describe('Header', () => {
   })
   afterAll(() => server.close())
 
-  test('snapshot', async() => {
-    const { container } = render(<Provider store={store}>
-      <Header
-      locationNumber={1}
-      />
-    </Provider>)
-    screen.debug();
-    // await waitFor(() => screen.findByText(/Signed in as/))
-    expect(container).toMatchSnapshot()
-  });
   // test('snapshot', async() => {
-  //   const { container } = render(<Ota2/>)
+  //   const { container } = render(<Provider store={store}>
+  //     <Header
+  //     locationNumber={1}
+  //     />
+  //   </Provider>)
+  //   screen.debug();
   //   // await waitFor(() => screen.findByText(/Signed in as/))
   //   expect(container).toMatchSnapshot()
   // });

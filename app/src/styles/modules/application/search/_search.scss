@@ -232,8 +232,12 @@
 
 .header-search-contents__boxes{
   display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  @include mq(tb){
   grid-template-columns: 1fr auto;
   grid-column-gap: 10px;
+  }
 
   .header-search-contents__boxes__Lists{
     display: flex;

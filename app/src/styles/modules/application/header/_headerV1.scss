@@ -1,3 +1,11 @@
+svg{
+  font-size: 1.5rem;
+}
+.nomalNavi{
+  svg{
+    font-size: 1.2rem;
+  }
+}
 .HeaderV1{
   // height: 59.66px;
   @include mq(md){
