@@ -16,7 +16,7 @@
     grid-gap: 10px;
 
     .mdmenuopen{
-      border: 2px solid;
+      border: 1px solid;
       cursor: pointer;
       background-color: white;
       width: 100%;
@@ -30,7 +30,7 @@
   }
   .SubSearches{
     margin-bottom: 20px;
-    border-bottom: 2px solid;
+    border-bottom: 1px solid;
   }
   .SubSearchContainer{
     box-shadow: $color-v1-shadow-d;
@@ -47,7 +47,7 @@
   }
   .search__input__box{
     // box-shadow: $color-v1-shadow-a2;
-    border: 2px solid;
+    border: 1px solid;
     // box-shadow: $color-v1-shadow-a;
     background-color: white;
     // border: solid 1px $color-v1-a;
@@ -74,7 +74,7 @@
 }
 
 .genresSearch__contents{
-  border: 2px solid;
+  border: 1px solid;
   // background-color: $color-v1-e;
   background-color: white;
     // position: relative;
@@ -169,7 +169,7 @@
 
 .styles{
   .selected_style_box{
-    border: 2px solid;
+    border: 1px solid;
     // box-shadow: $color-v1-shadow-d;
     // border: solid 1px $color-v1-a;
     // box-shadow: 0px 10px 30px rgba(92, 114 ,138, 0.15);

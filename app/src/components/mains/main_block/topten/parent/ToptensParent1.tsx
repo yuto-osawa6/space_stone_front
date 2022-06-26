@@ -16,7 +16,7 @@ export const ToptensParent1:React.FC<Props> = function ToptensParent1Func(Props)
         </div>
         <div className = "ToptensLikesAll ToptensContainer"
         style={Props.alice&&Props.alice==1?{
-          paddingBottom:"30px"
+          // paddingBottom:"30px"
         }:{}}
         >
           <div className="ToptensLikesAllTitle ToptensContainerTitle">
