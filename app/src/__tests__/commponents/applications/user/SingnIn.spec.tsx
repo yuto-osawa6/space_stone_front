@@ -54,20 +54,22 @@ describe('Header', () => {
   //   // await waitFor(() => screen.findByText(/Signed in as/))
   //   // expect(container).toMatchSnapshot()
   // });
-  test('サインインテスト(cookie)', async() => {
-    render(<Provider store={store}>
-     <UserCertification/>
-    </Provider>)
-    await waitFor(() => screen.findByText(/UserMenu/))
-    // screen.debug()
-  });
-  test('サインアウトテスト', async() => {
-    render(<Provider store={store}>
-     <UserCertification/>
-    </Provider>)
-    fireEvent.click(screen.getByText(/UserMenu/i))
-    fireEvent.click(screen.getByText(/ログアウト/i))
-    await waitFor(() => screen.findByText(/SignIn/))
-    screen.debug()
-  });
+
+  
+  // test('サインインテスト(cookie)', async() => {
+  //   render(<Provider store={store}>
+  //    <UserCertification/>
+  //   </Provider>)
+  //   await waitFor(() => screen.findByText(/UserMenu/))
+  //   // screen.debug()
+  // });
+  // test('サインアウトテスト', async() => {
+  //   render(<Provider store={store}>
+  //    <UserCertification/>
+  //   </Provider>)
+  //   fireEvent.click(screen.getByText(/UserMenu/i))
+  //   fireEvent.click(screen.getByText(/ログアウト/i))
+  //   await waitFor(() => screen.findByText(/SignIn/))
+  //   screen.debug()
+  // });
 });

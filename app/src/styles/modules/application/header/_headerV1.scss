@@ -3,7 +3,10 @@ svg{
 }
 .nomalNavi{
   svg{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    @include mq(tb){
+      font-size: 1.2rem;
+    }
   }
 }
 .HeaderV1{
@@ -158,14 +161,16 @@ svg{
     height: 59.66px;
     z-index: 300;
     display: flex;
-    justify-content: flex-end;
     gap: 20px;
     align-items: center;
     width: 100%;
     font-size: 0.9rem;
+    justify-content: flex-end;
+    @include mq(tb){
+      justify-content: center;
+    }
     @include mq(md){
       font-size: 1.0rem;
-      justify-content: center;
       background-color: #ffffff;
       width: calc(100% - 200px);
     }
