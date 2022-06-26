@@ -87,6 +87,7 @@ export const YearSearch:React.FC<Props> = function YearSearchFunc(Props){
       </div>
       <div className = "YearSearches2">
         <Slider
+          className="YearSearches2Slider"
           defaultValue={[2000,new Date().getFullYear()]}
           valueLabelDisplay="off"
           step={1}

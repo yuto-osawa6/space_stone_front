@@ -34,7 +34,7 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
   const handleCalcDate = () => {
     const curr = new Date();
     const curr2 = new Date();
-    if(curr.getDay()==1&&curr.getHours()<6){
+    if(curr.getDay()==0||curr.getDay()==1&&curr.getHours()<6){
       const first = curr.getDate() - curr.getDay() - 13
       var startDate = new Date(curr.setDate(first));
       startDate.setHours(0)
@@ -59,6 +59,7 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
       episordEndWeek.setHours(6)
       episordEndWeek.setDate(episordEndWeek.getDate() + 7)
     }
+    console.log(startDate,episordStartWeek,episordEndWeek)
     return {startDate,episordStartWeek,episordEndWeek}
   }
   
@@ -111,7 +112,8 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
       >
         <div className="WeeklyRankingItemsTitle"
         style={{
-          padding:"10px",
+          // padding:"10px",
+          padding: "10px 20px",
           display: "flex",
           gap:"20px",
           alignItems: "center",

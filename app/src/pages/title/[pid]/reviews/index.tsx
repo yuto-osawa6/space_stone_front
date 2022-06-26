@@ -57,7 +57,7 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
   return(
     <>
       <NextSeo
-        title={`${Props.data.products.title}`}
+        title={`${Props.data.products.title} - ${t.domain}`}
         description = {`${Props.data.products.title}の詳細ページのレビュ一覧。${Props.data.products.title}のレビューをチェックして感想を共有しよう。`}
         openGraph={{
           type: "website",

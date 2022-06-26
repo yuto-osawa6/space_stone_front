@@ -55,19 +55,17 @@ export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
           fontSize: "1.5rem",
           marginBottom: "20px",
           display: "block",
-          fontWeight: "bold"
+          fontWeight: "bold",
+          padding: "0px 20px"
         }}
         >
           先週のエピソードアンケート（{timeRange.from} ~ {timeRange.to}）
         </div>  
         <ul
-          style={{
-            paddingBottom: "30px"
-          }}
         >
           <li
             style={{
-              padding: "10px",
+              padding: "10px 20px",
               backgroundColor: "#2b878b",
               color: "white",
               fontSize: "0.8rem"

@@ -48,6 +48,7 @@ export const ToptensAcsessMonth:React.FC = function  ToptensAcsessMonthFunc(){
     <>
       <ToptensParent1
       title={"アクセス数 Top10(先月から今日まで)"}
+      parent={2}
       >
       {LikeToptensAll.map((item,index)=>{
         ranksjudge(likeMonth!=undefined?Number(likeMonth[item.id]):0,index)

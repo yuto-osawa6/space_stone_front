@@ -1,5 +1,5 @@
 .home{
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-align: right;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .share_middle_container01{
-  margin: 0px 20px 20px 20px;
+  // margin: 0px 20px 20px 20px;
 }
 
 .share_middle_container_title{
@@ -235,5 +235,9 @@
     &:hover{
       color: #3788d8;
     }
+  }
+
+  .ToptensTitle{
+    padding: 0px 20px;
   }
   

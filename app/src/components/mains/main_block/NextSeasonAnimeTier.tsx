@@ -132,7 +132,8 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       style={{
       fontWeight:"bold",
       marginBottom: "10px",
-      fontSize: "1.5rem"
+      fontSize: "1.5rem",
+      padding: "20px 20px 0px 20px"
       }}
       >
       昨シーズンのTier
@@ -142,7 +143,8 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       display: "grid",
       gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
       gap: "10px",
-      marginBottom: "30px"
+      // marginBottom: "30px"
+      padding: "0px 20px 20px 20px"
       }}
       >
         {tierProductGroup.map((item,index)=>{

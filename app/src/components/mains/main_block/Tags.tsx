@@ -10,7 +10,11 @@ export const Tags:React.FC<Props> = function TagsFunc(Props){
 
   return(
     <>
-      <div className = "TagsContainer">
+      <div className = "TagsContainer"
+      style = {{
+        backgroundColor: "aliceblue"
+      }}
+      >
         <div className = "TagsContainerRow ShareMiddleContainerTitleRow">
           <div className = "TagsContainerTitle share_middle_container_title">
             年・シーズン

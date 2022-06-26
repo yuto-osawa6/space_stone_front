@@ -46,6 +46,7 @@ export const ToptensScoreMonth:React.FC = function ToptensScoreMonthFunc(){
     <>
       <ToptensParent1
       title={"平均スコア Top10(月間)"}
+      parent={3}
       >
       {LikeToptensAll.map((item,index)=>{
         ranksjudge(Number(averageScore[item.id]),index)

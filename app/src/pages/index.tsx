@@ -137,7 +137,7 @@ type UserTier = {
       if(elem==null)return
         const top = elem.getBoundingClientRect().top
       if (elem) {
-        top<0?window.scrollTo({top:top + window.pageYOffset-66.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-20,left:0, behavior: "smooth"})
+        top<0?window.scrollTo({top:top + window.pageYOffset-56.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset,left:0, behavior: "smooth"})
       }
     } else {
     window.scrollTo({top:0,left:0, behavior: "smooth"})
@@ -155,7 +155,11 @@ type UserTier = {
       <WeeklyRanking
       />
       </div>
-      <div id="this-season-a">
+      <div id="this-season-a"
+      style = {{
+        backgroundColor: "aliceblue"
+      }}
+      >
       <ThisSeasonAnimeInfomation
       products = {Props.data.products}
       currentSeason = {Props.data.currentSeason}

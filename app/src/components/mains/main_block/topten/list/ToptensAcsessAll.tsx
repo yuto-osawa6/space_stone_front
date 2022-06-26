@@ -48,6 +48,7 @@ export const ToptensAcsessAll:React.FC = function ToptensAcsessAllFunc(){
     <>
       <ToptensParent1
       title={"アクセス数 Top10(総合)"}
+      parent={2}
       >
       {LikeToptensAll.map((item,index)=>{
         ranksjudge(likeMonth!=undefined?Number(likeMonth[item.id]):0,index)

@@ -55,12 +55,12 @@ const UserScoreShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element } 
     <>
       <NextSeo
       title={`スコア - ${Props.data.user.nickname}さん`}
-      description = {``}
+      description = {`${Props.data.user.nickname}さん評価情報。`}
       openGraph={{
         type: "website",
         title: "スコア",
-        description: ``,
-        site_name: `${Props.data.user.nickname}さん評価情報。`,
+        description: `${Props.data.user.nickname}さん評価情報。`,
+        site_name: `MeruPlanet`,
         url: `https://meruplanet.com/users/${Props.data.user.id}`,
         images: [
           {

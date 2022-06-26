@@ -3,12 +3,13 @@ import { ReactNode } from "react"
 type Props = {
   children:ReactNode
   title:string
+  parent:number
 }
 
 export const ToptensParent1:React.FC<Props> = function ToptensParent1Func(Props){
   return(
     <>
-    <div className = "Toptens">
+    <div className = {`Toptens Toptens${Props.parent}`}>
         <div className = "ToptensTitle share_middle_container_title">
           Top10
         </div>

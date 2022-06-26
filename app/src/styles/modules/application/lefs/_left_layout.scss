@@ -1,8 +1,23 @@
 .main-left{
+  display: none;
+  // @include mq(md){
+  //   display: block;
+  //   position: sticky;
+  //   width: 200px;
+  //   top: 0;
+  //   max-height: 100vh;
+  //   padding:0px 10px 10px 10px;
+  //   background-color: #1380e6;
+  // }
+  @include mq(md){
+  display: block;
   position: sticky;
   width: 200px;
   top: 0;
   max-height: 100vh;
+  padding:0px 10px 10px 10px;
+  background-color: #1a252f;
+  }
 
     .main-contents__box{
       overflow: hidden;
@@ -44,6 +59,7 @@
     }
 
     .main-contents__box__left{
+      padding-bottom: 10px;
       overflow: scroll;
       // overflow: scroll;
       height: 100%;
@@ -100,6 +116,7 @@
 // animation
 
 .addFormatsList{
+  margin-bottom: 10px;
   transition:  1s;
   // opacity: 1;
   display: block;

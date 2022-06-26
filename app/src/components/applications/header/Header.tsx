@@ -55,6 +55,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     return {}
     }else if(Props.locationNumber===1){
     return {display:"none"}
+    // return {backgroundColor:"#1a252f"}
     }
   }
   const handleStyle2 = () => {

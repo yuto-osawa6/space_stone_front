@@ -1,5 +1,5 @@
 .ArticlesContainer{
-  margin: 20px;
+  margin: 0px 20px 20px 20px;
   // background-color: white;
   border-radius: 5px;
   .ArticlesContainerTitle{
@@ -75,7 +75,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 10px;
-  padding: 20px;
+  padding: 20px 0px 20px 0px;
   .ArticleListItem{
     box-shadow: $color-v1-shadow-a;
     border-radius: 5px;

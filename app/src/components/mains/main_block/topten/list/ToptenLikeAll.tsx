@@ -46,6 +46,7 @@ export const ToptensLikeAll:React.FC = function ToptensLikeAllFuc(){
     <>
       <ToptensParent1
       title={"お気に入り数 Top10(総合)"}
+      parent={1}
       >
       {LikeToptensAll.map((item,index)=>{
         ranksjudge(item.like2,index)

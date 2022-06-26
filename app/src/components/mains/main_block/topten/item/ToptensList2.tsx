@@ -98,39 +98,40 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
       <div className = "ToptensContainerGridList"
       onClick={navigateHandler}
       >
-        <div className = "ToptensContainerGridListRank">
-          {Props.judgecard==1 &&(
-          <>
-            <BsFillSuitHeartFill
-            className = "ToptensContainerGridListRankTranpHeart ToptensContainerGridListRankTranp"
-            />
-          </>
-          )}
-          {Props.judgecard==2 &&(
-          <>
-            <BsFillSuitSpadeFill
-            className = "ToptensContainerGridListRankTranpSpade ToptensContainerGridListRankTranp"
-            />
-          </>
-          )}
-          {Props.judgecard==3 &&(
-          <>
-            <BsFillSuitDiamondFill
-            className = "ToptensContainerGridListRankTranpDiamond ToptensContainerGridListRankTranp"
-            />
-          </>
-          )}
-          {Props.judgecard==4 &&(
-          <>
-            <BsFillSuitClubFill
-            className = "ToptensContainerGridListRankTranpClub ToptensContainerGridListRankTranp"
-            />
-          </>
-          )}
-          <p>{Props.rank}</p>
-        </div>
+        
         <div className = "ToptensContainerGridListImage">
           <img src={Props.product.imageUrl}></img>
+          <div className = "ToptensContainerGridListRank">
+            {Props.judgecard==1 &&(
+            <>
+              <BsFillSuitHeartFill
+              className = "ToptensContainerGridListRankTranpHeart ToptensContainerGridListRankTranp"
+              />
+            </>
+            )}
+            {Props.judgecard==2 &&(
+            <>
+              <BsFillSuitSpadeFill
+              className = "ToptensContainerGridListRankTranpSpade ToptensContainerGridListRankTranp"
+              />
+            </>
+            )}
+            {Props.judgecard==3 &&(
+            <>
+              <BsFillSuitDiamondFill
+              className = "ToptensContainerGridListRankTranpDiamond ToptensContainerGridListRankTranp"
+              />
+            </>
+            )}
+            {Props.judgecard==4 &&(
+            <>
+              <BsFillSuitClubFill
+              className = "ToptensContainerGridListRankTranpClub ToptensContainerGridListRankTranp"
+              />
+            </>
+            )}
+            <p>{Props.rank}</p>
+          </div>
         </div>
         <div className = "ToptensContainerGridListBox1">
           <div className = "ToptensContainerGridListTitle">

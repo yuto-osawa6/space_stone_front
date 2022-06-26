@@ -1,13 +1,9 @@
 .HeaderV1{
-  display: grid;
-  // grid-template-columns: 20px 20px 20px auto 1fr 20px 20px 20px;
-  // grid-template-columns: 20px auto 1fr 20px;
-  // grid-template-columns:auto 1fr;
-
-  // box-shadow: $color-v1-shadow-a;
-  // background-color: #132f4c;
+  // height: 59.66px;
+  @include mq(md){
   display: grid;
   grid-template-columns: 200px 1fr;
+  }
 }
 .header{
   // top: 0;
@@ -91,12 +87,12 @@
   width: fit-content;
   position: relative;
   .LogoG{
-    font-size: 2.0rem;
+    font-size: 1.8rem;
     color: #ff3073;
     z-index: 100;
   }
   .LogoF{
-    font-size: 2.0rem;
+    font-size: 1.8rem;
     color: white;
     /* position: absolute; */
     top: 0;
@@ -123,13 +119,16 @@
   }
 }
 .HeaderMain{
+  display: none;
+  @include mq(md){
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #1a252f;
+  }
 }
 .HeaderMainLeft{
-  padding: 10px;
+  padding: 10px 20px 0px 20px;
   .HeaderMainLeftTitle{
     margin-right: -20px;
   }
@@ -137,26 +136,35 @@
 }
 .HeaderNavi{
   position: relative;
-  background-color: #edf1f5;
+  // background-color: #edf1f5;
+  background-color: #ffffff;
   // font-size: 0.9rem;
   ul{
-    background-color: #edf1f5;
+    // background-color: #edf1f5;
+    padding-top:10px;
+    padding-bottom:10px;
+    max-width: 1300px;
+    background-color: #1a252f;
     transition: 1s;
     position: fixed;
-    height: 56.8px;
-    width: calc(100% - 200px);
+    height: 59.66px;
     z-index: 300;
-
     display: flex;
     justify-content: center;
     gap: 20px;
     align-items: center;
-    // height: 100%;
-    font-size: 1.2rem;
+    width: 100%;
+    font-size: 0.9rem;;
+    @include mq(md){
+      font-size: 1.0rem;
+      background-color: #ffffff;
+      width: calc(100% - 200px);
+    }
+
     li{
       color: white;
       // background-color: #167eff;
-      background-color: #283d52;
+      background-color: #1a252f;
       // padding: 5px 15px 5px 15px;
       // border: 1px solid grey;
       border-radius: 30px;
@@ -187,8 +195,8 @@
             max-width: 200%;
             position: absolute;
             min-width: 100%;
-            background-color: #283d52;;
-            top: 10px;
+            background-color: #1a252f;;
+            top: 20px;
             padding: 5px;
             border-radius: 5px;
             display: flex;
@@ -300,9 +308,9 @@
     position: absolute;
     right: 0px;
     top: 32px;
-    background-color: #283d52;
+    background-color: #1a252f;
     width: fit-content;
-    margin-top: 10px;
+    margin-top: 25px;
     padding: 10px;
     border-radius: 5px;
     display: flex;

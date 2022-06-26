@@ -20,7 +20,7 @@ const ThreadsIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
   return(
   <>
       <NextSeo
-      title={`Thread ${t.domain}`}
+      title={`Thread - ${t.domain}`}
       description = {`スレッド一覧。気になるアニメのスレッドをチェックして、感想をシェアしよう。`}
       openGraph={{
         type: "website",
