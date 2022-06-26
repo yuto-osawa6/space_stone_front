@@ -49,6 +49,7 @@ export const ToptensLikeMonth:React.FC = function ToptensLikeMonthFunc(){
       <ToptensParent1
       title={"お気に入り数 Top10(月間)"}
       parent={1}
+      alice={1}
       >
       {LikeToptensAll.map((item,index)=>{
         ranksjudge(likeMonth!=undefined?Number(likeMonth[item.id]):0,index)

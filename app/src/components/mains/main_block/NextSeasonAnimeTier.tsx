@@ -131,9 +131,9 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       <div className=""
       style={{
       fontWeight:"bold",
-      marginBottom: "10px",
+      // marginBottom: "10px",
       fontSize: "1.5rem",
-      padding: "20px 20px 0px 20px"
+      padding: "20px 20px 10px 20px"
       }}
       >
       昨シーズンのTier
