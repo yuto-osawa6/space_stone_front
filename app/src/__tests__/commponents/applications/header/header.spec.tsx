@@ -26,14 +26,14 @@ describe('Header', () => {
   })
   afterAll(() => server.close())
 
-  // test('snapshot', async() => {
-  //   const { container } = render(<Provider store={store}>
-  //     <Header
-  //     locationNumber={1}
-  //     />
-  //   </Provider>)
-  //   screen.debug();
-  //   // await waitFor(() => screen.findByText(/Signed in as/))
-  //   expect(container).toMatchSnapshot()
-  // });
+  test('snapshot', async() => {
+    const { container } = render(<Provider store={store}>
+      <Header
+      locationNumber={1}
+      />
+    </Provider>)
+    screen.debug();
+    // await waitFor(() => screen.findByText(/Signed in as/))
+    expect(container).toMatchSnapshot()
+  });
 });
