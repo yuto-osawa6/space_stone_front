@@ -234,7 +234,8 @@ export const UserCertification:React.FC = function UserCertification(){
                       <img src = {userSwr.user.image}
                       style = {{
                         width: "60px",
-                        height: "60px"
+                        height: "60px",
+                        borderRadius: "100%"
                       }}
                       ></img>                   
                     </div>
