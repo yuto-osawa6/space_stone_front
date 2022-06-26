@@ -25,11 +25,11 @@ export default {
     ARTICLE: "記事",
     REVIEWS: "レビュー",
     THREAD: "スレッド",
-    SINGIN: "サインイン",
+    SINGIN: "ログイン",
     USERMENU: "ユーザーメニュー"
   },
   UserInfomation:{
-    SIGNIN:"SignIn",
+    SIGNIN:"Log in",
     MYPAGE:"マイページ",
     SETTING:"設定",
     LOGOUT:"ログアウト",

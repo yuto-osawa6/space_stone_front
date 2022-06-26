@@ -150,13 +150,14 @@
     height: 59.66px;
     z-index: 300;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 20px;
     align-items: center;
     width: 100%;
-    font-size: 0.9rem;;
+    font-size: 0.9rem;
     @include mq(md){
       font-size: 1.0rem;
+      justify-content: center;
       background-color: #ffffff;
       width: calc(100% - 200px);
     }
@@ -169,6 +170,11 @@
       // border: 1px solid grey;
       border-radius: 30px;
       box-shadow: $color-v1-shadow-a;
+      display: none;
+      @include mq(tb){
+        display: block;
+      }
+
       a{
       padding: 5px 15px 5px 15px;
       cursor: pointer;
@@ -270,7 +276,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  min-width: 500px;
+  width: calc(100% - 40px);
   .settingModalOpenClassTitle{
     font-size: 1.5rem;
   }
@@ -298,6 +304,12 @@
 .subMenu{
   padding: 16px;
   position: relative;
+  display: block!important;
+  margin-right: 20px;
+  border: 1px solid white;
+  @include mq(md){
+    margin-right:0px
+  }
   svg{
     position: absolute;
     top: 50%;
@@ -305,25 +317,97 @@
     transform: translate(-50%, -50%);
   }
   .subMenuList{
-    position: absolute;
     right: 0px;
     top: 32px;
-    background-color: #1a252f;
-    width: fit-content;
+    // width: fit-content;
     margin-top: 25px;
-    padding: 10px;
+    // padding: 10px;
     border-radius: 5px;
     display: flex;
     gap: 10px;
     font-size: 0.8rem;
     flex-flow: column;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: #1a252fd6;
+    padding: 10px;
+    overflow: scroll;
+    @include mq(tb){
+      // overflow: ;
+      background-color: #1a252f;
+      position: absolute;
+      height:fit-content;
+      padding: 10px;
+      width: fit-content;
+      
+    }
     div{
-      cursor: pointer;
-      padding: 3px;
-      white-space: nowrap;
-      &:hover{
-        color: #1a76d2;;
+      div{
+        cursor: pointer;
+        padding: 3px;
+        white-space: nowrap;
+        &:hover{
+          color: #1a76d2;;
+        }
       }
     }
   }
+  .subMenuList768{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    right: 0px;
+    top: 32px;
+    margin-top: 25px;
+    border-radius: 5px;
+    // display: flex;
+    // gap: 10px;
+    font-size: 0.8rem;
+    flex-flow: column;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: #1a252f;
+    // d6
+    padding: 10px;
+    font-size: 1.0rem;
+    overflow: scroll;
+
+    height: calc(100vh - 56.8px);
+    line-height: 2.0rem;
+    .headersub768{
+      display: flex;
+    }
+    div{
+      div{
+        cursor: pointer;
+        // padding: 3px;
+        // white-space: nowrap;
+        &:hover{
+          color: #1a76d2;;
+        }
+      }
+    }
+    .headersub768{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .home2{
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}
+
+.home2{
+  svg{
+    position: static;
+    transform: none;
+  }
+}
+.SettingModalSmartFon{
+  // margin-top: 56.8px;
+  // background-color: #1a252f;
 }

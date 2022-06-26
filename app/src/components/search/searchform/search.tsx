@@ -507,7 +507,13 @@ const Search:React.FC = function SearchFunc(){
       >
         user  
       </div>
-      {dataInfo}
+      <div className=""
+      style={{
+        marginBottom:"10px",
+      }}
+      >
+        {dataInfo}
+      </div>
       </div>
         <div className= "SearchInputContainer">
         <div className = "search__input__box">

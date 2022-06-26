@@ -11,6 +11,7 @@ import { RiArticleLine } from "react-icons/ri"
 import { UserCertification } from "../user/UserCertification";
 import { SubMenuAction } from "@/store/submenu/actions";
 import { useLocale } from "@/lib/ini/local/local";
+import { useWindowDimensions } from "@/hook/useWindowResize";
 
 type Props = {
   locationNumber: number | undefined
@@ -37,6 +38,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     const checkIfClickedOutside = (e:any) => {
       if (openMenu && submenuref.current && !submenuref.current.contains(e.target)) {
         setOpenMenu(false);
+        document.body.style.overflowY = ""
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
@@ -45,9 +47,19 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     };
   }, [openMenu]); 
 
+  const windowSize = useWindowDimensions()
+  const [width,setWidth] = useState<boolean>()
+  function handle(event:any) {
+    event.preventDefault();
+}
   const setOpenMenuHandler = (e:React.MouseEvent<HTMLLIElement> | undefined) => {
     e?.stopPropagation()
+    // console.log("aaaae2")
     openMenu==true?setOpenMenu(false):setOpenMenu(true)
+    if (windowSize.width < 768){
+      openMenu==false?document.body.style.overflowY = "hidden":document.body.style.overflowY = ""
+    }else{
+    }
   }
 
   const handleStyle = () => {
@@ -74,6 +86,8 @@ const handleClick = () => {
 }
 // locate
 const { t } = useLocale()
+// const windowSize = useWindowDimensions()
+// console.log(windowSize)
   return(
     <>
       <div className = "HeaderV1">
@@ -116,7 +130,11 @@ const { t } = useLocale()
             <li><Link href="/articles"><a><div><div><RiArticleLine/> {t.Headers.ARTICLE}</div><div className = {"home"}>{t.SubHeader.ARTICLE}</div></div></a></Link></li>
             <li><Link href="/reviews"><a><div><div><AiOutlineComment/> {t.Headers.REVIEWS}</div><div className = {"home"}>{t.SubHeader.REVIEWS}</div></div></a></Link></li>
             <li><Link href="/threads"><a><div><div><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home"}>{t.SubHeader.THREAD}</div></div></a></Link></li>
-            <li className="headerUserSighIn"><UserCertification/></li>
+            <li className="headerUserSighIn"
+            style={{
+              display:"block"
+            }}
+            ><UserCertification/></li>
             <li 
               className = "subMenu"
               ref={submenuref}
@@ -124,21 +142,48 @@ const { t } = useLocale()
             > 
               <IoMdMenu    
               />
-              {openMenu==true&&(
+              {windowSize.width >= 768&&openMenu==true&&(
               <div className = "subMenuList"
               >
-                <div onClick={handleClick}><Link href ="/#weekly-ranking" scroll={false}><a>{t.SubMenu.QUESTIONNAIRE}</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#this-season" scroll={false} ><a>{t.SubMenu.THISSEASON}</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#last-season" scroll={true}><a>{t.SubMenu.LASTSEASON}</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#next-season" scroll={true}><a>{t.SubMenu.NEXTSEASON}</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#movies" scroll={true}><a>{t.SubMenu.MOVIE}</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#news"><a>{t.SubMenu.NEWS}</a></Link></div>
-                <div onClick={handleClick}><Link href ="/#toptens"><a>{t.SubMenu.TOP10}</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="/top100"><a>{t.SubMenu.TOP100}</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="/tier"><a>{t.SubMenu.TIER}</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="/weekly"><a>{t.SubMenu.LASTQUESTIONNAIRE}</a></Link></div>
+                <div className="">
+                  <div onClick={handleClick}><Link href ="/#weekly-ranking" scroll={false}><a>{t.SubMenu.QUESTIONNAIRE}</a></Link></div>
+                  <div onClick={handleClick}><Link href ="/#this-season" scroll={false} ><a>{t.SubMenu.THISSEASON}</a></Link></div>
+                  <div onClick={handleClick}><Link href ="/#last-season" scroll={true}><a>{t.SubMenu.LASTSEASON}</a></Link></div>
+                  <div onClick={handleClick}><Link href ="/#next-season" scroll={true}><a>{t.SubMenu.NEXTSEASON}</a></Link></div>
+                  <div onClick={handleClick}><Link href ="/#movies" scroll={true}><a>{t.SubMenu.MOVIE}</a></Link></div>
+                  <div onClick={handleClick}><Link href ="/#news"><a>{t.SubMenu.NEWS}</a></Link></div>
+                  <div onClick={handleClick}><Link href ="/#toptens"><a>{t.SubMenu.TOP10}</a></Link></div>
+                  <div className = "Top100SubMenu"><Link href ="/top100"><a>{t.SubMenu.TOP100}</a></Link></div>
+                  <div className = "Top100SubMenu"><Link href ="/tier"><a>{t.SubMenu.TIER}</a></Link></div>
+                  <div className = "Top100SubMenu"><Link href ="/weekly"><a>{t.SubMenu.LASTQUESTIONNAIRE}</a></Link></div>
+                </div>
               </div>
               )}
+
+                {windowSize.width < 768&&openMenu==true&&(     
+                  <div className = "subMenuList768"
+                  >
+                    <div className="">
+                      <div><Link href="/"><a><div className="headersub768"><div className = "home2"><AiOutlineHome/> {t.Headers.TOP}</div><div className = {"home23"}>{t.SubHeader.TOP}</div></div></a></Link></div>
+                      <div><Link href="/search"><a><div className="headersub768"><div className = "home2"><HiOutlineSearchCircle/> {t.Headers.SEARCH}</div><div className = {"home23"}>{t.SubHeader.SEARCH}</div></div></a></Link></div>
+                      <div><Link href="/articles"><a><div className="headersub768"><div className = "home2"><RiArticleLine/> {t.Headers.ARTICLE}</div><div className = {"home23"}>{t.SubHeader.ARTICLE}</div></div></a></Link></div>
+                      <div><Link href="/reviews"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.Headers.REVIEWS}</div><div className = {"home23"}>{t.SubHeader.REVIEWS}</div></div></a></Link></div>
+                      <div><Link href="/threads"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home23"}>{t.SubHeader.THREAD}</div></div></a></Link></div>
+                    </div>
+                    <div className="">
+                      <div onClick={handleClick}><Link href ="/#weekly-ranking" scroll={false}><a>{t.SubMenu.QUESTIONNAIRE}</a></Link></div>
+                      <div onClick={handleClick}><Link href ="/#this-season" scroll={false} ><a>{t.SubMenu.THISSEASON}</a></Link></div>
+                      <div onClick={handleClick}><Link href ="/#last-season" scroll={true}><a>{t.SubMenu.LASTSEASON}</a></Link></div>
+                      <div onClick={handleClick}><Link href ="/#next-season" scroll={true}><a>{t.SubMenu.NEXTSEASON}</a></Link></div>
+                      <div onClick={handleClick}><Link href ="/#movies" scroll={true}><a>{t.SubMenu.MOVIE}</a></Link></div>
+                      <div onClick={handleClick}><Link href ="/#news"><a>{t.SubMenu.NEWS}</a></Link></div>
+                      <div onClick={handleClick}><Link href ="/#toptens"><a>{t.SubMenu.TOP10}</a></Link></div>
+                      <div className = "Top100SubMenu"><Link href ="/top100"><a>{t.SubMenu.TOP100}</a></Link></div>
+                      <div className = "Top100SubMenu"><Link href ="/tier"><a>{t.SubMenu.TIER}</a></Link></div>
+                      <div className = "Top100SubMenu"><Link href ="/weekly"><a>{t.SubMenu.LASTQUESTIONNAIRE}</a></Link></div>
+                    </div>
+                  </div>
+                )}
             </li>
           </ul>
         </div>

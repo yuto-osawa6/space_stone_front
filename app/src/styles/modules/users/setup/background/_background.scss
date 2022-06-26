@@ -9,6 +9,8 @@
   transform: translate(-50%, -50%);
   padding: 10px;
   border-radius: 5px;
+  padding: 20px;
+  width: calc(100% - 40px);
 
   .UserBackgroupdModalTitle{
     margin-bottom: 10px;
@@ -43,6 +45,7 @@
   .ReactCrop{
     max-height: 50vh;
     overflow: scroll;
+    margin-bottom: 10px;
   }
 
 }

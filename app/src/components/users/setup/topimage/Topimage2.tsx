@@ -230,7 +230,7 @@ const TopImageV2:React.FC<Props> = function TopimageV2func(Props) {
               <Button variant="contained"
               className={"tail-spin-loading"}
               onClick = {TopimageSubmitHandler}
-              >Submit
+              >保存
               {loading==true&&(
                 <TailSpin color={submitSpin.color} height={20} width={20} />
               )}

@@ -16,6 +16,7 @@ import { useRouter } from "next/router"
 import { mutate } from "swr"
 import { TopImageSetUp } from "@/components/users/setup/topimage/TopImageSetUp"
 import { useLocale } from "@/lib/ini/local/local"
+import { useWindowDimensions } from "@/hook/useWindowResize"
 
 type Props = {
   settngModalOpen : boolean
@@ -25,7 +26,10 @@ type Props = {
 export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Props){
   const {t} = useLocale()
   const {userSwr,error} = useUser()
-  const handleClose = () => {
+  const handleClose = (e:React.MouseEvent<HTMLDivElement> | React.MouseEvent<HTMLButtonElement>) => {
+    if (windowSize.width < 768){
+      document.body.style.overflowY = "hidden"
+    }
     Props.setSettingModalOpen(false)
   }
   // changeTextHandler
@@ -39,7 +43,7 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
   }
     const router = useRouter()
     const dispatch = useDispatch()
-    const handleSubmit = async() => {
+    const handleSubmit = async(e:React.MouseEvent<HTMLButtonElement>) => {
     if (nickname.length < 3){
       setValidateText(t.Component.SettingUserModal.THREE)
       return
@@ -50,7 +54,7 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
     const res = await execSettingUserHandler(nickname,userSwr.user.id)
     if (res.data.status === 200){
       mutate('/session_user')
-      handleClose()
+      handleClose(e)
     }else{
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
@@ -86,11 +90,13 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
   }
+  const windowSize = useWindowDimensions()
   return(
     <>
       <Modal
         open={Props.settngModalOpen}
         onClose={handleClose}
+        className={windowSize.width<768?"SettingModalSmartFon":""}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
