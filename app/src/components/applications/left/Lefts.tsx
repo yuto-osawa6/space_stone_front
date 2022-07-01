@@ -88,13 +88,19 @@ const {t} = useLocale()
       style={handleStyle()}
       >
         <div className = "main-contents__box">
-          <div className = "category__title">
-            <h3
-            onClick={changeOpenFormats}
-            ><BsFillSuitClubFill
-            />{t.Component.Lefts.FORMATS} <IoChevronDownOutline
-            className={`leftDownArrow ${openFormats == true?"addTitleOnTime":""}`}
-            /></h3>
+          <div className = "main-contents__box__left">
+            <div className = "category__title"
+            style={{
+              paddingBottom:"20px"
+            }}
+            >
+              <h3
+              onClick={changeOpenFormats}
+              ><BsFillSuitClubFill
+              />{t.Component.Lefts.FORMATS} <IoChevronDownOutline
+              className={`leftDownArrow ${openFormats == true?"addTitleOnTime":""}`}
+              /></h3>
+          </div>
           </div>
           <div className = {`category__lists01 category__lists ${openFormats == true?"addFormatsList":"removeFormatsList"}`}>
             {data&&data.styles?

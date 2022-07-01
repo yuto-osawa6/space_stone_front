@@ -5,6 +5,14 @@ const withTM = require('next-transpile-modules')([
   '@fullcalendar/react',
 ])
 
+const urlPrefix = process.env.URL_PREFIX ? '/' + process.env.URL_PREFIX : ''
+
+// module.exports = {
+//   assetPrefix: urlPrefix,
+//   basePath: urlPrefix,
+//   trailingSlash: true,
+//   publicRuntimeConfig: { urlPrefix },  // ★コレ
+// }
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -27,7 +35,12 @@ const nextConfig = {
     MY_ENV_VAR: process.env.MY_ENV_VAR,
     MY_ENV_VAR2: 3333,
 
-  }
+  },
+  assetPrefix: urlPrefix,
+  basePath: urlPrefix,
+  trailingSlash: true,
+  publicRuntimeConfig: { urlPrefix },  
+  optimizeFonts: false,
 }
 
 module.exports =  withTM(nextConfig)

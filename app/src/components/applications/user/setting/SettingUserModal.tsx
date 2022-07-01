@@ -1,6 +1,6 @@
 import { Button, Modal, TextField } from "@mui/material"
 import { execSettingUserHandler } from "@/lib/api/users"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { updateNicknameAction } from "@/store/user/actions"
@@ -91,6 +91,8 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
     }
   }
   const windowSize = useWindowDimensions()
+
+  
   return(
     <>
       <Modal

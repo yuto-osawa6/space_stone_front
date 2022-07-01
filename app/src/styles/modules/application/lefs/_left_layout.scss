@@ -9,6 +9,9 @@
   //   padding:0px 10px 10px 10px;
   //   background-color: #1380e6;
   // }
+  // background-color: aliceblue;
+  color: #1a252f;
+  background-color: #f6f6f9;
   @include mq(md){
   display: block;
   position: sticky;
@@ -16,14 +19,14 @@
   top: 0;
   max-height: 100vh;
   padding:0px 10px 10px 10px;
-  background-color: #1a252f;
+  // background-color: #1a252f;
   }
 
     .main-contents__box{
       overflow: hidden;
       padding-top: 20px;
-      background-color: #1a252f;
-      color: aliceblue;
+      background-color: #f6f6f9;
+      color: #1a252f;
       // // margin-left: 20px;
       height: 100%;
       display: grid;
@@ -105,7 +108,9 @@
       // color: #5c728a;
       h3{
         display: flex;
+        font-size: 1.0rem;
         // justify-content: center;
+        align-items: center;
         gap: 5px;
         cursor: pointer;
       }
@@ -118,6 +123,7 @@
 .addFormatsList{
   margin-bottom: 10px;
   transition:  1s;
+  max-height: 136px;
   // opacity: 1;
   display: block;
   // height: auto;

@@ -94,22 +94,27 @@ svg{
 // $color-v1-g10:#ff9eb9;
 
 .LOGO{
+
   display: flex;
   width: fit-content;
   position: relative;
+  justify-content: center;
+  align-items: center;
   .LogoG{
-    font-size: 1.8rem;
-    color: #ff3073;
+    // font-size: 1.8rem;
+    // color: #ff3073;
     z-index: 100;
+    -webkit-text-stroke: 1px #000;
   }
   .LogoF{
-    font-size: 1.8rem;
+    // font-size: 1.8rem;
     color: white;
     /* position: absolute; */
     top: 0;
     right: px;
     z-index: 10;
     position: relative;
+    -webkit-text-stroke: 1px #000;
   }
   .LogoHeart{
     position: relative;
@@ -128,20 +133,29 @@ svg{
       color: #ff3073;
     }
   }
+  img{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+  }
 }
 .HeaderMain{
   display: none;
   @include mq(md){
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
-  background-color: #1a252f;
+  background-color: #f6f6f9;
+  // background-color: #1a252f;
   }
 }
 .HeaderMainLeft{
-  padding: 10px 20px 0px 20px;
+  background: #f6f6f9;
+  padding: 10px 20px 10px 20px;
   .HeaderMainLeftTitle{
-    margin-right: -20px;
+    // margin-right: -20px;
+    font-size: 1.3rem;
+    font-weight: bold;
   }
   // background-color: #1b548f;
 }
@@ -423,4 +437,14 @@ svg{
 .SettingModalSmartFon{
   // margin-top: 56.8px;
   // background-color: #1a252f;
+}
+
+.user_menu_2{
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  &:hover{
+    color: #ff3073;
+  }
 }

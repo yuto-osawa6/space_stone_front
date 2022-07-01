@@ -1,12 +1,26 @@
+
+body:lang(ja) {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  // body{
+  //   font-family: 'Noto Sans JP', sans-serif;
+  // }
+  
+  body:lang(en) {
+    font-family: 'Roboto', sans-serif;
+  }
 body{
+  // font-family: 'Noto Sans JP', sans-serif;
   #__next{
     max-width: 1500px;
     margin: 0 auto;
   }
-  font-family: Helvetica, Arial, sans-serif !important;
+  // font-family: Helvetica, Arial, sans-serif !important;
   color: $color-v1-a;
   font-size: 16px;
   margin: 0px;
+  line-height: 1.5;
   .super{
     // doneyet(check)
     min-height: 100vh;
@@ -26,6 +40,19 @@ body{
       }
     }
   }
+  // body:lang(ja) {
+  //   font-family: 'Noto Sans JP', sans-serif;
+  // }
+
+  // body{
+  //   font-family: 'Noto Sans JP', sans-serif;
+  // }
+  
+  // body:lang(en) {
+  //   font-family: 'Roboto', sans-serif;
+  // }
+  // font-family: 'Noto Sans JP', sans-serif;
+// font-family: 'Roboto', sans-serif;
 
 
   // .products_header{

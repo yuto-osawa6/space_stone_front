@@ -12,6 +12,7 @@ import { UserCertification } from "../user/UserCertification";
 import { SubMenuAction } from "@/store/submenu/actions";
 import { useLocale } from "@/lib/ini/local/local";
 import { useWindowDimensions } from "@/hook/useWindowResize";
+import { url } from "@/utils/config";
 
 type Props = {
   locationNumber: number | undefined
@@ -39,6 +40,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
       if (openMenu && submenuref.current && !submenuref.current.contains(e.target)) {
         setOpenMenu(false);
         document.body.style.overflowY = ""
+        document.body.style.touchAction = ""
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
@@ -58,6 +60,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     openMenu==true?setOpenMenu(false):setOpenMenu(true)
     if (windowSize.width < 768){
       openMenu==false?document.body.style.overflowY = "hidden":document.body.style.overflowY = ""
+      openMenu==false?document.body.style.touchAction = "none":document.body.style.touchAction = ""
     }else{
     }
   }
@@ -88,6 +91,21 @@ const handleClick = () => {
 const { t } = useLocale()
 // const windowSize = useWindowDimensions()
 // console.log(windowSize)
+    // useEffect(()=>{
+    //   const touchHandler = (event: any) => {
+    //     // if(windowSize.width >= 768){
+    //     //   return
+    //     // }else{
+    //       event.preventDefault();
+    //     // }
+    //   };
+    //   document.addEventListener('touchmove', touchHandler, {
+    //     passive: false
+    //   });
+    //   return () => {
+    //     document.removeEventListener("touchmove", touchHandler);
+    //   };
+    // },[windowSize.width])
   return(
     <>
       <div className = "HeaderV1">
@@ -97,24 +115,31 @@ const { t } = useLocale()
           <div className = "HeaderMainLeft">
             <div className = "HeaderMainLeftTitle">
               <div className = "LOGO">
+                <div className=""
+                style={{
+                  marginRight:"10px"
+                }}
+                >
+                <img src={url('/topimage.png')} alt="Sample image"></img>
+                </div>
                 <div className = "LogoG">
                   {t.Logo.G}
                 </div>
                 <div className = "LogoF">
                   {t.Logo.F}
                 </div>
-                <div className = "LogoHeart">
+                {/* <div className = "LogoHeart">
                   <BsFillSuitHeartFill/>
-                </div>
+                </div> */}
               </div>
-              <div className=""
+              {/* <div className=""
               style={{
                 color: "#edf1f5",
                 fontSize: "0.9rem"
               }}
               >
                 {t.Logo.SUBTITLE}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
