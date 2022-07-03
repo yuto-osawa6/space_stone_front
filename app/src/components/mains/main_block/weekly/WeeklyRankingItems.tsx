@@ -108,7 +108,8 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
       style={{
         backgroundColor: "#0cbbc1",
         borderBottom: "1px dotted #0cbbc1",
-        color: "#2c3e50",
+        // color: "#2c3e50",
+        color: "#56687e",
         display: "grid",
         gridTemplateColumns: "1fr 1fr"
       }}

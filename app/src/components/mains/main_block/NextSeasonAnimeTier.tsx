@@ -160,7 +160,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       {Props.products!=undefined&&userTier!=undefined&&(
       <>
       {userTier.length==0&&(
-      <div className=""
+      <div className="editTierButton"
       onClick={userSwr.login==true?handleOpenTierCreateModal:handleOpenSign}
       style={{
         cursor:"pointer"
@@ -170,7 +170,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       </div>
       )}
       {userTier.length!=0&&(
-      <div className=""
+      <div className="editTierButton"
       onClick={userSwr.login==true?handleOpenTierUpdateModal:handleOpenSign}
       style={{
         cursor:"pointer"

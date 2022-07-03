@@ -45,6 +45,7 @@
         }
       }
       .NewNetflixContainerGridListTitle{
+        color: $merupla-color-info-dark-1;
         // margin-bottom: 10px;
         margin-top: 10px;
         padding: 5px;
@@ -91,11 +92,16 @@
   background-color: white;
   border-radius: 5px;
   .gridNewMessageList{
+    cursor:pointer;
     display: flex;
     gap: 10px;
     padding: 10px;
     border-bottom: 1px dotted;
     align-items: center;
+    &:hover{
+      // background-color: #ff3073;
+      color: #ff0047;
+    }
   }
   .gridNewMessageListTag{
     padding:5px;
@@ -396,12 +402,9 @@
 }
     .ToptensContainerGrid{
       display: grid;
-      // grid-gap: 10px;
       .ToptensContainerGridList{
-        // border: 1px solid;
-        // grid-template-columns: 48px 1fr auto auto auto;
-        // grid-template-columns: 42px 1fr 120px 120px 120px;
-        grid-template-columns: 100px 1fr auto auto auto;
+        // grid-template-columns: 100px 1fr auto auto auto; v1
+        grid-template-columns: 100px auto 1fr;
         grid-gap: 24px;
         min-height: 60px;
         display: grid;
@@ -447,21 +450,32 @@
             font-weight: bold;
           }
           .ToptensContainerGridListGenre{
+            padding-top: 3px;
             list-style: none;
             display: flex;
             width: 100%;
-            // overflow-x: scroll;
             overflow: hidden;
             gap: 10px;
             font-size: 0.8rem;
             display: flex;
             flex-flow: wrap;
-            // doneyet-1 check!! height
-            height: 35px;
+            height: 25px;
+            color: $merupla-color-info-dark-1;
+            // list-style: none;
+            // display: flex;
+            // width: 100%;
+            // overflow: hidden;
+            // grid-gap: 10px;
+            // gap: 10px;
+            // font-size: 0.8rem;
+            // display: flex;
+            // flex-flow: wrap;
+            // height: 50px;
             li{
               white-space: nowrap;
               padding: 3px;
               border-radius: 5px;
+              transform: translate(0px, -3px);
             }
           }
         }
@@ -676,7 +690,7 @@
 }
 .NewNetflixContainerGrid {
   height: calc(100% - 40px);
-  overflow-y: scroll;
+  // overflow-y: scroll;
 }
 .MeruplanetGridContainerTitles{
   height: calc(100% - 96px);
@@ -726,4 +740,27 @@
 }
 .ThisMonthTierList::-webkit-scrollbar{
 display: none;
+}
+
+// v2 topten grid
+.ToptensContainerGridListGenre2{
+  list-style: none;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  grid-gap: 10px;
+  gap: 10px;
+  font-size: 0.8rem;
+  display: flex;
+  flex-flow: wrap;
+  height: 50px;
+}
+
+// edit tier
+.editTierButton{
+  color:$merupla-color-info-dark-1;
+  &:hover{
+    // background-color: #ff3073;
+    color: #ff3073;
+  }
 }

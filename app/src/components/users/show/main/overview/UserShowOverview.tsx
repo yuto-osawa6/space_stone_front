@@ -199,7 +199,7 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
               {user.id==LoginUserStore.user.id&&(
               <>
                 {userTier.length==0&&(
-                  <div className=""
+                  <div className="editTierButton"
                   onClick={handleOpenTierCreateModal}
                   style={{
                     cursor:"pointer",
@@ -210,7 +210,7 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
                   </div>
                   )}
                   {userTier.length!=0&&(
-                  <div className=""
+                  <div className="editTierButton"
                   onClick={handleOpenTierUpdateModal}
                   style={{
                     cursor:"pointer",

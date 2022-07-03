@@ -91,7 +91,7 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
           style={{
             maxHeight: "90%",
             width: "50%",
-            backgroundColor: "#2c3e51",
+            backgroundColor: "#363949",
             position: "relative",
             top: "50%",
             left: "50%",
@@ -140,7 +140,7 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
                 }}
               />
             </div>
-            <ul className=""
+            <ul className="SearchUserModal"
             ref={scrollRef}
             style={{
               paddingBottom: "20px",

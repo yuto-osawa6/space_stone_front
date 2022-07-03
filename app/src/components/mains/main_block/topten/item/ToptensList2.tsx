@@ -93,6 +93,7 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
 
     }
   }
+  console.log(Props)
   return(
     <>
       <div className = "ToptensContainerGridList"
@@ -138,22 +139,22 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
             {Props.product.title}
           </div>  
           <div className = "ToptensContainerGridListGenre">
-            {Props.product.productGenres.map((item)=>{
+            {/* {Props.product.productGenres.map((item)=>{
               return(
                   <li key={item.id} className={`p_contens_grid_color${colornumber}g`}>{item.name}</li>
               )
-            })}
-          </div>    
-        </div>
-        <div className = "ToptensContainerGridListScore">
+            })} */}
+              {Props.averageScore!=undefined&&(
+            <div className = "ToptensContainerGridListScore">
           <div className = "ToptensContainerGridListScoreUpper ToptensContainerGridListUpperShare">
-          {Props.averageScore!=undefined&&(
+        
             <p style={scoreColor}>{Number(Props.averageScore).toFixed(1)}%</p>
-          )}
+    
           </div>
-           <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
+            <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
           </div>
         </div>
+        )}
         
         <div className = "ToptensContainerGridSeries">
 
@@ -172,6 +173,51 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
           <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
           </div>
         </div>
+          {Props.product.productGenres.map((item)=>{
+              return(
+                  <li key={item.id} className={`p_contens_grid_color${colornumber}g`}>{item.name}</li>
+              )
+          })}
+        
+          </div>    
+        </div>
+        {/* <div className = "ToptensContainerGridListScore">
+          <div className = "ToptensContainerGridListScoreUpper ToptensContainerGridListUpperShare">
+          {Props.averageScore!=undefined&&(
+            <p style={scoreColor}>{Number(Props.averageScore).toFixed(1)}%</p>
+          )}
+          </div>
+            <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
+          </div>
+        </div> */}
+        
+        {/* <div className = "ToptensContainerGridSeries">
+
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
+          {Props.product.productStyles.length>0&&(
+            <p>{Props.product.productStyles[0].name}</p>
+          )}
+          </div>
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
+          </div>
+        </div> */}
+        {/* <div className = "ToptensContainerGridSeries">
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
+              {YearSeason}
+          </div>
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
+          </div>
+        </div> */}
+        {/* <div className = "ToptensContainerGridListGenre2">
+          <div className="">
+            ジャンル
+          </div>
+          {Props.product.productGenres.map((item)=>{
+            return(
+                <li key={item.id} className={`p_contens_grid_color${colornumber}g`}>{item.name}</li>
+            )
+          })}
+        </div>     */}
       </div>
     </>
   )

@@ -130,7 +130,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
   return(
     <>
       <div className="SeasonTier">
-      <div className=""
+      <div className="editTierButton"
       style={{
       fontWeight:"bold",
       // marginBottom: "10px",
@@ -161,7 +161,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
       {Props.products!=undefined&&userTier!=undefined&&(
       <>
       {userTier.length==0&&(
-      <div className=""
+      <div className="editTierButton"
       onClick={userSwr.login==true?handleOpenTierCreateModal:handleOpenSign}
       style={{
         cursor:"pointer"

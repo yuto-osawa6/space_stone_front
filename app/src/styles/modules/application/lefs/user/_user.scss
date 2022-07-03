@@ -91,7 +91,7 @@
     background-color: #f6f6f9;
   }
   .user_menu_2{
-    border-left: 3px solid;
+    // border-left: 3px solid;
     background-color:white;
     padding: 20px;
     box-shadow:$merupla-box-shadow-1;
@@ -101,4 +101,14 @@
 }
 .userNavigationDummyAbusolute{
   background-color: #f6f6f9;
+}
+.SearchUserModal{
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
+}
+
+  /*Google Chrome、Safariへの対応*/
+  .SearchUserModal::-webkit-scrollbar{
+  display: none;
 }
