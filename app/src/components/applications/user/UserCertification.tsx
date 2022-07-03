@@ -211,7 +211,7 @@ export const UserCertification:React.FC = function UserCertification(){
                   display: "grid",
                   gridTemplateColumns: "1fr",
                   maxWidth: 700,
-                  borderRadius: 5,
+                  borderRadius: 30,
                   top: "50%",
                   position: "absolute",
                   left: "50%",
