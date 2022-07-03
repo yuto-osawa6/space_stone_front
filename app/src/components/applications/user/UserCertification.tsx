@@ -156,7 +156,9 @@ export const UserCertification:React.FC = function UserCertification(){
           <div className = "user_mypage"
           style={windowSize.width < 768?{
             position: "relative",
-            padding: "17px"
+            padding: "16px",
+            borderRadius: "100%",
+            border: "1.5px solid"
           }:{}}  
           onClick={clickOpenMenuHandler}
           >

@@ -353,7 +353,7 @@ svg{
   position: relative;
   display: block!important;
   margin-right: 20px;
-  border: 1px solid $merupla-color-dark-1;
+  border: 1.5px solid $merupla-color-dark-1;
   @include mq(md){
     margin-right:0px
   }
@@ -426,7 +426,7 @@ svg{
     width: 100%;
     height: 100vh;
     position: fixed;
-    background-color: #1a252f;
+    background-color: #f6f6f9;
     // d6
     padding: 10px;
     font-size: 1.0rem;
@@ -443,7 +443,7 @@ svg{
         // padding: 3px;
         // white-space: nowrap;
         &:hover{
-          color: #1a76d2;;
+          color: #ff3073;
         }
       }
     }
