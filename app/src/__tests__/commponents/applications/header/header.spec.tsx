@@ -18,6 +18,8 @@ jest.mock("next/router", () => ({
   },
 }));
 
+jest.mock('next/config', () => () => ({ publicRuntimeConfig: { } }));
+
 describe('Header', () => {
   beforeAll(() => server.listen())
   afterEach(() => {
