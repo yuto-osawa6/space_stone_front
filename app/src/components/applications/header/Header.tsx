@@ -13,24 +13,53 @@ import { SubMenuAction } from "@/store/submenu/actions";
 import { useLocale } from "@/lib/ini/local/local";
 import { useWindowDimensions } from "@/hook/useWindowResize";
 import { url } from "@/utils/config";
+import { useScroll } from "@/hook/useScroll";
+import { useRouter } from "next/router";
 
 type Props = {
   locationNumber: number | undefined
 }
 export const Header:React.FC<Props> = function HeaderFunc(Props){
+  const a = useScroll()
+  // console.log(a)
   // useScrollPosition
   const dispatch = useDispatch()
   const [showMenu, setShowMenu] = useState<boolean>(true);
   const [currentPostion,setCurrentPositon] = useState<number>(0)
-  useScrollPosition(({ prevPos, currPos }) => {
-    setCurrentPositon(currPos.y)
-    if (currPos.y>-1){
+  // useScroll(({scrollY,preveScroll}) => {
+  //   // if (scrollY>-1){
+  //   //   setShowMenu(true)
+  //   //   return
+  //   // }
+  //   // const visible = scrollY > preveScroll;
+  //   // setShowMenu(visible);
+  // },[])
+
+  useEffect(()=>{
+    // console.log("aaa")
+    // console.log(a.scrollY ,a.prevScrollY )
+    // console.log(showMenu)
+    // console.log(a.scrollY<1)
+    // console.log("aaa")
+    // console.log(a.scrollY > a.prevScrollY)
+    if (a.scrollY<56){
+      console.log("aaa34")
       setShowMenu(true)
       return
     }
-    const visible = currPos.y > prevPos.y;
+    const visible = a.scrollY < a.prevScrollY
     setShowMenu(visible);
-  }, []);
+  },[a.scrollY])
+
+  // useScrollPosition(({ prevPos, currPos }) => {
+  //   setCurrentPositon(currPos.y)
+  //   if (currPos.y>-1){
+  //     setShowMenu(true)
+  //     return
+  //   }
+  //   const visible = currPos.y > prevPos.y;
+  //   setShowMenu(visible);
+  // }, []);
 
   // submenu
   const submenuref = useRef<HTMLLIElement>(null)
@@ -84,7 +113,9 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
       }
     }
 }
-const handleClick = () => {
+const router = useRouter()
+const handleClick = (url:string) => {
+  router.push(url)
   dispatch(SubMenuAction(true))
 }
 // locate
@@ -171,13 +202,13 @@ const { t } = useLocale()
               <div className = "subMenuList"
               >
                 <div className="">
-                  <div onClick={handleClick}><Link href ="/#weekly-ranking" scroll={false}><a>{t.SubMenu.QUESTIONNAIRE}</a></Link></div>
-                  <div onClick={handleClick}><Link href ="/#this-season" scroll={false} ><a>{t.SubMenu.THISSEASON}</a></Link></div>
-                  <div onClick={handleClick}><Link href ="/#last-season" scroll={true}><a>{t.SubMenu.LASTSEASON}</a></Link></div>
-                  <div onClick={handleClick}><Link href ="/#next-season" scroll={true}><a>{t.SubMenu.NEXTSEASON}</a></Link></div>
-                  <div onClick={handleClick}><Link href ="/#movies" scroll={true}><a>{t.SubMenu.MOVIE}</a></Link></div>
-                  <div onClick={handleClick}><Link href ="/#news"><a>{t.SubMenu.NEWS}</a></Link></div>
-                  <div onClick={handleClick}><Link href ="/#toptens"><a>{t.SubMenu.TOP10}</a></Link></div>
+                  <div onClick={()=>handleClick("/#weekly-ranking")}><a>{t.SubMenu.QUESTIONNAIRE}</a></div>
+                  <div onClick={()=>handleClick("/#this-season")}><a>{t.SubMenu.THISSEASON}</a></div>
+                  <div onClick={()=>handleClick("/#last-season")}><a>{t.SubMenu.LASTSEASON}</a></div>
+                  <div onClick={()=>handleClick("/#next-season")}><a>{t.SubMenu.NEXTSEASON}</a></div>
+                  <div onClick={()=>handleClick("/#movies")}><a>{t.SubMenu.MOVIE}</a></div>
+                  <div onClick={()=>handleClick("/#news")}><a>{t.SubMenu.NEWS}</a></div>
+                  <div onClick={()=>handleClick("/#toptens")}><a>{t.SubMenu.TOP10}</a></div>
                   <div className = "Top100SubMenu"><Link href ="/top100"><a>{t.SubMenu.TOP100}</a></Link></div>
                   <div className = "Top100SubMenu"><Link href ="/tier"><a>{t.SubMenu.TIER}</a></Link></div>
                   <div className = "Top100SubMenu"><Link href ="/weekly"><a>{t.SubMenu.LASTQUESTIONNAIRE}</a></Link></div>
@@ -196,13 +227,13 @@ const { t } = useLocale()
                       <div><Link href="/threads"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home23"}>{t.SubHeader.THREAD}</div></div></a></Link></div>
                     </div>
                     <div className="">
-                      <div onClick={handleClick}><Link href ="/#weekly-ranking" scroll={false}><a>{t.SubMenu.QUESTIONNAIRE}</a></Link></div>
-                      <div onClick={handleClick}><Link href ="/#this-season" scroll={false} ><a>{t.SubMenu.THISSEASON}</a></Link></div>
-                      <div onClick={handleClick}><Link href ="/#last-season" scroll={true}><a>{t.SubMenu.LASTSEASON}</a></Link></div>
-                      <div onClick={handleClick}><Link href ="/#next-season" scroll={true}><a>{t.SubMenu.NEXTSEASON}</a></Link></div>
-                      <div onClick={handleClick}><Link href ="/#movies" scroll={true}><a>{t.SubMenu.MOVIE}</a></Link></div>
-                      <div onClick={handleClick}><Link href ="/#news"><a>{t.SubMenu.NEWS}</a></Link></div>
-                      <div onClick={handleClick}><Link href ="/#toptens"><a>{t.SubMenu.TOP10}</a></Link></div>
+                    <div onClick={()=>handleClick("/#weekly-ranking")}><a>{t.SubMenu.QUESTIONNAIRE}</a></div>
+                    <div onClick={()=>handleClick("/#this-season")}><a>{t.SubMenu.THISSEASON}</a></div>
+                    <div onClick={()=>handleClick("/#last-season")}><a>{t.SubMenu.LASTSEASON}</a></div>
+                    <div onClick={()=>handleClick("/#next-season")}><a>{t.SubMenu.NEXTSEASON}</a></div>
+                    <div onClick={()=>handleClick("/#movies")}><a>{t.SubMenu.MOVIE}</a></div>
+                    <div onClick={()=>handleClick("/#news")}><a>{t.SubMenu.NEWS}</a></div>
+                    <div onClick={()=>handleClick("/#toptens")}><a>{t.SubMenu.TOP10}</a></div>
                       <div className = "Top100SubMenu"><Link href ="/top100"><a>{t.SubMenu.TOP100}</a></Link></div>
                       <div className = "Top100SubMenu"><Link href ="/tier"><a>{t.SubMenu.TIER}</a></Link></div>
                       <div className = "Top100SubMenu"><Link href ="/weekly"><a>{t.SubMenu.LASTQUESTIONNAIRE}</a></Link></div>

@@ -131,9 +131,11 @@ type UserTier = {
   //  const location = useLocation()
   const router = useRouter()
   useEffect(()=>{
+    // console.log(submenu)
     if(submenu.state==false)return
     if (router.asPath) {
       let elem = document.getElementById(`${router.asPath.slice(2)}-a`)
+      // console.log(elem)
       if(elem==null)return
         const top = elem.getBoundingClientRect().top
       if (elem) {
