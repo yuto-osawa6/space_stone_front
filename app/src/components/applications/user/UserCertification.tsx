@@ -158,7 +158,9 @@ export const UserCertification:React.FC = function UserCertification(){
             position: "relative",
             padding: "16px",
             borderRadius: "100%",
-            border: "1.5px solid"
+            border: "1.5px solid",
+            color: "white",
+            backgroundColor: "#ff3073"
           }:{}}  
           onClick={clickOpenMenuHandler}
           >

@@ -37,8 +37,12 @@ svg{
 
 }
 .activeScroll{
-  transform: translateY(-100px);
-  -webkit-transform:translateY(-100px);
+  @include mq(md){
+    transform: translateY(-100px);
+    -webkit-transform:translateY(-100px);
+  }
+  // transform: translateY(-100px);
+  // -webkit-transform:translateY(-100px);
 }
 
 .HeaderGrid0{
@@ -350,11 +354,14 @@ svg{
 
 // sub
 .subMenu{
+  cursor: pointer;
   padding: 16px;
   position: relative;
   display: block!important;
   margin-right: 20px;
   border: 1.5px solid $merupla-color-dark-1;
+  color: white;
+  background-color: $merupla-color-dark-1;
   @include mq(md){
     margin-right:0px
   }
@@ -365,6 +372,7 @@ svg{
     transform: translate(-50%, -50%);
   }
   .subMenuList{
+    color:$merupla-color-dark-1;
     -ms-overflow-style: none;
     scrollbar-width: none;
     // color: #f6f6f9;
