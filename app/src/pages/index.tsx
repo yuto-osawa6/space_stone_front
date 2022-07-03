@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store'
 import { SubMenuAction } from '@/store/submenu/actions'
 import Image from 'next/image'
+import { useWindowDimensions } from '@/hook/useWindowResize'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
@@ -130,6 +131,7 @@ type UserTier = {
    // location scroll-------------------------------
   //  const location = useLocation()
   const router = useRouter()
+  const windowSize = useWindowDimensions()
   useEffect(()=>{
     // console.log(submenu)
     if(submenu.state==false)return
@@ -139,7 +141,11 @@ type UserTier = {
       if(elem==null)return
         const top = elem.getBoundingClientRect().top
       if (elem) {
-        top<0?window.scrollTo({top:top + window.pageYOffset-56.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset,left:0, behavior: "smooth"})
+        if(windowSize.width < 768){
+          top<0?window.scrollTo({top:top + window.pageYOffset-79.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-79.8,left:0, behavior: "smooth"})
+        }else{
+        top<0?window.scrollTo({top:top + window.pageYOffset-79.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset,left:0, behavior: "smooth"})
+        }
       }
     } else {
     window.scrollTo({top:0,left:0, behavior: "smooth"})

@@ -27,7 +27,7 @@ export const UserCertification:React.FC = function UserCertification(){
   const handleOpen = () => setOpen(true);
   const dispatch = useDispatch();
   const router = useRouter()
-  const {userSwr,error} = useGetCurrentUser()
+  const {userSwr,error,userLoaded} = useGetCurrentUser()
   const handleSignOut = async (e: React.MouseEvent<HTMLDivElement>) => {
     try {
       const res = await signOut()
@@ -115,6 +115,8 @@ export const UserCertification:React.FC = function UserCertification(){
     // },[windowSize.width])
   return(
     <>
+      {userLoaded&&(
+        <>
       {!userSwr.login||!userSwr.user?
         <>
           <div className = "user_box_true">
@@ -560,6 +562,8 @@ export const UserCertification:React.FC = function UserCertification(){
             )} */}
         </>
       }
+      </>
+      )}
     </>
   )
 } 

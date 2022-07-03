@@ -37,7 +37,7 @@ svg{
 
 }
 .activeScroll{
-  @include mq(md){
+  @include mq(tb){
     transform: translateY(-100px);
     -webkit-transform:translateY(-100px);
   }
@@ -185,7 +185,7 @@ svg{
     padding-bottom:10px;
     max-width: 1300px;
     background-color: #f6f6f9;
-    transition: 1s;
+    transition: transform 1s;
     position: fixed;
     height: 59.66px;
     z-index: 300;
@@ -320,6 +320,7 @@ svg{
 // userSettingModal
 
 .settingModalOpenClass{
+  border-radius: 30px;
   max-width: 700px;
   background-color: white;
   border-radius: 5px;
@@ -446,12 +447,14 @@ svg{
     line-height: 2.0rem;
     .headersub768{
       display: flex;
+      // box-shadow:$merupla-box-shadow-1;
     }
     div{
       div{
         // box-shadow:$merupla-box-shadow-1;
         padding:5px;
         cursor: pointer;
+        // box-shadow:$merupla-box-shadow-1;
         // padding: 3px;
         // white-space: nowrap;
         &:hover{
