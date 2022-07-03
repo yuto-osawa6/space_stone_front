@@ -495,3 +495,19 @@ svg{
     color: #ff3073;
   }
 }
+
+.HeaderNavi{
+  .HeaderMainLeftTitle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 59.8px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    @include mq(tb){
+      display: none;
+    }
+  }
+}

@@ -163,19 +163,32 @@ const { t } = useLocale()
                   <BsFillSuitHeartFill/>
                 </div> */}
               </div>
-              {/* <div className=""
-              style={{
-                color: "#edf1f5",
-                fontSize: "0.9rem"
-              }}
-              >
-                {t.Logo.SUBTITLE}
-              </div> */}
             </div>
           </div>
         </div>
         <div className = {`HeaderNavi`}  
+        style={{position:"relative"}}
         >
+          <div className = "HeaderMainLeftTitle">
+              <div className = "LOGO">
+                <div className=""
+                style={{
+                  marginRight:"10px"
+                }}
+                >
+                <img src={url('/topimage.png')} alt="Sample image"></img>
+                </div>
+                <div className = "LogoG">
+                  {t.Logo.G}
+                </div>
+                <div className = "LogoF">
+                  {t.Logo.F}
+                </div>
+                {/* <div className = "LogoHeart">
+                  <BsFillSuitHeartFill/>
+                </div> */}
+            </div>
+          </div>
           <ul className={showMenu?"":"activeScroll"} 
           style={
             handleStyle2()
@@ -186,6 +199,7 @@ const { t } = useLocale()
             <li className = "nomalNavi"><Link href="/articles"><a><div><div><RiArticleLine/> {t.Headers.ARTICLE}</div><div className = {"home"}>{t.SubHeader.ARTICLE}</div></div></a></Link></li>
             <li className = "nomalNavi"><Link href="/reviews"><a><div><div><AiOutlineComment/> {t.Headers.REVIEWS}</div><div className = {"home"}>{t.SubHeader.REVIEWS}</div></div></a></Link></li>
             <li className = "nomalNavi"><Link href="/threads"><a><div><div><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home"}>{t.SubHeader.THREAD}</div></div></a></Link></li>
+            
             <li className="headerUserSighIn nomalNavi"
             style={{
               display:"block"
