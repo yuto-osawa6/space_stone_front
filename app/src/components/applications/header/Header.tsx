@@ -68,8 +68,8 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     const checkIfClickedOutside = (e:any) => {
       if (openMenu && submenuref.current && !submenuref.current.contains(e.target)) {
         setOpenMenu(false);
-        document.body.style.overflowY = ""
-        document.body.style.touchAction = ""
+        // document.body.style.overflowY = ""
+        // document.body.style.touchAction = ""
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
@@ -87,11 +87,11 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     e?.stopPropagation()
     // console.log("aaaae2")
     openMenu==true?setOpenMenu(false):setOpenMenu(true)
-    if (windowSize.width < 768){
-      openMenu==false?document.body.style.overflowY = "hidden":document.body.style.overflowY = ""
-      openMenu==false?document.body.style.touchAction = "none":document.body.style.touchAction = ""
-    }else{
-    }
+    // if (windowSize.width < 768){
+    //   openMenu==false?document.body.style.overflowY = "hidden":document.body.style.overflowY = ""
+    //   openMenu==false?document.body.style.touchAction = "none":document.body.style.touchAction = ""
+    // }else{
+    // }
   }
 
   const handleStyle = () => {

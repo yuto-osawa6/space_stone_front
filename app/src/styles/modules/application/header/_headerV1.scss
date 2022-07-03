@@ -436,18 +436,21 @@ svg{
     height: 100vh;
     position: fixed;
     background-color: #f6f6f9;
+    color: $merupla-color-info-dark-1;
     // d6
     padding: 10px;
     font-size: 1.0rem;
     overflow: scroll;
 
-    height: calc(100vh - 56.8px);
+    height: calc(90vh - 56.8px);
     line-height: 2.0rem;
     .headersub768{
       display: flex;
     }
     div{
       div{
+        // box-shadow:$merupla-box-shadow-1;
+        padding:5px;
         cursor: pointer;
         // padding: 3px;
         // white-space: nowrap;
