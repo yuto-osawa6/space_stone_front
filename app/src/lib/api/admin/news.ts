@@ -2,15 +2,15 @@ import client from "../../client/client"
 
 
 
-export const execNewsCreate = (value:string,title:string,title2:string,info:string) => {
+export const execNewsCreate = (value:string,title:string,title2:string,info:string,date:Date) => {
   return client.post(`/admin/news`,{ 
     newmessage:{
       judge:value,
       title:title,
       description:title2,
-      information:info
+      information:info,
+      date:date
     }
-   
   })
 }
 

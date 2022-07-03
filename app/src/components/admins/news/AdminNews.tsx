@@ -4,6 +4,8 @@ import { useMemo, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { ErrorMessage } from "@/lib/ini/message"
+import { DateTimePicker, LocalizationProvider } from "@mui/lab"
+import AdapterDateFns from "@mui/lab/AdapterDateFns"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -96,18 +98,40 @@ export const AdminNews:React.FC<Props> = (Props) => {
       setTitle2ValidateText("入力されていません")
       count += 1
     }
+    const jugde_date = isInvalidDate(deliveryStart)
+    // console.log(jugde_date)
+    if (jugde_date == true){
+      setDeliveryStartValidationText("正しい入力をしてください")
+      count += 1
+    }
+    // if()
     if (title==undefined) return
     if (title2==undefined) return
+    if (deliveryStart == null) return
 
     
     if( count >0) return 
-    const res = await execNewsCreate(value,title,title2,info)
+    const res = await execNewsCreate(value,title,title2,info,deliveryStart)
     if(res.data.status === 200){
       dispatch(pussingMessageDataAction({title:"Newを追加しました。",select:1}))
     }else{
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
     
+  }
+  // date 
+  const handlererror = () => {
+    setError(true)
+  }
+  const [deliveryStart, setDeliveryStart] = useState<Date | null>(null);
+  const [deliveryStartValidationText,setDeliveryStartValidationText] = useState<string>("")
+  const [deliveryEndValidationText,setError] = useState<boolean>(false)
+
+  const isInvalidDate = (date: Date | null):boolean => {
+    if(date==null){
+      return true
+    }
+    return Number.isNaN(date.getTime())
   }
 
   return(
@@ -169,6 +193,22 @@ export const AdminNews:React.FC<Props> = (Props) => {
                   modules={modules} value={info} onChange={handleChange}  
                   theme="snow"
                 />
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DateTimePicker             
+                  label="配信開始"
+                  onError={handlererror}
+                  value={deliveryStart}
+                  onChange={(newValue) => {
+                    setDeliveryStart(newValue)
+                    setDeliveryStartValidationText("")
+                  }}
+                  renderInput={(params) => 
+                    <TextField 
+                      {...params}
+                    />}
+                  />
+                </LocalizationProvider>
+                <FormHelperText className = "helpertexts">{deliveryStartValidationText}</FormHelperText>
                 <Button variant="contained"
                   onClick = { handleSubmitNews }
                   >

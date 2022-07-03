@@ -27,7 +27,7 @@ export const NewMessageModal:React.FC<Props> = function NewMessageModalFunc(Prop
   }
   }
   ),[])
-  console.log(Props)
+  // console.log(Props)
   return(
     <>
       <Modal
@@ -39,8 +39,21 @@ export const NewMessageModal:React.FC<Props> = function NewMessageModalFunc(Prop
         <div className = "AdminsProduct">
           <div className = "FormProduct">
             <div className = "FormProductSetTitle">
-            <div className="">
+            <div className=""
+            style={{
+              padding: "20px",
+              fontSize: "1.2rem"
+            }}
+            >
               {Props.news.title}
+            </div>
+            <div className=""
+            style={{
+              padding: "0px 20px",
+              fontSize: "0.9rem"
+            }}
+            >
+              投稿日:{Props.news.date}
             </div>
 
               <ReactQuill
