@@ -506,6 +506,7 @@ svg{
     padding: 10px 20px;
     display: flex;
     align-items: center;
+    font-size: 1.4rem;
     @include mq(tb){
       display: none;
     }

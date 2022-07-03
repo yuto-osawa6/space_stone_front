@@ -765,3 +765,64 @@ display: none;
     color: #ff3073;
   }
 }
+
+.WeeklyRankingList{
+  position: relative;
+  grid-template-columns: auto;
+  @include mq(tb){
+    grid-template-columns: 1fr 1fr;
+  }
+  .WeeklyRankingItemsTitle{
+    // background-color: none;
+    // color: #f6f6f9;
+    z-index: 1;
+    // position:absolute;
+    top:0;
+    left:0;
+    background-color: white;
+
+    @include mq(tb){
+    color: $merupla-color-info-dark-1;
+    position:static;
+    // background-color: white;
+    }
+    .WeeklyRankingItemsTitle1{
+      // padding-left: 50px;
+      @include mq(tb){
+        padding-left: 0px;
+      }
+      .WeeklyRankingItemsTitle2{
+        // overflow-x: scroll;
+        // width: 70%;
+        // white-space: nowrap;
+        @include mq(tb){
+          width:100%;
+          white-space: break-spaces;
+          // overflow-x: scroll;
+        }
+      }
+    }
+  }
+  .WeeklyRankingItemsPersentageDummy{
+    height: 50px;
+    @include mq(tb){
+      height:auto;
+    }
+  }
+  .InvoteButtonWeekly{
+    word-break: keep-all;
+    // position: absolute;
+    // left: 0%;
+    color: $merupla-color-info-dark-1;
+    @include mq(tb){
+      position: static;
+      color: $merupla-color-info-dark-1;
+      // position:static;
+      // background-color: white;
+    }
+  }
+}
+.weekyEpisords{
+  white-space: nowrap;
+}
+// margin-left: 50px;

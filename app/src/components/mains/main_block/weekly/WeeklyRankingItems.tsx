@@ -105,13 +105,14 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
   return(
     <>
       <li
+      className="WeeklyRankingList"
       style={{
         backgroundColor: "#0cbbc1",
         borderBottom: "1px dotted #0cbbc1",
         // color: "#2c3e50",
         color: "#56687e",
         display: "grid",
-        gridTemplateColumns: "1fr 1fr"
+        // gridTemplateColumns: "1fr 1fr"
       }}
       >
         <div className="WeeklyRankingItemsTitle"
@@ -122,19 +123,21 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
           gap:"20px",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "white"
+          // backgroundColor: "white"
         }}
         >
-          <div className=""
+          <div className="WeeklyRankingItemsTitle1"
           style={{
             gap: "10px",
             display:"flex"
           }}
           >
-            {Props.product.title}
+            <div className="WeeklyRankingItemsTitle2">
+              {Props.product.title}
+            </div>
             {episords.map((item,index)=>{
               return(
-                <span className="weekyEpisords" key={item.id}>ep{item.episord}{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
+                <span className="weekyEpisords" key={item.id}>{item.episord}話{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
               )
             })}
           </div>
