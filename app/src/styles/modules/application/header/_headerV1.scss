@@ -38,6 +38,7 @@ svg{
 }
 .activeScroll{
   transform: translateY(-100px);
+  -webkit-transform:translateY(-100px);
 }
 
 .HeaderGrid0{
