@@ -189,9 +189,10 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
   }
   return(
     <>
+    <div className = "SeasonGrid">
     <div id = "last-season-a"
     style = {{
-      backgroundColor: "aliceblue"
+      // backgroundColor: "aliceblue"
     }}
     >
     <div className = "NewNetflixContainer">
@@ -202,6 +203,7 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
           </div>
         
           </div>
+        <div className="MeruplanetGridContainerTitles">
         <div className = {`NewNetflixContainerGrid ${onMoreState2?"moreActiveAction":""}`}
         ref={ref}
         >
@@ -231,6 +233,7 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
           className = {onMoreState2?"addTitleOnTime":""}
           />
         </div>
+        </div>
 
       </div>
       </div>
@@ -238,6 +241,7 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
         products = {Props.data.products}
         currentSeason = {Props.data.currentSeason}
       />
+      </div>
 
 
 
@@ -245,7 +249,7 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
 
       <div id = "next-season-a"
       style = {{
-        backgroundColor: "aliceblue"
+        // backgroundColor: "aliceblue"
       }}
       >
       <div className = "NewNetflixContainer">
@@ -257,37 +261,40 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
           </div>
         
           </div>
-        <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
-        ref={ref}
-        >
-          {Props.data.products2!=undefined&&(
-            <>
-              {Props.data.products2.map((item)=>{
+        <div className="MeruplanetGridContainerTitles">
+          <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
+          ref={ref}
+          >
+            {Props.data.products2!=undefined&&(
+              <>
+                {Props.data.products2.map((item)=>{
 
-                return(
-                  <GridProductItem1
-                    key={item.id}
-                    product={item}
-                    push ={ pushgridleft }
-                    left_grid = { maxleft}
-                    right = {right}
-                    avgScore = {avgScore2!=undefined?avgScore2[item.id]!=undefined?avgScore2[item.id]:undefined:undefined}
-                  />
-                )
-              })}
-            </>
-          )}
-        </div>
-        <div className = "NewNetflixContainerRowAction share_middle_container_right_text"
-        onClick={moreActionHandler}
-        >
-          もっと見る<IoChevronDownOutline
-          className = {onMoreState?"addTitleOnTime":""}
-          />
+                  return(
+                    <GridProductItem1
+                      key={item.id}
+                      product={item}
+                      push ={ pushgridleft }
+                      left_grid = { maxleft}
+                      right = {right}
+                      avgScore = {avgScore2!=undefined?avgScore2[item.id]!=undefined?avgScore2[item.id]:undefined:undefined}
+                    />
+                  )
+                })}
+              </>
+            )}
+          </div>
+          <div className = "NewNetflixContainerRowAction share_middle_container_right_text"
+          onClick={moreActionHandler}
+          >
+            もっと見る<IoChevronDownOutline
+            className = {onMoreState?"addTitleOnTime":""}
+            />
+          </div>
         </div>
 
       </div>
       </div>
+      
     </>
   )
 }

@@ -1,7 +1,12 @@
 // newnetflix
 .NewNetflixContainer{
   // margin-bottom: 20px;
-  padding: 20px;
+  // padding: 20px;
+  // padding: 30px 30px;
+  margin: 20px 20px;
+  // background-color: $merupla-color-white-1;
+  // border-radius: 30px;
+  // box-shadow: $merupla-box-shadow-1;
   .NewNetflixContainerRow{
     display: flex;
     justify-content: space-between;
@@ -75,7 +80,9 @@
 
 // newmessage
 .NewMessageContainer {
-  padding: 20px 20px 0px 20px;
+  // padding: 20px 20px 0px 20px;
+  // padding: 20px 20px;
+  margin: 20px 20px;
   // margin-top: 20px;
   // margin-bottom: 20px;
 }
@@ -623,11 +630,67 @@
 
 // 
 .WeekliyRankings {
-  padding: 20px 0px;
+  margin: 20px 0px;
+
+  ul{
+    padding: 30px 30px;
+    margin: 20px 20px;
+    background-color: $merupla-color-white-1;
+    border-radius: 30px;
+    box-shadow: $merupla-box-shadow-1;
+  }
+}
+.SeasonTier{
+  // padding: 30px 30px;
+  margin: 20px 20px;
+  // background-color: $merupla-color-white-1;
+  // border-radius: 30px;
+  // box-shadow: $merupla-box-shadow-1;
+  .SeasonTierBox{
+    padding: 30px 30px;
+    margin-top: 20px;
+    background-color: $merupla-color-white-1;
+    border-radius: 30px;
+    box-shadow: $merupla-box-shadow-1;
+  }
+}
+#toptens-a{
+  padding: 30px 30px;
+  margin: 20px 20px;
+  background-color: $merupla-color-white-1;
+  border-radius: 30px;
+  box-shadow: $merupla-box-shadow-1;
 }
 .TagsContainer{
-  padding: 20px;
+  // padding: 20px;
+  // padding: 30px 30px;
+  margin: 20px 20px;
+  .TagsContainerRow{
+  // padding: 30px 30px;
+    margin-bottom: 20px;
+  }
 }
+.NewNetflixContainer{
+  height: 100%;
+}
+.NewNetflixContainerGrid {
+  height: calc(100% - 40px);
+  overflow-y: scroll;
+}
+.MeruplanetGridContainerTitles{
+  height: calc(100% - 96px);
+  padding: 30px 30px;
+  margin: 20px 0px;
+  background-color: $merupla-color-white-1;
+  border-radius: 30px;
+  box-shadow: $merupla-box-shadow-1;
+}
+
+
+// .SeasonGrid{
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+// }
 
 .Toptens1{
   background-color: #ff307330;
@@ -640,4 +703,26 @@
 }
 .Toptens4{
   background-color: #01bb2f30
+}
+
+// tier
+.ThisMonthTierList{
+  ul{
+    -ms-overflow-style: none;
+    /*Firefoxへの対応*/
+    scrollbar-width: none;
+  }
+  
+  /*Google Chrome、Safariへの対応*/
+  ul::-webkit-scrollbar{
+    display: none;
+  }
+}
+
+.ThisMonthTierList{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.ThisMonthTierList::-webkit-scrollbar{
+display: none;
 }

@@ -155,22 +155,21 @@ type UserTier = {
       <WeeklyRanking
       />
       </div>
-      <div id="this-season-a"
-      style = {{
-        backgroundColor: "aliceblue"
-      }}
-      >
-      <ThisSeasonAnimeInfomation
-      products = {Props.data.products}
-      currentSeason = {Props.data.currentSeason}
-      />
-      </div>
       <SWRConfig value={{ fallback }}>
-        <ThisSeasonAnimeTier 
+      <div className="SeasonGrid">
+        <div id="this-season-a"
+        >
+        <ThisSeasonAnimeInfomation
         products = {Props.data.products}
         currentSeason = {Props.data.currentSeason}
         />
-
+        </div>
+        
+          <ThisSeasonAnimeTier 
+          products = {Props.data.products}
+          currentSeason = {Props.data.currentSeason}
+          />
+      </div>
 
       <NextSeasonAnimeInfomation
       data = {Props.data2}

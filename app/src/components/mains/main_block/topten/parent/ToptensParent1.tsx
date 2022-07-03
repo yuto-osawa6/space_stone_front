@@ -11,9 +11,9 @@ export const ToptensParent1:React.FC<Props> = function ToptensParent1Func(Props)
   return(
     <>
     <div className = {`Toptens Toptens${Props.parent}`}>
-        <div className = "ToptensTitle share_middle_container_title">
+        {/* <div className = "ToptensTitle share_middle_container_title">
           Top10
-        </div>
+        </div> */}
         <div className = "ToptensLikesAll ToptensContainer"
         style={Props.alice&&Props.alice==1?{
           // paddingBottom:"30px"

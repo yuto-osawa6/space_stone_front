@@ -125,6 +125,7 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo(function ThisSeaso
             今シーズン人気作品({Props.currentSeason})
           </div>
         </div>
+        <div className="MeruplanetGridContainerTitles">
         <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
         ref={ref}
         >
@@ -152,6 +153,7 @@ export const ThisSeasonAnimeInfomation:React.FC<Props> = memo(function ThisSeaso
           <IoChevronDownOutline
             className = {onMoreState?"addTitleOnTime":""}
           />
+        </div>
         </div>
       </div>
     </>

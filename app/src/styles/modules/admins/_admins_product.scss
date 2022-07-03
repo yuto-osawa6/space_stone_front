@@ -1,5 +1,7 @@
 .AdminsProduct{
-  background-color: aliceblue;
+  background-color: #f6f6f9;
+  outline: none;
+  // background-color: aliceblue;
   position: absolute;
   width: 90%;
   top: 50%;
@@ -11,6 +13,7 @@
   overflow: scroll;
   height: 90%;
   .FormProduct{
+    height: 100%;
     padding: 10px;
     background-color: white;
     border-radius: 5px;
@@ -20,8 +23,15 @@
       margin-bottom: 10px;
     }
   }
-
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
 }
+
+  /*Google Chrome、Safariへの対応*/
+  .AdminsProduct::-webkit-scrollbar{
+  display: none;
+  }
 
 // admin genre
 

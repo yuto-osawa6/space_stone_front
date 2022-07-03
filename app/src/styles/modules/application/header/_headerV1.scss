@@ -8,6 +8,16 @@ svg{
       font-size: 1.2rem;
     }
   }
+  a {
+    display: inline-block;
+    transition: .3s;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  a:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
 }
 .HeaderV1{
   // height: 59.66px;
@@ -185,39 +195,49 @@ svg{
     }
     @include mq(md){
       font-size: 1.0rem;
-      background-color: #ffffff;
+      // background-color: #ffffff;
+      background-color: #f6f6f9;
       width: calc(100% - 200px);
     }
 
     li{
-      color: white;
+      // color: white;
       // background-color: #167eff;
-      background-color: #1a252f;
+      // background-color: #1a252f;
       // padding: 5px 15px 5px 15px;
       // border: 1px solid grey;
       border-radius: 30px;
-      box-shadow: $color-v1-shadow-a;
+      // box-shadow: $color-v1-shadow-a;
       display: none;
       @include mq(tb){
         display: block;
       }
 
-      a{
-      padding: 5px 15px 5px 15px;
-      cursor: pointer;
-      display: block;
-      }
+     
     }
     .headerUserSighIn{
-      background-color: $color-v1-d;
+      color: $color-v1-d;
+      // -webkit-text-stroke: 1px $merupla-color-dark-1;
+      // color: $merupla-color-white-1;
       padding: 0px;
       .user_box_false{
         .user_mypage{
+          line-height: 1.2;
         display: flex;
         gap: 5px;
         align-items: center;
         padding: 5px 10px 5px 10px;
         cursor: pointer;
+        }
+        .user_mypage {
+          // display: inline-block;
+          transition: .3s;
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+        .user_mypage:hover {
+          -webkit-transform: scale(1.1);
+          transform: scale(1.1);
         }
         .userNavigationDummy{
           position: relative;
@@ -333,7 +353,7 @@ svg{
   position: relative;
   display: block!important;
   margin-right: 20px;
-  border: 1px solid white;
+  border: 1px solid $merupla-color-dark-1;
   @include mq(md){
     margin-right:0px
   }
@@ -344,6 +364,9 @@ svg{
     transform: translate(-50%, -50%);
   }
   .subMenuList{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    // color: #f6f6f9;
     right: 0px;
     top: 32px;
     // width: fit-content;
@@ -357,28 +380,37 @@ svg{
     width: 100%;
     height: 100vh;
     position: fixed;
-    background-color: #1a252fd6;
+    // background-color: #1a252fd6;
+    background-color: white;
     padding: 10px;
     overflow: scroll;
     @include mq(tb){
       // overflow: ;
-      background-color: #1a252f;
+          width: 200px;
+      box-shadow: $merupla-box-shadow-1;
+      // background-color: #1a252f;
       position: absolute;
       height:fit-content;
       padding: 10px;
-      width: fit-content;
+      // width: fit-content;
       
     }
     div{
       div{
         cursor: pointer;
-        padding: 3px;
+        padding: 5px;
         white-space: nowrap;
         &:hover{
-          color: #1a76d2;;
+          background-color: #edf1f5;
+          color: $merupla-color-dark-1;
+          border-left:3px solid #38b7ff;
+          // color: #1a76d2;;
         }
       }
     }
+  }
+  .subMenuList::-webkit-scrollbar{
+    display: none;
   }
   .subMenuList768{
     display: grid;

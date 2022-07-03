@@ -128,23 +128,24 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
   },[updateTier])
   return(
     <>
+      <div className="SeasonTier">
       <div className=""
       style={{
       fontWeight:"bold",
       // marginBottom: "10px",
       fontSize: "1.5rem",
-      padding: "20px 20px 10px 20px"
+      // paddingBottom: "10px"
       }}
       >
       昨シーズンのTier
       </div>
-      <div className=""
+      <div className="SeasonTierBox"
       style={{
       display: "grid",
       gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
       gap: "10px",
       // marginBottom: "30px"
-      padding: "0px 20px 20px 20px"
+      // padding: "0px 20px 20px 20px"
       }}
       >
         {tierProductGroup.map((item,index)=>{
@@ -208,6 +209,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
         <UserModalSign/>
       </OpenContext.Provider>
       )}  
+      </div>
       </div>
     </>
   )

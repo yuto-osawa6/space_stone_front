@@ -92,8 +92,8 @@ export const AdminNews:React.FC<Props> = (Props) => {
       count += 1
     }
     if(title2?.length==0){
-      setTitleEroor(true)
-      setTitleValidateText("入力されていません")
+      setTitle2Eroor(true)
+      setTitle2ValidateText("入力されていません")
       count += 1
     }
     if (title==undefined) return

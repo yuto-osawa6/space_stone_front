@@ -12,7 +12,7 @@ export const Tags:React.FC<Props> = function TagsFunc(Props){
     <>
       <div className = "TagsContainer"
       style = {{
-        backgroundColor: "aliceblue"
+        // backgroundColor: "aliceblue"
       }}
       >
         <div className = "TagsContainerRow ShareMiddleContainerTitleRow">

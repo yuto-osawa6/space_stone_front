@@ -91,7 +91,7 @@ const {t} = useLocale()
           <div className = "main-contents__box__left">
             <div className = "category__title"
             style={{
-              paddingBottom:"20px"
+              // paddingBottom:"0px"
             }}
             >
               <h3
@@ -100,9 +100,9 @@ const {t} = useLocale()
               />{t.Component.Lefts.FORMATS} <IoChevronDownOutline
               className={`leftDownArrow ${openFormats == true?"addTitleOnTime":""}`}
               /></h3>
-          </div>
-          </div>
-          <div className = {`category__lists01 category__lists ${openFormats == true?"addFormatsList":"removeFormatsList"}`}>
+            </div>
+          
+            <div className = {`category__lists01 category__lists ${openFormats == true?"addFormatsList":"removeFormatsList"}`}>
             {data&&data.styles?
               <>
                 {data.styles.map((item: style) => (
@@ -110,6 +110,7 @@ const {t} = useLocale()
                 )) }
               </>
             :"Loding"}
+            </div>
           </div>
           <div className = "main-contents__box__left">
             <div className = "category__title">

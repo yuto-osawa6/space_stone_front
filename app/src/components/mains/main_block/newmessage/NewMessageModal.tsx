@@ -1,6 +1,6 @@
 import { news } from "@/interfaces/main"
 import { Modal } from "@mui/material"
-import React from "react"
+import React, { useMemo } from "react"
 
 type Props = {
   open: boolean
@@ -8,8 +8,26 @@ type Props = {
   news: news
 }
 
+const ReactQuill =
+  typeof window === "object" ? require("react-quill") : () => false;
+
 export const NewMessageModal:React.FC<Props> = function NewMessageModalFunc(Props){
   const handleClose = () => Props.setOpen(false)
+  const modules = useMemo(()=>({
+    toolbar:{ 
+      container:[
+      [{ header: 1 },{ header: 2 }],
+      ["bold", "italic", "underline", "strike"],
+      [{ color: [] }, { background: [] }],
+      ["blockquote"
+    ],
+      [{ list:  "ordered" }, { list:  "bullet" }],
+      [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
+    ],
+  }
+  }
+  ),[])
+  console.log(Props)
   return(
     <>
       <Modal
@@ -21,9 +39,16 @@ export const NewMessageModal:React.FC<Props> = function NewMessageModalFunc(Prop
         <div className = "AdminsProduct">
           <div className = "FormProduct">
             <div className = "FormProductSetTitle">
-            {Props.news.information}
-            {Props.news.title}
-            {Props.news.description}
+            <div className="">
+              {Props.news.title}
+            </div>
+
+              <ReactQuill
+                className = "ovevierReactQuill"     
+                modules={modules} value={Props.news.information} 
+                theme="bubble"
+                readOnly={true}       
+              />
               
             </div>
           </div>

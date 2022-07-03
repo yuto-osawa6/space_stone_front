@@ -11,16 +11,18 @@ body:lang(ja) {
     font-family: 'Roboto', sans-serif;
   }
 body{
+  background-color: #f6f6f9;
   // font-family: 'Noto Sans JP', sans-serif;
   #__next{
     max-width: 1500px;
     margin: 0 auto;
   }
   // font-family: Helvetica, Arial, sans-serif !important;
-  color: $color-v1-a;
+  color: $merupla-color-dark-1;
   font-size: 16px;
   margin: 0px;
   line-height: 1.5;
+  background-color: $color-backgroundv2;
   .super{
     // doneyet(check)
     min-height: 100vh;
@@ -30,7 +32,7 @@ body{
     grid-template-columns: 200px calc(100% - 200px);
     .super-sheet{
     // background-color: #edf1f5;
-    background-color: #ffffff;
+    background-color: #f6f6f9;
       // width: 80vw;
       grid-column: 1/3;
       margin-top: 59.66px;
@@ -127,8 +129,17 @@ body{
       }
     // }
   // }
-
+  /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
 }
+
+ /*Google Chrome、Safariへの対応*/
+body::-webkit-scrollbar{
+  display: none;
+}
+
 .p_contents_grid_hover_contents_arasuzi{
   margin: 10px;
   font-size: 0.7rem;

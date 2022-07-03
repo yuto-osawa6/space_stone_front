@@ -64,8 +64,8 @@ const SearchDiv:React.FC<Props> = (Props) => {
   }
 
   return(
-      <div className = "header__search" style={handleStyle2()}>
-      <div className = "header__search">
+      <div className = "header__search header__search__parentV2" style={handleStyle2()}>
+      <div className = "header__search header__searchV2">
         {Props.children}
       </div>
     </div>

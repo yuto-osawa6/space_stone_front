@@ -250,20 +250,20 @@ export const UserCertification:React.FC = function UserCertification(){
                     position: "relative",
                   }}
                 >
-                  <div className="CloseButton"
+                  <div className="CloseButton2"
                   onClick={clickOpenMenuHandler}
                   >
                   <IoMdClose/>
                 </div>
-                  <div className="UserNavigateDummyAbusoluteTopName"
+                  {/* <div className="UserNavigateDummyAbusoluteTopName"
                   style={{
-                    padding: 10,
-                    border: "2px solid",
-                    borderRadius: "5px",
+                    // padding: 10,
+                    // border: "2px solid",
+                    // borderRadius: "5px",
                   }}
                   >
                     ユーザー情報
-                  </div>
+                  </div> */}
                   <div className="UserNavigateDummyAbusoluteTop"
                   style={{
                     display: "flex",
@@ -291,6 +291,7 @@ export const UserCertification:React.FC = function UserCertification(){
                       {userSwr.user.nickname}                
                     </div>
                   </div>
+                  <div className="user_menu_parent">
                   <div className = "user_logout user_menu_2"
                   onClick={MovetoMypageHandler}
                   >
@@ -316,6 +317,7 @@ export const UserCertification:React.FC = function UserCertification(){
                     </>
                   )}
                   </div> 
+                  </div>
                   </div>
                   </>
                   </Modal>
@@ -332,7 +334,7 @@ export const UserCertification:React.FC = function UserCertification(){
                 aria-describedby="modal-modal-description"
               >
                 <>
-                <div className="CloseButton"
+                <div className="CloseButton2"
                   onClick={clickOpenMenuHandler}
                   >
                   <IoMdClose/>
@@ -340,7 +342,7 @@ export const UserCertification:React.FC = function UserCertification(){
                 <div className=""
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "50px 1fr",
+                  gridTemplateColumns: "1fr",
                   maxWidth: 700,
                   borderRadius: 5,
                   width: "calc(100% - 40px)",
@@ -353,7 +355,7 @@ export const UserCertification:React.FC = function UserCertification(){
                 }}
                 >
                 
-                <div className=""
+                {/* <div className=""
                 style={{
                   backgroundColor: "1a252",
                   padding: 20,
@@ -362,9 +364,9 @@ export const UserCertification:React.FC = function UserCertification(){
                   borderRadius: "5px 0px 0px 5px"
                   
                 }}
-                >
+                > */}
                   {/* <Image src = "/MeRuPla09.png" layout='fill' alt='logo'/> */}
-                  <img src={url('/meruplanet-usermenu.png')} alt="Sample image" 
+                  {/* <img src={url('/meruplanet-usermenu.png')} alt="Sample image" 
                   style={{
                     width:"100%",
                     top: 0,
@@ -375,9 +377,9 @@ export const UserCertification:React.FC = function UserCertification(){
                     borderRadius: "5px 0px 0px 5px"
                     // height:""
                   }}
-                  />
+                  /> */}
 
-                </div>
+                {/* </div> */}
                 <div className = "userNavigationDummyAbusolute"
                   style={{
                     padding: 20,
@@ -387,15 +389,15 @@ export const UserCertification:React.FC = function UserCertification(){
                     fontSize: "1.1rem",
                   }}
                 >
-                  <div className="UserNavigateDummyAbusoluteTopName"
+                  {/* <div className="UserNavigateDummyAbusoluteTopName"
                   style={{
-                    padding: 10,
-                    border: "2px solid",
-                    borderRadius: "5px",
+                    // padding: 10,
+                    // border: "2px solid",
+                    // borderRadius: "5px",
                   }}
                   >
                     ユーザー情報
-                  </div>
+                  </div> */}
                   <div className="UserNavigateDummyAbusoluteTop"
                   style={{
                     display: "flex",
@@ -423,6 +425,7 @@ export const UserCertification:React.FC = function UserCertification(){
                       {userSwr.user.nickname}                
                     </div>
                   </div>
+                  <div className="user_menu_parent">
                   <div className = "user_logout user_menu_2"
                   onClick={MovetoMypageHandler}
                   >
@@ -448,6 +451,7 @@ export const UserCertification:React.FC = function UserCertification(){
                     </>
                   )}
                   </div> 
+                  </div>
                   </div>
                   </>
                   </Modal>
