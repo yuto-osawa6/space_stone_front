@@ -50,28 +50,28 @@ describe("this season list", () => {
     // screen.debug();
   });
 
-  test('next season no data', async() => {
-    const d_products:product[] = []
-    const d_products2:product[] = []
+  // test('next season no data', async() => {
+  //   const d_products:product[] = []
+  //   const d_products2:product[] = []
 
-    const data:any = {
-      products:d_products,
-      products2:d_products2,
-      currentSeason:"",
-      currentSeason2:"",
-      scores: {
-        avgScore: {},
-        avgScore2: {}
-    }
-  }
-      render(
-        <Provider store={store}>
-        <NextSeasonAnimeInfomation
-          data={data}
-        >
-        </NextSeasonAnimeInfomation>
-        </Provider>
-      );
-    // screen.debug();
-  });
+  //   const data:any = {
+  //     products:d_products,
+  //     products2:d_products2,
+  //     currentSeason:"",
+  //     currentSeason2:"",
+  //     scores: {
+  //       avgScore: {},
+  //       avgScore2: {}
+  //   }
+  // }
+  //     render(
+  //       <Provider store={store}>
+  //       <NextSeasonAnimeInfomation
+  //         data={data}
+  //       >
+  //       </NextSeasonAnimeInfomation>
+  //       </Provider>
+  //     );
+  //   // screen.debug();
+  // });
 });
