@@ -48,12 +48,13 @@ export const WeeklyRankingMainItems:React.FC<Props> = function WeeklyRankingMain
   return(
     <>
       <li
+      className="WeeklyRankingList"
       style={{
         backgroundColor: "#0cbbc1",
         borderBottom: "1px dotted #0cbbc1",
         color: "#2c3e50",
         display: "grid",
-        gridTemplateColumns: "1fr 1fr"
+        // gridTemplateColumns: "1fr 1fr"
       }}
       >
         <div className="WeeklyRankingItemsTitle"

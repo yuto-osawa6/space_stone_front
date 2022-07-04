@@ -35,7 +35,7 @@ export const WeekliyRankingsMainList:React.FC<Props> = function  WeekliyRankings
         <div className="WeekliyRankingsTitle"
         style={{
           fontSize: "1.0rem",
-          marginBottom: "10px",
+          margin: "10px",
           display: "block",
           fontWeight: "bold"
         }}
@@ -44,7 +44,8 @@ export const WeekliyRankingsMainList:React.FC<Props> = function  WeekliyRankings
         </div> 
             <ul
             style={{
-              paddingBottom: "30px"
+              // paddingBottom: "30px",
+              margin:"0px"
             }}
             >
               <li

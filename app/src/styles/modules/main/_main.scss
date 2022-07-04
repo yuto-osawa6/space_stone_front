@@ -412,7 +412,7 @@
 
       .ToptensContainerGridList{
         // grid-template-columns: 100px 1fr auto auto auto; v1
-        grid-template-columns: 100px auto 1fr;
+        grid-template-columns: 100px auto;
         grid-gap: 24px;
         min-height: 60px;
         display: grid;
@@ -611,8 +611,8 @@
   background-color: #ff3073 !important;
 }
 .Top100SelectList1{
+  flex-flow: column !important;
   margin-bottom: 20px;
-  flex-flow: column;
   gap: 10px;
   .Top100SelectList2{
 
@@ -621,10 +621,13 @@
       grid-gap: 10px;
       gap: 10px;
       width: 100%;
-      overflow: scroll;
+      // overflow: scroll;
       padding-bottom: 5px;
+      // flex-flow: wrap;
+      word-break: keep-all;
+      overflow-x: scroll;
       li{
-      
+        margin-bottom: 15px;
         box-shadow: $color-v1-shadow-a;
         cursor: pointer;
         padding: 5px 10px 5px 10px;
@@ -702,7 +705,7 @@
   margin: 20px 20px;
   .TagsContainerRow{
   // padding: 30px 30px;
-    margin-bottom: 20px;
+  margin: 20px 0px;
   }
 }
 .NewNetflixContainer{

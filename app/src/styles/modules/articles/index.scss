@@ -63,6 +63,7 @@
   .ArticlesContainerNavigateUl{
     display: flex;
     gap: 10px;
+    
     li{
       cursor: pointer;
       padding: 5px 10px 5px 10px;
@@ -70,6 +71,15 @@
       background-color: white;
       color: #132f4c;
       box-shadow: $color-v1-shadow-a;
+    }
+  }
+}
+.Top100SelectList1{
+  ul{
+    word-break: keep-all;
+    overflow-x: scroll;
+    li{
+      margin-bottom: 15px;
     }
   }
 }

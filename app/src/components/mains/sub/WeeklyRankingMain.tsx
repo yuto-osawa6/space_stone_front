@@ -27,13 +27,13 @@ export const WeekliyRankingsMain:React.FC = function WeekliyRankingsMainFunc(){
   return(
     <>
       <div className="weeklyRankingMain"
-      style={{margin:"20px"}}
+      // style={{margin:"20px"}}
       >
         <div className="weeklyRankingMainTitle"
           style={{
             fontSize: "1.2rem",
             fontWeight:"bold",
-            marginBottom: "20px"
+            margin: "20px"
           }}
         >
           過去アンケート結果
