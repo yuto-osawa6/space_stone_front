@@ -1,11 +1,12 @@
 .ArticlesContainerProductSearch{
   max-width: 300px;
+  width: 80%;
   background-color: white;
   padding: 5px 10px 5px 10px;
   // box-shadow: 1px 2px 4px 1px rgb(0 0 0 / 5%);
   // margin-bottom: 20px;
   box-shadow: $color-v1-shadow-a;
-  margin-left: 10px;
+  // margin-left: 10px;
   display: grid;
   border-radius: 5px;
   grid-template-columns: 20px 1fr 15px;

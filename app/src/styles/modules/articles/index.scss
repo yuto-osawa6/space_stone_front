@@ -58,6 +58,8 @@
   border-bottom: 1px solid;
   padding: 20px;
   display: flex;
+  flex-flow: wrap;
+  gap:10px;
   .ArticlesContainerNavigateUl{
     display: flex;
     gap: 10px;

@@ -240,7 +240,7 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
             <li
             className={rangeString!=undefined?"activeArticlesWeekorMonth":""}
             onClick={onRangeHandler}
-            >更新日期間
+            >更新された期間
             {rangeString}
             <div className = " ArticlesContainerNavigateUltermsRangeDummy">
               <div className = {`ArticlesContainerNavigateUltermsRangeDummyAbsolute ${onRange==true?"activeArticlesUlterms":""}`}>
@@ -267,7 +267,7 @@ export const Threads:React.FC<Props> = function ThreadsFunc(Props){
             <li
             className={rangeLikesString!=undefined?"activeArticlesWeekorMonth":""}
             onClick={onRangeLikesHandler}
-            >好評価期間
+            >好評価された期間
             {rangeLikesString}
             <div className = " ArticlesContainerNavigateUltermsRangeDummy">
               <div className = {`ArticlesContainerNavigateUltermsRangeDummyAbsolute ${onRangeLikes==true?"activeArticlesUlterms":""}`}>

@@ -43,6 +43,7 @@ export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props
   const movementHandler = () => {
     router.push(`/threads/${Props.review.id}/title/${Props.review.reviewProduct.id}`,undefined,options)
   }
+  // console.log(Props)
 
   return(
     <>
@@ -60,7 +61,9 @@ export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props
                 {Props.review.reviewProduct.title}
                 </div>
                 <div className = {`ReviewListItemTopCenterUser ColorV10${colornumber}a`}>
-                  {Props.review.reviewUser.nickname}さんによる投稿
+                  {Props.review.title}
+                  {/* {Props.review.reviewUser.nickname} */}
+                  {/* さんによる投稿 */}
                 </div>
               </div>
             </div>
