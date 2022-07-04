@@ -130,7 +130,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
   return(
     <>
       <div className="SeasonTier">
-      <div className="editTierButton"
+      <div className="SeasonTierTitle"
       style={{
       fontWeight:"bold",
       // marginBottom: "10px",
