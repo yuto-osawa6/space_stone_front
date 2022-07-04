@@ -10,6 +10,8 @@ import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
+import { TouchBackend } from "react-dnd-touch-backend"
+import { isMobile } from "react-device-detect"
 
 type kisetsu = {
   id:number
@@ -263,7 +265,7 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
       )}
 
         {openTier&&products!=undefined&&(
-          <DndProvider backend={HTML5Backend}>
+          <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
           <CreateTier
             products = {products}
             season = {currentSeason}
@@ -274,7 +276,7 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
           </DndProvider>
         )}
         {openTierUpdate&&products!=undefined&&(
-          <DndProvider backend={HTML5Backend}>
+          <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
           <UpdateTier
             products = {products}
             season = {currentSeason}

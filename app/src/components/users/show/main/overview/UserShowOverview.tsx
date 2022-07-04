@@ -20,6 +20,8 @@ import { UserOverviewSetUp } from "@/components/users/setup/overview/UserOvervie
 import { CreateTier } from "@/components/mains/tier/setup/CreateTier"
 import { UpdateTier } from "@/components/mains/tier/setup/UpdateTier"
 import { useUser } from "@/lib/data/user/useUser"
+import { TouchBackend } from "react-dnd-touch-backend"
+import { isMobile } from "react-device-detect"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -337,7 +339,7 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
 
       </div>
       {openTier&&products!=undefined&&(
-        <DndProvider backend={HTML5Backend}>
+        <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
         <CreateTier
           products = {products}
           season = {currentSeason}
@@ -348,7 +350,7 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
         </DndProvider>
       )}
       {openTierUpdate&&products!=undefined&&(
-        <DndProvider backend={HTML5Backend}>
+        <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
         <UpdateTier
           products = {products}
           season = {currentSeason}

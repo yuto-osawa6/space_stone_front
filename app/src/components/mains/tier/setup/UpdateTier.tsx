@@ -12,6 +12,8 @@ import { pussingMessageDataAction } from "@/store/message/actions"
 import { mutate } from "swr"
 import { DraggableFistContainer } from "./draggle/DraggableFistContainer"
 import { TierGroupList } from "./list/TierGroupList"
+import { TailSpin } from "react-loader-spinner"
+import { submitSpin } from "@/lib/color/submit-spin"
 
 export const ItemType = {
   Box: "BOX",
@@ -100,7 +102,7 @@ useEffect(()=>{
 },[])
  
   const handleClose = () => {
-    Props.setOpen(false)
+    // Props.setOpen(false)
   }
   const [validateText,setValidateText] = useState<string>("")
   const moveItem23 = useCallback((dragIndex: number, hoverIndex: number,group: number,pregroup:any | undefined,id:number) => {
@@ -176,6 +178,7 @@ useEffect(()=>{
     const array = i.products.map(i=>i.id)
     createTierProduct[index] = {group:index,product:array}
   })
+  setLoding(true)
   const res = await execCreateTierHandler(createTierProduct,Props.season,userSwr.user.id)
   if (res.data.status == 200){
   if (Props.setUpdateTier!=undefined){
@@ -188,7 +191,10 @@ useEffect(()=>{
   }else{
     dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
   }
+  setLoding(false)
   }
+  const [loading,setLoding] = useState<boolean>(false)
+
 
   return(
     <>
@@ -205,7 +211,7 @@ useEffect(()=>{
         style={{
           left: "50%",
           transform: "translate(-50%, 0%)",
-          backgroundColor: "aliceblue",
+          backgroundColor: "#f6f6f9",
           position: "absolute",
           width: "95%",
           borderRadius: "5px",
@@ -236,7 +242,7 @@ useEffect(()=>{
           </div>
           <Button variant="outlined"
               className = "modal_review_richtext_close"
-              onClick = {handleClose}
+              onClick = {()=>Props.setOpen(false)}
             >
               <IoMdClose/>
               Close
@@ -279,7 +285,7 @@ useEffect(()=>{
           <div className=""
           style={{
             display:"flex",
-            overflow:"scroll",
+            overflowX:"scroll",
             gap:"10px",
             alignItems: "center",
           }}
@@ -296,12 +302,21 @@ useEffect(()=>{
             })}
           </div>
           <div className = "TierSubmit">
-            <Button
+            {/* <Button
             onClick={handleCreateTier}
             className = "TierSubmitButton"
             style={{backgroundColor:"aliceblue",height: "75px"}}
             >
               Submit
+            </Button> */}
+             <Button variant="contained"
+            className={"tail-spin-loading TierSubmitButton"}
+            onClick = {handleCreateTier}
+            style={{backgroundColor:"aliceblue",height: "75px", color:"#ff3073"}}
+            >Submit
+            {loading==true&&(
+              <TailSpin color={submitSpin.color} height={20} width={20} />
+            )}
             </Button>
           </div>
           </div>

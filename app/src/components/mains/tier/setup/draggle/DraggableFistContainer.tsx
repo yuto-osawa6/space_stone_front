@@ -35,7 +35,8 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
         style={{
           opacity,
           width: "52.5",
-          position:"relative"
+          position:"relative",
+          marginBottom: "10px",
         }}
         >
           

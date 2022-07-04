@@ -1,5 +1,7 @@
 import { product } from "@/interfaces/product"
+import { url } from "@/utils/config"
 import { memo, useEffect, useState } from "react"
+import { TierShow } from "./show/TierShow"
 import { TierProductList } from "./TierProductList"
 
 type tierProduct = {
@@ -37,6 +39,11 @@ export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(
       default:  
     }
   },[])
+  // tier show
+  const [open,setOpen] = useState<boolean>(false)
+  const handleClick = () => {
+    setOpen(true)
+  }
   return (
     <>
       <div className = "ThisMonthTierList"
@@ -45,16 +52,18 @@ export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(
       }}
       >
         <h2
+          onClick={handleClick}
           style={{
             width: "fit-content",
             zIndex: "10",
             position: "relative",
-            left: "5px",
+            left: "10px",
             color:"white",
             borderRadius:"5px",
-            padding:"0px 5px 0px 5px",
+            padding:"0px 20px",
             backgroundColor:color,
-            fontWeight:"bold"
+            fontWeight:"bold",
+            cursor:"pointer",
           }}
         >{Props.group}</h2>
         <div className=""
@@ -89,6 +98,20 @@ export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(
             )
           })}
         </ul>
+        {Props.group == "S" && (
+        <img src={url('/click.png')} alt="Sample image"
+        style={{
+          pointerEvents: "none",
+          zIndex: 12,
+          width: 100,
+          position: "absolute",
+          top: -65,
+          left: 35,
+          flexFlow: "wrap",
+          height: 100,
+        }}
+        ></img>
+        )}
         <p
         style={{
           position: "absolute",
@@ -108,12 +131,23 @@ export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(
           width: "11px",
           backgroundColor: color,
           height: "calc(100% - 10px)",
-          borderRadius: "0px 0px 0px 5px",
+          borderRadius: "0px 0px 5px 0px",
           zIndex: "20"
           }}
         ></p>
         </div>
       </div>
+
+      {open&&(
+        <TierShow
+          open = {open}
+          setOpen = {setOpen}
+          group = {Props.group}
+          products = {Props.products} 
+          color = {color as string}
+        >
+        </TierShow>
+      )}
     </>
   )
 }

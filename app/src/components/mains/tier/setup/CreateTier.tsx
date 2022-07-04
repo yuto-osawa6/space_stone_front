@@ -10,6 +10,8 @@ import { pussingMessageDataAction } from "@/store/message/actions"
 import { DraggableFistContainer } from "./draggle/DraggableFistContainer"
 import { TierGroupList } from "./list/TierGroupList"
 import { useUser } from "@/lib/data/user/useUser"
+import { TailSpin } from "react-loader-spinner"
+import { submitSpin } from "@/lib/color/submit-spin"
 
 
 export const ItemType = {
@@ -73,7 +75,7 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
     },
 ])
   const handleClose = () => {
-    Props.setOpen(false)
+    // Props.setOpen(false)
   }
   const [validateText,setValidateText] = useState<string>("")
   const moveItem23 = useCallback((dragIndex: number, hoverIndex: number,group: number,pregroup:any | undefined,id:number) => {
@@ -140,6 +142,7 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
       const array = i.products.map(i=>i.id)
       createTierProduct[index] = {group:index,product:array}
     })
+    setLoding(true)
     const res = await execCreateTierHandler(createTierProduct,Props.season,userSwr.user.id)
     if (res.data.status == 200){
       if (Props.setUpdateTier!=undefined){
@@ -150,8 +153,9 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
     }else{
         dispatch(pussingMessageDataAction({title:"予期しないエラーが発生しました。もう一度試すか、お問い合わせください。",select:0}))
     }
+    setLoding(false)
   }
-
+  const [loading,setLoding] = useState<boolean>(false)
   return(
     <>
     <Modal
@@ -165,14 +169,15 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
         style={{
           left: "50%",
           transform: "translate(-50%, 0%)",
-          backgroundColor: "aliceblue",
+          backgroundColor: "#f6f6f9",
           position: "absolute",
           width: "95%",
           borderRadius: "5px",
           outline:"none",
           padding: "20px",
           overflow:"scroll",
-          maxHeight: "100vh",  
+          // maxHeight: "100vh",  
+          height:"100%",
           paddingBottom: "130px", 
           bottom:"0"
         }}
@@ -196,7 +201,7 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
           </div>
           <Button variant="outlined"
               className = "modal_review_richtext_close"
-              onClick = {handleClose}
+              onClick = {()=>Props.setOpen(false)}
             >
               <IoMdClose/>
               Close
@@ -240,7 +245,7 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
           <div className=""
           style={{
             display:"flex",
-            overflow:"scroll",
+            overflowX:"scroll",
             gap:"10px",
             alignItems: "center",
           }}
@@ -257,12 +262,21 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
             })}
           </div>
           <div className = "TierSubmit">
-            <Button
+            {/* <Button
             onClick={handleCreateTier}
             className = "TierSubmitButton"
             style={{backgroundColor:"aliceblue",height: "75px"}}
             >
               Submit
+            </Button> */}
+            <Button variant="contained"
+            className={"tail-spin-loading TierSubmitButton"}
+            onClick = {handleCreateTier}
+            style={{backgroundColor:"aliceblue",height: "75px"}}
+            >Submit
+            {loading==true&&(
+              <TailSpin color={submitSpin.color} height={20} width={20} />
+            )}
             </Button>
           </div>
           </div>

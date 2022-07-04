@@ -11,6 +11,10 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import { CreateTier } from "../tier/setup/CreateTier"
 import { UpdateTier } from "../tier/setup/UpdateTier"
+import {isMobile} from 'react-device-detect';
+import { TouchBackend } from 'react-dnd-touch-backend'
+
+
 
 type Props = {
   products: product[]
@@ -180,7 +184,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       </div>
       )}
       {openTier&&(
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
         <CreateTier
         products = {Props.products}
         season = {Props.currentSeason}
@@ -191,7 +195,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       </DndProvider>
       )}
       {openTierUpdate&&(
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
         <UpdateTier
         products = {Props.products}
         season = {Props.currentSeason}

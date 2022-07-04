@@ -100,7 +100,7 @@
     align-items: center;
     &:hover{
       // background-color: #ff3073;
-      color: #ff0047;
+      color:#ff3073;
     }
   }
   .gridNewMessageListTag{
@@ -853,4 +853,53 @@ display: none;
   @include mq(tb){
     margin:0px;
   }
+}
+
+// tier show
+.TierShow {
+  width: 95%;
+  height: 95%;
+  background-color: #f6f6f6;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 30px;
+  overflow-y: scroll;
+  /* margin: 1.5% auto; */
+  padding: 20px;
+  .TierShowTitle{
+    margin:20px 20px 0px 20px;
+    color:#f6f6f9;
+  }
+  .TierShowProducts{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding:20px;
+    gap:10px;
+    .TierShowItem{
+      border-radius: 5px;
+      box-shadow: 2px 4px 10px 3px rgb(0 0 0 / 15%);
+      position: relative;
+      padding-top: 52.5%;
+      width: 100%;
+      top: 0;
+      img{
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+/*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+-ms-overflow-style: none;
+/*Firefoxへの対応*/
+scrollbar-width: none;
+}
+
+/*Google Chrome、Safariへの対応*/
+.TierShow::-webkit-scrollbar{
+display: none;
 }
