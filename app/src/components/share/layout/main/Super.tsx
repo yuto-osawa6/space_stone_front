@@ -48,7 +48,7 @@ const SuperSheet:React.FC<Props> = (Props) => {
     }
   }
   return(
-    <div className = {`super-sheet`} style={handleStyle()}>
+    <div className = {Props.locationNumber == 1 ?`super-sheet`:"super-sheet super-sheet2"} style={handleStyle()}>
       {Props.children}
     </div>
   )

@@ -33,6 +33,7 @@ import { ScoreUserList } from "../user/ScoreUserList";
 import { ChatRoomInProductShow } from "../chat/ChatRoomInProductShow";
 import { useUser } from "@/lib/data/user/useUser";
 import { NextSeo } from "next-seo";
+import { useWindowDimensions } from "@/hook/useWindowResize";
 
 
 ChartJS.register(
@@ -217,10 +218,18 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
 
     }
   }
+  // const [windowWidth,setWindowWidth] = useState<number>(0)
+  // const a = useWindowDimensions()
+  // useEffect(()=>{
+  //   let vw = document.body.clientWidth
+  //   setWindowWidth(vw)
+  // },[a])
   return(
     <>
       <div className = {`show_top_contens`}> 
-      <div className = {`show_top_dummy p_contens_grid_color${props.switchnumber}`}>
+      <div className = {`show_top_dummy p_contens_grid_color${props.switchnumber}`}
+      // style={{width:windowWidth}}
+      >
       </div>
       <div className = "show_top_contens_grid">
       <div className = "show_contens_08_top share_container02">
@@ -234,7 +243,7 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
                 <React.Fragment key={item.episord}>
                 {item.episord!=0&&(  
                 <li 
-                className = {`p_contens_grid_color${props.switchnumber}border`}
+                // className = {`p_contens_grid_color${props.switchnumber}border`}
                 style={{
                   width:"fit-content"
                 }}
@@ -255,7 +264,7 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
             {props.product?.productCharacter.map((item)=>{
               return(
                 <li 
-                className = {`p_contens_grid_color${props.switchnumber}border`}
+                // className = {`p_contens_grid_color${props.switchnumber}border`}
                 style={{
                   width:"fit-content"
                 }}
@@ -276,7 +285,7 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
             {props.product?.productStaff.map((item)=>{
               return(
                 <li 
-                className = {`p_contens_grid_color${props.switchnumber}border`}
+                // className = {`p_contens_grid_color${props.switchnumber}border`}
                 style={{
                   width:"fit-content"
                 }}

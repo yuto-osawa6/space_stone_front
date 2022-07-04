@@ -24,6 +24,7 @@ import dynamic from 'next/dynamic';
 import { useUser } from '@/lib/data/user/useUser';
 import { ChatModal } from './chat/ChatModal';
 import { AdminsEditProduct } from '@/components/admins/product/edit/AdminEditProduct';
+import { useWindowDimensions } from '@/hook/useWindowResize';
 let ActionCable:any;
 if (typeof window !== 'undefined') {
   ActionCable = require('actioncable');
@@ -347,6 +348,13 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
 
   //  const [openChatRoom,setOpenChatRoom] = useState<boolean>(false)
   //  const modalOpenChatRoom = () => setOpenChatRoom(true)
+  // width 100vw
+  // const [windowWidth,setWindowWidth] = useState<number>(0)
+  // const a = useWindowDimensions()
+  // useEffect(()=>{
+  //   let vw = document.body.clientWidth
+  //   setWindowWidth(vw)
+  // },[a])
   return(
     <>
       <div className = "product_show"
@@ -354,7 +362,9 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
         <div className = "product_show_contens">
           <div className = "product_show_contens01">
             <div className = "show_contents01_header">
-              <div className = "show_contents01_header_top">
+              <div className = "show_contents01_header_top"
+              // style={{width:windowWidth}}
+              >
                 <div className = "show_contents01_header_top_img">
                   {ProductStore.id==Number(params_id)?<img src = {ProductStore.imageUrl}></img>
                   :
@@ -369,17 +379,14 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                       edit
                     </div>
                   )}
+                  
                 </div>
-              </div>
-          
-              <div className = "show_contents01_header_bottom" 
-              >
-                <div className = "show_contents01_header_bottom_left">
+                <div className = "show_contents01_header_bottom_left show_contents01_header_bottom_leftv2">
                   <div className = "show_contents01_header_bottom_left_image">
-                    {ProductStore.id==Number(params_id)?<img src = {ProductStore.imageUrl}></img>
+                    {/* {ProductStore.id==Number(params_id)?<img src = {ProductStore.imageUrl}></img>
                     :
                     <img src = {product?.imageUrl}></img>
-                    }
+                    } */}
                   </div>
                   <div className = "show_contents01_header_bottom_left_bottom">
                     <div className = "show_contents01_header_bottom_left_bottom_score">
@@ -409,13 +416,8 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                           >
                             Score　
                             {scoreaverage}
-                           
+                          
                           </div>
-                          {/* {open&&(
-                              <OpenContext.Provider value={{ open, setOpen }}>
-                                <UserModalSign/>
-                              </OpenContext.Provider>
-                          )} */}
                         </>
                       )}
                       </>
@@ -482,6 +484,113 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     </div>
                   </div>
                 </div>
+              </div>
+          
+              <div className = "show_contents01_header_bottom" 
+              >
+                {/* <div className = "show_contents01_header_bottom_left">
+                  <div className = "show_contents01_header_bottom_left_image">
+                    {ProductStore.id==Number(params_id)?<img src = {ProductStore.imageUrl}></img>
+                    :
+                    <img src = {product?.imageUrl}></img>
+                    }
+                  </div>
+                  <div className = "show_contents01_header_bottom_left_bottom">
+                    <div className = "show_contents01_header_bottom_left_bottom_score">
+                    {loded&&(
+                      <>
+                      {userSwr.login&&(
+                        <>
+                          <div 
+                          >
+                            Score　
+                            {scoreaverage}
+                          </div>
+                          {openscore&&(
+                            <OpenScoreContext.Provider value={{ openscore, setOpenscore,score,setScore,scoreid,setScoreid,scoreaverage,setScoreaverage,stats,setStats }}>
+                              <ScoreModal
+                              product_id={product?.id}
+                              user_id={userSwr.user.id}
+                              />
+                            </OpenScoreContext.Provider>
+                          )}
+                        </>
+                      )}
+                      {!userSwr.login&&(
+                        <>
+                          <div 
+                          onClick = {modalopenJugde}
+                          >
+                            Score　
+                            {scoreaverage}
+                          
+                          </div>
+                        </>
+                      )}
+                      </>
+                    )}
+                    {!loded&&(
+                      <>
+                      Score　
+                      {scoreaverage}
+
+                      </>
+                    )}
+
+                    </div>
+                    <div className = "show_contents01_header_bottom_left_bottom_likes">
+                      {loded&&(
+                      <>
+                      {userSwr.login&&(
+                      <>
+                        { heart ? 
+                        <>
+                        <BsFillHeartFill
+                        onClick = {deleteheart}
+                        />
+                        　
+                        {scoreLenght}
+                        </>
+                        : 
+                        <>
+                        <BsHeart
+                        onClick = {createheart}
+                        />
+                        　
+                         {scoreLenght}
+                        </>
+                        }
+                       
+
+                      </>
+                      )}
+                      {!userSwr.login&&(
+                        <>
+                           <BsHeart
+                           onClick={modalopenJugde}
+                           />
+                           　
+                            {scoreLenght}
+                            
+                            {open&&(
+                              <OpenContext.Provider value={{ open, setOpen }}>
+                                <UserModalSign/>
+                              </OpenContext.Provider>
+                            )}
+                        </>
+                      )}
+                        </>
+                      )}
+                      {!loded&&(
+                        <>
+                          <BsHeart/>
+                          　
+                          {scoreLenght}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div> */}
 
 
                 <div className = "show_contents01_header_bottom_right"
@@ -494,7 +603,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     <div className = "show_contents01_header_bottom_right_descriptions">
                       {ProductStore.id!=Number(params_id)&&product!=undefined&&(
                         <ReactQuill
-                          className = "reviews_modal_quill"
+                          className = "reviews_modal_quill ovevierReactQuill"
                           value={product!=undefined?product.arasuzi:""} 
                           theme="bubble"
                           readOnly={true}
@@ -502,7 +611,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                       )}
                       {ProductStore.id==Number(params_id)&&(
                         <ReactQuill
-                          className = "reviews_modal_quill"
+                          className = "reviews_modal_quill ovevierReactQuill QuillContainer1"
                           // value={ProductStore.arasuzi!=undefined?ProductStore.arasuzi:product?.arasuzi} 
                           value={ProductStore.arasuzi!=undefined?ProductStore.arasuzi:product!=undefined?product.arasuzi:""} 
                           // value={""} 
@@ -511,9 +620,10 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                         />
                       )}
                     </div>
-                    <div className = "show_contents01_header_bottom_right_netflix"
+                    {/* <div className = "show_contents01_header_bottom_right_netflix"
                   
                     >
+                      他、関連サービス
                       {product?.annict!=undefined&&product?.annict!=0&&(
                         <a href = {`https://cal.syoboi.jp/tid/${product?.shoboi}`} target="_blank" rel="noopener noreferrer">
                           しょぼいカレンダー
@@ -529,17 +639,17 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                           公式サイト
                         </a>
                       )}
-                    </div>
+                    </div> */}
                   </div>  
                 </div>
               </div>
-
+            <div className="">
             <div className = "show_contents01_header_03" >
               <div className = "show_03">
                 <div className = "show_03_title">
                   作品詳細
                 </div>
-                <div className = "show_03_list">
+                <div className = "show_03_list show_03_list_box">
                   <ul>
                     {airing!=""&&(
                     <li>放送まで: {airing}</li>
@@ -607,6 +717,35 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                   </div>
                 </div>
               </div>
+
+              <div className = "show_contents01_header_03" >
+              <div className = "show_03">
+                <div className = "show_03_title">
+                  他サービス
+                </div>
+                <div className = "show_03_list other_service show_03_list_box">
+                  <ul>
+                      {product?.annict!=undefined&&product?.annict!=0&&(
+                        <li><a href = {`https://cal.syoboi.jp/tid/${product?.shoboi}`} target="_blank" rel="noopener noreferrer">
+                          しょぼいカレンダー
+                        </a></li>
+                      )}
+                      {product?.annict!=undefined&&product?.annict!=0&&(
+                        <li><a href = {`https://annict.com/works/${product?.annict}`} target="_blank" rel="noopener noreferrer">
+                          Annict
+                        </a></li>
+                      )}
+                      {product?.list!=undefined&&product?.list.length!=0&&(
+                        <li><a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list} target="_blank" rel="noopener noreferrer">
+                          公式サイト
+                        </a></li>
+                      )}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            </div>
 
               <div className = "show_contens01_header_05 share_container01">
                 <div className = "show_05"> 

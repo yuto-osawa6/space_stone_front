@@ -20,6 +20,9 @@
     // overflow: hidden;
     grid-template-rows: 1fr 1fr 1fr;
     grid-column-gap: 10px;
+    @include mq(tb){
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
 
     .NewNetflixContainerGridList{
       cursor: pointer;

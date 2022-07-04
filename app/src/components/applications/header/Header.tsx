@@ -169,6 +169,7 @@ const { t } = useLocale()
         <div className = {`HeaderNavi`}  
         style={{position:"relative"}}
         >
+          {Props.locationNumber!=1&&(
           <div className = "HeaderMainLeftTitle">
               <div className = "LOGO">
                 <div className=""
@@ -189,6 +190,7 @@ const { t } = useLocale()
                 </div> */}
             </div>
           </div>
+          )}
           <ul className={showMenu?"":"activeScroll"} 
           style={
             handleStyle2()
