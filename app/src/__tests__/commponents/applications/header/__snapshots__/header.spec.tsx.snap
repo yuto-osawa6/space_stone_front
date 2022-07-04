@@ -47,7 +47,7 @@ exports[`Header snapshot 1`] = `
     >
       <ul
         class=""
-        style="width: 100%; background-color: transparent;"
+        style="width: 100%;"
       >
         <li
           class="nomalNavi"
