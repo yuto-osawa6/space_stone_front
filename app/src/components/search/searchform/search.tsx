@@ -521,7 +521,7 @@ const Search:React.FC = function SearchFunc(){
           <input 
           type="text" 
           name="name" 
-          placeholder="タイトルを入力してください"
+          placeholder="アニメ、映画"
           value={data.title_or_titleKa_or_titleEn_or_titleRo_cont}
           autoComplete="off"
           onChange={handleChange}
@@ -725,6 +725,10 @@ const Search:React.FC = function SearchFunc(){
               </div> */}
               <SortLists/>
               <GridStyles/>
+              {/* <MdMenuOpen
+                className = {MdMenuOpenState2==false?"mdmenuopen mdmenuopen2":"mdmenuopen mdmenuopen2 active-mdmenuopen"}
+                onClick={MdMenuOpenState2==false?MdmenuOpenHandler2:MdmuneCloseHandler2}
+              /> */}
             {/* </div> */}
           </div>
         </div>

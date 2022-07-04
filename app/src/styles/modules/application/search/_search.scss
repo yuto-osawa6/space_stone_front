@@ -4,14 +4,20 @@
     margin: 40px 20px 20px 20px;
   }
 }
+.grecaptcha-badge{
+  display: none !important;
+}
 .header__search{
   .header__searchV2{
-  padding: 30px 30px;
-  border-radius: 30px;
-  color: $merupla-color-info-dark-1;
-  // border-radius: 5px;
-  background: $merupla-color-white-1;
-  box-shadow:$merupla-box-shadow-1;
+    padding:20px;
+    @include mq(tb){
+      padding: 30px 30px;
+    }
+    border-radius: 30px;
+    color: $merupla-color-info-dark-1;
+    // border-radius: 5px;
+    background: $merupla-color-white-1;
+    box-shadow:$merupla-box-shadow-1;
 
   }
   // background-color: aliceblue;
@@ -23,15 +29,23 @@
     font-weight: bold;
   }
   .SearchInputContainer{
+    width: 100%;
     // position: relative;
     display: grid;
-    grid-template-columns: 1fr 40px;
+    grid-template-columns: 1fr 30px;
     // gap:10px;
-    grid-gap: 10px;
+    grid-gap: 5px;
+    @include mq(tb){
+      grid-template-columns: 1fr 40px;
+    }
 
     .mdmenuopen{
-      display: none;
+      // box-shadow: $merupla-box-shadow-1;
+      // display: none;
       // border: 1px solid;
+      @include mq(tb){
+        display: block;
+      }
       cursor: pointer;
       background-color: white;
       width: 100%;
@@ -61,6 +75,7 @@
     top: 60px;
   }
   .search__input__box{
+    gap: 5px;
     // box-shadow: $color-v1-shadow-a2;
     // border: 1px solid;
     background-color: white;
@@ -79,6 +94,7 @@
   input{
     font-size: 1.0rem;
     outline: none;
+    width: 100%;
   }
 }
 
