@@ -205,6 +205,18 @@ useEffect(()=>{
         aria-describedby="modal-modal-description"
       >
         <>
+          {/* <div className="CloseButton"
+            onClick={()=>Props.setOpen(false)}
+            style={{
+              right:"1%",
+              top:"1%",
+              width: 40,
+              height: 40,
+              color:"#363949"
+            }}
+            >
+          <IoMdClose/>
+          </div> */}
         {groupProduct.map(i=>i.products).length>0&&(
           <>
         <div className="Tier"
@@ -218,7 +230,7 @@ useEffect(()=>{
           outline:"none",
           padding: "20px",
           overflow:"scroll",
-          maxHeight: "100vh",  
+          height: "100%",  
           paddingBottom: "130px", 
           bottom:"0"
         }}
@@ -257,6 +269,7 @@ useEffect(()=>{
           </div>
         </div>
         <div
+          className = "TierFirstNavigateBar"
           ref={ref}
           style={{
             position: "fixed",

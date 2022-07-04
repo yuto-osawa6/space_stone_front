@@ -89,12 +89,12 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   const [ishover2,setIshover2] = useState<boolean>(false)
   const handlehoverEnter = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    left === Props.maxleft02&&right===Props.right?setIshover2(true):setIshover(true)
+    left === Props.maxleft02&&right+20===Props.right?setIshover2(true):setIshover(true)
 
   };
   const handlehoverLeave = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    left === Props.maxleft02&&right===Props.right?setIshover2(false):setIshover(false)
+    left === Props.maxleft02&&right+20===Props.right?setIshover2(false):setIshover(false)
 
   }
   const [YearSeason,setYearSeason]= useState<string>("")

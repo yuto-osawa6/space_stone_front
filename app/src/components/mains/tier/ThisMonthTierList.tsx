@@ -1,6 +1,7 @@
 import { product } from "@/interfaces/product"
 import { url } from "@/utils/config"
 import { memo, useEffect, useState } from "react"
+import { isMobile } from "react-device-detect"
 import { TierShow } from "./show/TierShow"
 import { TierProductList } from "./TierProductList"
 
@@ -99,7 +100,7 @@ export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(
           })}
         </ul>
         {Props.group == "S" && (
-        <img src={url('/click.png')} alt="Sample image"
+        <img src={isMobile?url('/touch.png'):url('/click.png')} alt="Sample image"
         style={{
           pointerEvents: "none",
           zIndex: 12,

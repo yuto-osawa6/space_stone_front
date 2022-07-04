@@ -90,7 +90,7 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
           <div className=""
           style={{
             maxHeight: "90%",
-            width: "50%",
+            width: "80%",
             backgroundColor: "#363949",
             position: "relative",
             top: "50%",
@@ -114,6 +114,8 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
             <div className="CloseButton"
               style={{
                 top: "10px",
+                width: 30,
+                height: 30,
               }}
               onClick={handleClose}
             >

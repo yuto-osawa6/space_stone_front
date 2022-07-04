@@ -69,7 +69,7 @@ body{
         // margin: 20px;
         .products_infinitescroll{
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
           grid-gap: 10px;
           padding: 20px;
           // margin: 20px;
@@ -142,11 +142,18 @@ body::-webkit-scrollbar{
 
 .p_contents_grid_hover_contents_arasuzi{
   margin: 10px;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   line-height: 1.2rem;
+  .ql-editor{
+    padding: 0px!important;
+  }
+  p{
+    font-size: 0.8rem;
+  }
 }
 .p_contents_grid_hover_contents_arasuzi_Title{
   margin: 10px;
+  font-size: 0.8rem;
 }
 
 // 02
@@ -206,7 +213,16 @@ body::-webkit-scrollbar{
       margin-bottom: 10px;
       line-height: 1.3rem;
       overflow-y: scroll;
-    }
+    /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
+}
+
+ /*Google Chrome、Safariへの対応*/
+ .WorldClassContainerViewsRightArasuzi::-webkit-scrollbar{
+  display: none;
+}
     .WorldClassContainerViewsRightLink{
       padding: 10px;
       margin-bottom: 10px;
@@ -252,7 +268,7 @@ body::-webkit-scrollbar{
 // 03
 .products_infinitescroll03{
   display: grid;
-  grid-gap: 10px;
+  // grid-gap: 10px;
 
 }
 // 04

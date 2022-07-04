@@ -86,11 +86,14 @@ export const GridProducts:React.FC<Props> = function GridProductsFunc(Props){
   const dispatch = useDispatch();
   const handlehoverEnter = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    left === Props.left_grid&&right===Props.right?setIshover2(true):setIshover(true)
+    // console.log(left,Props.left_grid)
+    // console.log(right+20,Props.right)
+
+    left === Props.left_grid&&right+20===Props.right?setIshover2(true):setIshover(true)
   };
   const handlehoverLeave = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    left === Props.left_grid&&right===Props.right?setIshover2(false):setIshover(false)
+    left === Props.left_grid&&right+20===Props.right?setIshover2(false):setIshover(false)
   }
   useEffect(()=>{
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
@@ -151,7 +154,8 @@ export const GridProducts:React.FC<Props> = function GridProductsFunc(Props){
                 }
               {Props.avgScore!=undefined&&(
               <div className = "p_contents_grid_hover_contents_score" style={scoreColor}>
-                <MdOutlineStarRate/>{Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):""}%
+                {/* <MdOutlineStarRate/> */}
+                {Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):""}%
               </div>
               )}
               </div>
@@ -198,7 +202,8 @@ export const GridProducts:React.FC<Props> = function GridProductsFunc(Props){
                 }
               {Props.avgScore!=undefined&&(
               <div className = "p_contents_grid_hover_contents_score" style={scoreColor}>
-                <MdOutlineStarRate/>{Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):""}%
+                {/* <MdOutlineStarRate/> */}
+                {Props.avgScore!=undefined?Number(Props.avgScore).toFixed(1):""}%
               </div>
               )}
               </div>

@@ -349,7 +349,7 @@
     height: 22.88px;
     overflow: hidden;
     li{
-      padding: 5px;
+      padding: 2px;
     }
   }
 }
@@ -401,8 +401,12 @@
   }
   
 }
+.products_infinitescroll03{
+  margin: 40px 20px;
+}
     .ToptensContainerGrid{
       display: grid;
+
       .ToptensContainerGridList{
         // grid-template-columns: 100px 1fr auto auto auto; v1
         grid-template-columns: 100px auto 1fr;
@@ -474,7 +478,7 @@
             // height: 50px;
             li{
               white-space: nowrap;
-              padding: 3px;
+              padding: 1px 6px 1px 6px;
               border-radius: 5px;
               transform: translate(0px, -3px);
             }
@@ -902,4 +906,19 @@ scrollbar-width: none;
 /*Google Chrome、Safariへの対応*/
 .TierShow::-webkit-scrollbar{
 display: none;
+}
+
+.Tier{
+  max-width: 1500px,
+}
+.TierFirstNavigateBar{
+  max-width: 1500px,
+}
+.WorldClassContainerViewsRightArasuzi{
+  .ql-editor{
+    padding: 0px!important;
+  }
+  p{
+    font-size: 0.8rem;
+  }
 }

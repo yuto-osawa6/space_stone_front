@@ -1,6 +1,7 @@
 import { news } from "@/interfaces/main"
 import { Modal } from "@mui/material"
 import React, { useMemo } from "react"
+import { IoMdClose } from "react-icons/io"
 
 type Props = {
   open: boolean
@@ -36,6 +37,19 @@ export const NewMessageModal:React.FC<Props> = function NewMessageModalFunc(Prop
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+        <>
+        <div className="CloseButton"
+            onClick={handleClose}
+            style={{
+              right:"1%",
+              top:"1%",
+              width: 30,
+              height: 30,
+              color:"white"
+            }}
+            >
+          <IoMdClose/>
+          </div>
         <div className = "AdminsProduct">
           <div className = "FormProduct">
             <div className = "FormProductSetTitle">
@@ -66,6 +80,7 @@ export const NewMessageModal:React.FC<Props> = function NewMessageModalFunc(Prop
             </div>
           </div>
         </div>
+        </>
       </Modal>
     </>
   )

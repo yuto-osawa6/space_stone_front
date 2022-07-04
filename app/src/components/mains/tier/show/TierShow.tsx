@@ -29,14 +29,17 @@ export const TierShow:React.FC<Props> = function(Props){
           <div className="CloseButton"
             onClick={handleClose}
             style={{
-              right:"4%",
-              top:"4%"
+              right:"1%",
+              top:"1%",
+              width: 30,
+              height: 30,
             }}
             >
           <IoMdClose/>
           </div>
           <div className="TierShow"
           style={{
+            maxWidth: "1500px",
             backgroundColor:`${Props.color}`
           }}
           >

@@ -216,6 +216,7 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
           </div>
         </div>
         <div
+          className = "TierFirstNavigateBar"
           ref={ref}
           style={{
             position: "fixed",
