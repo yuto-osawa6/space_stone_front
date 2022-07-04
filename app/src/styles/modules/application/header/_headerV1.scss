@@ -185,7 +185,7 @@ svg{
     padding-bottom:10px;
     max-width: 1500px;
     background-color: #f6f6f9;
-    transition: transform 1s;
+    transition: transform 1s,background-color 1s;
     position: fixed;
     height: 59.66px;
     z-index: 300;

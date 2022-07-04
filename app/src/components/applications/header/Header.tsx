@@ -51,15 +51,15 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     setShowMenu(visible);
   },[a.scrollY])
 
-  // useScrollPosition(({ prevPos, currPos }) => {
-  //   setCurrentPositon(currPos.y)
-  //   if (currPos.y>-1){
-  //     setShowMenu(true)
-  //     return
-  //   }
-  //   const visible = currPos.y > prevPos.y;
-  //   setShowMenu(visible);
-  // }, []);
+  useScrollPosition(({ prevPos, currPos }) => {
+    setCurrentPositon(currPos.y)
+    if (currPos.y>-1){
+      // setShowMenu(true)
+      return
+    }
+    const visible = currPos.y > prevPos.y;
+    // setShowMenu(visible);
+  }, []);
 
   // submenu
   const submenuref = useRef<HTMLLIElement>(null)
@@ -94,6 +94,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     // }
   }
 
+  const w = useWindowDimensions()
   const handleStyle = () => {
     if(Props.locationNumber===undefined){
     return {}
@@ -108,8 +109,10 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     }else if(Props.locationNumber===1){
       if(currentPostion>-1){
         return {width:"100%",backgroundColor: "transparent"}
+      }else if(w.width > 768){
+        return {width:"100%",backgroundColor:"#f6f6f9"}
       }else{
-        return {width:"100%",backgroundColor:"#1a252f"}
+        return {width:"100%",backgroundColor: "transparent"}
       }
     }
 }
@@ -120,7 +123,6 @@ const handleClick = (url:string) => {
 }
 // locate
 const { t } = useLocale()
-// const windowSize = useWindowDimensions()
 // console.log(windowSize)
     // useEffect(()=>{
     //   const touchHandler = (event: any) => {
