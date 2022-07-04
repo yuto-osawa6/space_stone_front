@@ -170,6 +170,7 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
           
           {params_id!=undefined&&items!=undefined&&(
             <>
+            <div className="show_09_review_contents">
             {items.map((item)=>{
               return(
                 // <ProductReviewsItems
@@ -185,6 +186,7 @@ export const ProductShowReviews:React.FC<Props> = function ProductShowReviewsFun
                 </ShowCloudsItems>
               )
             })}
+            </div>
           </>
           )}
         </div>

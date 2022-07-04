@@ -4,6 +4,7 @@ import { userReview } from "@/interfaces/product";
 import { UserEpisordEmotionList } from "./UserEpisordEmotionList";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { useUser } from "@/lib/data/user/useUser";
 type emotions = {
   id:number
   emotion: string
@@ -69,7 +70,8 @@ const getArrayDeleteDouble2 = (ary:emotions[], key:any) => {
   let map = new Map(ary.map((o:any) => [o[key], o]));
   return Array.from(map.values());
 }
-const LoginUser = useSelector((state:RootState)=>state.user)
+const {userSwr} = useUser()
+const LoginUser = userSwr 
   return(
     <>
     <div className=""
@@ -93,7 +95,8 @@ const LoginUser = useSelector((state:RootState)=>state.user)
       >
         <div className=""
         style={{
-          fontWeight:"bold"
+          fontWeight:"bold",
+          wordBreak: "keep-all",
         }}
         >
           {Props.episord.episord}話
@@ -127,7 +130,7 @@ const LoginUser = useSelector((state:RootState)=>state.user)
           flexWrap:"wrap",
           paddingBottom:"10px",
           borderBottom:"1px solid",
-          overflow:"scroll"
+          // overflow:"scroll"
         }}
         >
           {emotions.map(item=>{
@@ -150,7 +153,7 @@ const LoginUser = useSelector((state:RootState)=>state.user)
             gap: "10px",
             flexWrap:"wrap",
             paddingBottom:"10px",
-            overflow:"scroll"
+            // overflow:"scroll"
         }}
           >
           <li

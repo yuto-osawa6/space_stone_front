@@ -107,8 +107,8 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     if(Props.locationNumber===undefined){
     return {}
     }else if(Props.locationNumber===1){
-      if(currentPostion>-1){
-        return {width:"100%",backgroundColor: "transparent"}
+      if(w.width > 768&&currentPostion>-1){
+        return {width:"100%",backgroundColor: "rgb(246 246 249 / 30%)"}
       }else if(w.width > 768){
         return {width:"100%",backgroundColor:"#f6f6f9"}
       }else{

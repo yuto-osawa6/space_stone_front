@@ -115,6 +115,7 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
           
           {params_id!=undefined&&items!=undefined&&(
             <>
+            <div className="show_09_review_contents">
             {items.map((item)=>{
               return(
                 <ShowCloudsItems2
@@ -127,6 +128,7 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
                 </ShowCloudsItems2>
               )
             })}
+            </div>
           </>
           )}
         </div>
