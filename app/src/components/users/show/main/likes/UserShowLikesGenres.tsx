@@ -42,7 +42,12 @@ export const UserShowLikesGenres:React.FC<Props> = function UserShowLikesGenresF
         >
           お気に入りした作品のジャンル ランキング順
         </div>
-        <div className = "UserLikesGenresMain">
+        <div className = "UserLikesGenresMain"
+        style={{
+          backgroundColor:"transparent",
+          padding:0
+        }}
+        >
           <ul>
           {genres.map((item)=>{
             return(

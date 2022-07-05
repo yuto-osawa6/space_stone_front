@@ -104,7 +104,8 @@ export const UserShowScoresProducts:React.FC = function UserShowScoresProductsFu
           style={{
             padding: "10px",
             display: "flex",
-            gap:"10px"
+            gap:"10px",
+            flexFlow: "wrap",
           }}
           >
             {array.map((item,index)=>{

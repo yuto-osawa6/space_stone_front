@@ -250,6 +250,8 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
           style={{
             display: "flex",
             flexFlow: "wrap",
+            backgroundColor:"transparent",
+            padding:0
           }}
           >
             {user.likeGenres.map((item)=>{
@@ -274,7 +276,7 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
           style={{
             margin: "0px 20px",
             display: "flex",
-            overflow: "scroll",
+            // overflow: "scroll",
             gap: "10px",
             flexFlow: "wrap"
           }}
@@ -305,7 +307,14 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
           >
             頻繁に抱いた感情
           </div>
-          <div className = "UserShowOverviewLikes">
+          <div className = "UserShowOverviewLikes"
+          style={{
+            display: "flex",
+            flexFlow: "wrap",
+            backgroundColor:"transparent",
+            padding:0
+          }}
+          >
             {user.emotions.slice(0,10).map((item)=>{
               return(
                 <UserShowOverviewEmotion
@@ -327,7 +336,14 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
           >
             高スコアをつけた作品に抱いた感情
           </div>
-          <div className = "UserShowOverviewLikes">
+          <div className = "UserShowOverviewLikes"
+          style={{
+            display: "flex",
+            flexFlow: "wrap",
+            backgroundColor:"transparent",
+            padding:0
+          }}
+          >
             {user.scoreEmotions.slice(0,10).map((item)=>{
               return(
                 <UserShowOverviewScoreEmotion

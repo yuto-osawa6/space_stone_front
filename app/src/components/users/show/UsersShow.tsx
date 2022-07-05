@@ -130,7 +130,7 @@ export const UsersShow:React.FC<Props> = function UsersShowFunc(Props){
             )}
           <div className = "UsersShowMain"
           style={{
-            margin: "0px 20px"
+            // margin: "0px 20px"
           }}
           >
             {user!=undefined&&(
