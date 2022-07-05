@@ -9,7 +9,7 @@ export const  Footer:React.FC = () => {
       <div className="Footer">
           <div className="FooterSns box26">
             <div className="FooterSnsTitle box-title">community</div>
-            <p><a href = "https://discord.gg/umAaS5JvNM"><FaDiscord/> discord</a></p>
+            <p><a href = "https://discord.gg/umAaS5JvNM"><FaDiscord/></a></p>
             <div className="FooterSnsTitleD">
             </div>
           </div>
