@@ -172,7 +172,10 @@
           margin-right: 5px;
         }
         &:hover{
-          color:$color-v2-b;
+          @include mq(md)
+          {
+            color:$color-v2-b;
+          }
 
         }
       }
@@ -249,7 +252,9 @@
           margin-right: 5px;
         }
         &:hover{
+          @include mq(md){
           color: $color-v2-b;
+          }
         }
       }
     }
@@ -377,11 +382,13 @@
       white-space: nowrap;
       border: solid 1px #EAEEF3;
       &:hover{
+        @include mq(md){
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: $color-v1-a;
         color: rgb(255, 255, 255);
+        }
       }
       
   }
@@ -407,11 +414,13 @@
     border-radius: 5px;
 
     &:hover{
+      @include mq(md){
       background-color: $color-v1-a;
       color: rgb(255, 255, 255);
       display: flex;
       justify-content: center;
       align-items: center;
+      }
     }
   }
  
@@ -482,7 +491,9 @@
           display: block;
           cursor: pointer;
           &:hover{
+            @include mq(md){
             color:$color-v2-b;
+            }
           }
         }
       }
@@ -581,8 +592,10 @@
       align-items: center;
       background-color: white;
       &:hover{
+        @include mq(md){
         background-color: #ff3073;
         color: white;
+        }
       }
     }
     -ms-overflow-style: none;

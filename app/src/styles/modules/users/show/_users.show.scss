@@ -94,8 +94,10 @@
           cursor: pointer;
           width: fit-content;
           &:hover{
+            @include mq(md){
             color: #ff3073;
             border-radius: 30px;
+            }
           }
           a{
             // color:aliceblue;
@@ -104,8 +106,10 @@
             gap: 5px;
             align-items: center;
             &:hover{
+              @include mq(md){
               color: #ff3073;
               border-radius: 30px;
+              }
             }
 
             svg{

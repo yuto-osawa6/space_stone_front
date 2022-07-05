@@ -44,9 +44,11 @@
         transition: all 0.1s;
           cursor: pointer;
           &:hover{
-            background-color: #edf1f5;
-            color: $merupla-color-dark-1;
-            border-left:3px solid #38b7ff;
+            @include mq(md){
+              background-color: #edf1f5;
+              color: $merupla-color-dark-1;
+              border-left:3px solid #38b7ff;
+            }
           }
 
         a{
@@ -212,8 +214,9 @@
   transition: all 0.1s;
   cursor: pointer;
   &:hover{
-    background-color: #edf1f5;
-    color: #1a252f;
-    // border-left: #38b7ff;
+    @include mq(md){
+      background-color: #edf1f5;
+      color: #1a252f;
+    }
   }
 }

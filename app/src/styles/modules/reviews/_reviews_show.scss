@@ -223,7 +223,9 @@
     .ReviewCommentListGoodBadReturn{
       cursor: pointer;
       &:hover{
+        @include mq(md){
         color: #ff3073;
+        }
       }
     }
   }
@@ -355,7 +357,9 @@
 }
 .ReviewCommentListHover{
   &:hover{
+    @include mq(md){
     background-color: #dce8f2;
+    }
   }
 }
 .ProductReviewShowMainValuationPeacentage{

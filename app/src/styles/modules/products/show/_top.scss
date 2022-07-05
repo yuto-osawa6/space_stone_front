@@ -103,7 +103,9 @@
 
   li{
     &:hover{
+      @include mq(md){
       color: #ff3073;
+      }
     }
   }
 }

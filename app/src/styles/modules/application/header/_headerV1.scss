@@ -15,8 +15,10 @@ svg{
     transform: scale(1);
   }
   a:hover {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    @include mq(md){
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
   }
 }
 .HeaderV1{
@@ -241,8 +243,10 @@ svg{
           transform: scale(1);
         }
         .user_mypage:hover {
-          -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+          @include mq(tb){
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+          }
         }
         .userNavigationDummy{
           position: relative;
@@ -295,8 +299,10 @@ svg{
               gap: 5px;
               padding: 5px;
               &:hover{
-                cursor: pointer;
-                color: #ff3073;
+                @include mq(md){
+                  cursor: pointer;
+                  color: #ff3073;
+                }
               }
             }
           }
@@ -411,10 +417,11 @@ svg{
         padding: 5px;
         white-space: nowrap;
         &:hover{
-          background-color: #edf1f5;
-          color: $merupla-color-dark-1;
-          border-left:3px solid #38b7ff;
-          // color: #1a76d2;;
+          @include mq(md){
+            background-color: #edf1f5;
+            color: $merupla-color-dark-1;
+            border-left:3px solid #38b7ff; 
+          }
         }
       }
     }
@@ -465,7 +472,9 @@ svg{
         // padding: 3px;
         // white-space: nowrap;
         &:hover{
-          color: #ff3073;
+          @include mq(md){
+            color: #ff3073;
+          }
         }
       }
     }
@@ -517,7 +526,9 @@ svg{
   gap: 10px;
   align-items: center;
   &:hover{
-    color: #ff3073;
+    @include mq(md){
+      color: #ff3073;
+    }
   }
 }
 

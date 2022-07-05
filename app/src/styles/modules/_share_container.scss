@@ -127,8 +127,10 @@
     box-shadow: $color-v1-shadow-a;
     cursor: pointer;
     &:hover{
+      @include mq(md){
       background-color: darkblue;
       color: khaki;
+      }
     }
   }
 
@@ -157,8 +159,10 @@
     border-radius: 5px;
     box-shadow: $color-v1-shadow-a;
     &:hover{
+      @include mq(md){
       color: white;
       background-color: #ff3073!important;
+      }
     }
   }
 
@@ -210,13 +214,17 @@
   // user
   .UserSearchBotton{
     &:hover{
+      @include mq(md){
       color:aliceblue!important;
       background-color: #3788d8;
+      }
     }
   }
   .UserSearchItem{
     &:hover{
+      @include mq(md){
       background-color: #536577;
+      }
     }
 
   }
@@ -242,7 +250,9 @@
   .UsersShowTopSettingListBackgroudImage{
 
     &:hover{
+      @include mq(md){
       color: #3788d8;
+      }
     }
   }
 

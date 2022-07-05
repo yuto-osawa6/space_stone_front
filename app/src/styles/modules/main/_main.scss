@@ -103,7 +103,9 @@
     align-items: center;
     &:hover{
       // background-color: #ff3073;
+      @include mq(md){
       color:#ff3073;
+      }
     }
   }
   .gridNewMessageListTag{
@@ -199,8 +201,10 @@
         cursor: pointer;
         &:hover{
           // width: 120%;
+          @include mq(md){
           transform: translateY(-5px);
           box-shadow: 4px 5px 10px 0px rgba(0, 0, 0, 0.1);
+          }
         }
 
       img{
@@ -429,8 +433,10 @@
         cursor: pointer;
         &:hover{
           // width: 120%;
+          @include mq(md){
           transform: translateY(-5px);
           box-shadow: 1px 2px 4px 0px rgba(26,37,47,0.6);
+          }
         }
 
         .ToptensContainerGridListImage{
@@ -570,10 +576,12 @@
     // transition: color 1s;
 
     &:hover{
+      @include mq(md){
       background-color: #ff3073;
       color: white;
       transform: translateY(-5px);
       box-shadow: $color-v1-shadow-hover-a;
+      }
     }
   }
 }
@@ -798,7 +806,9 @@ display: none;
   color:$merupla-color-info-dark-1;
   &:hover{
     // background-color: #ff3073;
+    @include mq(md){
     color: #ff3073;
+    }
   }
 }
 .SeasonTierTitle{

@@ -35,8 +35,10 @@
      
       }
       &:hover{
+        @include mq(md){
         transition: 1s;
         transform: translateY(-5px);
+        }
       }
     }
   }
@@ -149,7 +151,9 @@
   transition: 1s;
   // transform: rotateZ(0deg);
   &:hover{
+    @include mq(md){
     transition: 1s;
+    }
     // transform: rotateZ(180deg);
   }
 }

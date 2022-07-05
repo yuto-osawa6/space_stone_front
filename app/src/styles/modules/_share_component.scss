@@ -52,7 +52,9 @@
         }
         cursor: pointer;
         &:hover{
+          @include mq(md){
           color:#ff3073;
+          }
         }
       }
     }
@@ -85,7 +87,9 @@
       align-items: center;
       cursor: pointer;
       &:hover{
+        @include mq(md){
         color:#ff3073;
+        }
       }
     }
   }

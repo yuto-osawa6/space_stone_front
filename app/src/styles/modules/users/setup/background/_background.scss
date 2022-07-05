@@ -28,8 +28,10 @@
       width: fit-content;
       border-radius: 5px;
       &:hover{
+        @include mq(md){
         background-color: #1a76d2;
         color: white;
+        }
       }
     }
     input[type="file"] {
