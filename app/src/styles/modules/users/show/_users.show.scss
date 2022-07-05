@@ -10,8 +10,10 @@
     width: 100%;
     .UsersShowTopImage{
       padding-top: 59.6px;
+      margin-top: 59px;
       @include mq(tb){
         padding-top: 30%;
+        margin-top:0px;
         background-color: #1a252f;
       }
       img{
@@ -184,9 +186,10 @@
 }
 
 .UsersShowMain{
-  display: grid;
+  // display: grid;
   @include mq(md){
     margin: 0px 20px;
+  display: grid;
     grid-template-columns: auto 1fr;
   }  
 
