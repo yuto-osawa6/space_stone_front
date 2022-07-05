@@ -351,8 +351,8 @@ const handleUpdateContents  = async() => {
               readOnly={true}
             />     
           </div>
-          <div className = "ProductReviewShowMainValuation">
-            <div className = "ProductReviewShowMainValuationPeacentage">
+          {/* <div className = "ProductReviewShowMainValuation"> */}
+            {/* <div className = "ProductReviewShowMainValuationPeacentage">
               <div className = "ProductReviewShowMainValuationPeacentageMain">
                 {likeCommentScore==undefined||likeCommentScore=="0.0"?
                 <>-----</>  
@@ -450,11 +450,11 @@ const handleUpdateContents  = async() => {
               )}
             </>
             )}
-          </div>
+          </div> */}
           <div className = "ProductReviewShowMainComments">
             <div className = "ProductReviewShowMainCommentsTop">
               <div className = "ProductReviewShowMainCommentsTopTitle">
-                Comments
+                
                 <div className = "ProductReviewShowMainCommentsTopTitleSort">
                   <div className = "sortCommentsLists">
                   <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
@@ -480,7 +480,7 @@ const handleUpdateContents  = async() => {
               <div className = "ProductReviewShowMainCommentsTopCommenting"
                 onClick={modalOpenJugdeReviewComment}
               >
-                コメントする
+                投稿する
               </div>
               {openReviewComment&&(
                 <OpenReviewCommentContext.Provider value={{openReviewComment, setOpenReviewComment}}>

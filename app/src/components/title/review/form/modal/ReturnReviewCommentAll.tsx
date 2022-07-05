@@ -11,6 +11,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { ReturnReviewComment } from "../comments/ReturnReviewComment"
 import { ReturnReviewCommentList } from "../comments/ReturnReviewCommentList"
+import { IoMdClose } from "react-icons/io"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -301,6 +302,11 @@ const scrollParentRef = scrollRef.current
               </InfiniteScroll>
               )}
             </div>
+          </div>
+          <div className="CloseButton CloseButtonReturnModals"
+            onClick={handleClose}
+            >
+            <IoMdClose/>
           </div>
         </>
     </Modal>

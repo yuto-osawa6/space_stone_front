@@ -11,6 +11,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { ReturnThreadComment } from "../comments/ReturnThreadComment"
 import { ReturnThreadCommentList } from "../comments/ReturnThreadCommentList"
+import { IoMdClose } from "react-icons/io"
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
@@ -299,6 +300,11 @@ export const ReturnThreadCommentAll:React.FC<Props> = function ReturnThreadComme
               </InfiniteScroll>
               )}
             </div>
+          </div>
+          <div className="CloseButton CloseButtonReturnModals"
+            onClick={handleClose}
+            >
+            <IoMdClose/>
           </div>
         </>
     </Modal>
