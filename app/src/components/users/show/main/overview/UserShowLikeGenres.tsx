@@ -8,10 +8,17 @@ export const UserShowLikeGenres:React.FC<Props> = function UserShowLikeGenresFun
 
   return(
     <>
-      <div className = "UserShowLikeGenres">
-        <ul>
+      <div className = "UserShowLikeGenres"
+      
+      >
+        <ul
+        style={{
+          height: "100%"
+        }}
+        >
           <li
           style={{
+            height: "100%",
             color:"white",
             backgroundColor:"#20c791",
             padding: "5px",

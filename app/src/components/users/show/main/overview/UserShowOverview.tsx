@@ -246,7 +246,12 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
           >
             お気に入りした作品のジャンルTop4
           </div>
-          <div className = "UserShowOverviewLikes">
+          <div className = "UserShowOverviewLikes"
+          style={{
+            display: "flex",
+            flexFlow: "wrap",
+          }}
+          >
             {user.likeGenres.map((item)=>{
               return(
                 <UserShowLikeGenres

@@ -77,6 +77,10 @@
         // color:aliceblue;
         // font-weight: bold;
         font-size: 0.9rem;
+        flex-flow: wrap;
+        @include mq(tb){
+          // flex-flow: ;
+        }
         // border-radius: 5px;
         li{
           // color:aliceblue;
@@ -136,8 +140,12 @@
 }
 .UserShowOverviewLikes{
   margin: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  // display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    display: flex;
+    flex-flow: wrap;
+    background-color: transparent;
+    padding: 0px;
   img{
     border-radius: 5px;
     width: 100%;
@@ -154,10 +162,14 @@
 
 .UsersShowMain{
   display: grid;
-  grid-template-columns: auto 1fr;
+  @include mq(md){
+    grid-template-columns: auto 1fr;
+  }  
 
   .UserShowOutletLeft{
-    width: 400px;
+    @include mq(md){
+      width: 400px;
+    } 
   }
 
   .UserShowOutletRight{
