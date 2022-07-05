@@ -648,21 +648,27 @@ px
     margin: 20px;
     grid-gap: 20px;
     .show_contents01_header_bottom_left_bottom_score{
-      padding: 10px;
+      padding: 5px;
       background-color: #47cf8a;
       border-radius: 5px;
       color: #fff;
       word-break: break-word;
+      @include mq(md){
+        padding: 10px;
+      }
     }
     .show_contents01_header_bottom_left_bottom_likes{
       width: fit-content;
-      padding: 10px;
+      padding: 5px;
       background-color: #ff3073;
       border-radius: 5px;
       color: #fff;
       height: -webkit-fit-content;
       height: -moz-fit-content;
       height: fit-content;
+      @include mq(md){
+        padding: 10px;
+      }
     }
   }
 }

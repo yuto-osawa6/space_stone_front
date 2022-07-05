@@ -57,17 +57,19 @@ type year_season = {
 
 
 export const ProductFormList1Edit:React.FC<Props> = (Props) => {
-  const a = useMemo(()=>{
-    DefaultPasteForTitle()
-  },[])
-  a
+  // const a = useMemo(()=>{
+  //   DefaultPasteForTitle()
+  // },[])
+  // a
+  // DefaultPasteForTitle()
   // -------------------
   
   useEffect(()=>{
     handleSetUpYear()
   },[])
-
-  const [yearSeason,setYearSeason] = useState<year_season[]>(Props.formProduct.formYearSeason)
+  console.log(Props)
+  console.log(Props.formProduct.formYearSeason)
+  const [yearSeason,setYearSeason] = useState<year_season[]>([])
   const childFunc01 = useRef<any>([])
  
   // productTitle------------------------------
@@ -176,7 +178,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
       [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
       // [{my:[]}]
       // ['UnderlineWavy'],
-      ['UnderlineWavy','UnderlineWavy2','UnderlineWavy3'],
+      // ['UnderlineWavy','UnderlineWavy2','UnderlineWavy3'],
       // ["link", "image", "video"],
       // ['netflix'],
       // ['boxcontents'],   

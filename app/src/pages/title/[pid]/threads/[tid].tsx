@@ -114,6 +114,7 @@ ThreadShow.getLayout = (page) => {
       locationNumber={1}
     >
       <ProductShow
+      active={4}
       // data = {Props.data}
       >
         <ProductShowThreads>

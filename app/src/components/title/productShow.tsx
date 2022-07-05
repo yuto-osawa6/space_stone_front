@@ -49,6 +49,7 @@ type chatList = {
 
 type Props = {
   children:ReactNode
+  active:number
   // data: productShow
 }
 
@@ -747,20 +748,44 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
 
             </div>
 
-              <div className = "show_contens01_header_05 share_container01">
+              <div className = "show_contens01_header_05 share_container01"
+              style={{
+                margin: "0px"
+              }}
+              >
                 <div className = "show_05"> 
                   <ul className = "show_05_navigation_menu">
                     <li
+                    className={Props.active == 0? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
+                    style={{
+                      width: "100%"
+                    }}
                     ><Link href={`/title/${params_id}`}>Top</Link></li>
                     {product?.overview!=undefined&&(
                     <li
+                    style={{
+                      width: "100%"
+                    }}
+                    className={Props.active == 1? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
                     ><Link href={`/title/${params_id}/overview`}>Overview</Link></li>
                     )}
-                      <li
+                    <li
+                    style={{
+                      width: "100%"
+                    }}
+                      className={Props.active == 2? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
                     ><Link href={`/title/${params_id}/episords`}>Episords</Link></li>
                     <li
+                    style={{
+                      width: "100%"
+                    }}
+                    className={Props.active == 3? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
                     ><Link href={`/title/${params_id}/reviews`}>Review</Link></li>
                     <li
+                    style={{
+                      width: "100%"
+                    }}
+                    className={Props.active == 4? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
                     ><Link href={`/title/${params_id}/threads`}>Thread</Link></li> 
                     {/* {userSwr.login==true?
                       <>

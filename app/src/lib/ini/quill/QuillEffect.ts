@@ -10,6 +10,8 @@ import { useEffect } from "react"
 const Quill =
   typeof window === "object" ? require("quill") : () => false;
 
+  // const Clipboard = Quill.import('modules/clipboard')
+  // const Delta = Quill.import('delta')
 // const Clipboard = Quill.import("modules/clipboard")
 
 // // const Clipboard = dynamic(() =>  Quill.import("modules/clipboard"), { ssr: false });

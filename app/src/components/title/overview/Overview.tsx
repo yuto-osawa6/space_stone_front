@@ -1,19 +1,23 @@
 import { Productshowcontext } from "@/contexttype/contexttype"
+import { DefaultPaste } from "@/lib/ini/quill/QuillEffect";
 import { DefaultPasteForTitle } from "@/lib/ini/quill/QuillEffectForTitle";
 import { useContext, useEffect,useMemo } from "react"
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
 export const Overview:React.FC = function OverviewFunc(){
-  const a = useMemo(()=>{
-    DefaultPasteForTitle()
-  },[])
-  a
+  // DefaultPaste()
+  // const a = useMemo(()=>{
+  //   DefaultPasteForTitle()
+  // },[])
+  // DefaultPasteForTitle()
+  // a
   const props = useContext(Productshowcontext)
   const handleSetUp = () => {
   }
   useEffect(()=>{
     handleSetUp()
+    // a
   },[])
 
   const modules =  useMemo(() => (

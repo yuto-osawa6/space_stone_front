@@ -100,6 +100,7 @@ ReviewShow.getLayout = (page) => {
       locationNumber={1}
     >
       <ProductShow
+      active={0}
       >
         <Top>
           {page}

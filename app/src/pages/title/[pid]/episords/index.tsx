@@ -90,6 +90,7 @@ TitleIndex.getLayout = (page) => {
       locationNumber={1}
     >
       <ProductShow
+      active={2}
       // data = {Props.data}
       >
         {page}

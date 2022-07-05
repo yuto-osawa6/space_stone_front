@@ -21,6 +21,7 @@ import { submitSpin } from "@/lib/color/submit-spin";
 import dynamic from "next/dynamic";
 import { QuillSettings } from "@/lib/ini/quill/QuillSettings";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { DefaultPaste } from "@/lib/ini/quill/QuillEffect";
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
 
@@ -47,6 +48,7 @@ type Props = {
 }
 
 export const TheredModal:React.FC<Props> = function TheredModalFunc(Props){
+  DefaultPaste()
   const {openthered, setOpenthered} = useContext(OpenTheredContext)
   const handleClose = () => setOpenthered(false)
   const [value,setValue] = useState<string>("")
