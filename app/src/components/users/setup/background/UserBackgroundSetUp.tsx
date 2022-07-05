@@ -7,7 +7,7 @@ export const UserBackgroupdSetUp:React.FC = function UserBackgroupdSetUpFunc(){
   const changeOnHandler = () => setOn(true)
   return(
     <>
-     <div className = "UsersShowTopSettingListBackgroudImage"
+     <div className = "UsersShowTopSettingListBackgroudImage UsersShowTopSettingListBackgroudImage2"
       onClick={changeOnHandler}
       style={{
         cursor:"pointer"

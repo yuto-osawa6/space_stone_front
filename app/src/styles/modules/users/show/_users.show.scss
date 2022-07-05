@@ -9,12 +9,21 @@
     position: relative;
     width: 100%;
     .UsersShowTopImage{
-      padding-top: 30%;
-      background-color: #1a252f;
+      padding-top: 59.6px;
+      @include mq(tb){
+        padding-top: 30%;
+        background-color: #1a252f;
+      }
       img{
+        display: none;
+        // height: 100%;
+        // object-fit: cover;
         width: 100%;
         position: absolute;
         top:0;
+        @include mq(tb){
+          display: block;
+        }
       }
     }
     .UsersShowTopImageUserInfo{
@@ -24,13 +33,23 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
-      margin: 10px;
       padding: 10px;
-      background-color: #1a252f78;
-      color: white;
+      // background-color: #1a252f78;
+      // color: white;
       border-radius: 5px;
+
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 20px;
+      @include mq(tb){
+        color: white;
+        margin: 10px 30px;
+        top:auto;
+        // transform: translateY(-100%);
+      }
       img{
-        width: 30px;
+        width: 35px;
+        height: 35px;
         border-radius: 100%;
       }
       p{
@@ -277,4 +296,11 @@
   justify-content: center;
   align-items: center;
   height: 100px;
+}
+
+.UsersShowTopSettingListBackgroudImage2{
+  display: none;
+  @include mq(md){
+   display: block;
+  }  
 }
