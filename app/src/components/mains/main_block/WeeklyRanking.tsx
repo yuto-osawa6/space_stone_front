@@ -52,7 +52,7 @@ export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
       >
         <div className="WeekliyRankingsTitle"
         style={{
-          fontSize: "1.5rem",
+          // fontSize: "1.5rem",
           marginBottom: "20px",
           display: "block",
           fontWeight: "bold",

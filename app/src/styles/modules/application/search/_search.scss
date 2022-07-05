@@ -1,5 +1,5 @@
 .header__search__parentV2{
-  margin: 20px 20px 20px 20px;
+  // margin: 20px 20px 20px 20px;
   @include mq(tb){
     margin: 40px 20px 20px 20px;
   }
@@ -12,13 +12,11 @@
     padding:20px;
     @include mq(tb){
       padding: 30px 30px;
+      border-radius: 30px;
+      box-shadow:$merupla-box-shadow-1;
     }
-    border-radius: 30px;
     color: $merupla-color-info-dark-1;
-    // border-radius: 5px;
     background: $merupla-color-white-1;
-    box-shadow:$merupla-box-shadow-1;
-
   }
   // background-color: aliceblue;
   label{

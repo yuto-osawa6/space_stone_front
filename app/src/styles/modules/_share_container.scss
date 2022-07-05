@@ -26,11 +26,20 @@
 }
 
 .share_middle_container_title{
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   // margin-bottom: 10px;
   display: block;
   font-weight: bold;
+  @include mq(tb){
+    font-size: 1.5rem;
+  }
   
+}
+.SeasonTierTitle{
+  font-size: 1.3rem;
+  @include mq(tb){
+    font-size: 1.5rem;
+  }
 }
 
 .share_middle_container_right_text{

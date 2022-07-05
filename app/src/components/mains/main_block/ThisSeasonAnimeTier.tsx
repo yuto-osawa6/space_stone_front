@@ -136,7 +136,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
       style={{
       fontWeight:"bold",
       // marginBottom: "10px",
-      fontSize: "1.5rem",
+      // fontSize: "1.5rem",
       // paddingBottom: "10px"
       }}
       >
@@ -173,7 +173,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
       </div>
       )}
       {userTier.length!=0&&(
-      <div className=""
+      <div className="editTierButton"
       onClick={userSwr.login==true?handleOpenTierUpdateModal:handleOpenSign}
       style={{
         cursor:"pointer"

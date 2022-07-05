@@ -405,7 +405,10 @@
   
 }
 .products_infinitescroll03{
-  margin: 40px 20px;
+  // margin: 40px 20px;
+  @include mq(tb){
+    margin: 40px 20px;
+  }
 }
     .ToptensContainerGrid{
       display: grid;
@@ -658,6 +661,12 @@
 }
 
 // 
+.WeekliyRankingsTitle{
+  font-size: 1.3rem;
+  @include mq(tb){
+    font-size: 1.5rem;
+  }
+}
 .WeekliyRankings {
   margin: 20px 0px;
 
@@ -665,10 +674,10 @@
     @include mq(tb){
       padding: 30px 30px;
       margin: 20px 20px;
+      box-shadow: $merupla-box-shadow-1;
     }
     background-color: $merupla-color-white-1;
     border-radius: 30px;
-    box-shadow: $merupla-box-shadow-1;
   }
 }
 .SeasonTier{
@@ -683,10 +692,11 @@
     padding: 20px 20px;
     margin-top: 20px;
     background-color: $merupla-color-white-1;
-    box-shadow: $merupla-box-shadow-1;
+    // box-shadow: $merupla-box-shadow-1;
     @include mq(tb){
       padding: 30px 30px;
       border-radius: 30px;
+      box-shadow: $merupla-box-shadow-1;
     }
   }
 }
@@ -694,10 +704,10 @@
   @include mq(tb){
     padding: 30px 30px;
     margin: 20px 20px;
+    box-shadow: $merupla-box-shadow-1;
   }
   background-color: $merupla-color-white-1;
   border-radius: 30px;
-  box-shadow: $merupla-box-shadow-1;
 }
 .TagsContainer{
   // padding: 20px;
@@ -719,12 +729,13 @@
   @include mq(tb){
     border-radius: 30px;
     padding: 30px 30px;
+    box-shadow: $merupla-box-shadow-1;
+    background-color: $merupla-color-white-1;
   }
   height: calc(100% - 96px);
   padding: 20px 20px;
   margin: 20px 0 0 0;
-  background-color: $merupla-color-white-1;
-  box-shadow: $merupla-box-shadow-1;
+  // background-color: $merupla-color-white-1;
 }
 
 

@@ -137,7 +137,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       style={{
       fontWeight:"bold",
       // marginBottom: "10px",
-      fontSize: "1.5rem",
+      // fontSize: "1.5rem",
       // paddingBottom: "10px"
       }}
       >

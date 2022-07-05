@@ -204,11 +204,11 @@ export const ProductThreads:React.FC<Props> = function ProductThreadsFunc(Props)
 
   const handleClose = () => {
     setOpenModal(false)
-    if(location.pathname===`/title/${params_product_id}/top/threads/${params_review_id}`){
+    if(location.pathname===`/title/${params_product_id}/top/threads/${params_review_id}/`){
       router.push(`/title/${params_product_id}`,undefined,options)
-    }else if(location.pathname===`/threads/${params_review_id}/title/${params_product_id}`){
+    }else if(location.pathname===`/threads/${params_review_id}/title/${params_product_id}/`){
       router.push(`/threads`,undefined,options)
-    }else if(location.pathname=== `/users/${params_user_id}/threads/${params_review_id}/title/${params_product_id}`){
+    }else if(location.pathname=== `/users/${params_user_id}/threads/${params_review_id}/title/${params_product_id}/`){
       router.push(`/users/${params_user_id}/threads`,undefined,options)
     }else{
       router.push(`/title/${params_product_id}/threads`,undefined,options)

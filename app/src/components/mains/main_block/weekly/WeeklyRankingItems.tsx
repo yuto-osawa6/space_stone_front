@@ -144,7 +144,7 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
           <div className="InvoteButtonWeekly"
             onClick={Props.weeklyVote==false?handleVoteWeeklyRanking:nocontroller}
             style={Props.weeklyVote==false?{
-              backgroundColor: "#edf1f5",
+              // backgroundColor: "#edf1f5",
               cursor:"pointer",
               fontSize: "0.9rem"
             }:{

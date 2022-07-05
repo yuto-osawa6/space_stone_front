@@ -149,8 +149,8 @@ svg{
     }
   }
   img{
-    width: 2rem;
-    height: 2rem;
+    width: 35px;
+    height: 35px;
     border-radius: 100%;
   }
 }
@@ -423,12 +423,15 @@ svg{
     display: none;
   }
   .subMenuList768{
+    .subMenuList7689{
+      border-bottom: 1px solid;
+    }
     position: fixed;
     top: 0;
     z-index: -1;
     padding: 59px 0px 0px 0px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
     right: 0px;
     // top: 32px;
     // margin-top: 25px;
@@ -478,6 +481,24 @@ svg{
     }
   }
 }
+.HederV1SubmenuSub{
+  display: flex;
+  word-break: keep-all;
+  flex-flow: wrap;
+  font-size: 0.8rem;
+  gap: 10px;
+  // margin: 20px 10px;
+  // border-top: 1px solid;
+  // padding-top: 10px;
+  div{
+
+  }
+}
+.subMenuList7681{
+  margin: 0px 20px;
+  font-size: 1.4rem;
+  text-align: right;
+}
 
 .home2{
   svg{
@@ -514,5 +535,20 @@ svg{
     @include mq(tb){
       display: none;
     }
+  }
+}
+
+// 
+.HederV1SubmenuSub{
+  div{
+    padding: 0px!important;
+  }
+  .LeftFormatsList{
+    display: block!important;
+    padding: 0px;
+  }
+  li{
+    display: block!important;
+    padding: 0px;
   }
 }

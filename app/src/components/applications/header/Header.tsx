@@ -15,6 +15,13 @@ import { useWindowDimensions } from "@/hook/useWindowResize";
 import { url } from "@/utils/config";
 import { useScroll } from "@/hook/useScroll";
 import { useRouter } from "next/router";
+import { useExecLeft } from "@/lib/api/left";
+import LeftStyle from "../left/leftMenus/LeftStyles";
+import LeftGenre from "../left/leftMenus/LeftGenres";
+import { LeftsArticles } from "@/components/applications/left/leftMenus/LeftArticles";
+import { LeftsReviews } from "../left/leftMenus/LeftReviews";
+import { LeftsThreads } from "../left/leftMenus/LeftsThreads";
+
 
 type Props = {
   locationNumber: number | undefined
@@ -123,6 +130,9 @@ const handleClick = (url:string) => {
 }
 // locate
 const { t } = useLocale()
+const routerHome = () => {
+  router.push("/")
+}
 // console.log(windowSize)
     // useEffect(()=>{
     //   const touchHandler = (event: any) => {
@@ -139,6 +149,8 @@ const { t } = useLocale()
     //     document.removeEventListener("touchmove", touchHandler);
     //   };
     // },[windowSize.width])
+    const {data,error} = useExecLeft()
+    console.log(data)
   return(
     <>
       <div className = "HeaderV1">
@@ -175,18 +187,19 @@ const { t } = useLocale()
           <div className = "HeaderMainLeftTitle">
               <div className = "LOGO">
                 <div className=""
+                onClick={routerHome}
                 style={{
                   marginRight:"10px"
                 }}
                 >
                 <img src={url('/topimage.png')} alt="Sample image"></img>
                 </div>
-                <div className = "LogoG">
+                {/* <div className = "LogoG">
                   {t.Logo.G}
                 </div>
                 <div className = "LogoF">
                   {t.Logo.F}
-                </div>
+                </div> */}
                 {/* <div className = "LogoHeart">
                   <BsFillSuitHeartFill/>
                 </div> */}
@@ -234,17 +247,53 @@ const { t } = useLocale()
               </div>
               )}
 
-                {windowSize.width < 768&&openMenu==true&&(     
+                {windowSize.width < 768&&openMenu==true&&(   
+                  <>
                   <div className = "subMenuList768"
                   >
+                    <div className="subMenuList7681">Main Menu</div>
+                  
                     <div className="">
-                      <div><Link href="/"><a><div className="headersub768"><div className = "home2"><AiOutlineHome/> {t.Headers.TOP}</div><div className = {"home23"}>{t.SubHeader.TOP}</div></div></a></Link></div>
-                      <div><Link href="/search"><a><div className="headersub768"><div className = "home2"><HiOutlineSearchCircle/> {t.Headers.SEARCH}</div><div className = {"home23"}>{t.SubHeader.SEARCH}</div></div></a></Link></div>
-                      <div><Link href="/articles"><a><div className="headersub768"><div className = "home2"><RiArticleLine/> {t.Headers.ARTICLE}</div><div className = {"home23"}>{t.SubHeader.ARTICLE}</div></div></a></Link></div>
-                      <div><Link href="/reviews"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.Headers.REVIEWS}</div><div className = {"home23"}>{t.SubHeader.REVIEWS}</div></div></a></Link></div>
-                      <div><Link href="/threads"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home23"}>{t.SubHeader.THREAD}</div></div></a></Link></div>
+                      <div className = "subMenuList7689"><Link href="/"><a><div className="headersub768"><div className = "home2"><AiOutlineHome/> {t.Headers.TOP}</div><div className = {"home23"}>{t.SubHeader.TOP}</div></div></a></Link>
+                        {/* <div className="">Home Menu</div> */}
+                        <div className="HederV1SubmenuSub">
+                          <div onClick={()=>handleClick("/#weekly-ranking")}><a>{t.SubMenu.QUESTIONNAIRE}</a></div>
+                          <div onClick={()=>handleClick("/#this-season")}><a>{t.SubMenu.THISSEASON}</a></div>
+                          <div onClick={()=>handleClick("/#last-season")}><a>{t.SubMenu.LASTSEASON}</a></div>
+                          <div onClick={()=>handleClick("/#next-season")}><a>{t.SubMenu.NEXTSEASON}</a></div>
+                          <div onClick={()=>handleClick("/#movies")}><a>{t.SubMenu.MOVIE}</a></div>
+                          <div onClick={()=>handleClick("/#news")}><a>{t.SubMenu.NEWS}</a></div>
+                          <div onClick={()=>handleClick("/#toptens")}><a>{t.SubMenu.TOP10}</a></div>
+                        </div>
+                      </div>
+                      <div className = "subMenuList7689"><Link href="/search"><a><div className="headersub768"><div className = "home2"><HiOutlineSearchCircle/> {t.Headers.SEARCH}</div><div className = {"home23"}>{t.SubHeader.SEARCH}</div></div></a></Link>
+                        <div className="HederV1SubmenuSub">
+                          {data.styles.map((item: any) => (
+                            <LeftStyle name={item.name} id={item.id} count={item.count} key={item.id}/>
+                          ))}
+                        </div>
+                      </div>
+                      <div className = "subMenuList7689"><Link href="/articles"><a><div className="headersub768"><div className = "home2"><RiArticleLine/> {t.Headers.ARTICLE}</div><div className = {"home23"}>{t.SubHeader.ARTICLE}</div></div></a></Link>
+                        <div className="HederV1SubmenuSub">
+                          <LeftsArticles/>
+                        </div>
+                      </div>
+                      <div className = "subMenuList7689"><Link href="/reviews"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.Headers.REVIEWS}</div><div className = {"home23"}>{t.SubHeader.REVIEWS}</div></div></a></Link>
+                        <div className="HederV1SubmenuSub">
+                          <LeftsReviews/>
+                        </div>
+                      </div>
+                      <div className = "subMenuList7689"><Link href="/threads"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home23"}>{t.SubHeader.THREAD}</div></div></a></Link>
+                        <div className="HederV1SubmenuSub">
+                          <LeftsThreads/>
+                        </div>
+                      </div>
+                      <div className = "Top100SubMenu subMenuList7689"><Link href ="/top100"><a><div className="headersub768"><div className = "home2"><AiOutlineHome/>{t.SubMenu.TOP100}</div><div className = {"home23"}></div></div></a></Link></div>
+                      <div className = "Top100SubMenu subMenuList7689"><Link href ="/tier"><a><div className="headersub768"><div className = "home2"><AiOutlineHome/>{t.SubMenu.TIER}</div><div className = {"home23"}></div></div></a></Link></div>
+                      <div className = "Top100SubMenu subMenuList7689"><Link href ="/weekly"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.SubMenu.QUESTIONNAIRE}</div><div className = {"home23"}></div></div></a></Link></div>
                     </div>
-                    <div className="">
+                    {/* <div className="">Home Menu</div>
+                    <div className="HederV1SubmenuSub">
                     <div onClick={()=>handleClick("/#weekly-ranking")}><a>{t.SubMenu.QUESTIONNAIRE}</a></div>
                     <div onClick={()=>handleClick("/#this-season")}><a>{t.SubMenu.THISSEASON}</a></div>
                     <div onClick={()=>handleClick("/#last-season")}><a>{t.SubMenu.LASTSEASON}</a></div>
@@ -252,11 +301,11 @@ const { t } = useLocale()
                     <div onClick={()=>handleClick("/#movies")}><a>{t.SubMenu.MOVIE}</a></div>
                     <div onClick={()=>handleClick("/#news")}><a>{t.SubMenu.NEWS}</a></div>
                     <div onClick={()=>handleClick("/#toptens")}><a>{t.SubMenu.TOP10}</a></div>
-                      <div className = "Top100SubMenu"><Link href ="/top100"><a>{t.SubMenu.TOP100}</a></Link></div>
-                      <div className = "Top100SubMenu"><Link href ="/tier"><a>{t.SubMenu.TIER}</a></Link></div>
-                      <div className = "Top100SubMenu"><Link href ="/weekly"><a>{t.SubMenu.LASTQUESTIONNAIRE}</a></Link></div>
-                    </div>
+                    
+                    </div> */}
                   </div>
+                  
+                  </>  
                 )}
             </li>
           </ul>
