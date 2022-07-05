@@ -1,6 +1,7 @@
 import { MessageContainer } from "@/components/applications/message/MessageContainer"
 import Search from "@/components/search/searchform/search"
 import Lefts from "../../../applications/left/Lefts"
+import { Footer } from "../../component/Footer"
 
 type Props = {
   children:React.ReactNode
@@ -25,6 +26,7 @@ export const Super:React.FC<Props> = function SuperFunc(Props){
             {Props.children}
           </InsertBox>
           <MessageContainer/>
+          <Footer/>
         </SuperSheet>
     </SuperDiv>
   )
