@@ -29,7 +29,7 @@ export const UserModalSign:React.FC = function UserModalSign(){
       >
         <div className = "social_login_all">
           <div className = "social_login_title">
-            {t.Component.USER.SingIn}
+            {"ログイン"}
           </div>
           <div className = "user_social_login"
           onClick={handleClose}

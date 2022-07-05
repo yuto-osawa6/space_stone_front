@@ -309,7 +309,9 @@ svg{
         }
       }
       .user_box_true{
-        padding: 5px 10px 5px 10px;
+        @include mq(tb){
+          padding: 5px 10px 5px 10px;
+        }
         .user_sign_in{
           .model_btn{
           display: flex;
@@ -561,5 +563,24 @@ svg{
   li{
     display: block!important;
     padding: 0px;
+  }
+}
+
+.user_sign_in{
+  svg{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    border: solid 1px #ff3073;
+    background-color: #ff3073;
+    color: white;
+    @include mq(tb){
+      width: auto;
+      height: auto;
+      margin-right: 5px;
+      border: none;
+      background-color: transparent;
+      color: #ff3073;
+    }
   }
 }

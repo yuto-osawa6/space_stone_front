@@ -131,7 +131,13 @@ export const UserCertification:React.FC = function UserCertification(){
                   }}
                   >
                     <IoMdLogIn/>
-                    {t.UserInfomation.SIGNIN}
+                    {windowSize.width >= 768 &&(
+                      // <div className="">
+                      <>
+                      {t.UserInfomation.SIGNIN}
+                      </>
+                      // </div>
+                  )}
                   </div>
                   {windowSize.width >= 768 &&(
                     <div className = {"home"}>
@@ -206,19 +212,19 @@ export const UserCertification:React.FC = function UserCertification(){
                 aria-describedby="modal-modal-description"
               >
                 <>
-                <div className=""
+                <div className="userMypageModal"
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr",
-                  maxWidth: 700,
-                  borderRadius: 30,
-                  top: "50%",
-                  position: "absolute",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: "100%",
-                  flexFlow: "column",
-                  backgroundColor: "white",
+                  // display: "grid",
+                  // gridTemplateColumns: "1fr",
+                  // maxWidth: 500,
+                  // borderRadius: 30,
+                  // top: "50%",
+                  // position: "absolute",
+                  // left: "50%",
+                  // transform: "translate(-50%, -50%)",
+                  // width: "100%",
+                  // flexFlow: "column",
+                  // backgroundColor: "white",
                 }}
                 >
                 
@@ -345,19 +351,19 @@ export const UserCertification:React.FC = function UserCertification(){
                   >
                   <IoMdClose/>
                 </div>
-                <div className=""
+                <div className="userMypageModal"
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr",
-                  maxWidth: 700,
-                  borderRadius: 5,
-                  width: "calc(100% - 40px)",
-                  top: "50%",
-                  position: "absolute",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  flexFlow: "column",
-                  backgroundColor: "white",
+                  // display: "grid",
+                  // gridTemplateColumns: "1fr",
+                  // maxWidth: 500,
+                  // borderRadius: 50,
+                  // width: "calc(100% - 40px)",
+                  // top: "50%",
+                  // position: "absolute",
+                  // left: "50%",
+                  // transform: "translate(-50%, -50%)",
+                  // flexFlow: "column",
+                  // backgroundColor: "white",
                 }}
                 >
                 

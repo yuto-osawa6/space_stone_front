@@ -50,7 +50,8 @@ export const useGetCurrentUser = (): { userSwr: Data2, error: any,userLoaded: bo
   const fetcher = async() => {
     const cookie = document.cookie;
     if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")){
-    return
+      // res.data = false
+    return {data:{isLogin:false}}
     }
     const res =  await client.get('/session_user',{ headers: {
             "access-token": `${Cookies.get("_access_token")}`,
@@ -60,14 +61,20 @@ export const useGetCurrentUser = (): { userSwr: Data2, error: any,userLoaded: bo
           if (res?.data.isLogin === true) {
             // dispatch(userLoginAction(true,res.data.data))
           } else {
+            // res.data = false
+            // console.log(res.data.isLogin)
           }
+    // console.log(res)
+    // res.data = false
     return res.data
   }
+  console.log(fetcher)
   const { data, error } = useSWR('/session_user', fetcher)
+  console.log(data)
   if(!data){
     return { userSwr: {user:userInitialState.user,login:false}, error,userLoaded:false}
   }
-  if(data){
+  if(data.isLogin){
   return { userSwr: {user:data.data,login:data.isLogin}, error,userLoaded:true }
   }else{
   return { userSwr: {user:userInitialState.user,login:false}, error,userLoaded:true }
