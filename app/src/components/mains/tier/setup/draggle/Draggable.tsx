@@ -74,25 +74,25 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
   drag(drop(ref))
   }catch(e){
   }
-  const[loaded,setLoaded] = useState<boolean>(false)
-  useEffect(() => {
-    if(!Props.product.imageUrl)return
-    const img = new Image();
-    // img.src = Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""
-    img.src = Props.product.imageUrl?Props.product.imageUrl:""
-    const ctx = document.createElement('canvas').getContext('2d') as CanvasRenderingContext2D;
-    ctx.canvas.width = 120;
-    ctx.canvas.height = 63;
-    img.crossOrigin = "localhost";
+//   const[loaded,setLoaded] = useState<boolean>(false)
+//   useEffect(() => {
+//     if(!Props.product.imageUrl)return
+//     const img = new Image();
+//     // img.src = Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""
+//     img.src = Props.product.imageUrl?Props.product.imageUrl:""
+//     const ctx = document.createElement('canvas').getContext('2d') as CanvasRenderingContext2D;
+//     ctx.canvas.width = 120;
+//     ctx.canvas.height = 63;
+//     img.crossOrigin = "localhost";
 
-    img.onload = () => {
-    ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
-    img.src = ctx.canvas.toDataURL();
-    preview(img);
-    // setImageUrl(ctx.canvas.toDataURL())
-    };
-    setLoaded(true)
-}, []);
+//     img.onload = () => {
+//     ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
+//     img.src = ctx.canvas.toDataURL();
+//     preview(img);
+//     // setImageUrl(ctx.canvas.toDataURL())
+//     };
+//     setLoaded(true)
+// }, []);
   return (
     <div ref={ref}
     data-handler-id={handlerId2}
@@ -104,7 +104,7 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
       borderRadius:"5px",
     }}
     >
-      <DragPreviewImage connect={preview} src={Props.product.imageUrl?Props.product.imageUrl:""} />
+      {/* <DragPreviewImage connect={preview} src={Props.product.imageUrl?Props.product.imageUrl:""} /> */}
       <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
       style={{
         top:"0",

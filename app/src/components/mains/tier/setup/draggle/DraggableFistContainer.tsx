@@ -34,27 +34,27 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
 
   const [imageUrl,setImageUrl] = useState<string>("")
 
-  const[loaded,setLoaded] = useState<boolean>(false)
+  // const[loaded,setLoaded] = useState<boolean>(false)
   
 
-  useEffect(() => {
-    if(!Props.product.imageUrl)return
-    const img = new Image();
-    // img.src = Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""
-    img.src = Props.product.imageUrl?Props.product.imageUrl:""
-    const ctx = document.createElement('canvas').getContext('2d') as CanvasRenderingContext2D;
-    ctx.canvas.width = 120;
-    ctx.canvas.height = 63;
-    img.crossOrigin = "localhost";
+//   useEffect(() => {
+//     if(!Props.product.imageUrl)return
+//     const img = new Image();
+//     // img.src = Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""
+//     img.src = Props.product.imageUrl?Props.product.imageUrl:""
+//     const ctx = document.createElement('canvas').getContext('2d') as CanvasRenderingContext2D;
+//     ctx.canvas.width = 120;
+//     ctx.canvas.height = 63;
+//     img.crossOrigin = "localhost";
 
-    img.onload = () => {
-    ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
-    img.src = ctx.canvas.toDataURL();
-    preview(img);
-    // setImageUrl(ctx.canvas.toDataURL())
-    };
-    setLoaded(true)
-}, []);
+//     img.onload = () => {
+//     ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
+//     img.src = ctx.canvas.toDataURL();
+//     preview(img);
+//     // setImageUrl(ctx.canvas.toDataURL())
+//     };
+//     setLoaded(true)
+// }, []);
 
 // const img = new Image();
 //     img.src = Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):"";
@@ -80,8 +80,8 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
         >
           
 
-        <DragPreviewImage connect={preview} src={Props.product.imageUrl?Props.product.imageUrl:""}/>
-        {loaded&&(
+        {/* <DragPreviewImage connect={preview} src={Props.product.imageUrl?Props.product.imageUrl:""}/> */}
+        {/* {loaded&&( */}
         <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
         style={{
           top:"0",
@@ -90,7 +90,7 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
           objectFit:"cover"
         }}
         />
-        )}
+        {/* )} */}
       </div>
     </>
   )
