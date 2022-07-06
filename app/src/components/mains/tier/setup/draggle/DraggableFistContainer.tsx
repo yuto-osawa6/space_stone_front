@@ -40,7 +40,8 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
   useEffect(() => {
     if(!Props.product.imageUrl)return
     const img = new Image();
-    img.src = Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""
+    // img.src = Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""
+    img.src = Props.product.imageUrl?Props.product.imageUrl:""
     const ctx = document.createElement('canvas').getContext('2d') as CanvasRenderingContext2D;
     ctx.canvas.width = 120;
     ctx.canvas.height = 63;
@@ -79,9 +80,9 @@ export const DraggableFistContainer:React.FC<Props> = memo(function DraggableFis
         >
           
 
-        <DragPreviewImage connect={preview} src={Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}/>
+        <DragPreviewImage connect={preview} src={Props.product.imageUrl?Props.product.imageUrl:""}/>
         {loaded&&(
-        <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}
+        <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
         style={{
           top:"0",
           width:"120px",
