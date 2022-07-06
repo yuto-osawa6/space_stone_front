@@ -178,7 +178,7 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
           overflow:"scroll",
           // maxHeight: "100vh",  
           height:"100%",
-          paddingBottom: "130px", 
+          marginBottom: "130px", 
           bottom:"0"
         }}
         >
@@ -226,7 +226,7 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
             left: "50%",
             transform: "translateX(-50%)",
             padding: "20px",
-            minHeight:"115px",
+            height:"130px",
             
           }}
         >
@@ -236,14 +236,14 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
             color:"red"
           }}
           >{validateText}</FormHelperText>
-          <div className=""
+          <div className="TierBarV2"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr auto",
             gap: "10px"
           }}
           >
-          <div className=""
+          <div className="TierBarV23"
           style={{
             display:"flex",
             overflowX:"scroll",

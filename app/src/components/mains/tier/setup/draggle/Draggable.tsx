@@ -85,6 +85,7 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
       borderRadius:"5px",
     }}
     >
+      {/* <DragPreviewImage connect={preview} src={imageFile} /> */}
       <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
       style={{
         top:"0",

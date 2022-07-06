@@ -241,6 +241,13 @@ export default Home
 
 Home.getLayout = (page) => {
   return (
+    <>
+    {/* "aaaaa"
+    あああ
+    あああ
+    あああ
+    ああ
+    あああ */}
     <ShareMain
       locationNumber={0}
     >
@@ -248,5 +255,6 @@ Home.getLayout = (page) => {
         {page}
       </div>
     </ShareMain>
+    </>
   )
 }

@@ -231,7 +231,7 @@ useEffect(()=>{
           padding: "20px",
           overflow:"scroll",
           height: "100%",  
-          paddingBottom: "130px", 
+          marginBottom: "130px", 
           bottom:"0"
         }}
         >
@@ -279,7 +279,7 @@ useEffect(()=>{
             left: "50%",
             transform: "translateX(-50%)",
             padding: "20px",
-            minHeight:"115px",
+            height:"130px",
           }}
         >
           <FormHelperText
@@ -288,14 +288,14 @@ useEffect(()=>{
             color:"red"
           }}
           >{validateText}</FormHelperText>
-          <div className=""
+          <div className="TierBarV2"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr auto",
             gap: "10px"
           }}
           >
-          <div className=""
+          <div className="TierBarV23"
           style={{
             display:"flex",
             overflowX:"scroll",

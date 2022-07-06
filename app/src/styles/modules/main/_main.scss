@@ -949,3 +949,28 @@ display: none;
     font-size: 0.8rem;
   }
 }
+
+// 
+.TierSubmitButton{
+  height: 63px!important;
+  padding: 0 !important;
+  color: #ff3073!important;
+}
+.TierBarV23{
+  // display: "grid";
+    // grid-template-columns: "1fr auto";
+    gap: 30px !important;
+  @include mq(tb){
+    // display: "grid";
+    // grid-template-columns: "1fr auto";
+    gap: 10px !important;
+  }
+  div{
+    margin-bottom: 30px!important;
+    @include mq(tb){
+      // display: "grid";
+      // grid-template-columns: "1fr auto";
+      margin-bottom: 10px;
+    }
+  }
+}

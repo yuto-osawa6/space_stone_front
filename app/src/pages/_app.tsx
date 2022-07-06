@@ -60,10 +60,10 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
               }}
             />
             <NextNprogress
-              color="#29D"
+              color="#ff3073"
               startPosition={0.3}
               stopDelayMs={200}
-              height={2}
+              height={4}
               options={{ showSpinner: false }}
               showOnShallow={true}
             />
