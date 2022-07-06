@@ -179,6 +179,7 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
           // maxHeight: "100vh",  
           height:"100%",
           marginBottom: "130px", 
+          paddingTop:"150px",
           bottom:"0"
         }}
         >

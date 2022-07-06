@@ -232,7 +232,8 @@ useEffect(()=>{
           overflow:"scroll",
           height: "100%",  
           marginBottom: "130px", 
-          bottom:"0"
+          bottom:"0",
+          paddingTop:"150px",
         }}
         >
           <div
