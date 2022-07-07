@@ -31,6 +31,7 @@ type yearTier = {
   kisetsu: kisetsu
   products: product[]
   year: year
+  // aliceT:number
 }
 export const TierSeasonMain:React.FC = function TierSeasonMainFunc(){
   const [updateTier,setUpdateTier] = useState<boolean>(false)

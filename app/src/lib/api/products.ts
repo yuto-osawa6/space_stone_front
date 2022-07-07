@@ -257,3 +257,46 @@ export const execProductShowThread = (product_id:string,page:number) => {
    }
   })
 }
+
+export const execProductShowThreadOfficial = (product_id:string,page:number) => {
+  
+  return client.get(`/products/product_thread_official`, { 
+   params:{
+    product_id:product_id,
+    page:page
+   }
+  })
+}
+
+
+// compare
+
+export const  execCompareScore = (product_id:number,index:number) => {
+  return client.get(`/products/${product_id}/compare_score`, { 
+    params:{
+    product_id:product_id,
+    index:index
+    }
+  })
+}
+
+export const execCompareEmotion = (product_id:number,episord_id:number) => {
+  return client.get(`/products/${product_id}/compare_emotion`, { 
+    params:{
+    product_id:product_id,
+    episord_id:episord_id
+    }
+  })
+}
+
+
+
+export const execCompareTier= (product_id:number,user_id:number | null,alice:number) => {
+  return client.get(`/products/${product_id}/compare_tier`, { 
+    params:{
+    product_id:product_id,
+    user_id:user_id,
+    alice: alice,
+    }
+  })
+}

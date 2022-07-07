@@ -974,3 +974,30 @@ display: none;
     }
   }
 }
+
+// trend
+.TrendyGrid{
+  width: fit-content;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  padding: 10px;
+  height: fit-content;
+  /* height: 20px; */
+  /* width: 20px; */
+  // background-color: bisque;
+  display: flex;
+  align-items: center;
+  // z-index: 2000;
+  width: 30px;
+  justify-content: center;
+  height: 30px;
+  border-radius: 20px;
+  margin: 5px;
+  color: white;
+
+}
+.ExplanatoryText{
+color: $merupla-color-info-dark-1;
+font-size: 0.7rem;
+}

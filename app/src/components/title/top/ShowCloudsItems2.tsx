@@ -13,6 +13,8 @@ type Props = {
 }
 
 export const ShowCloudsItems2:React.FC<Props> = function ShowCloudsItems2Func(Props){
+  console.log(Props)
+  console.log(Props)
 
   const [content,setContent] = useState<string>("")
   const firstReadMoreHandler = () => {
@@ -46,6 +48,11 @@ export const ShowCloudsItems2:React.FC<Props> = function ShowCloudsItems2Func(Pr
         lineHeight:"1.4rem"
       }}
       >
+        {Props.item.title.length>0&&(
+          <>
+            {Props.item.title}<br/>
+          </>
+        )}
         {content}
       </div>
     </>

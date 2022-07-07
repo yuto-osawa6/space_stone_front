@@ -130,6 +130,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
     mutate('/mainblocks/mains/user_this_season_tier/2')
     setUpdateTier(false)
   },[updateTier])
+  // console.log(data)
   return(
     <>
       <div className="SeasonTier">
@@ -143,6 +144,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       >
       昨シーズンのTier
       </div>
+      <div className="ExplanatoryText">*ユーザーの投稿を集計した平均値で算出しております。</div>
       <div className="SeasonTierBox"
       style={{
       display: "grid",
@@ -158,6 +160,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
           key={index}
           group = {item.group}
           products = {item.products}
+          alice = {data.aliceT}
           />
           )
         })}

@@ -14,6 +14,7 @@ type tierProduct = {
 type Props = {
   group: string
   products: product[]
+  alice: number
 }
 export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(Props){
   const [color,setColor] = useState<string>()
@@ -145,6 +146,7 @@ export const ThisMonthTierList:React.FC<Props> = function ThisMonthTierListFunc(
           setOpen = {setOpen}
           group = {Props.group}
           products = {Props.products} 
+          alice = {Props.alice}
           color = {color as string}
         >
         </TierShow>

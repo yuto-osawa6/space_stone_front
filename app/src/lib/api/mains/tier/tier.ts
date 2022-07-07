@@ -8,6 +8,12 @@ import useSWRImmutable from 'swr/immutable'
 type Data = {
   tier:product[] 
   tierAverage:any
+  aliceT:number
+}
+type Data2 = {
+  tier:product[] 
+  tierAverage:any
+  aliceT:number
 }
 export const useExecGetThisSeasonTier = (): { data: Data } => {
   const fetcher = () => client.get('/mainblocks/mains/update_tier_list',{params:{current_number:1}}).then((res) => res.data)
@@ -15,7 +21,7 @@ export const useExecGetThisSeasonTier = (): { data: Data } => {
   return { data: data}
 }
 
-export const useExecGetNextSeasonTier = (): { data: Data } => {
+export const useExecGetNextSeasonTier = (): { data: Data2 } => {
   const fetcher = () => client.get('/mainblocks/mains/update_tier_list',{params:{current_number:2}}).then((res) => res.data)
   const { data, error } = useSWRImmutable('/mainblocks/mains/update_tier_list/2', fetcher)
   return { data: data}

@@ -1,16 +1,23 @@
 import { product } from "@/interfaces/product"
+import { useState } from "react"
+import { CompareTierModal } from "./CompareTierModal"
 
 
 type Props = {
   product: product
   group: string
+  alice:number
 }
 
 export const TierShowItem:React.FC<Props> = (Props) => {
+  const [open,setOpen] = useState<boolean>(false)
+  const handleOpenModal = () => setOpen(true)
   console.log(Props)
   return(
     <>
-      <div className="TierShowItem">
+      <div className="TierShowItem"
+      onClick={handleOpenModal}
+      >
         <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
           style={{
             // borderRadius:"5px",
@@ -31,9 +38,19 @@ export const TierShowItem:React.FC<Props> = (Props) => {
           borderRadius: "0px 0px 0px 5px",
         }}
         >
-          {Props.product.avg}
+          {Number(Props.product.avg).toFixed(1)}
         </div>
       </div>
+      {open&&(
+        <>
+          <CompareTierModal
+          open = {open}
+          setOpen = {setOpen}
+          product = {Props.product}
+          alice = {Props.alice}
+          />
+        </>
+      )}
     </>
   )
 }

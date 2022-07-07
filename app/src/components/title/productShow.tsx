@@ -25,6 +25,8 @@ import { useUser } from '@/lib/data/user/useUser';
 import { ChatModal } from './chat/ChatModal';
 import { AdminsEditProduct } from '@/components/admins/product/edit/AdminEditProduct';
 import { useWindowDimensions } from '@/hook/useWindowResize';
+import { BiGitCompare } from 'react-icons/bi';
+import { CompareModal } from './compare/CompareModal';
 let ActionCable:any;
 if (typeof window !== 'undefined') {
   ActionCable = require('actioncable');
@@ -356,6 +358,10 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   //   let vw = document.body.clientWidth
   //   setWindowWidth(vw)
   // },[a])
+
+  // compare
+  const [OpenModalCompare,setOpenModalCompare] = useState<boolean>(false)
+  
   return(
     <>
       <div className = "product_show"
@@ -391,7 +397,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                   </div>
                   <div className = "show_contents01_header_bottom_left_bottom">
                     <div className = "show_contents01_header_bottom_left_bottom_score">
-                    {loded&&(
+                    {/* {loded&&(
                       <>
                       {userSwr.login&&(
                         <>
@@ -422,14 +428,14 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                         </>
                       )}
                       </>
-                    )}
-                    {!loded&&(
-                      <>
+                    )} */}
+                    {/* {!loded&&(
+                      <> */}
                       Score　
                       {scoreaverage}
-
+{/* 
                       </>
-                    )}
+                    )} */}
 
                     </div>
                     <div className = "show_contents01_header_bottom_left_bottom_likes">
@@ -440,6 +446,9 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                         { heart ? 
                         <>
                         <BsFillHeartFill
+                        style={{
+                          cursor:"pointer"
+                        }}
                         onClick = {deleteheart}
                         />
                         　
@@ -448,6 +457,9 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                         : 
                         <>
                         <BsHeart
+                        style={{
+                          cursor:"pointer"
+                        }}
                         onClick = {createheart}
                         />
                         　
@@ -461,16 +473,19 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                       {!userSwr.login&&(
                         <>
                            <BsHeart
+                           style={{
+                            cursor:"pointer"
+                          }}
                            onClick={modalopenJugde}
                            />
                            　
                             {scoreLenght}
                             
-                            {open&&(
+                            {/* {open&&(
                               <OpenContext.Provider value={{ open, setOpen }}>
                                 <UserModalSign/>
                               </OpenContext.Provider>
-                            )}
+                            )} */}
                         </>
                       )}
                         </>
@@ -769,12 +784,14 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     className={Props.active == 1? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
                     ><Link href={`/title/${params_id}/overview`}>Overview</Link></li>
                     )}
+
+                    {product&&product.episords.length>0&&(
                     <li
                     style={{
                       width: "100%"
                     }}
                       className={Props.active == 2? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
-                    ><Link href={`/title/${params_id}/episords`}>Episords</Link></li>
+                    ><Link href={`/title/${params_id}/episords`}>Episords</Link></li>)}
                     <li
                     style={{
                       width: "100%"
@@ -829,6 +846,32 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
         )} */}
 
       
-    </>
+    {userSwr.login?
+      <div className="CompareIcon"
+      onClick={()=>setOpenModalCompare(true)}
+      >
+      <BiGitCompare/>
+      </div>
+    :
+    <div className="CompareIcon"
+      onClick={modalopenJugde}
+      >
+      <BiGitCompare/>
+    </div>
+    }
+      {open&&(
+        <OpenContext.Provider value={{ open, setOpen }}>
+          <UserModalSign/>
+        </OpenContext.Provider>
+      )}
+      {OpenModalCompare&&(
+        <Productshowcontext.Provider value={ {product,switchnumber,stats,acsesses,userReviews,setUserReviews,productReviews,setProductReviews,productThreads,setProductThreads,emotionLists,setEmotionLists,chatList,setChatList,Channel,productScores,setProductScores,setScore,score,scoreid,setScoreid,scoreaverage,setScoreaverage,setStats,openscore,setOpenscore,userScore,setUserScore} }>
+        <CompareModal
+        open={OpenModalCompare}
+        setOpen={setOpenModalCompare}
+        />
+        </Productshowcontext.Provider>
+      )}
+  </>
   )
 } 

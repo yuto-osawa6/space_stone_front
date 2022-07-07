@@ -81,6 +81,8 @@ export const UserTierList2:React.FC<Props> = function UserTierList2Func(Props){
             key={index}
             group={item.group}
             products={item.products}
+            // alice = {Props.user.tier[0].aliceT}
+            alice = {Props.user.tier.length>0?Props.user.tier[0].aliceT:0}
           />
         )
       })}

@@ -1,10 +1,9 @@
 import { Productshowcontext } from "@/contexttype/contexttype";
-import { execProductShowReview, execProductShowThread } from "@/lib/api/products";
+import { execProductShowReview, execProductShowThread, execProductShowThreadOfficial } from "@/lib/api/products";
 import { useRouter } from "next/router";
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { ShowCloudsItems } from "../top/ShowCloudsItems";
 import { ShowCloudsItems2 } from "../top/ShowCloudsItems2";
-import { OfficialThread } from "./OfficialThread";
 
 type Review = {
   content: string
@@ -14,10 +13,10 @@ type Review = {
 }
 
 type Props = {
-  children:ReactNode
+  // children:ReactNode
 }
 
-export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFunc(Props){
+export const OfficialThread:React.FC<Props> = function OfficialThreadFunc(Props){
   const [episords,setEpisords] = useState<string[]>([])
   const router = useRouter()
   const {pid} = router.query
@@ -28,7 +27,7 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
   const handleFirst = async() => {
     // check-3
     if (params_id==undefined) return
-    const res = await  execProductShowThread(params_id as string,current)
+    const res = await  execProductShowThreadOfficial(params_id as string,current)
     if(res.status == 200){
       if(isMounted){
         setItems(res.data.threads)
@@ -111,7 +110,7 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
           }
           }
           >
-          Threads
+          感想
           </div>
           
           {params_id!=undefined&&items!=undefined&&(
@@ -179,7 +178,7 @@ export const ProductShowThreads:React.FC<Props> = function ProductShowThreadsFun
           </div>
           {Props.children}
       </div>
-      <OfficialThread/>
+      {/* <OfficialThread/> */}
     </>
   )
 }

@@ -679,3 +679,23 @@ px
   margin: 0px!important;
   padding:0px!important;
 }
+
+
+// compare
+.CompareIcon{
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  margin: 10px 20px; 
+  background-color: $merupla-color-dark-1;
+  border-radius: 100%;
+  color: #ff3073;
+  z-index: 1000;
+  svg{
+    width: 35px;
+    height: 35px;
+  }
+}
+.activeCompareSelect{
+  color: #ff3073;
+}

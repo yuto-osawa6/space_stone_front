@@ -232,6 +232,7 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
       >
       </div>
       <div className = "show_top_contens_grid">
+      {props.product&&props.product.episords.length>0&&(
       <div className = "show_contens_08_top share_container02">
         <div className = "show_08 show_episord_08 share_product_show_absolute">
           <div className = "show_08_title share_title01"> 
@@ -255,6 +256,7 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
           </ul>
         </div>
       </div>
+      )}
       <div className = "show_contens_06_top share_container02">
         <div className = "show_06 show_episord_08 share_product_show_absolute">
           <div className = "show_06_title share_title01"> 
@@ -393,11 +395,11 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
                 </div>
             
                 <>
-                {open&&(
+                {/* {open&&(
                     <OpenContext.Provider value={{ open, setOpen }}>
                       <UserModalSign/>
                     </OpenContext.Provider>
-                )}
+                )} */}
               </>
             </>
           }
@@ -451,11 +453,11 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
                 スレッドを作成
               </div>
                 <>
-                {open&&(
+                {/* {open&&(
                     <OpenContext.Provider value={{ open, setOpen }}>
                       <UserModalSign/>
                     </OpenContext.Provider>
-                )}
+                )} */}
               </>
             </>
             }
@@ -552,6 +554,11 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
       setChatList = {props.setChatList}
       />
       )}   */}
+      {open&&(
+        <OpenContext.Provider value={{ open, setOpen }}>
+          <UserModalSign/>
+        </OpenContext.Provider>
+      )}
       </div>
       <div className="">
         {Props.children}

@@ -12,6 +12,7 @@ type Props = {
   group: string
   products: product[]
   color: string
+  alice: number
 }
 
 export const TierShow:React.FC<Props> = function(Props){
@@ -51,7 +52,7 @@ export const TierShow:React.FC<Props> = function(Props){
             <div className="TierShowProducts">
               {Props.products.map((item)=>{
                 return(
-                  <TierShowItem key = {item.id} product = {item} group = {Props.group}/>
+                  <TierShowItem key = {item.id} product = {item} group = {Props.group} alice = {Props.alice}/>
                 )
               })}
             </div>

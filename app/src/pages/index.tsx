@@ -25,6 +25,7 @@ import { RootState } from '@/store'
 import { SubMenuAction } from '@/store/submenu/actions'
 import Image from 'next/image'
 import { useWindowDimensions } from '@/hook/useWindowResize'
+import { Trend } from '@/components/mains/main_block/Trend'
 
 
 export const getServerSideProps: GetServerSideProps = async(context) => {
@@ -40,7 +41,8 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
     current_number:"2"
   }
   const query_params = new URLSearchParams(params); 
-  const [thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,calendarRes,tagsRes] = await Promise.all([
+  const [trendRes,thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,calendarRes,tagsRes] = await Promise.all([
+    fetch(`${ssr_url}/mainblocks/mains/trend`), 
     fetch(`${ssr_url}/mainblocks/mains/new_netflix`), 
     fetch(`${ssr_url}/mainblocks/mains/pickup?`+ query_params),
     fetch(`${ssr_url}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams)),
@@ -51,7 +53,8 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
 
 
   ]);
-  const [data, data2,tierData,tierData2,worldData,calendarData,tagsData] = await Promise.all([
+  const [trendData,data, data2,tierData,tierData2,worldData,calendarData,tagsData] = await Promise.all([
+    trendRes.json(),
     thisSeasonRes.json(), 
     nextSeasonRes.json(),
     tierRes.json(),
@@ -62,7 +65,7 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
   ]);
   return { 
     props: { 
-      data, data2,worldData,calendarData,tagsData,
+      trendData,data, data2,worldData,calendarData,tagsData,
       fallback: {
         '/mainblocks/mains/update_tier_list/1': tierData,
         '/mainblocks/mains/update_tier_list/2' : tierData2
@@ -72,6 +75,10 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
 }
 
 type Props = {
+  trendData:{
+    products: product[],
+    scores:avgScore
+  },
   data:{
     products: product[],
     currentSeason:string,
@@ -142,9 +149,9 @@ type UserTier = {
         const top = elem.getBoundingClientRect().top
       if (elem) {
         if(windowSize.width < 768){
-          top<0?window.scrollTo({top:top + window.pageYOffset-79.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-79.8,left:0, behavior: "smooth"})
+          top<0?window.scrollTo({top:top + window.pageYOffset-78.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-78.8,left:0, behavior: "smooth"})
         }else{
-        top<0?window.scrollTo({top:top + window.pageYOffset-79.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset,left:0, behavior: "smooth"})
+        top<0?window.scrollTo({top:top + window.pageYOffset-79.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-29.8,left:0, behavior: "smooth"})
         }
       }
     } else {
@@ -153,12 +160,18 @@ type UserTier = {
     dispatch(SubMenuAction(false))
   // },[router.asPath,])
 },[submenu])
+// console.log(Props.trendData)
 
 
   return(
     <>
     {/* <img src="/meruplanet.png" alt="me" width="64" height="64" /> */}
     {/* <div className = "mainContents share_middle_container01"> */}
+      <div id="trend-a">
+      <Trend
+      products = {Props.trendData.products}
+      />
+      </div>
       <div id="weekly-ranking-a">
       <WeeklyRanking
       />

@@ -9,6 +9,7 @@ type UserTier = {
   product: product
   tier: number
   userId: number
+  aliceT: number
 }
 
 type Props = {
@@ -59,6 +60,7 @@ export const UserTierList:React.FC<Props> = function UserTierListFunc(Props){
   useEffect(()=>{
     handleSetup()  
   },[Props.userTier])
+  console.log(Props)
   return(
     <>
     <div className=""
@@ -75,6 +77,7 @@ export const UserTierList:React.FC<Props> = function UserTierListFunc(Props){
             key={index}
             group={item.group}
             products={item.products}
+            alice = {Props.userTier.length>0?Props.userTier[0].aliceT:0}
           />
         )
       })}

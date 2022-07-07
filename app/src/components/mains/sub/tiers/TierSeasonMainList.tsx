@@ -255,7 +255,8 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
                   <ThisMonthTierList
                     key = {index}
                     group = {item.group}
-                    products = {item.products}      
+                    products = {item.products}   
+                    alice = {Props.tiers.id}   
                   />
                   )
               })}

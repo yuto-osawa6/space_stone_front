@@ -12,6 +12,10 @@
     justify-content: end;
     // margin-top: 20px;
     // border-top: 1px solid gainsboro;
+    flex-flow: column;
+    @include mq(tb){
+      flex-flow: nowrap;
+    }
 
     .FooterSns{
 
@@ -38,7 +42,7 @@
   position: absolute;
   display: inline-block;
   top: -13px;
-  left: 10px;
+  left: -80px;
   padding: 0 9px;
   line-height: 1;
   font-size: 19px;
@@ -46,6 +50,9 @@
   // color: #95ccff;
   color: solid 3px $merupla-color-info-dark-1;
   font-weight: bold;
+  @include mq(tb){
+    left: 10px;
+  }
 }
 .box26 p {
   margin: 0; 

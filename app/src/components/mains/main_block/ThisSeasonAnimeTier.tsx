@@ -142,6 +142,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
       >
       今シーズンのTier
       </div>
+      <div className="ExplanatoryText">*ユーザーの投稿を集計した平均値で算出しております。</div>
       <div className="SeasonTierBox"
       style={{
       display: "grid",
@@ -157,6 +158,7 @@ export const ThisSeasonAnimeTier:React.FC<Props> = function ThisSeasonAnimeTierF
           key={index}
           group = {item.group}
           products = {item.products}
+          alice = {data.aliceT}
           />
           )
         })}
