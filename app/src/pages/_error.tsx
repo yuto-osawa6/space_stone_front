@@ -5,7 +5,10 @@ interface Props {
     statusCode: number;
 }
 const Error: NextPage<Props>& { getLayout: (page: any) => JSX.Element } = ({ statusCode }) => {
-  return <div>{statusCode}エラーが発生しましたy</div>;
+  if(statusCode == 404){
+    return  <div className = "errorNextPage">{statusCode}エラーが発生しました。ページが存在していないか、メンテナンス中の可能性があります。</div>;
+  }
+  return <div className = "errorNextPage">{statusCode}エラーが発生しました。再度やり直すかお問い合わせください。</div>;
 };
 
 Error.getInitialProps = async ({ res, err }: NextPageContext) => {
