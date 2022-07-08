@@ -275,10 +275,14 @@ export const CreateTier:React.FC<Props> = function CreateTierFunc(Props){
             className={"tail-spin-loading TierSubmitButton"}
             onClick = {handleCreateTier}
             style={{backgroundColor:"aliceblue",height: "75px"}}
-            >Submit
-            {loading==true&&(
-              <TailSpin color={submitSpin.color} height={20} width={20} />
-            )}
+            >
+              <div className=""
+              style={{margin:"5px",display:"flex"}}
+              >Submit
+              {loading==true&&(
+                <TailSpin color={submitSpin.color} height={20} width={20} />
+                )}
+              </div>
             </Button>
           </div>
           </div>

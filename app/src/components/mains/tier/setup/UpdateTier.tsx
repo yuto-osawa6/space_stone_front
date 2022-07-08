@@ -323,14 +323,18 @@ useEffect(()=>{
             >
               Submit
             </Button> */}
-             <Button variant="contained"
+            <Button variant="contained"
             className={"tail-spin-loading TierSubmitButton"}
             onClick = {handleCreateTier}
-            style={{backgroundColor:"aliceblue",height: "75px", color:"#ff3073"}}
-            >Submit
-            {loading==true&&(
-              <TailSpin color={submitSpin.color} height={20} width={20} />
-            )}
+            style={{backgroundColor:"aliceblue",height: "75px"}}
+            >
+              <div className=""
+              style={{margin:"5px",display:"flex"}}
+              >Submit
+              {loading==true&&(
+                <TailSpin color={submitSpin.color} height={20} width={20} />
+                )}
+              </div>
             </Button>
           </div>
           </div>

@@ -24,7 +24,8 @@ export const MessageContainer:React.FC =  function MessageContainerFunc(){
           left: "50%",
           zIndex: 9000000,
           transform:"translateX(-50%)",
-          width: "calc(100% - 100px)",
+          width: "calc(100% - 40px)",
+          maxWidth:"1500px",
           maxHeight:"100vh",
           overflow:"hidden",
           pointerEvents:"none"
@@ -36,7 +37,7 @@ export const MessageContainer:React.FC =  function MessageContainerFunc(){
             key={index}
             style={{
               backgroundColor: i.select==1?"rgba(71, 207, 138,0.9)":i.select==2?"rgba(255, 48, 115,0.9)":"rgba(40, 61, 82,0.9)",
-              margin: 10,
+              margin: 0,
               padding:10,
               lineHeight:"1.4rem"
             }}

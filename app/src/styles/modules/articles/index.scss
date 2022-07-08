@@ -100,6 +100,7 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
   .ArticleListItem{
+    cursor: pointer;
     // box-shadow: $color-v1-shadow-a;
     // border-radius: 5px;
     // border-radius: 5px;
@@ -165,7 +166,9 @@
   background-color: #ff3073!important;
 }
 .ArticleModal{
-  width: calc(100vw - 100px);
+  @include mq(tb){
+    width: calc(100vw - 100px);
+  }
   margin: 0 auto;
   overflow-y: scroll;
   height: 100%;
@@ -316,7 +319,7 @@
     grid-template-rows: 80% auto;
     .ArticleProductsGridRightTop{
       height: 100%;
-      overflow: scroll;
+      overflow-y: scroll;
       width: 100%;
       padding: 10px;
       .ArticleProductsGridRightTitle{
@@ -360,7 +363,17 @@
         background-color: white;
         box-shadow: $color-v1-shadow;
       }
-    }
+      /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+      -ms-overflow-style: none;
+      /*Firefoxへの対応*/
+      scrollbar-width: none;
+      }
+
+      /*Google Chrome、Safariへの対応*/
+      ul::-webkit-scrollbar{
+        display: none;
+      }
+
     }
   }
 }
