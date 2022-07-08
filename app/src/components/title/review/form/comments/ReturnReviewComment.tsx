@@ -128,11 +128,15 @@ export const ReturnReviewComment:React.FC<Props> = function ReturnReviewCommentF
   }
   ),[])
 
+  const handleClose2 = () => {
+    
+  }
+
   return(
     <>
       <Modal
         open={openReviewComment}
-        onClose={handleClose}
+        onClose={handleClose2}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       > 

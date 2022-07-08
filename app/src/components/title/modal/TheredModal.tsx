@@ -186,11 +186,14 @@ export const TheredModal:React.FC<Props> = function TheredModalFunc(Props){
 
   }
   ),[])
+  const handleClose2 = () => {
+    
+  }
   return(
     <>
       <Modal
         open={openthered}
-        onClose={handleClose}
+        onClose={handleClose2}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

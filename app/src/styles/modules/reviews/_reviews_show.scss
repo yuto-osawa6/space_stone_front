@@ -326,13 +326,13 @@
   width: 100%;
 }
 .ReturnReviewConponentAll{
-  background-color: aliceblue;
+  background-color: #f6f6f9;
   height: 90%;
   display: flex;
   flex-flow: column;
   max-width: 800px;
   margin: 0 auto;
-  overflow: scroll;
+  overflow-y: scroll;
   @include mq(tb){
     height: 100%;
   }
