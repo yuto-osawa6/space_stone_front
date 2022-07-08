@@ -67,8 +67,7 @@ export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props
                 </div>
               </div>
             </div>
-          </div>
-          <div className = "ReviewListItemMain">
+            <div className = "ReviewListItemMain">
             <div className = {`RevieweListItemMainTop`}>
               <div className = "RevieweListItemMainTopTitle">       
               </div>    
@@ -83,6 +82,22 @@ export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props
               </div>
             </div>
           </div>
+          </div>
+          {/* <div className = "ReviewListItemMain">
+            <div className = {`RevieweListItemMainTop`}>
+              <div className = "RevieweListItemMainTopTitle">       
+              </div>    
+              <div className = "ReviewListItemMainTopContent">
+              <ReactQuill
+              className = "reviews_modal_quill"     
+              ref={quillref}
+              modules={modules} value={Props.review.content} 
+              theme="bubble"
+              readOnly={true}       
+              />
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
     </>

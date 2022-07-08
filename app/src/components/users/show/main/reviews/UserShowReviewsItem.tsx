@@ -64,10 +64,7 @@ export const UserShowReviewsItem:React.FC<Props> = function  UserShowReviewsItem
                 </div>
               </div>
             </div>
-          </div>
-
-          {/*  */}
-          <div className = "ReviewListItemMain">
+            <div className = "ReviewListItemMain">
             <div className = {`RevieweListItemMainTop`}>
               <div className = "RevieweListItemMainTopTitle">
               </div>  
@@ -81,6 +78,23 @@ export const UserShowReviewsItem:React.FC<Props> = function  UserShowReviewsItem
               </div>
             </div>
           </div>
+          </div>
+
+          {/*  */}
+          {/* <div className = "ReviewListItemMain">
+            <div className = {`RevieweListItemMainTop`}>
+              <div className = "RevieweListItemMainTopTitle">
+              </div>  
+              <div className = "ReviewListItemMainTopContent">
+              <ReactQuill
+                className = "reviews_modal_quill"     
+                modules={modules} value={Props.review.content} 
+                theme="bubble"
+                readOnly={true}       
+              />
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
     </>
