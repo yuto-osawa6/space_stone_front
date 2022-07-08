@@ -73,6 +73,7 @@ return client.get(`/products/edit1`,{
 }
 
 export const execProductUpdate = (id:number,product:product,genresArray:string[],formatsArray:string[],characterMiddleData:character[],studiosArray:string[],staffMiddle:character2[],episord:episord[])=> {
+  // console.log(product)
   return client.patch(`/products/${id}`,{ 
     product:product,
     genresArray:genresArray,

@@ -167,6 +167,7 @@ export const AdminsEditProduct:React.FC<Props> = (Props) => {
   const handleSubmit = async() => {
     if (formProduct==undefined) return
     // koko
+    // console.log(product)
     const res = await execProductUpdate(formProduct.id,product,genresArray,formatsArray,characterMiddleData,studiosArray,staffMiddle,episord)
     if(res.data.status==200){
       dispatch(pussingMessageDataAction({title:"productが更新されました。",select:1}))

@@ -698,7 +698,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     <li>シーズン: {yearSeason}
                     </li>
                     )}
-                    {product!=undefined&&product.deliveryStart.length>0&&(
+                    {product!=undefined&&product.deliveryStart!=undefined&&product.deliveryStart.length>0&&(
                     <li>放送開始日: {`${new Date(product.deliveryStart).getFullYear()}-${( '00' + (new Date(product.deliveryStart).getMonth()+1)).slice( -2 )}-${( '00' + (new Date(product.deliveryStart).getDate())).slice( -2 )}`}</li>
                     )}
                     

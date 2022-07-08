@@ -422,7 +422,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     // }
     // doneyet-1 (エラー表示がまだ)
     if (yearSeason==undefined)return
-
+    // console.log(deliveryStart)
     Props.setProduct({
       title:title,
       imageUrl:imageUrl,
@@ -464,7 +464,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   // doneyet-1(このやり方が推奨かどうかわからない)
   Props.childFunc.current = handleErrorCheck
 
-  // console.log(Props)
+  // console.log(Props.product)
   return(
     <>
       {Props.completed[0]!=true?

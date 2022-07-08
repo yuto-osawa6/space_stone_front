@@ -64,6 +64,7 @@ export const CreateEpisord:React.FC<Props> = function CreateEpisordFunc(Props){
     if(count>0){
       return
     }else{
+      // console.log(releaseDate)
       const res = await execUpdateEpisord(pid as string,episordNumber,episordTitle,time,releaseDate)
       if(res.data.status == 200){
         dispatch(pussingMessageDataAction({title:res.data.message,select:1}))
