@@ -13,7 +13,7 @@ import { SessionProvider } from 'next-auth/react'
 import Script from 'next/script'
 import NextNprogress from 'nextjs-progressbar';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
-
+import { usePageView } from "@/hook/usePreview";
 
 
 type NextPageWithLayout = NextPage & {
@@ -24,6 +24,7 @@ type AppPropsWithLayout = AppProps & {
 }
 // function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsWithLayout) {
+  usePageView();
   const getLayout = Component.getLayout ?? ((page) => page)
   // console.log("aagdafafefefesfes")
   // console.log(process.env.RECAPTCHA_KEY)

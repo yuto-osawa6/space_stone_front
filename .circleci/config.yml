@@ -48,6 +48,10 @@ jobs:
           command: 
             echo -e \\nNEXT_PUBLIC_RECAPTCHA_KEY=${RECAPTCHA_KEY} >> app/.env.production
           name: env_NEXT_PUBLIC_RECAPTCHA_KEY
+      - run:
+          command: 
+            echo -e \\nNEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID} >> app/.env.production
+          name: env_NEXT_PUBLIC_GA_ID
       #  - run:
       #     command: 
             # echo NEXT_PUBLIC_A5=7>>app/.env.production
