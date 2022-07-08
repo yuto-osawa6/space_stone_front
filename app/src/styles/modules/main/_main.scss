@@ -999,8 +999,9 @@ display: none;
 
 }
 .ExplanatoryText{
+  margin: 0px 20px;
   @include mq(tb){
-    margin: 0px 20px;
+    margin: 0px 0px;
   }
   color: $merupla-color-info-dark-1;
   font-size: 0.7rem;

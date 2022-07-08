@@ -17,6 +17,8 @@ import { mutate } from "swr"
 import { TopImageSetUp } from "@/components/users/setup/topimage/TopImageSetUp"
 import { useLocale } from "@/lib/ini/local/local"
 import { useWindowDimensions } from "@/hook/useWindowResize"
+import { TailSpin } from "react-loader-spinner"
+import { submitSpin } from "@/lib/color/submit-spin"
 
 type Props = {
   settngModalOpen : boolean
@@ -61,6 +63,7 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
   }
   const handleDeleteUser = async() => {
     if(window.confirm(t.Component.SettingUserModal.DELETE)){
+        setLoaded(true)
         handleSignOut()
     }
     else{
@@ -69,26 +72,32 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
   }
 
   // sighout
+  const [loaded,setLoaded] = useState<boolean>(false)
   const handleSignOut = async () => {
     try {
-      const res = await signOut()
-      if (res.data.success === true) {
+      // const res = await signOut()
+      // if (res.data.success === true) {
         // サインアウト時には各Cookieを削除
-        Cookies.remove("_access_token")
-        Cookies.remove("_client")
-        Cookies.remove("_uid")
+        // Cookies.remove("_access_token")
+        // Cookies.remove("_client")
+        // Cookies.remove("_uid")
         const res2 = await execDeleteUser(userSwr.user.id)
         if(res2.data.status === 200){
+          Cookies.remove("_access_token")
+          Cookies.remove("_client")
+          Cookies.remove("_uid")
+          mutate('/session_user')
           Props.setSettingModalOpen(false)
-          router.push('/')
+          // router.push('/')
         }else if(res2.data.status === 500){
           dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
         }
-      } else {
-      }
+      // } else {
+      // }
     } catch (err) {
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
+    setLoaded(false)
   }
   const windowSize = useWindowDimensions()
 
@@ -143,11 +152,20 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
               >
                 {t.Component.USER.Store}
               </Button>
-              <Button variant="contained"
+              {/* <Button variant="contained"
                 style={{backgroundColor:"#ff3073"}}
                 onClick = { handleDeleteUser }
               >
                 {t.Component.USER.Delete}
+              </Button> */}
+              <Button variant="contained"
+              style={{backgroundColor:"#ff3073"}}
+              className={"tail-spin-loading"}
+              onClick = { handleDeleteUser}
+              > {t.Component.USER.Delete}
+              {loaded==true&&(
+                <TailSpin color={submitSpin.color} height={20} width={20} />
+              )}
               </Button>
             </div>
           </div>
