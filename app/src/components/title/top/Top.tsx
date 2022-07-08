@@ -232,7 +232,7 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
       >
       </div>
       <div className = "show_top_contens_grid">
-      {props.product&&props.product.episords.length>0&&(
+      {props.product&&props.product.episords.length>1&&(
       <div className = "show_contens_08_top share_container02">
         <div className = "show_08 show_episord_08 share_product_show_absolute">
           <div className = "show_08_title share_title01"> 

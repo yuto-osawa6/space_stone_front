@@ -361,7 +361,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
 
   // compare
   const [OpenModalCompare,setOpenModalCompare] = useState<boolean>(false)
-  
+  // console.log(product)
   return(
     <>
       <div className = "product_show"
@@ -680,7 +680,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     <li>フォーマット: {product?.productStyles[0].name}</li>
                     )}
                     {firstEpisord!=undefined||firstEpisord!="0"&&(<li>初回放送日: {firstEpisord}</li>)}
-                    {product!=undefined&&product?.episords.length>0&&(<li>エピソード数: {product?.episords.length}</li>)}
+                    {product!=undefined&&product?.episords.length>1&&(<li>エピソード数: {product?.episords.length}</li>)}
                     {avgTime !=undefined||avgTime != "0分"&&(
                     <li>一話平均: {avgTime}</li>
                     )}
@@ -698,8 +698,10 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     <li>シーズン: {yearSeason}
                     </li>
                     )}
+                    {product!=undefined&&product.deliveryStart.length>0&&(
+                    <li>放送開始日: {`${new Date(product.deliveryStart).getFullYear()}-${( '00' + (new Date(product.deliveryStart).getMonth()+1)).slice( -2 )}-${( '00' + (new Date(product.deliveryStart).getDate())).slice( -2 )}`}</li>
+                    )}
                     
-           
                     
                   </ul>
                 </div>
@@ -741,7 +743,12 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                 </div>
                 <div className = "show_03_list other_service show_03_list_box">
                   <ul>
-                      {product?.annict!=undefined&&product?.annict!=0&&(
+                      {product?.list!=undefined&&product?.list.length!=0&&(
+                        <li><a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list} target="_blank" rel="noopener noreferrer">
+                          公式サイト
+                        </a></li>
+                      )}
+                      {product?.shoboi!=undefined&&product?.shoboi!=0&&(
                         <li><a href = {`https://cal.syoboi.jp/tid/${product?.shoboi}`} target="_blank" rel="noopener noreferrer">
                           しょぼいカレンダー
                         </a></li>
@@ -751,11 +758,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                           Annict
                         </a></li>
                       )}
-                      {product?.list!=undefined&&product?.list.length!=0&&(
-                        <li><a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list} target="_blank" rel="noopener noreferrer">
-                          公式サイト
-                        </a></li>
-                      )}
+                      
                   </ul>
                 </div>
               </div>
