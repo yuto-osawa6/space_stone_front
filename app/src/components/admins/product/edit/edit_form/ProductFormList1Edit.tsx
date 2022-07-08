@@ -362,17 +362,19 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     
     const blob = new Blob([value])
     const editor = quillref.current?.getEditor()
-    if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length>300){
-      setArasuziValidationText("300文字までです。")
-      return
-    }else if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length==0){
+    // if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length>300){
+    //   setArasuziValidationText("300文字までです。")
+    //   return
+    // }
+    // else 
+    if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length==0){
       setArasuziValidationText("入力されていません。")
       return
     }
-    if(blob.size>3000){
-      setArasuziValidationText("サイズが大きすぎます。")
-      return
-    }
+    // if(blob.size>3000){
+    //   setArasuziValidationText("サイズが大きすぎます。")
+    //   return
+    // }
 
     // if(year==""){
     //   setYearValidationText("選択されていません")
