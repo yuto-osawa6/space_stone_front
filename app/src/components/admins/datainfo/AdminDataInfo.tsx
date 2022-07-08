@@ -27,7 +27,7 @@ export const AdminDataInfo:React.FC<Props> = function AdminDataInfoFunc(Props){
   const handleSubmit = async() => {
     const res = await execUpdateDataInfo(title)
     if(res.data.status === 200){
-      dispatch(pussingMessageDataAction({title:"data-information情報を更新しまs他",select:1}))
+      dispatch(pussingMessageDataAction({title:"data-information情報を更新しました。",select:1}))
     }else{
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
