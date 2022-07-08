@@ -13,6 +13,7 @@ type year_season = {
   season:string[]
 }
 export const YearSeasonsEdit:React.FC<Props> = (Props) => {
+  // console.log(Props)
   const [plot,setPlot] = useState<year_season>({year:Props.item,season:Props.yearSeason[Props.index]!=undefined?Props.yearSeason[Props.index].season:[]})
  // kisetsu--------------------------------------------------------
   const [kisetsu,setKisetsu] = useState<string[]>(Props.yearSeason[Props.index]!=undefined?Props.yearSeason[Props.index].season:[])

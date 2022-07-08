@@ -63,14 +63,21 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   // a
   // DefaultPasteForTitle()
   // -------------------
+  // const YearSeasonSetHandle = () => {
+  //   Props.formProduct.formYearSeason.map((item)=>{
+  //     item.
+  //   })
+  // }
   
   useEffect(()=>{
     handleSetUpYear()
   },[])
-  console.log(Props)
-  console.log(Props.formProduct.formYearSeason)
-  const [yearSeason,setYearSeason] = useState<year_season[]>([])
+  // console.log(Props)
+  // console.log(Props.formProduct.formYearSeason)
+  // console.log(yearSeason)
+  const [yearSeason,setYearSeason] = useState<year_season[]>(Props.formProduct.formYearSeason)
   const childFunc01 = useRef<any>([])
+  // console.log(yearSeason)
  
   // productTitle------------------------------
     const [title,setTitle] = useState<string | undefined>(Props.formProduct.title)
@@ -455,7 +462,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   // doneyet-1(このやり方が推奨かどうかわからない)
   Props.childFunc.current = handleErrorCheck
 
-
+  // console.log(Props)
   return(
     <>
       {Props.completed[0]!=true?
