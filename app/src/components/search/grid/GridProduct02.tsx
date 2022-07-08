@@ -127,11 +127,13 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
             >
               詳細ページ
             </div>
+            {Props.product&&Props.product?.list.length>0&&(
             <div className="WorldClassContainerViewsRightNetflix">
               <a href={`${Props.product?.list}`}>
                 公式サイトへ
               </a>
             </div>
+            )}
           </div>
           {Props.avgScore!=undefined&&(
             <div className="WorldClassContainerViewsRightScore Grid02ProductScore"
