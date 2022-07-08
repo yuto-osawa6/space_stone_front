@@ -479,7 +479,7 @@ px
     max-width: 800px;
     margin: 0 auto;
     position: fixed;
-    background-color: aliceblue;
+    background-color: #f6f6f9;
     width: 100%;
     bottom: 0;
     padding: 20px;
@@ -503,10 +503,10 @@ px
   min-height: 40%;
   max-width: 800px;
   margin: 0 auto;
-  background-color: aliceblue;
+  background-color: #f6f6f9;
   padding: 20px;
   max-height: 40%;
-  overflow: scroll;
+  overflow-y: scroll;
   .modal_review_richtext_preview_text{
     font-size: 1.2rem;
     font-weight: bold;
