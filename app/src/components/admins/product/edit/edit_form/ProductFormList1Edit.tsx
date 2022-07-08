@@ -203,11 +203,11 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     const editor = quillref.current?.getEditor()
     setValue(content)
     setArasuziLength(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length)
-    if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length>300){
-      setArasuziValidationText("300字までです。")
-    }else{
+    // if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length>300){
+    //   setArasuziValidationText("300字までです。")
+    // }else{
     setArasuziValidationText("")
-    }
+    // }
   }
   // list-------------------------------------------------------
   const [list,setList] = useState<string | undefined>(Props.formProduct.list)
