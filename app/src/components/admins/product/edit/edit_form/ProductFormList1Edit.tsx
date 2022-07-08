@@ -693,7 +693,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
             ) 
           })}
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DateTimePicker
+            <DatePicker
               label="配信開始"
               onError={handlererror}
               value={deliveryStart}
@@ -710,7 +710,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
           </LocalizationProvider>
           <FormHelperText className = "helpertexts">{deliveryStartValidationText}</FormHelperText>
             <LocalizationProvider dateAdapter={AdapterDateFns}>  
-            <DateTimePicker
+            <DatePicker
               label="配信終了"
               value={deliveryEnd}
               onChange={(newValue) => {
