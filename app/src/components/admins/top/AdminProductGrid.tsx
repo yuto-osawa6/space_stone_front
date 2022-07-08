@@ -18,6 +18,7 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
     setColornumber(colorNumber)
     setAverageScoreHandler()
     settingNumberOfDigits(Props.product.scores.length)
+    handleSetupYearSeason()
   },[])
   // doneyet_4 (undefinedが帰ってきた時エラー)
   const [averageScore,setAverageScore] = useState<number>()
@@ -81,6 +82,20 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
 
     }
   }
+  console.log(Props)
+  const [YearSeason,setYearSeason]= useState<string>("")
+  const handleSetupYearSeason = () => {
+    const kisetsu = ["冬","春","夏","秋"]
+    const yearSeasonYear = Props.product.productYearSeason2.filter(i=>kisetsu.includes(i.season.name)).sort((a,b)=>kisetsu.indexOf(a.season.name) - kisetsu.indexOf(b.season.name)).sort((a,b)=>new Date(a.year.year).getTime() - new Date(b.year.year).getTime())
+    try{
+      if (yearSeasonYear.length==1){
+        setYearSeason(`${new Date(yearSeasonYear[0].year.year).getFullYear()} ${yearSeasonYear[0].season.name}`)
+      }else{
+        setYearSeason(`${new Date(yearSeasonYear[0].year.year).getFullYear()} ${yearSeasonYear[0].season.name} ~ ${new Date(yearSeasonYear[yearSeasonYear.length-1].year.year).getFullYear()}  ${yearSeasonYear[yearSeasonYear.length-1].season.name}`)
+      }
+    }catch(e){
+    }
+  }
   return(
     <>
       <div className = "ToptensContainerGridList"
@@ -96,14 +111,49 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
             {Props.product.title}
           </div>  
           <div className = "ToptensContainerGridListGenre">
-            {Props.product.productGenres.map((item)=>{
+            {/* {Props.product.productGenres.map((item)=>{
               return(
                   <li key={item.id} className={`p_contens_grid_color${colornumber}g`}>{item.name}</li>
               )
-            })}
-          </div>    
+            })} */}
+            {averageScore!=undefined&&(
+            <div className = "ToptensContainerGridListScore">
+          <div className = "ToptensContainerGridListScoreUpper ToptensContainerGridListUpperShare">
+        
+            <p style={scoreColor}>{Number(averageScore).toFixed(1)}%</p>
+    
+          </div>
+            <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
+          </div>
         </div>
-        <div className = "ToptensContainerGridListScore">
+        )}
+        
+        <div className = "ToptensContainerGridSeries">
+
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
+          {Props.product.productStyles.length>0&&(
+            <p>{Props.product.productStyles[0].name}</p>
+          )}
+          </div>
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
+          </div>
+        </div>
+        <div className = "ToptensContainerGridSeries">
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
+              {YearSeason}
+          </div>
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
+          </div>
+        </div>
+          {Props.product.productGenres.map((item)=>{
+              return(
+                  <li key={item.id} className={`p_contens_grid_color${colornumber}g`}>{item.name}</li>
+              )
+          })}
+        
+          </div>      
+        </div>
+        {/* <div className = "ToptensContainerGridListScore">
           <div className = "ToptensContainerGridListScoreUpper ToptensContainerGridListUpperShare">
           {Props.product.scores.length>0&&(
             <p style={scoreColor}>{averageScore?.toFixed(1)}%</p>
@@ -132,7 +182,7 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
           <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
             {Props.product.duration}
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="">
         {fini==true&&(
