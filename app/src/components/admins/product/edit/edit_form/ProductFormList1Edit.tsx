@@ -498,7 +498,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
           />
           <TextField
             error={imageUrlError}
-            inputProps={{ maxLength: 1000, pattern: "^[a-zA-Z0-9_]+$" }}
+            inputProps={{  pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="ImageUrlを入力してください(base64以外の画像リンク）"
             defaultValue={Props.formProduct.imageUrl}
             id="outlined-basic"
@@ -510,7 +510,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
             fullWidth
           />
           <TextField
-            inputProps={{ maxLength: 1000, pattern: "^[a-zA-Z0-9_]+$" }}
+            inputProps={{  pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="ImageUrlを入力してください(base64以外の画像リンク）"
             defaultValue={Props.formProduct.imageUrl2}
             id="outlined-basic"
@@ -521,7 +521,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
             fullWidth
           />
           <TextField
-            error={imageUrlError}
+            // error={imageUrlError}
             inputProps={{ maxLength: 1000, pattern: "^[a-zA-Z0-9_]+$" }}
             placeholder="title Ka"
             defaultValue={Props.formProduct.imageUrl3}
