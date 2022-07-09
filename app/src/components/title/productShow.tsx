@@ -649,7 +649,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                       //   fontSize:"0.8rem"
                       //   col
                       // }}
-                      >{product?.arasuziCopyright}</div>
+                      >引用 {product?.arasuziCopyright}</div>
                     </div>
                     {/* <div className = "show_contents01_header_bottom_right_netflix"
                   
