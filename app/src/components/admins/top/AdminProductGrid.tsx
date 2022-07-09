@@ -1,8 +1,10 @@
 import { product } from "@/interfaces/product"
 import { execPublishedOne } from "@/lib/api/admin/product"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { BsFillSuitHeartFill ,BsFillSuitClubFill,BsFillSuitSpadeFill, BsFillSuitDiamondFill} from "react-icons/bs"
+// import { Link } from "react-scroll"
 type Props = {
   product:product
 }
@@ -69,9 +71,9 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
     }
   }
   const router = useRouter()
-  const navigateHandler = () => {
-    router.push(`/title/${Props.product.id}`)
-  }
+  // const navigateHandler = () => {
+  //   router.push(`/title/${Props.product.id}`)
+  // }
   // 公開
   const [fini,setFini] = useState<boolean>(Props.product.finished)
   const handlePublishedOne = async(i:number) => {
@@ -98,8 +100,10 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
   }
   return(
     <>
+      <Link href = {`/title/${Props.product.id}`}>
+      <a>
       <div className = "ToptensContainerGridList"
-      onClick={navigateHandler}
+      // onClick={navigateHandler}
       >
         <div className = "ToptensContainerGridListRank">
         </div>
@@ -184,6 +188,8 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
           </div>
         </div> */}
       </div>
+      </a>
+      </Link>
       <div className="">
         {fini==true&&(
           <div className=""
