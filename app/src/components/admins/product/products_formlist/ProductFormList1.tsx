@@ -43,6 +43,7 @@ type product = {
 
   // time:Date | null
   yearSeason:year_season[]
+  arasuziCopyright:string
  
 }
 type year_season = {
@@ -124,6 +125,11 @@ export const ProductFormList1:React.FC<Props> = (Props) => {
   }
   }
   // arasuzi --------------------------
+  const [arasuziCopyright,setArasuziCopyright] = useState<string>(Props.product.arasuziCopyright)
+  const handleChangearasuziCopyright = (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+    setArasuziCopyright(e?.currentTarget.value as string)
+  }
+  // 
   const quillref  = useRef<any>(undefined!)
   const [value,setValue] = useState<string>("")
   const [arasuziValidationText,setArasuziValidationText] = useState<string>("")
@@ -287,7 +293,8 @@ export const ProductFormList1:React.FC<Props> = (Props) => {
       copyright:copyright,
       annitictId:annitictId,
       shoboiTid:shoboiTid,
-      yearSeason:yearSeason
+      yearSeason:yearSeason,
+      arasuziCopyright:arasuziCopyright
     })
 
     // return
@@ -468,6 +475,19 @@ export const ProductFormList1:React.FC<Props> = (Props) => {
             variant="outlined"
             helperText={listValidateText}
             onChange={handleChangeList}
+            size="small"
+            fullWidth
+          />
+          <TextField
+            // error={arasuziCopyrightError}
+            inputProps={{ maxLength: 1000, pattern: "^[a-zA-Z0-9_]+$" }}
+            placeholder="あらすじの引用元を入力してください"
+            defaultValue={Props.product.arasuziCopyright}
+            id="outlined-basic"
+            label="Arasuzi Copyright"
+            variant="outlined"
+            // helperText={arasuziCopyrightValidateText}
+            onChange={handleChangearasuziCopyright}
             size="small"
             fullWidth
           />

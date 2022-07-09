@@ -95,6 +95,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   const [productScores,setProductScores] = useState<productScores[]>([])
   const [userScore,setUserScore] = useState<productScores>()
 
+  // console.log(product)
   let isMounted = true
   const setdata = async() =>{
     if (ProductStore.id == Number(params_id)){
@@ -379,6 +380,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                   }
                   <div className = "show_contents01_header_top_shadow">
                   </div>
+                  
                   {userSwr.user!=undefined&&userSwr.user.administratorGold==true&&(
                     <div className = "UserAdminEdit"
                     onClick={handleOpenEditProduct}
@@ -501,6 +503,12 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                   </div>
                 </div>
               </div>
+              <div className="Copyright"
+                      // style={{
+                      //   fontSize:"0.8rem"
+                      //   col
+                      // }}
+                  >©︎{product?.copyright}</div>
           
               <div className = "show_contents01_header_bottom" 
               >
@@ -608,10 +616,11 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                   </div>
                 </div> */}
 
-
+                
                 <div className = "show_contents01_header_bottom_right"
                 ref = {elm2}
                 >
+                  
                   <div className = "show_contents01_header_bottom_rightbox">
                     <div className = "show_contents01_header_bottom_right_title">
                       {ProductStore.id==Number(params_id)?ProductStore.title:product?.title}
@@ -635,6 +644,12 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                           readOnly={true}
                         />
                       )}
+                      <div className="arasuzi_copyright"
+                      // style={{
+                      //   fontSize:"0.8rem"
+                      //   col
+                      // }}
+                      >{product?.arasuziCopyright}</div>
                     </div>
                     {/* <div className = "show_contents01_header_bottom_right_netflix"
                   

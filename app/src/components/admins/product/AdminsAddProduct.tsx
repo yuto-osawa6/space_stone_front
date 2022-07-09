@@ -34,6 +34,7 @@ type product = {
   annitictId:number | undefined
   shoboiTid:number | undefined
   yearSeason:year_season[]
+  arasuziCopyright:string
 }
 
 type year_season = {
@@ -88,7 +89,8 @@ export const AdminsAddProduct:React.FC<Props> = (Props) => {
     yearSeason:[{
       year:"",
       season:[]
-    }]
+    }],
+    arasuziCopyright:""
   })
   const [formatsArray,setFormatsArray] = useState<string[]>([])
   const [genresArray,setGenresArray] = useState<string[]>([])

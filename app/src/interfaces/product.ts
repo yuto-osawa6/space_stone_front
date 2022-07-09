@@ -20,6 +20,8 @@ export interface product {
   imageUrlh3:string | undefined
 
   arasuzi:string
+  copyright:string
+  arasuziCopyright:string
   annict:number
   shoboi:number
   // 
@@ -323,7 +325,7 @@ export interface productForm {
   imageUrlh2:string | undefined
   imageUrlh3:string | undefined
 
-
+  arasuziCopyright:string
   arasuzi:string
   // 
   averageScore:string

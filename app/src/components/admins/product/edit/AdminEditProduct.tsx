@@ -38,6 +38,7 @@ type product_form = {
   shoboiTid:number | undefined
   yearSeason:year_season[]
   overview:string | undefined
+  arasuziCopyright:string
 }
 
 type year_season = {
@@ -98,7 +99,8 @@ export const AdminsEditProduct:React.FC<Props> = (Props) => {
       season:[]
     }]
     ,
-    overview:""
+    overview:"",
+    arasuziCopyright:""
   })
   const [formatsArray,setFormatsArray] = useState<string[]>([])
   const [genresArray,setGenresArray] = useState<string[]>([])
