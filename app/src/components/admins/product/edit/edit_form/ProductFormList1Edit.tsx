@@ -347,16 +347,16 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
       return
     }
     // imageUrl
-    if(imageUrl==undefined){
-      setImageUrlEroor(true)
-      setImageUrlValidateText("imageUrlが未定義です。")
-      return
-    }
-    if(imageUrl.length==0){
-      setImageUrlEroor(true)
-      setImageUrlValidateText("imageUrlが入力されていません。")
-      return
-    }
+    // if(imageUrl==undefined){
+    //   setImageUrlEroor(true)
+    //   setImageUrlValidateText("imageUrlが未定義です。")
+    //   return
+    // }
+    // if(imageUrl.length==0){
+    //   setImageUrlEroor(true)
+    //   setImageUrlValidateText("imageUrlが入力されていません。")
+    //   return
+    // }
     // if(imageUrlh1==undefined){
     //   setImageUrlEroorh1(true)
     //   setImageUrlValidateTexth1("imageUrlが未定義です。")
