@@ -183,14 +183,14 @@ const handleSubmitGenres = async() => {
   const array:number[] = []
   const handleErrorCheck = () => {
 
-    if(genresIdList.length==0){
-      setStudioValidateText("選択されていません。")
-      return
-    }
-    if(characterIdList.length==0){
-      setStaffValidateText("選択されていません。")
-      return
-    }
+    // if(genresIdList.length==0){
+    //   setStudioValidateText("選択されていません。")
+    //   return
+    // }
+    // if(characterIdList.length==0){
+    //   setStaffValidateText("選択されていません。")
+    //   return
+    // }
 
     const array:number[] = []
     childFunc01.current.map((i:Function,index:number)=>

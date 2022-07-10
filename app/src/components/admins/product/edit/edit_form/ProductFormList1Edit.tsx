@@ -376,10 +376,10 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     //   return
     // }
     // else 
-    if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length==0){
-      setArasuziValidationText("入力されていません。")
-      return
-    }
+    // if(editor.getText().replace(/\r?\n/g, '').replace(/\s+/g, "").length==0){
+    //   setArasuziValidationText("入力されていません。")
+    //   return
+    // }
     // if(blob.size>3000){
     //   setArasuziValidationText("サイズが大きすぎます。")
     //   return
