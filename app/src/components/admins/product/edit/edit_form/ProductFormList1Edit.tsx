@@ -434,7 +434,7 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     // console.log(deliveryStart)
     Props.setProduct({
       title:title,
-      imageUrl:imageUrl,
+      imageUrl:imageUrl as string,
       description:value!=undefined?value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>"):"",
       list:list,
       year:year,
