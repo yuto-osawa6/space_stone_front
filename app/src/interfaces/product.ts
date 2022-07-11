@@ -152,7 +152,8 @@ export interface product {
     emotions:[{
       id: number
       emotion: string
-    }]
+    }],
+    score:number
   }]
   emotions:[{
     id:number
@@ -228,7 +229,8 @@ export interface userReview {
   emotions:[{
     id: number
     emotion: string
-  }]
+  }],
+  score:number
 }
 
 export interface acsesses {

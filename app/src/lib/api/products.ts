@@ -123,7 +123,7 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
 
   // review update
   
-  export const execUpdateReview = (review_id:number,select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[],reCaptchaToken:string) => {
+  export const execUpdateReview = (review_id:number,select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[],reCaptchaToken:string,firstValue:number) => {
   
     return client.patch(`/products/${product_id}/reviews/${review_id}`, { 
       // params:{
@@ -135,6 +135,7 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
         product_id:product_id,
         user_id:user_id,
         emotion_ids:emotions,
+        score:firstValue
         // review_emotions:[{
         //   product_id:1,
         //   emotion_id:1,
@@ -145,7 +146,7 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
     // }
   })
   }
-  export const execUpdate2Review = (review_id:number,select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[],reCaptchaToken:string) => {
+  export const execUpdate2Review = (review_id:number,select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[],reCaptchaToken:string,firstValue:number) => {
   
     return client.patch(`/products/${product_id}/reviews/${review_id}/update2`, { 
       // params:{
@@ -157,6 +158,7 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
         product_id:product_id,
         user_id:user_id,
         emotion_ids:emotions,
+        score:firstValue
         // review_emotions:[{
         //   product_id:1,
         //   emotion_id:1,

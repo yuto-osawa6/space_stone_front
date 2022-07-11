@@ -272,6 +272,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
     }
     const res = await execCheckingHeart(product.id,userSwr.user.id)
     if (res.status === 200) {
+      // console.log(res)
       // 確認
       setHeart(res.data.liked.liked)
       if (res.data.liked.liked===true){
@@ -364,6 +365,8 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   const [OpenModalCompare,setOpenModalCompare] = useState<boolean>(false)
   // console.log(product)
   const [openArasuzi,setOpenArasuzi] = useState<boolean>(false)
+
+  // console.log(userReviews)
   return(
     <>
       <div className = "product_show"

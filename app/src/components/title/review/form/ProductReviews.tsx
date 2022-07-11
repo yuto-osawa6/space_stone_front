@@ -204,11 +204,11 @@ export const ProductReviews:React.FC<Props> = function ProductReviewsFunc(Props)
     scroll:false
   }
   const handleClose = () => {
-    console.log(location.pathname)
-    console.log("/reviews/25/title/1/")
-    console.log(params_product_id,params_review_id,params_user_id)
-    console.log(params_product_id)
-    console.log(`/reviews/${params_review_id}/title/${params_product_id}`)
+    // console.log(location.pathname)
+    // console.log("/reviews/25/title/1/")
+    // console.log(params_product_id,params_review_id,params_user_id)
+    // console.log(params_product_id)
+    // console.log(`/reviews/${params_review_id}/title/${params_product_id}`)
     setOpenModal(false)
     // koko-1
     if(location.pathname===`/title/${params_product_id}/top/reviews/${params_review_id}/`){

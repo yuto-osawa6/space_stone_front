@@ -207,9 +207,12 @@ export const EditReviewModal:React.FC<Props> = function EditReviewModalFunc(Prop
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
       return
     }
+    if(!firstValue){
+      return
+    }
     const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
     setSubmitLoading(true)
-    const res = await execUpdateReview(editReview.id,episordValue,text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,emotions,reCaptchaToken)
+    const res = await execUpdateReview(editReview.id,episordValue,text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,emotions,reCaptchaToken,firstValue)
     if(res.data.status===200){
       Props.setUserReview(res.data.userReview)
       Props.setEditOpenModal(false)
@@ -304,7 +307,20 @@ export const EditReviewModal:React.FC<Props> = function EditReviewModalFunc(Prop
     // doneyet-1{下}
     setValue(alfaData[0].content)
     setEmotions(alfaData[0].emotions.map(i=>String(i.id)))
+    setFirstValue(alfaData[0].score)
+    setDefaultValue(alfaData[0].score)
+    // console.log(alfaData[0].score)
   },[episordValue])
+
+  const [defaultValue,setDefaultValue] = useState<number>()
+  const [firstValue,setFirstValue] = useState<number>()
+  // const [value2,setValue2] = useState<number | null>(score)
+  const valuetext = (value:number):string=>{
+    setFirstValue(value)
+
+    return `${value}`
+  }
+  // console.log(firstValue)
   return(
     <>
       <Modal
@@ -375,6 +391,7 @@ export const EditReviewModal:React.FC<Props> = function EditReviewModalFunc(Prop
               )
             })}
           </div>
+          
           <ReactQuill 
             className = "reviews_modal_quill preview_quill"
             ref={quillref}
@@ -417,6 +434,23 @@ export const EditReviewModal:React.FC<Props> = function EditReviewModalFunc(Prop
               })}
             </Select>
           </FormControl>
+          {firstValue!=undefined&&defaultValue!=undefined&&(
+            <div className=""
+                style={{marginBottom:"20px"}}
+              >
+              Score
+              <Slider
+                aria-label="Temperature"
+                defaultValue={defaultValue}
+                getAriaValueText={valuetext}
+                valueLabelDisplay="auto"
+                step={10}
+                marks
+                min={10}
+                max={100}
+              />  
+            </div> 
+          )}
             <ReactQuill
             className = "reviews_modal_quill"
             ref={quillref}

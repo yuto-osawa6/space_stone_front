@@ -107,7 +107,7 @@ export const EditReviewModal2:React.FC<Props> = function EditReviewModal2Func(Pr
       return
     }
     setSubmitLoading(true)
-    const res = await execUpdate2Review(Props.review.id,String(Props.review.episordId),text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product.id,Props.review.userId,emotions,reCaptchaToken)
+    const res = await execUpdate2Review(Props.review.id,String(Props.review.episordId),text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product.id,Props.review.userId,emotions,reCaptchaToken,firstValue)
     if(res.data.status===200){
       Props.setReview(res.data.review)
       dispatch(updateReviewAction(true))
@@ -136,6 +136,15 @@ export const EditReviewModal2:React.FC<Props> = function EditReviewModal2Func(Pr
     );
     setEmotionValidationText("")
     setEmotionError(false)
+  }
+
+  // const [defaultValue,setDefaultValue] = useState<number>(Props)
+  const [firstValue,setFirstValue] = useState<number>(Props.review.episordScore)
+  // const [value2,setValue2] = useState<number | null>(score)
+  const valuetext = (value:number):string=>{
+    setFirstValue(value)
+
+    return `${value}`
   }
 
   return(
@@ -215,6 +224,23 @@ export const EditReviewModal2:React.FC<Props> = function EditReviewModal2Func(Pr
             </Select>
             </FormControl>
           )}
+          {/* {firstValue!=undefined&&( */}
+            <div className=""
+                style={{marginBottom:"20px"}}
+              >
+              Score
+              <Slider
+                aria-label="Temperature"
+                defaultValue={Props.review.episordScore}
+                getAriaValueText={valuetext}
+                valueLabelDisplay="auto"
+                step={10}
+                marks
+                min={10}
+                max={100}
+              />  
+            </div> 
+          {/* )} */}
 
             <ReactQuill
             className = "reviews_modal_quill"
