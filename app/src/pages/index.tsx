@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
     fetch(`${ssr_url}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams)),
     fetch(`${ssr_url}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams2)),
     fetch(`${ssr_url}/mainblocks/mains/worldclass`),
-    fetch(`${ssr_url}/mainblocks/mains/calendar`),
+    // fetch(`${ssr_url}/mainblocks/mains/calendar`),
     fetch(`${ssr_url}/mains`),
 
 
