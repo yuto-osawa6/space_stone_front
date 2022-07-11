@@ -221,7 +221,8 @@ export const Articles:React.FC<Props> = function ArticlesFunc(Props){
           )}
         </div>
         
-        <div className = "ArticlesContainerMain">      
+        <div className = "ArticlesContainerMain">    
+          準備中です。
           {article.map((item,index)=>{
             return(
             <ArticlesLists
