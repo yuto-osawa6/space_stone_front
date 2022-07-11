@@ -311,7 +311,8 @@ const handleUpdateContents  = async() => {
           )}
           <div className = "ProductReviewShowTopCenter">
             <div className = "ProductReviewShowTopCenterTitle">
-              {product?.title}
+              {product?.title} 
+              {review?.episord!=null?`${review?.episord}話`:""}
             </div>
             <div className = "ProductReviewShowTopCenterUser">
               <img src={review?.user.image}></img>
@@ -339,7 +340,8 @@ const handleUpdateContents  = async() => {
             display:"flex",
             gap:"10px",
             margin: "10px 0px",
-            fontSize: "0.9rem"
+            fontSize: "0.9rem",
+            flexFlow:"title"
           }}
           >
             {review?.reviewEmotions.map((item)=>{
@@ -354,6 +356,15 @@ const handleUpdateContents  = async() => {
                 >{item.emotion}</div>
               )
             })}
+            <div className=""
+            style={{
+              padding: "5px",
+              backgroundColor: "#3d445c",
+              borderRadius: "5px",
+              color: "white"
+            }}
+            >評価:{review?.episordScore}/100</div>
+            {/* <div className="">{review?.episord}</div> */}
           </div>
             <ReactQuill
               modules={modules} 

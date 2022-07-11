@@ -171,7 +171,7 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
     }
     setSubmitLoading(true)
     const value_text= value.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")
-    const res = await execCreateReview(episordValue,text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,emotions,reCaptchaToken)
+    const res = await execCreateReview(episordValue,text,value_text,quillref.current.getEditor().getText(0,50).replace(/\r?\n/g, '')+"...",Props.product_id,Props.user_id,emotions,reCaptchaToken,firstValue)
     if(res.data.status===200){
       Props.setUserReview(res.data.userReview)
       Props.setEmotionLists(res.data.emotionLists)
@@ -257,6 +257,14 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
     );
     setEmotionValidationText("")
     setEmotionError(false)
+  }
+
+  const [firstValue,setFirstValue] = useState<number>(50)
+  // const [value2,setValue2] = useState<number | null>(score)
+  const valuetext = (value:number):string=>{
+    setFirstValue(value)
+
+    return `${value}`
   }
   return(
     <>
@@ -360,6 +368,23 @@ export const ReviewModal:React.FC<Props> = function ReviewModalFunc(Props){
               })}
             </Select>
           </FormControl>
+            
+            <div className=""
+              style={{marginBottom:"20px"}}
+            >
+            Score
+            <Slider
+              aria-label="Temperature"
+              defaultValue={firstValue as number}
+              getAriaValueText={valuetext}
+              valueLabelDisplay="auto"
+              step={10}
+              marks
+              min={10}
+              max={100}
+            />  
+            </div> 
+
             <ReactQuill
             className = "reviews_modal_quill"
             ref={quillref}

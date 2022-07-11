@@ -97,7 +97,7 @@ export const execAcsesscount = (id:number,current_time:Date) => {
 }
 
 // review
-export const execCreateReview = (select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[],reToken:string) => {
+export const execCreateReview = (select:string,text:string,value:string,discribe:string,product_id:number,user_id:number,emotions:string[],reToken:string,firstValue:number) => {
   
   return client.post(`/products/${product_id}/reviews`, { 
     // params:{
@@ -109,6 +109,7 @@ export const execCreateReview = (select:string,text:string,value:string,discribe
       product_id:product_id,
       user_id:user_id,
       emotion_ids:emotions,
+      score:firstValue,
       // review_emotions:[{
       //   product_id:1,
       //   emotion_id:1,
