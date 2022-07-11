@@ -18,7 +18,7 @@ export const  Footer:React.FC = () => {
             <Link href="/privacy"><a className="terms_auth">プライバシーポリシー</a></Link>
           </div>
           <div className="FooterCopyright">
-            ©️ 2021 - 2022 Meruplanet
+            ©️ 2022 Meruplanet
           </div>
       </div>
     </>
