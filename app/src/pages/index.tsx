@@ -41,7 +41,8 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
     current_number:"2"
   }
   const query_params = new URLSearchParams(params); 
-  const [trendRes,thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,calendarRes,tagsRes] = await Promise.all([
+  // const [trendRes,thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,calendarRes,tagsRes] = await Promise.all([
+  const [trendRes,thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,tagsRes] = await Promise.all([
     fetch(`${ssr_url}/mainblocks/mains/trend`), 
     fetch(`${ssr_url}/mainblocks/mains/new_netflix`), 
     fetch(`${ssr_url}/mainblocks/mains/pickup?`+ query_params),
@@ -53,19 +54,21 @@ export const getServerSideProps: GetServerSideProps = async(context) => {
 
 
   ]);
-  const [trendData,data, data2,tierData,tierData2,worldData,calendarData,tagsData] = await Promise.all([
+  // const [trendData,data, data2,tierData,tierData2,worldData,calendarData,tagsData] = await Promise.all([
+  const [trendData,data, data2,tierData,tierData2,worldData,tagsData] = await Promise.all([
     trendRes.json(),
     thisSeasonRes.json(), 
     nextSeasonRes.json(),
     tierRes.json(),
     tierRes2.json(),
     worldRes.json(),
-    calendarRes.json(),
+    // calendarRes.json(),
     tagsRes.json()
   ]);
   return { 
     props: { 
-      trendData,data, data2,worldData,calendarData,tagsData,
+      // trendData,data, data2,worldData,calendarData,tagsData,
+      trendData,data, data2,worldData,tagsData,
       fallback: {
         '/mainblocks/mains/update_tier_list/1': tierData,
         '/mainblocks/mains/update_tier_list/2' : tierData2
@@ -98,13 +101,13 @@ type Props = {
     scores:avgScore
     worldRanking: product[]
   },
-  calendarData:{
-    deliveryStart: product[]
-    episordStart: product[]
-    scores:{
-      avgScore:avgScore
-    }
-  },
+  // calendarData:{
+  //   deliveryStart: product[]
+  //   episordStart: product[]
+  //   scores:{
+  //     avgScore:avgScore
+  //   }
+  // },
   tagsData:{
     tags:tags[]
     top100:tags[]
