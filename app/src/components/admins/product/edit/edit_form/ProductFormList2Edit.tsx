@@ -147,10 +147,10 @@ export const ProductFormList2Edit:React.FC<Props> = (Props) => {
       setFormatValidationText("formatが選択されていません。")
       return
     }
-    if(genresIdList.length==0){
-      setGenresValidationText("genreが選択されていません。")
-      return
-    }
+    // if(genresIdList.length==0){
+    //   setGenresValidationText("genreが選択されていません。")
+    //   return
+    // }
     Props.setFormatsArray([formatsIdList.value])
     Props.setGenresArray(genresIdList.map(item=>item.value))
     const newCompleted = Props.completed
