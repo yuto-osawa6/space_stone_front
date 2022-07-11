@@ -135,7 +135,8 @@ export const testProductData:product = {
     emotions:[{
       id: 0,
       emotion: "test_emotion"
-    }]
+    }],
+    score:0
    
     // productId: 0,
     // userId: 1
