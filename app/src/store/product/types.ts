@@ -154,7 +154,8 @@ export const IniProductData:product = {
     emotions:[{
       id: 0,
       emotion: ""
-    }]
+    }],
+    score:0
    
     // productId: 0,
     // userId: 1
