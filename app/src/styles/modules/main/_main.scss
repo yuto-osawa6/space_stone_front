@@ -168,7 +168,11 @@
 // NewNetflix
 
 .WorldClassContainer{
-  margin-top: 20px;
+  display: none;
+  @include mq(tb){
+    display: block;
+    margin-top: 20px;
+  }
   .WorldClassContainers{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -275,7 +279,7 @@
   .WorldClassContainerViewsRight{
     position: relative;
     padding-top: 52.5%;
-    overflow: scroll;
+    overflow-y: scroll;
     margin-bottom: 10px;
     // color: #ffffff;
     // padding: 20px;
@@ -317,7 +321,7 @@
       font-size: 0.9rem;
       margin-bottom: 10px;
       line-height: 1.3rem;
-      overflow-y: scroll;
+      // overflow-y: scroll;
     }
     .WorldClassContainerViewsRightLink{
       padding: 10px;
