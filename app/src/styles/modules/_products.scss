@@ -297,3 +297,19 @@ body::-webkit-scrollbar{
 .WorldClassContainer{
   margin: 20px;
 }
+
+.productShowOpenArasuzi{
+  max-height: 120px;
+  overflow: hidden;
+}
+.activeOpenArasuzi{
+  max-height: fit-content!important;
+  overflow:visible!important;
+}
+.hoverReadMore{
+  cursor: pointer;
+  color: #37d8b3;
+  &:hover{
+    color: #ff3073;
+  }
+}

@@ -363,6 +363,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   // compare
   const [OpenModalCompare,setOpenModalCompare] = useState<boolean>(false)
   // console.log(product)
+  const [openArasuzi,setOpenArasuzi] = useState<boolean>(false)
   return(
     <>
       <div className = "product_show"
@@ -622,10 +623,13 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                 >
                   
                   <div className = "show_contents01_header_bottom_rightbox">
-                    <div className = "show_contents01_header_bottom_right_title">
+                    <div className = "show_contents01_header_bottom_right_title productShowTitleBox">
                       {ProductStore.id==Number(params_id)?ProductStore.title:product?.title}
                     </div>
-                    <div className = "show_contents01_header_bottom_right_descriptions">
+
+                    {product!=undefined&&product?.arasuzi.length>50&&(
+                      <>
+                    <div className = {`show_contents01_header_bottom_right_descriptions productShowOpenArasuzi ${openArasuzi&&("activeOpenArasuzi")}`}>
                       {ProductStore.id!=Number(params_id)&&product!=undefined&&(
                         <ReactQuill
                           className = "reviews_modal_quill ovevierReactQuill"
@@ -637,20 +641,24 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                       {ProductStore.id==Number(params_id)&&(
                         <ReactQuill
                           className = "reviews_modal_quill ovevierReactQuill QuillContainer1"
-                          // value={ProductStore.arasuzi!=undefined?ProductStore.arasuzi:product?.arasuzi} 
                           value={ProductStore.arasuzi!=undefined?ProductStore.arasuzi:product!=undefined?product.arasuzi:""} 
-                          // value={""} 
                           theme="bubble"
                           readOnly={true}
                         />
                       )}
+                      {product!=undefined&&product?.arasuziCopyright.length>0&&(
                       <div className="arasuzi_copyright"
-                      // style={{
-                      //   fontSize:"0.8rem"
-                      //   col
-                      // }}
                       >引用 {product?.arasuziCopyright}</div>
+                      )}
+                      
                     </div>
+                    <div className="hoverReadMore"
+                      onClick={()=>setOpenArasuzi(openArasuzi?false:true)}
+                      >
+                        {openArasuzi?"閉じる":"もっとみる"}
+                      </div>
+                      </>
+                    )}
                     {/* <div className = "show_contents01_header_bottom_right_netflix"
                   
                     >

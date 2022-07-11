@@ -82,7 +82,7 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
         }}
       >
       </NextSeo>
-      <Top/>
+      {/* <Top/> */}
     </>
   )
 }
@@ -97,7 +97,9 @@ TitleIndex.getLayout = (page) => {
       <ProductShow
       active={0}
       >
-        {page}
+        <Top>
+          {page}
+        </Top>
       </ProductShow>   
     </ShareMain>
   )

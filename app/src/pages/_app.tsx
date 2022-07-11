@@ -33,6 +33,7 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
   return(
       <Provider store={store}> 
         {/* <SessionProvider session={session}> */}
+        <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY} language="ja">
         {getLayout( 
           <>
             <DefaultSeo
@@ -69,12 +70,13 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
               showOnShallow={true}
             />
             <Script src="https://accounts.google.com/gsi/client" />
-            <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY} language="ja">
+            {/* <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY} language="ja"> */}
               <Component {...pageProps} />
-            </GoogleReCaptchaProvider>
+            {/* </GoogleReCaptchaProvider> */}
           </>
         )}
         {/* </SessionProvider> */}
+        </GoogleReCaptchaProvider>
       </Provider>
   )
 }
