@@ -1,3 +1,4 @@
+import { useWindowDimensions } from "@/hook/useWindowResize";
 import { product } from "@/interfaces/product"
 import { actionSettingProductData2 } from "@/store/product/actions";
 import Router from "next/router";
@@ -79,18 +80,24 @@ export const GridProductItemTrend:React.FC<Props> = memo(function GridProductIte
     handleSetupYearSeason()
   },[])
   const dispatch = useDispatch()
+  const windowSize = useWindowDimensions()
+
   const navigateProductShow =() =>{
     dispatch(actionSettingProductData2(Props.product));
     Router.push(`/title/${Props.product.id}`)
   }
   const handlehoverLeave = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    if(windowSize.width >= 768){
     left === Props.left_grid&&right===Props.right?setIshover2(false):setIshover(false)
+    }
   }
   const handlehoverEnter = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
     // console.log(left,right,Props.left_grid,Props.right)
+    if(windowSize.width >= 768){
     left === Props.left_grid&&right===Props.right?setIshover2(true):setIshover(true)
+    }
   };
 
   // year season
