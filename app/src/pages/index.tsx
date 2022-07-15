@@ -152,13 +152,13 @@ type UserTier = {
         const top = elem.getBoundingClientRect().top
       if (elem) {
         if(windowSize.width < 768){
-          top<0?window.scrollTo({top:top + window.pageYOffset-78.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-78.8,left:0, behavior: "smooth"})
+          top<0?window.scrollTo({top:top + window.pageYOffset-78.8,left:0}):window.scrollTo({top:top + window.pageYOffset-78.8,left:0})
         }else{
-        top<0?window.scrollTo({top:top + window.pageYOffset-79.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-29.8,left:0, behavior: "smooth"})
+        top<0?window.scrollTo({top:top + window.pageYOffset-79.8,left:0}):window.scrollTo({top:top + window.pageYOffset-29.8,left:0})
         }
       }
     } else {
-    window.scrollTo({top:0,left:0, behavior: "smooth"})
+    window.scrollTo({top:0,left:0})
     }
     dispatch(SubMenuAction(false))
   // },[router.asPath,])
