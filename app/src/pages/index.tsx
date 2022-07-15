@@ -19,7 +19,7 @@ import { tags } from '@/interfaces/main'
 import { WeeklyRanking } from '@/components/mains/main_block/WeeklyRanking'
 import { ssr_url } from '@/lib/client/clientssr'
 import Router, { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store'
 import { SubMenuAction } from '@/store/submenu/actions'
@@ -142,8 +142,12 @@ type UserTier = {
   //  const location = useLocation()
   const router = useRouter()
   const windowSize = useWindowDimensions()
+  const [l1,setl1] = useState<boolean>(false)
+  const [l2,setl2] = useState<boolean>(false)
   useEffect(()=>{
-    // console.log(submenu)
+    if(l1==false) return
+    if(l2==false) return
+
     if(submenu.state==false)return
     if (router.asPath) {
       let elem = document.getElementById(`${router.asPath.slice(2)}-a`)
@@ -152,9 +156,9 @@ type UserTier = {
         const top = elem.getBoundingClientRect().top
       if (elem) {
         if(windowSize.width < 768){
-          top<0?window.scrollTo({top:top + window.pageYOffset-78.8,left:0}):window.scrollTo({top:top + window.pageYOffset-78.8,left:0})
+          top<0?window.scrollTo({top:top + window.pageYOffset-78.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-78.8,left:0, behavior: "smooth"})
         }else{
-        top<0?window.scrollTo({top:top + window.pageYOffset-79.8,left:0}):window.scrollTo({top:top + window.pageYOffset-29.8,left:0})
+        top<0?window.scrollTo({top:top + window.pageYOffset-79.8,left:0, behavior: "smooth"}):window.scrollTo({top:top + window.pageYOffset-29.8,left:0, behavior: "smooth"})
         }
       }
     } else {
@@ -162,8 +166,12 @@ type UserTier = {
     }
     dispatch(SubMenuAction(false))
   // },[router.asPath,])
-},[submenu])
+},[submenu,l1,l2])
 // console.log(Props.trendData)
+
+ 
+  // const [l3,setl3] = useState<boolean>(false)
+
 
 
   return(
@@ -177,6 +185,7 @@ type UserTier = {
       </div>
       <div id="weekly-ranking-a">
       <WeeklyRanking
+      setl1 = {setl1}
       />
       </div>
       <SWRConfig value={{ fallback }}>
@@ -208,11 +217,12 @@ type UserTier = {
 
       <div id="news-a">
       <NewMessage
+        setl2 = {setl2}
       />
       </div>
 
       {/* <CalendarProduct
-       calendarData={Props.calendarData}
+        calendarData={Props.calendarData}
       /> */}
 
       <div id="toptens-a">

@@ -6,9 +6,14 @@ import { WeeklyRankingItems } from "./weekly/WeeklyRankingItems"
 type timeRange = {
   from:string
   to:string
+
 }
 
-export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
+type Props = {
+  setl1: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const WeeklyRanking:React.FC<Props> = memo(function WeeklyRankingFunc(Props){
   const [products,setProducts] = useState<product[]>([])
   const [timeRange,setTimeRange] = useState<timeRange>({
     from:"",
@@ -32,6 +37,7 @@ export const WeeklyRanking:React.FC = memo(function WeeklyRankingFunc(){
       }
     }else{
     }
+    Props.setl1(true)
   }
   useEffect(()=>{
     const timer = setTimeout(() => {

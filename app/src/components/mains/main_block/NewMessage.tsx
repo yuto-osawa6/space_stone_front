@@ -4,6 +4,7 @@ import React, { memo, useEffect, useState } from "react";
 import { GridNewMessage } from "./newmessage/GridNewMessage";
 
 type Props = {
+  setl2: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
   let isMounted2 = true;
@@ -20,6 +21,7 @@ export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
       }
     }else{
     }
+    Props.setl2(true)
   }
   useEffect(()=>{
     const timer = setTimeout(() => {
