@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { CSSTransition } from "react-transition-group"
 import { actionSettingProductData2 } from "@/store/product/actions"
 import dynamic from "next/dynamic"
+import { useRouter } from "next/router"
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 type Props = {
@@ -17,9 +18,11 @@ type Color = {
 export const WorldClassViewGrid:React.FC<Props> = function WorldClassViewGridFunc(Props){
   const nodeRef = useRef(null)
   const [imageloding,setImageLoding2] = useState<boolean>(false)
+  const router = useRouter()
   const dispatch = useDispatch()
   const navigateshow = ()=>{
     dispatch(actionSettingProductData2(Props.product));
+    router.push(`/title/${Props.product.id}`)
   }
 
   useEffect(()=>{

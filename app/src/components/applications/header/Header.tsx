@@ -94,11 +94,12 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     e?.stopPropagation()
     // console.log("aaaae2")
     openMenu==true?setOpenMenu(false):setOpenMenu(true)
-    // if (windowSize.width < 768){
-    //   openMenu==false?document.body.style.overflowY = "hidden":document.body.style.overflowY = ""
-    //   openMenu==false?document.body.style.touchAction = "none":document.body.style.touchAction = ""
-    // }else{
-    // }
+    if (windowSize.width < 768){
+      openMenu==false?document.body.style.overflow = "hidden":document.body.style.overflow = ""
+      openMenu==false?document.body.style.height = "100%":document.body.style.overflow = ""
+      // openMenu==false?document.body.style.touchAction = "none":document.body.style.touchAction = ""
+    }else{
+    }
   }
 
   const w = useWindowDimensions()
@@ -292,17 +293,6 @@ const routerHome = () => {
                       <div className = "Top100SubMenu subMenuList7689"><Link href ="/tier"><a><div className="headersub768"><div className = "home2"><AiOutlineHome/>{t.SubMenu.TIER}</div><div className = {"home23"}></div></div></a></Link></div>
                       <div className = "Top100SubMenu subMenuList7689"><Link href ="/weekly"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.SubMenu.QUESTIONNAIRE}</div><div className = {"home23"}></div></div></a></Link></div>
                     </div>
-                    {/* <div className="">Home Menu</div>
-                    <div className="HederV1SubmenuSub">
-                    <div onClick={()=>handleClick("/#weekly-ranking")}><a>{t.SubMenu.QUESTIONNAIRE}</a></div>
-                    <div onClick={()=>handleClick("/#this-season")}><a>{t.SubMenu.THISSEASON}</a></div>
-                    <div onClick={()=>handleClick("/#last-season")}><a>{t.SubMenu.LASTSEASON}</a></div>
-                    <div onClick={()=>handleClick("/#next-season")}><a>{t.SubMenu.NEXTSEASON}</a></div>
-                    <div onClick={()=>handleClick("/#movies")}><a>{t.SubMenu.MOVIE}</a></div>
-                    <div onClick={()=>handleClick("/#news")}><a>{t.SubMenu.NEWS}</a></div>
-                    <div onClick={()=>handleClick("/#toptens")}><a>{t.SubMenu.TOP10}</a></div>
-                    
-                    </div> */}
                   </div>
                   
                   </>  
