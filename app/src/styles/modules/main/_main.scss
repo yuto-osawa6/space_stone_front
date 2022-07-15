@@ -893,17 +893,23 @@ display: none;
 
 // tier show
 .TierShow {
-  width: 95%;
-  height: 95%;
+  width: 100%;
+  height: 100%;
   background-color: #f6f6f6;
   transform: translate(-50%, -50%);
   position: absolute;
   top: 50%;
   left: 50%;
-  border-radius: 30px;
+  // border-radius: 30px;
   overflow-y: scroll;
-  /* margin: 1.5% auto; */
-  padding: 20px;
+  // padding: 20px;
+
+  @include mq(tb){
+    width: 95%;
+    height: 95%;
+    border-radius: 30px;
+    padding: 20px;
+  }
   .TierShowTitle{
     margin:20px 20px 0px 20px;
     color:#f6f6f9;
