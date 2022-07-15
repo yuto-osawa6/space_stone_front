@@ -804,14 +804,14 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     style={{
                       width: "100%"
                     }}
-                    ><Link href={`/title/${params_id}`}>Top</Link></li>
+                    ><Link href={`/title/${params_id}`} scroll={false}>Top</Link></li>
                     {product?.overview!=undefined&&(
                     <li
                     style={{
                       width: "100%"
                     }}
                     className={Props.active == 1? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
-                    ><Link href={`/title/${params_id}/overview`}>Overview</Link></li>
+                    ><Link href={`/title/${params_id}/overview`} scroll={false}>Overview</Link></li>
                     )}
 
                     {product&&product.episords.length>0&&(
@@ -820,19 +820,19 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                       width: "100%"
                     }}
                       className={Props.active == 2? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
-                    ><Link href={`/title/${params_id}/episords`}>Episords</Link></li>)}
+                    ><Link href={`/title/${params_id}/episords`} scroll={false}>Episords</Link></li>)}
                     <li
                     style={{
                       width: "100%"
                     }}
                     className={Props.active == 3? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
-                    ><Link href={`/title/${params_id}/reviews`}>Review</Link></li>
+                    ><Link href={`/title/${params_id}/reviews`} scroll={false}>Review</Link></li>
                     <li
                     style={{
                       width: "100%"
                     }}
                     className={Props.active == 4? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
-                    ><Link href={`/title/${params_id}/threads`}>Thread</Link></li> 
+                    ><Link href={`/title/${params_id}/threads`} scroll={false}>Thread</Link></li> 
                     {/* {userSwr.login==true?
                       <>
                         <li
