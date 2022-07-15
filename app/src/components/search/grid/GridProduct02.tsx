@@ -185,7 +185,7 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
             })}
           </ul>
         </div>
-        <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
+        {/* <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
           <div className = "p_contents_grid_hover_contents" ref={nodeRef}
           >
             <div className = "p_contents_grid_hover_contents__before">
@@ -242,7 +242,7 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
               </div>
             </div>
           </div>
-        </CSSTransition>
+        </CSSTransition> */}
       </div>  
     </>
   )

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CSSTransition } from 'react-transition-group';
 import { actionSettingProductData2 } from "@/store/product/actions";
 import { RootState } from "@/store";
+import { useWindowDimensions } from "@/hook/useWindowResize";
 
 type ProductGenres = {
   id:number
@@ -84,16 +85,20 @@ export const GridProducts:React.FC<Props> = function GridProductsFunc(Props){
   const elm = useRef<HTMLDivElement>(null!);
   const router = useRouter()
   const dispatch = useDispatch();
+  const windowSize = useWindowDimensions()
   const handlehoverEnter = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
     // console.log(left,Props.left_grid)
     // console.log(right+20,Props.right)
-
+    if(windowSize.width >= 768){
     left === Props.left_grid&&right+20===Props.right?setIshover2(true):setIshover(true)
+    }
   };
   const handlehoverLeave = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    if(windowSize.width >= 768){
     left === Props.left_grid&&right+20===Props.right?setIshover2(false):setIshover(false)
+    }
   }
   useEffect(()=>{
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
