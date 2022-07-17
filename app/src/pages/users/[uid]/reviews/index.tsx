@@ -52,7 +52,7 @@ type Props = {
 
 const UserReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   // const fallback= Props.fallback
-  const url = Props.data.user.backgroundImage?Props.data.user.backgroundImage:"https://meruplanet.com/MeruPlanetOgp.png"
+  const url = Props.data.user.backgroundImage?Props.data.user.backgroundImage:"https://anime-tier.com/MeruPlanetOgp.png"
   return(
     <>
       <NextSeo
@@ -62,8 +62,8 @@ const UserReviewShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }
         type: "website",
         title: "レビュー",
         description: `${Props.data.user.nickname}さんのレビュー情報。`,
-        site_name: "MeruPlanet",
-        url: `https://meruplanet.com/users/${Props.data.user.id}/reviews`,
+        site_name: "アニメティア",
+        url: `https://anime-tier.com/users/${Props.data.user.id}/reviews`,
         images: [
           {
           // url: "https://www.example.ie/og-image-01.jpg",

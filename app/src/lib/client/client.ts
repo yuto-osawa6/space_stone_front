@@ -13,7 +13,8 @@ const options = {
 
  const client = applyCaseMiddleware(axios.create({
   // baseURL: "http://localhost:3001/api/v1",
-  baseURL: process.env.NODE_ENV === "production" ? "https://api.meruplanet.com/api/v1" : "http://localhost:3001/api/v1",
+  // baseURL: process.env.NODE_ENV === "production" ? "https://api.meruplanet.com/api/v1" : "http://localhost:3001/api/v1",
+  baseURL: process.env.NODE_ENV === "production" ? "https://api.anime-tier.com/api/v1" : "http://localhost:3001/api/v1",
   withCredentials: true,
   // headers: { 'X-Requested-With': 'XMLHttpRequest' }
   // ,"Content-Type": "multipart/form-data" 

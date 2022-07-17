@@ -57,8 +57,8 @@ const ArticleShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
           type: "website",
           title: `${Props.data.article.title}`,
           description: ``,
-          site_name: "MeruPlanet",
-          url: `https://meruplanet.com/articles/${Props.data.article.id}`,
+          site_name: "アニメティア",
+          url: `https://anime-tier.com/articles/${Props.data.article.id}`,
           // images: [
           //   {
           //   // url: "https://www.example.ie/og-image-01.jpg",

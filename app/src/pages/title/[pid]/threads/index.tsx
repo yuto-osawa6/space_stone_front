@@ -49,7 +49,7 @@ type Props = {
 
 const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
   const {t} = useLocale()
-  const image_path = process.env.NODE_ENV == "production"? `https://api.meruplanet.com/api/v1/ogp_images/${Props.data.products.id}` : `http://localhost:3001/api/v1/ogp_images/${Props.data.products.id}`
+  const image_path = process.env.NODE_ENV == "production"? `https://api.anime-tier.com/api/v1/ogp_images/${Props.data.products.id}` : `http://localhost:3001/api/v1/ogp_images/${Props.data.products.id}`
 
   return(
     <>
@@ -60,8 +60,8 @@ const TitleIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
           type: "website",
           title: `スレッド - ${Props.data.products.title}`,
           description: `${Props.data.products.title}のスレッド一覧。${Props.data.products.title}のスレッドをチェックして感想を共有しよう。`,
-          site_name: "MeruPlanet",
-          url: `https://meruplanet.com/title/${Props.data.products.id}/threads`,
+          site_name: "アニメティア",
+          url: `https://anime-tier.com/title/${Props.data.products.id}/threads`,
           images: [
             {
             // url: "https://www.example.ie/og-image-01.jpg",

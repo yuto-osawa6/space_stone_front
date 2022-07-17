@@ -50,7 +50,7 @@ type Props = {
 }
 
 const UserScoreShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  const url = Props.data.user.backgroundImage?Props.data.user.backgroundImage:"https://meruplanet.com/MeruPlanetOgp.png"
+  const url = Props.data.user.backgroundImage?Props.data.user.backgroundImage:"https://anime-tier.com/MeruPlanetOgp.png"
 
   return(
     <>
@@ -61,8 +61,8 @@ const UserScoreShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element } 
         type: "website",
         title: "ティア",
         description: `${Props.data.user.nickname}さんのティア情報。`,
-        site_name: "MeruPlanet",
-        url: `https://meruplanet.com/users/${Props.data.user.id}/tiers`,
+        site_name: "アニメティア",
+        url: `https://anime-tier.com/users/${Props.data.user.id}/tiers`,
         images: [
           {
           // url: "https://www.example.ie/og-image-01.jpg",

@@ -20,8 +20,8 @@ const ThreadsIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
         type: "website",
         title: "利用規約",
         description: ``,
-        site_name: "MeruPlanet",
-        url: `https://meruplanet.com/terms`,
+        site_name: "アニメティア",
+        url: `https://anime-tier.com/terms`,
         // images: [
         //   {
         //   // url: "https://www.example.ie/og-image-01.jpg",

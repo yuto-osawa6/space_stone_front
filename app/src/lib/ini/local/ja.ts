@@ -5,11 +5,11 @@ import { LeftMessageJa } from "./ja/LeftMessageJa";
 import { UserMessageJa } from "./ja/UserMessageJa";
 
 export default {
-  domain:"MeruPlanet",
+  domain:"アニメティア",
   Logo:{
-    G:"Meru",
-    F:"Planet",
-    SUBTITLE:"めるぷらねっと"
+    G:"アニメ",
+    F:"ティア",
+    SUBTITLE:""
   },
   Headers:{
     TOP: "Home",

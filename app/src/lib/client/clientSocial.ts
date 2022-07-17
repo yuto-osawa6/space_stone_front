@@ -7,7 +7,8 @@ const options = {
 
 const clientSocial = applyCaseMiddleware(axios.create({
   // baseURL: "http://localhost:3001/",
-  baseURL: process.env.NODE_ENV === "production" ? "https://api.meruplanet.com/" : "http://localhost:3001/",
+  // baseURL: process.env.NODE_ENV === "production" ? "https://api.meruplanet.com/" : "http://localhost:3001/",
+  baseURL: process.env.NODE_ENV === "production" ? "https://api.anime-tier.com/" : "http://localhost:3001/",
   withCredentials: true,
   // headers: { 'X-Requested-With': 'XMLHttpRequest' },
 }), options)

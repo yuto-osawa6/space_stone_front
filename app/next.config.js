@@ -23,7 +23,8 @@ const nextConfig = {
   },
   domains: [
     {
-      domain: 'meruplanet.com',
+      // domain: 'meruplanet.com',
+      domain: 'anime-tier.com',
       defaultLocale: 'ja',
     }
   ],

@@ -27,8 +27,8 @@ return(
         type: "website",
         title: "Review",
         description:`レビュー、一覧。気になるアニメのレビューをチェックして、感想をシェアしよう。`,
-        site_name: "MeruPlanet",
-        url: `https://meruplanet.com/reviews`,
+        site_name: "アニメティア",
+        url: `https://anime-tier.com/reviews`,
         // images: [
         //   {
         //   // url: "https://www.example.ie/og-image-01.jpg",

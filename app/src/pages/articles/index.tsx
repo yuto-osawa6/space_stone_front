@@ -24,8 +24,8 @@ const ArticlesIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element } 
           type: "website",
           title: "Article",
           description: `記事一覧。気になる記事をチェックしよう。`,
-          site_name: "MeruPlanet",
-          url: `https://meruplanet.com/articles`,
+          site_name: "アニメティア",
+          url: `https://anime-tier.com/articles`,
           // images: [
           //   {
           //   // url: "https://www.example.ie/og-image-01.jpg",

@@ -20,11 +20,11 @@ const WeeklyIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
           type: "website",
           title: "過去のエピソードアンケート",
           description: "１週間の範囲で、過去に放送されたエピソードのアンケート結果。放送されたエピソードの比較。",
-          site_name: "MeruPlanet",
-          url: "https://meruplanet.com/weekly",
+          site_name: "アニメティア",
+          url: "https://anime-tier.com/weekly",
           images: [
             {
-              url: "https://meruplanet.com/MeruPlanetOgp.png",
+              url: "https://anime-tier.com/MeruPlanetOgp.png",
               width: 1200,
               height: 630,
               alt: 'Og Image Alt',

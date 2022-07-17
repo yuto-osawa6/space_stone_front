@@ -18,11 +18,11 @@ const Top100Index: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
           type: "website",
           title: "Top100",
           description: "スコア・いいね・流行・アクセス・などからTop100を絞り込めます。現在どんなアニメがTop100に入っているか、チェックしよう！",
-          site_name: "MeruPlanet",
-          url: "https://meruplanet.com/top100",
+          site_name: "アニメティア",
+          url: "https://anime-tier.com/top100",
           images: [
             {
-              url: "https://meruplanet.com/MeruPlanetOgp.png",
+              url: "https://anime-tier.com/MeruPlanetOgp.png",
               width: 1200,
               height: 630,
               alt: 'Og Image Alt',

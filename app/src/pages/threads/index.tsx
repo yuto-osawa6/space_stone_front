@@ -26,8 +26,8 @@ const ThreadsIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
         type: "website",
         title: "Thread",
         description:`スレッド一覧。気になるアニメのスレッドをチェックして、感想をシェアしよう。`,
-        site_name: "MeruPlanet",
-        url: `https://meruplanet.com/threads`,
+        site_name: "アニメティア",
+        url: `https://anime-tier.com/threads`,
         // images: [
         //   {
         //   // url: "https://www.example.ie/og-image-01.jpg",

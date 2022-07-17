@@ -49,7 +49,7 @@ type Props = {
 }
 
 const ArticleShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  const url = Props.data.user.backgroundImage?Props.data.user.backgroundImage:"https://meruplanet.com/MeruPlanetOgp.png"
+  const url = Props.data.user.backgroundImage?Props.data.user.backgroundImage:"https://anime-tier.com/MeruPlanetOgp.png"
   const {t} = useLocale()
   return(
     <>
@@ -60,8 +60,8 @@ const ArticleShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  =
           type: "website",
           title: `${Props.data.user.nickname}さんのMypage`,
           description: `${Props.data.user.nickname}さんのマイページです。お気に入り、ティア、評価などチェックしよう！。`,
-          site_name: "MeruPlanet",
-          url: "https://meruplanet.com/users",
+          site_name: "アニメティア",
+          url: "https://anime-tier.com/users",
           images: [
             {
               url: url,

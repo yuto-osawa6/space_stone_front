@@ -37,17 +37,17 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
         {getLayout( 
           <>
             <DefaultSeo
-              defaultTitle = "MeruPlanet - アニメ！"
-              description = "おすすめなアニメを評価・レビュー・ティアで共有しよう！今期や来期のアニメ情報や流行している・高評価のアニメも探せます。"
+              defaultTitle = "アニメティア"
+              description = "アニメティアはアニメを評価、レビュー、シェアする場所。今期・作期のアニメを中心にオリジナルなティア表を作ることができます。"
               openGraph={{
                 type: "website",
-                title: "MeruPlanet - アニメ！ ",
-                description: "おすすめなアニメを評価・レビュー・ティアで共有しよう！今期や来期のアニメ情報や流行している・高評価のアニメも探せます。",
-                site_name: "MeruPlanet",
-                url: "https://meruplanet.com",
+                title: "アニメティア",
+                description: "アニメティアはアニメを評価、レビュー、シェアする場所。今期・作期のアニメを中心にオリジナルなティア表を作ることができます。",
+                site_name: "アニメティア",
+                url: "https://anime-tier.com",
                 images: [
                   {
-                    url: "https://meruplanet.com/MeruPlanetOgp.png",
+                    url: "https://anime-tier.com/MeruPlanetOgp.png",
                     width: 1200,
                     height: 630,
                     alt: 'Og Image Alt',

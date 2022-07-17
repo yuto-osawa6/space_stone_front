@@ -70,13 +70,13 @@ const ThreadShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = 
     <>
       <NextSeo
         title={`${title} - ${t.domain}`}
-        canonical = {`https://meruplanet.com/title/${Props.data.product.id}/threads/${Props.data.review.id}`}
+        canonical = {`https://anime-tier.com/title/${Props.data.product.id}/threads/${Props.data.review.id}`}
         description = {`${describe}`}
         openGraph={{
           type: "website",
           title: `${title}`,
           description: `${describe}`,
-          site_name: "MeruPlanet",
+          site_name: "アニメティア",
           // url: `https://meruplanet.com/title/${Props.data.product.id}/top/threads/${Props.data.review.id}`,
           // images: [
           //   {

@@ -20,8 +20,8 @@ const TierIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (
         type: "website",
         title: "Tier情報",
         description: `過去のTier(ティア)情報。シーズンごとのTierをチェックして、アニメの比較。`,
-        site_name: "MeruPlanet",
-        url: `https://meruplanet.com/tier`,
+        site_name: "アニメティア",
+        url: `https://anime-tier.com/tier`,
         // images: [
         //   {
         //   // url: "https://www.example.ie/og-image-01.jpg",

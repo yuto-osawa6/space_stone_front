@@ -51,7 +51,7 @@ type Props = {
 
 
 const UserLikeShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  const url = Props.data.user.backgroundImage?Props.data.user.backgroundImage:"https://meruplanet.com/MeruPlanetOgp.png"
+  const url = Props.data.user.backgroundImage?Props.data.user.backgroundImage:"https://anime-tier.com/MeruPlanetOgp.png"
   return(
     <>
       <NextSeo
@@ -61,8 +61,8 @@ const UserLikeShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
         type: "website",
         title: "お気に入り",
         description: `${Props.data.user.nickname}さんのお気に入り。`,
-        site_name: "MeruPlanet",
-        url: `https://meruplanet.com/users/${Props.data.user.id}/likes`,
+        site_name: "アニメティア",
+        url: `https://anime-tier.com/users/${Props.data.user.id}/likes`,
         images: [
           {
           // url: "https://www.example.ie/og-image-01.jpg",

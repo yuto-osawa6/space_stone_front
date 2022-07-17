@@ -15,8 +15,8 @@ return(
         type: "website",
         title: "Search",
         description: `アニメの検索。ジャンル・スタジオ・キャスト・シーズンなど。さまざまな形式で絞り込めます。また評価、感情などからソート可能。`,
-        site_name: "MeruPlanet",
-        url: `https://meruplanet.com/search`,
+        site_name: "アニメティア",
+        url: `https://anime-tier.com/search`,
         // images: [
         //   {
         //   // url: "https://www.example.ie/og-image-01.jpg",
