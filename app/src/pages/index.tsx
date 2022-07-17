@@ -28,54 +28,54 @@ import { useWindowDimensions } from '@/hook/useWindowResize'
 import { Trend } from '@/components/mains/main_block/Trend'
 
 
-// export const getServerSideProps: GetServerSideProps = async(context) => {
-//   const params = {
-//     active:"1",
-//     last:"2"
-//   }
+export const getServerSideProps: GetServerSideProps = async(context) => {
+  const params = {
+    active:"1",
+    last:"2"
+  }
 
-//   const tierParams = {
-//     current_number:"1"
-//   }
-//   const tierParams2 = {
-//     current_number:"2"
-//   }
-//   const query_params = new URLSearchParams(params); 
-//   // const [trendRes,thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,calendarRes,tagsRes] = await Promise.all([
-//   const [trendRes,thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,tagsRes] = await Promise.all([
-//     fetch(`${ssr_url}/mainblocks/mains/trend`), 
-//     fetch(`${ssr_url}/mainblocks/mains/new_netflix`), 
-//     fetch(`${ssr_url}/mainblocks/mains/pickup?`+ query_params),
-//     fetch(`${ssr_url}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams)),
-//     fetch(`${ssr_url}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams2)),
-//     fetch(`${ssr_url}/mainblocks/mains/worldclass`),
-//     // fetch(`${ssr_url}/mainblocks/mains/calendar`),
-//     fetch(`${ssr_url}/mains`),
+  const tierParams = {
+    current_number:"1"
+  }
+  const tierParams2 = {
+    current_number:"2"
+  }
+  const query_params = new URLSearchParams(params); 
+  // const [trendRes,thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,calendarRes,tagsRes] = await Promise.all([
+  const [trendRes,thisSeasonRes, nextSeasonRes,tierRes,tierRes2,worldRes,tagsRes] = await Promise.all([
+    fetch(`${ssr_url}/mainblocks/mains/trend`), 
+    fetch(`${ssr_url}/mainblocks/mains/new_netflix`), 
+    fetch(`${ssr_url}/mainblocks/mains/pickup?`+ query_params),
+    fetch(`${ssr_url}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams)),
+    fetch(`${ssr_url}/mainblocks/mains/update_tier_list?`+ new URLSearchParams(tierParams2)),
+    fetch(`${ssr_url}/mainblocks/mains/worldclass`),
+    // fetch(`${ssr_url}/mainblocks/mains/calendar`),
+    fetch(`${ssr_url}/mains`),
 
 
-//   ]);
-//   // const [trendData,data, data2,tierData,tierData2,worldData,calendarData,tagsData] = await Promise.all([
-//   const [trendData,data, data2,tierData,tierData2,worldData,tagsData] = await Promise.all([
-//     trendRes.json(),
-//     thisSeasonRes.json(), 
-//     nextSeasonRes.json(),
-//     tierRes.json(),
-//     tierRes2.json(),
-//     worldRes.json(),
-//     // calendarRes.json(),
-//     tagsRes.json()
-//   ]);
-//   return { 
-//     props: { 
-//       // trendData,data, data2,worldData,calendarData,tagsData,
-//       trendData,data, data2,worldData,tagsData,
-//       fallback: {
-//         '/mainblocks/mains/update_tier_list/1': tierData,
-//         '/mainblocks/mains/update_tier_list/2' : tierData2
-//       }
-//     } 
-//   };
-// }
+  ]);
+  // const [trendData,data, data2,tierData,tierData2,worldData,calendarData,tagsData] = await Promise.all([
+  const [trendData,data, data2,tierData,tierData2,worldData,tagsData] = await Promise.all([
+    trendRes.json(),
+    thisSeasonRes.json(), 
+    nextSeasonRes.json(),
+    tierRes.json(),
+    tierRes2.json(),
+    worldRes.json(),
+    // calendarRes.json(),
+    tagsRes.json()
+  ]);
+  return { 
+    props: { 
+      // trendData,data, data2,worldData,calendarData,tagsData,
+      trendData,data, data2,worldData,tagsData,
+      fallback: {
+        '/mainblocks/mains/update_tier_list/1': tierData,
+        '/mainblocks/mains/update_tier_list/2' : tierData2
+      }
+    } 
+  };
+}
 
 type Props = {
   trendData:{
@@ -178,7 +178,7 @@ type UserTier = {
     <>
     {/* <img src="/meruplanet.png" alt="me" width="64" height="64" /> */}
     {/* <div className = "mainContents share_middle_container01"> */}
-      {/* <div id="trend-a">
+      <div id="trend-a">
       <Trend
       products = {Props.trendData.products}
       />
@@ -219,12 +219,12 @@ type UserTier = {
       <NewMessage
         setl2 = {setl2}
       />
-      </div> */}
+      </div>
 
       {/* <CalendarProduct
         calendarData={Props.calendarData}
       /> */}
-{/* 
+
       <div id="toptens-a">
       <Toptens2
 
@@ -237,8 +237,7 @@ type UserTier = {
       tags = {Props.tagsData.tags}
       tagsTop100 = {Props.tagsData.top100}
       />
-      </div> */}
-      aa
+      </div>
        
 
       {/* <SWRConfig value={{ fallback }}>
