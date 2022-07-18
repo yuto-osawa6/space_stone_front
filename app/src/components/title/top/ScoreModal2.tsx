@@ -40,6 +40,7 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
   const[character,setCharacter] = useState<number | null | undefined>(Props.userScore?.character)
   const[performance,setPerformance] = useState<number | null | undefined>(Props.userScore?.performance)
   const[story,setStory] = useState<number | null | undefined>(Props.userScore?.story)
+  const [loading,setLoading] = useState<boolean>(false)
 
   const handleClose = () => {
     Props.setOpenscore(false);
@@ -80,6 +81,7 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
 
   }
 
+
   const execscoreupdate = async() => {
    
     // doneyet-1
@@ -88,6 +90,7 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
     const value = (value2 as number)+(music as number)+(performance as number)+(story as number)+(character as number)+(animation as number)
     const all_avg = value/6
     setSubmitLoading(true)
+    setLoading(true)
     const res = await execScoreUpdate(Props.product.id,Props.user_id,value2 as number,Props.scoreid as number,music ,performance,story,character,animation,all_avg)
     if (res.data.status === 200) {
       Props.setScore(res.data.score.value)
@@ -102,6 +105,7 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
       dispatch(pussingMessageDataAction({title:"予期しないエラーが発生しました。もう一度試すか、お問い合わせください。",select:0}))
     }
     setSubmitLoading(false)
+    setLoading(false)
   }
 
   const valuetextMusic = (value:number):string=>{

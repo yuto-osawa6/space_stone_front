@@ -49,25 +49,25 @@ export const GridProducts:React.FC<Props> = function GridProductsFunc(Props){
   useEffect(()=>{
     if(Props.avgScore==undefined)return
     const averageScore = Number(Props.avgScore)
-    if(averageScore<=10){
+    if(averageScore<10){
       setScoreColor({color:'rgba(255, 0, 0, 1)'})
-    }else if(10<averageScore&&averageScore<=20){
+    }else if(10<=averageScore&&averageScore<20){
       setScoreColor({color:'rgba(255, 82, 0, 1)'})
-    }else if(20<averageScore&&averageScore<=30){
+    }else if(20<=averageScore&&averageScore<30){
       setScoreColor({color:'rgba(255, 177, 0, 1)'})
-    }else if(30<averageScore&&averageScore<=40){
+    }else if(30<=averageScore&&averageScore<40){
       setScoreColor({color:'rgb(239 222 24)'})
-    }else if(40<averageScore&&averageScore<=50){
+    }else if(40<=averageScore&&averageScore<50){
       setScoreColor({color:'rgb(161 217 28)'})
-    }else if(50<averageScore&&averageScore<=60){
+    }else if(50<=averageScore&&averageScore<60){
       setScoreColor({color:'rgb(15 221 1)'})
-    }else if(60<averageScore&&averageScore<=70){
+    }else if(60<=averageScore&&averageScore<70){
       setScoreColor({color:'rgb(10 241 177)'})
-    }else if(70<averageScore&&averageScore<=80){
+    }else if(70<=averageScore&&averageScore<80){
       setScoreColor({color:'rgba(0, 161, 255, 1)'})
-    }else if(80<averageScore&&averageScore<=90){
+    }else if(80<=averageScore&&averageScore<90){
       setScoreColor({color:'rgba(0, 55, 255, 1)'})
-    }else if(90<averageScore&&averageScore<=100){
+    }else if(90<=averageScore&&averageScore<100){
       setScoreColor({color:'rgba(255, 0, 235, 1)'})
     }
   },[Props.avgScore])
