@@ -38,11 +38,11 @@ function MyApp({ Component,   pageProps: { session, ...pageProps }, }: AppPropsW
           <>
             <DefaultSeo
               defaultTitle = "アニメティア"
-              description = "アニメティアはアニメを評価、レビュー、シェアする場所。今期・作期のアニメを中心にオリジナルなティア表を作ることができます。"
+              description = "「アニメティア」はアニメにティアをつけることができ、オリジナルなティア表を作れることを主軸に、アニメを評価・レビュー・分析することができるWEBサービスです。"
               openGraph={{
                 type: "website",
                 title: "アニメティア",
-                description: "アニメティアはアニメを評価、レビュー、シェアする場所。今期・作期のアニメを中心にオリジナルなティア表を作ることができます。",
+                description: "アニメティア」はアニメにティアをつけることができ、オリジナルなティア表を作れることを主軸に、アニメを評価・レビュー・分析することができるWEBサービスです。",
                 site_name: "アニメティア",
                 url: "https://anime-tier.com",
                 images: [
