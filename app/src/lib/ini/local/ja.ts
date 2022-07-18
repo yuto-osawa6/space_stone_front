@@ -7,8 +7,8 @@ import { UserMessageJa } from "./ja/UserMessageJa";
 export default {
   domain:"アニメティア",
   Logo:{
-    G:"Anime",
-    F:"Tier",
+    G:"アニメ",
+    F:"ティア",
     SUBTITLE:"aa"
   },
   Headers:{
