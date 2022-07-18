@@ -650,25 +650,25 @@ px
     grid-gap: 20px;
     .show_contents01_header_bottom_left_bottom_score{
       padding: 5px;
-      background-color: #47cf8a;
+      background-color: #363949;
       border-radius: 5px;
-      color: #fff;
+      color: #f6f6f9;
       word-break: break-word;
       @include mq(md){
-        padding: 10px;
+        padding: 5px;
       }
     }
     .show_contents01_header_bottom_left_bottom_likes{
       width: fit-content;
       padding: 5px;
-      background-color: #ff3073;
+      background-color: #f6f6f9;
       border-radius: 5px;
-      color: #fff;
+      color: #363949;
       height: -webkit-fit-content;
       height: -moz-fit-content;
       height: fit-content;
       @include mq(md){
-        padding: 10px;
+        padding: 5px;
       }
     }
   }

@@ -437,8 +437,19 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                     )} */}
                     {/* {!loded&&(
                       <> */}
-                      Score　
-                      {scoreaverage}
+                      
+                          Score　
+                          {scoreaverage&&scoreaverage.length>0?
+                            <>
+                              {scoreaverage}
+                            </>
+                          :
+                          <>
+                            ---
+                          </>
+                          }
+                        
+                    
 {/* 
                       </>
                     )} */}
@@ -630,7 +641,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                       {ProductStore.id==Number(params_id)?ProductStore.title:product?.title}
                     </div>
 
-                    {product!=undefined&&product?.arasuzi.length>50&&(
+                    {product!=undefined&&product?.arasuzi!=null&&product?.arasuzi.length>50&&(
                       <>
                     <div className = {`show_contents01_header_bottom_right_descriptions productShowOpenArasuzi ${openArasuzi&&("activeOpenArasuzi")}`}>
                       {ProductStore.id!=Number(params_id)&&product!=undefined&&(
