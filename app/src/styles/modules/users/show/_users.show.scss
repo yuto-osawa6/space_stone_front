@@ -9,15 +9,15 @@
     position: relative;
     width: 100%;
     .UsersShowTopImage{
-      padding-top: 59.6px;
-      margin-top: 59px;
-      @include mq(tb){
-        padding-top: 30%;
+      // padding-top: 59.6px;
+      // margin-top: 59px;
+      // @include mq(tb){
+        padding-top: 40%;
         margin-top:0px;
         background-color: #1a252f;
-      }
+      // }
       img{
-        display: none;
+        // display: none;
         // height: 100%;
         // object-fit: cover;
         width: 100%;
@@ -37,12 +37,12 @@
       gap: 10px;
       padding: 10px;
       // background-color: #1a252f78;
-      // color: white;
+      color: white;
       border-radius: 5px;
 
-      top: 50%;
-      transform: translateY(-50%);
-      margin-left: 20px;
+      // top: 50%;
+      // transform: translateY(-50%);
+      margin-left: 10px;
       @include mq(tb){
         color: white;
         margin: 10px 30px;

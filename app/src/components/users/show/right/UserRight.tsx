@@ -18,12 +18,12 @@ export const UserRight:React.FC = function UserRightFunc(){
           <ul>
             {user!=undefined&&(
               <>
-                <li><Link href={`/users/${user.id}`}><a><GiMedievalGate/>Top</a></Link></li>
-                <li><Link href={`/users/${user.id}/likes`}><a><MdFavoriteBorder/>Like</a></Link></li>
-                <li><Link href={`/users/${user.id}/scores`}><a><MdScore/>Score</a></Link></li>
-                <li><Link href={`/users/${user.id}/reviews`}><a><MdOutlineRateReview/>Review</a></Link></li>
-                <li><Link href={`/users/${user.id}/threads`}><a><MdOutlineRateReview/>Thread</a></Link></li>
-                <li><Link href={`/users/${user.id}/tiers`}><a><BsFillGridFill/>MyTier</a></Link></li>
+                <li><Link href={`/users/${user.id}`} scroll={false}><a><GiMedievalGate/>Top</a></Link></li>
+                <li><Link href={`/users/${user.id}/likes`} scroll={false}><a><MdFavoriteBorder/>Like</a></Link></li>
+                <li><Link href={`/users/${user.id}/scores`} scroll={false}><a><MdScore/>Score</a></Link></li>
+                <li><Link href={`/users/${user.id}/reviews`} scroll={false}><a><MdOutlineRateReview/>Review</a></Link></li>
+                <li><Link href={`/users/${user.id}/threads`} scroll={false}><a><MdOutlineRateReview/>Thread</a></Link></li>
+                <li><Link href={`/users/${user.id}/tiers`} scroll={false}><a><BsFillGridFill/>MyTier</a></Link></li>
               </>
             )}
           </ul>

@@ -56,7 +56,7 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
   const [scale, setScale] = useState(1)
   const [rotate, setRotate] = useState(0)
-  const [aspect, setAspect] = useState<number | undefined>(10 / 3)
+  const [aspect, setAspect] = useState<number | undefined>(10 / 4)
   const dispatch = useDispatch()
   // loading
   const [loading,setLoading] = useState<boolean>(false)
@@ -84,8 +84,8 @@ const UserBackgroupdModalV2:React.FC<Props> = function TopimageV2func(Props) {
       setAspect(undefined)
     } else if (imgRef.current) {
       const { width, height } = imgRef.current
-      setAspect(10 / 3)
-      setCrop(centerAspectCrop(width, height, 10 / 3))
+      setAspect(10 / 4)
+      setCrop(centerAspectCrop(width, height, 10 / 4))
     }
   }
 
