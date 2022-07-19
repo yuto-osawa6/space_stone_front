@@ -54,10 +54,11 @@ export const execWeeklyRanking = () => {
   })
 }
 
-export const execVoteWeeklyRanking = (product_id:number,episordIds: number[]) => {
+export const execVoteWeeklyRanking = (product_id:number,episordIds: number[],reToken:string) => {
   return client.post("mainblocks/mains/vote",{
     product_id:product_id,
-    episordIds: episordIds
+    episordIds: episordIds,
+    recaptcha_token:reToken
   })
 }
 type tiers= {

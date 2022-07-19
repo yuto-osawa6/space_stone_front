@@ -3,6 +3,9 @@ import { execVoteWeeklyRanking } from "@/lib/api/mains/main_blocks"
 import { memo, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { pussingMessageDataAction } from "@/store/message/actions"
+import { ErrorMessage } from "@/lib/ini/message"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+
 
 type Props = {
   product: product
@@ -30,6 +33,8 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
   const [persentTitle,setPersentTitle] = useState<string>("0")
   const [episordIds,setEpisordIds] = useState<number[]>([])
   const [episords,setEpisords] = useState<episords[]>([])
+
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const handleCalcDate = () => {
     const curr = new Date();
@@ -90,7 +95,16 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
   // -------------------------------------------------------------------------------------------
   const dispatch = useDispatch()
   const handleVoteWeeklyRanking = async() => {
-    const res = await execVoteWeeklyRanking(Props.product.id,episordIds)
+    if (!executeRecaptcha) {
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const reCaptchaToken = await executeRecaptcha('WeeklyModal');
+    if(!reCaptchaToken){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const res = await execVoteWeeklyRanking(Props.product.id,episordIds,reCaptchaToken)
     if(res.data.status === 200){
       Props.setProducts(res.data.products)
       Props.setWeeklyCount(res.data.weeklyCount)
