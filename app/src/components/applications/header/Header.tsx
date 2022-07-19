@@ -261,9 +261,13 @@ const routerHome = () => {
                       </div>
                       <div className = "subMenuList7689"><Link href="/search"><a><div className="headersub768"><div className = "home2"><HiOutlineSearchCircle/> {t.Headers.SEARCH}</div><div className = {"home23"}>{t.SubHeader.SEARCH}</div></div></a></Link>
                         <div className="HederV1SubmenuSub">
-                          {data.styles.map((item: any) => (
-                            <LeftStyle name={item.name} id={item.id} count={item.count} key={item.id}/>
-                          ))}
+                          {data&&(
+                            <>
+                              {data.styles.map((item: any) => (
+                                <LeftStyle name={item.name} id={item.id} count={item.count} key={item.id}/>
+                              ))}
+                            </>
+                          )}
                         </div>
                       </div>
                       <div className = "subMenuList7689"><Link href="/articles"><a><div className="headersub768"><div className = "home2"><RiArticleLine/> {t.Headers.ARTICLE}</div><div className = {"home23"}>{t.SubHeader.ARTICLE}</div></div></a></Link>

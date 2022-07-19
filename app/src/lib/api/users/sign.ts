@@ -68,9 +68,9 @@ export const useGetCurrentUser = (): { userSwr: Data2, error: any,userLoaded: bo
     // res.data = false
     return res.data
   }
-  console.log(fetcher)
+  // console.log(fetcher)
   const { data, error } = useSWR('/session_user', fetcher)
-  console.log(data)
+  // console.log(data)
   if(!data){
     return { userSwr: {user:userInitialState.user,login:false}, error,userLoaded:false}
   }
