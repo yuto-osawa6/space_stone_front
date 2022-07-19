@@ -51,8 +51,8 @@ export const UserCertification:React.FC = function UserCertification(){
     }else{
       setOpenMenu(false)
     }
-    openMenu==true?document.body.style.overflowY = "hidden":document.body.style.overflowY = ""
-    openMenu==true?document.body.style.height = "100%":document.body.style.height = ""
+    // openMenu==true?document.body.style.overflowY = "hidden":document.body.style.overflowY = ""
+    // openMenu==false?document.body.style.height = "100%":document.body.style.height = ""
 
 
   }

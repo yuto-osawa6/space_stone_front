@@ -208,7 +208,9 @@ const routerHome = () => {
             <li className = "nomalNavi"><Link href="/threads"><a><div><div><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home"}>{t.SubHeader.THREAD}</div></div></a></Link></li>
             
             <li className="headerUserSighIn nomalNavi"
-            style={{
+            style={openMenu==true&&windowSize.width<768?{
+              display:"none"
+            }:{
               display:"block"
             }}
             ><UserCertification/></li>
@@ -217,8 +219,9 @@ const routerHome = () => {
               ref={submenuref}
               onClick={setOpenMenuHandler}
             > 
-              <IoMdMenu    
-              />
+              {/* <IoMdMenu    
+              /> */}
+              <div className={openMenu==false?"openbtn":"openbtn active"}><span></span><span></span><span></span></div>
               {windowSize.width >= 768&&openMenu==true&&(
               <div className = "subMenuList"
               >
