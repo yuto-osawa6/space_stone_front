@@ -25,7 +25,7 @@ const {data,error} = useExecLeft()
 // chage
 const [openFormats,SetOpenFormats] = useState<boolean>(true)
 const [openGenres,SetOpenGenres] = useState<boolean>(false)
-const [openArticles,SetOpenArticles] = useState<boolean>(true)
+const [openArticles,SetOpenArticles] = useState<boolean>(false)
 const [openReviews,SetOpenReviews] = useState<boolean>(true)
 const [openThreads,SetOpenThreads] = useState<boolean>(true)
 
