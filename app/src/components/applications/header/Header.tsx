@@ -182,7 +182,7 @@ const routerHome = () => {
                   marginRight:"10px"
                 }}
                 >
-                <img src={url('/topimage.png')} alt="Sample image"></img>
+                {/* <img src={url('/topimage.png')} alt="Sample image"></img> */}
                 </div>
                 {/* <div className = "LogoG">
                   {t.Logo.G}
