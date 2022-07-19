@@ -186,7 +186,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
         Tierを更新する
       </div>
       )}
-      {isMobile&&(
+      {/* {isMobile&&(
         <div className="editTierButton"
         // onClick={userSwr.login==true?handleOpenTierUpdateModal:handleOpenSign}
         style={{
@@ -195,7 +195,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
         >
           *現在、PCでのみTierを作成することができます。
         </div>
-      )}
+      )} */}
       {openTier&&(
       <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
         <CreateTier
@@ -220,6 +220,16 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       </DndProvider>
       )}
       </>
+      )}
+      {isMobile&&(
+        <div className="editTierButton"
+        // onClick={userSwr.login==true?handleOpenTierUpdateModal:handleOpenSign}
+        style={{
+          cursor:"pointer"
+        }}
+        >
+          *現在、PCでのみTierを作成することができます。
+        </div>
       )}   
       {open&&(
       <OpenContext.Provider value={{ open, setOpen }}>

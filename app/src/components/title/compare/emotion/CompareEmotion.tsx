@@ -150,7 +150,7 @@ export const CompareEmotion:React.FC = () => {
             size="small"
           >
             <MenuItem value={0} key={0}>{"All"}</MenuItem>
-            {props.product?.episords.map((item,index)=>{
+            {props.product?.episords.filter(i => i.episord != 0).map((item,index)=>{
               return(
               <MenuItem value={String(item.id)} key={item.id}>{item.episord}話 {item.title}</MenuItem>
               )
