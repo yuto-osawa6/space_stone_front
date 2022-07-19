@@ -56,11 +56,11 @@ const UserLikeShow: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  
     <>
       <NextSeo
       title={`お気に入り - ${Props.data.user.nickname}さん`}
-      description = {`${Props.data.user.nickname}さんのお気に入り。`}
+      description = {`${Props.data.user.nickname}さんのお気に入り作品情報。`}
       openGraph={{
         type: "website",
         title: "お気に入り",
-        description: `${Props.data.user.nickname}さんのお気に入り。`,
+        description: `${Props.data.user.nickname}さんのお気に入り作品情報。`,
         site_name: "アニメティア",
         url: `https://anime-tier.com/users/${Props.data.user.id}/likes`,
         images: [
