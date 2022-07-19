@@ -91,13 +91,14 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
           style={{
             maxHeight: "90%",
             width: "80%",
-            backgroundColor: "#363949",
+            // backgroundColor: "#363949",
             position: "relative",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             borderRadius:"10px",
-            height:"90%"
+            height:"90%",
+            backgroundColor: "transparent"
           }}
           >
             <div className=""
@@ -147,8 +148,9 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
             ref={scrollRef}
             style={{
               // paddingBottom: "20px",
-              maxHeight: "calc(100% - 90px)",
-              overflow: "scroll"
+              maxHeight: "calc(100% - 100px)",
+              overflow: "scroll",
+              backgroundColor: "#363946"
             }}
             >
             {firstloding&&(
