@@ -81,12 +81,12 @@ export const ScoreUserList:React.FC<Props> = function ScoreUserListFunc(Props){
         {Props.userScore!=undefined&&Props.userScore!=null&&(
           <div className="ScoresListInProductShowList">
             <ul>
-              <li style={handleColer(Props.userScore.all)}>総合 {Props.userScore.all}%</li>
-              <li style={handleColer(Props.userScore.story)}>ストーリー {Props.userScore.story}%</li>
-              <li style={handleColer(Props.userScore.animation)}>アニメーション {Props.userScore.animation}%</li>
-              <li style={handleColer(Props.userScore.performance)}>演出 {Props.userScore.performance}%</li>
-              <li style={handleColer(Props.userScore.music)}>音楽 {Props.userScore.music}%</li>
-              <li style={handleColer(Props.userScore.character)}>キャスト・キャラクター {Props.userScore.character}%</li>
+              <li style={handleColer(Props.userScore.all)}>総合 {Props.userScore.all}</li>
+              <li style={handleColer(Props.userScore.story)}>ストーリー {Props.userScore.story}</li>
+              <li style={handleColer(Props.userScore.animation)}>アニメーション {Props.userScore.animation}</li>
+              <li style={handleColer(Props.userScore.performance)}>演出 {Props.userScore.performance}</li>
+              <li style={handleColer(Props.userScore.music)}>音楽 {Props.userScore.music}</li>
+              <li style={handleColer(Props.userScore.character)}>キャスト・キャラクター {Props.userScore.character}</li>
             </ul>
           </div>
         )}

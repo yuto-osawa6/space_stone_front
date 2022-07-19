@@ -133,12 +133,12 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
         {Props.productScores.length!=0&&(
         <div className="ScoresListInProductShowList">
           <ul>
-            <li style={handleColer(all)}>総合 {all}%</li>
-            <li style={handleColer(story)}>ストーリー {story}%</li>
-            <li style={handleColer(animation)}>アニメーション {animation}%</li>
-            <li style={handleColer(performance)}>演出 {performance}%</li>
-            <li style={handleColer(music)}>音楽 {music}%</li>
-            <li style={handleColer(character)}>キャスト・キャラクター {character}%</li>
+            <li style={handleColer(all)}>総合 {all}</li>
+            <li style={handleColer(story)}>ストーリー {story}</li>
+            <li style={handleColer(animation)}>アニメーション {animation}</li>
+            <li style={handleColer(performance)}>演出 {performance}</li>
+            <li style={handleColer(music)}>音楽 {music}</li>
+            <li style={handleColer(character)}>キャスト・キャラクター {character}</li>
           </ul>
         </div>
         )}
