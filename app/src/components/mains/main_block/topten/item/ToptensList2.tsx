@@ -93,7 +93,6 @@ export const ToptensList2:React.FC<Props> = memo(function ToptensList2Func(Props
 
     }
   }
-  // console.log(Props)
   return(
     <>
       <div className = "ToptensContainerGridList"

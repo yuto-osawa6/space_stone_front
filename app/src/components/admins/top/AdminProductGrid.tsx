@@ -84,7 +84,6 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
 
     }
   }
-  console.log(Props)
   const [YearSeason,setYearSeason]= useState<string>("")
   const handleSetupYearSeason = () => {
     const kisetsu = ["冬","春","夏","秋"]

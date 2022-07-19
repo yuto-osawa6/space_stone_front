@@ -73,13 +73,8 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   useEffect(()=>{
     handleSetUpYear()
   },[])
-  // console.log(Props)
-  // console.log(Props.formProduct.formYearSeason)
-  // console.log(yearSeason)
   const [yearSeason,setYearSeason] = useState<year_season[]>(Props.formProduct.formYearSeason)
   const childFunc01 = useRef<any>([])
-  // console.log(yearSeason)
- 
   // productTitle------------------------------
     const [title,setTitle] = useState<string | undefined>(Props.formProduct.title)
     const [titleError,setTitleError] = useState<boolean>()
@@ -431,7 +426,6 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
     // }
     // doneyet-1 (エラー表示がまだ)
     if (yearSeason==undefined)return
-    // console.log(deliveryStart)
     Props.setProduct({
       title:title,
       imageUrl:imageUrl as string,
@@ -474,7 +468,6 @@ export const ProductFormList1Edit:React.FC<Props> = (Props) => {
   // doneyet-1(このやり方が推奨かどうかわからない)
   Props.childFunc.current = handleErrorCheck
 
-  // console.log(Props.product)
   return(
     <>
       {Props.completed[0]!=true?

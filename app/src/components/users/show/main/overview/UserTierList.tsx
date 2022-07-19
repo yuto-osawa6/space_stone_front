@@ -60,7 +60,6 @@ export const UserTierList:React.FC<Props> = function UserTierListFunc(Props){
   useEffect(()=>{
     handleSetup()  
   },[Props.userTier])
-  console.log(Props)
   return(
     <>
     <div className=""

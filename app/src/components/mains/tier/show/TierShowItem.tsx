@@ -12,7 +12,6 @@ type Props = {
 export const TierShowItem:React.FC<Props> = (Props) => {
   const [open,setOpen] = useState<boolean>(false)
   const handleOpenModal = () => setOpen(true)
-  console.log(Props)
   return(
     <>
       <div className="TierShowItem"

@@ -30,7 +30,6 @@ type Color2 = {
 }
 
 export const GridProductItemTrend:React.FC<Props> = memo(function GridProductItem1Func(Props){
-  console.log(Props)
   // colornumber
   const [colornumber,setColornumber ]= useState<number>(0)
   const colorNumberHandler = () => {
@@ -94,7 +93,6 @@ export const GridProductItemTrend:React.FC<Props> = memo(function GridProductIte
   }
   const handlehoverEnter = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    // console.log(left,right,Props.left_grid,Props.right)
     if(windowSize.width >= 768){
     left === Props.left_grid&&right===Props.right?setIshover2(true):setIshover(true)
     }

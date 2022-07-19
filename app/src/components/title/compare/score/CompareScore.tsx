@@ -22,7 +22,6 @@ export const CompareScore:React.FC = () => {
     const handleSelect = async(i:number) =>{
       if(props.product==undefined)return
       const res = await execCompareScore(props.product.id,i)
-      console.log(res)
       if(res.status == 200){
         if(res.data.scoreArrayies[10]!=undefined){
           res.data.scoreArrayies[9] = res.data.scoreArrayies[9] +res.data.scoreArrayies[10]
@@ -36,7 +35,6 @@ export const CompareScore:React.FC = () => {
     useEffect(()=>{
       handleSelect(0)
     },[])
-    console.log(props)
     const {userSwr} = useUser()
 
   return(

@@ -99,7 +99,6 @@ export const AdminNews:React.FC<Props> = (Props) => {
       count += 1
     }
     const jugde_date = isInvalidDate(deliveryStart)
-    // console.log(jugde_date)
     if (jugde_date == true){
       setDeliveryStartValidationText("正しい入力をしてください")
       count += 1

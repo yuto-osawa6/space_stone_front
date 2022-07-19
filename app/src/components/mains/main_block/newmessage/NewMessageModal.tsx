@@ -28,7 +28,6 @@ export const NewMessageModal:React.FC<Props> = function NewMessageModalFunc(Prop
   }
   }
   ),[])
-  // console.log(Props)
   return(
     <>
       <Modal

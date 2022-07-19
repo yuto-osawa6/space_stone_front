@@ -39,7 +39,6 @@ export const TierGroupList: React.FC<Props> = memo(function TierGroupListFunc(Pr
     }),
   });
   const moveItem2 = useCallback((dragIndex: number, hoverIndex: number,group: number,pregroup:any | undefined,id:number) => {
-    // console.log(dragIndex,hoverIndex,group,pregroup,id)
     try{
     Props.setGroupProduct((prevState:Group[]) => {
       const copy0009 = prevState.slice()
@@ -51,8 +50,6 @@ export const TierGroupList: React.FC<Props> = memo(function TierGroupListFunc(Pr
       }  
       const newItems = groupItem.products.filter((_, idx) => idx !== dragIndex);
       newItems.splice(hoverIndex, 0, Item);
-      // console.log(groupItem)
-      // console.log(copy0009,group,newItems,Item,id)
       copy0009[group]={products:newItems,group:group}
       }else{
       }

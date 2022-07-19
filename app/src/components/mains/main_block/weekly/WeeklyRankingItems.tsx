@@ -64,8 +64,6 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
       episordEndWeek.setHours(6)
       episordEndWeek.setDate(episordEndWeek.getDate() + 7)
     }
-    // console.log(startDate,episordStartWeek,episordEndWeek)
-    // console.log(Props)
     return {startDate,episordStartWeek,episordEndWeek}
   }
   
@@ -73,8 +71,6 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
     let {startDate,episordStartWeek,episordEndWeek} = handleCalcDate() 
     const count = Props.product.productWeekly.filter(i=>(i.weekly!=undefined?new Date(i.weekly):new Date(2020)).getTime() == startDate.getTime())
     const episord = Props.product.episords.filter(i=>new Date(i.releaseDate).getTime() > episordStartWeek.getTime() && new Date(i.releaseDate).getTime() < episordEndWeek.getTime())
-    console.log(count)
-    console.log(episord)
     setEpisords(episord)
     setEpisordIds(episord.map(i=>i.id as number))
     if(Props.weeklyVote==false)return

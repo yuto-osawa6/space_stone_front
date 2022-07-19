@@ -28,7 +28,6 @@ type Props = {
 }
 export const Header:React.FC<Props> = function HeaderFunc(Props){
   const a = useScroll()
-  // console.log(a)
   // useScrollPosition
   const dispatch = useDispatch()
   const [showMenu, setShowMenu] = useState<boolean>(true);
@@ -43,14 +42,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
   // },[])
 
   useEffect(()=>{
-    // console.log("aaa")
-    // console.log(a.scrollY ,a.prevScrollY )
-    // console.log(showMenu)
-    // console.log(a.scrollY<1)
-    // console.log("aaa")
-    // console.log(a.scrollY > a.prevScrollY)
     if (a.scrollY<56){
-      console.log("aaa34")
       setShowMenu(true)
       return
     }
@@ -92,7 +84,6 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
 }
   const setOpenMenuHandler = (e:React.MouseEvent<HTMLLIElement> | undefined) => {
     e?.stopPropagation()
-    // console.log("aaaae2")
     openMenu==true?setOpenMenu(false):setOpenMenu(true)
     if (windowSize.width < 768){
       openMenu==false?document.body.style.overflow = "hidden":document.body.style.overflow = ""
@@ -134,7 +125,6 @@ const { t } = useLocale()
 const routerHome = () => {
   router.push("/")
 }
-// console.log(windowSize)
     // useEffect(()=>{
     //   const touchHandler = (event: any) => {
     //     // if(windowSize.width >= 768){
@@ -151,7 +141,6 @@ const routerHome = () => {
     //   };
     // },[windowSize.width])
     const {data,error} = useExecLeft()
-    console.log(data)
   return(
     <>
       <div className = "HeaderV1">

@@ -130,7 +130,6 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
     mutate('/mainblocks/mains/user_this_season_tier/2')
     setUpdateTier(false)
   },[updateTier])
-  // console.log(data)
   return(
     <>
       <div className="SeasonTier">

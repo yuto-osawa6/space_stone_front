@@ -27,7 +27,6 @@ export const CalendarProduct:React.FC<Props> = function CalendarProductFunc(Prop
   // const setupHandler = async() => {
   //   const res = await execCalendarHandler()
   //   if(res.status === 200){
-  //     console.log(res)
   //     // setEndProduct(res.data.deliveryEnd)
   //     if(isMounted2){
   //       setStartProduct(res.data.deliveryStart)
@@ -78,7 +77,6 @@ export const CalendarProduct:React.FC<Props> = function CalendarProductFunc(Prop
 
   const today_year = new Date().getFullYear()
   // const mouseEnterHandler = (arg: EventHoveringArg) => {
-  //   console.log(arg.event)
   // }
   return(
     <>

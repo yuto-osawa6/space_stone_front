@@ -8,13 +8,10 @@ export const execSetreCaptchaToken = async() => {
   
     if (!executeRecaptcha) {
 
-      console.log("rev")
       return
     }
     // console.log("rev")
-    console.log("n")
     const reCaptchaToken = await executeRecaptcha('ReviewModal');
-    console.log(reCaptchaToken)
   return reCaptchaToken
   // }else{
   //   return "local"

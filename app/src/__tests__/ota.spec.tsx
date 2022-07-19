@@ -76,7 +76,6 @@ describe("Sampleコンポーネント", () => {
 //       />);
 //     //     expect(false).toBe(false);
 //     screen.debug();
-//     console.log(mockProductReds)
 
 //     //     // expect(await screen.findByText(/Signed in as/)).toBeInTheDocument();
 //     //     // await waitFor(() => screen.getByText('Welcome to Next.js!'))

@@ -218,7 +218,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
     //   count += 1
     // }
     // if(blob.size>3000){
-    //   console.log(new Blob([valueArasuzi.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")]).size)
     //   setArasuziValidationText("サイズが大きすぎます。")
     //   count += 1
     // }

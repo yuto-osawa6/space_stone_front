@@ -13,8 +13,6 @@ type Props = {
 }
 
 export const ShowCloudsItems2:React.FC<Props> = function ShowCloudsItems2Func(Props){
-  console.log(Props)
-  console.log(Props)
 
   const [content,setContent] = useState<string>("")
   const firstReadMoreHandler = () => {

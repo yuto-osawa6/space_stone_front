@@ -14,7 +14,6 @@ type Props = {
   alice: number
 }
 export const CompareTierModal:React.FC<Props> = (Props) => {
-  console.log(Props)
   const [values,setValues] = useState<number[]>([])
   const [userTier,setUserTier] = useState<string>()
   const [loading,setLoading] = useState<boolean>(false)
@@ -22,7 +21,6 @@ export const CompareTierModal:React.FC<Props> = (Props) => {
   const setUpHandler = async() => {
     const user_id = userSwr.login == true? userSwr.user.id : null
     const res = await execCompareTier(Props.product.id,user_id,Props.alice)
-    console.log(res)
     if(res.data.status == 200){
       setUserTier(res.data.userTier)
       setValues(res.data.values)

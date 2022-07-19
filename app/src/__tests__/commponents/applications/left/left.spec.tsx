@@ -81,9 +81,7 @@ describe('Header', () => {
     // await waitFor(() => screen.findByText(/error/))
     // await expect(getExamples()).rejects.not.toThrow(GetExampleError);
       // const {data,error} = execLeft()
-      // console.log(error)
       await waitFor(() => expect(execLeftfetcher()).rejects.toThrow(Error))
-      // console.log(execLeft)
       // await waitFor(() => screen.findByText(/genre_test_name/))
       screen.debug()
   });
@@ -124,9 +122,7 @@ describe('Header', () => {
   //   await waitFor(() => screen.findByText(/error/))
   //   // await expect(getExamples()).rejects.not.toThrow(GetExampleError);
   //     // const {data,error} = execLeft()
-  //     // console.log(error)
   //     // await waitFor(() => expect(execLeftfetcher()).rejects.toThrow(Error))
-  //     // console.log(execLeft)
   //     // await waitFor(() => screen.findByText(/genre_test_name/))
   //     screen.debug()
   // });
@@ -155,9 +151,7 @@ describe('Header', () => {
 //     await waitFor(() => screen.findByText(/error/))
 //     // await expect(getExamples()).rejects.not.toThrow(GetExampleError);
 //       // const {data,error} = execLeft()
-//       // console.log(error)
 //       // await waitFor(() => expect(execLeftfetcher()).rejects.toThrow(Error))
-//       // console.log(execLeft)
 //       // await waitFor(() => screen.findByText(/genre_test_name/))
 //       screen.debug()
 //   });

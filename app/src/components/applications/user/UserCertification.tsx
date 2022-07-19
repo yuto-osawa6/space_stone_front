@@ -59,11 +59,9 @@ export const UserCertification:React.FC = function UserCertification(){
   // useEffect(() => {
   //   const checkIfClickedOutside = (e:any) => {
   //     const s_ref = document.getElementsByClassName("SettingModalSmartFon")
-  //     console.log(s_ref)
   //     if ( openMenu && ref.current && !ref.current.contains(e.target)&& s_ref.length == 0) {
   //       document.body.style.overflowY = ""
   //       setOpenMenu(false);
-  //       console.log("aaaaa3")
   //     }
   //   };
   //   document.addEventListener("mousedown", checkIfClickedOutside);

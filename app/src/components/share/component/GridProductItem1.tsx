@@ -88,7 +88,6 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
   }
   const handlehoverEnter = () => {
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    console.log(left,right,Props.left_grid,Props.right)
     if(windowSize.width >= 768){
     left === Props.left_grid&&right===Props.right?setIshover2(true):setIshover(true)
     }

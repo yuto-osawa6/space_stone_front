@@ -17,7 +17,6 @@ type Props = {
 
 export const TierShow:React.FC<Props> = function(Props){
   const handleClose = () => Props.setOpen(false)
-  console.log(Props)
   return(
     <>
       <Modal
