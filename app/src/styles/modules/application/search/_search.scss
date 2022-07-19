@@ -574,11 +574,11 @@
     /* width: fit-content; */
     white-space: nowrap;
     list-style: none;
-    padding: 5px;
+    // padding: 5px;
     border-radius: 10px;
     display: flex;
     flex-flow: column;
-    gap: 5px;
+    // gap: 5px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -594,8 +594,8 @@
     outline: none;
     li{
       cursor: pointer;
-      box-shadow: $color-v1-shadow-d;
-      border-radius: 5px;
+      // box-shadow: $color-v1-shadow-d;
+      // border-radius: 5px;
       display: flex;
       justify-content: center;
       align-items: center;
