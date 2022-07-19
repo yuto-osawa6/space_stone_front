@@ -87,15 +87,15 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
         aria-describedby="modal-modal-description"
       >
         <>
-          <div className=""
+          <div className="UserSearchModal"
           style={{
             maxHeight: "90%",
-            width: "80%",
+            // width: "80%",
             // backgroundColor: "#363949",
             position: "relative",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
+            // top: "50%",
+            // left: "50%",
+            // transform: "translate(-50%, -50%)",
             borderRadius:"10px",
             height:"90%",
             backgroundColor: "transparent"
