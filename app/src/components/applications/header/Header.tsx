@@ -87,7 +87,7 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     openMenu==true?setOpenMenu(false):setOpenMenu(true)
     if (windowSize.width < 768){
       openMenu==false?document.body.style.overflow = "hidden":document.body.style.overflow = ""
-      openMenu==false?document.body.style.height = "100%":document.body.style.overflow = ""
+      openMenu==false?document.body.style.height = "100%":document.body.style.height = ""
       // openMenu==false?document.body.style.touchAction = "none":document.body.style.touchAction = ""
     }else{
     }
