@@ -606,7 +606,7 @@ svg{
 /*ボタン内側*/
 .openbtn span{
     display: inline-block;
-    transition: all 0.4s;/*アニメーションの設定*/
+    // transition: all 0.4s;/*アニメーションの設定*/
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
