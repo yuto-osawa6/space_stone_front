@@ -46,7 +46,7 @@ export const UserOverviewModal:React.FC<Props> = function UserOverviewModal(Prop
     ],
       [{ list:  "ordered" }, { list:  "bullet" }],
       [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
-      ["image"],
+      // ["image"],
     ],
     handlers: {
       image: imageHandlerLink,
