@@ -1,7 +1,7 @@
 .CompareModal{
   max-width: 1500px;
   // height: 95%;
-  height: fit-content;
+  max-height: 90%;
   margin: 0 auto;
   top: 50%;
   position: absolute;
@@ -20,6 +20,16 @@
   .MuiInputLabel-root{
     color: #f6f6f9!important;
   }
+  .user_social_login{
+    gap: 0px!important;
+    width: 100%;
+    margin: 0px!important;
+  }
+}
+  
+  /*Google Chrome、Safariへの対応*/
+.CompareModal::-webkit-scrollbar{
+  display: none;
 }
 
 .CompareScoreSelect{

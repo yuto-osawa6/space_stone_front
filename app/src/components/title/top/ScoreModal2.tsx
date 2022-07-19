@@ -296,6 +296,9 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
               <Button variant="contained"
               className={"tail-spin-loading"}
               onClick = {execscoreupdate}
+              style={{
+                marginTop: "10px"
+              }}
               >決定
               {submitLoading==true&&(
                 <TailSpin color={submitSpin.color} height={20} width={20} />
