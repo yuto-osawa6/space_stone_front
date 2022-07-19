@@ -655,6 +655,10 @@
   }
 }
 .Top100Title{
+  @include mq(tb){
+    margin-left: 0px;
+  }
+  margin-left: 20px;
   font-size: 1.2rem;
   font-weight: bold;
 }
