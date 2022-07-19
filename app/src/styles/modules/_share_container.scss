@@ -160,7 +160,7 @@
     box-shadow: $color-v1-shadow-a;
     &:hover{
       @include mq(md){
-      color: white;
+      color: white!important;
       background-color: #ff3073!important;
       }
     }
