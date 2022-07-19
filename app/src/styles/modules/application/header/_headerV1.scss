@@ -171,7 +171,7 @@ svg{
   padding: 20px 20px 10px 20px;
   .HeaderMainLeftTitle{
     // margin-right: -20px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
   }
   // background-color: #1b548f;
@@ -199,11 +199,12 @@ svg{
     justify-content: flex-end;
     @include mq(tb){
       justify-content: center;
+      background-color: #f6f6f9;
     }
     @include mq(md){
       font-size: 1.0rem;
       // background-color: #ffffff;
-      background-color: #f6f6f9;
+      // background-color: #f6f6f9;
       width: calc(100% - 200px);
     }
 
