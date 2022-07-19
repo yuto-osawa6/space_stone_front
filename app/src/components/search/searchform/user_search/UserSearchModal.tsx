@@ -96,13 +96,14 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            borderRadius:"10px"
+            borderRadius:"10px",
+            height:"90%"
           }}
           >
             <div className=""
             style={{
-              paddingTop: "10px",
-              margin: "10px",
+              padding: "10px",
+              // margin: "10px",
               fontSize: "1.2rem",
               fontWeight:"bold",
               display:"flex",
@@ -145,8 +146,8 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
             <ul className="SearchUserModal"
             ref={scrollRef}
             style={{
-              paddingBottom: "20px",
-              maxHeight: "70vh",
+              // paddingBottom: "20px",
+              maxHeight: "calc(100% - 90px)",
               overflow: "scroll"
             }}
             >
