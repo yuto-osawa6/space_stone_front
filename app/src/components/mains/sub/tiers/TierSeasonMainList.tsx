@@ -133,7 +133,7 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
       if(user_id==undefined) return
       return(
         <>
-          {Number(user_id)==LoginUserStore.user.id&&(
+          {isMobile==false&&Number(user_id)==LoginUserStore.user.id&&(
             <>
               <div className=""
               onClick={Props.updateTier==false?handleClick:handleDummyClick}
@@ -151,7 +151,7 @@ export const TierSeasonMainList:React.FC<Props> = function TierSeasonMainListFun
     }else{
       return(
       <>
-      {LoginUserStore.login==true&&(
+      {isMobile==false&&LoginUserStore.login==true&&(
         <>
           <div className=""
           onClick={Props.updateTier==false?handleClick:handleDummyClick}

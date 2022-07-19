@@ -199,7 +199,7 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
               </div>
               {updateTier==false&&(
                 <>
-              {user.id==LoginUserStore.user.id&&(
+              {isMobile==false&&user.id==LoginUserStore.user.id&&(
               <>
                 {userTier.length==0&&(
                   <div className="editTierButton"
@@ -223,6 +223,17 @@ export const UserShowOverview:React.FC=function UserShowOverviewFunc(){
                     Tierを更新する
                   </div>
                   )}
+
+                {/* {isMobile&&(
+                  <div className="editTierButton"
+                  // onClick={userSwr.login==true?handleOpenTierUpdateModal:handleOpenSign}
+                  style={{
+                    cursor:"pointer"
+                  }}
+                  >
+                    *現在、PCでのみTierを作成することができます。
+                  </div>
+                )} */}
                 
                 <UserTierList
                 userTier={userTier}

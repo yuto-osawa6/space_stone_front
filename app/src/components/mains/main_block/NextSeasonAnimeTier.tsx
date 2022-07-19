@@ -163,7 +163,8 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
           />
           )
         })}
-      {Props.products!=undefined&&userTier!=undefined&&(
+      
+      {isMobile==false&&Props.products!=undefined&&userTier!=undefined&&(
       <>
       {userTier.length==0&&(
       <div className="editTierButton"
@@ -184,6 +185,16 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       >
         Tierを更新する
       </div>
+      )}
+      {isMobile&&(
+        <div className="editTierButton"
+        // onClick={userSwr.login==true?handleOpenTierUpdateModal:handleOpenSign}
+        style={{
+          cursor:"pointer"
+        }}
+        >
+          *現在、PCでのみTierを作成することができます。
+        </div>
       )}
       {openTier&&(
       <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
