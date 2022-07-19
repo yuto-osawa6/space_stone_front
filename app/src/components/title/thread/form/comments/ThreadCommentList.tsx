@@ -184,6 +184,13 @@ export const ThreadCommentList:React.FC<Props> = function ThreadCommentListFunc(
     const doc200 = doc.getElementsByTagName('body')[0].innerText.slice(0,200)
     setContent(doc200.length!=200?doc200:doc200+"...")
     setReadMoreLength(doc200.length)
+    // console.log(doc)
+    // console.log(doc.getElementsByTagName('body')[0].childElementCount)
+    // console.log(doc.getElementsByTagName('body')[0].childElementCount)
+
+    // console.log(doc200)
+    // console.log(doc.getElementsByTagName('body')[0].children[1])
+
   }
 
   useEffect(()=>{
@@ -240,7 +247,7 @@ const ReviewCommentListRef = useRef<HTMLDivElement>(null)
         </div>
         <div className = "ReviewCommentListMain">
           <ReactQuill
-            className = "review_comment_list_modal_quill"
+            className = {readMore==true?"review_comment_list_modal_quill":"review_comment_list_modal_quill readmoreFalseActive"}
             modules={modules} 
             value={readMore==true?Props.reviewcomment.comment:content}
             theme="bubble"
