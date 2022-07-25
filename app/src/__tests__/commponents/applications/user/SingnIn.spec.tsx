@@ -5,11 +5,22 @@ import {render, fireEvent, waitFor, screen, cleanup} from '@testing-library/reac
 import { Provider } from "react-redux";
 import renderer from 'react-test-renderer';
 import { getPage } from "next-page-tester";
-import { Ota2 } from '@/components/ota/Ota';
 import { UserCertification } from '@/components/applications/user/UserCertification' 
 import { getCurrentUserMock } from "@/mocks/api/user/signin";
 import Cookies from "js-cookie";
 import { rest } from "msw";
+
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
 
 
 describe('Header', () => {
@@ -50,13 +61,14 @@ describe('Header', () => {
     await waitFor(() => screen.findByText(/UserMenu/))
     // screen.debug()
   });
-  test('サインアウトテスト', async() => {
-    render(<Provider store={store}>
-     <UserCertification/>
-    </Provider>)
-    fireEvent.click(screen.getByText(/UserMenu/i))
-    fireEvent.click(screen.getByText(/ログアウト/i))
-    await waitFor(() => screen.findByText(/SignIn/))
-    screen.debug()
-  });
+  // test('サインアウトテスト', async() => {
+  //   render(<Provider store={store}>
+  //    <UserCertification/>
+  //   </Provider>)
+  //   fireEvent.click(screen.getByText(/UserMenu/i))
+  //   fireEvent.click(screen.getByText(/ログアウト/i))
+  //   screen.debug()
+  //   await waitFor(() => screen.findByText(/Log in/))
+  //   screen.debug()
+  // });
 });

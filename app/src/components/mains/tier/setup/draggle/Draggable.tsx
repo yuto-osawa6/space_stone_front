@@ -1,6 +1,6 @@
 import { product } from "@/interfaces/product"
-import { memo, useRef } from "react"
-import { useDrag, useDrop } from "react-dnd"
+import { memo, useEffect, useRef, useState } from "react"
+import { DragPreviewImage, useDrag, useDrop } from "react-dnd"
 import { ItemType } from "../CreateTier"
 import type { XYCoord, Identifier } from 'dnd-core'
 
@@ -32,41 +32,30 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
       }
     },
     hover(item: DragItem, monitor) {
-      console.log("aaa")
       if (!ref.current) {
         return
       }
-      // console.log(ref.current?.getBoundingClientRect())
-      // console.log((monitor.getClientOffset() as XYCoord).x-ref.current?.getBoundingClientRect().left,(monitor.getClientOffset() as XYCoord).y - ref.current?.getBoundingClientRect().top)
       const dragIndex = item.index
       const hoverIndex = Props.index
-      console.log(dragIndex,hoverIndex)
       if (dragIndex === hoverIndex) {
         return
       }
       if (Props.group !== item.group) return
       const hoverBoundingRect = ref.current?.getBoundingClientRect()
-      // Get vertical middle
-      // const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
       const hoverMiddleX = (ref.current?.getBoundingClientRect().width) / 2
-      // Determine mouse position
       const clientOffset = monitor.getClientOffset()
-      // Get pixels to the top
-      // const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
       const hoverClientX = (clientOffset as XYCoord).x - hoverBoundingRect.left
-      // console.log(hoverBoundingRect,hoverMiddleY,clientOffset,hoverClientY,(clientOffset as XYCoord).x, hoverClientX)
       if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
         return
       }
-      // Dragging upwards
       if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
         return
       }
-     Props.moveCard(dragIndex, hoverIndex,Props.group,item.group,Props.product.id)
+    Props.moveCard(dragIndex, hoverIndex,Props.group,item.group,Props.product.id)
       item.index = hoverIndex
     },
   })
-  const [{ handlerId2,isDragging }, drag] = useDrag({
+  const [{ handlerId2,isDragging }, drag,preview] = useDrag({
     type: ItemType.Box,
     item:{ 
       id:Props.product.id,
@@ -84,8 +73,26 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
   try{
   drag(drop(ref))
   }catch(e){
-    console.log(e)
   }
+//   const[loaded,setLoaded] = useState<boolean>(false)
+//   useEffect(() => {
+//     if(!Props.product.imageUrl)return
+//     const img = new Image();
+//     // img.src = Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""
+//     img.src = Props.product.imageUrl?Props.product.imageUrl:""
+//     const ctx = document.createElement('canvas').getContext('2d') as CanvasRenderingContext2D;
+//     ctx.canvas.width = 120;
+//     ctx.canvas.height = 63;
+//     img.crossOrigin = "localhost";
+
+//     img.onload = () => {
+//     ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
+//     img.src = ctx.canvas.toDataURL();
+//     preview(img);
+//     // setImageUrl(ctx.canvas.toDataURL())
+//     };
+//     setLoaded(true)
+// }, []);
   return (
     <div ref={ref}
     data-handler-id={handlerId2}
@@ -93,12 +100,13 @@ export const Draggable: React.FC<Props> = memo(function DraggableFunc(Props){
       opacity,
       width: "100%",
       paddingTop:"52.5%",
-      position:"relative"
+      position:"relative",
+      borderRadius:"5px",
     }}
     >
-      <img src={Props.product.imageUrl?Props.product.imageUrl.replace("api", "localhost").replace("3000", "3001"):""}
+      {/* <DragPreviewImage connect={preview} src={Props.product.imageUrl?Props.product.imageUrl:""} /> */}
+      <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
       style={{
-        borderRadius:"5px",
         top:"0",
         position:"absolute",
         width:"100%",

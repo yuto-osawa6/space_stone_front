@@ -1,15 +1,41 @@
 import { ShareMain } from "@/components/share/main/ShareMain"
 import { Top100 } from "@/components/mains/sub/Top100"
+import { useLocale } from "@/lib/ini/local/local"
+import { NextSeo } from "next-seo"
 
 type Props = {
-  // data:productShow
 }
 
 const Top100Index: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
-  // const fallback= Props.fallback
+  const {t} = useLocale()
+
   return(
     <>
+      <NextSeo
+        title={`Top100 - ${t.domain}`}
+        description = "スコア・いいね・流行・アクセス・などからTop100を絞り込めます。現在どんなアニメがTop100に入っているか、チェックしよう！。"
+        openGraph={{
+          type: "website",
+          title: "Top100",
+          description: "スコア・いいね・流行・アクセス・などからTop100を絞り込めます。現在どんなアニメがTop100に入っているか、チェックしよう！",
+          site_name: "アニメティア",
+          url: "https://anime-tier.com/top100",
+          images: [
+            {
+              url: "https://anime-tier.com/MeruPlanetOgp.png",
+              width: 1200,
+              height: 630,
+              alt: 'Og Image Alt',
+              type: 'image/png',
+            },
+          ],
+        }}
+        // twitter={{
+        //   handle: '@handle',
+        //   site: '@site',
+        //   cardType: 'summary_large_image',
+        // }}
+      ></NextSeo>
       <Top100/>
     </>
   )

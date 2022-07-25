@@ -11,9 +11,3 @@ export default function handler(
 ) {
   res.status(200).json({ name: 'John Doe' })
 }
-
-// export async function getData() {
-//   const response = await fetch("http://api:3001/api/v1/products/red", {method: "GET"});
-//   const jsonData = await response.json()
-//   return jsonData
-// }

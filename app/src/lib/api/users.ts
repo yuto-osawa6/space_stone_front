@@ -2,7 +2,7 @@
 import Cookies from "js-cookie"
 import qs from "qs"
 import client from "../client/client"
-import { clientSocial } from "../client/clientSocial"
+import  clientSocial  from "../client/clientSocial"
 
 
 export const google_oauth = () => {
@@ -10,9 +10,7 @@ export const google_oauth = () => {
 }
 
 // export const execGoogle = (response:any) => {
-//   console.log(response, "I AM RESPONSE FROM GOOGLE")
 //   // var token = response;
-//   console.log(response)
 //   const data = {
 //     provider: "google_oauth2",
 //     // uid: response.xu.BW,
@@ -26,9 +24,7 @@ export const google_oauth = () => {
 //       name:response.profileObj.name,
 //       image:response.profileObj.imageUrl
 //     }
-   
 //   }
- 
 
 //   return  clientSocial.post("/social_auth/callback",{
 //     // params:{
@@ -86,6 +82,18 @@ export const execUsersShowHandler = (user_id:string) => {
 
 export const execUserBackgroundImageHandler = (user_id:number,data:FormData) => {
   return client.patch(`/users/background`,data,{
+    headers:{
+          "content-type": "multipart/form-data"
+        },
+    // user:{
+
+    // }
+  })
+}
+
+// 6/12
+export const execUserTopImageHandler = (data:FormData) => {
+  return client.patch(`/users/topimage`,data,{
     headers:{
           "content-type": "multipart/form-data"
         },

@@ -3,7 +3,6 @@ import { SubSearchDataTypes } from "./types";
 
 
 export const DeilyEndQteQAction = (today:Date): SubSearchDataTypes => {
-  // console.log(today)
   return {
     type: ActionTypes.DeliveryEndGteq,
     payload: {

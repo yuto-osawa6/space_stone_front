@@ -1,16 +1,43 @@
 import { ShareMain } from "@/components/share/main/ShareMain"
 import { Top100 } from "@/components/mains/sub/Top100"
 import { WeekliyRankingsMain } from "@/components/mains/sub/WeeklyRankingMain"
+import { NextSeo } from "next-seo"
+import { useLocale } from "@/lib/ini/local/local"
 
 type Props = {
   // data:productShow
 }
 
 const WeeklyIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
-  // const fallback= Props.fallback
+  const {t} = useLocale()
+
   return(
     <>
+      <NextSeo
+        title={`過去のエピソードアンケート - ${t.domain}`}
+        description = "１週間の範囲で、過去に放送されたエピソードのアンケート結果。放送されたエピソードの比較。"
+        openGraph={{
+          type: "website",
+          title: "過去のエピソードアンケート",
+          description: "１週間の範囲で、過去に放送されたエピソードのアンケート結果。放送されたエピソードの比較。",
+          site_name: "アニメティア",
+          url: "https://anime-tier.com/weekly",
+          images: [
+            {
+              url: "https://anime-tier.com/MeruPlanetOgp.png",
+              width: 1200,
+              height: 630,
+              alt: 'Og Image Alt',
+              type: 'image/png',
+            },
+          ],
+        }}
+        // twitter={{
+        //   handle: '@handle',
+        //   site: '@site',
+        //   cardType: 'summary_large_image',
+        // }}
+      ></NextSeo>
       <WeekliyRankingsMain/>
     </>
   )
@@ -23,11 +50,7 @@ WeeklyIndex.getLayout = (page) => {
     <ShareMain
       // locationNumber={1}
     >
-      {/* <ProductShow
-      // data = {Props.data}
-      > */}
         {page}
-      {/* </ProductShow>    */}
     </ShareMain>
   )
 }

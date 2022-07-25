@@ -1,6 +1,5 @@
 import { UserShow } from "@/interfaces/user"
 import { useMemo } from "react"
-// import ReactQuill from "react-quill"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 
@@ -25,8 +24,6 @@ export const UserOverviewTop:React.FC<Props> = function UserOverviewTopFunc(Prop
       [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
       ["image"],
     ],
-    // handlers: {
-    // },
   }
   }
   ),[])
@@ -45,8 +42,6 @@ export const UserOverviewTop:React.FC<Props> = function UserOverviewTopFunc(Prop
           </div>
           <div className = "UserShowOverviewContents">
             {Props.user.overview!=undefined?
-
-           
             <ReactQuill
               className = "reviews_modal_quill"
               // ref={quillref}

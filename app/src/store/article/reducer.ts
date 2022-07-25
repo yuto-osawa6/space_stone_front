@@ -12,7 +12,8 @@ const initialState:Article = {
   title:"",
   content:"",
   weekormonth:false,
-  articleProducts:[IniProductData]
+  articleProducts:[IniProductData],
+  hashtagArticles:[]
 }
 
 

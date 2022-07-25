@@ -4,12 +4,10 @@ import { execUserShowLikeGenresHandler } from "@/lib/api/users"
 import { useRouter } from "next/router"
 import { useContext, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { deletingtodoGenresDataExceptOneAction } from "@/store/todogenres/actions"
 
 
 type Props ={
-  // genres : genre
 }
 export const UserShowLikesGenres:React.FC<Props> = function UserShowLikesGenresFunc(Props){
   const {user} = useContext(UserShowContext)
@@ -26,7 +24,6 @@ export const UserShowLikesGenres:React.FC<Props> = function UserShowLikesGenresF
     setupHandler()
   },[])
 
-  // const navigate = useNavigate()
   const router = useRouter()
   const dispatch = useDispatch()
   const navigateHandler = (id:number) => {
@@ -45,14 +42,18 @@ export const UserShowLikesGenres:React.FC<Props> = function UserShowLikesGenresF
         >
           お気に入りした作品のジャンル ランキング順
         </div>
-        <div className = "UserLikesGenresMain">
+        <div className = "UserLikesGenresMain"
+        style={{
+          backgroundColor:"transparent",
+          padding:0
+        }}
+        >
           <ul>
           {genres.map((item)=>{
             return(
               <li key={item.id}
               style={{
               cursor:"pointer",
-              // cursor: pointer;
               backgroundColor: "#20c791",
               color:"white",
               borderRadius: "5px"

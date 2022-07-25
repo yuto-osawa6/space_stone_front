@@ -2,8 +2,6 @@ import { ThisMonthTierList } from "@/components/mains/tier/ThisMonthTierList"
 import { product } from "@/interfaces/product"
 import { UserShow } from "@/interfaces/user"
 import { useEffect, useState } from "react"
-// import { ThisMonthTierList } from "component/main/main_block/tier/thismonth/ThisMonthTierList"
-
 
 type UserTier = {
   group: number
@@ -15,7 +13,6 @@ type UserTier = {
 
 type Props = {
   user:UserShow
-  // userTier: UserTier[]
 }
 
 
@@ -27,14 +24,10 @@ type tierProduct = {
 }
 
 type Group = {
-  // products:tierProduct[]
   products:product[]
   group:string
-  // tier:string
 }
 export const UserTierList2:React.FC<Props> = function UserTierList2Func(Props){
-  console.log(Props)
-
   const [length,setLength] = useState<number>(0)
   const [tierProductGroup,setTierProductGroup] = useState<Group[]>([
     {
@@ -65,13 +58,6 @@ export const UserTierList2:React.FC<Props> = function UserTierList2Func(Props){
     copy[3] = {group:"C",products:Props.user.tier.filter(i=>i.tier==40).map(i=>i.product)}
     copy[4] = {group:"D",products:Props.user.tier.filter(i=>i.tier==20).map(i=>i.product)}
     copy[5] = {group:"E",products:Props.user.tier.filter(i=>i.tier==0).map(i=>i.product)}
-
-    // copy[0] = {group:"S",products:Props.userTier.filter(i=>i.tier==100).map(i=>i.product)}
-    // copy[1] = {group:"A",products:Props.userTier.filter(i=>i.tier==80).map(i=>i.product)}
-    // copy[2] = {group:"B",products:Props.userTier.filter(i=>i.tier==60).map(i=>i.product)}
-    // copy[3] = {group:"C",products:Props.userTier.filter(i=>i.tier==40).map(i=>i.product)}
-    // copy[4] = {group:"D",products:Props.userTier.filter(i=>i.tier==20).map(i=>i.product)}
-    // copy[5] = {group:"E",products:Props.userTier.filter(i=>i.tier==0).map(i=>i.product)}
     setTierProductGroup(copy)
   }
 
@@ -79,17 +65,14 @@ export const UserTierList2:React.FC<Props> = function UserTierList2Func(Props){
     handleSetup()  
   },[Props.user.tier])
 
-  console.log(tierProductGroup)
   return(
     <>
     <div className=""
     style={{
       margin:"0px 20px 20px 20px",
       display: "grid",
-      /* grid-template-columns: 1fr 1fr; */
       gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
       gap: "10px",
-      // marginBottom: "30px"
     }}
     >
       {tierProductGroup.map((item,index)=>{
@@ -98,6 +81,8 @@ export const UserTierList2:React.FC<Props> = function UserTierList2Func(Props){
             key={index}
             group={item.group}
             products={item.products}
+            // alice = {Props.user.tier[0].aliceT}
+            alice = {Props.user.tier.length>0?Props.user.tier[0].aliceT:0}
           />
         )
       })}

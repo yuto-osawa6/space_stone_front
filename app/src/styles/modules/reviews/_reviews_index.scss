@@ -13,11 +13,13 @@
   top: 0;
   background-color: aliceblue;
   .ReviewListItemTop{
+    background-color: #f6f6f9;
     position: relative;
-    padding-top: 200px;
+    padding-top: 100%;
     .ReviewListItemTopImage{
+      height: 52.5%;
       top: 0;
-      height: 100%;
+      // height: 100%;
       width: 100%;
       position: absolute;
       img{
@@ -36,12 +38,14 @@
       opacity: 0.5;
     }
     .ReviewListItemTopCenter{
+      width: 80%;
+      font-size: 0.9rem;
       left: 50%;
       position: absolute;
       color: #ffffff;
-      top: 50%;
+      top: 5%;
       z-index: 101;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, 0%);
       display: flex;
       justify-content: center;
       flex-flow: column;
@@ -58,8 +62,13 @@
   }
 
   .ReviewListItemMain{
+    height:100%;
+    position: absolute;
+    width: calc(100% - 40px);
+    top: 60%;
     margin: 0px 20px;
     .RevieweListItemMainTop{
+      height:100%;
       max-width: 800px;
       margin: 0 auto;
       background-color: #ffff;
@@ -76,24 +85,32 @@
 
 
 // dummy
+.header-search-contents__boxes__Lists__right__Lists__logo{
+  margin:0px!important
+}
 
 .ArticlesContainerNavigateUlterms{
   position: relative;
-  margin-left: 20px;
+  @include mq(tb){
+    margin-left: 20px;
+  }
   &::before{
-    content: "";
-    display: inline-block;
-    width: 2px;
-    height: 60%;
-    background-color: #132f4c;
-    position: absolute;
-    top: 50%;
-    left: -10px;
-    transform: translate(-1px,-50%);
+    @include mq(tb){
+      content: "";
+      display: inline-block;
+      width: 2px;
+      height: 60%;
+      background-color: #132f4c;
+      position: absolute;
+      top: 50%;
+      left: -15px;
+      transform: translate(-1px,-50%);
+    }
   }
 }
 
 .ArticlesContainerNavigateUltermsRangeDummy{
+  width: 100%;
   position: relative;
   .ArticlesContainerNavigateUltermsRangeDummyAbsolute{
     display: none;
@@ -104,8 +121,10 @@
     left: -10px;
   }
   .activeArticlesUlterms{
+    width: 100%;
     display: block;
     ul{
+      width: calc(100% + 20px);
       li{
 
       }

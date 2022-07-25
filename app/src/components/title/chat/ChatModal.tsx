@@ -6,15 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { ChatListItem } from "./ChatListItem";
 import { OpenContext } from "@/contexttype/contexttype";
-// import { UserModalSign } from "component/aplication/lefts/UserModalSign";
 import { ChatModalListItems } from "./ChatModalListItems";
 import { IoMdClose } from "react-icons/io";
-// import { ngword } from "hook/NgWord";
 import { pussingMessageDataAction } from "@/store/message/actions";
 import { ngword } from "@/lib/ini/ngWord";
 import { ErrorMessage } from "@/lib/ini/message";
 import { useUser } from "@/lib/data/user/useUser";
-// import { ErrorMessage } from "share/message";
 
 type Props = {
   product : product
@@ -58,13 +55,11 @@ export const ChatModal:React.FC<Props> = function ChatModalFunc(Props){
   // ----------------------------------------------------
   const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) =>{
     setMessage(e.target.value)
-    console.log(e.target.value)
   }
   // modal ¥
   const handleClose = () => {
     Props.setOpenChatRoom(false)
   }
-  console.log(Props)
 
   // scroll ----------------------
   const chatListRef = useRef<HTMLDivElement>(null!)
@@ -111,13 +106,6 @@ export const ChatModal:React.FC<Props> = function ChatModalFunc(Props){
               )
             })}
           </div>
-           {/* <FormHelperText className = "helpertexts"
-           style={{
-            backgroundColor: "#2c3e51",
-            margin: 0,
-            padding: "0px 10px 0px 10px"
-           }}
-           >{helperText}</FormHelperText> */}
           <div className = "ChatListsModalForms">
             <div className = "CloseButtoDummy">
               <div className="CloseButtonInChat"

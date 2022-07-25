@@ -46,7 +46,7 @@ export const execDeleteLikeReview = (product_id:string,review_id:string,user_id:
 }
 // comment_review
 
-export const execCreateCommentReview = (product_id:string,review_id:number,user_id:number,content:string,selectSort:string) => {
+export const execCreateCommentReview = (product_id:string,review_id:number,user_id:number,content:string,selectSort:string,reCaptchaToken:string) => {
   
   return client.post(`/products/${product_id}/reviews/${review_id}/comment_reviews`, { 
       comment_review:{
@@ -54,7 +54,8 @@ export const execCreateCommentReview = (product_id:string,review_id:number,user_
       comment:content,
       review_id:review_id
       },
-      selectSort:selectSort
+      selectSort:selectSort,
+      recaptcha_token:reCaptchaToken
 })
 }
 
@@ -105,7 +106,7 @@ export const execCreateLikeCommentReview = (comment_review_id:number,user_id:num
 // return comment
 // execCreateReturnCommentReview
 
-export const execCreateReturnCommentReview = (comment_review_id:number,user_id:number,content:string,review_id:string) => {
+export const execCreateReturnCommentReview = (comment_review_id:number,user_id:number,content:string,review_id:string,reCaptchaToken:string) => {
   
   return client.post(`/comment/return_comment_reviews`, { 
       return_comment_review:{
@@ -113,7 +114,8 @@ export const execCreateReturnCommentReview = (comment_review_id:number,user_id:n
       comment:content,
       comment_review_id:comment_review_id,
       },
-      review_id:review_id
+      review_id:review_id,
+      recaptcha_token:reCaptchaToken
 })
 }
 
@@ -184,7 +186,7 @@ export const execCheckLikeReturnCommentReview = (return_comment_review_id:number
 // return return
 // execCreateReturnReturnCommentReview
 
-export const execCreateReturnReturnCommentReview = (comment_review_id:number,user_id:number,comment:string,return_comment_review_id:number,review_id:string) => {
+export const execCreateReturnReturnCommentReview = (comment_review_id:number,user_id:number,comment:string,return_comment_review_id:number,review_id:string,reCaptchaToken:string) => {
 
   return client.post(`/comment/return_comment_reviews/returnreturn`,{
       return_comment_review:{
@@ -195,7 +197,8 @@ export const execCreateReturnReturnCommentReview = (comment_review_id:number,use
       return_return_comment_review:{
         return_return_id:return_comment_review_id
       },
-      review_id:review_id
+      review_id:review_id,
+      recaptcha_token:reCaptchaToken
   })
 }
 

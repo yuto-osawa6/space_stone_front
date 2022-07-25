@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { BsFillSuitHeartFill, BsListUl } from "react-icons/bs"
 import { MdDriveFileMoveOutline, MdHome, MdOutlineArticle, MdRateReview, MdSearch } from "react-icons/md";
 import { useDispatch } from "react-redux";
-// import { UserCertification } from "../lefts/UserCertification";
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import { HiOutlineSearchCircle } from "react-icons/hi";
 import { IoMdMenu } from "react-icons/io";
@@ -10,26 +9,55 @@ import Link from 'next/link'
 import { AiOutlineComment, AiOutlineHome } from "react-icons/ai"
 import { RiArticleLine } from "react-icons/ri"
 import { UserCertification } from "../user/UserCertification";
-// import { UserCertification } from "../user/UserCertification";
+import { SubMenuAction } from "@/store/submenu/actions";
+import { useLocale } from "@/lib/ini/local/local";
+import { useWindowDimensions } from "@/hook/useWindowResize";
+import { url } from "@/utils/config";
+import { useScroll } from "@/hook/useScroll";
+import { useRouter } from "next/router";
+import { useExecLeft } from "@/lib/api/left";
+import LeftStyle from "../left/leftMenus/LeftStyles";
+import LeftGenre from "../left/leftMenus/LeftGenres";
+import { LeftsArticles } from "@/components/applications/left/leftMenus/LeftArticles";
+import { LeftsReviews } from "../left/leftMenus/LeftReviews";
+import { LeftsThreads } from "../left/leftMenus/LeftsThreads";
+
 
 type Props = {
   locationNumber: number | undefined
 }
 export const Header:React.FC<Props> = function HeaderFunc(Props){
-  // const navigate = useNavigate()
-  // const location = useLocation()
+  const a = useScroll()
   // useScrollPosition
+  const dispatch = useDispatch()
   const [showMenu, setShowMenu] = useState<boolean>(true);
   const [currentPostion,setCurrentPositon] = useState<number>(0)
-  useScrollPosition(({ prevPos, currPos }) => {
-    // console.log(prevPos, currPos )
-    setCurrentPositon(currPos.y)
-    if (currPos.y>-1){
+  // useScroll(({scrollY,preveScroll}) => {
+  //   // if (scrollY>-1){
+  //   //   setShowMenu(true)
+  //   //   return
+  //   // }
+  //   // const visible = scrollY > preveScroll;
+  //   // setShowMenu(visible);
+  // },[])
+
+  useEffect(()=>{
+    if (a.scrollY<56){
       setShowMenu(true)
       return
     }
-    const visible = currPos.y > prevPos.y;
+    const visible = a.scrollY < a.prevScrollY
     setShowMenu(visible);
+  },[a.scrollY])
+
+  useScrollPosition(({ prevPos, currPos }) => {
+    setCurrentPositon(currPos.y)
+    if (currPos.y>-1){
+      // setShowMenu(true)
+      return
+    }
+    const visible = currPos.y > prevPos.y;
+    // setShowMenu(visible);
   }, []);
 
   // submenu
@@ -39,6 +67,8 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     const checkIfClickedOutside = (e:any) => {
       if (openMenu && submenuref.current && !submenuref.current.contains(e.target)) {
         setOpenMenu(false);
+        // document.body.style.overflowY = ""
+        // document.body.style.touchAction = ""
       }
     };
     document.addEventListener("mousedown", checkIfClickedOutside);
@@ -47,93 +77,70 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
     };
   }, [openMenu]); 
 
+  const windowSize = useWindowDimensions()
+  const [width,setWidth] = useState<boolean>()
+  function handle(event:any) {
+    event.preventDefault();
+}
   const setOpenMenuHandler = (e:React.MouseEvent<HTMLLIElement> | undefined) => {
     e?.stopPropagation()
-    console.log("aaaa")
     openMenu==true?setOpenMenu(false):setOpenMenu(true)
+    if (windowSize.width < 768){
+      openMenu==false?document.body.style.overflow = "hidden":document.body.style.overflow = ""
+      openMenu==false?document.body.style.height = "100%":document.body.style.height = ""
+      // openMenu==false?document.body.style.touchAction = "none":document.body.style.touchAction = ""
+    }else{
+    }
   }
 
-  // const handleStyle = ()=>{
-  //   console.log(location.pathname.match(/products/)!=null&&location.pathname.match(/reviews/)!=null)
-  //   if(location.pathname.match(/products/)!=null&&location.pathname.match(/reviews/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)==null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)!=null&&location.pathname.match(/threads/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)!=null){
-  //     return {}
-  //   }
-    
-  //   if(location.pathname.match(/products/)!=null){
-  //     return {display:"none"}
-  //   }
-   
-
-  //   // all
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)==null){
-  //     // {}:{display:"none"}
-  //     return {}
-  //   }
-   
-
-    
-  //   return {}
-  // }
-
-  // const  handleStyle2 = () => {
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)==null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)!=null&&location.pathname.match(/reviews/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/reviews/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)==null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)!=null&&location.pathname.match(/threads/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)==null&&location.pathname.match(/threads/)!=null){
-  //     return {}
-  //   }
-  //   if(location.pathname.match(/products/)!=null){
-  //     if(currentPostion>-1){
-  //       return {width:"100%",backgroundColor: "transparent"}
-  //     }else{
-  //       return {width:"100%",backgroundColor:"#1a252f"}
-  //     }
-  //   }
-  //   return {}
-  // }
+  const w = useWindowDimensions()
   const handleStyle = () => {
-     if(Props.locationNumber===undefined){
-      return {}
-     }else if(Props.locationNumber===1){
-      return {display:"none"}
-     }
+    if(Props.locationNumber===undefined){
+    return {}
+    }else if(Props.locationNumber===1){
+    return {display:"none"}
+    // return {backgroundColor:"#1a252f"}
+    }
   }
   const handleStyle2 = () => {
     if(Props.locationNumber===undefined){
-     return {}
+    return {}
     }else if(Props.locationNumber===1){
-      if(currentPostion>-1){
-        return {width:"100%",backgroundColor: "transparent"}
+      if(w.width > 768&&currentPostion>-1){
+        return {width:"100%",backgroundColor: "rgb(246 246 249 / 30%)"}
+      }else if(w.width > 768){
+        return {width:"100%",backgroundColor:"#f6f6f9"}
       }else{
-        return {width:"100%",backgroundColor:"#1a252f"}
+        return {width:"100%",backgroundColor: "transparent"}
       }
     }
- }
-
+}
+const router = useRouter()
+const handleClick = (url:string) => {
+  router.push(url)
+  dispatch(SubMenuAction(true))
+}
+// locate
+const { t } = useLocale()
+const routerHome = () => {
+  router.push("/")
+}
+    // useEffect(()=>{
+    //   const touchHandler = (event: any) => {
+    //     // if(windowSize.width >= 768){
+    //     //   return
+    //     // }else{
+    //       event.preventDefault();
+    //     // }
+    //   };
+    //   document.addEventListener('touchmove', touchHandler, {
+    //     passive: false
+    //   });
+    //   return () => {
+    //     document.removeEventListener("touchmove", touchHandler);
+    //   };
+    // },[windowSize.width])
+    const {data,error} = useExecLeft()
   return(
     <>
       <div className = "HeaderV1">
@@ -143,59 +150,152 @@ export const Header:React.FC<Props> = function HeaderFunc(Props){
           <div className = "HeaderMainLeft">
             <div className = "HeaderMainLeftTitle">
               <div className = "LOGO">
+                <div className=""
+                style={{
+                  marginRight:"10px"
+                }}
+                >
+                <img src={url('/topimage.png')} alt="Sample image"></img>
+                </div>
                 <div className = "LogoG">
-                  G
+                  {t.Logo.G}
                 </div>
                 <div className = "LogoF">
-                  F
+                  {t.Logo.F}
                 </div>
-                <div className = "LogoHeart">
+                {/* <div className = "LogoHeart">
                   <BsFillSuitHeartFill/>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
         </div>
         <div className = {`HeaderNavi`}  
+        style={{position:"relative"}}
         >
+          {Props.locationNumber!=1&&(
+          <div className = "HeaderMainLeftTitle">
+              <div className = "LOGO">
+                <div className=""
+                onClick={routerHome}
+                style={{
+                  marginRight:"10px"
+                }}
+                >
+                {/* <img src={url('/topimage.png')} alt="Sample image"></img> */}
+                </div>
+                {/* <div className = "LogoG">
+                  {t.Logo.G}
+                </div>
+                <div className = "LogoF">
+                  {t.Logo.F}
+                </div> */}
+                {/* <div className = "LogoHeart">
+                  <BsFillSuitHeartFill/>
+                </div> */}
+            </div>
+          </div>
+          )}
           <ul className={showMenu?"":"activeScroll"} 
           style={
             handleStyle2()
           }
           >
-            <li><Link href="/"><a><AiOutlineHome/> Top</a></Link></li>
-            <li><Link href="/search"><a><HiOutlineSearchCircle/> Search</a></Link></li>
-            <li
-            ><Link href="/articles"><a><RiArticleLine/> Articles</a></Link></li>
-            <li><Link href="/reviews"><a><AiOutlineComment/> Reviews</a></Link></li>
-            <li><Link href="/threads"><a><AiOutlineComment/> Threads</a></Link></li>
-            <li className="headerUserSighIn"><UserCertification/></li>
+            <li className = "nomalNavi"><Link href="/"><a><div><div><AiOutlineHome/> {t.Headers.TOP}</div><div className = {"home"}>{t.SubHeader.TOP}</div></div></a></Link></li>
+            <li className = "nomalNavi"><Link href="/search"><a><div><div><HiOutlineSearchCircle/> {t.Headers.SEARCH}</div><div className = {"home"}>{t.SubHeader.SEARCH}</div></div></a></Link></li>
+            <li className = "nomalNavi"><Link href="/articles"><a><div><div><RiArticleLine/> {t.Headers.ARTICLE}</div><div className = {"home"}>{t.SubHeader.ARTICLE}</div></div></a></Link></li>
+            <li className = "nomalNavi"><Link href="/reviews"><a><div><div><AiOutlineComment/> {t.Headers.REVIEWS}</div><div className = {"home"}>{t.SubHeader.REVIEWS}</div></div></a></Link></li>
+            <li className = "nomalNavi"><Link href="/threads"><a><div><div><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home"}>{t.SubHeader.THREAD}</div></div></a></Link></li>
+            
+            <li className="headerUserSighIn nomalNavi"
+            style={openMenu==true&&windowSize.width<768?{
+              display:"none"
+            }:{
+              display:"block"
+            }}
+            ><UserCertification/></li>
             <li 
               className = "subMenu"
               ref={submenuref}
               onClick={setOpenMenuHandler}
             > 
-              <IoMdMenu    
-              />
-              {openMenu==true&&(
+              {/* <IoMdMenu    
+              /> */}
+              <div className={openMenu==false?"openbtn":"openbtn active"}><span></span><span></span><span></span></div>
+              {windowSize.width >= 768&&openMenu==true&&(
               <div className = "subMenuList"
               >
-                <div><Link href ="/#a"><a>今シーズンの作品</a></Link></div>
-                <div><Link href ="/#b"><a>昨シーズンの作品</a></Link></div>
-                <div><Link href ="/#c"><a>来シーズンの作品</a></Link></div>
-                <div><Link href ="/#d"><a>映画情報</a></Link></div>
-                <div><Link href ="/#e"><a>おしらせ</a></Link></div>
-                <div><Link href ="/#f"><a>放送情報カレンダー</a></Link></div>
-                <div><Link href ="/#g"><a>Top10</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="top100"><a>Top100</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="tier"><a>tier</a></Link></div>
-                <div className = "Top100SubMenu"><Link href ="weekly"><a>weekly</a></Link></div>
+                <div className="">
+                  <div onClick={()=>handleClick("/#weekly-ranking")}><a>{t.SubMenu.QUESTIONNAIRE}</a></div>
+                  <div onClick={()=>handleClick("/#this-season")}><a>{t.SubMenu.THISSEASON}</a></div>
+                  <div onClick={()=>handleClick("/#last-season")}><a>{t.SubMenu.LASTSEASON}</a></div>
+                  <div onClick={()=>handleClick("/#next-season")}><a>{t.SubMenu.NEXTSEASON}</a></div>
+                  <div onClick={()=>handleClick("/#movies")}><a>{t.SubMenu.MOVIE}</a></div>
+                  <div onClick={()=>handleClick("/#news")}><a>{t.SubMenu.NEWS}</a></div>
+                  <div onClick={()=>handleClick("/#toptens")}><a>{t.SubMenu.TOP10}</a></div>
+                  <div className = "Top100SubMenu"><Link href ="/top100"><a>{t.SubMenu.TOP100}</a></Link></div>
+                  <div className = "Top100SubMenu"><Link href ="/tier"><a>{t.SubMenu.TIER}</a></Link></div>
+                  <div className = "Top100SubMenu"><Link href ="/weekly"><a>{t.SubMenu.LASTQUESTIONNAIRE}</a></Link></div>
+                </div>
               </div>
               )}
+
+                {windowSize.width < 768&&openMenu==true&&(   
+                  <>
+                  <div className = "subMenuList768"
+                  >
+                    <div className="subMenuList7681">Main Menu</div>
+                  
+                    <div className="">
+                      <div className = "subMenuList7689"><Link href="/"><a><div className="headersub768"><div className = "home2"><AiOutlineHome/> {t.Headers.TOP}</div><div className = {"home23"}>{t.SubHeader.TOP}</div></div></a></Link>
+                        {/* <div className="">Home Menu</div> */}
+                        <div className="HederV1SubmenuSub">
+                          <div onClick={()=>handleClick("/#weekly-ranking")}><a>{t.SubMenu.QUESTIONNAIRE}</a></div>
+                          <div onClick={()=>handleClick("/#this-season")}><a>{t.SubMenu.THISSEASON}</a></div>
+                          <div onClick={()=>handleClick("/#last-season")}><a>{t.SubMenu.LASTSEASON}</a></div>
+                          <div onClick={()=>handleClick("/#next-season")}><a>{t.SubMenu.NEXTSEASON}</a></div>
+                          <div onClick={()=>handleClick("/#movies")}><a>{t.SubMenu.MOVIE}</a></div>
+                          <div onClick={()=>handleClick("/#news")}><a>{t.SubMenu.NEWS}</a></div>
+                          <div onClick={()=>handleClick("/#toptens")}><a>{t.SubMenu.TOP10}</a></div>
+                        </div>
+                      </div>
+                      <div className = "subMenuList7689"><Link href="/search"><a><div className="headersub768"><div className = "home2"><HiOutlineSearchCircle/> {t.Headers.SEARCH}</div><div className = {"home23"}>{t.SubHeader.SEARCH}</div></div></a></Link>
+                        <div className="HederV1SubmenuSub">
+                          {data&&(
+                            <>
+                              {data.styles.map((item: any) => (
+                                <LeftStyle name={item.name} id={item.id} count={item.count} key={item.id}/>
+                              ))}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                      <div className = "subMenuList7689"><Link href="/articles"><a><div className="headersub768"><div className = "home2"><RiArticleLine/> {t.Headers.ARTICLE}</div><div className = {"home23"}>{t.SubHeader.ARTICLE}</div></div></a></Link>
+                        <div className="HederV1SubmenuSub">
+                          <LeftsArticles/>
+                        </div>
+                      </div>
+                      <div className = "subMenuList7689"><Link href="/reviews"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.Headers.REVIEWS}</div><div className = {"home23"}>{t.SubHeader.REVIEWS}</div></div></a></Link>
+                        <div className="HederV1SubmenuSub">
+                          <LeftsReviews/>
+                        </div>
+                      </div>
+                      <div className = "subMenuList7689"><Link href="/threads"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.Headers.THREAD}</div><div className = {"home23"}>{t.SubHeader.THREAD}</div></div></a></Link>
+                        <div className="HederV1SubmenuSub">
+                          <LeftsThreads/>
+                        </div>
+                      </div>
+                      <div className = "Top100SubMenu subMenuList7689"><Link href ="/top100"><a><div className="headersub768"><div className = "home2"><AiOutlineHome/>{t.SubMenu.TOP100}</div><div className = {"home23"}></div></div></a></Link></div>
+                      <div className = "Top100SubMenu subMenuList7689"><Link href ="/tier"><a><div className="headersub768"><div className = "home2"><AiOutlineHome/>{t.SubMenu.TIER}</div><div className = {"home23"}></div></div></a></Link></div>
+                      <div className = "Top100SubMenu subMenuList7689"><Link href ="/weekly"><a><div className="headersub768"><div className = "home2"><AiOutlineComment/> {t.SubMenu.QUESTIONNAIRE}</div><div className = {"home23"}></div></div></a></Link></div>
+                    </div>
+                  </div>
+                  
+                  </>  
+                )}
             </li>
           </ul>
         </div>
-       
       </div>
     </>
   )

@@ -3,7 +3,6 @@ import { execToptenAcsessMonth, execToptenLikeAll } from "@/lib/api/mains/topten
 import { useEffect, useState } from "react";
 import { ToptensList2 } from "../item/ToptensList2";
 import { ToptensParent1 } from "../parent/ToptensParent1";
-// import { ToptensList } from "../ToptensList";
 
 type scoreAvg = {
   [k:number]:string
@@ -16,7 +15,6 @@ export const ToptensAcsessMonth:React.FC = function  ToptensAcsessMonthFunc(){
   let isMounted = true;
   const setupHandler = async() => {
     const res = await execToptenAcsessMonth()
-    console.log(res)
     if(res.status === 200){
       if(isMounted){
         setLikeToptensAll(res.data.products)
@@ -35,12 +33,10 @@ export const ToptensAcsessMonth:React.FC = function  ToptensAcsessMonthFunc(){
       isMounted = false;
     };
   },[])
-  console.log(averageScore)
 
   var count:number = 0
   var ranks:number = 1
   const ranksjudge = (l:number,i:number) => {
-    console.log(l)
     if(count==l){
     }else{
       ranks = i + 1
@@ -52,6 +48,8 @@ export const ToptensAcsessMonth:React.FC = function  ToptensAcsessMonthFunc(){
     <>
       <ToptensParent1
       title={"アクセス数 Top10(先月から今日まで)"}
+      parent={2}
+      alice={1}
       >
       {LikeToptensAll.map((item,index)=>{
         ranksjudge(likeMonth!=undefined?Number(likeMonth[item.id]):0,index)

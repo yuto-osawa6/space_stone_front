@@ -29,6 +29,10 @@ export const IniProductData:product = {
   imageUrlh1: undefined,
   imageUrlh2: undefined,
   imageUrlh3: undefined,
+  copyright:"",
+  arasuziCopyright:"",
+  annict:0,
+  shoboi:0,
   // 
   averageScore:"",
   likeCount:0,
@@ -150,7 +154,8 @@ export const IniProductData:product = {
     emotions:[{
       id: 0,
       emotion: ""
-    }]
+    }],
+    score:0
    
     // productId: 0,
     // userId: 1

@@ -30,7 +30,6 @@ export const SettingStudiosReducer = (state=initialState, action:StudiosDataType
         studio:state.studio.filter(data=>data != action.payload.studio)
       }
     case ActionTypes.DeleteStudiosOne:
-      // console.log(state.janls_id_in.filter(data => data !== action.payload.id))
       // state.janls_id_in.filter(data => data !== action.payload.id);
       return {
         studiosids:{studios_id_in:state.studiosids.studios_id_in.filter(data => data !== action.payload.id)},
@@ -38,7 +37,6 @@ export const SettingStudiosReducer = (state=initialState, action:StudiosDataType
       }
 
     case ActionTypes.DeleteStudiosAll:
-      // console.log(state.janls_id_in.filter(data => data !== action.payload.id))
       // state.janls_id_in.filter(data => data !== action.payload.id);
       return {
         // janls_id_in:[""]

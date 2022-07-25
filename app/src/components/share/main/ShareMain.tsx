@@ -25,22 +25,3 @@ export const ShareMain:React.FC<Props> = function ShareMainFunc(Props){
     </>
   )
 }
-
-// <div className = "super">
-//         {/* <Lefts/> */}
-//         {/* <div className = {`super-sheet`} style={handleStyle()}> */}
-//         <div className = {`super-sheet`}>
-//           <div className = "header__message__box">
-//             {/* <div className = "header__search" style={handleStyle2()}> */}
-//             <div className = "header__search">
-//               {/* <Search/> */}
-//             </div>
-//           </div>
-//           <div className = "insert_box">
-//             {/* <Outlet/> */}
-//             {Props.children}
-//             {/* a */}
-//           </div>
-//           {/* <MessageContainer/> */}
-//         </div>
-//       </div>

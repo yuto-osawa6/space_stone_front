@@ -1,13 +1,32 @@
+svg{
+  font-size: 1.3rem;
+}
+.nomalNavi{
+  svg{
+    font-size: 1.5rem;
+    @include mq(tb){
+      font-size: 1.2rem;
+    }
+  }
+  a {
+    display: inline-block;
+    transition: .3s;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  a:hover {
+    @include mq(md){
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+  }
+}
 .HeaderV1{
-  display: grid;
-  // grid-template-columns: 20px 20px 20px auto 1fr 20px 20px 20px;
-  // grid-template-columns: 20px auto 1fr 20px;
-  // grid-template-columns:auto 1fr;
-
-  // box-shadow: $color-v1-shadow-a;
-  // background-color: #132f4c;
+  // height: 59.66px;
+  @include mq(md){
   display: grid;
   grid-template-columns: 200px 1fr;
+  }
 }
 .header{
   // top: 0;
@@ -20,7 +39,12 @@
 
 }
 .activeScroll{
-  transform: translateY(-100px);
+  @include mq(tb){
+    transform: translateY(-100px);
+    -webkit-transform:translateY(-100px);
+  }
+  // transform: translateY(-100px);
+  // -webkit-transform:translateY(-100px);
 }
 
 .HeaderGrid0{
@@ -87,22 +111,27 @@
 // $color-v1-g10:#ff9eb9;
 
 .LOGO{
+
   display: flex;
   width: fit-content;
   position: relative;
+  justify-content: center;
+  align-items: center;
   .LogoG{
-    font-size: 2.0rem;
-    color: #ff3073;
+    // font-size: 1.8rem;
+    // color: #ff3073;
     z-index: 100;
+    // -webkit-text-stroke: 1px #000;
   }
   .LogoF{
-    font-size: 2.0rem;
+    // font-size: 1.8rem;
     color: white;
     /* position: absolute; */
     top: 0;
     right: px;
     z-index: 10;
     position: relative;
+    -webkit-text-stroke: 1px #000;
   }
   .LogoHeart{
     position: relative;
@@ -121,62 +150,104 @@
       color: #ff3073;
     }
   }
+  img{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+  }
 }
 .HeaderMain{
+  display: none;
+  @include mq(md){
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
-  background-color: #1a252f;
+  background-color: #f6f6f9;
+  // background-color: #1a252f;
+  }
 }
 .HeaderMainLeft{
-  padding: 10px;
+  background: #f6f6f9;
+  padding: 20px 20px 10px 20px;
   .HeaderMainLeftTitle{
-    margin-right: -20px;
+    // margin-right: -20px;
+    font-size: 1.1rem;
+    font-weight: bold;
   }
   // background-color: #1b548f;
 }
 .HeaderNavi{
   position: relative;
-  background-color: #edf1f5;
+  // background-color: #edf1f5;
+  // background-color: #ffffff;
   // font-size: 0.9rem;
   ul{
-    background-color: #edf1f5;
-    transition: 1s;
+    // background-color: #edf1f5;
+    padding-top:10px;
+    padding-bottom:10px;
+    max-width: 1500px;
+    // background-color: #f6f6f9;
+    transition: transform 1s,background-color 1s;
     position: fixed;
-    height: 56.8px;
-    width: calc(100% - 200px);
+    height: 59.66px;
     z-index: 300;
-
     display: flex;
-    justify-content: center;
     gap: 20px;
     align-items: center;
-    // height: 100%;
-    font-size: 1.2rem;
+    width: 100%;
+    font-size: 0.9rem;
+    justify-content: flex-end;
+    @include mq(tb){
+      justify-content: center;
+      background-color: #f6f6f9;
+    }
+    @include mq(md){
+      font-size: 1.0rem;
+      // background-color: #ffffff;
+      // background-color: #f6f6f9;
+      width: calc(100% - 200px);
+    }
+
     li{
-      color: white;
+      // color: white;
       // background-color: #167eff;
-      background-color: #283d52;
+      // background-color: #1a252f;
       // padding: 5px 15px 5px 15px;
       // border: 1px solid grey;
       border-radius: 30px;
-      box-shadow: $color-v1-shadow-a;
-      a{
-      padding: 5px 15px 5px 15px;
-      cursor: pointer;
-      display: block;
+      // box-shadow: $color-v1-shadow-a;
+      display: none;
+      @include mq(tb){
+        display: block;
       }
+
+     
     }
     .headerUserSighIn{
-      background-color: $color-v1-d;
+      color: $color-v1-d;
+      // -webkit-text-stroke: 1px $merupla-color-dark-1;
+      // color: $merupla-color-white-1;
       padding: 0px;
       .user_box_false{
         .user_mypage{
+          line-height: 1.2;
         display: flex;
         gap: 5px;
         align-items: center;
         padding: 5px 10px 5px 10px;
         cursor: pointer;
+        }
+        .user_mypage {
+          // display: inline-block;
+          transition: .3s;
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+        .user_mypage:hover {
+          @include mq(tb){
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+          }
         }
         .userNavigationDummy{
           position: relative;
@@ -187,8 +258,8 @@
             max-width: 200%;
             position: absolute;
             min-width: 100%;
-            background-color: #283d52;;
-            top: 10px;
+            background-color: #1a252f;;
+            top: 20px;
             padding: 5px;
             border-radius: 5px;
             display: flex;
@@ -229,15 +300,19 @@
               gap: 5px;
               padding: 5px;
               &:hover{
-                cursor: pointer;
-                color: #ff3073;
+                @include mq(md){
+                  cursor: pointer;
+                  color: #ff3073;
+                }
               }
             }
           }
         }
       }
       .user_box_true{
-        padding: 5px 10px 5px 10px;
+        @include mq(tb){
+          padding: 5px 10px 5px 10px;
+        }
         .user_sign_in{
           .model_btn{
           display: flex;
@@ -254,6 +329,7 @@
 // userSettingModal
 
 .settingModalOpenClass{
+  border-radius: 30px;
   max-width: 700px;
   background-color: white;
   border-radius: 5px;
@@ -262,7 +338,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  min-width: 500px;
+  width: calc(100% - 40px);
   .settingModalOpenClassTitle{
     font-size: 1.5rem;
   }
@@ -288,8 +364,17 @@
 
 // sub
 .subMenu{
-  padding: 16px;
+  cursor: pointer;
+  // padding: 16px;
   position: relative;
+  display: block!important;
+  margin-right: 20px;
+  // border: 1.5px solid $merupla-color-dark-1;
+  color: white;
+  background-color: $merupla-color-dark-1;
+  @include mq(md){
+    margin-right:0px
+  }
   svg{
     position: absolute;
     top: 50%;
@@ -297,25 +382,297 @@
     transform: translate(-50%, -50%);
   }
   .subMenuList{
-    position: absolute;
+    color:$merupla-color-dark-1;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    // color: #f6f6f9;
     right: 0px;
     top: 32px;
-    background-color: #283d52;
-    width: fit-content;
-    margin-top: 10px;
-    padding: 10px;
+    // width: fit-content;
+    margin-top: 25px;
+    // padding: 10px;
     border-radius: 5px;
     display: flex;
     gap: 10px;
     font-size: 0.8rem;
     flex-flow: column;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    // background-color: #1a252fd6;
+    background-color: white;
+    padding: 10px;
+    overflow: scroll;
+    @include mq(tb){
+      // overflow: ;
+          width: 200px;
+      box-shadow: $merupla-tab-shadow-1;
+      // background-color: #1a252f;
+      position: absolute;
+      height:fit-content;
+      padding: 10px;
+      // width: fit-content;
+      
+    }
     div{
-      cursor: pointer;
-      padding: 3px;
-      white-space: nowrap;
-      &:hover{
-        color: #1a76d2;;
+      div{
+        cursor: pointer;
+        padding: 5px;
+        white-space: nowrap;
+        &:hover{
+          @include mq(md){
+            background-color: #edf1f5;
+            color: $merupla-color-dark-1;
+            border-left:3px solid #38b7ff; 
+          }
+        }
+        a{
+          display: block;
+        }
       }
     }
   }
+  .subMenuList::-webkit-scrollbar{
+    display: none;
+  }
+  .subMenuList768{
+    .subMenuList7689{
+      border-bottom: 1px solid;
+    }
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    padding: 59px 0px 0px 0px;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    right: 0px;
+    // top: 32px;
+    // margin-top: 25px;
+    border-radius: 5px;
+    // display: flex;
+    // gap: 10px;
+    font-size: 0.8rem;
+    flex-flow: column;
+    width: 100%;
+    height: 100%;
+    // position: fixed;
+    background-color: #f6f6f9;
+    // color: $merupla-color-info-dark-1;
+    color: #363946;
+    // d6
+    // padding: 10px;
+    font-size: 1.0rem;
+    overflow: scroll;
+
+    // height: calc(90vh - 56.8px);
+    line-height: 2.0rem;
+    .headersub768{
+      display: flex;
+      // box-shadow:$merupla-box-shadow-1;
+    }
+    div{
+      div{
+        // box-shadow:$merupla-box-shadow-1;
+        padding:5px;
+        cursor: pointer;
+        // box-shadow:$merupla-box-shadow-1;
+        // padding: 3px;
+        // white-space: nowrap;
+        &:hover{
+          @include mq(md){
+            color: #ff3073;
+          }
+        }
+      }
+    }
+    .headersub768{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .home2{
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
 }
+.HederV1SubmenuSub{
+  display: flex;
+  word-break: keep-all;
+  flex-flow: wrap;
+  font-size: 0.8rem;
+  gap: 10px;
+  // margin: 20px 10px;
+  // border-top: 1px solid;
+  // padding-top: 10px;
+  div{
+
+  }
+}
+.subMenuList7681{
+  display: none;
+  margin: 0px 20px;
+  font-size: 1.4rem;
+  text-align: right;
+}
+
+.home2{
+  svg{
+    position: static;
+    transform: none;
+  }
+}
+.SettingModalSmartFon{
+  // margin-top: 56.8px;
+  // background-color: #1a252f;
+}
+
+.user_menu_2{
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  &:hover{
+    @include mq(md){
+      color: #ff3073;
+    }
+  }
+}
+
+.HeaderNavi{
+  .HeaderMainLeftTitle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 59.8px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    @include mq(tb){
+      display: none;
+    }
+  }
+}
+
+// 
+.HederV1SubmenuSub{
+  div{
+    padding: 0px!important;
+  }
+  .LeftFormatsList{
+    display: block!important;
+    padding: 0px;
+  }
+  li{
+    display: block!important;
+    padding: 0px;
+  }
+}
+
+.user_sign_in{
+  svg{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    border: solid 1px #ff3073;
+    background-color: #ff3073;
+    color: white;
+    @include mq(tb){
+      width: auto;
+      height: auto;
+      margin-right: 5px;
+      border: none;
+      background-color: transparent;
+      color: #ff3073;
+    }
+  }
+}
+
+// 
+.openbtn{
+	/*ボタン内側の基点となるためrelativeを指定。
+追従するナビゲーションの場合はfixed＋top、rightといった位置をセットで指定*/
+	position: relative;
+	background:#363949;
+	cursor: pointer;
+    width: 35px;
+    height:35px;
+	border-radius: 100%;
+}
+
+/*ボタン内側*/
+.openbtn span{
+    display: inline-block;
+    // transition: all 0.4s;/*アニメーションの設定*/
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 2px;
+    border-radius: 5px;
+	  background: #fff;
+  	width: 45%;
+  }
+
+
+.openbtn span:nth-of-type(1) {
+	// top:13px;	
+	// top:10px;	
+  top: 30%;
+}
+
+.openbtn span:nth-of-type(2) {
+	// top:19px;
+  // top:15px;
+  top: 50%;
+}
+
+.openbtn span:nth-of-type(3) {
+	// top:25px;
+  // top:20px;
+  top: 70%;
+}
+
+// .openbtn span:nth-of-type(3)::after {
+// 	content:"Menu";/*3つ目の要素のafterにMenu表示を指定*/
+// 	position: absolute;
+// 	top:5px;
+// 	left:-2px;
+// 	color: #fff;
+// 	font-size: 0.6rem;
+// 	text-transform: uppercase;
+// }
+
+/*activeクラスが付与されると線が回転して×になり、Menu⇒Closeに変更*/
+
+.openbtn.active span:nth-of-type(1) {
+  top: 30%;
+  left: 12%;
+  transform: translateY(6px) rotate(-45deg);
+  width: 80%;
+}
+
+.openbtn.active span:nth-of-type(2) {
+	opacity: 0;
+}
+
+.openbtn.active span:nth-of-type(3){
+    // top: 26px;
+    // left: 18px;
+    // transform: translateY(-6px) rotate(45deg);
+    // width: 30%;
+    top: 66%;
+    left: 12%;
+    transform: translateX(10px);
+    transform: translateY(-6px) rotate(45deg);
+    width: 80%;
+}
+
+// .openbtn.active span:nth-of-type(3)::after {
+// 	content:"Close";/*3つ目の要素のafterにClose表示を指定*/
+//     transform: translateY(0) rotate(-45deg);
+// 	top:5px;
+// 	left:4px;
+// }

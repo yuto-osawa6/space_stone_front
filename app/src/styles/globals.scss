@@ -23,6 +23,11 @@
 // .aiu{
 //   background-color: red;
 // }
+:root{
+  --color-background:#f6f6f9;
+}
+
+@import "./modules/break-point";
 @import "./modules/reset";
 @import "./modules/font-color";
 @import "./modules//share_container";
@@ -85,6 +90,10 @@
   // product
     @import "./modules/admins/admins_product";
 
+// fotter
+  @import "./modules//application//footer/footer";
+
+  @import "./modules/compare";
 
 
 // quill

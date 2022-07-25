@@ -16,19 +16,55 @@
     }
   }
 }
+.user_social_login{
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  margin: 20px;
+  .AuthSignIn{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 10px;
+    &:hover{
+      @include mq(tb){
+        background-color: #ff3073;
+      }
+    }
+  }
+}
+.terms_auth{
+  text-decoration: underline;
+    color: #9f9ff8;
+}
+.social_login_all::-webkit-scrollbar{
+  display: none;
+}
 .social_login_all{
+  outline: none;
   position: absolute;
   top: 50%;
   left: 50%;
   transform:translate(-50%, -50%);
-
-  width: 400px;
-  height: 400px;
-  background-color: cadetblue;
+  max-width: 400px;
+  max-height: 450px;
+  background-color: #363949;
+  color: #f6f6f9;
+  width: 90%;
+  height: 90%;
+  overflow-y: scroll;
+  border-radius: 30px;
+  /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
   .social_login_title{
-    color: #ffff;
+    color: #f6f6f9;
     padding: 10px;
     font-size: 1.2rem;
+    margin: 10px;
   }
 
 .user_social_login{
@@ -42,4 +78,99 @@
   // boxShadow: 24,
   // p: 4,
 }
+}
+
+// .
+.CloseButton2{
+  cursor: pointer;
+  position: absolute;
+  top: -50px;
+  right: -30px;
+  color: white;
+  width: 30px;
+  z-index: 101;
+  height: 30px;
+}
+.UserNavigateDummyAbusoluteTop{
+  margin: 20px 20px 0px 20px;
+}
+.UserNavigateDummyAbusoluteTopName {
+  color: #f6f6f9;
+  // border-left: 3px solid cornflowerblue;
+  padding-left: 20px;
+  // background-color: aliceblue;
+  padding: 10px;
+  // color: $merupla-color-dark-1;
+  // background-color: #edf1f5;
+  // border-left:3px solid #38b7ff;
+}
+// &:hover{
+//   background-color: #edf1f5;
+//   color: $merupla-color-dark-1;
+//   border-left:3px solid #38b7ff;
+//   // color: #1a76d2;;
+// }
+// .cursor: pointer;
+// position: absolute;
+// top: 20px
+// px
+// ;
+// right: 20px;
+// color: white;
+// width: 20px;
+// z-index: 101;
+// height: 20px;
+
+.user_menu_parent{
+  // display: grid;
+  // grid-template-columns: auto;
+  @include mq(sm){
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // gap: 20px;
+    // background-color: #f6f6f9;
+  }
+  .user_menu_2{
+    // border-left: 3px solid;
+    // background-color:white;
+    padding: 20px;
+    // box-shadow:$merupla-box-shadow-1;
+    // box-shadow: $merupla;
+    // border-radius: 20px;
+  }
+}
+.userNavigationDummyAbusolute{
+  max-width: 500px;
+  // background-color: #f6f6f9;
+  border-radius: 50px;
+}
+.SearchUserModal{
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
+}
+
+  /*Google Chrome、Safariへの対応*/
+  .SearchUserModal::-webkit-scrollbar{
+  display: none;
+}
+
+.userMypageModal{
+  outline: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+  max-width: 400px;
+  max-height: 450px;
+  background-color: #363949;
+  color: #f6f6f9;
+  width: 90%;
+  // height: 90%;
+  // overflow-y: scroll;
+  border-radius: 30px;
+  // /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+  // -ms-overflow-style: none;
+  // /*Firefoxへの対応*/
+  // scrollbar-width: none;
 }

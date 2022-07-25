@@ -13,7 +13,6 @@ export const topMessageReducer = (state=initialState, action:MessageDataTypes):M
       }
       // state.message.push(action.payload.message)
       const array = [...state.message,action.payload.message]
-      console.log(array)
       return {
         message:array
         // message:state.message
@@ -24,7 +23,6 @@ export const topMessageReducer = (state=initialState, action:MessageDataTypes):M
         message:arr2
       }
     case ActionTypes.selectDeleteMessage:
-      console.log(action.payload.index)
       return {
         message:state.message
       }    

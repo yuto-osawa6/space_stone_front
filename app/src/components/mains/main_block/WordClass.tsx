@@ -1,15 +1,12 @@
 import { ViewProductContext } from "@/contexttype/contexttype"
 import { product } from "@/interfaces/product"
 import React, { memo, useEffect, useRef, useState } from "react"
-// import { WorldGridContainer } from "./WorldGridContainer"
 import { execWorldClassHandler } from "@/lib/api/mains/main_blocks"
 import { WorldGridContainer } from "./worldclass/WorldGridContainer"
 import { WorldClassViewGrid } from "./worldclass/WorldClassViewGrid"
-// import { WorldClassViewGrid } from "./worldclass/WorldClassViewGrid"
 
 
 type Props = {
-  // topten :product[]
   data:SSRData
 }
 type avgScore = {
@@ -30,43 +27,12 @@ export const WorldClass:React.FC<Props> = memo(function WorldClassFunc(Props){
   const intervalRef = useRef<any>(null);//1
   const [avgScore,setAvgScore] = useState<avgScore>()
 
-  console.log(products)
-
-  // let isMounted = true;
-  // const setupHandler = async() => {
-  //   const res = await execWorldClassHandler()
-  //   if(res.status === 200){
-  //     if(isMounted){
-  //       console.log(res)
-  //       setProducts(res.data.worldRanking)
-  //       if (res.data.worldRanking.length>2){
-  //       setValidateProduct(true)
-  //       setViewProductV2([res.data.worldRanking[res.data.worldRanking.length-1],res.data.worldRanking[0],res.data.worldRanking[1]])
-  //       setAvgScore(res.data.scores.avgScore)
-  //       }
-  //     }
-  //   }else{
-
-  //   }
-  // }
-
-  // useEffect(()=>{
-  //   const timer = setTimeout(() => {
-  //     setupHandler()
-  //   }, 300)
-  //   return () => {
-  //     clearTimeout(timer)
-  //     isMounted = false;
-  //   };
-  // },[])
-
   // -------------------------------------------------------------
 
   let i = 0
   let avige:any
   useEffect(() => {
     if(useraction==true){
-      console.log("aaa")
       return
     }
     if (intervalRef.current !== null) {
@@ -74,8 +40,7 @@ export const WorldClass:React.FC<Props> = memo(function WorldClassFunc(Props){
     }
     if (products == undefined) return
     if (products?.length == 0) return
-    // intervalRef.current 
-     const avige = setInterval(() => {     
+    const avige = setInterval(() => {     
         if (i >= products.length){
           i = 0
         }
@@ -93,12 +58,6 @@ export const WorldClass:React.FC<Props> = memo(function WorldClassFunc(Props){
 
   }, [products,useraction]);
 
-
-  // useEffect(()=>{
-  //   // clearInterval(intervalRef.current)
-  //   clearInterval(avige)
-  // },[useraction])
-
   return(
     <div>
       {validateProduct==true&&(
@@ -106,7 +65,7 @@ export const WorldClass:React.FC<Props> = memo(function WorldClassFunc(Props){
         >
           <div className = "WorldClassContainerRow">
             <div className = "WorldClassContainerTitle share_middle_container_title">
-              映画情報（1年前〜1年後）
+              映画情報(今シーズン)
             </div>
             <div className = "WorldClassContainerRowAction share_middle_container_right_text">
             </div>

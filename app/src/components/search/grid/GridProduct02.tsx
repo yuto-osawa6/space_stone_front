@@ -1,13 +1,11 @@
 import { product } from "@/interfaces/product"
 import { useRouter } from "next/router"
 import { memo, useEffect, useRef, useState } from "react"
-// import { useNavigate } from "react-router-dom"
 import { CSSTransition } from "react-transition-group"
 import dynamic from 'next/dynamic';
+import { actionSettingProductData2 } from "@/store/product/actions";
+import { useDispatch } from "react-redux";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
-
-
 
 type Props = {
   product:product
@@ -27,10 +25,12 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   const nodeRef = useRef(null)
   const [imageloding,setImageLoding2] = useState<boolean>(false)
   const router = useRouter()
+  const dispatch = useDispatch()
 
 
   const navigateshow = ()=>{
-    router.push(`/products/${Props.product.id}`)
+    dispatch(actionSettingProductData2(Props.product));
+    router.push(`/title/${Props.product.id}`)
   }
 
   useEffect(()=>{
@@ -54,8 +54,6 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   useEffect(()=>{
     handleSetupYearSeason()
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    setRights(right)
-    setLefts(left)
     Props.pushgridleft02(left)
   },[])
 
@@ -63,25 +61,25 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   useEffect(()=>{
     if(Props.avgScore==undefined)return
     const averageScore = Number(Props.avgScore)
-    if(averageScore<=10){
+    if(averageScore<10){
       setScoreColor({backgroundColor:'rgba(255, 0, 0, 1)'})
-    }else if(10<averageScore&&averageScore<=20){
+    }else if(10<=averageScore&&averageScore<20){
       setScoreColor({backgroundColor:'rgba(255, 82, 0, 1)'})
-    }else if(20<averageScore&&averageScore<=30){
+    }else if(20<=averageScore&&averageScore<30){
       setScoreColor({backgroundColor:'rgba(255, 177, 0, 1)'})
-    }else if(30<averageScore&&averageScore<=40){
+    }else if(30<=averageScore&&averageScore<40){
       setScoreColor({backgroundColor:'rgb(239 222 24)'})
-    }else if(40<averageScore&&averageScore<=50){
+    }else if(40<=averageScore&&averageScore<50){
       setScoreColor({backgroundColor:'rgb(161 217 28)'})
-    }else if(50<averageScore&&averageScore<=60){
+    }else if(50<=averageScore&&averageScore<60){
       setScoreColor({backgroundColor:'rgb(15 221 1)'})
-    }else if(60<averageScore&&averageScore<=70){
+    }else if(60<=averageScore&&averageScore<70){
       setScoreColor({backgroundColor:'rgb(10 241 177)'})
-    }else if(70<averageScore&&averageScore<=80){
+    }else if(70<=averageScore&&averageScore<80){
       setScoreColor({backgroundColor:'rgba(0, 161, 255, 1)'})
-    }else if(80<averageScore&&averageScore<=90){
+    }else if(80<=averageScore&&averageScore<90){
       setScoreColor({backgroundColor:'rgba(0, 55, 255, 1)'})
-    }else if(90<averageScore&&averageScore<=100){
+    }else if(90<=averageScore&&averageScore<100){
       setScoreColor({backgroundColor:'rgba(255, 0, 235, 1)'})
     }
   },[Props.avgScore])
@@ -90,13 +88,13 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   const [ishover,setIshover] = useState<boolean>(false)
   const [ishover2,setIshover2] = useState<boolean>(false)
   const handlehoverEnter = () => {
-    console.log(lefts,Props.maxleft02,rights,Props.right)
-    console.log(lefts === Props.maxleft02&&rights===Props.right)
-    lefts === Props.maxleft02&&rights===Props.right?setIshover2(true):setIshover(true)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    left === Props.maxleft02&&right+20===Props.right?setIshover2(true):setIshover(true)
 
   };
   const handlehoverLeave = () => {
-    lefts === Props.maxleft02&&rights===Props.right?setIshover2(false):setIshover(false)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    left === Props.maxleft02&&right+20===Props.right?setIshover2(false):setIshover(false)
 
   }
   const [YearSeason,setYearSeason]= useState<string>("")
@@ -117,8 +115,7 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
   return(
     <>
       <div className = "WorldClassContainerViews GridProduct02Views"
-       ref={elm}
-       
+        ref={elm}
       >
         <div className = "WorldClassContainerViewsImg">
         <CSSTransition in={imageloding}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
@@ -130,11 +127,13 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
             >
               詳細ページ
             </div>
+            {Props.product&&Props.product?.list.length>0&&(
             <div className="WorldClassContainerViewsRightNetflix">
               <a href={`${Props.product?.list}`}>
                 公式サイトへ
               </a>
             </div>
+            )}
           </div>
           {Props.avgScore!=undefined&&(
             <div className="WorldClassContainerViewsRightScore Grid02ProductScore"
@@ -143,7 +142,6 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
               {Number(Props.avgScore).toFixed(1)}%
             </div>
             )}
-
         </div>
         <div className={`GridProduct02Arasuzi`}
         onMouseEnter={handlehoverEnter}
@@ -187,8 +185,7 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
             })}
           </ul>
         </div>
-
-        <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
+        {/* <CSSTransition in={ishover}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
           <div className = "p_contents_grid_hover_contents" ref={nodeRef}
           >
             <div className = "p_contents_grid_hover_contents__before">
@@ -220,13 +217,11 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
         <CSSTransition in={ishover2}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
           <div className = "p_contents_grid_hover_contents2" ref={nodeRef}
           >
-            <div className = "p_contents_grid_hover_contents__before2">
-              
+            <div className = "p_contents_grid_hover_contents__before2">   
               <div className = "p_contents_grid_hover_contents_arasuzi_Title">
                   あらすじ
               </div>
               <div className = "p_contents_grid_hover_contents_arasuzi">
-
                 <ReactQuill
                 className = "reviews_modal_quill"     
                 value={Props.product.arasuzi} 
@@ -247,7 +242,7 @@ export const GridProduct02:React.FC<Props> = memo(function GridProduct02Func(Pro
               </div>
             </div>
           </div>
-        </CSSTransition>
+        </CSSTransition> */}
       </div>  
     </>
   )

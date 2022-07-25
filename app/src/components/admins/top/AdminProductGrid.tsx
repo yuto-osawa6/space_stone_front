@@ -1,15 +1,12 @@
 import { product } from "@/interfaces/product"
 import { execPublishedOne } from "@/lib/api/admin/product"
+import Link from "next/link"
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { BsFillSuitHeartFill ,BsFillSuitClubFill,BsFillSuitSpadeFill, BsFillSuitDiamondFill} from "react-icons/bs"
-// import { useNavigate } from "react-router-dom"
-
+// import { Link } from "react-scroll"
 type Props = {
   product:product
-  // colornumber:number
-  // judgecard:number
-  // likesCount?:number
-  // rank :number
 }
 type Color = {
   color:string
@@ -22,12 +19,9 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
     const colorNumber:number = array[Math.floor(Math.random() * array.length)]
     setColornumber(colorNumber)
     setAverageScoreHandler()
-    // if (likesCount!=undefined){
-      settingNumberOfDigits(Props.product.scores.length)
-    // }
+    settingNumberOfDigits(Props.product.scores.length)
+    handleSetupYearSeason()
   },[])
-  // console.log(Props)
-
   // doneyet_4 (undefinedが帰ってきた時エラー)
   const [averageScore,setAverageScore] = useState<number>()
   const [scoreColor,setScoreColor] = useState<Color>({color:""})
@@ -59,16 +53,12 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
   const setAverageScoreHandler = () => {
     if (Props.product.scores.length>0){
     const result = Props.product.scores.reduce(function(a, x){return a + x.value;}, 0);
-    // console.log(result/Props.product.scores.length)
     setAverageScore(result/Props.product.scores.length)
     }
   }
-  // console.log(Props.product.scores.length)
-
   const [scoreLenght,setScoreLength] = useState<string>("")
   // 1k 1m setting 
   const settingNumberOfDigits = (i:number) => {
-    // let integerDigit = i.toString().length; 
     const integerDigit = String(i).length; 
     if (integerDigit>3&&integerDigit<7){
       const ii = i.toLocaleString()
@@ -79,12 +69,11 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
     }else{
       setScoreLength(String(i))
     }
-
   }
-  // const navigate = useNavigate()
-  const navigateHandler = () => {
-    // navigate(`/products/${Props.product.id}`)
-  }
+  const router = useRouter()
+  // const navigateHandler = () => {
+  //   router.push(`/title/${Props.product.id}`)
+  // }
   // 公開
   const [fini,setFini] = useState<boolean>(Props.product.finished)
   const handlePublishedOne = async(i:number) => {
@@ -95,14 +84,27 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
 
     }
   }
+  const [YearSeason,setYearSeason]= useState<string>("")
+  const handleSetupYearSeason = () => {
+    const kisetsu = ["冬","春","夏","秋"]
+    const yearSeasonYear = Props.product.productYearSeason2.filter(i=>kisetsu.includes(i.season.name)).sort((a,b)=>kisetsu.indexOf(a.season.name) - kisetsu.indexOf(b.season.name)).sort((a,b)=>new Date(a.year.year).getTime() - new Date(b.year.year).getTime())
+    try{
+      if (yearSeasonYear.length==1){
+        setYearSeason(`${new Date(yearSeasonYear[0].year.year).getFullYear()} ${yearSeasonYear[0].season.name}`)
+      }else{
+        setYearSeason(`${new Date(yearSeasonYear[0].year.year).getFullYear()} ${yearSeasonYear[0].season.name} ~ ${new Date(yearSeasonYear[yearSeasonYear.length-1].year.year).getFullYear()}  ${yearSeasonYear[yearSeasonYear.length-1].season.name}`)
+      }
+    }catch(e){
+    }
+  }
   return(
     <>
+      <Link href = {`/title/${Props.product.id}`}>
+      <a>
       <div className = "ToptensContainerGridList"
-      onClick={navigateHandler}
+      // onClick={navigateHandler}
       >
         <div className = "ToptensContainerGridListRank">
-         
-          {/* <p>{Props.rank}</p> */}
         </div>
         <div className = "ToptensContainerGridListImage">
           <img src={Props.product.imageUrl} alt=""></img>
@@ -112,36 +114,23 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
             {Props.product.title}
           </div>  
           <div className = "ToptensContainerGridListGenre">
-            {Props.product.productGenres.map((item)=>{
+            {/* {Props.product.productGenres.map((item)=>{
               return(
                   <li key={item.id} className={`p_contens_grid_color${colornumber}g`}>{item.name}</li>
               )
-            })}
-          </div>    
-        </div>
-        <div className = "ToptensContainerGridListScore">
+            })} */}
+            {averageScore!=undefined&&(
+            <div className = "ToptensContainerGridListScore">
           <div className = "ToptensContainerGridListScoreUpper ToptensContainerGridListUpperShare">
-          {Props.product.scores.length>0&&(
-            <p style={scoreColor}>{averageScore?.toFixed(1)}%</p>
-          )}
+        
+            <p style={scoreColor}>{Number(averageScore).toFixed(1)}%</p>
+    
           </div>
-           <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
-           {Props.product.scores.length>0&&(
-            // <p>{Props.product.scores.length}</p>
-            <p>{scoreLenght}</p>
-
-          )}
+            <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
           </div>
         </div>
+        )}
         
-        {/* <div className = "ToptensContainerGridSeries">
-          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
-              { Props.product.year}
-          </div>
-          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
-            {Props.product.duration}
-          </div>
-        </div> */}
         <div className = "ToptensContainerGridSeries">
 
           <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
@@ -150,10 +139,43 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
           )}
           </div>
           <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
-            {/* <BsFillSuitHeartFill/> */}
-            {/* {Props.product.likeCount} */}
-            {/* {Props.product.endJudge} */}
+          </div>
+        </div>
+        <div className = "ToptensContainerGridSeries">
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
+              {YearSeason}
+          </div>
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
+          </div>
+        </div>
+          {Props.product.productGenres.map((item)=>{
+              return(
+                  <li key={item.id} className={`p_contens_grid_color${colornumber}g`}>{item.name}</li>
+              )
+          })}
+        
+          </div>      
+        </div>
+        {/* <div className = "ToptensContainerGridListScore">
+          <div className = "ToptensContainerGridListScoreUpper ToptensContainerGridListUpperShare">
+          {Props.product.scores.length>0&&(
+            <p style={scoreColor}>{averageScore?.toFixed(1)}%</p>
+          )}
+          </div>
+          <div className = "ToptensContainerGridListScoreDown ToptensContainerGridListDownShare">
+          {Props.product.scores.length>0&&(
+            <p>{scoreLenght}</p>
 
+          )}
+          </div>
+        </div>
+        <div className = "ToptensContainerGridSeries">
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListUpperShare">
+          {Props.product.productStyles.length>0&&(
+            <p>{Props.product.productStyles[0].name}</p>
+          )}
+          </div>
+          <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
           </div>
         </div>
         <div className = "ToptensContainerGridSeries">
@@ -163,21 +185,23 @@ export const AdminProductGrid:React.FC<Props> = (Props) => {
           <div className = "ToptensContainerGridListSeriesUpper ToptensContainerGridListDownShare">
             {Props.product.duration}
           </div>
-        </div>
+        </div> */}
       </div>
+      </a>
+      </Link>
       <div className="">
         {fini==true&&(
           <div className=""
           onClick={()=>handlePublishedOne(0)}
           >
-             公開
+            公開
           </div>
         )}
         {fini==false&&(
           <div className=""
           onClick={()=>handlePublishedOne(1)}
           >
-             非公開
+            非公開
           </div>
         )}
       </div>

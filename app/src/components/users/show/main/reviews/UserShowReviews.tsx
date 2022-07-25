@@ -1,6 +1,5 @@
 import { Modal } from "@mui/material"
 import { MenuProduLists } from "@/components/share/component/MenuProduLists"
-// import { MenuProduLists } from "component/custom/MenuProduLists"
 import { UserShowContext } from "@/contexttype/contexttype"
 import { product } from "@/interfaces/product"
 import { review } from "@/interfaces/review"
@@ -11,7 +10,6 @@ import { HiChevronDoubleDown } from "react-icons/hi"
 import { IoSearchCircle } from "react-icons/io5"
 import { MdInsertEmoticon } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
-// import { Outlet } from "react-router-dom"
 import { RootState } from "@/store"
 import { updateReviewAction } from "@/store/reviewUpdate/actions"
 import { UserShowEmotionItem } from "./UserShowEmotionItem"
@@ -23,7 +21,7 @@ type emotion = {
 }
 
 type Props = {
-  // children:ReactNode
+  children:ReactNode
 }
 
 export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Props){
@@ -32,7 +30,6 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
   const handlerOne = async() => {
     const res = await execGetEmotionList()
     if(res.status==200){
-      console.log(res)
       setEmotions(res.data.emotionList)
     }
   }
@@ -57,7 +54,6 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
   const firstSetUpHandler = async() => {
     const res = await execUserShowReviewsHandler(user.id,current,product?.id,selectSort,emotion?.id)
     if(res.status === 200){
-      console.log(res)
       setReviews(res.data.reviews)
       GfNavigation(res.data.reviewLength)
     }else{
@@ -69,14 +65,12 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
   const [pageNaviGation,setPageNaviGation] = useState<number[]>([])
 
   const GfNavigation = (Props:number) => {
-    const limit = Math.ceil(Props / 2)
-    console.log(limit,current)
+    const limit = Math.ceil(Props / 20)
     currentPage(current,limit)
     SetPage(limit)
 }
 
   const currentPage = (i:number,c:number) => {
-    // console.log(i,c)
     if (c >= 6){
 
     if(i <= 3){
@@ -96,7 +90,6 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
       array.push(step)
     }
     setPageNaviGation(array)
-    console.log(array)
   }
   }
 
@@ -129,7 +122,6 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
   const productSearchHandler = async() => {
     const res = await execProductSearchHandler(searchInput)
     if (res.status == 200){
-      console.log(res)
       setProductData(res.data.products)
     }else{
 
@@ -149,8 +141,6 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
       if (menuOpen && ref.current && !ref.current.contains(e.target)) {
         setMenuOpen(false);
       }
-      console.log(e.target)
-      console.log(ref.current)
     };
 
     document.addEventListener("mousedown", checkIfClickedOutside);
@@ -167,23 +157,16 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
     // SetPage
     setSelectSort(i)
   }
-
   const [isMenuOpen2, setIsMenuOpen2] = useState(false);
   const handleClose = () => setIsMenuOpen2(false)
 
     // updateReview
     const dispatch = useDispatch()
     const updateReviewState = useSelector((state:RootState)=>state.updateReview)
-    // const userStore = useSelector((state:RootState)=>state.user)
-    // const dispatch = useDispatch()
-    console.log(updateReviewState)
-    // useEffect(.)
     useEffect(()=>{
       if(updateReviewState.update == false)return
-      // handleSecondUpdateReview()
       firstSetUpHandler()
       dispatch(updateReviewAction(false))
-      // setUpdateReviewState(false)
     },[updateReviewState])
 
   return(
@@ -192,7 +175,6 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
         <div className = "UserShowReviewsTitle"
         style={{
           fontWeight:"bold",
-          // marginBottom:"0px",
           margin: "20px 20px 0px 20px"
         }}
         >
@@ -264,7 +246,6 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
             onClick={() => setIsMenuOpen2(true)}
             />
             </div>
-           
           )}
           <div className=""
           style={{display:"flex",gap:"10px",alignItems:"center"}}
@@ -317,15 +298,12 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
             })}
           </div>
         </div>
-        {/* {reviews.length>0&&( */}
         <div className = "ArticlesContainerPage">
             <ul>
-           
             <li
             onClick={currentFirstHandler}
             className={current==1?"activeCurrent":""}
             >1</li>
-           
             {page>5&&current!=1&&(
               <li
               onClick={currentPrevHandler}
@@ -333,23 +311,20 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
             )}
             {pageNaviGation.map((item,index)=>
             {
-              // console.log(item!=1&&(item!=page||page!=1))
               return(
                 
                   <React.Fragment
                         key={index}
                         >
                   {item!=1&&item!=page&&(
-                     <li
-                    key={item}
-                    onClick={()=>currentSetHandler(item)}
-                    className={current==item?"activeCurrent":""}
-                     >{item}</li>
+                    <li
+                      key={item}
+                      onClick={()=>currentSetHandler(item)}
+                      className={current==item?"activeCurrent":""}
+                    >{item}</li>
                   )}    
                   </React.Fragment>     
-      
               )
-             
             })}
             {page>5&&current!=page&&(
               <li
@@ -358,22 +333,19 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
             )}
             {page>1&&(
             <li
-             onClick={currentMaxHandler}
-             className={current==page?"activeCurrent":""}
+              onClick={currentMaxHandler}
+              className={current==page?"activeCurrent":""}
             >{page}</li>
             )}
             </ul>
         </div>
-        {/* )} */}
-
       {isMenuOpen2 && (
-         <Modal
-         open={isMenuOpen2}
-         onClose={handleClose}
-         // onClose={false}
-         aria-labelledby="modal-modal-title"
-         aria-describedby="modal-modal-description"
-       >
+        <Modal
+          open={isMenuOpen2}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
         <div className = "emotionSortList">
           {emotions.map((item)=>{
             return(
@@ -382,7 +354,6 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
                 emotion = {emotion}
                 setEmotion = {setEmotion}
                 setCurrent = {SetCurrent}
-                // setPage = {SetPage}
                 setIsMenuOpen2={setIsMenuOpen2}
                 key={item.id}
               />
@@ -392,10 +363,7 @@ export const UserShowReviews:React.FC<Props> = function UserShowReviewsFunc(Prop
         </Modal>
       )}
       </div>
-      
-      {/* <Outlet/> */}
-      {/* {Props.children} */}
-      
+      {Props.children}
     </>
   )
 }

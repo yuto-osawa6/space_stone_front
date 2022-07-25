@@ -1,8 +1,28 @@
+
+body:lang(ja) {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  // body{
+  //   font-family: 'Noto Sans JP', sans-serif;
+  // }
+  
+  body:lang(en) {
+    font-family: 'Roboto', sans-serif;
+  }
 body{
-  font-family: Helvetica, Arial, sans-serif !important;
-  color: $color-v1-a;
+  background-color: #f6f6f9;
+  // font-family: 'Noto Sans JP', sans-serif;
+  #__next{
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  // font-family: Helvetica, Arial, sans-serif !important;
+  color: $merupla-color-dark-1;
   font-size: 16px;
   margin: 0px;
+  line-height: 1.5;
+  background-color: $color-backgroundv2;
   .super{
     // doneyet(check)
     min-height: 100vh;
@@ -11,12 +31,36 @@ body{
     display: grid;
     grid-template-columns: 200px calc(100% - 200px);
     .super-sheet{
-    background-color: #edf1f5;
-
-      // width: 80vw;
-      grid-column: 2/3;
+      background-color: #f6f6f9;
+      width: 100%;
+      grid-column: 1/3;
+      // margin-top: 59.66px;
+      @include mq(md){
+        margin-top:0px;
+        grid-column: 2/3
+      }
+    }
+    .super-sheet2{
+      margin-top: 59.66px;
+      @include mq(md){
+        margin-top:0px;
+        // grid-column: 2/3
+      }
     }
   }
+  // body:lang(ja) {
+  //   font-family: 'Noto Sans JP', sans-serif;
+  // }
+
+  // body{
+  //   font-family: 'Noto Sans JP', sans-serif;
+  // }
+  
+  // body:lang(en) {
+  //   font-family: 'Roboto', sans-serif;
+  // }
+  // font-family: 'Noto Sans JP', sans-serif;
+// font-family: 'Roboto', sans-serif;
 
 
   // .products_header{
@@ -28,17 +72,25 @@ body{
         // cursor: pointer;
         // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         // grid-gap: 10px;
-        margin: 20px;
+        // margin: 20px;
         .products_infinitescroll{
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
           grid-gap: 10px;
+          padding: 20px;
           // margin: 20px;
+          @include mq(tb){
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          }
         }
         .products_infinitescroll02{
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
           grid-gap: 10px;
+          padding: 20px;
+          @include mq(tb){
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          }
           // margin: 20px;
         }
         // .products_infinitescroll{
@@ -89,15 +141,31 @@ body{
       }
     // }
   // }
-
+  /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
 }
+
+ /*Google Chrome、Safariへの対応*/
+body::-webkit-scrollbar{
+  display: none;
+}
+
 .p_contents_grid_hover_contents_arasuzi{
   margin: 10px;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   line-height: 1.2rem;
+  .ql-editor{
+    padding: 0px!important;
+  }
+  p{
+    font-size: 0.8rem;
+  }
 }
 .p_contents_grid_hover_contents_arasuzi_Title{
   margin: 10px;
+  font-size: 0.8rem;
 }
 
 // 02
@@ -116,7 +184,8 @@ body{
   font-size: 0.7rem !important;
 }
 .GridProduct02Arasuzi{
-  overflow: hidden;
+  overflow-y: scroll;
+  // overflow: hidden;
   position: relative;
   padding-top: 56.25%;
   margin-bottom: 10px;
@@ -157,7 +226,16 @@ body{
       margin-bottom: 10px;
       line-height: 1.3rem;
       overflow-y: scroll;
-    }
+    /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
+}
+
+ /*Google Chrome、Safariへの対応*/
+ .WorldClassContainerViewsRightArasuzi::-webkit-scrollbar{
+  display: none;
+}
     .WorldClassContainerViewsRightLink{
       padding: 10px;
       margin-bottom: 10px;
@@ -203,7 +281,11 @@ body{
 // 03
 .products_infinitescroll03{
   display: grid;
-  grid-gap: 10px;
+  margin-top: 20px;
+  @include mq(tb){
+    margin-top: 40px;
+  }
+  // grid-gap: 10px;
 
 }
 // 04
@@ -217,3 +299,22 @@ body{
 }
 
 // 
+.WorldClassContainer{
+  margin: 20px;
+}
+
+.productShowOpenArasuzi{
+  max-height: 110px;
+  overflow: hidden;
+}
+.activeOpenArasuzi{
+  max-height: fit-content!important;
+  overflow:visible!important;
+}
+.hoverReadMore{
+  cursor: pointer;
+  color: #37d8b3;
+  &:hover{
+    color: #ff3073;
+  }
+}

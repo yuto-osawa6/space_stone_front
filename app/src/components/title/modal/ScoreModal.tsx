@@ -8,7 +8,6 @@ type Props = {
   product_id:number | undefined
   user_id:number
 }
-
 export const ScoreModal:React.FC<Props> = function ScoreModalFunc(Props){
   const {openscore, setOpenscore} = useContext(OpenScoreContext)
   const {score,setScore} = useContext(OpenScoreContext)
@@ -49,10 +48,9 @@ useEffect(()=>{
 
   }
 
-   
   return(
     <>
-     <Modal
+      <Modal
         open={openscore}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -79,14 +77,11 @@ useEffect(()=>{
                 <Button variant="contained"
                 onClick = {execscore}
                 >決定
-                 {/* {loading==true&&(
-                    <TailSpin color="#00BFFF" height={20} width={20} />
-                  )} */}
                 </Button>
               </div>
             </>
           )}
-           {score != null&&(
+          {score != null&&(
             <>
               <div className = "score_modal_title">
               Scoress:{value2}
@@ -102,18 +97,13 @@ useEffect(()=>{
                 marks
                 min={10}
                 max={100}
-              />
-            
-            
+              />   
               <Button variant="contained"
               >決定</Button>
             </div>
             </>
-           )}
-
-        </div>
-
-              
+          )}
+        </div>  
       </Modal>
     </>
   )

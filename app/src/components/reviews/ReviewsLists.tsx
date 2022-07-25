@@ -1,11 +1,9 @@
 import { review } from "@/interfaces/review"
 import { useRouter } from "next/router"
 import React, { memo, useEffect, useMemo, useRef, useState } from "react"
-// import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
-// import {  useNavigate } from "react-router-dom"
 
 type Props = {
   id :number
@@ -37,7 +35,6 @@ export const ReviewsLists:React.FC<Props> = memo(function ReviewsListsFunc(Props
 
   const quillref = useRef<any>(null!)
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
   const router = useRouter()
   const options = {
     scroll:false
@@ -45,10 +42,6 @@ export const ReviewsLists:React.FC<Props> = memo(function ReviewsListsFunc(Props
   const movementHandler = () => {
     router.push(`/reviews/${Props.review.id}/title/${Props.review.reviewProduct.id}`,undefined,options)
   }
-
-
-  console.log(Props)
-  console.log(Props)
 
   return(
     <>
@@ -69,9 +62,27 @@ export const ReviewsLists:React.FC<Props> = memo(function ReviewsListsFunc(Props
                   {Props.review.reviewUser.nickname}さんによる投稿
                 </div>
               </div>
+              
             </div>
+
+            <div className = "ReviewListItemMain">
+              <div className = {`RevieweListItemMainTop`}>
+                <div className = "RevieweListItemMainTopTitle">
+                </div> 
+                <div className = "ReviewListItemMainTopContent">
+                <ReactQuill
+                  className = "reviews_modal_quill"     
+                  ref={quillref}
+                  modules={modules} value={Props.review.content} 
+                  theme="bubble"
+                  readOnly={true}       
+                />
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div className = "ReviewListItemMain">
+          {/* <div className = "ReviewListItemMain">
             <div className = {`RevieweListItemMainTop`}>
               <div className = "RevieweListItemMainTopTitle">
               </div> 
@@ -85,7 +96,7 @@ export const ReviewsLists:React.FC<Props> = memo(function ReviewsListsFunc(Props
               />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

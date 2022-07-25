@@ -1,10 +1,7 @@
 import { product } from "@/interfaces/product"
 import { review } from "@/interfaces/review"
 import { useState } from "react"
-// import { DeleteReviewModal2 } from "../show/edit/DeleteReviewModal2"
-// import { EditReviewModal2 } from "../show/edit/EditReviewModal2"
 import { DeleteThreadModal2 } from "./edit/DeleteThreadModal2"
-// import { EditThreadModal2 } from "./edit/EditThreadModal2"
 
 type Props = {
   review: review
@@ -18,7 +15,6 @@ export const ThreadEditList:React.FC<Props> = function ThreadEditListFunc(Props)
   const[open2,setOpen2] = useState<boolean>(false)
 
   const handleDelete = () => {
-    console.log(Props)
     setOpen2(true)
   }
   const handleEdit = () => {
@@ -38,21 +34,8 @@ export const ThreadEditList:React.FC<Props> = function ThreadEditListFunc(Props)
         zIndex: "100"
       }}
         >
-          {/* <li
-            onClick={handleEdit}
-            style={{
-            // cursor:"pointer",
-            borderRadius: "5px",
-            cursor: "pointer",
-            padding: "5px",
-            backgroundColor: "#02af75",
-            color: "white",
-          }}
-          >
-            編集
-          </li> */}
           <li
-           style={{
+          style={{
             // cursor:"pointer",
             borderRadius: "5px",
             cursor: "pointer",
@@ -60,7 +43,7 @@ export const ThreadEditList:React.FC<Props> = function ThreadEditListFunc(Props)
             backgroundColor: "#ff3073",
             color: "white",
           }}
-           onClick={handleDelete}
+            onClick={handleDelete}
           >
               削除
           </li>

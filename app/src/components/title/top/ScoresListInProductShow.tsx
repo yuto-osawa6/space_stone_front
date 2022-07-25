@@ -1,5 +1,3 @@
-// import { isPropsValid } from "@fullcalendar/react"
-// import { UserModalSign } from "component/aplication/lefts/UserModalSign"
 import { UserModalSign } from "@/components/applications/user/UserModalSign"
 import { OpenContext, OpenScoreContext } from "@/contexttype/contexttype"
 import { product, productScores } from "@/interfaces/product"
@@ -7,7 +5,6 @@ import { useUser } from "@/lib/data/user/useUser"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
-// import { ScoreModal } from "../ScoreModal"
 import { ScoreModal2 } from "./ScoreModal2"
 
 type Props = {
@@ -16,14 +13,12 @@ type Props = {
   setProductScores:React.Dispatch<React.SetStateAction<productScores[]>>
   score: number | null
   setScore:React.Dispatch<React.SetStateAction<number | null>>
-
   scoreid:number | null
   setScoreid:React.Dispatch<React.SetStateAction<number|null>>
   stats: number[]
   setStats:React.Dispatch<React.SetStateAction<number[]>>
   scoreaverage:string
   setScoreaverage:React.Dispatch<React.SetStateAction<string>>
-
   userScore : productScores | undefined
   setUserScore: React.Dispatch<React.SetStateAction<productScores | undefined>>
 }
@@ -41,8 +36,6 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
   const[story,setStory] = useState<number>(0)
   const[value,setValue] = useState<number>(0)
   const[all,setAll] = useState<number>(0)
-
-
 
   useEffect(()=>{
     var aa = Props.productScores.reduce((sum,i)=>i.animation!=undefined?sum+i.animation:sum,0)
@@ -63,7 +56,6 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
     var fa = Props.productScores.reduce((sum,i)=>i.all!=undefined?sum+i.all:sum,0)
     var fb = Props.productScores.length-Props.productScores.filter(i=>i.all==undefined).length
     setAll(Math.floor(fa/fb))
-   
   },[Props.productScores])
 
   // modal
@@ -72,31 +64,28 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
   const [open,setOpen] = useState<boolean>(false)
   const handleOpenUser = () => setOpen(true)
   // store
-  // const user = useSelector((state:RootState)=>state.user)
   const {userSwr,error} = useUser()
-
   const handleColer= (averageScore:number) => {
     var color = {backgroundColor:""}
-    if(averageScore<=10){
-      // rgb(26 37 47);
+    if(averageScore<10){
       color = {backgroundColor:'rgb(246 61 32)'}
-    }else if(10<averageScore&&averageScore<=20){
+    }else if(10<=averageScore&&averageScore<20){
       color ={backgroundColor:'rgb(255 106 0)'}
-    }else if(20<averageScore&&averageScore<=30){
+    }else if(20<=averageScore&&averageScore<30){
       color ={backgroundColor:'rgb(255 165 0)'}
-    }else if(30<averageScore&&averageScore<=40){
+    }else if(30<=averageScore&&averageScore<40){
       color ={backgroundColor:'rgb(138 212 43)'}
-    }else if(40<averageScore&&averageScore<=50){
+    }else if(40<=averageScore&&averageScore<50){
       color ={backgroundColor:'rgb(0 198 152)'}
-    }else if(50<averageScore&&averageScore<=60){
+    }else if(50<=averageScore&&averageScore<60){
       color ={backgroundColor:'rgb(0 173 255)'}
-    }else if(60<averageScore&&averageScore<=70){
+    }else if(60<=averageScore&&averageScore<70){
       color ={backgroundColor:'rgb(0 102 255)'}
-    }else if(70<averageScore&&averageScore<=80){
+    }else if(70<=averageScore&&averageScore<80){
       color ={backgroundColor:'rgb(110 0 255)'}
-    }else if(80<averageScore&&averageScore<=90){
+    }else if(80<=averageScore&&averageScore<90){
       color ={backgroundColor:'rgb(239 0 255)'}
-    }else if(90<averageScore&&averageScore<=100){
+    }else if(90<=averageScore&&averageScore<=100){
       color ={backgroundColor:'rgb(255 48 115)'}
     }else{
       color ={backgroundColor:'#1a252f'}
@@ -127,7 +116,7 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
           </>
           :
           <>
-             <div className="ScoresListInProductShowLink"
+            <div className="ScoresListInProductShowLink"
               onClick={handleOpenUser}
               style={{
                 width: "fit-content",
@@ -144,18 +133,16 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
         {Props.productScores.length!=0&&(
         <div className="ScoresListInProductShowList">
           <ul>
-            <li style={handleColer(all)}>総合 {all}%</li>
-            <li style={handleColer(story)}>ストーリー {story}%</li>
-            <li style={handleColer(animation)}>アニメーション {animation}%</li>
-            <li style={handleColer(performance)}>演出 {performance}%</li>
-            <li style={handleColer(music)}>音楽 {music}%</li>
-            <li style={handleColer(character)}>キャスト・キャラクター {character}%</li>
+            <li style={handleColer(all)}>総合 {all}</li>
+            <li style={handleColer(story)}>ストーリー {story}</li>
+            <li style={handleColer(animation)}>アニメーション {animation}</li>
+            <li style={handleColer(performance)}>演出 {performance}</li>
+            <li style={handleColer(music)}>音楽 {music}</li>
+            <li style={handleColer(character)}>キャスト・キャラクター {character}</li>
           </ul>
         </div>
         )}
       </div>
-
-                    
         {openscore&&(
               <ScoreModal2
                 openscore={openscore}
@@ -171,7 +158,6 @@ export const ScoresListInProductShow:React.FC<Props> = function ScoresListInProd
                 setScoreaverage = {Props.setScoreaverage}
                 stats = {Props.stats}
                 setStats = {Props.setStats}
-
                 setProductScores={Props.setProductScores}
                 userScore = {Props.userScore}
                 setUserScore = {Props.setUserScore}

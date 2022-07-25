@@ -1,6 +1,5 @@
 import { Button,  Modal, Slider, Tooltip } from "@mui/material";
 import { styled } from '@mui/material/styles';
-// import { submitSpin } from "color/submit-spin";
 import { OpenScoreContext } from "@/contexttype/contexttype";
 import { product, productScores } from "@/interfaces/product";
 import { execScoreCreate, execScoreUpdate } from "@/lib/api/products";
@@ -41,6 +40,7 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
   const[character,setCharacter] = useState<number | null | undefined>(Props.userScore?.character)
   const[performance,setPerformance] = useState<number | null | undefined>(Props.userScore?.performance)
   const[story,setStory] = useState<number | null | undefined>(Props.userScore?.story)
+  const [loading,setLoading] = useState<boolean>(false)
 
   const handleClose = () => {
     Props.setOpenscore(false);
@@ -66,7 +66,6 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
     const all_avg2 = all_avg/6
     const res = await execScoreCreate(Props.product.id,Props.user_id,value,music ,performance,story,character,animation,all_avg2)
     if (res.data.status === 200) {
-      console.log(res)
       Props.setScore(res.data.score.value)
       Props.setScoreid(res.data.score.id)
       Props.setOpenscore(false)
@@ -82,6 +81,7 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
 
   }
 
+
   const execscoreupdate = async() => {
    
     // doneyet-1
@@ -89,11 +89,10 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
     if(value2==null&&music==null&&performance==null&&story==null&&character==null&&animation==null&&value2==undefined&&music==undefined&&performance==undefined&&story==undefined&&character==undefined&&animation==undefined)return
     const value = (value2 as number)+(music as number)+(performance as number)+(story as number)+(character as number)+(animation as number)
     const all_avg = value/6
-    console.log(value2,music,performance,story,character,animation,all_avg)
     setSubmitLoading(true)
+    setLoading(true)
     const res = await execScoreUpdate(Props.product.id,Props.user_id,value2 as number,Props.scoreid as number,music ,performance,story,character,animation,all_avg)
     if (res.data.status === 200) {
-      console.log(res)
       Props.setScore(res.data.score.value)
       Props.setOpenscore(false)
       Props.setScoreaverage(res.data.scoreAverage)
@@ -106,6 +105,7 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
       dispatch(pussingMessageDataAction({title:"予期しないエラーが発生しました。もう一度試すか、お問い合わせください。",select:0}))
     }
     setSubmitLoading(false)
+    setLoading(false)
   }
 
   const valuetextMusic = (value:number):string=>{
@@ -128,10 +128,9 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
     setStory(value)
     return `${value}`
   }
-   
   return(
     <>
-     <Modal
+    <Modal
       open={Props.openscore}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
@@ -221,7 +220,7 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
               </div>
             </>
           )}
-           {Props.score != null&&(
+          {Props.score != null&&(
             <>
               <div className = "score_modal_title">
             </div>
@@ -297,6 +296,9 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
               <Button variant="contained"
               className={"tail-spin-loading"}
               onClick = {execscoreupdate}
+              style={{
+                marginTop: "10px"
+              }}
               >決定
               {submitLoading==true&&(
                 <TailSpin color={submitSpin.color} height={20} width={20} />
@@ -304,7 +306,7 @@ export const ScoreModal2:React.FC<Props> = function ScoreModal2Func(Props){
               </Button>
             </div>
             </>
-           )}
+          )}
         </div>        
       </Modal>
     </>

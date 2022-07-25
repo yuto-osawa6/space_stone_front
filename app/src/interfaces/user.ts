@@ -41,6 +41,7 @@ type tier = {
   product:product
   tier:number
   userId: number
+  aliceT: number
 }
 
 

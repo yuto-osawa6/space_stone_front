@@ -9,7 +9,17 @@ import { testProductData } from '@/mocks/data/d_product'
 import { Provider } from 'react-redux';
 import store from '@/store';
 import { CalendarProduct } from '@/components/mains/main_block/Calendar';
-
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
 describe("this season list", () => {
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -35,23 +45,23 @@ describe("this season list", () => {
     screen.debug();
   });
 
-  test('next season no data', async() => {
-    const d_products:product[] = []
-    const d_products2:product[] = []
+  // test('next season no data', async() => {
+  //   const d_products:product[] = []
+  //   const d_products2:product[] = []
 
-    const data:any = {
-      deliveryStart: [],
-      episordStart: [],
-      scores: {1:"70"}
-    }
-      render(
-        <Provider store={store}>
-        <CalendarProduct
-         calendarData={data}
-        >
-        </CalendarProduct>
-        </Provider>
-      );
-    screen.debug();
-  });
+  //   const data:any = {
+  //     deliveryStart: [],
+  //     episordStart: [],
+  //     scores: {1:"70"}
+  //   }
+  //     render(
+  //       <Provider store={store}>
+  //       <CalendarProduct
+  //        calendarData={data}
+  //       >
+  //       </CalendarProduct>
+  //       </Provider>
+  //     );
+  //   screen.debug();
+  // });
 });

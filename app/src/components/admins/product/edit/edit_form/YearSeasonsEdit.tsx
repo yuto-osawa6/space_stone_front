@@ -8,34 +8,26 @@ type Props = {
   index:number
   childFunc01: React.MutableRefObject<any>
 }
-
 type year_season = {
   year:string
   season:string[]
 }
-
 export const YearSeasonsEdit:React.FC<Props> = (Props) => {
   const [plot,setPlot] = useState<year_season>({year:Props.item,season:Props.yearSeason[Props.index]!=undefined?Props.yearSeason[Props.index].season:[]})
-
  // kisetsu--------------------------------------------------------
- const [kisetsu,setKisetsu] = useState<string[]>(Props.yearSeason[Props.index]!=undefined?Props.yearSeason[Props.index].season:[])
- const [kisetsuValidationText,setKisetsuValidationText] = useState<string>("")
- const [kisetsuError,setKisetsuError] = useState<boolean>(false)
-
- const handleChangeKisetsu = (e:SelectChangeEvent<string[]>) => {
+  const [kisetsu,setKisetsu] = useState<string[]>(Props.yearSeason[Props.index]!=undefined?Props.yearSeason[Props.index].season:[])
+  const [kisetsuValidationText,setKisetsuValidationText] = useState<string>("")
+  const [kisetsuError,setKisetsuError] = useState<boolean>(false)
+  const handleChangeKisetsu = (e:SelectChangeEvent<string[]>) => {
   const {
     target: { value },
   } = e;
   setKisetsu(
-    // On autofill we get a stringified value.
     typeof value === 'string' ? value.split(',') : value,
   );
   setKisetsuValidationText("")
   setKisetsuError(false)
-  
-  console.log(value)
   // -------------------------------------------------
-  // if(Props.yearSeason==undefined)return
   const copy = Props.yearSeason.slice()
   setPlot({year:Props.item,season: typeof value === 'string' ? value.split(',') : value})
   copy[Props.index]={year:Props.item,season: typeof value === 'string' ? value.split(',') : value}
@@ -43,19 +35,12 @@ export const YearSeasonsEdit:React.FC<Props> = (Props) => {
 }
 
 //  error----------------------------------------------------------------
-
 const handleError = ():number => {
-  console.log("aaa")
-  console.log(plot)
-  console.log(Props)
   let count = 0
   if(plot.season.length==0){
     setKisetsuError(true)
     count += 1
   }
-
-  // Props.array.push(count)
-  // console.log(Props.childFunc01)
   return count
 }
 

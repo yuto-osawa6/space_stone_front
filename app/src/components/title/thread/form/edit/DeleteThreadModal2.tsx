@@ -1,6 +1,5 @@
 
 import { Button, FormHelperText, Modal } from "@mui/material"
-// import { submitSpin } from "color/submit-spin"
 import { product } from "@/interfaces/product"
 import { review } from "@/interfaces/review"
 import { execDeleteReview, execDeleteThread } from "@/lib/api/products"
@@ -9,11 +8,9 @@ import { ErrorMessage } from "@/lib/ini/message"
 import React, { useState } from "react"
 import { TailSpin } from "react-loader-spinner"
 import { useDispatch } from "react-redux"
-// import { ErrorMessage } from "share/message"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { updateReviewAction } from "@/store/reviewUpdate/actions";
 import { updateThreadAction } from "@/store/updateThread/actions"
-
 
 type Props = {
   open: boolean
@@ -32,7 +29,6 @@ export const DeleteThreadModal2:React.FC<Props> = function DeleteThreadModal2Fun
     if(Props.product==undefined)return
     setSubmitLoading(true)
     const res = await execDeleteThread(Props.product.id,Props.review.id)
-    console.log(res)
     if(res.data.status===200){
       dispatch(updateThreadAction(true))
       Props.handleCloseAll()
@@ -72,7 +68,6 @@ export const DeleteThreadModal2:React.FC<Props> = function DeleteThreadModal2Fun
               <TailSpin color={submitSpin.color} height={20} width={20} />
             )}
             </Button> 
-            {/* <FormHelperText className = "helpertexts">{helpertextradio}</FormHelperText> */}
           </div>
         </>
       </Modal>

@@ -10,7 +10,6 @@ export const HeaderDivComponent:React.FC<Props> = function HeaderDivComponentFun
     <>
     <div className = "header">
       <div className = "header__box">
-        {/* <Header/> */}
         {Props.children}
       </div>
     </div>

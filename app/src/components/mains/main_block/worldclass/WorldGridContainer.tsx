@@ -14,7 +14,6 @@ export const WorldGridContainer:React.FC<Props> = memo(function WorldGridContain
   const [imageloding,setImageLoding] = useState<boolean>(false)
   const {viewproduct, setViewproduct,useraction,setUseraction,viewProductV2,setViewProductV2,products} = useContext(ViewProductContext)
   const handleClick = () =>{
-    console.log("laralrarara")
     if (Props.index==products.length-1){
       setViewProductV2([products[Props.index-1],products[Props.index],products[0]])
     }else if (Props.index==0){
@@ -24,7 +23,6 @@ export const WorldGridContainer:React.FC<Props> = memo(function WorldGridContain
     }
     setViewproduct(products[Props.index])
     setUseraction(true)
-    console.log("laralrarara")
   }
 
    useEffect(()=>{
@@ -34,8 +32,6 @@ export const WorldGridContainer:React.FC<Props> = memo(function WorldGridContain
       setImageLoding(true)
     };
   },[])
-  // console.log(viewproduct)
-  console.log(useraction)
   return(
     <>
       <div className = "WorldClassContainerGridList">
@@ -49,9 +45,7 @@ export const WorldGridContainer:React.FC<Props> = memo(function WorldGridContain
           <CSSTransition in={imageloding}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit>
 
           {<img src = {Props.product.imageUrl} ref={nodeRef}
-         
           />}
-
           </CSSTransition>
           </div>
           )}

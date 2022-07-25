@@ -3,6 +3,9 @@ import { execVoteWeeklyRanking } from "@/lib/api/mains/main_blocks"
 import { memo, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { pussingMessageDataAction } from "@/store/message/actions"
+import { ErrorMessage } from "@/lib/ini/message"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+
 
 type Props = {
   product: product
@@ -31,11 +34,13 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
   const [episordIds,setEpisordIds] = useState<number[]>([])
   const [episords,setEpisords] = useState<episords[]>([])
 
+  const { executeRecaptcha } = useGoogleReCaptcha()
+
   const handleCalcDate = () => {
     const curr = new Date();
     const curr2 = new Date();
-    if(curr.getDay()==1&&curr.getHours()<6){
-      const first = curr.getDate() - curr.getDay() - 20
+    if(curr.getDay()==0||curr.getDay()==1&&curr.getHours()<6){
+      const first = curr.getDate() - curr.getDay() - 13
       var startDate = new Date(curr.setDate(first));
       startDate.setHours(0)
       startDate.setMinutes(0)
@@ -47,7 +52,7 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
       episordEndWeek.setHours(6)
       episordEndWeek.setDate(episordEndWeek.getDate() + 7)
     }else{
-      const first = curr.getDate() - curr.getDay() - 13
+      const first = curr.getDate() - curr.getDay() - 6
       var startDate = new Date(curr.setDate(first));
       startDate.setHours(0)
       startDate.setMinutes(0)
@@ -86,9 +91,17 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
   // -------------------------------------------------------------------------------------------
   const dispatch = useDispatch()
   const handleVoteWeeklyRanking = async() => {
-    const res = await execVoteWeeklyRanking(Props.product.id,episordIds)
+    if (!executeRecaptcha) {
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const reCaptchaToken = await executeRecaptcha('WeeklyModal');
+    if(!reCaptchaToken){
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+      return
+    }
+    const res = await execVoteWeeklyRanking(Props.product.id,episordIds,reCaptchaToken)
     if(res.data.status === 200){
-      console.log(res)
       Props.setProducts(res.data.products)
       Props.setWeeklyCount(res.data.weeklyCount)
       Props.setWeeklyVote(res.data.weeklyVote)
@@ -102,41 +115,46 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
   return(
     <>
       <li
+      className="WeeklyRankingList"
       style={{
         backgroundColor: "#0cbbc1",
         borderBottom: "1px dotted #0cbbc1",
-        color: "#2c3e50",
+        // color: "#2c3e50",
+        color: "#56687e",
         display: "grid",
-        gridTemplateColumns: "1fr 1fr"
+        // gridTemplateColumns: "1fr 1fr"
       }}
       >
         <div className="WeeklyRankingItemsTitle"
         style={{
-          padding:"10px",
+          // padding:"10px",
+          padding: "10px 20px",
           display: "flex",
           gap:"20px",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "white"
+          // backgroundColor: "white"
         }}
         >
-          <div className=""
+          <div className="WeeklyRankingItemsTitle1"
           style={{
             gap: "10px",
             display:"flex"
           }}
           >
-            {Props.product.title}
+            <div className="WeeklyRankingItemsTitle2">
+              {Props.product.title}
+            </div>
             {episords.map((item,index)=>{
               return(
-                <span className="weekyEpisords" key={item.id}>ep{item.episord}{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
+                <span className="weekyEpisords" key={item.id}>{item.episord}話{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
               )
             })}
           </div>
           <div className="InvoteButtonWeekly"
             onClick={Props.weeklyVote==false?handleVoteWeeklyRanking:nocontroller}
             style={Props.weeklyVote==false?{
-              backgroundColor: "#edf1f5",
+              // backgroundColor: "#edf1f5",
               cursor:"pointer",
               fontSize: "0.9rem"
             }:{
@@ -172,10 +190,10 @@ export const WeeklyRankingItems:React.FC<Props> = memo(function WeeklyRankingIte
               width:persent
             }
           }
-           >
+          >
           </div>
           <div className="WeeklyRankingItemsPersentageTitle"
-           style={{
+          style={{
             position: "absolute",
             right: "10px",
             top: "50%",

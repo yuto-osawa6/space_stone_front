@@ -20,6 +20,10 @@ export interface product {
   imageUrlh3:string | undefined
 
   arasuzi:string
+  copyright:string
+  arasuziCopyright:string
+  annict:number
+  shoboi:number
   // 
   averageScore:string
   likeCount:number
@@ -148,7 +152,8 @@ export interface product {
     emotions:[{
       id: number
       emotion: string
-    }]
+    }],
+    score:number
   }]
   emotions:[{
     id:number
@@ -224,7 +229,8 @@ export interface userReview {
   emotions:[{
     id: number
     emotion: string
-  }]
+  }],
+  score:number
 }
 
 export interface acsesses {
@@ -321,7 +327,7 @@ export interface productForm {
   imageUrlh2:string | undefined
   imageUrlh3:string | undefined
 
-
+  arasuziCopyright:string
   arasuzi:string
   // 
   averageScore:string

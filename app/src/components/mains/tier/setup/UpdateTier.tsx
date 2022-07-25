@@ -12,8 +12,8 @@ import { pussingMessageDataAction } from "@/store/message/actions"
 import { mutate } from "swr"
 import { DraggableFistContainer } from "./draggle/DraggableFistContainer"
 import { TierGroupList } from "./list/TierGroupList"
-// import { TierGroupList } from "./TierGroupList"
-// import { DraggableFistContainer } from "./tier_group/DraggableFistContainer"
+import { TailSpin } from "react-loader-spinner"
+import { submitSpin } from "@/lib/color/submit-spin"
 
 export const ItemType = {
   Box: "BOX",
@@ -57,7 +57,6 @@ type UserTier = {
 
 export const UpdateTier:React.FC<Props> = function UpdateTierFunc(Props){
   const [firstProduct,setFirstProduct] = useState<product[]>([])
-  // const user = useSelector((state:RootState)=>state.user)
   const {userSwr} = useUser()
   const [groupProduct,setGroupProduct] = useState<Group[]>([
     {
@@ -90,7 +89,6 @@ export const UpdateTier:React.FC<Props> = function UpdateTierFunc(Props){
 useEffect(()=>{
   const array = Props.userTier.map(i=>i.product.id)
   const group6_array = Props.products.filter(i=> array.includes(i.id)==false)
-  console.log(Props)
   setFirstProduct(Props.products.filter(i=> array.includes(i.id)))
   const copy = groupProduct.slice()
   copy[0] = {group:0,products:Props.userTier.filter(i=>i.group==0).map(i=>i.product)}
@@ -104,11 +102,10 @@ useEffect(()=>{
 },[])
  
   const handleClose = () => {
-    Props.setOpen(false)
+    // Props.setOpen(false)
   }
   const [validateText,setValidateText] = useState<string>("")
   const moveItem23 = useCallback((dragIndex: number, hoverIndex: number,group: number,pregroup:any | undefined,id:number) => {
-    console.log(dragIndex,hoverIndex,group,pregroup,id)
       if(validateText!=""){
         setValidateText("")
       }
@@ -143,7 +140,6 @@ useEffect(()=>{
   },[],)
 
   useEffect(()=>{
-    console.log(groupProduct)
   },[groupProduct])
   // --------------------
   const [,ref] = useDrop({
@@ -157,7 +153,6 @@ useEffect(()=>{
       dragItem.index = targetIndex;
       dragItem.group = 6
     }catch(e){
-      console.log(e)
     }
     },
     collect: (monitor) => ({
@@ -169,61 +164,76 @@ useEffect(()=>{
   // submit --------------------------------
   const dispatch = useDispatch()
   const handleCreateTier = async() => {
-   const product_length = groupProduct.filter(i=>i.group!=6).reduce((sum,i)=>i.products.length + sum,0)
+  const product_length = groupProduct.filter(i=>i.group!=6).reduce((sum,i)=>i.products.length + sum,0)
   //  if(product_length==0){
   //   setValidateText("Tierリストにコンテンツがありません。")
   //    return
   //  }
-   const createTierProduct:tiers[] = [{
-     group:0,
-     product:[]
-   }]
-   const FixedProductTier = groupProduct.filter(i=>i.group!=6).slice()
-   FixedProductTier.map((i,index)=>{
+  const createTierProduct:tiers[] = [{
+    group:0,
+    product:[]
+    }]
+    const FixedProductTier = groupProduct.filter(i=>i.group!=6).slice()
+    FixedProductTier.map((i,index)=>{
     const array = i.products.map(i=>i.id)
     createTierProduct[index] = {group:index,product:array}
-   })
-   const res = await execCreateTierHandler(createTierProduct,Props.season,userSwr.user.id)
-   console.log(res)
-   if (res.data.status == 200){
-    if (Props.setUpdateTier!=undefined){
-      Props.setUpdateTier(true)
-    }
-      console.log("aa")
-      // mutate('/mainblocks/mains/update_tier_list/1')
-      // mutate('/mainblocks/mains/user_this_season_tier/1')
-      dispatch(pussingMessageDataAction(res.data.message))
-      Props.setOpen(false)
-   }else{
-      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
-   }
+  })
+  setLoding(true)
+  const res = await execCreateTierHandler(createTierProduct,Props.season,userSwr.user.id)
+  if (res.data.status == 200){
+  if (Props.setUpdateTier!=undefined){
+    Props.setUpdateTier(true)
   }
+    // mutate('/mainblocks/mains/update_tier_list/1')
+    // mutate('/mainblocks/mains/user_this_season_tier/1')
+    dispatch(pussingMessageDataAction(res.data.message))
+    Props.setOpen(false)
+  }else{
+    dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+  }
+  setLoding(false)
+  }
+  const [loading,setLoding] = useState<boolean>(false)
+
 
   return(
     <>
-     <Modal
+    <Modal
         open={Props.open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <>
+          {/* <div className="CloseButton"
+            onClick={()=>Props.setOpen(false)}
+            style={{
+              right:"1%",
+              top:"1%",
+              width: 40,
+              height: 40,
+              color:"#363949"
+            }}
+            >
+          <IoMdClose/>
+          </div> */}
         {groupProduct.map(i=>i.products).length>0&&(
           <>
         <div className="Tier"
         style={{
           left: "50%",
           transform: "translate(-50%, 0%)",
-          backgroundColor: "aliceblue",
+          backgroundColor: "#f6f6f9",
           position: "absolute",
           width: "95%",
           borderRadius: "5px",
           outline:"none",
           padding: "20px",
           overflow:"scroll",
-          maxHeight: "100vh",  
-          paddingBottom: "130px", 
-          bottom:"0"
+          height: "100%",  
+          marginBottom: "130px", 
+          bottom:"0",
+          paddingTop:"150px",
         }}
         >
           <div
@@ -245,7 +255,7 @@ useEffect(()=>{
           </div>
           <Button variant="outlined"
               className = "modal_review_richtext_close"
-              onClick = {handleClose}
+              onClick = {()=>Props.setOpen(false)}
             >
               <IoMdClose/>
               Close
@@ -258,9 +268,9 @@ useEffect(()=>{
           >
           {groupProduct.slice(0,6).map((item,index)=>renderCard(item,index))}
           </div>
-         
         </div>
         <div
+          className = "TierFirstNavigateBar"
           ref={ref}
           style={{
             position: "fixed",
@@ -270,7 +280,7 @@ useEffect(()=>{
             left: "50%",
             transform: "translateX(-50%)",
             padding: "20px",
-            minHeight:"115px",
+            height:"130px",
           }}
         >
           <FormHelperText
@@ -279,17 +289,17 @@ useEffect(()=>{
             color:"red"
           }}
           >{validateText}</FormHelperText>
-          <div className=""
+          <div className="TierBarV2"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr auto",
             gap: "10px"
           }}
           >
-          <div className=""
+          <div className="TierBarV23"
           style={{
             display:"flex",
-            overflow:"scroll",
+            overflowX:"scroll",
             gap:"10px",
             alignItems: "center",
           }}
@@ -306,12 +316,25 @@ useEffect(()=>{
             })}
           </div>
           <div className = "TierSubmit">
-            <Button
+            {/* <Button
             onClick={handleCreateTier}
             className = "TierSubmitButton"
             style={{backgroundColor:"aliceblue",height: "75px"}}
             >
               Submit
+            </Button> */}
+            <Button variant="contained"
+            className={"tail-spin-loading TierSubmitButton"}
+            onClick = {handleCreateTier}
+            style={{backgroundColor:"aliceblue",height: "75px"}}
+            >
+              <div className=""
+              style={{margin:"5px",display:"flex"}}
+              >Submit
+              {loading==true&&(
+                <TailSpin color={submitSpin.color} height={20} width={20} />
+                )}
+              </div>
             </Button>
           </div>
           </div>

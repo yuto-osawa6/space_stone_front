@@ -2,13 +2,13 @@ import { Action } from 'redux';
 import { ActionTypes } from '../actionTypes';
 
 export type SearchProductsData = {
-  title_cont: string;
+  title_or_titleKa_or_titleEn_or_titleRo_cont: string;
 };
 
 interface ChangingProductsData extends Action {
   type: typeof ActionTypes.searchProductsTexts;
   payload: { 
-    title_cont: string,
+    title_or_titleKa_or_titleEn_or_titleRo_cont: string,
   };
 }
 

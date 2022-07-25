@@ -1,11 +1,11 @@
 import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
 import { NavigatingLeftArticleDataAction } from "@/store/lefts/article/actions"
+import { useLocale } from "@/lib/ini/local/local"
 
 export const LeftsArticles:React.FC = function LeftsArticlesFunc(){
   const dispatch = useDispatch()
   const router = useRouter()
-
   const handleOpen = () => {
     if (router.pathname==="/articles"){
     dispatch(NavigatingLeftArticleDataAction(0))
@@ -22,6 +22,7 @@ export const LeftsArticles:React.FC = function LeftsArticlesFunc(){
       router.push("/articles")
     }
   }
+  const {t} = useLocale()
   return(
     <>
       <li
@@ -29,7 +30,7 @@ export const LeftsArticles:React.FC = function LeftsArticlesFunc(){
         handleOpen
         }
       >
-        <a>週刊記事</a>
+        <a>{t.Component.Lefts.WEEKARTICLE}</a>
         
       </li>
       <li
@@ -37,7 +38,7 @@ export const LeftsArticles:React.FC = function LeftsArticlesFunc(){
         handleOpen2
         }
       >
-        <a>月刊記事</a>
+        <a>{t.Component.Lefts.MONTHARTICLE}</a>
       </li>
     </>
   )

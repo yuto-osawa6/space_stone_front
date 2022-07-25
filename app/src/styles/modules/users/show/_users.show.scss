@@ -9,12 +9,23 @@
     position: relative;
     width: 100%;
     .UsersShowTopImage{
-      padding-top: 30%;
-      background-color: #1a252f;
+      // padding-top: 59.6px;
+      // margin-top: 59px;
+      // @include mq(tb){
+        padding-top: 40%;
+        margin-top:0px;
+        background-color: #1a252f;
+      // }
       img{
+        // display: none;
+        // height: 100%;
+        // object-fit: cover;
         width: 100%;
         position: absolute;
         top:0;
+        @include mq(tb){
+          display: block;
+        }
       }
     }
     .UsersShowTopImageUserInfo{
@@ -24,13 +35,23 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
-      margin: 10px;
       padding: 10px;
-      background-color: #1a252f78;
+      // background-color: #1a252f78;
       color: white;
       border-radius: 5px;
+
+      // top: 50%;
+      // transform: translateY(-50%);
+      margin-left: 10px;
+      @include mq(tb){
+        color: white;
+        margin: 10px 30px;
+        top:auto;
+        // transform: translateY(-100%);
+      }
       img{
-        width: 30px;
+        width: 35px;
+        height: 35px;
         border-radius: 100%;
       }
       p{
@@ -77,6 +98,10 @@
         // color:aliceblue;
         // font-weight: bold;
         font-size: 0.9rem;
+        flex-flow: wrap;
+        @include mq(tb){
+          // flex-flow: ;
+        }
         // border-radius: 5px;
         li{
           // color:aliceblue;
@@ -90,8 +115,10 @@
           cursor: pointer;
           width: fit-content;
           &:hover{
+            @include mq(md){
             color: #ff3073;
             border-radius: 30px;
+            }
           }
           a{
             // color:aliceblue;
@@ -100,8 +127,10 @@
             gap: 5px;
             align-items: center;
             &:hover{
+              @include mq(md){
               color: #ff3073;
               border-radius: 30px;
+              }
             }
 
             svg{
@@ -131,13 +160,17 @@
     border-radius: 5px;
     max-height: 100vh;
     min-height: 100px;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 }
 .UserShowOverviewLikes{
   margin: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    // display: flex;
+    // flex-flow: wrap;
+    // background-color: transparent;
+    // padding: 0px;
   img{
     border-radius: 5px;
     width: 100%;
@@ -153,11 +186,17 @@
 }
 
 .UsersShowMain{
+  // display: grid;
+  @include mq(md){
+    margin: 0px 20px;
   display: grid;
-  grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr;
+  }  
 
   .UserShowOutletLeft{
-    width: 400px;
+    @include mq(md){
+      width: 400px;
+    } 
   }
 
   .UserShowOutletRight{
@@ -260,4 +299,11 @@
   justify-content: center;
   align-items: center;
   height: 100px;
+}
+
+.UsersShowTopSettingListBackgroudImage2{
+  // display: none;
+  @include mq(md){
+   display: block;
+  }  
 }

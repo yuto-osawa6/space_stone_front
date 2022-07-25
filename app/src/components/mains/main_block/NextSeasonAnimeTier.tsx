@@ -11,6 +11,10 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import { CreateTier } from "../tier/setup/CreateTier"
 import { UpdateTier } from "../tier/setup/UpdateTier"
+import {isMobile} from 'react-device-detect';
+import { TouchBackend } from 'react-dnd-touch-backend'
+
+
 
 type Props = {
   products: product[]
@@ -44,11 +48,7 @@ type tierData = {
 
 }
 export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierFunc(Props){
-  // const {data} = useThisSeasonTier()
   const {data} = useExecGetNextSeasonTier()
-  // const {data} = useNextSeasonTier()
-  console.log(data)
-
   const [avgScore,setAvgScore] = useState<avgScore>()
   const [tierProductGroup,setTierProductGroup] = useState<TierProductGroup[]>([
   {
@@ -77,8 +77,6 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
     if(data.tier==undefined)return
     setUpSecond(data.tier,data.tierAverage)
   },[data])
-
-  // console.log(tierData)
   const setUpSecond = (tiers:any,tierAvg:any) => {
     tiers.forEach((i:any)=>{
       const avg = Number(tierAvg.tierAvg[i.id])
@@ -128,32 +126,31 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
 
   useEffect(()=>{
     if(updateTier===false)return
-    // handleGetUserTier()
-    // handleUpdateTierList()
     mutate('/mainblocks/mains/update_tier_list/2')
     mutate('/mainblocks/mains/user_this_season_tier/2')
     setUpdateTier(false)
-    // return () => {
-    //   isMounted3 = false
-    // };
   },[updateTier])
   return(
     <>
-      <div className=""
+      <div className="SeasonTier">
+      <div className="SeasonTierTitle"
       style={{
       fontWeight:"bold",
-      marginBottom: "10px",
-      fontSize: "1.5rem"
+      // marginBottom: "10px",
+      // fontSize: "1.5rem",
+      // paddingBottom: "10px"
       }}
       >
-       今シーズンのTier
+      昨シーズンのTier
       </div>
-      <div className=""
+      <div className="ExplanatoryText">*ユーザーの投稿を集計した平均値で算出しております。</div>
+      <div className="SeasonTierBox"
       style={{
       display: "grid",
       gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
       gap: "10px",
-      marginBottom: "30px"
+      // marginBottom: "30px"
+      // padding: "0px 20px 20px 20px"
       }}
       >
         {tierProductGroup.map((item,index)=>{
@@ -162,13 +159,15 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
           key={index}
           group = {item.group}
           products = {item.products}
+          alice = {data.aliceT}
           />
           )
         })}
-      {Props.products!=undefined&&userTier!=undefined&&(
+      
+      {isMobile==false&&Props.products!=undefined&&userTier!=undefined&&(
       <>
       {userTier.length==0&&(
-      <div className=""
+      <div className="editTierButton"
       onClick={userSwr.login==true?handleOpenTierCreateModal:handleOpenSign}
       style={{
         cursor:"pointer"
@@ -178,7 +177,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       </div>
       )}
       {userTier.length!=0&&(
-      <div className=""
+      <div className="editTierButton"
       onClick={userSwr.login==true?handleOpenTierUpdateModal:handleOpenSign}
       style={{
         cursor:"pointer"
@@ -187,8 +186,18 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
         Tierを更新する
       </div>
       )}
+      {/* {isMobile&&(
+        <div className="editTierButton"
+        // onClick={userSwr.login==true?handleOpenTierUpdateModal:handleOpenSign}
+        style={{
+          cursor:"pointer"
+        }}
+        >
+          *現在、PCでのみTierを作成することができます。
+        </div>
+      )} */}
       {openTier&&(
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
         <CreateTier
         products = {Props.products}
         season = {Props.currentSeason}
@@ -199,7 +208,7 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       </DndProvider>
       )}
       {openTierUpdate&&(
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={isMobile?TouchBackend:HTML5Backend}>
         <UpdateTier
         products = {Props.products}
         season = {Props.currentSeason}
@@ -211,12 +220,23 @@ export const NextSeasonAnimeTier:React.FC<Props> = function NextSeasonAnimeTierF
       </DndProvider>
       )}
       </>
+      )}
+      {isMobile&&(
+        <div className="editTierButton"
+        // onClick={userSwr.login==true?handleOpenTierUpdateModal:handleOpenSign}
+        style={{
+          cursor:"pointer"
+        }}
+        >
+          *現在、PCでのみTierを作成することができます。
+        </div>
       )}   
       {open&&(
       <OpenContext.Provider value={{ open, setOpen }}>
         <UserModalSign/>
       </OpenContext.Provider>
       )}  
+      </div>
       </div>
     </>
   )

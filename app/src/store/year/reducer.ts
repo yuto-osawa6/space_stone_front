@@ -18,7 +18,6 @@ export const YearSearchReducer = (state = initialState, action:SubSearchYearData
   // const latestId = state.length;
   switch (action.type) {
     case ActionTypes.YearSearch:
-      console.log(action)
       return {
         // year2_gteq: action.payload.year2_gteq,
         //  year2_lteq: action.payload.year2_lteq
@@ -29,7 +28,6 @@ export const YearSearchReducer = (state = initialState, action:SubSearchYearData
         checked:false
         }
     case ActionTypes.YearSearchDestroy:
-      console.log(action)
       return {
           // year2_gteq: "",
           // year2_lteq: ""

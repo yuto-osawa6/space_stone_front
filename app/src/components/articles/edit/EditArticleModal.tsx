@@ -1,15 +1,14 @@
 import { Article } from "@/interfaces/article"
 import { Button,  FormControl,  FormControlLabel,  FormHelperText,  FormLabel,  Modal, Radio, RadioGroup, Slider, TextField, Tooltip } from "@mui/material";
 import { useEffect, useMemo, useRef, useState } from "react";
-// import ReactQuill from "react-quill";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 import { execArticleProductList, execUpdateArticle } from "@/lib/api/article";
 import Select, { InputActionMeta } from 'react-select'
+import { useUser } from "@/lib/data/user/useUser";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
-
 type articleoption = {
   value:string
   label:string
@@ -22,7 +21,8 @@ type Props = {
 export const EditArticleModal:React.FC<Props> = function EditArticleModalFunc(Props){
   const handleClose = () => Props.setOpen(false)
   // ----------------------------------------------
-  const userStore = useSelector((state:RootState) => state.user)
+  const {userSwr} = useUser()
+  const userStore = userSwr
   const [value,setValue] = useState<string>(Props.article!=undefined?Props.article.content:"")
   const [validatetext,setValidatetext] = useState<string>("")
   const [text,setText] = useState<string>(Props.article!=undefined?Props.article?.title:"")
@@ -79,7 +79,6 @@ export const EditArticleModal:React.FC<Props> = function EditArticleModalFunc(Pr
 // ---------------------------------------------------------------------------
   const handleChangetext = (e: React.ChangeEvent<HTMLInputElement>) =>{
     setText(e.target.value)
-    console.log(e.target.value)
     setValidatetext("")
     setInputError(false)
   }
@@ -88,10 +87,8 @@ export const EditArticleModal:React.FC<Props> = function EditArticleModalFunc(Pr
     setErrorradio(false)
     setvalueRadio(Number(e.target.value))
   }
-  // const animatedComponents = makeAnimated();
   const [product,setProduct] = useState<articleoption[]>([])
   const [productidList, setproductidList] = useState<articleoption[]>([])
-  // const [productidIdList, setproductIdList] = useState<string[]>([])
   const [pokemon, setPokemons] = useState("")
   useEffect(()=>{
     productlist()
@@ -99,34 +96,28 @@ export const EditArticleModal:React.FC<Props> = function EditArticleModalFunc(Pr
   const productlist = async() => {
     const res = await execArticleProductList()
     if (res.status == 200){
-      console.log(res)
       setProduct(res.data.products)
     }else{
     }
   }
   // ------------------------------------------------------
   const selectChangehandle = (value:any) => {
-    console.log(value)
     setproductidList(value)
   }
   // ---------------------------
   const [isMenuOpen,setIsMenuOpen] = useState<boolean>(false)
   const handleInputChange = (newValue: string, actionMeta: InputActionMeta) => {
-    console.log(newValue,actionMeta)
     if(newValue==""){
       setIsMenuOpen(false)
     }else if(newValue.length>1){
       setIsMenuOpen(true)
     }
   }
-  console.log(Props)
-
   // setup ini select---------------------
   useEffect(()=>{
     if(Props.article==undefined)return
     const copy = productidList.slice()
     Props.article.articleProducts.map((i,index)=>copy[index]={value:String(i.id),label:i.title})
-    console.log(copy)
     setproductidList(copy)
   },[])
 
@@ -161,7 +152,6 @@ export const EditArticleModal:React.FC<Props> = function EditArticleModalFunc(Pr
             id="outlined-basic"
             label="Title"
             variant="outlined"
-            // helperText={inputRef?.current?.validationMessage}
             helperText={validatetext}
             onChange={handleChangetext}
           />

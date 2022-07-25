@@ -1,9 +1,9 @@
 import { Article } from "@/interfaces/article"
 import React, { memo, useEffect, useMemo, useRef, useState } from "react"
-// import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { SelectiongArticleDataAction } from "@/store/article/actions"
+import { useRouter } from "next/router";
+import { useLocale } from "@/lib/ini/local/local";
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -38,12 +38,15 @@ export const ArticlesLists2:React.FC<Props> = memo(function ArticlesLists2Func(P
 
   const quillref = useRef<any>(null!)
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
-
-  const movementHandler = () => {
-    dispatch(SelectiongArticleDataAction(Props.article))
-    // navigate(`/articles/${Props.article.id}`)
+  const options = {
+    scroll:false
   }
+  const router = useRouter()
+  const movementHandler = () => {
+    // dispatch(SelectiongArticleDataAction(Props.article))
+    router.push(`/articles/${Props.article.id}`,undefined,options)
+  }
+  const {t} = useLocale()
   return(
     <React.Fragment>
       <div className = "ArticleListItem"
@@ -56,12 +59,12 @@ export const ArticlesLists2:React.FC<Props> = memo(function ArticlesLists2Func(P
           <div className = "ArticleListTitleAssociateTitle">
             {Props.article.articleProducts.length > 0&&(
               <>
-                *関連のあるタイトル
+                {t.Component.Article.RelationTitle}
               </>
             )}
           </div>
-         <ul>
-          {Props.article.articleProducts.map((item)=>{
+        <ul>
+          {Props.article.articleProducts.map((item:any)=>{
             return(
                 <li
                 key={item.id}
@@ -71,7 +74,7 @@ export const ArticlesLists2:React.FC<Props> = memo(function ArticlesLists2Func(P
           </ul>  
         </div>
         <div className = "ArticleListContent">
-         <ReactQuill
+        <ReactQuill
             className = "reviews_modal_quill"     
             ref={quillref}
             modules={modules} value={Props.article.content} 

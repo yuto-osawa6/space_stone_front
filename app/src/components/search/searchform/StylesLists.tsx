@@ -5,11 +5,9 @@ import { RootState } from "@/store";
 import { pussingtodoStylesDataAction } from "@/store/todostyles/actions";
 import { StylesList } from "./StylesList";
 
-// }
 interface Props {
   children:ReactChild
 }
-
 type styleslists={
   id:number
   name:string
@@ -18,18 +16,14 @@ type styleslists={
 export const StylesLists:React.FC = function StylesListsFunc(){
   const stylesListsStore = useSelector((state: RootState) => state.styles);
   const stylesselected = useSelector((state: RootState) => state.todostyles);
-
   const dispatch = useDispatch();
-
   const selected = (id:number):boolean => {
     const select = stylesselected.styles_id_eq===String(id)?true:false
     return select
   }
-
   const handleClick = () => {
     dispatch(pussingtodoStylesDataAction(String("")));
   }
-
   const changeingcontens = () => {
     if(stylesselected.styles_id_eq===""){
     return(
@@ -55,9 +49,7 @@ export const StylesLists:React.FC = function StylesListsFunc(){
     <>
     <div className = "styleLists">
       {changeingcontens()}
-      {/* {updatinglist()} */}
         {stylesListsStore.styles.map((item:styleslists)=>{
-        {console.log(item)}
           return(
             <StylesList
             key = {item.id}

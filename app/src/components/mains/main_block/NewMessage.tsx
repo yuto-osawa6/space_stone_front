@@ -2,10 +2,9 @@ import { news } from "@/interfaces/main"
 import { execNewMessageHandler } from "@/lib/api/mains/main_blocks";
 import React, { memo, useEffect, useState } from "react";
 import { GridNewMessage } from "./newmessage/GridNewMessage";
-// import { GridNewMessage } from "./GridNewMessage"
 
 type Props = {
-  // news : news[]
+  setl2: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
   let isMounted2 = true;
@@ -15,7 +14,6 @@ export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
   const [decisionnews,setDecisionnews] = useState<news[]>([]);
   const setupHandler = async() => {
     const res = await execNewMessageHandler(active,current)
-    console.log(res)
     if (res.status === 200){
       if(isMounted2){
         setDecisionnews(res.data.decisionNews)
@@ -23,6 +21,7 @@ export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
       }
     }else{
     }
+    Props.setl2(true)
   }
   useEffect(()=>{
     const timer = setTimeout(() => {
@@ -39,7 +38,7 @@ export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
   }
   //  page-------------------------------------------------------------
   const GfNavigation = (Props:number) => {
-    const limit = Math.ceil(Props / 2)
+    const limit = Math.ceil(Props / 10)
     currentPage(current,limit)
     SetPage(limit)
   }
@@ -73,7 +72,7 @@ export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
 
   return(
     <>
-       <div className = "NewMessageContainer">
+      <div className = "NewMessageContainer">
         <div className = "NewMessageContainerRow ShareMiddleContainerTitleRow">
           <div className = "NewMessageContainerTitle share_middle_container_title">
             おしらせ
@@ -100,11 +99,11 @@ export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
         <div className = "NewMessageContainerGrid">
           {decisionnews.map((item)=>{
             return(
-               <GridNewMessage
+                <GridNewMessage
                   key={item.id}
                   news = {item}
                   tagsactive={active}
-               />
+                />
               )
             })}
         </div>
@@ -114,7 +113,6 @@ export const NewMessage:React.FC<Props> = memo(function NewMessageFunc(Props){
             onClick={currentFirstHandler}
             className={current==1?"activeCurrent":""}
             >1</li>
-           
             {page>5&&current!=1&&(
               <li
               onClick={currentPrevHandler}

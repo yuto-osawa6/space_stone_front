@@ -1,11 +1,10 @@
+import { useWindowDimensions } from "@/hook/useWindowResize";
 import { product } from "@/interfaces/product"
-import Image from "next/image";
+import { actionSettingProductData2 } from "@/store/product/actions";
 import Router from "next/router";
 import { memo, useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { CSSTransition } from "react-transition-group";
-
-
 
 type Props = {
   product : product
@@ -42,59 +41,56 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
   const [lefts,setLefts] = useState<number>(0)
   const [rights,setRights] = useState<number>(0)
   // 平均スコア-----------------------------------------------------------
-  // const [averageScore,setAverageScore] = useState<number | undefined>(Props.avgScore!=undefined?Number(Props.avgScore):undefined)
   const [scoreColor,setScoreColor] = useState<Color>({color:""})
   useEffect(()=>{
     if(Props.avgScore==undefined)return
     const averageScore = Number(Props.avgScore)
-    if(averageScore<=10){
+    if(averageScore<10){
       setScoreColor({color:'rgba(255, 0, 0, 1)'})
-    }else if(10<averageScore&&averageScore<=20){
+    }else if(10<=averageScore&&averageScore<20){
       setScoreColor({color:'rgba(255, 82, 0, 1)'})
-    }else if(20<averageScore&&averageScore<=30){
+    }else if(20<=averageScore&&averageScore<30){
       setScoreColor({color:'rgba(255, 177, 0, 1)'})
-    }else if(30<averageScore&&averageScore<=40){
+    }else if(30<=averageScore&&averageScore<40){
       setScoreColor({color:'rgb(239 222 24)'})
-    }else if(40<averageScore&&averageScore<=50){
+    }else if(40<=averageScore&&averageScore<50){
       setScoreColor({color:'rgb(161 217 28)'})
-    }else if(50<averageScore&&averageScore<=60){
+    }else if(50<=averageScore&&averageScore<60){
       setScoreColor({color:'rgb(15 221 1)'})
-    }else if(60<averageScore&&averageScore<=70){
+    }else if(60<=averageScore&&averageScore<70){
       setScoreColor({color:'rgb(10 241 177)'})
-    }else if(70<averageScore&&averageScore<=80){
+    }else if(70<=averageScore&&averageScore<80){
       setScoreColor({color:'rgba(0, 161, 255, 1)'})
-    }else if(80<averageScore&&averageScore<=90){
+    }else if(80<=averageScore&&averageScore<90){
       setScoreColor({color:'rgba(0, 55, 255, 1)'})
-    }else if(90<averageScore&&averageScore<=100){
+    }else if(90<=averageScore&&averageScore<100){
       setScoreColor({color:'rgba(255, 0, 235, 1)'})
     }
   },[Props.avgScore])
-  // const navigate = useNavigate();
   const elm = useRef<HTMLDivElement>(null!);
-   useEffect(()=>{
+  useEffect(()=>{
     const { left, top, right, bottom } = elm.current.getBoundingClientRect();
-    setLefts(left)
-    setRights(right)
     Props.push(left)
-    // const img = new Image()
-    // console.log(Props.product.imageUrl)
-    // img.src = Props.product.imageUrl
-    // img.onload = () => {
-    //   setImageLoding(true)
-    // };
     colorNumberHandler()
     handleSetupYearSeason()
   },[])
   const dispatch = useDispatch()
+  const windowSize = useWindowDimensions()
   const navigateProductShow =() =>{
-    // dispatch(actionSettingProductData2(Props.product));
+    dispatch(actionSettingProductData2(Props.product));
     Router.push(`/title/${Props.product.id}`)
   }
   const handlehoverLeave = () => {
-    lefts === Props.left_grid&&rights===Props.right?setIshover2(false):setIshover(false)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    if(windowSize.width >= 768){
+    left === Props.left_grid&&right===Props.right?setIshover2(false):setIshover(false)
+    }
   }
   const handlehoverEnter = () => {
-    lefts === Props.left_grid&&rights===Props.right?setIshover2(true):setIshover(true)
+    const { left, top, right, bottom } = elm.current.getBoundingClientRect();
+    if(windowSize.width >= 768){
+    left === Props.left_grid&&right===Props.right?setIshover2(true):setIshover(true)
+    }
   };
 
   // year season
@@ -124,7 +120,8 @@ export const GridProductItem1:React.FC<Props> = memo(function GridProductItem1Fu
           {/* <CSSTransition in={imageloding}  nodeRef={nodeRef} timeout={300} classNames="my-node"  unmountOnExit> */}
           {/* {<img src = {Props.product.imageUrl} ref={nodeRef}/>} */}
           {Props.product.imageUrl!=undefined&&(
-          <Image src={Props.product.imageUrl} layout='fill' priority={true}/>
+          <img src = {Props.product.imageUrl} ref={nodeRef}/>
+          // <Image src={Props.product.imageUrl} layout='fill' priority={true}/>
           )}
           {/* </CSSTransition> */}
         </div>

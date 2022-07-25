@@ -1,5 +1,3 @@
-// import { useNavigate } from "react-router-dom"
-
 import { useRouter } from "next/router"
 
 type Props = {
@@ -11,11 +9,8 @@ type User = {
   image:string
 }
 
-// const dammy = [{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""},{id:2,nickname:"aa",image:""}]
-
 export const UserSearchItem:React.FC<Props> = function UserSearchItemFunc(Props){
   const router = useRouter()
-
   const handleNavigate = () => {
     router.push(`/users/${Props.user.id}`)
   }

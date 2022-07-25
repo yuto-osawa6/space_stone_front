@@ -4,16 +4,9 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // pluginは、あとから
 import { product } from "@/interfaces/product";
 import { OpenContext } from "@/contexttype/contexttype";
 import { useEffect, useState } from "react";
-// import { CalendarEventsModal } from "./CalenderEventsModal";
 import listPlugin from '@fullcalendar/list';
 import { execCalendarHandler } from "@/lib/api/mains/main_blocks";
 import { CalendarEventsModal } from "./calender/CalenderEventsModal";
-
-
-
-// const FullCalendar = dynamic(() => import("@fullcalendar/react"), { ssr: false });
-
-
 type Props = {
   calendarData: {
     deliveryStart: product[];
@@ -34,7 +27,6 @@ export const CalendarProduct:React.FC<Props> = function CalendarProductFunc(Prop
   // const setupHandler = async() => {
   //   const res = await execCalendarHandler()
   //   if(res.status === 200){
-  //     console.log(res)
   //     // setEndProduct(res.data.deliveryEnd)
   //     if(isMounted2){
   //       setStartProduct(res.data.deliveryStart)
@@ -85,7 +77,6 @@ export const CalendarProduct:React.FC<Props> = function CalendarProductFunc(Prop
 
   const today_year = new Date().getFullYear()
   // const mouseEnterHandler = (arg: EventHoveringArg) => {
-  //   console.log(arg.event)
   // }
   return(
     <>

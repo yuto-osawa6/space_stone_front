@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom'
 import { Header } from '@/components/applications/header/Header';
-import { Ota2 } from '@/components/ota/Ota';
 import axios from 'axios';
 import { products_reds2 } from '@/lib/api/products_red';
 
@@ -11,7 +10,6 @@ import {render, fireEvent, waitFor, screen, cleanup} from '@testing-library/reac
 import '@testing-library/jest-dom'
 import { handlers } from '@/mocks/handlers';
 import { server } from '@/mocks/server';
-import Home2 from '@/pages/ota/la';
 import { mockProductReds } from '@/mocks/api/product_red';
 
 import { getPage } from 'next-page-tester';
@@ -25,6 +23,17 @@ import { testProductData } from '@/mocks/data/d_product'
 import { Provider } from 'react-redux';
 import store from '@/store';
 
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
 // horyu-1 window is not defined が解決できないため保留
 
 // import { Otare2 } from "@/pages/ota/la/index"

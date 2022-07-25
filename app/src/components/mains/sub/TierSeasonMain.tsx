@@ -29,9 +29,9 @@ type yearTier = {
   avg: avg
   id: number
   kisetsu: kisetsu
-  // products: tierProduct[]
   products: product[]
   year: year
+  // aliceT:number
 }
 export const TierSeasonMain:React.FC = function TierSeasonMainFunc(){
   const [updateTier,setUpdateTier] = useState<boolean>(false)
@@ -39,74 +39,61 @@ export const TierSeasonMain:React.FC = function TierSeasonMainFunc(){
   const handleFirst = async() => {
     const res = await execTierSeasonMain(current)
     if(res.status == 200){
-      console.log(res)
       setYearTiers(res.data.tierMain)
       GfNavigation(res.data.tierGroupLength)
     }else{
     }
   }
-
-  // useEffect(()=>{
-  //   handleFirst()
-  // },[])
-  console.log(yearTiers)
-
   // ---------------------page
-  // const [active, setActive] = useState<number>(0);
   const [page,SetPage] = useState<number>(1)
   const [current,SetCurrent] = useState<number>(1)
-//  page
-
-useEffect(()=>{
+  //  page
+  useEffect(()=>{
   handleFirst()
-},[current])
+  },[current])
 
-useEffect(()=>{
+  useEffect(()=>{
   if(updateTier==false)return
   setUpdateTier(false)
   handleFirst()
-},[updateTier])
-// simple handle
+  },[updateTier])
+  // simple handle
 
-const GfNavigation = (Props:number) => {
+  const GfNavigation = (Props:number) => {
   const limit = Math.ceil(Props / 1)
-  // console.log(limit)
   currentPage(current,limit)
   SetPage(limit)
-}
+  }
+  const [pageNaviGation,setPageNaviGation] = useState<number[]>([])
+  const currentPage = (i:number,c:number) => {
 
-// 
-const [pageNaviGation,setPageNaviGation] = useState<number[]>([])
+  if (c >= 6){
 
-const currentPage = (i:number,c:number) => {
-// console.log(i,c)
-if (c >= 6){
+  if(i <= 3){
+    setPageNaviGation([1,2,3,4,5,6])
+  }else if(i == c-2){
+    setPageNaviGation([i-3,i-2,i-1,i,i+1,i+2])
+  }else if(i == c-1){
+    setPageNaviGation([i-4,i-3,i-2,i-1,i,i+1])
+  }else if(i == c){
+    setPageNaviGation([i-5,i-4,i-3,i-2,i-1,i])
+  }else{
+    setPageNaviGation([i-2,i-1,i,i+1,i+2])
+  }
+  }else{
+  const array:number[] = []
+  for (let step = 1; step <= c; step++) {
+    array.push(step)
+  }
+  setPageNaviGation(array)
+  }
+  }
 
-if(i <= 3){
-  setPageNaviGation([1,2,3,4,5,6])
-}else if(i == c-2){
-  setPageNaviGation([i-3,i-2,i-1,i,i+1,i+2])
-}else if(i == c-1){
-  setPageNaviGation([i-4,i-3,i-2,i-1,i,i+1])
-}else if(i == c){
-  setPageNaviGation([i-5,i-4,i-3,i-2,i-1,i])
-}else{
-  setPageNaviGation([i-2,i-1,i,i+1,i+2])
-}
-}else{
-const array:number[] = []
-for (let step = 1; step <= c; step++) {
-  array.push(step)
-}
-setPageNaviGation(array)
-}
-}
-
-const currentSetHandler = (item:number) => {SetCurrent(item) }
-const currentPrevHandler = () => SetCurrent(current-1)
-const currentNextHandler = () => SetCurrent(current+1)
-const currentFirstHandler = () => SetCurrent(1)
-const currentMaxHandler = () => SetCurrent(page)
+  const currentSetHandler = (item:number) => {SetCurrent(item) }
+  const currentPrevHandler = () => SetCurrent(current-1)
+  const currentNextHandler = () => SetCurrent(current+1)
+  const currentFirstHandler = () => SetCurrent(1)
+  const currentMaxHandler = () => SetCurrent(page)
 
   return(
     <>
@@ -135,12 +122,10 @@ const currentMaxHandler = () => SetCurrent(page)
 
           <div className = "ArticlesContainerPage">
             <ul>
-           
             <li
             onClick={currentFirstHandler}
             className={current==1?"activeCurrent":""}
             >1</li>
-           
             {page>5&&current!=1&&(
               <li
               onClick={currentPrevHandler}
@@ -148,23 +133,21 @@ const currentMaxHandler = () => SetCurrent(page)
             )}
             {pageNaviGation.map((item,index)=>
             {
-              // console.log(item!=1&&(item!=page||page!=1))
               return(
                 
                   <React.Fragment
                     key={index}
                     >
                   {item!=1&&item!=page&&(
-                     <li
+                    <li
                     key={item}
                     onClick={()=>currentSetHandler(item)}
                     className={current==item?"activeCurrent":""}
-                     >{item}</li>
+                    >{item}</li>
                   )}    
                   </React.Fragment>     
       
               )
-             
             })}
             {page>5&&current!=page&&(
               <li
@@ -173,17 +156,13 @@ const currentMaxHandler = () => SetCurrent(page)
             )}
             {page>1&&(
             <li
-             onClick={currentMaxHandler}
-             className={current==page?"activeCurrent":""}
+            onClick={currentMaxHandler}
+            className={current==page?"activeCurrent":""}
             >{page}</li>
             )}
             </ul>
           </div>
-
-
       </div>
-
-      {/*  */}
     </>
   )
 }

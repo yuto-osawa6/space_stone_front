@@ -1,15 +1,17 @@
 .ArticlesContainerProductSearch{
   max-width: 300px;
+  width: 80%;
   background-color: white;
   padding: 5px 10px 5px 10px;
   // box-shadow: 1px 2px 4px 1px rgb(0 0 0 / 5%);
   // margin-bottom: 20px;
   box-shadow: $color-v1-shadow-a;
-  margin-left: 10px;
+  // margin-left: 10px;
   display: grid;
   border-radius: 5px;
   grid-template-columns: 20px 1fr 15px;
   input{
+    width: 100%;
     font-size: 0.8rem;
     outline: none;
   }
@@ -50,7 +52,9 @@
         }
         cursor: pointer;
         &:hover{
+          @include mq(md){
           color:#ff3073;
+          }
         }
       }
     }
@@ -60,30 +64,32 @@
   grid-column: 1/5;
   .header-search-contents__boxes__store__re{
     .lefttitleSearchingfor{
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
     .lefttitleSearchingforTitle{
     // box-shadow: $color-v1-shadow-a;
-    margin-top: 10px;
+    margin-top: 20px;
     // margin-left: 10px;
     width: fit-content;
-    padding: 5px;
+    // padding: 5px;
     border-radius: 5px;
     }
     .lefttitleSearchingforClear{
       // box-shadow: $color-v1-shadow-a;
-      margin-top: 10px;
+      margin-top: 20px;
       // margin-left: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       &:hover{
+        @include mq(md){
         color:#ff3073;
+        }
       }
     }
   }
@@ -191,3 +197,16 @@
 //   // background-color: $color-v1-d;
 //   background-color: #1a252f;
 // }
+
+.errorNextPage{
+  margin: 20px;
+}
+
+.ovevierReactQuill{
+  .ql-align-center{
+    text-align: left!important;
+    @include mq(tb){
+      text-align:center!important;
+    }
+  }
+}

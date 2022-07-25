@@ -1,9 +1,7 @@
 import { review } from "@/interfaces/review"
 import { useRouter } from "next/router";
 import React, { memo, useEffect, useMemo, useRef, useState } from "react"
-// import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -38,12 +36,14 @@ export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props
 
   const quillref = useRef<any>(null!)
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
-  
+  const options = {
+    scroll:false
+  }
 
   const movementHandler = () => {
-    router.push(`/threads/${Props.review.id}/title/${Props.review.reviewProduct.id}`)
+    router.push(`/threads/${Props.review.id}/title/${Props.review.reviewProduct.id}`,undefined,options)
   }
+  // console.log(Props)
 
   return(
     <>
@@ -61,12 +61,13 @@ export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props
                 {Props.review.reviewProduct.title}
                 </div>
                 <div className = {`ReviewListItemTopCenterUser ColorV10${colornumber}a`}>
-                  {Props.review.reviewUser.nickname}さんによる投稿
+                  {Props.review.title}
+                  {/* {Props.review.reviewUser.nickname} */}
+                  {/* さんによる投稿 */}
                 </div>
               </div>
             </div>
-          </div>
-          <div className = "ReviewListItemMain">
+            <div className = "ReviewListItemMain">
             <div className = {`RevieweListItemMainTop`}>
               <div className = "RevieweListItemMainTopTitle">       
               </div>    
@@ -81,6 +82,22 @@ export const ThreadsLists:React.FC<Props> = memo(function ThreadsListsFunc(Props
               </div>
             </div>
           </div>
+          </div>
+          {/* <div className = "ReviewListItemMain">
+            <div className = {`RevieweListItemMainTop`}>
+              <div className = "RevieweListItemMainTopTitle">       
+              </div>    
+              <div className = "ReviewListItemMainTopContent">
+              <ReactQuill
+              className = "reviews_modal_quill"     
+              ref={quillref}
+              modules={modules} value={Props.review.content} 
+              theme="bubble"
+              readOnly={true}       
+              />
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
     </>

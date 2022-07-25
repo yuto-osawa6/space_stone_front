@@ -2,7 +2,6 @@ import { OpenContext, OpenReviewContext, OpenTheredContext, Productshowcontext }
 import React, { memo, useContext, useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux";
 import { updateReviewAction } from "@/store/reviewUpdate/actions";
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,24 +12,11 @@ import {
   Title,
   Tooltip,
   Legend,
-  // Scale,
   
 } from 'chart.js';
 import { Bar ,Line} from 'react-chartjs-2';
-// import { ReviewModal } from "./ReviewModal";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-// import { UserModalSign } from "component/aplication/lefts/UserModalSign";
-// import { TheredModal } from "./TheredModal";
-// import { Outlet, useNavigate } from "react-router-dom";
-// import { ShowCloudsItems } from "./top/ShowCloudsItems";
-// import { ShowCloudsItems2 } from "./top/ShowCloudsItems2";
-// import { EmotionItem } from "./top/EmotionItem";
-// import { EditReviewModal } from "./edit/EditReviewModal";
-// import { ChatRoomInProductShow } from "./chat/ChatRoomInProductShow";
-// import { ScoresListInProductShow } from "./top/ScoresListInProductShow";
-// import { EmotionUserList } from "./user/EmotionUserList";
-// import { ScoreUserList } from "./user/ScoreUserList";
 import { execSecondUpdateReview, execSecondUpdateThread } from "@/lib/api/products";
 import { updateThreadAction } from "@/store/updateThread/actions";
 import { useRouter } from "next/router";
@@ -47,6 +33,7 @@ import { ScoreUserList } from "../user/ScoreUserList";
 import { ChatRoomInProductShow } from "../chat/ChatRoomInProductShow";
 import { useUser } from "@/lib/data/user/useUser";
 import { NextSeo } from "next-seo";
+import { useWindowDimensions } from "@/hook/useWindowResize";
 
 
 ChartJS.register(
@@ -72,7 +59,6 @@ export const options = {
       text: 'Score',
     },
     tooltip: {
-      // enabled: false,
       intersect:false,
     }
   },
@@ -86,7 +72,6 @@ export const options2 = {
       display: false,
     },
     filler: {
-      // propagate: true
     },
     title: {
       display: true,
@@ -121,7 +106,6 @@ type Props = {
 
 export const Top:React.FC<Props> = memo(function TopFunc(Props){
   const props = useContext(Productshowcontext)
-  // const user = useSelector((state: RootState) => state.user);
   const { userSwr,error } = useUser()
   const [open,setOpen] = useState<boolean>(false)
   // review
@@ -132,7 +116,6 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
   const [openthered,setOpenthered] = useState<boolean>(false)
   const modalopenJugdethered = () => setOpenthered(true)
   const [content,setContent] = useState<string>("")
-  // const navigate = useNavigate();
   const router = useRouter()
 
   const data = {
@@ -211,7 +194,6 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
   const handleSecondUpdateReview = async() => {
     if(props.product==undefined)return
     const res = await execSecondUpdateReview(props.product?.id,userSwr.user.id)
-    console.log(res)
     if(res.status==200){
       props.setUserReviews(res.data.userReview)
       props.setEmotionLists(res.data.emotionLists)
@@ -230,25 +212,27 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
   const handleSecondUpdateThread = async() => {
     if(props.product==undefined)return
     const res = await execSecondUpdateThread(props.product?.id)
-    console.log(res)
     if(res.status==200){
       props.setProductThreads(res.data.productThreads)
     }else{
 
     }
   }
-//  console.log("a")
+  // const [windowWidth,setWindowWidth] = useState<number>(0)
+  // const a = useWindowDimensions()
+  // useEffect(()=>{
+  //   let vw = document.body.clientWidth
+  //   setWindowWidth(vw)
+  // },[a])
   return(
     <>
-      {/* <NextSeo
-      title={`${props.product?.title} - SpaceTone`}
-      //  description={Props.data.products.}
-      >
-      </NextSeo> */}
       <div className = {`show_top_contens`}> 
-      <div className = {`show_top_dummy p_contens_grid_color${props.switchnumber}`}>
+      <div className = {`show_top_dummy p_contens_grid_color${props.switchnumber}`}
+      // style={{width:windowWidth}}
+      >
       </div>
       <div className = "show_top_contens_grid">
+      {props.product&&props.product.episords.length>1&&(
       <div className = "show_contens_08_top share_container02">
         <div className = "show_08 show_episord_08 share_product_show_absolute">
           <div className = "show_08_title share_title01"> 
@@ -260,7 +244,7 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
                 <React.Fragment key={item.episord}>
                 {item.episord!=0&&(  
                 <li 
-                className = {`p_contens_grid_color${props.switchnumber}border`}
+                // className = {`p_contens_grid_color${props.switchnumber}border`}
                 style={{
                   width:"fit-content"
                 }}
@@ -269,18 +253,11 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
                 </React.Fragment>
               )
             })} 
-             {/* <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li> */}
           </ul>
         </div>
       </div>
-       <div className = "show_contens_06_top share_container02">
+      )}
+      <div className = "show_contens_06_top share_container02">
         <div className = "show_06 show_episord_08 share_product_show_absolute">
           <div className = "show_06_title share_title01"> 
             キャラクター
@@ -289,22 +266,13 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
             {props.product?.productCharacter.map((item)=>{
               return(
                 <li 
-                className = {`p_contens_grid_color${props.switchnumber}border`}
+                // className = {`p_contens_grid_color${props.switchnumber}border`}
                 style={{
-                  // boxShadow: "0px -6px 5px -5px #92FCFC inset,0px 8px 4px -8px #92FCFC"
                   width:"fit-content"
                 }}
                 key={item.id}>{item.castName.name} {item.name}</li>
               )
             })}
-            {/* <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li> */}
           </ul>
           
           
@@ -319,26 +287,14 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
             {props.product?.productStaff.map((item)=>{
               return(
                 <li 
-                className = {`p_contens_grid_color${props.switchnumber}border`}
+                // className = {`p_contens_grid_color${props.switchnumber}border`}
                 style={{
-                  // boxShadow: "0px -6px 5px -5px #92FCFC inset,0px 8px 4px -8px #92FCFC"
                   width:"fit-content"
                 }}
                 key={item.id}>{item.staffName.name} {item.name}</li>
               )
             })}
-             {/* <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li>
-            <li>character01</li> */}
-       
           </ul>
-          
-          
         </div>
       </div>
       
@@ -349,8 +305,8 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
             スコア
           </div>
           <Bar data={data}
-           options={options}
-           />
+            options={options}
+          />
           
           
         </div>
@@ -363,8 +319,7 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
           </div>
           <Line data={data2}
           options={options2}
-          //  options={options}
-           />
+          />
           
           
         </div>
@@ -378,22 +333,18 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
               レビュー
             </div>
             {userSwr.login?
-             <>
-             
-             {/* doneyet-1下(undefinedの管理方法) */}
-             <div className=""
-             style={{display:"flex",gap:"10px"}}
-             >
-            {props.product!=undefined&&props.userReviews!=undefined&&((props.product.episords.length)-props.userReviews.length)>0&&(
-              <div className = "show_09_review_write"
-              style={{cursor:"pointer"}}
-              onClick={modalopenJugdereview}
-              > 
+            <>
+              <div className=""
+              style={{display:"flex",gap:"10px"}}
+              >
+              {props.product!=undefined&&props.userReviews!=undefined&&((props.product.episords.filter(i=>i.id!=null).length)-props.userReviews.length)>=0&&(
+                <div className = "show_09_review_write"
+                style={{cursor:"pointer"}}
+                onClick={modalopenJugdereview}
+                > 
                 レビューを作成
-              </div>
-            )}
-              
-
+                </div>
+              )}
               {openreview&&(
                 <OpenReviewContext.Provider value={{ openreview, setOpenreview}}>
                   
@@ -420,7 +371,6 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
               )}
 
                 {editOpenModal&&(
-                // <OpenReviewContext.Provider value={{ openreview, setOpenreview}}>  
                   <EditReviewModal
                   editOpenModal={editOpenModal}
                   setEditOpenModal={setEditOpenModal}
@@ -432,7 +382,6 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
                   setEmotionLists = {props.setEmotionLists}
                   setProductReviews = {props.setProductReviews}
                   />
-                // </OpenReviewContext.Provider>
                 )}
                 </div>
             </>
@@ -441,24 +390,19 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
                 <div className = "show_09_review_write"
                 onClick={modalopenJugdetop}
                 style={{cursor:"pointer"}}
-
                 > 
                   レビューを作成
                 </div>
             
                 <>
-                {open&&(
+                {/* {open&&(
                     <OpenContext.Provider value={{ open, setOpen }}>
                       <UserModalSign/>
                     </OpenContext.Provider>
-                )}
+                )} */}
               </>
-           
             </>
-          
           }
-
-
             <div className = "show_09_review_contents"
             style={{wordBreak: "break-word"}}
             > 
@@ -509,11 +453,11 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
                 スレッドを作成
               </div>
                 <>
-                {open&&(
+                {/* {open&&(
                     <OpenContext.Provider value={{ open, setOpen }}>
                       <UserModalSign/>
                     </OpenContext.Provider>
-                )}
+                )} */}
               </>
             </>
             }
@@ -591,18 +535,31 @@ export const Top:React.FC<Props> = memo(function TopFunc(Props){
       <ScoreUserList
         userScore = {props.userScore}
         nickname = {userSwr.user.nickname}
+        // 追加
+        scoreid = {props.scoreid}
+        product = {props.product}
+        setScore = { props.setScore}
+        setProductScores = {props.setProductScores}
+        setScoreaverage= {props.setScoreaverage}
+        setStats = {props.setStats}
+        setUserScore = {props.setUserScore}
+        
       />
       )}
-      {props.product!=undefined&&(
+      {/* {props.product!=undefined&&(
       <ChatRoomInProductShow
       product={props.product}
       Channel = {props.Channel}
       chatList = {props.chatList}
       setChatList = {props.setChatList}
       />
-      )}  
+      )}   */}
+      {open&&(
+        <OpenContext.Provider value={{ open, setOpen }}>
+          <UserModalSign/>
+        </OpenContext.Provider>
+      )}
       </div>
-      {/* <Outlet/> */}
       <div className="">
         {Props.children}
       </div>

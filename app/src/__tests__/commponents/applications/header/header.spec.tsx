@@ -5,14 +5,21 @@ import {render, fireEvent, waitFor, screen, cleanup} from '@testing-library/reac
 import { Provider } from "react-redux";
 import renderer from 'react-test-renderer';
 import { getPage } from "next-page-tester";
-import { Ota2 } from '@/components/ota/Ota';
 import "whatwg-fetch"
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
 
+jest.mock('next/config', () => () => ({ publicRuntimeConfig: { } }));
 
-// import "whatwg-fetch"
-// import { getPage } from 'next-page-tester';
-// import { initTestHelpers } from 'next-page-tester'; 
-// initTestHelpers();
 describe('Header', () => {
   beforeAll(() => server.listen())
   afterEach(() => {
@@ -30,12 +37,5 @@ describe('Header', () => {
     screen.debug();
     // await waitFor(() => screen.findByText(/Signed in as/))
     expect(container).toMatchSnapshot()
-
-   
   });
-  // test('snapshot', async() => {
-  //   const { container } = render(<Ota2/>)
-  //   // await waitFor(() => screen.findByText(/Signed in as/))
-  //   expect(container).toMatchSnapshot()
-  // });
 });

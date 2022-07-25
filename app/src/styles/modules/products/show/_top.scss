@@ -6,6 +6,7 @@
     opacity: 0.5;
     position: absolute;
     width: 100vw;
+    // width: 10;
     // background-color: whitesmoke;
     height: 100%;
     margin: 0 calc(50% - 50vw);
@@ -14,7 +15,7 @@
   .show_top_contens_grid{
     // opacity: 0.1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     /* margin: 20px; */
     padding: 20px;
     grid-gap: 20px;
@@ -75,25 +76,36 @@
   padding:20px;
   background-color: white;
   border-radius: 5px;
-  p{
+  .ql-editor{
     // border-bottom: 1px dotted #dadada;
-    background-image: linear-gradient(180deg, #ccc 1px, transparent 1px);
-    background-size: 100% 1.8em;
-    line-height: 1.8em;
-    padding-bottom: 1px;
-    background-color: #fff;
-    // background-repeat: space;
+    // background-image: linear-gradient(180deg, #ccc 1px, transparent 1px);
+    // background-size: 100% 1.8em;
+    line-height: 1.7em;
+    padding: 0px 0px 1px 0px !important;
+  //   background-color: #fff;
 
-    background-image: linear-gradient(90deg, transparent 0%, transparent 50%, #fff 50%, #fff 100%), /* 点線1の色 */
-                    linear-gradient(180deg, rgb(218, 224, 250) 1px, transparent 1px); /* 点線2の色と太さ */
-  background-size: 8px 100%, /* 点線1のサイズ */
-                   100% 1.8em;
-    // text-decoration: dotted;
-    // text-decoration-line: underline;
-    // text-decoration-color: gainsboro;
-    // text-underline-offset: 3px;
-    // text-decoration: wavy;
-    // text-decoration-line: underline;
-    // text-decoration-color: cadetblue;
+  //   background-image: linear-gradient(90deg, transparent 0%, transparent 50%, #fff 50%, #fff 100%), /* 点線1の色 */
+  //                   linear-gradient(180deg, rgb(218, 224, 250) 1px, transparent 1px); /* 点線2の色と太さ */
+  // background-size: 8px 100%, /* 点線1のサイズ */
+  //                 100% 1.8em;
+  }
+}
+
+.other_service{
+
+  li{
+    &:hover{
+      @include mq(md){
+      color: #ff3073;
+      }
+    }
+  }
+}
+
+.show_03_list_box{
+  li{
+    padding: 5px;
+    background-color: #f6f6f9;
+    border-radius: 5px;
   }
 }

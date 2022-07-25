@@ -1,24 +1,16 @@
 
-// import { UserModalSign } from "@/component/aplication/lefts/UserModalSign"
-// import { OpenContext } from "@/contexttype/contexttype"
 import { GridProductItem1 } from "@/components/share/component/GridProductItem1"
 import { product } from "@/interfaces/product"
 import { execGetUserTier, execPickUpMainHandler, execUpdateTierList } from "@/lib/api/mains/main_blocks"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { IoChevronDownOutline } from "react-icons/io5"
-// import { DndProvider } from "react-dnd"
-// import { HTML5Backend } from "react-dnd-html5-backend"
 import { MdKeyboardArrowDown } from "react-icons/md"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { NextSeasonAnimeTier } from "./NextSeasonAnimeTier"
-// import { GridProducts2 } from "./GridProducts2"
-// import { CreateTier } from "./tier/CreateTier"
-// import { ThisMonthTierList } from "./tier/thismonth/ThisMonthTierList"
-// import { UpdateTier } from "./tier/UpdateTier"
+
 
 type Props =  {
-  // products:product[]
   data:{
     currentSeason: string
     currentSeason2: string
@@ -35,7 +27,6 @@ type tierProduct = {
 }
 type TierProductGroup = {
   group:string
-  // products:tierProduct[]
   products:product[]
 }
 type UserTier = {
@@ -108,47 +99,24 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
       setTierProductGroup(copy)
   }
   let isMounted = true
-  // const setupHandler = async() => {
-  //   const res = await execPickUpMainHandler()
-  //   if (res.status === 200){
-  //     if(isMounted == true){
-  //       console.log(res)
-  //       setProducts(res.data.products)
-  //       setProducts2(res.data.products2)
-  //       setCurrentSeason(res.data.currentSeason)
-  //       setCurrentSeason2(res.data.currentSeason2)
-  //       setUpSecond(res.data.tier,res.data.tierAverage)
-  //       setAvgScore(res.data.scores.avgScore)
-  //       setAvgScore2(res.data.scores.avgScore2)
-  //       setRight(ref.current.getBoundingClientRect().right)
-  //     }
-  //   }else{
-  //   }
-  // }
 
-  // useEffect(()=>{
-  //   const timer = setTimeout(() => {
-  //     setupHandler()
-  //   }, 300)
-  //   return () => {
-  //     clearTimeout(timer)
-  //     isMounted = false;
-  //   };
-  // },[])
+  useEffect(()=>{
+    setRight(ref.current.getBoundingClientRect().right)
+  },[])
 
   const pushgridleft = useCallback(( flg:number )=> {
     setLeft_grid([...left_grid, left_grid.push(flg)]) ;
     setMaxLeft(Math.max(...left_grid))
   },[left_grid])
    // more action handler
-   const [onMoreState,setOnMoreState] = useState<boolean>(false)
-   const moreActionHandler = () => {
-     onMoreState?setOnMoreState(false):setOnMoreState(true)
-   }
-   const [onMoreState2,setOnMoreState2] = useState<boolean>(false)
-   const moreActionHandler2 = () => {
-     onMoreState2?setOnMoreState2(false):setOnMoreState2(true)
-   }
+  const [onMoreState,setOnMoreState] = useState<boolean>(false)
+  const moreActionHandler = () => {
+    onMoreState?setOnMoreState(false):setOnMoreState(true)
+  }
+  const [onMoreState2,setOnMoreState2] = useState<boolean>(false)
+  const moreActionHandler2 = () => {
+    onMoreState2?setOnMoreState2(false):setOnMoreState2(true)
+  }
    // tier
   const [openTier,setOpenTier] = useState<boolean>(false)
   const [open,setOpen] = useState<boolean>(false)
@@ -160,7 +128,6 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
   const handleGetUserTier = async()=>{
     const res = await execGetUserTier(user.user.id,2)
     if(res.status == 200){
-      console.log(res)
       if(isMounted2){
         res.data.userTier.forEach((i:any)=>{
           const tier = i.tier
@@ -200,7 +167,6 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
   const handleUpdateTierList = async() => {
     const res = await execUpdateTierList(user.user.id,2)
     if (res.status === 200){
-      console.log(res)
       if(isMounted3){
         setUpSecond(res.data.tier,res.data.tierAverage)
         setUpdateTier(false)
@@ -223,19 +189,25 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
   }
   return(
     <>
-     <div id = "b">
+    <div className = "SeasonGrid">
+    <div id = "last-season-a"
+    style = {{
+      // backgroundColor: "aliceblue"
+    }}
+    >
     <div className = "NewNetflixContainer">
         <div className = "NewNetflixContainerRow">
           <div className = "NewNetflixContainerTitle share_middle_container_title">
             {/* doneyet-1 (前シーズンのアクセス情報が入ったら人気に変える) */}
             昨シーズンの作品 ({Props.data.currentSeason})
           </div>
-         
+        
           </div>
-        <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
-         ref={ref}
+        <div className="MeruplanetGridContainerTitles">
+        <div className = {`NewNetflixContainerGrid ${onMoreState2?"moreActiveAction":""}`}
+        ref={ref}
         >
-           {Props.data.products!=undefined&&(
+          {Props.data.products!=undefined&&(
             <>
           {Props.data.products.map((item)=>{
 
@@ -261,106 +233,25 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
           className = {onMoreState2?"addTitleOnTime":""}
           />
         </div>
+        </div>
 
       </div>
       </div>
       <NextSeasonAnimeTier
         products = {Props.data.products}
         currentSeason = {Props.data.currentSeason}
-       />
+      />
+      </div>
 
-      {/* <div className=""
-      style={{
-        fontWeight:"bold",
-        marginBottom: "10px",
-        fontSize: "1.5rem"
+
+
+
+
+      <div id = "next-season-a"
+      style = {{
+        // backgroundColor: "aliceblue"
       }}
       >
-      昨シーズンのTier
-      </div>
-      
-      <div className=""
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: "10px",
-          marginBottom: "30px"
-        }}
-      >
-      
-        {tierProductGroup.map((item,index)=>{
-          return(
-            <ThisMonthTierList
-              key={index}
-              group = {item.group}
-              products = {item.products}
-            
-            />
-            )
-        })} */}
-      
-      {/* {products!=undefined&&(
-        <>
-        {userTier.length==0&&(
-        <div className=""
-        onClick={user.login==true?handleOpenTierCreateModal:handleOpenSign}
-        style={{
-          cursor:"pointer"
-        }}
-        >
-          Tierを作成する
-        </div>
-        )}
-        {userTier.length!=0&&(
-        <div className=""
-        onClick={user.login==true?handleOpenTierUpdateModal:handleOpenSign}
-        style={{
-          cursor:"pointer"
-        }}
-        >
-          Tierを更新する
-        </div>
-        )}
-
-        {openTier&&(
-           <DndProvider backend={HTML5Backend}>
-            <CreateTier
-              products = {products}
-              season = {currentSeason}
-              open = {openTier}
-              setOpen = {setOpenTier}
-              setUpdateTier={setUpdateTier}
-            />
-          </DndProvider>
-        )}
-         {openTierUpdate&&(
-           <DndProvider backend={HTML5Backend}>
-            <UpdateTier
-              products = {products}
-              season = {currentSeason}
-              open = {openTierUpdate}
-              setOpen = {setOpenTierUpdate}
-              userTier = {userTier}
-              setUpdateTier={setUpdateTier}
-            />
-          </DndProvider>
-        )}
-        </>
-      )}
-          
-        {open&&(
-            <OpenContext.Provider value={{ open, setOpen }}>
-              <UserModalSign/>
-            </OpenContext.Provider>
-          )}
-
-         
-      </div> */}
-
-
-
-
-       <div id = "c">
       <div className = "NewNetflixContainer">
         <div className = "NewNetflixContainerRow">
           <div className = "NewNetflixContainerTitle share_middle_container_title">
@@ -368,39 +259,42 @@ export const NextSeasonAnimeInfomation:React.FC<Props> = function NextSeasonAnim
             来シーズンの作品 ({Props.data.currentSeason2})
             
           </div>
-         
+        
           </div>
-        <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
-         ref={ref}
-        >
-          {Props.data.products2!=undefined&&(
-            <>
-              {Props.data.products2.map((item)=>{
+        <div className="MeruplanetGridContainerTitles">
+          <div className = {`NewNetflixContainerGrid ${onMoreState?"moreActiveAction":""}`}
+          ref={ref}
+          >
+            {Props.data.products2!=undefined&&(
+              <>
+                {Props.data.products2.map((item)=>{
 
-                return(
-                  <GridProductItem1
-                    key={item.id}
-                    product={item}
-                    push ={ pushgridleft }
-                    left_grid = { maxleft}
-                    right = {right}
-                    avgScore = {avgScore2!=undefined?avgScore2[item.id]!=undefined?avgScore2[item.id]:undefined:undefined}
-                  />
-                )
-              })}
-            </>
-          )}
-        </div>
-        <div className = "NewNetflixContainerRowAction share_middle_container_right_text"
-        onClick={moreActionHandler}
-        >
-          もっと見る<IoChevronDownOutline
-          className = {onMoreState?"addTitleOnTime":""}
-          />
+                  return(
+                    <GridProductItem1
+                      key={item.id}
+                      product={item}
+                      push ={ pushgridleft }
+                      left_grid = { maxleft}
+                      right = {right}
+                      avgScore = {avgScore2!=undefined?avgScore2[item.id]!=undefined?avgScore2[item.id]:undefined:undefined}
+                    />
+                  )
+                })}
+              </>
+            )}
+          </div>
+          <div className = "NewNetflixContainerRowAction share_middle_container_right_text"
+          onClick={moreActionHandler}
+          >
+            もっと見る<IoChevronDownOutline
+            className = {onMoreState?"addTitleOnTime":""}
+            />
+          </div>
         </div>
 
       </div>
       </div>
+      
     </>
   )
 }

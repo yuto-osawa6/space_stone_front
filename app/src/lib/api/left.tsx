@@ -26,10 +26,8 @@ export const execLeftfetcher = async() => {
     // dispatch(actionSettingGenresData(res.data.genres));
     // dispatch(actionSettingStylesData(res.data.styles));
   }else{
-    // console.log("aaomueeeeeeeeer")
     // throw new GetError('Received get examples error');
   }
-  console.log(res)
   return res.data
 }
 

@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { deletingtodoGenresDataExceptOneAction, pussingtodoGenresDataAction } from "@/store/todogenres/actions"
 import { DeletingCastsDataAllAction } from "@/store/casts/actions"
 import { DestroyTimeSearchAction } from "@/store/during/actions"
@@ -12,6 +11,7 @@ import { deletingtodoGenresDataALLAction } from "@/store/todogenres/actions"
 import { deletingtodoStylesDataAllAction, pussingtodoStylesDataAction } from "@/store/todostyles/actions"
 import { DestroyYearSearchAction } from "@/store/year/actions"
 import { useRouter } from "next/router"
+import { useLocale } from "@/lib/ini/local/local"
 type Props =  {
   id:number
   name:string
@@ -37,11 +37,13 @@ const LeftGenre: React.FC<Props> = function LeftGenreFunc({name,count,id}){
     router.push("/search")
   }
 
+  const {t,locale} = useLocale()
+
   return(
     <li className="LeftFormatsList"
     onClick={clickHandler}
     >
-      {name}
+      {locale=="ja"?name:name}
       <span>({count})</span>
     </li>
   )

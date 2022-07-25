@@ -14,30 +14,20 @@ type year = {
 export const PublishedAll:React.FC<Props> = (Props) => {
   const season = [{k:"冬",i:5},{k:"春",i:2},{k:"夏",i:3},{k:"秋",i:4}]
   const handleClose = () => Props.setOpenPublishedAll(false)
-
   const [seasons,setSeasons] = useState<string>("")
   const handleChangeSeasons= (e:SelectChangeEvent<string>) => {
-    console.log(e)
     setSeasons(e.target.value)
   }
-
   const [years,setYears] = useState<string>("")
   const handleChangeYears= (e:SelectChangeEvent<string>) => {
-    console.log(e)
     setYears(e.target.value)
   }
-
   const handleSubmit = async(number:number) => {
-    console.log(years,seasons)
     if(years=="")return
     if(seasons=="")return
-
     const res = await execPublishedAll(number,years,seasons)
-    console.log(res)
     if(res.status === 200){
-      
     }else{
-
     }
   }
   return(
@@ -54,7 +44,6 @@ export const PublishedAll:React.FC<Props> = (Props) => {
             <FormControl
               style={{
                 width:"200px",
-                // marginBottom:"20px"
               }}
               size="small"
               >
@@ -63,7 +52,6 @@ export const PublishedAll:React.FC<Props> = (Props) => {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={seasons}
-                // multiple
                 label="Seasons Select"
                 onChange={handleChangeSeasons}
                 size="small"
@@ -75,11 +63,9 @@ export const PublishedAll:React.FC<Props> = (Props) => {
                 })}
               </Select>
             </FormControl>
-
             <FormControl
               style={{
                 width:"200px",
-                // marginBottom:"20px"
               }}
               size="small"
               >
@@ -88,7 +74,6 @@ export const PublishedAll:React.FC<Props> = (Props) => {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={years}
-                // multiple
                 label="Seasons Select"
                 onChange={handleChangeYears}
                 size="small"
@@ -100,14 +85,11 @@ export const PublishedAll:React.FC<Props> = (Props) => {
                 })}
               </Select>
             </FormControl>
-              
-
               <Button variant="contained"
                 onClick = { ()=> handleSubmit(0) }
                 >
                 Submit(非公開)
               </Button>
-
               <Button variant="contained"
                 onClick = { ()=>handleSubmit(1) }
                 >

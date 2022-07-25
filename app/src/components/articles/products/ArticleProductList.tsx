@@ -1,10 +1,10 @@
 import { product } from "@/interfaces/product"
 import { memo, useEffect, useState } from "react"
 import { IoTimer } from "react-icons/io5"
-// import ReactQuill from "react-quill"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { actionSettingProductData2 } from "@/store/product/actions"
+import { useRouter } from "next/router"
+import { useStyleJa } from "@/hook/useStyle"
 
 const ReactQuill =
   typeof window === "object" ? require("react-quill") : () => false;
@@ -14,34 +14,20 @@ type Props = {
 }
 export const ArticleProductList:React.FC<Props> = memo(function ArticleProductList(Props){
   const [colornumber,setColornumber ]= useState<number>(0)
-  // const navigate = useNavigate()
   const dispatch = useDispatch()
+  const router = useRouter()
   const Movementhandler = () => {
     if(Props.product==undefined)return
     dispatch(actionSettingProductData2(Props.product))
-    // navigate(`/products/${Props.product?.id}`)
+    router.push(`/title/${Props.product?.id}`)
   }
 
   useEffect(()=>{
-    // handleSetupYearSeason()
   },[])
 
   const [YearSeason,setYearSeason]= useState<string>("")
-  // const handleSetupYearSeason = () => {
-  //   const kisetsu = ["冬","春","夏","秋"]
-  //   // if(Props.product.productYearSeason2!=undefined)return
-  //   const yearSeasonYear = Props.product.productYearSeason2.filter(i=>kisetsu.includes(i.season.name)).sort((a,b)=>kisetsu.indexOf(a.season.name) - kisetsu.indexOf(b.season.name)).sort((a,b)=>new Date(a.year.year).getTime() - new Date(b.year.year).getTime())
-  //   try{
-  //     if (yearSeasonYear.length==1){
-  //       setYearSeason(`${new Date(yearSeasonYear[0].year.year).getFullYear()} ${yearSeasonYear[0].season.name}`)
-  //     }else{
-  //       setYearSeason(`${new Date(yearSeasonYear[0].year.year).getFullYear()} ${yearSeasonYear[0].season.name} ~ ${new Date(yearSeasonYear[yearSeasonYear.length-1].year.year).getFullYear()}  ${yearSeasonYear[yearSeasonYear.length-1].season.name}`)
-  //     }
-  //   }catch(e){
 
-  //   }
-  // }
-
+  const {nameStyle} = useStyleJa(Props.product.productStyles!=undefined?Props.product?.productStyles[0].name:"")
   return(
     <> 
       <div className = "ArticleProductsGrid"
@@ -57,18 +43,8 @@ export const ArticleProductList:React.FC<Props> = memo(function ArticleProductLi
           <div className="ArticleProductsGridRightTop">
             <div className="ArticleProductsGridRightTitle margin_bottom_list">
               {/* doneyet-1 storeでstyle保存する必要がある。 したのジャンルも*/}
-              {Props.product.productStyles!=undefined?Props.product?.productStyles[0].name:""}
+              {nameStyle}
             </div>
-            {/* {Props.product?.year!=null&&(
-              <div className="ArticleProductsGridRightFlex1 margin_bottom_list">
-                <div className="ArticleProductsGridRightYear">
-                  {YearSeason}
-                </div>
-                <div className="ArticleProductsGridRightDuration">
-                
-                </div>
-              </div>
-            )} */}
             <div className="ArticleProductsGridRightArasuzi margin_bottom_list">
               <ReactQuill
               className = "preview_quill"
@@ -78,7 +54,7 @@ export const ArticleProductList:React.FC<Props> = memo(function ArticleProductLi
               />
             </div>
           </div>
-         <div className={`ArticleProductsGridRightBottom HeaderGrid${colornumber}`}>
+          <div className={`ArticleProductsGridRightBottom HeaderGrid${colornumber}`}>
             <ul
             style={{margin:"0px 10px",padding:"0px",alignItems:"center"}}
             >

@@ -1,8 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Modal, Select, SelectChangeEvent, TextField } from "@mui/material"
 import { useEffect, useMemo, useRef, useState } from "react"
-// import ReactQuill from "react-quill"
-// import { Navigate, useNavigate } from "react-router-dom"
-
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
@@ -14,14 +11,9 @@ import { ProductFormList3 } from "./products_formlist/ProductFormList3";
 import {ProductFormList4 } from "./products_formlist/ProductFormList4";
 import { ProductFormList5 } from "./products_formlist/ProductFormList5";
 import { execProductCreate } from "@/lib/api/admin/product";
-
-
-
-// type product = {
-//   title :string
-//   imageUrl :string
-
-// }
+import { pussingMessageDataAction } from "@/store/message/actions";
+import { useDispatch } from "react-redux";
+import { ErrorMessage } from "@/lib/ini/message";
 
 type product = {
   title:string
@@ -37,19 +29,12 @@ type product = {
   imageUrlh1:string | undefined
   imageUrlh2:string | undefined
   imageUrlh3:string | undefined
-
-  // titleKa:string | undefined
-  // titleEn:string | undefined
-  // titleRo:string | undefined
-  // wiki:string | undefined
   wikiEn:string | undefined
   copyright:string | undefined
   annitictId:number | undefined
   shoboiTid:number | undefined
-
-
   yearSeason:year_season[]
-  // time:Date | null
+  arasuziCopyright:string
 }
 
 type year_season = {
@@ -58,18 +43,14 @@ type year_season = {
 }
 
 type character = {
-  // characterId:number
   castId:string
   characterName:string
   characterImage:string
-  // characterImageUrl?:string
 }
 
 type character2 = {
-  // characterId:number
   castId:string
   characterName:string
-  // characterImageUrl?:string
 }
 
 type episord = {
@@ -81,8 +62,12 @@ type episord = {
   episordReleaseDate:Date | null
 }
 
-export const AdminsAddProduct:React.FC = () => {
-  //  product
+type Props = {
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const AdminsAddProduct:React.FC<Props> = (Props) => {
   const [product,setProduct] = useState<product>({
     title:"",
     imageUrl:"",
@@ -97,85 +82,55 @@ export const AdminsAddProduct:React.FC = () => {
     imageUrlh1:"",
     imageUrlh2:"",
     imageUrlh3:"",
-
     wikiEn:"",
     copyright:"",
     annitictId:undefined,
     shoboiTid:undefined,
-    // time:null,
     yearSeason:[{
       year:"",
       season:[]
-    }]
+    }],
+    arasuziCopyright:""
   })
   const [formatsArray,setFormatsArray] = useState<string[]>([])
   const [genresArray,setGenresArray] = useState<string[]>([])
-
   const [characterMiddleData,setCharacterMiddleData] = useState<character[]>([])
-
   const [studiosArray,setStudiosArray] = useState<string[]>([])
-
   const [staffMiddle,setStaffMiddle] = useState<character2[]>([])
-
   const [episord,setEpisord] = useState<episord[]>([])
-
-
-  
-
-
   // ------------------------------------------------
-
   const [open,setOpen] = useState<boolean>(true)
-  // const navigate = useNavigate()
   const handleClose = () => {
-    setOpen(false)
-    // navigate("/admins")
+    Props.setOpen(false)
   }
-
   // step
   const [activeStep, setActiveStep] = useState<number>(0);
-
   const [completed, setCompleted] = useState<{
     [k: number]: boolean;
   }>({});
-
-
-  const steps = ['ProductSetting', 'Formats & Genres', 'Character & Cast','Staff & Studio','Episord'];
-
+  const steps = ['ProductSetting', 'Formats & Genres', 'Character & Cast','Staff & Studio'];
   const totalSteps = () => {
     return steps.length;
   };
-
   const completedSteps = () => {
     return Object.keys(completed).length;
   };
-
   const isLastStep = () => {
     return activeStep === totalSteps() - 1;
   };
-
   const allStepsCompleted = () => {
     return completedSteps() === totalSteps();
   };
-
-
   const handleNext = () => {
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? steps.findIndex((step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
-
-    console.log(allStepsCompleted())
-
-   
   };
-
   const handleComplete = () => {
-    
     switch(activeStep){
     case 0:
-      console.log(childFunc)
       childFunc.current()
       break
     case 1:
@@ -187,19 +142,8 @@ export const AdminsAddProduct:React.FC = () => {
     case 3:
       childFunc4.current()
     break
-    case 4:
-      childFunc5.current()
-    break
     }
-
-    // setCompleted({[0]:true})
-    // return
-    // const newCompleted =completed
-    // newCompleted[activeStep] = true;
-    // setCompleted(newCompleted);
-    // handleNext();
   };
-  console.log(completed)
   const childFunc = useRef<any>(!null)
   const childFunc2 = useRef<any>(!null)
   const childFunc3 = useRef<any>(!null)
@@ -207,15 +151,16 @@ export const AdminsAddProduct:React.FC = () => {
   const childFunc5 = useRef<any>(!null)
 
 
-
+  const dispatch = useDispatch()
   const handleSubmit = async() => {
-      // console.log("ラストですよ")
-      const res = await execProductCreate(product,genresArray,formatsArray,characterMiddleData,studiosArray,staffMiddle,episord)
-      if(res.status=200){
-        console.log(res)
-      }else{
-
-      }
+    const res = await execProductCreate(product,genresArray,formatsArray,characterMiddleData,studiosArray,staffMiddle,episord)
+    if(res.data.status==200){
+      dispatch(pussingMessageDataAction({title:"productが作成されました。",select:1}))
+    }else if(res.data.status==390){
+      dispatch(pussingMessageDataAction({title:"既に存在するproductです。",select:0}))
+    }else{
+      dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
+    }
   }
 
   useEffect(()=>{
@@ -227,7 +172,7 @@ export const AdminsAddProduct:React.FC = () => {
   return(
     <>
       <Modal
-        open={open}
+        open={Props.open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -242,10 +187,8 @@ export const AdminsAddProduct:React.FC = () => {
                   completed = {completed}
                   setCompleted = {setCompleted}
                   handleComplete = {handleComplete}
-
                   allStepsCompleted={allStepsCompleted}
                   handleNext={handleNext}
-                  // handleComplete={handleComplete}
                   completedSteps={completedSteps}
                   totalSteps={totalSteps}
                 />
@@ -256,7 +199,6 @@ export const AdminsAddProduct:React.FC = () => {
                   completed = {completed}
                   setCompleted = {setCompleted}
                   handleNext={handleNext}
-
                   setProduct={setProduct}
                   product={product}
                 />
@@ -266,7 +208,6 @@ export const AdminsAddProduct:React.FC = () => {
                   completed = {completed}
                   setCompleted = {setCompleted}
                   handleNext={handleNext}
-
                   formatsArray={formatsArray}
                   setFormatsArray={setFormatsArray}
                   setGenresArray = {setGenresArray}
@@ -277,37 +218,30 @@ export const AdminsAddProduct:React.FC = () => {
                   completed = {completed}
                   setCompleted = {setCompleted}
                   handleNext={handleNext}
-
                   setCharacterMiddleData = {setCharacterMiddleData}
                   characterMiddleData = {characterMiddleData}
                 />
-
                 <ProductFormList4
                   activeStep = {activeStep}
                   childFunc4={ childFunc4}
                   completed = {completed}
                   setCompleted = {setCompleted}
                   handleNext={handleNext}
-
                   setStudiosArray={setStudiosArray}
                   staffMiddle={staffMiddle}
                   setStaffMiddle={setStaffMiddle}
                 />
-
-                <ProductFormList5
+                {/* <ProductFormList5
                   activeStep = {activeStep}
                   childFunc5={ childFunc5}
                   completed = {completed}
                   setCompleted = {setCompleted}
-                  handleNext={handleNext}
-                  
+                  handleNext={handleNext}   
                   episord={episord}
                   setEpisord={setEpisord}
-                />
-
+                /> */}
             </div>
           </div>
-
         </>        
       </Modal>
     </>

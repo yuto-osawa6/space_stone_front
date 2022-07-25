@@ -11,12 +11,9 @@ import { SortList } from "./SortList";
 
 interface sort {
   s:{
-    // title:string
     sort:string
   }
 }
-
-
 type sortu = {
   title:string
   sort:string
@@ -27,8 +24,6 @@ type emotion = {
   id:number
   emotion:string
 }
-
-
 
 const ini:s= [
   {
@@ -95,51 +90,20 @@ export const SortLists:React.FC = function SortListsFunc(){
   const ref2 = useRef<HTMLDivElement>(null!);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuOpen2, setIsMenuOpen2] = useState(false);
-
-  // const dispatch = useDispatch();
-
   useEffect(() => {
     const checkIfClickedOutside = (e:any) => {
-      // If the menu is open and the clicked target is not within the menu,
-      // then close the menu
       if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
         setIsMenuOpen(false);
       }
-      console.log(e.target)
-      console.log(ref.current)
     };
-
     document.addEventListener("mousedown", checkIfClickedOutside);
-
     return () => {
       // Cleanup the event listener
       document.removeEventListener("mousedown", checkIfClickedOutside);
-      console.log("aaaaa")
     };
   }, [isMenuOpen]);
 
   // emotion------------------------------
-
-  // useEffect(() => {
-  //   const checkIfClickedOutside = (e:any) => {
-  //     // If the menu is open and the clicked target is not within the menu,
-  //     // then close the menu
-  //     if (isMenuOpen2 && ref2.current && !ref2.current.contains(e.target)) {
-  //       setIsMenuOpen2(false);
-  //     }
-  //     console.log(e.target)
-  //     console.log(ref2.current)
-  //   };
-
-  //   document.addEventListener("mousedown", checkIfClickedOutside);
-
-  //   return () => {
-  //     // Cleanup the event listener
-  //     document.removeEventListener("mousedown", checkIfClickedOutside);
-  //     console.log("aaaaa")
-  //   };
-  // }, [isMenuOpen2]);
-
   const handleClose = () => {
     setIsMenuOpen2(false)
   }
@@ -165,27 +129,24 @@ export const SortLists:React.FC = function SortListsFunc(){
       <div className = "header-search-contents__boxes__Lists__right__Lists__logo">
         <MdInsertEmoticon
         style={{cursor:"pointer"}}
-         onClick={() => setIsMenuOpen2(true)}
+        onClick={() => setIsMenuOpen2(true)}
         />
 
       </div>
       
     </div>
     {isMenuOpen2 && (
-         <Modal
-         open={isMenuOpen2}
-         onClose={handleClose}
-         // onClose={false}
-         aria-labelledby="modal-modal-title"
-         aria-describedby="modal-modal-description"
-       >
+        <Modal
+        open={isMenuOpen2}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        >
         <div className = "emotionSortList">
           {emotions.map((item)=>{
             return(
               <EmotionSortItem
               emotion={item}
-              // title={item.title}
-              // sort={item.sort}
               setSort={setSort}
               setIsMenuOpen2={setIsMenuOpen2}
               key={item.id}
@@ -196,9 +157,9 @@ export const SortLists:React.FC = function SortListsFunc(){
         </Modal>
       )}
 
-     <div className = "header-search-contents__boxes__Lists__right__Lists"
-     ref={ref}
-     >
+    <div className = "header-search-contents__boxes__Lists__right__Lists"
+    ref={ref}
+    >
       <div className = "header-search-contents__boxes__Lists__right__Lists__logo">
         <FaSort/>
 
@@ -208,14 +169,13 @@ export const SortLists:React.FC = function SortListsFunc(){
         <div className = "sort__list__title"
         onClick={() => setIsMenuOpen(true)}
         >
-           { sort }順
+          { sort }順
         </div>
         {isMenuOpen && (
         <div className = "sort__lists"
         >
           {ini.map((item:sortu,index)=>{
             return(
-
               <SortList
               title={item.title}
               sort={item.sort}
@@ -224,17 +184,11 @@ export const SortLists:React.FC = function SortListsFunc(){
               key={index}
               />
             )
-
           })}
-     
-          
-        
-
         </div>
         )}
       </div>
       <div className = "header-search-contents__boxes__Lists__right__Lists__gridstyles">
-
       </div>
       </div>
     </>

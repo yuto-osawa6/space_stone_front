@@ -1,5 +1,5 @@
 export interface search {
-  title_cont:string
+  title_or_titleKa_or_titleEn_or_titleRo_cont:string
 }
 // export const arrayGenres:string[] =[]
 
@@ -15,6 +15,7 @@ export interface news{
   id:number
   title:string
   description:string
+  information:string
   judge:number
   date:string
 }

@@ -2,50 +2,32 @@ import { Checkbox, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, 
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-// import { useLocation, useNavigate } from "react-router-dom"
 import { RootState } from "@/store"
-import { SettingTimeSearchAction } from "@/store/during/actions"
-import { DestroySeasonSearchAction, SettingSeasonSearchAction } from "@/store/season/actions"
-// import { AllDeleteSubClassAction, DeilyEndQteQAction, DeilyStartQteQAction, SubNewSearchAction, SubPickupSearchAction, SubPrivateSearchAction } from "store/subsearches/actions"
 import { DestroyYearSearchAction, SettingYearSearchAction } from "@/store/year/actions"
 
 type Props = {
- 
 }
 
 
 export const YearSearch:React.FC<Props> = function YearSearchFunc(Props){
   // 
   const router = useRouter()
-
   const dispatch = useDispatch()
-  // 
   const isFirstRender = useRef(false)
   const isFirstRender2 = useRef(false)
   const isFirstRender3 = useRef(false)
 
-  useEffect(() => { // このeffectは初回レンダー時のみ呼ばれるeffect
+  useEffect(() => {
     isFirstRender.current = true
     isFirstRender2.current = true
     isFirstRender3.current = true
 
   }, [])
-
-
-  // stores
   const YearStore = useSelector((state:RootState)=> state.yearsearch)
-
   const today = new Date()
   const year = new Date().getFullYear();
-
   const handleChangechecked2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // YearStore.checked!=true?setChecked(true):setChecked(false)
     setChecked(event.target.checked)
-    // console.log(YearStore.checked)
-    console.log(event.target.checked)
-    console.log(event.target.checked == true)
-
-    // console.log(checked)
     const timer = setTimeout(() => {
       if (event.target.checked){
         dispatch(DestroyYearSearchAction())
@@ -63,10 +45,8 @@ export const YearSearch:React.FC<Props> = function YearSearchFunc(Props){
   const [YearGteq,setYearGteq] = useState<number>(YearStore.years.year_season_years_year_gteq==""?2000:Number(YearStore.years.year_season_years_year_gteq.slice(0, 4)))
   const [YearLteq,setYearLteq] = useState<number>(YearStore.years.year_season_years_year_lteq==""?year:Number(YearStore.years.year_season_years_year_lteq.slice(0, 4)))
   const [checked,setChecked] = useState<boolean>(true)
-
   const handleChangeYear = (event: Event, newValue2: number | number[]) => {
     setChecked(false);
-    console.log(newValue2)
     const item = newValue2 as number[]
     setYearGteq(item[0])
     setYearLteq(item[1])
@@ -77,7 +57,6 @@ export const YearSearch:React.FC<Props> = function YearSearchFunc(Props){
       isFirstRender2.current = false 
     } else {
     const timer = setTimeout(() => {
-
       if (checked==true){
         dispatch(DestroyYearSearchAction())
         }else{
@@ -88,22 +67,14 @@ export const YearSearch:React.FC<Props> = function YearSearchFunc(Props){
         }else{
           router.push(`/search`)
         }
-
     }, 500)
-
     return () => clearTimeout(timer)
-  }
-},[YearGteq,YearLteq])
+    }
+  },[YearGteq,YearLteq])
 
-useEffect(()=>{
-  setChecked(YearStore.checked)
-},[YearStore.checked])
-
-
-  // 
-  console.log(YearStore)
-  console.log(checked)
-
+  useEffect(()=>{
+    setChecked(YearStore.checked)
+  },[YearStore.checked])
 
   return(
     <>
@@ -114,9 +85,9 @@ useEffect(()=>{
       </label>
       <Checkbox checked={checked}onChange={handleChangechecked2} style={{padding:"0px",marginBottom:"7px"}}/>
       </div>
-   
       <div className = "YearSearches2">
         <Slider
+          className="YearSearches2Slider"
           defaultValue={[2000,new Date().getFullYear()]}
           valueLabelDisplay="off"
           step={1}
@@ -125,7 +96,6 @@ useEffect(()=>{
           max={year}
         />
       </div>
-
     </div>
     </>
   )

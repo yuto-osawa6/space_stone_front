@@ -10,6 +10,10 @@ export const testProductData:product = {
   imageUrlh1: undefined,
   imageUrlh2: undefined,
   imageUrlh3: undefined,
+  copyright:"",
+  arasuziCopyright:"",
+  annict:0,
+  shoboi:0,
   // 
   averageScore:"10",
   likeCount:1,
@@ -131,7 +135,8 @@ export const testProductData:product = {
     emotions:[{
       id: 0,
       emotion: "test_emotion"
-    }]
+    }],
+    score:0
    
     // productId: 0,
     // userId: 1

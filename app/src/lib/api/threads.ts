@@ -55,7 +55,7 @@ export const execDeleteLikeThread = (product_id:string,review_id:string,user_id:
 })
 }
 // 
-export const execCreateCommentThread = (product_id:string,review_id:number,user_id:number,content:string,value:string) => {
+export const execCreateCommentThread = (product_id:string,review_id:number,user_id:number,content:string,value:string,reCaptchaToken:string) => {
   
   return client.post(`/products/${product_id}/thereds/${review_id}/comment_threads`, { 
     comment_thread:{
@@ -63,7 +63,8 @@ export const execCreateCommentThread = (product_id:string,review_id:number,user_
       comment:content,
       thered_id:review_id
       },
-      value:value
+      value:value,
+      recaptcha_token:reCaptchaToken
 })
 }
 
@@ -109,7 +110,7 @@ export const execDeleteLikeCommentThread = (comment_review_id:number,user_id:num
 }
 
 // 
-export const execCreateReturnCommentThread = (comment_review_id:number,user_id:number,content:string,thread_id:string) => {
+export const execCreateReturnCommentThread = (comment_review_id:number,user_id:number,content:string,thread_id:string,reCaptchaToken:string) => {
   
   return client.post(`/comment/return_comment_threads`, { 
       return_comment_thread:{
@@ -117,7 +118,8 @@ export const execCreateReturnCommentThread = (comment_review_id:number,user_id:n
       comment:content,
       comment_thread_id:comment_review_id
       },
-      thread_id:thread_id
+      thread_id:thread_id,
+      recaptcha_token:reCaptchaToken
 })
 }
 
@@ -170,7 +172,7 @@ export const execCheckLikeReturnCommentThread = (return_comment_review_id:number
 
 
 
-export const execCreateReturnReturnCommentThread = (comment_review_id:number,user_id:number,comment:string,return_comment_review_id:number,thread_id:string) => {
+export const execCreateReturnReturnCommentThread = (comment_review_id:number,user_id:number,comment:string,return_comment_review_id:number,thread_id:string,reCaptchaToken:string) => {
 
   return client.post(`/comment/return_comment_threads/returnreturn`,{
     return_comment_thread:{
@@ -181,7 +183,8 @@ export const execCreateReturnReturnCommentThread = (comment_review_id:number,use
       return_return_comment_thread:{
       return_return_thread_id:return_comment_review_id
       },
-      thread_id:thread_id
+      thread_id:thread_id,
+      recaptcha_token:reCaptchaToken
   })
 }
 // show acsess

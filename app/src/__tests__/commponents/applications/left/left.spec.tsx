@@ -1,5 +1,5 @@
 import Lefts from "@/components/applications/left/Lefts";
-import { execLeft, execLeftfetcher } from "@/lib/api/left";
+import { execLeftfetcher } from "@/lib/api/left";
 import { GetError } from "@/lib/error/error";
 import { API } from "@/mocks/handlers";
 import { server } from "@/mocks/server";
@@ -8,6 +8,17 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import { MockedRequest, ResponseResolver, rest, restContext } from "msw";
 import { Provider } from "react-redux";
 import { setupServer } from "msw/node";
+jest.mock("next/router", () => ({
+  useRouter() {
+      return {
+          route: "/",
+          pathname: "",
+          query: "",
+          asPath: "",
+          locale:"ja"
+      };
+  },
+}));
 
 
 describe('Header', () => {
@@ -70,9 +81,7 @@ describe('Header', () => {
     // await waitFor(() => screen.findByText(/error/))
     // await expect(getExamples()).rejects.not.toThrow(GetExampleError);
       // const {data,error} = execLeft()
-      // console.log(error)
       await waitFor(() => expect(execLeftfetcher()).rejects.toThrow(Error))
-      // console.log(execLeft)
       // await waitFor(() => screen.findByText(/genre_test_name/))
       screen.debug()
   });
@@ -113,9 +122,7 @@ describe('Header', () => {
   //   await waitFor(() => screen.findByText(/error/))
   //   // await expect(getExamples()).rejects.not.toThrow(GetExampleError);
   //     // const {data,error} = execLeft()
-  //     // console.log(error)
   //     // await waitFor(() => expect(execLeftfetcher()).rejects.toThrow(Error))
-  //     // console.log(execLeft)
   //     // await waitFor(() => screen.findByText(/genre_test_name/))
   //     screen.debug()
   // });
@@ -144,9 +151,7 @@ describe('Header', () => {
 //     await waitFor(() => screen.findByText(/error/))
 //     // await expect(getExamples()).rejects.not.toThrow(GetExampleError);
 //       // const {data,error} = execLeft()
-//       // console.log(error)
 //       // await waitFor(() => expect(execLeftfetcher()).rejects.toThrow(Error))
-//       // console.log(execLeft)
 //       // await waitFor(() => screen.findByText(/genre_test_name/))
 //       screen.debug()
 //   });

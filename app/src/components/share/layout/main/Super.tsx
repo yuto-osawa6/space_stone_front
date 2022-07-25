@@ -1,12 +1,12 @@
 import { MessageContainer } from "@/components/applications/message/MessageContainer"
 import Search from "@/components/search/searchform/search"
 import Lefts from "../../../applications/left/Lefts"
+import { Footer } from "../../component/Footer"
 
 type Props = {
   children:React.ReactNode
   locationNumber?: number | undefined
 }
-
 export const Super:React.FC<Props> = function SuperFunc(Props){
 
   return(
@@ -26,6 +26,7 @@ export const Super:React.FC<Props> = function SuperFunc(Props){
             {Props.children}
           </InsertBox>
           <MessageContainer/>
+          <Footer/>
         </SuperSheet>
     </SuperDiv>
   )
@@ -49,8 +50,7 @@ const SuperSheet:React.FC<Props> = (Props) => {
     }
   }
   return(
-    // <div className = {`super-sheet`}>
-    <div className = {`super-sheet`} style={handleStyle()}>
+    <div className = {Props.locationNumber == 1 ?`super-sheet`:"super-sheet super-sheet2"} style={handleStyle()}>
       {Props.children}
     </div>
   )
@@ -66,9 +66,8 @@ const SearchDiv:React.FC<Props> = (Props) => {
   }
 
   return(
-    // <div className = "header__message__box">
-      <div className = "header__search" style={handleStyle2()}>
-      <div className = "header__search">
+      <div className = "header__search header__search__parentV2" style={handleStyle2()}>
+      <div className = "header__search header__searchV2">
         {Props.children}
       </div>
     </div>
@@ -76,7 +75,6 @@ const SearchDiv:React.FC<Props> = (Props) => {
 }
 
 const InsertBox:React.FC<Props> = (Props) => {
-
   return(
     <div className = "insert_box">
       {Props.children}

@@ -20,13 +20,38 @@ jobs:
 
   build_and_set:
     machine:
-      image: ubuntu-1604:201903-01
+      # image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202201-02
     steps:
       - checkout
       - run:
           command: 
             echo -e \\nNEXT_PUBLIC_P_GOOGLE_KEY=${GOOGLE_KEY} >> app/.env.production
           name: env_google
+      - run:
+          command: 
+            echo -e \\nNEXT_PUBLIC_AUTH_URL=${AUTH_URL} >> app/.env.production
+          name: env_google
+      - run:
+          command: 
+            echo -e \\nNEXT_PUBLIC_TWITTER_URL=${TWITTER_URL} >> app/.env.production
+          name: env_twitter
+      - run:
+          command: 
+            echo -e \\nNEXT_PUBLIC_FACEBOOK_URL=${FACEBOOK_URL} >> app/.env.production
+          name: env_facebook
+      - run:
+          command: 
+            echo -e \\nRECAPTCHA_KEY=${RECAPTCHA_KEY} >> app/.env.production
+          name: env_RECAPTCHA
+      - run:
+          command: 
+            echo -e \\nNEXT_PUBLIC_RECAPTCHA_KEY=${RECAPTCHA_KEY} >> app/.env.production
+          name: env_NEXT_PUBLIC_RECAPTCHA_KEY
+      - run:
+          command: 
+            echo -e \\nNEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID} >> app/.env.production
+          name: env_NEXT_PUBLIC_GA_ID
       #  - run:
       #     command: 
             # echo NEXT_PUBLIC_A5=7>>app/.env.production

@@ -1,5 +1,10 @@
+.home{
+  font-size: 0.7rem;
+  text-align: right;
+}
+
 .share_container01 {
-  margin: 0px 20px 20px 20px;
+  margin: 0px 20px 40px 20px;
 }
 .share_title01{
   font-weight: bold;   
@@ -17,15 +22,24 @@
 }
 
 .share_middle_container01{
-  margin: 0px 20px 20px 20px;
+  // margin: 0px 20px 20px 20px;
 }
 
 .share_middle_container_title{
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  font-size: 1.3rem;
+  // margin-bottom: 10px;
   display: block;
   font-weight: bold;
+  @include mq(tb){
+    font-size: 1.5rem;
+  }
   
+}
+.SeasonTierTitle{
+  font-size: 1.3rem;
+  @include mq(tb){
+    font-size: 1.5rem;
+  }
 }
 
 .share_middle_container_right_text{
@@ -113,8 +127,10 @@
     box-shadow: $color-v1-shadow-a;
     cursor: pointer;
     &:hover{
+      @include mq(md){
       background-color: darkblue;
       color: khaki;
+      }
     }
   }
 
@@ -143,8 +159,10 @@
     border-radius: 5px;
     box-shadow: $color-v1-shadow-a;
     &:hover{
-      color: white;
+      @include mq(md){
+      color: white!important;
       background-color: #ff3073!important;
+      }
     }
   }
 
@@ -196,13 +214,17 @@
   // user
   .UserSearchBotton{
     &:hover{
+      @include mq(md){
       color:aliceblue!important;
       background-color: #3788d8;
+      }
     }
   }
   .UserSearchItem{
     &:hover{
+      @include mq(md){
       background-color: #536577;
+      }
     }
 
   }
@@ -218,3 +240,23 @@
       padding: 0px!important;
     }
   }
+
+  // crop
+  .cropCircle{
+    .ReactCrop__crop-selection{
+      border-radius: 100%;
+    }
+  }
+  .UsersShowTopSettingListBackgroudImage{
+
+    &:hover{
+      @include mq(md){
+      color: #3788d8;
+      }
+    }
+  }
+
+  .ToptensTitle{
+    padding: 0px 20px;
+  }
+  

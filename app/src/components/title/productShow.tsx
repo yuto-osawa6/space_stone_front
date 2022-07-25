@@ -24,6 +24,9 @@ import dynamic from 'next/dynamic';
 import { useUser } from '@/lib/data/user/useUser';
 import { ChatModal } from './chat/ChatModal';
 import { AdminsEditProduct } from '@/components/admins/product/edit/AdminEditProduct';
+import { useWindowDimensions } from '@/hook/useWindowResize';
+import { BiGitCompare } from 'react-icons/bi';
+import { CompareModal } from './compare/CompareModal';
 let ActionCable:any;
 if (typeof window !== 'undefined') {
   ActionCable = require('actioncable');
@@ -33,10 +36,10 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 
 
-var array:number[] = new Array()
-for (let i = 0; i < 10; i++) {
-  array.push(i)
-}
+// var array:number[] = new Array()
+// for (let i = 0; i < 10; i++) {
+//   array.push(i)
+// }
 
 type chatList = {
   created_at: string
@@ -48,17 +51,17 @@ type chatList = {
 
 type Props = {
   children:ReactNode
+  active:number
   // data: productShow
 }
 
 export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
-  // console.log(Props.data)
   const router = useRouter()
   const {pid} = router.query
   const params_id = pid
   const [product,setProduct] = useState<product>()
   const [productStore,setProductStore] = useState<product>()
-  const [switchnumber,setSwitchnumber] = useState<number>(0)
+  const [switchnumber,setSwitchnumber] = useState<number>()
   const [heart,setHeart] = useState<boolean>(false)
   const [heartId,setHeartId] = useState<number>()
   const [loded,setLoded] = useState<boolean>(false)
@@ -76,7 +79,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
 
   const ProductStore = useSelector((state: RootState) => state.product);
   const dispatch = useDispatch();
-  const colornumber:number = array[Math.floor(Math.random() * array.length)]
+  // const colornumber:number = array[Math.floor(Math.random() * array.length)]
   const elm = useRef<HTMLDivElement>(null!);
   const elm2 = useRef<HTMLDivElement>(null!);
   // const user = useSelector((state: RootState) => state.user);
@@ -92,17 +95,15 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   const [productScores,setProductScores] = useState<productScores[]>([])
   const [userScore,setUserScore] = useState<productScores>()
 
+  // console.log(product)
   let isMounted = true
   const setdata = async() =>{
-    console.log("aaaaaaaaaaa")
     if (ProductStore.id == Number(params_id)){
       setProductStore(ProductStore)
     }
     const res = await execProductShow(Number(params_id))
-    console.log(res)
     if (res.data.status === 200) {
       if (isMounted) {
-        console.log(res)
         if (ProductStore.id != Number(params_id)){
           dispatch(actionSettingProductData2(res.data.products));
         }   
@@ -158,6 +159,11 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
     if (product==undefined) return
     if (product.episords==undefined) return
     if(product.episords[0]==undefined)return
+    if(product.episords[0].releaseDate == undefined){
+      setFirstEpisord("0")
+      setAvgTime("0分")
+      return
+    }
     const firstE = new Date(product.episords[0].releaseDate)
     setFirstEpisord(`${firstE.getFullYear()}-${firstE.getMonth()+1}-${firstE.getDate()} ${firstE.getHours()}時${firstE.getMinutes()}分`)
     const length = product?.episords.filter(item => item.time !== undefined).length
@@ -217,7 +223,9 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
 
   useEffect(()=>{
     if(params_id===undefined)return
-    setSwitchnumber(colornumber)
+    const array:number[] = [1,2,3,4,5,6,7,8,9,0]
+    const colorNumber:number = array[Math.floor(Math.random() * array.length)]
+    setSwitchnumber(colorNumber)
     setdata()
     return () => {
       isMounted = false
@@ -245,9 +253,6 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   },[userSwr.login])
 
   useEffect(()=>{
-    console.log(product)
-    console.log(stats)
-    console.log(acsesses)
   },[acsesses])
 
   // acsesses
@@ -267,8 +272,8 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
     }
     const res = await execCheckingHeart(product.id,userSwr.user.id)
     if (res.status === 200) {
+      // console.log(res)
       // 確認
-      console.log(res)
       setHeart(res.data.liked.liked)
       if (res.data.liked.liked===true){
         setHeartId(res.data.liked.like)
@@ -289,7 +294,6 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
     // doneyet エラー表示 上のも下も
     if (typeof product === 'undefined') return
     const res = await execProductCreateHeart(product.id,userSwr.user.id)
-      console.log(res)
     if (res.data.status === 200) {
       setHeartId(res.data.like.id)
       setHeart(true)
@@ -304,7 +308,6 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   const deleteheart = async() => {
     if (typeof product === 'undefined' || typeof heartId=== 'undefined') return
     const res = await execProductDeleteHeart(product.id,heartId,userSwr.user.id)
-      console.log(res)
     if (res.data.status === 200) {
       setHeart(false)
       setLikecount(res.data.likeCount)
@@ -328,33 +331,42 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
   const [chatList,setChatList] = useState<chatList[]>([])
   // const cable = ActionCable.createConsumer('ws://localhost:3001/cable');
 
-  useEffect(() => {
-  const cable = ActionCable.createConsumer('ws://localhost:3001/cable');
-    if (product==undefined) return
-    const channel = cable.subscriptions.create(
-      {
-        channel: 'ProductsChannel',
-        id: product.id,
-      },
-      {
-        received: (data:any) => {
-          setChatList(data.chatList)
-        },
-      }
-    )
-    setChannel(channel)
-    return () => {
-      channel.unsubscribe()
-    }
-  }, [product?.id])
+  // useEffect(() => {
+  // const cable = ActionCable.createConsumer('ws://localhost:3001/cable');
+  //   if (product==undefined) return
+  //   const channel = cable.subscriptions.create(
+  //     {
+  //       channel: 'ProductsChannel',
+  //       id: product.id,
+  //     },
+  //     {
+  //       received: (data:any) => {
+  //         setChatList(data.chatList)
+  //       },
+  //     }
+  //   )
+  //   setChannel(channel)
+  //   return () => {
+  //     channel.unsubscribe()
+  //   }
+  // }, [product?.id])
 
-   const [openChatRoom,setOpenChatRoom] = useState<boolean>(false)
-   const modalOpenChatRoom = () => setOpenChatRoom(true)
+  //  const [openChatRoom,setOpenChatRoom] = useState<boolean>(false)
+  //  const modalOpenChatRoom = () => setOpenChatRoom(true)
+  // width 100vw
+  // const [windowWidth,setWindowWidth] = useState<number>(0)
+  // const a = useWindowDimensions()
+  // useEffect(()=>{
+  //   let vw = document.body.clientWidth
+  //   setWindowWidth(vw)
+  // },[a])
 
-  //  console.log(ProductStore)
-  //  let countR = 0
-  //  countR += 1
-  //  console.log(countR)
+  // compare
+  const [OpenModalCompare,setOpenModalCompare] = useState<boolean>(false)
+  // console.log(product)
+  const [openArasuzi,setOpenArasuzi] = useState<boolean>(false)
+
+  // console.log(userReviews)
   return(
     <>
       <div className = "product_show"
@@ -362,7 +374,9 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
         <div className = "product_show_contens">
           <div className = "product_show_contens01">
             <div className = "show_contents01_header">
-              <div className = "show_contents01_header_top">
+              <div className = "show_contents01_header_top"
+              // style={{width:windowWidth}}
+              >
                 <div className = "show_contents01_header_top_img">
                   {ProductStore.id==Number(params_id)?<img src = {ProductStore.imageUrl}></img>
                   :
@@ -370,19 +384,150 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                   }
                   <div className = "show_contents01_header_top_shadow">
                   </div>
-                  {userSwr.user.administratorGold==true&&(
+                  
+                  {userSwr.user!=undefined&&userSwr.user.administratorGold==true&&(
                     <div className = "UserAdminEdit"
                     onClick={handleOpenEditProduct}
                     >
                       edit
                     </div>
                   )}
+                  
+                </div>
+                <div className = "show_contents01_header_bottom_left show_contents01_header_bottom_leftv2">
+                  <div className = "show_contents01_header_bottom_left_image">
+                    {/* {ProductStore.id==Number(params_id)?<img src = {ProductStore.imageUrl}></img>
+                    :
+                    <img src = {product?.imageUrl}></img>
+                    } */}
+                  </div>
+                  <div className = "show_contents01_header_bottom_left_bottom">
+                    <div className = "show_contents01_header_bottom_left_bottom_score">
+                    {/* {loded&&(
+                      <>
+                      {userSwr.login&&(
+                        <>
+                          <div 
+                          >
+                            Score　
+                            {scoreaverage}
+                          </div>
+                          {openscore&&(
+                            <OpenScoreContext.Provider value={{ openscore, setOpenscore,score,setScore,scoreid,setScoreid,scoreaverage,setScoreaverage,stats,setStats }}>
+                              <ScoreModal
+                              product_id={product?.id}
+                              user_id={userSwr.user.id}
+                              />
+                            </OpenScoreContext.Provider>
+                          )}
+                        </>
+                      )}
+                      {!userSwr.login&&(
+                        <>
+                          <div 
+                          onClick = {modalopenJugde}
+                          >
+                            Score　
+                            {scoreaverage}
+                          
+                          </div>
+                        </>
+                      )}
+                      </>
+                    )} */}
+                    {/* {!loded&&(
+                      <> */}
+                      
+                          Score　
+                          {scoreaverage&&scoreaverage.length>0?
+                            <>
+                              {scoreaverage}
+                            </>
+                          :
+                          <>
+                            ---
+                          </>
+                          }
+                        
+                    
+{/* 
+                      </>
+                    )} */}
+
+                    </div>
+                    <div className = "show_contents01_header_bottom_left_bottom_likes">
+                      {loded&&(
+                      <>
+                      {userSwr.login&&(
+                      <>
+                        { heart ? 
+                        <>
+                        <BsFillHeartFill
+                        style={{
+                          cursor:"pointer"
+                        }}
+                        onClick = {deleteheart}
+                        />
+                        　
+                        {scoreLenght}
+                        </>
+                        : 
+                        <>
+                        <BsHeart
+                        style={{
+                          cursor:"pointer"
+                        }}
+                        onClick = {createheart}
+                        />
+                        　
+                         {scoreLenght}
+                        </>
+                        }
+                       
+
+                      </>
+                      )}
+                      {!userSwr.login&&(
+                        <>
+                           <BsHeart
+                           style={{
+                            cursor:"pointer"
+                          }}
+                           onClick={modalopenJugde}
+                           />
+                           　
+                            {scoreLenght}
+                            
+                            {/* {open&&(
+                              <OpenContext.Provider value={{ open, setOpen }}>
+                                <UserModalSign/>
+                              </OpenContext.Provider>
+                            )} */}
+                        </>
+                      )}
+                        </>
+                      )}
+                      {!loded&&(
+                        <>
+                          <BsHeart/>
+                          　
+                          {scoreLenght}
+                        </>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div className="Copyright"
+                      // style={{
+                      //   fontSize:"0.8rem"
+                      //   col
+                      // }}
+                  >©︎{product?.copyright}</div>
           
               <div className = "show_contents01_header_bottom" 
               >
-                <div className = "show_contents01_header_bottom_left">
+                {/* <div className = "show_contents01_header_bottom_left">
                   <div className = "show_contents01_header_bottom_left_image">
                     {ProductStore.id==Number(params_id)?<img src = {ProductStore.imageUrl}></img>
                     :
@@ -417,13 +562,8 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                           >
                             Score　
                             {scoreaverage}
-                           
+                          
                           </div>
-                          {/* {open&&(
-                              <OpenContext.Provider value={{ open, setOpen }}>
-                                <UserModalSign/>
-                              </OpenContext.Provider>
-                          )} */}
                         </>
                       )}
                       </>
@@ -489,78 +629,116 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                       )}
                     </div>
                   </div>
-                </div>
+                </div> */}
 
-
+                
                 <div className = "show_contents01_header_bottom_right"
                 ref = {elm2}
                 >
+                  
                   <div className = "show_contents01_header_bottom_rightbox">
-                    <div className = "show_contents01_header_bottom_right_title">
+                    <div className = "show_contents01_header_bottom_right_title productShowTitleBox">
                       {ProductStore.id==Number(params_id)?ProductStore.title:product?.title}
                     </div>
-                    <div className = "show_contents01_header_bottom_right_descriptions">
+
+                    {product!=undefined&&product?.arasuzi!=null&&product?.arasuzi.length>50&&(
+                      <>
+                    <div className = {`show_contents01_header_bottom_right_descriptions productShowOpenArasuzi ${openArasuzi&&("activeOpenArasuzi")}`}>
                       {ProductStore.id!=Number(params_id)&&product!=undefined&&(
                         <ReactQuill
-                          className = "reviews_modal_quill"
+                          className = "reviews_modal_quill ovevierReactQuill"
                           value={product!=undefined?product.arasuzi:""} 
                           theme="bubble"
                           readOnly={true}
                         />
                       )}
-                       {ProductStore.id==Number(params_id)&&(
+                      {ProductStore.id==Number(params_id)&&(
                         <ReactQuill
-                          className = "reviews_modal_quill"
-                          // value={ProductStore.arasuzi!=undefined?ProductStore.arasuzi:product?.arasuzi} 
+                          className = "reviews_modal_quill ovevierReactQuill QuillContainer1"
                           value={ProductStore.arasuzi!=undefined?ProductStore.arasuzi:product!=undefined?product.arasuzi:""} 
-                          // value={""} 
                           theme="bubble"
                           readOnly={true}
                         />
                       )}
+                      {product!=undefined&&product?.arasuziCopyright.length>0&&(
+                      <div className="arasuzi_copyright"
+                      >引用 {product?.arasuziCopyright}</div>
+                      )}
+                      
                     </div>
-                    <div className = "show_contents01_header_bottom_right_netflix"
+                    <div className="hoverReadMore"
+                      onClick={()=>setOpenArasuzi(openArasuzi?false:true)}
+                      >
+                        {openArasuzi?"閉じる":"もっとみる"}
+                      </div>
+                      </>
+                    )}
+                    {/* <div className = "show_contents01_header_bottom_right_netflix"
+                  
                     >
-                      <a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list}>
-                        公式サイトへ
-                      </a>
-                    </div>
+                      他、関連サービス
+                      {product?.annict!=undefined&&product?.annict!=0&&(
+                        <a href = {`https://cal.syoboi.jp/tid/${product?.shoboi}`} target="_blank" rel="noopener noreferrer">
+                          しょぼいカレンダー
+                        </a>
+                      )}
+                      {product?.annict!=undefined&&product?.annict!=0&&(
+                        <a href = {`https://annict.com/works/${product?.annict}`} target="_blank" rel="noopener noreferrer">
+                          Annict
+                        </a>
+                      )}
+                      {product?.list!=undefined&&product?.list.length!=0&&(
+                        <a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list} target="_blank" rel="noopener noreferrer">
+                          公式サイト
+                        </a>
+                      )}
+                    </div> */}
                   </div>  
                 </div>
               </div>
-
+            <div className="">
             <div className = "show_contents01_header_03" >
               <div className = "show_03">
                 <div className = "show_03_title">
                   作品詳細
                 </div>
-                <div className = "show_03_list">
+                <div className = "show_03_list show_03_list_box">
                   <ul>
                     {airing!=""&&(
                     <li>放送まで: {airing}</li>
                     )}
-                    {ProductStore.id!=Number(params_id)&&product!=undefined&&product.productStyles.length>0&&(
+                    {/* {ProductStore.id!=Number(params_id)&&product!=undefined&&product.productStyles.length>0&&(
                     <li>フォーマット: {product.productStyles[0].name}</li>
-                    )}
-                     {ProductStore.id==Number(params_id)&&ProductStore.productStyles!=undefined&&ProductStore.productStyles.length>0&&(
+                    )} */}
+                    {/* {ProductStore.id==Number(params_id)&&ProductStore.productStyles!=undefined&&ProductStore.productStyles.length>0&&(
                     <li>フォーマット: {productStore?.productStyles[0].name}</li>
+                    )} */}
+                    {product!=undefined&&product.productStyles.length>0&&(
+                    <li>フォーマット: {product?.productStyles[0].name}</li>
                     )}
-                    <li>初回放送日: {firstEpisord}</li>
-                    <li>エピソード数: {product?.episords.length}</li>
+                    {firstEpisord!=undefined||firstEpisord!="0"&&(<li>初回放送日: {firstEpisord}</li>)}
+                    {product!=undefined&&product?.episords.length>1&&(<li>エピソード数: {product?.episords.length}</li>)}
+                    {avgTime !=undefined||avgTime != "0分"&&(
                     <li>一話平均: {avgTime}</li>
-                    <li className = "productShowStudio">スタジオ: {product?.productStudio.map((item,index)=>{
+                    )}
+                    {product!=undefined&&product?.productStudio.length>0&&(
+                    <li className = "productShowStudio"> スタジオ: 
+                    {product?.productStudio.map((item,index)=>{
                       return(
                         <span key = {item.id}>{item.company}
                         {index>=0&&index<product.productStudio.length-1?",":""}
                         </span>
                       )
                     })}</li>
+                    )}
                     {product?.productYearSeason!=undefined&&product?.productYearSeason.length>0&&(
                     <li>シーズン: {yearSeason}
                     </li>
                     )}
+                    {product!=undefined&&product.deliveryStart!=undefined&&product.deliveryStart.length>0&&(
+                    <li>放送開始日: {`${new Date(product.deliveryStart).getFullYear()}-${( '00' + (new Date(product.deliveryStart).getMonth()+1)).slice( -2 )}-${( '00' + (new Date(product.deliveryStart).getDate())).slice( -2 )}`}</li>
+                    )}
                     
-           
                     
                   </ul>
                 </div>
@@ -595,22 +773,78 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                 </div>
               </div>
 
-              <div className = "show_contens01_header_05 share_container01">
+              <div className = "show_contents01_header_03" >
+              <div className = "show_03">
+                <div className = "show_03_title">
+                  他サービス
+                </div>
+                <div className = "show_03_list other_service show_03_list_box">
+                  <ul>
+                      {product?.list!=undefined&&product?.list.length!=0&&(
+                        <li><a href = {ProductStore.id==Number(params_id)?ProductStore.list:product?.list} target="_blank" rel="noopener noreferrer">
+                          公式サイト
+                        </a></li>
+                      )}
+                      {product?.shoboi!=undefined&&product?.shoboi!=0&&(
+                        <li><a href = {`https://cal.syoboi.jp/tid/${product?.shoboi}`} target="_blank" rel="noopener noreferrer">
+                          しょぼいカレンダー
+                        </a></li>
+                      )}
+                      {product?.annict!=undefined&&product?.annict!=0&&(
+                        <li><a href = {`https://annict.com/works/${product?.annict}`} target="_blank" rel="noopener noreferrer">
+                          Annict
+                        </a></li>
+                      )}
+                      
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            </div>
+
+              <div className = "show_contens01_header_05 share_container01"
+              style={{
+                margin: "0px"
+              }}
+              >
                 <div className = "show_05"> 
                   <ul className = "show_05_navigation_menu">
                     <li
-                    ><Link href={`/title/${params_id}`}>Top</Link></li>
+                    className={Props.active == 0? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
+                    style={{
+                      width: "100%"
+                    }}
+                    ><Link href={`/title/${params_id}`} scroll={false}>Top</Link></li>
                     {product?.overview!=undefined&&(
                     <li
-                    ><Link href={`/title/${params_id}/overview`}>Overview</Link></li>
+                    style={{
+                      width: "100%"
+                    }}
+                    className={Props.active == 1? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
+                    ><Link href={`/title/${params_id}/overview`} scroll={false}>Overview</Link></li>
                     )}
-                      <li
-                    ><Link href={`/title/${params_id}/episords`}>Episords</Link></li>
+
+                    {product&&product.episords.length>0&&(
                     <li
-                    ><Link href={`/title/${params_id}/reviews`}>Review</Link></li>
+                    style={{
+                      width: "100%"
+                    }}
+                      className={Props.active == 2? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
+                    ><Link href={`/title/${params_id}/episords`} scroll={false}>Episords</Link></li>)}
                     <li
-                    ><Link href={`/title/${params_id}/threads`}>Thread</Link></li> 
-                    {userSwr.login==true?
+                    style={{
+                      width: "100%"
+                    }}
+                    className={Props.active == 3? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
+                    ><Link href={`/title/${params_id}/reviews`} scroll={false}>Review</Link></li>
+                    <li
+                    style={{
+                      width: "100%"
+                    }}
+                    className={Props.active == 4? `merupla_show active_titile_show p_contens_grid_color${switchnumber}g`:"merupla_show"}
+                    ><Link href={`/title/${params_id}/threads`} scroll={false}>Thread</Link></li> 
+                    {/* {userSwr.login==true?
                       <>
                         <li
                         onClick={modalOpenChatRoom}
@@ -622,7 +856,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
                         onClick={modalopenJugde}
                         >ChatRoom</li>
                       </>
-                     }
+                     } */}
                   </ul>    
                 </div>
               </div>
@@ -640,7 +874,7 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
         setOpenEdit = {setOpenEdit}
         />
       )}
-       {openChatRoom&&product!=undefined&&(
+       {/* {openChatRoom&&product!=undefined&&(
           <ChatModal
             product = {product}
             openChatRoom = {openChatRoom}
@@ -649,9 +883,35 @@ export const ProductShow:React.FC<Props> = function ProductShowFunc(Props){
             chatList = {chatList}
             setChatList = {setChatList}
           />
-        )}
+        )} */}
 
       
-    </>
+    {userSwr.login?
+      <div className="CompareIcon"
+      onClick={()=>setOpenModalCompare(true)}
+      >
+      <BiGitCompare/>
+      </div>
+    :
+    <div className="CompareIcon"
+      onClick={modalopenJugde}
+      >
+      <BiGitCompare/>
+    </div>
+    }
+      {open&&(
+        <OpenContext.Provider value={{ open, setOpen }}>
+          <UserModalSign/>
+        </OpenContext.Provider>
+      )}
+      {OpenModalCompare&&(
+        <Productshowcontext.Provider value={ {product,switchnumber,stats,acsesses,userReviews,setUserReviews,productReviews,setProductReviews,productThreads,setProductThreads,emotionLists,setEmotionLists,chatList,setChatList,Channel,productScores,setProductScores,setScore,score,scoreid,setScoreid,scoreaverage,setScoreaverage,setStats,openscore,setOpenscore,userScore,setUserScore} }>
+        <CompareModal
+        open={OpenModalCompare}
+        setOpen={setOpenModalCompare}
+        />
+        </Productshowcontext.Provider>
+      )}
+  </>
   )
 } 

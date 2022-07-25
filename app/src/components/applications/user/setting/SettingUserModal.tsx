@@ -1,24 +1,24 @@
 import { Button, Modal, TextField } from "@mui/material"
 import { execSettingUserHandler } from "@/lib/api/users"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { updateNicknameAction } from "@/store/user/actions"
 import { execDeleteUser } from "@/lib/api/users"
-// import { Navigate, useNavigate, useParams } from "react-router-dom"
-// import { signOut } from "lib/api/users";
 import Cookies from "js-cookie";
 import { userInitialState } from "@/store/user/reducer";
 import { userLoginAction } from "@/store/user/actions";
-// import { ErrorMessage } from "share/message"
 import { pussingMessageDataAction } from "@/store/message/actions"
 import { signOut } from "@/lib/api/users/sign"
 import { useUser } from "@/lib/data/user/useUser"
 import { ErrorMessage } from "@/lib/ini/message"
 import { useRouter } from "next/router"
 import { mutate } from "swr"
-
-
+import { TopImageSetUp } from "@/components/users/setup/topimage/TopImageSetUp"
+import { useLocale } from "@/lib/ini/local/local"
+import { useWindowDimensions } from "@/hook/useWindowResize"
+import { TailSpin } from "react-loader-spinner"
+import { submitSpin } from "@/lib/color/submit-spin"
 
 type Props = {
   settngModalOpen : boolean
@@ -26,12 +26,16 @@ type Props = {
 }
 
 export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Props){
-
-  const handleClose = () => {
+  const {t} = useLocale()
+  const {userSwr,error} = useUser()
+  const handleClose = (e:React.MouseEvent<HTMLDivElement> | React.MouseEvent<HTMLButtonElement>) => {
+    if (windowSize.width < 768){
+      document.body.style.overflowY = "hidden"
+    }
     Props.setSettingModalOpen(false)
   }
   // changeTextHandler
-  const [nickname,setNickname] = useState<string>("")
+  const [nickname,setNickname] = useState<string>(userSwr.user.nickname)
   const [validateText,setValidateText] = useState<string>("")
   const changeTextHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value)
@@ -39,89 +43,82 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
       setValidateText("")
     }
   }
-
-    // redux
-    // const UserStore = useSelector((state:RootState)=>state.user)
-    // swr
-    const {userSwr,error} = useUser()
     const router = useRouter()
-
     const dispatch = useDispatch()
-    // const navigate = useNavigate()
-    const handleSubmit = async() => {
+    const handleSubmit = async(e:React.MouseEvent<HTMLButtonElement>) => {
     if (nickname.length < 3){
-      setValidateText("3文字以上で入力してください")
+      setValidateText(t.Component.SettingUserModal.THREE)
       return
     }else if (nickname.length > 20 ){
-      setValidateText("20文字以内で入力してください")
+      setValidateText(t.Component.SettingUserModal.TWENTY)
       return
     }
-
     const res = await execSettingUserHandler(nickname,userSwr.user.id)
-    if (res.status === 200){
-      console.log(res)
-      // dispatch(updateNicknameAction(userSwr.user,res.data.user.nickname))
+    if (res.data.status === 200){
       mutate('/session_user')
-      handleClose()
+      handleClose(e)
     }else{
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
     }
   }
   const handleDeleteUser = async() => {
-    if(window.confirm('ユーザーを削除しますか？')){
+    if(window.confirm(t.Component.SettingUserModal.DELETE)){
+        setLoaded(true)
         handleSignOut()
     }
     else{
-      window.alert('キャンセルされました')
+      window.alert(t.Component.SettingUserModal.CANCEL)
     }
   }
 
   // sighout
+  const [loaded,setLoaded] = useState<boolean>(false)
   const handleSignOut = async () => {
-    // console.log("aaaaaaghh")
     try {
-      const res = await signOut()
-      if (res.data.success === true) {
+      // const res = await signOut()
+      // if (res.data.success === true) {
         // サインアウト時には各Cookieを削除
-        Cookies.remove("_access_token")
-        Cookies.remove("_client")
-        Cookies.remove("_uid")
-        // dispatch(userLoginAction(userInitialState.login,userInitialState.user))
+        // Cookies.remove("_access_token")
+        // Cookies.remove("_client")
+        // Cookies.remove("_uid")
         const res2 = await execDeleteUser(userSwr.user.id)
         if(res2.data.status === 200){
+          Cookies.remove("_access_token")
+          Cookies.remove("_client")
+          Cookies.remove("_uid")
+          mutate('/session_user')
           Props.setSettingModalOpen(false)
-          router.push('/')
+          // router.push('/')
         }else if(res2.data.status === 500){
           dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
         }
-        console.log(res)
-        console.log("Succeeded in sign out")
-      } else {
-        console.log("Failed in sign out")
-      }
+      // } else {
+      // }
     } catch (err) {
       dispatch(pussingMessageDataAction({title:ErrorMessage.message,select:0}))
-      // console.log(err)
     }
+    setLoaded(false)
   }
+  const windowSize = useWindowDimensions()
 
+  
   return(
     <>
       <Modal
         open={Props.settngModalOpen}
         onClose={handleClose}
+        className={windowSize.width<768?"SettingModalSmartFon":""}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <>
           <div className = "settingModalOpenClass">
             <div className = "settingModalOpenClassTitle">
-              Setting
+              {t.Component.USER.Setting}
             </div>
             <div className = "settingModalOpenClassMain">
                 
               <div className = "settingModalOpenClassNickname">
-                {/* Nickname */}
                 <TextField 
                   role="input"
                   id="standard-basic" 
@@ -132,20 +129,17 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
                   onChange={changeTextHandler}
                   helperText={validateText}
                   defaultValue={userSwr.user.nickname}
-                  // value={"title"}
                 />
               </div>
-              <div className = "settingModalOpenClassImage">
-                Image
+              <div className = "settingModalOpenClassImage"
+              style={{fontSize:"1rem",color:"rgba(0, 0, 0, 0.6)"}}
+              >
+                {t.Component.USER.Image}
               </div>
-              <div className = "settingModalOpenClassImageExplain">
-                *画像は各SNSプラットフォームサービスの画像を使用させていただいておりますので、下記のリンクから設定をお願い致します。
-                {userSwr.user.provider==="google_oauth2"&&(
-                  <a href = "https://myaccount.google.com/personal-info" target="_blank" rel="noopener noreferrer">
-                    https://myaccount.google.com/personal-info
-                  </a>
-                )}
-              </div>
+              <img src = {userSwr.user.image}
+              style = {{width:"70px",height:"70px",borderRadius:"70px",margin:"10px"}}
+              />
+              <TopImageSetUp/>
             </div>
             <div className = "settingModalOpenClassButton"
               style={{
@@ -154,16 +148,24 @@ export const SettingUserModal:React.FC<Props> = function SettingUserModalFunc(Pr
               }}
             >
               <Button variant="contained" role="setting-button"
-                // className = "TheredModalButton"
                 onClick = { handleSubmit }
               >
-                Submit
+                {t.Component.USER.Store}
               </Button>
-              <Button variant="contained"
+              {/* <Button variant="contained"
                 style={{backgroundColor:"#ff3073"}}
                 onClick = { handleDeleteUser }
               >
-                Delete
+                {t.Component.USER.Delete}
+              </Button> */}
+              <Button variant="contained"
+              style={{backgroundColor:"#ff3073"}}
+              className={"tail-spin-loading"}
+              onClick = { handleDeleteUser}
+              > {t.Component.USER.Delete}
+              {loaded==true&&(
+                <TailSpin color={submitSpin.color} height={20} width={20} />
+              )}
               </Button>
             </div>
           </div>

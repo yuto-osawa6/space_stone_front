@@ -1,11 +1,9 @@
 import { useState,useEffect } from "react"
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-// import { GenresList } from "./GenresList";
 import Loader from "react-loader-spinner";
 import { Cast } from "@/interfaces/search";
 import { StudioList } from "./StudioList";
-
 
 interface Props {
   handle:number
@@ -19,11 +17,8 @@ interface Studios{
 
 
 export const StudiosLists:React.FC<Props>= function StudiosListsFunc(Props){
-
   const studios = useSelector((state: RootState) => state.studios);
   const [hand, Sethand] = useState<number>(Props.handle);
-
-
   const select = (id:number):boolean =>{
     const selected = studios.studiosids.studios_id_in.includes(String(id))?true:false
     return selected
@@ -32,7 +27,6 @@ export const StudiosLists:React.FC<Props>= function StudiosListsFunc(Props){
   return(
     <>
       <div className = "GenresLists">
-        {/* {chengecontens()} */}
         {Props.studiosData.map((item)=>{
           return(
           <> 
@@ -45,9 +39,6 @@ export const StudiosLists:React.FC<Props>= function StudiosListsFunc(Props){
           )
         })}
       </div>
-     
-      
     </>
   )
-   
 }

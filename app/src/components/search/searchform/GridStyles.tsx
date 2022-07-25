@@ -11,29 +11,17 @@ import { sortAction } from "@/store/sort/actions";
 export const GridStyles:React.FC = function GridStylesFunc(){
   const g = useSelector((state: RootState) => state.grid);
   const [grid,setGrid] = useState<string>(g.grid)
-
-
-
   const dispatch = useDispatch();
-
   const handleClickChange = (e:React.MouseEvent<SVGElement, MouseEvent>) => { 
-    // const [grid,setGrid] = useState<string>("")
     const name = (e.currentTarget as SVGElement).dataset.name as string
     setGrid(name)
-    
-
   }
-
-
-
   const changeGridexec = async() => {
-    console.log(grid)
     const res = await execChangeGrid(grid)
     if (res.status === 200) {
       dispatch(GridAction(res.data.grid))
+    }
   }
-  }
-
   useEffect(()=>{
     changeGridexec()
   },[grid])
@@ -56,11 +44,6 @@ export const GridStyles:React.FC = function GridStylesFunc(){
         data-name = "03"
         onClick={(e)=> handleClickChange(e)}
         />
-        {/* <BsGrid1X2Fill
-        className={g.grid=="04"?"activeGridStyles":""}
-        data-name = "04"
-        onClick={(e)=> handleClickChange(e)}
-        /> */}
       </div>
     </>
   )

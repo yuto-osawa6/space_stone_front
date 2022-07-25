@@ -1,7 +1,6 @@
 import { product } from "@/interfaces/product"
 import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 import { actionSettingProductData2 } from "@/store/product/actions"
 
 type tierProduct = {
@@ -11,18 +10,15 @@ type tierProduct = {
   title:string
 }
 type Props = {
-  // product:tierProduct
   product:product
 }
 
 export const TierProductList:React.FC<Props> = function TierProductListFunc(Props){
-  // const navigate = useNavigate()
-  // console.log(Props)
   const dispatch = useDispatch()
   const router = useRouter()
   const handleNavigateShowProduct = () => {
     dispatch(actionSettingProductData2(Props.product));
-    router.push(`/products/${Props.product.id}`)
+    router.push(`/title/${Props.product.id}`)
   }
   return(
     <>
@@ -33,7 +29,7 @@ export const TierProductList:React.FC<Props> = function TierProductListFunc(Prop
       }}
       onClick={handleNavigateShowProduct}
       >
-        <img src = {Props.product.imageUrl?Props.product.imageUrl.replace("api:3000", "localhost:3001"):""}
+        <img src = {Props.product.imageUrl?Props.product.imageUrl:""}
         style={{
           borderRadius:"5px",
           top:"0",

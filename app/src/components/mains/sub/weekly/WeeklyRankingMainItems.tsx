@@ -12,7 +12,6 @@ type episords = {
   episord: number
   id: number | null
   image: string
-  // productId:number
   season: number
   seasonTitle: string
   time: Date | undefined
@@ -25,50 +24,37 @@ export const WeeklyRankingMainItems:React.FC<Props> = function WeeklyRankingMain
   const [persent,setPersent] = useState<string>("calc(100% - 0%)")
   const [persentTitle,setPersentTitle] = useState<string>("0")
   const [episords,setEpisords] = useState<episords[]>([])
-  // const [episord]
-
   const handleSetUp = () => {
     const day = new Date(Props.day)
     const day2 = new Date(Props.day)
     day.setHours(6)
     day2.setDate(day2.getDate()+7)
     day2.setHours(6)
-    // console.log(day,day2)
-  
-    // console.log(Props)
     const count = Props.product.productWeekly.filter(i=>(i.weekly!=undefined?new Date(i.weekly):new Date(2020)).getTime() == new Date(Props.day).getTime())
     const episord = Props.product.episords.filter(i=>new Date(i.releaseDate).getTime() > day.getTime() && new Date(i.releaseDate).getTime() < day2.getTime() )
-    // console.log(Props.product.episords.map(i=>new Date(i.releaseDate).getTime()))
-    // console.log(day.getTime(),day2.getTime())
-    // console.log(episord)
-    // console.log(count)
     setEpisords(episord)
     setCount(count.length!=0?count[0].count:0)
     handleSecoundSetUp(count.length!=0?count[0].count:0)
   }
   const handleSecoundSetUp = (item:number) =>{
     const persent = (item / Props.allLength) * 100
-    // console.log(persent,Props.allLength,item)
     setPersent(`calc(100% - ${Math.floor(persent)}% `)
     setPersentTitle(persent.toFixed(1))
   }
-
-
   useEffect(()=>{
     handleSetUp()
   },[Props])
 
-  // console.log(Props)
-
   return(
     <>
       <li
+      className="WeeklyRankingList"
       style={{
         backgroundColor: "#0cbbc1",
         borderBottom: "1px dotted #0cbbc1",
         color: "#2c3e50",
         display: "grid",
-        gridTemplateColumns: "1fr 1fr"
+        // gridTemplateColumns: "1fr 1fr"
       }}
       >
         <div className="WeeklyRankingItemsTitle"
@@ -77,19 +63,17 @@ export const WeeklyRankingMainItems:React.FC<Props> = function WeeklyRankingMain
           display: "flex",
           gap:"10px",
           alignItems: "center",
-          // justifyContent: "",
           backgroundColor: "white"
         }}
         >
-            {Props.product.title}
-            {episords.map((item,index)=>{
-              return(
-                <span className="weekyEpisords" key={index}>ep{item.episord}{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
-               
-              )
-            })}
+          {Props.product.title}
+          {episords.map((item,index)=>{
+            return(
+              <span className="weekyEpisords" key={index}>ep{item.episord}{index==0&&index==episords.length-1||index==episords.length-1?"":","}</span>
+              
+            )
+          })}
         </div>
-         
         <div className="WeeklyRankingItemsPersentageDummy"
         style={{
           position:"relative",
@@ -97,8 +81,8 @@ export const WeeklyRankingMainItems:React.FC<Props> = function WeeklyRankingMain
           width:"100%"
         }}
         >
-           <div className="WeeklyRankingItemsPersentage"
-             style={{
+          <div className="WeeklyRankingItemsPersentage"
+            style={{
               position: "absolute",
               left: "0",
               backgroundColor: "#0dbbc1",
@@ -107,11 +91,11 @@ export const WeeklyRankingMainItems:React.FC<Props> = function WeeklyRankingMain
               width:persent
             }
           }
-           >
+          >
              {/* 投票 */}
           </div>
           <div className="WeeklyRankingItemsPersentageTitle"
-           style={{
+          style={{
             position: "absolute",
             right: "10px",
             top: "50%",

@@ -1,13 +1,9 @@
 import { UserShowContext } from "@/contexttype/contexttype"
 import { execGetMyTiers } from "@/lib/api/users"
 import React, { useContext, useEffect, useState } from "react"
-
 import { product } from "@/interfaces/product"
 import { execTierSeasonMain } from "@/lib/api/main"
 import { TierSeasonMainList } from "@/components/mains/sub/tiers/TierSeasonMainList"
-// import { TierSeasonMainList } from "component/main/tiers/TierSeasonMainList"
-// import React, { useEffect, useState } from "react"
-// import { TierSeasonMainList } from "c/tiers/TierSeasonMainList"
 
 type kisetsu = {
   id:number
@@ -35,7 +31,6 @@ type yearTier = {
   avg: avg
   id: number
   kisetsu: kisetsu
-  // products: tierProduct[]
   products: product[]
   year: year
 }
@@ -47,47 +42,32 @@ export const UserShowMyTiers:React.FC = function UserShowMyTiersFunc(){
   const [yearTiers,setYearTiers] = useState<yearTier[]>([])
   const handleFirst = async() => {
     const res = await execGetMyTiers(user.id,current)
-    console.log(res) 
     setYearTiers(res.data.tierMain)
     GfNavigation(res.data.tierGroupLength)
   }
-  
-
-  // useEffect(()=>{
-  //   handleFirst()
-  // },[])
-  console.log(yearTiers)
-
   // ---------------------page
-  // const [active, setActive] = useState<number>(0);
   const [page,SetPage] = useState<number>(1)
   const [current,SetCurrent] = useState<number>(1)
 //  page
-
 useEffect(()=>{
   handleFirst()
 },[current])
 
 useEffect(()=>{
   if(updateTier==false)return
-  console.log("fooooooooooo")
   setUpdateTier(false)
   handleFirst()
 },[updateTier])
 // simple handle
-
 const GfNavigation = (Props:number) => {
   const limit = Math.ceil(Props / 1)
-  // console.log(limit)
   currentPage(current,limit)
   SetPage(limit)
 }
 
 // 
 const [pageNaviGation,setPageNaviGation] = useState<number[]>([])
-
 const currentPage = (i:number,c:number) => {
-// console.log(i,c)
 if (c >= 6){
 
 if(i <= 3){
@@ -115,10 +95,7 @@ const currentPrevHandler = () => SetCurrent(current-1)
 const currentNextHandler = () => SetCurrent(current+1)
 const currentFirstHandler = () => SetCurrent(1)
 const currentMaxHandler = () => SetCurrent(page)
-
 // Mytier
-
-
   return(
     <>
       <div className="TierSeasonMain"
@@ -149,12 +126,10 @@ const currentMaxHandler = () => SetCurrent(page)
 
           <div className = "ArticlesContainerPage">
             <ul>
-           
             <li
             onClick={currentFirstHandler}
             className={current==1?"activeCurrent":""}
             >1</li>
-           
             {page>5&&current!=1&&(
               <li
               onClick={currentPrevHandler}
@@ -162,23 +137,20 @@ const currentMaxHandler = () => SetCurrent(page)
             )}
             {pageNaviGation.map((item,index)=>
             {
-              // console.log(item!=1&&(item!=page||page!=1))
               return(
                 
                   <React.Fragment
                     key={index}
                     >
                   {item!=1&&item!=page&&(
-                     <li
+                    <li
                     key={item}
                     onClick={()=>currentSetHandler(item)}
                     className={current==item?"activeCurrent":""}
-                     >{item}</li>
+                    >{item}</li>
                   )}    
                   </React.Fragment>     
-      
               )
-             
             })}
             {page>5&&current!=page&&(
               <li
@@ -187,8 +159,8 @@ const currentMaxHandler = () => SetCurrent(page)
             )}
             {page>1&&(
             <li
-             onClick={currentMaxHandler}
-             className={current==page?"activeCurrent":""}
+              onClick={currentMaxHandler}
+              className={current==page?"activeCurrent":""}
             >{page}</li>
             )}
             </ul>

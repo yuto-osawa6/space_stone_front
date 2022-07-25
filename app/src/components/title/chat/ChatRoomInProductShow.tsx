@@ -45,7 +45,6 @@ export const ChatRoomInProductShow:React.FC<Props> = function ChatRoomInProductS
   //         // receiveMessage(data)
   //         // data => {product:data}
   //         setChatList(data.chatList)
-  //         console.log(data)
   //       },
   //     }
   //   )
@@ -68,7 +67,6 @@ export const ChatRoomInProductShow:React.FC<Props> = function ChatRoomInProductS
   // ----------------------------------------------------
   const handleChangetext = (e: React.ChangeEvent<HTMLInputElement>) =>{
     setMessage(e.target.value)
-    console.log(e.target.value)
   }
 
   // user ---------------------------------------------------
@@ -96,7 +94,7 @@ export const ChatRoomInProductShow:React.FC<Props> = function ChatRoomInProductS
             color: "cornflowerblue",
             margin:"10px 20px",
           }}
-           onClick={modalopenJugde2}
+          onClick={modalopenJugde2}
           >ChatRoomへ</div>
         </>
         :
@@ -129,7 +127,7 @@ export const ChatRoomInProductShow:React.FC<Props> = function ChatRoomInProductS
         </>
       )}
     </div>
-       {open&&(
+      {open&&(
           <OpenContext.Provider value={{ open, setOpen }}>
             <UserModalSign/>
           </OpenContext.Provider>

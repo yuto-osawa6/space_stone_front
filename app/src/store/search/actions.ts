@@ -6,7 +6,7 @@ export const addTodoAction = (title_count: string): SearchProductsActionTypes =>
     type: ActionTypes.searchProductsTexts,
     payload: {
       // id:ids,
-      title_cont: title_count,
+      title_or_titleKa_or_titleEn_or_titleRo_cont: title_count,
     },
   };
 };

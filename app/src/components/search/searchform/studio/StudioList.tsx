@@ -3,7 +3,6 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import { AiOutlineCheckCircle } from "react-icons/ai"
 import { useDispatch } from "react-redux"
-// import { useLocation, useNavigate } from "react-router-dom"
 import { DeletingCastsDataAction, PussingCastsDataAction } from "@/store/casts/actions"
 import { deletingtodoStudiosDataAction, pussingtodoStudiosDataAction } from "@/store/studios/actions"
 
@@ -21,22 +20,13 @@ export const StudioList:React.FC<Props> = function StudioListFunc(Props){
   // state
   const [Select,SetSelect] = useState<boolean>(Props.select)
   const dispatch = useDispatch()
-
   const router = useRouter()
-
-
   const locationchanging = () =>{
     if (router.pathname==="/search"){
-      console.log("a")
-      // console.log(location.pathname)
-      
     }else{
-      console.log("b")
       router.push(`/search`)
     }
   }
-
-
   const handleClick = (event: React.MouseEvent) => {
     SetSelect(true)
     dispatch(pussingtodoStudiosDataAction(String(Props.Studio.id),Props.Studio));
@@ -49,8 +39,6 @@ export const StudioList:React.FC<Props> = function StudioListFunc(Props){
     dispatch(deletingtodoStudiosDataAction(String(Props.Studio.id),Props.Studio));
     locationchanging()
   }
-
-
   return (
     <>
       {Select===false?

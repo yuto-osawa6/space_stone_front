@@ -28,21 +28,18 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
     const res = await execUserSearch(inputText,1)
     try{
       if(res.status === 200){
-        console.log(res)
         setUser(res.data.user)
         setFirstloding(true)
       }else{
 
       }
     }catch(e){
-      console.log(e)
     }
   } 
   //  title --------------------
   const [inputText,setInputText] = useState<string>("")
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
-      // console.log(e)
       setFirstloding(false)
       setPage2(2)
       setHasMore(true);
@@ -55,18 +52,15 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
     }, 500)
     return () => clearTimeout(timer)
   },[inputText])
-
   // scroll
   const [loaded,setLoaded] = useState<boolean>(false)
   const [hasMore, setHasMore] = useState(true); 
-  // const [page,setPage] = useState<number>(1)
   const [firstloding,setFirstloding] = useState<boolean>(false);
 
   const [page2,setPage2] = useState<number>(2)
   const loader =<div className="loader" key={0}>Loading ...</div>;
   const scrollRef = useRef<HTMLUListElement>(null);
   const scrollParentRef = scrollRef.current
-
   const handleScrollingExec = async () => {
     setLoaded(true)
     if(loaded==true)return
@@ -78,7 +72,6 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
         setLoaded(false)
         return;
       }
-      // setReviewComments([...reviewComments, ...res.data.reviewComments])
       setUser([...user,...res.data.user])
       setLoaded(false)
     }
@@ -94,22 +87,24 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
         aria-describedby="modal-modal-description"
       >
         <>
-          <div className=""
+          <div className="UserSearchModal"
           style={{
             maxHeight: "90%",
-            width: "50%",
-            backgroundColor: "#2c3e51",
+            // width: "80%",
+            // backgroundColor: "#363949",
             position: "relative",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            borderRadius:"10px"
+            // top: "50%",
+            // left: "50%",
+            // transform: "translate(-50%, -50%)",
+            borderRadius:"10px",
+            height:"90%",
+            backgroundColor: "transparent"
           }}
           >
             <div className=""
             style={{
-              paddingTop: "10px",
-              margin: "10px",
+              padding: "10px",
+              // margin: "10px",
               fontSize: "1.2rem",
               fontWeight:"bold",
               display:"flex",
@@ -121,15 +116,14 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
             <div className="CloseButton"
               style={{
                 top: "10px",
-                // color: "#132f4c",
+                width: 30,
+                height: 30,
               }}
               onClick={handleClose}
             >
               <IoMdClose/>
               </div>
             </div>
-
-
             <div className=""
             style={{
               padding: "10px",
@@ -150,28 +144,15 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
                 }}
               />
             </div>
-            <ul className=""
+            <ul className="SearchUserModal"
             ref={scrollRef}
             style={{
-              paddingBottom: "20px",
-              maxHeight: "70vh",
-              overflow: "scroll"
+              // paddingBottom: "20px",
+              maxHeight: "calc(100% - 100px)",
+              overflow: "scroll",
+              backgroundColor: "#363946"
             }}
             >
-              {/* {user.map((item)=>{
-                return(
-                  <UserSearchItem
-                    user = {item}
-                  />
-                )
-              })} */}
-              {/* {dammy.map((item)=>{
-                return(
-                  <UserSearchItem
-                    user = {item}
-                  />
-                )
-              })} */}
             {firstloding&&(
             <InfiniteScroll
               loadMore={handleScrollingExec}    
@@ -194,7 +175,6 @@ export const UserSearchModal:React.FC<Props> = function UserSearchModalFunc(Prop
           </div>
         </>
       </Modal>
-
     </>
   )
 }

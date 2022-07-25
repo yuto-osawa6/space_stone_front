@@ -24,7 +24,6 @@ export const settiongProductReducer = (state = IniProductData, action:SettiongPr
   // const latestId = state.length;
   switch (action.type) {
     case ActionTypes.product:
-      // console.log(action)
       // state.productGenres.push(action.product.productGenres.id)
       return state
       // {    
@@ -36,7 +35,6 @@ export const settiongProductReducer = (state = IniProductData, action:SettiongPr
       //     productStyles:action.product.productStyles
       //   }
     case ActionTypes.productshow:
-      // console.log(action)
       // state.productGenres.push(action.product.productGenres.id)
       return action.product
       // {

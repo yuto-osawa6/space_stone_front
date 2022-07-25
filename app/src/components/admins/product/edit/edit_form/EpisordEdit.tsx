@@ -23,7 +23,6 @@ type Props = {
   array_number:number
   episord:episord[]
   setEpisord: React.Dispatch<React.SetStateAction<episord[]>>
-
   childFunc01:React.MutableRefObject<any>
   array: number[]
 }
@@ -35,16 +34,13 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
     {
     toolbar:{ 
       container:[
-      // [{ font: [] }],
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
       ["bold", "italic", "underline", "strike"],
       [{ color: [] }, { background: [] }],
-      // [{ script:  "sub" }, { script:  "super" }],
       ["blockquote"],
       ["code-block"],
       [{ list:  "ordered" }, { list:  "bullet" }],
       [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
-      // ["link", "image", "video"],
       ['netflix'],
       ['boxcontents'],   
     ],
@@ -54,12 +50,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
   }
   ),[]);
   const [episordItem,setEpisordItem] = useState<episord>({ 
-    // episordNumber:0,
-    // episordTittle:"",
-    // episordArasuzi:"",
-    // episordImageUrl:"",
-    // episordTime:null,
-    // episordReleaseDate:null
     episordNumber:Props.episord[Props.index]!=undefined?Props.episord[Props.index].episordNumber:0,
     episordTittle:Props.episord[Props.index]!=undefined?Props.episord[Props.index].episordTittle:"",
     episordArasuzi:Props.episord[Props.index]!=undefined?Props.episord[Props.index].episordArasuzi:"",
@@ -83,7 +73,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
     })
 
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:value,
@@ -110,7 +99,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
     })
 
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:episordItem.episordTittle,
@@ -136,7 +124,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
     })
 
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:episordItem.episordTittle,
@@ -149,11 +136,8 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
 
   }
   // time
-  console.log(Props.episord[Props.index])
   const [time, setTime] = useState<Date | null>(Props.episord[Props.index]!=undefined&&Props.episord[Props.index].episordTime!=null?new Date(Props.episord[Props.index].episordTime as Date):null);
   const [timeValidationText,setTimeValidationText] = useState<string>("")
-
-  // const [deliveryStart, setDeliveryStart] = useState<Date | null>(null);
 
   useEffect(()=>{
     handleSetUpTime()
@@ -170,7 +154,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
     })
 
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:episordItem.episordTittle,
@@ -186,7 +169,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
   // release
   const [releaseDate, setReleaseDate] = useState<Date | null>(Props.episord[Props.index]!=undefined&&Props.episord[Props.index].episordReleaseDate!=undefined?new Date(Props.episord[Props.index].episordReleaseDate as Date):null);
   const [releaseDateValidationText,setReleaseDateValidationText] = useState<string>("")
-  // const [deliveryStart, setDeliveryStart] = useState<Date | null>(null);
 
   useEffect(()=>{
     handleSetUpReleateDate()
@@ -203,7 +185,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
     })
 
     const copy = Props.episord.slice()
-    // const value = e?.target.value as string
     copy[Props.index]={
       episordNumber:Props.index+1,
       episordTittle:episordItem.episordTittle,
@@ -224,20 +205,7 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
   }
   // -------------------------------
   const handleError = ():number => {
-    console.log("aaa")
     let count = 0
-    // if(title==undefined){
-    //   setError(true)
-    //   count += 1
-    // }
-    // if(title!=undefined&&title.length==0){
-    //   setError(true)
-    //   count += 1
-    // }
-    // if(imageUrl.length==0){
-    //   setError2(true)
-    //   count += 1
-    // }
 
     const blob = new Blob([valueArasuzi])
     const editor = quillref.current?.getEditor()
@@ -250,7 +218,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
     //   count += 1
     // }
     // if(blob.size>3000){
-    //   console.log(new Blob([valueArasuzi.replace(/(\s+){2,}/g," ").replace(/(<p>\s+<\/p>){1,}/g,"<p><br></p>").replace(/(<p><\/p>){1,}/g,"<p><br></p>").replace(/(<p><br><\/p>){2,}/g,"<p><br></p>")]).size)
     //   setArasuziValidationText("サイズが大きすぎます。")
     //   count += 1
     // }
@@ -268,21 +235,7 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
     return count
   
   }
-  
-  
     Props.childFunc01.current[Props.index] = {index:Props.index,func:handleError}
-    // id:Props.item.value
-    console.log(Props.episord[Props.index])
-    console.log(Props.index)
-    console.log(Props.episord)
-    console.log(Props)
-
-    // console.log(Props.episord[Props.index].episordReleaseDate!=undefined)
-
-
-    // console.log(Props)
-
-
 
   return(
     <>
@@ -342,7 +295,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
           }}
           renderInput={(params) => <TextField {...params} />}
         /> 
-        {/* </Stack> */}
         </LocalizationProvider>
         <FormHelperText className = "helpertexts">{timeValidationText}</FormHelperText>
       
@@ -350,7 +302,6 @@ export const EpisordEdit:React.FC<Props> = (Props) => {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateTimePicker
           label="配信開始"
-          // type="datetime-local"
           value={releaseDate}
           onChange={(newValue) => {
             setReleaseDate(newValue);

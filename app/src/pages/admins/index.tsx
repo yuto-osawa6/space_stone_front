@@ -5,12 +5,9 @@ import { Admins } from "@/components/admins/Admins"
 import { AdminsTop } from "@/components/admins/top/AdminsTop"
 
 type Props = {
-  // data:productShow
 }
 
 const AdminsIndex: React.FC<Props>& { getLayout: (page: any) => JSX.Element }  = (Props) => {
-  console.log(Props)
-  // const fallback= Props.fallback
   return(
     <>
       <AdminsTop/>

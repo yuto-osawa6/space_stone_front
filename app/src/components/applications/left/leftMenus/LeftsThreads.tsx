@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
 import { NavigatingLeftThreadDataAction } from "@/store/lefts/thread/actions"
+import { useLocale } from "@/lib/ini/local/local"
 
 export const LeftsThreads:React.FC = function LeftsThreadsFunc(){
   const dispatch = useDispatch()
@@ -21,6 +22,7 @@ export const LeftsThreads:React.FC = function LeftsThreadsFunc(){
       router.push("/threads")
     }
   }
+  const {t} = useLocale()
   return(
     <>
       <li
@@ -28,14 +30,14 @@ export const LeftsThreads:React.FC = function LeftsThreadsFunc(){
         handleOpen
         }
       >
-        <a>好評価率の高い</a>    
+        <a>{t.Component.Lefts.LIKE_REVIEW}</a>    
       </li>
       <li
         onClick={
         handleOpen2
         }
       >
-        <a>流行している</a>
+        <a>{t.Component.Lefts.POPULAR_REVIEW}</a>
       </li>
     </>
   )
